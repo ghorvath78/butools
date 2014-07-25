@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.map.MRAPFromMoments &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Tools for Markovian Arrival Processes (butools.map)" href="map.html" >
+    <link rel="next" title="butools.map.RAPFromMomentsAndCorrelations" href="RAPFromMomentsAndCorrelations.html" >
+    <link rel="prev" title="butools.map.RAPFromMoments" href="RAPFromMoments.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="map.html" accesskey="U">Tools for Markovian Arrival Processes (<tt class="docutils literal"><span class="pre">butools.map</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="RAPFromMomentsAndCorrelations.html" title="butools.map.RAPFromMomentsAndCorrelations"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="RAPFromMoments.html" title="butools.map.RAPFromMoments"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="RAPFromMoments.html"
+                        title="previous chapter">butools.map.RAPFromMoments</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="RAPFromMomentsAndCorrelations.html"
+                        title="next chapter">butools.map.RAPFromMomentsAndCorrelations</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-map-mrapfrommoments">
+<h1>butools.map.MRAPFromMoments<a class="headerlink" href="#butools-map-mrapfrommoments" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.map.MRAPFromMoments">
+<tt class="descclassname">butools.map.</tt><tt class="descname">MRAPFromMoments</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.map.MRAPFromMoments" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">H</span> <span class="pre">=</span> <span class="pre">MRAPFromMoments(moms,</span> <span class="pre">Nm)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">H</span> <span class="pre">=</span> <span class="pre">MRAPFromMoments[moms,</span> <span class="pre">Nm]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">H</span> <span class="pre">=</span> <span class="pre">MRAPFromMoments(moms,</span> <span class="pre">Nm)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Creates a marked rational arrival process that has the same
+marginal and lag-1 joint moments as given (see <a class="reference internal" href="#r28" id="id1">[R28]</a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>moms</strong> : vector of doubles</p>
+<blockquote>
+<div><p>The list of marginal moments. To obtain a marked
+rational process of order M, 2*M-1 marginal moments
+are required.</p>
+</div></blockquote>
+<p><strong>Nm</strong> : list of matrices, shape (M,M)</p>
+<blockquote>
+<div><p>The list of lag-1 joint moment matrices. The
+length of the list determines K, the number of arrival
+types of the rational process.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>H</strong> : list of matrices, shape (M,M)</p>
+<blockquote class="last">
+<div><p>The H0, H1, ..., HK matrices of the marked rational
+process</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>There is no guarantee that the returned matrices define
+a valid stochastic process. The joint densities may be
+negative.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r28" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R28]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Andras Horvath, Gabor Horvath, Miklos Telek, &#8220;A
+traffic based decomposition of two-class queueing
+networks with priority service,&#8221; Computer Networks
+53:(8) pp. 1235-1248. (2009)</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For Matlab:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.99805</span><span class="p">,</span> <span class="mf">2.0262</span><span class="p">,</span> <span class="mf">6.2348</span><span class="p">,</span> <span class="mf">25.738</span><span class="p">,</span> <span class="mf">133.3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.34055</span><span class="p">,</span> <span class="mf">0.69322</span><span class="p">;</span> <span class="mf">0.34966</span><span class="p">,</span> <span class="mf">0.35186</span><span class="p">,</span> <span class="mf">0.71829</span><span class="p">;</span> <span class="mf">0.72396</span><span class="p">,</span> <span class="mf">0.73079</span><span class="p">,</span> <span class="mf">1.4947</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.29553</span><span class="p">,</span> <span class="mf">0.27734</span><span class="p">,</span> <span class="mf">0.54078</span><span class="p">;</span> <span class="mf">0.29028</span><span class="p">,</span> <span class="mf">0.27211</span><span class="p">,</span> <span class="mf">0.53013</span><span class="p">;</span> <span class="mf">0.58391</span><span class="p">,</span> <span class="mf">0.54682</span><span class="p">,</span> <span class="mf">1.0646</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.36447</span><span class="p">,</span> <span class="mf">0.38016</span><span class="p">,</span> <span class="mf">0.79224</span><span class="p">;</span> <span class="mf">0.35811</span><span class="p">,</span> <span class="mf">0.37446</span><span class="p">,</span> <span class="mf">0.78148</span><span class="p">;</span> <span class="mf">0.71836</span><span class="p">,</span> <span class="mf">0.75239</span><span class="p">,</span> <span class="mf">1.5716</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">MRAPFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,{</span><span class="n">jmoms1</span><span class="p">,</span><span class="n">jmoms2</span><span class="p">,</span><span class="n">jmoms3</span><span class="p">});</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+<span class="go">      -1.9473       3.0344      -2.1704</span>
+<span class="go">     -0.33434     -0.88118      0.21355</span>
+<span class="go">     -0.33363      0.21321     -0.88152</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+<span class="go">      0.22304       7.4962      -7.3973</span>
+<span class="go">     0.092805       7.9131      -7.6658</span>
+<span class="go">     0.086985       7.8804      -7.6261</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+<span class="go">      0.49395      0.92951      -1.0798</span>
+<span class="go">       0.4418      -2.4454       2.2995</span>
+<span class="go">      0.44568      -2.3908       2.2415</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span>
+<span class="go">     -0.14271      -5.4356       5.9959</span>
+<span class="go">     -0.19985      -5.1102       5.6761</span>
+<span class="go">     -0.19945      -5.1791       5.7429</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">1e-11</span><span class="p">)</span>
+<span class="go">      0.99805       2.0262       6.2348       25.738        133.3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e-11</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+<span class="go">         0.34      0.34055      0.69322</span>
+<span class="go">      0.34966      0.35186      0.71829</span>
+<span class="go">      0.72396      0.73079       1.4947</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+<span class="go">      0.29553      0.27734      0.54078</span>
+<span class="go">      0.29028      0.27211      0.53013</span>
+<span class="go">      0.58391      0.54682       1.0646</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+<span class="go">      0.36447      0.38016      0.79224</span>
+<span class="go">      0.35811      0.37446      0.78148</span>
+<span class="go">      0.71836      0.75239       1.5716</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

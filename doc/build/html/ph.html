@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Tools for Phase-Type Distributions (butools.ph) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.ph.MomentsFromME" href="MomentsFromME.html" >
+    <link rel="prev" title="butools.reptrans.MStaircase" href="MStaircase.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="MomentsFromME.html" title="butools.ph.MomentsFromME"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="MStaircase.html" title="butools.reptrans.MStaircase"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a><ul>
+<li><a class="reference internal" href="#phase-type-and-matrix-exponential-distributions">Phase-type and matrix-exponential distributions</a></li>
+<li><a class="reference internal" href="#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li><a class="reference internal" href="#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li><a class="reference internal" href="#representation-transformation-methods">Representation transformation methods</a></li>
+<li><a class="reference internal" href="#minimal-representations">Minimal representations</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MStaircase.html"
+                        title="previous chapter">butools.reptrans.MStaircase</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MomentsFromME.html"
+                        title="next chapter">butools.ph.MomentsFromME</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="tools-for-phase-type-distributions-butools-ph">
+<h1>Tools for Phase-Type Distributions (<tt class="xref py py-mod docutils literal"><span class="pre">butools.ph</span></tt>)<a class="headerlink" href="#tools-for-phase-type-distributions-butools-ph" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/ph')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`PH&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.ph</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="phase-type-and-matrix-exponential-distributions">
+<h2>Phase-type and matrix-exponential distributions<a class="headerlink" href="#phase-type-and-matrix-exponential-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Continuous time phase-type (PH) distributions are characterized by two parameters, the initial probability vector <span class="math">\(\alpha\)</span>
+and the transient generator matrix of a continuous time (transient) Markov chain <span class="math">\(\alpha\)</span>. The PH distribution represents
+the absorption time of this transient Markov chain starting from <span class="math">\(\alpha\)</span>.
+The cummulative distribution function (cdf) of PH distributions is</p>
+<div class="math">
+\[F_{PH}(t) = 1-\alpha e^{A\,t} \mathbf{1},\]</div>
+<p>where <span class="math">\(\mathbf{1}\)</span> is the column vector of ones.</p>
+<p>Matrix exponential (ME) distributions are the generalizations of PH distributions. Formally, the cdf and all the related formulas for
+the statistical quantities are very similar to the ones of PH distributions</p>
+<div class="math">
+\[F_{ME}(t) = 1-\mathbf{b} e^{B\,t} \mathbf{e},\]</div>
+<p>however, <span class="math">\(\mathbf{b},B\)</span> and <span class="math">\(\mathbf{e}\)</span> can hold general numbers, the entries do not have to be valid probabilities or
+transition rates. ME distributions therefore lack the simple stochastic interpretation that PH distributions have. Vector
+<span class="math">\(\mathbf{b}\)</span> is called &#8220;starting operator&#8221;, matrix <span class="math">\(B\)</span> is the &#8220;process rate operator&#8221; and vector <span class="math">\(\mathbf{e}\)</span>
+is the &#8220;summing operator&#8221; <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p>BuTools provides several tools for both distribution classes in the ph package. However, BuTools uses a special form of ME
+distributions, where the summing operator is a vector of ones, thus <span class="math">\(\mathbf{e}=\mathbf{1}\)</span>. This is not a restriction,
+as all ME distributions defined with general summing operator can be easily transformed to this representation. Assume we
+have an ME distribution in the general form with parameters <span class="math">\(\mathbf{b}, B, \mathbf{e}\)</span>. The necessary similarity transform
+is obtained by calling the <tt class="code docutils literal"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">TransformToOnes(e)</span></tt> procedure of the BuTools reptrans package. The parameters of the ME
+distribution used by all related BuTools tools can be calculated by <span class="math">\(\mathbf{b'}=\mathbf{b}T^{-1}\)</span> and
+<span class="math">\(B'=T\,B\,T^{-1}\)</span>.</p>
+</div>
+<div class="section" id="simple-statistical-properties-and-tools">
+<h2>Simple statistical properties and tools<a class="headerlink" href="#simple-statistical-properties-and-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="MomentsFromME.html#butools.ph.MomentsFromME" title="butools.ph.MomentsFromME"><tt class="xref py py-func docutils literal"><span class="pre">MomentsFromME</span></tt></a></td>
+<td>Returns the moments of a matrix-exponential distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MomentsFromPH.html#butools.ph.MomentsFromPH" title="butools.ph.MomentsFromPH"><tt class="xref py py-func docutils literal"><span class="pre">MomentsFromPH</span></tt></a></td>
+<td>Returns the moments of a continuous phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CdfFromME.html#butools.ph.CdfFromME" title="butools.ph.CdfFromME"><tt class="xref py py-func docutils literal"><span class="pre">CdfFromME</span></tt></a></td>
+<td>Returns the cummulative distribution function of a matrix-exponential distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CdfFromPH.html#butools.ph.CdfFromPH" title="butools.ph.CdfFromPH"><tt class="xref py py-func docutils literal"><span class="pre">CdfFromPH</span></tt></a></td>
+<td>Returns the cummulative distribution function of a continuous phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="PdfFromME.html#butools.ph.PdfFromME" title="butools.ph.PdfFromME"><tt class="xref py py-func docutils literal"><span class="pre">PdfFromME</span></tt></a></td>
+<td>Returns the probability density function of a matrix-exponential distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="PdfFromPH.html#butools.ph.PdfFromPH" title="butools.ph.PdfFromPH"><tt class="xref py py-func docutils literal"><span class="pre">PdfFromPH</span></tt></a></td>
+<td>Returns the probability density function of a continuous phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="IntervalPdfFromPH.html#butools.ph.IntervalPdfFromPH" title="butools.ph.IntervalPdfFromPH"><tt class="xref py py-func docutils literal"><span class="pre">IntervalPdfFromPH</span></tt></a></td>
+<td>Returns the approximate probability density function of a continuous phase-type distribution, based on the probability of falling into intervals.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="RandomPH.html#butools.ph.RandomPH" title="butools.ph.RandomPH"><tt class="xref py py-func docutils literal"><span class="pre">RandomPH</span></tt></a></td>
+<td>Returns a random phase-type distribution with a given order.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckPHRepresentation.html#butools.ph.CheckPHRepresentation" title="butools.ph.CheckPHRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckPHRepresentation</span></tt></a></td>
+<td>Checks if the given vector and matrix define a valid phase-type representation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CheckMERepresentation.html#butools.ph.CheckMERepresentation" title="butools.ph.CheckMERepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckMERepresentation</span></tt></a></td>
+<td>Checks if the given vector and matrix define a valid matrix-exponential representation.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckMEPositiveDensity.html#butools.ph.CheckMEPositiveDensity" title="butools.ph.CheckMEPositiveDensity"><tt class="xref py py-func docutils literal"><span class="pre">CheckMEPositiveDensity</span></tt></a></td>
+<td>Checks if the given matrix-exponential distribution has positive density.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SamplesFromPH.html#butools.ph.SamplesFromPH" title="butools.ph.SamplesFromPH"><tt class="xref py py-func docutils literal"><span class="pre">SamplesFromPH</span></tt></a></td>
+<td>Generates random samples from a phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ImageFromPH.html#butools.ph.ImageFromPH" title="butools.ph.ImageFromPH"><tt class="xref py py-func docutils literal"><span class="pre">ImageFromPH</span></tt></a></td>
+<td>Depicts the given phase-type distribution, and either displays it or saves it to file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="inverse-characterization-tools">
+<h2>Inverse characterization tools<a class="headerlink" href="#inverse-characterization-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="APHFrom3Moments.html#butools.ph.APHFrom3Moments" title="butools.ph.APHFrom3Moments"><tt class="xref py py-func docutils literal"><span class="pre">APHFrom3Moments</span></tt></a></td>
+<td>Returns an acyclic PH which has the same 3 moments as given.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="PH2From3Moments.html#butools.ph.PH2From3Moments" title="butools.ph.PH2From3Moments"><tt class="xref py py-func docutils literal"><span class="pre">PH2From3Moments</span></tt></a></td>
+<td>Returns a PH(2) which has the same 3 moments as given.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="PH3From5Moments.html#butools.ph.PH3From5Moments" title="butools.ph.PH3From5Moments"><tt class="xref py py-func docutils literal"><span class="pre">PH3From5Moments</span></tt></a></td>
+<td>Returns a PH(3) which has the same 5 moments as given.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MEFromMoments.html#butools.ph.MEFromMoments" title="butools.ph.MEFromMoments"><tt class="xref py py-func docutils literal"><span class="pre">MEFromMoments</span></tt></a></td>
+<td>Creates a matrix-exponential distribution that has the same moments as given.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="APH2ndMomentLowerBound.html#butools.ph.APH2ndMomentLowerBound" title="butools.ph.APH2ndMomentLowerBound"><tt class="xref py py-func docutils literal"><span class="pre">APH2ndMomentLowerBound</span></tt></a></td>
+<td>Returns the lower bound of the second moment of acyclic phase-type (APH) distributions of order n.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="APH3rdMomentLowerBound.html#butools.ph.APH3rdMomentLowerBound" title="butools.ph.APH3rdMomentLowerBound"><tt class="xref py py-func docutils literal"><span class="pre">APH3rdMomentLowerBound</span></tt></a></td>
+<td>Returns the lower bound of the third moment of acyclic phase-type (APH) distributions of order n.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="APH3rdMomentUpperBound.html#butools.ph.APH3rdMomentUpperBound" title="butools.ph.APH3rdMomentUpperBound"><tt class="xref py py-func docutils literal"><span class="pre">APH3rdMomentUpperBound</span></tt></a></td>
+<td>Returns the upper bound of the third moment of acyclic phase-type (APH) distributions of order n.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="representation-transformation-methods">
+<h2>Representation transformation methods<a class="headerlink" href="#representation-transformation-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="CanonicalFromPH2.html#butools.ph.CanonicalFromPH2" title="butools.ph.CanonicalFromPH2"><tt class="xref py py-func docutils literal"><span class="pre">CanonicalFromPH2</span></tt></a></td>
+<td>Returns the canonical form of an order-2 phase-type distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CanonicalFromPH3.html#butools.ph.CanonicalFromPH3" title="butools.ph.CanonicalFromPH3"><tt class="xref py py-func docutils literal"><span class="pre">CanonicalFromPH3</span></tt></a></td>
+<td>Returns the canonical form of an order-3 phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="AcyclicPHFromME.html#butools.ph.AcyclicPHFromME" title="butools.ph.AcyclicPHFromME"><tt class="xref py py-func docutils literal"><span class="pre">AcyclicPHFromME</span></tt></a></td>
+<td>Transforms an arbitrary matrix-exponential representation to an acyclic phase-type representation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MonocyclicPHFromME.html#butools.ph.MonocyclicPHFromME" title="butools.ph.MonocyclicPHFromME"><tt class="xref py py-func docutils literal"><span class="pre">MonocyclicPHFromME</span></tt></a></td>
+<td>Transforms an arbitrary matrix-exponential representation to a Markovian monocyclic representation.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="PHFromME.html#butools.ph.PHFromME" title="butools.ph.PHFromME"><tt class="xref py py-func docutils literal"><span class="pre">PHFromME</span></tt></a></td>
+<td>Obtains a Markovian representation of a matrix exponential distribution of the same size, if possible.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="minimal-representations">
+<h2>Minimal representations<a class="headerlink" href="#minimal-representations" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="MEOrder.html#butools.ph.MEOrder" title="butools.ph.MEOrder"><tt class="xref py py-func docutils literal"><span class="pre">MEOrder</span></tt></a></td>
+<td>Returns the order of the ME distribution (which is not necessarily equal to the size of the representation).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MEOrderFromMoments.html#butools.ph.MEOrderFromMoments" title="butools.ph.MEOrderFromMoments"><tt class="xref py py-func docutils literal"><span class="pre">MEOrderFromMoments</span></tt></a></td>
+<td>Returns the order of ME distribution that can realize the given moments.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MinimalRepFromME.html#butools.ph.MinimalRepFromME" title="butools.ph.MinimalRepFromME"><tt class="xref py py-func docutils literal"><span class="pre">MinimalRepFromME</span></tt></a></td>
+<td>Returns the minimal representation of the given ME distribution.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><ol class="first last upperalpha simple" start="12">
+<li>Lipsky, Queueing Theory: A Linear Algebraic Approach, MacMillan, New York, 1992.</li>
+</ol>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

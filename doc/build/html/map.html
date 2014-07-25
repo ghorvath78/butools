@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Tools for Markovian Arrival Processes (butools.map) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.map.MarginalDistributionFromMAP" href="MarginalDistributionFromMAP.html" >
+    <link rel="prev" title="butools.dph.DPHFromMG" href="DPHFromMG.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="MarginalDistributionFromMAP.html" title="butools.map.MarginalDistributionFromMAP"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="DPHFromMG.html" title="butools.dph.DPHFromMG"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tools for Markovian Arrival Processes (<tt class="docutils literal"><span class="pre">butools.map</span></tt>)</a><ul>
+<li><a class="reference internal" href="#markovian-arrival-processes-and-rational-arrival-processes">Markovian arrival processes and rational arrival processes</a></li>
+<li><a class="reference internal" href="#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li><a class="reference internal" href="#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li><a class="reference internal" href="#representation-transformation-methods">Representation transformation methods</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="DPHFromMG.html"
+                        title="previous chapter">butools.dph.DPHFromMG</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MarginalDistributionFromMAP.html"
+                        title="next chapter">butools.map.MarginalDistributionFromMAP</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="module-butools.map">
+<span id="tools-for-markovian-arrival-processes-butools-map"></span><h1>Tools for Markovian Arrival Processes (<a class="reference internal" href="#module-butools.map" title="butools.map"><tt class="xref py py-mod docutils literal"><span class="pre">butools.map</span></tt></a>)<a class="headerlink" href="#module-butools.map" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/map')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`MAP&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.map</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="markovian-arrival-processes-and-rational-arrival-processes">
+<h2>Markovian arrival processes and rational arrival processes<a class="headerlink" href="#markovian-arrival-processes-and-rational-arrival-processes" title="Permalink to this headline">¶</a></h2>
+<p>Continuous time Markovian arrival processes (MAPs) are characterized by two matrices, <span class="math">\(D_0\)</span> and <span class="math">\(D_1\)</span>. MAPs have
+a continuous time Markov chain in the background with generator <span class="math">\(D=D_0+D_1\)</span>. Every time this Markov chain changes state
+through a transition belonging to <span class="math">\(D_1\)</span>, an arrival event is generated. As the state of the background process is not
+re-initiated after the arrival events, MAPs are capable of generating correlated arrivals.</p>
+<p>Rational arrival processes (RAPs, also known as matrix-exponential processes, MEPs) are the generalizations of MAPs. Formally,
+all formulas for the statistical quantities are very similar to the ones of MAPs. However, <span class="math">\(D_0\)</span> and <span class="math">\(D_1\)</span> can hold
+general numbers, the entries do not have to be valid transition rates. RAPs therefore lack the simple stochastic interpretation
+that MAPs have.</p>
+<p>Both MAPs and RAPs can be generalized to multi-type arrival processes. If there are K different arrival types, marked
+MAPs (MMAPs) and marked RAPs (MRAPs) defined by matrices <span class="math">\(D_0,\dots,D_K\)</span>  are able to describe the multi-type arrival process.</p>
+<p>BuTools provides several tools for MAPs, RAPs and their marked variants in the maps package.</p>
+</div>
+<div class="section" id="simple-statistical-properties-and-tools">
+<h2>Simple statistical properties and tools<a class="headerlink" href="#simple-statistical-properties-and-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="MarginalDistributionFromMAP.html#butools.map.MarginalDistributionFromMAP" title="butools.map.MarginalDistributionFromMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromMAP</span></tt></a></td>
+<td>Returns the phase type marginal distribution of a Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalDistributionFromRAP.html#butools.map.MarginalDistributionFromRAP" title="butools.map.MarginalDistributionFromRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromRAP</span></tt></a></td>
+<td>Returns the matrix-exponential marginal distribution of a rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MarginalDistributionFromMMAP.html#butools.map.MarginalDistributionFromMMAP" title="butools.map.MarginalDistributionFromMMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromMMAP</span></tt></a></td>
+<td>Returns the phase type marginal distribution of a marked Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalDistributionFromMRAP.html#butools.map.MarginalDistributionFromMRAP" title="butools.map.MarginalDistributionFromMRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromMRAP</span></tt></a></td>
+<td>Returns the matrix-exponential marginal distribution of a marked rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MarginalMomentsFromMAP.html#butools.map.MarginalMomentsFromMAP" title="butools.map.MarginalMomentsFromMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromMAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalMomentsFromRAP.html#butools.map.MarginalMomentsFromRAP" title="butools.map.MarginalMomentsFromRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromRAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MarginalMomentsFromMMAP.html#butools.map.MarginalMomentsFromMMAP" title="butools.map.MarginalMomentsFromMMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromMMAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a marked Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalMomentsFromMRAP.html#butools.map.MarginalMomentsFromMRAP" title="butools.map.MarginalMomentsFromMRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromMRAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a marked rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LagCorrelationsFromMAP.html#butools.map.LagCorrelationsFromMAP" title="butools.map.LagCorrelationsFromMAP"><tt class="xref py py-func docutils literal"><span class="pre">LagCorrelationsFromMAP</span></tt></a></td>
+<td>Returns the lag autocorrelations of a Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LagCorrelationsFromRAP.html#butools.map.LagCorrelationsFromRAP" title="butools.map.LagCorrelationsFromRAP"><tt class="xref py py-func docutils literal"><span class="pre">LagCorrelationsFromRAP</span></tt></a></td>
+<td>Returns the lag autocorrelations of a rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LagkJointMomentsFromMAP.html#butools.map.LagkJointMomentsFromMAP" title="butools.map.LagkJointMomentsFromMAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromMAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LagkJointMomentsFromRAP.html#butools.map.LagkJointMomentsFromRAP" title="butools.map.LagkJointMomentsFromRAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromRAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LagkJointMomentsFromMMAP.html#butools.map.LagkJointMomentsFromMMAP" title="butools.map.LagkJointMomentsFromMMAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromMMAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a marked Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LagkJointMomentsFromMRAP.html#butools.map.LagkJointMomentsFromMRAP" title="butools.map.LagkJointMomentsFromMRAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromMRAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a marked rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="RandomMAP.html#butools.map.RandomMAP" title="butools.map.RandomMAP"><tt class="xref py py-func docutils literal"><span class="pre">RandomMAP</span></tt></a></td>
+<td>Returns a random Markovian arrival process with given mean value.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="RandomMMAP.html#butools.map.RandomMMAP" title="butools.map.RandomMMAP"><tt class="xref py py-func docutils literal"><span class="pre">RandomMMAP</span></tt></a></td>
+<td>Returns a random marked Markovian arrival process with given mean value.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckMAPRepresentation.html#butools.map.CheckMAPRepresentation" title="butools.map.CheckMAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckMAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a continuous time MAP.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CheckRAPRepresentation.html#butools.map.CheckRAPRepresentation" title="butools.map.CheckRAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckRAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a continuous time RAP.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckMMAPRepresentation.html#butools.map.CheckMMAPRepresentation" title="butools.map.CheckMMAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckMMAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a continuous time MMAP.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CheckMRAPRepresentation.html#butools.map.CheckMRAPRepresentation" title="butools.map.CheckMRAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckMRAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a continuous time MRAP.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="SamplesFromMAP.html#butools.map.SamplesFromMAP" title="butools.map.SamplesFromMAP"><tt class="xref py py-func docutils literal"><span class="pre">SamplesFromMAP</span></tt></a></td>
+<td>Generates random samples from a Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SamplesFromMMAP.html#butools.map.SamplesFromMMAP" title="butools.map.SamplesFromMMAP"><tt class="xref py py-func docutils literal"><span class="pre">SamplesFromMMAP</span></tt></a></td>
+<td>Generates random samples from a marked Markovian arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ImageFromMAP.html#butools.map.ImageFromMAP" title="butools.map.ImageFromMAP"><tt class="xref py py-func docutils literal"><span class="pre">ImageFromMAP</span></tt></a></td>
+<td>Depicts the given Markovian arrival process, and either displays it or saves it to file.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ImageFromMMAP.html#butools.map.ImageFromMMAP" title="butools.map.ImageFromMMAP"><tt class="xref py py-func docutils literal"><span class="pre">ImageFromMMAP</span></tt></a></td>
+<td>Depicts the given marked Markovian arrival process, and either displays it or saves it to file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="inverse-characterization-tools">
+<h2>Inverse characterization tools<a class="headerlink" href="#inverse-characterization-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="RAPFromMoments.html#butools.map.RAPFromMoments" title="butools.map.RAPFromMoments"><tt class="xref py py-func docutils literal"><span class="pre">RAPFromMoments</span></tt></a></td>
+<td>Creates a rational arrival process that has the same marginal and lag-1 joint moments as given.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MRAPFromMoments.html#butools.map.MRAPFromMoments" title="butools.map.MRAPFromMoments"><tt class="xref py py-func docutils literal"><span class="pre">MRAPFromMoments</span></tt></a></td>
+<td>Creates a marked rational arrival process that has the same marginal and lag-1 joint moments as given.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="RAPFromMomentsAndCorrelations.html#butools.map.RAPFromMomentsAndCorrelations" title="butools.map.RAPFromMomentsAndCorrelations"><tt class="xref py py-func docutils literal"><span class="pre">RAPFromMomentsAndCorrelations</span></tt></a></td>
+<td>Returns a rational arrival process that has the same moments and lag autocorrelation coefficients as given.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MAP2FromMoments.html#butools.map.MAP2FromMoments" title="butools.map.MAP2FromMoments"><tt class="xref py py-func docutils literal"><span class="pre">MAP2FromMoments</span></tt></a></td>
+<td>Returns a MAP(2) which has the same 3 marginal moments and lag-1 autocorrelation as given.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MAP2CorrelationBounds.html#butools.map.MAP2CorrelationBounds" title="butools.map.MAP2CorrelationBounds"><tt class="xref py py-func docutils literal"><span class="pre">MAP2CorrelationBounds</span></tt></a></td>
+<td>Returns the upper and lower correlation bounds for a MAP(2) given the three marginal moments.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MAPFromFewMomentsAndCorrelations.html#butools.map.MAPFromFewMomentsAndCorrelations" title="butools.map.MAPFromFewMomentsAndCorrelations"><tt class="xref py py-func docutils literal"><span class="pre">MAPFromFewMomentsAndCorrelations</span></tt></a></td>
+<td>Returns a MAP that matches the given 2 or 3 moments and the lag-1 autocorrelation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="representation-transformation-methods">
+<h2>Representation transformation methods<a class="headerlink" href="#representation-transformation-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="CanonicalFromMAP2.html#butools.map.CanonicalFromMAP2" title="butools.map.CanonicalFromMAP2"><tt class="xref py py-func docutils literal"><span class="pre">CanonicalFromMAP2</span></tt></a></td>
+<td>Returns the canonical form of an order-2 Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MAPFromRAP.html#butools.map.MAPFromRAP" title="butools.map.MAPFromRAP"><tt class="xref py py-func docutils literal"><span class="pre">MAPFromRAP</span></tt></a></td>
+<td>Obtains a Markovian representation of a rational arrival process of the same size, if possible.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MMAPFromMRAP.html#butools.map.MMAPFromMRAP" title="butools.map.MMAPFromMRAP"><tt class="xref py py-func docutils literal"><span class="pre">MMAPFromMRAP</span></tt></a></td>
+<td>Obtains a Markovian representation of a marked rational arrival process of the same size, if possible.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MinimalRepFromRAP.html#butools.map.MinimalRepFromRAP" title="butools.map.MinimalRepFromRAP"><tt class="xref py py-func docutils literal"><span class="pre">MinimalRepFromRAP</span></tt></a></td>
+<td>Returns the minimal representation of a rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MinimalRepFromMRAP.html#butools.map.MinimalRepFromMRAP" title="butools.map.MinimalRepFromMRAP"><tt class="xref py py-func docutils literal"><span class="pre">MinimalRepFromMRAP</span></tt></a></td>
+<td>Returns the minimal representation of a marked rational arrival process.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

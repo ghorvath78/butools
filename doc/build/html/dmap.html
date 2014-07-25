@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Tools for Discrete Markovian Arrival Processes (butools.dmap) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.dmap.MarginalDistributionFromDMAP" href="MarginalDistributionFromDMAP.html" >
+    <link rel="prev" title="butools.map.MinimalRepFromMRAP" href="MinimalRepFromMRAP.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="MarginalDistributionFromDMAP.html" title="butools.dmap.MarginalDistributionFromDMAP"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="MinimalRepFromMRAP.html" title="butools.map.MinimalRepFromMRAP"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tools for Discrete Markovian Arrival Processes (<tt class="docutils literal"><span class="pre">butools.dmap</span></tt>)</a><ul>
+<li><a class="reference internal" href="#discrete-markovian-arrival-processes-and-rational-arrival-processes">Discrete Markovian arrival processes and rational arrival processes</a></li>
+<li><a class="reference internal" href="#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li><a class="reference internal" href="#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li><a class="reference internal" href="#representation-transformation-methods">Representation transformation methods</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MinimalRepFromMRAP.html"
+                        title="previous chapter">butools.map.MinimalRepFromMRAP</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MarginalDistributionFromDMAP.html"
+                        title="next chapter">butools.dmap.MarginalDistributionFromDMAP</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="module-butools.dmap">
+<span id="tools-for-discrete-markovian-arrival-processes-butools-dmap"></span><h1>Tools for Discrete Markovian Arrival Processes (<a class="reference internal" href="#module-butools.dmap" title="butools.dmap"><tt class="xref py py-mod docutils literal"><span class="pre">butools.dmap</span></tt></a>)<a class="headerlink" href="#module-butools.dmap" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/dmap')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`DMAP&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.dmap</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="discrete-markovian-arrival-processes-and-rational-arrival-processes">
+<h2>Discrete Markovian arrival processes and rational arrival processes<a class="headerlink" href="#discrete-markovian-arrival-processes-and-rational-arrival-processes" title="Permalink to this headline">¶</a></h2>
+<p>Discrete time Markovian arrival processes (DMAPs) are characterized by two matrices, <span class="math">\(D_0\)</span> and <span class="math">\(D_1\)</span>. DMAPs have
+a discrete time Markov chain in the background with transition probability matrix <span class="math">\(D=D_0+D_1\)</span>. Every time this Markov chain changes state
+through a transition belonging to <span class="math">\(D_1\)</span>, an arrival event is generated. As the state of the background process is not
+re-initiated after the arrival events, DMAPs are capable of generating correlated arrival times.</p>
+<p>Discrete rational arrival processes (DRAPs) are the generalizations of DMAPs. Formally,
+all formulas for the statistical quantities are very similar to the ones of DMAPs. However, <span class="math">\(D_0\)</span> and <span class="math">\(D_1\)</span> can hold
+general numbers, the entries do not have to be valid probabilities. DRAPs therefore lack the simple stochastic interpretation
+that DMAPs have.</p>
+<p>Both DMAPs and DRAPs can be generalized to multi-type arrival processes. If there are K different arrival types, marked
+DMAPs (DMMAPs) and marked DRAPs (DMRAPs) defined by matrices <span class="math">\(D_0,\dots,D_K\)</span>  are able to describe the multi-type arrival process.</p>
+<p>BuTools provides several tools for DMAPs, DRAPs and their marked variants in the dmaps package.</p>
+</div>
+<div class="section" id="simple-statistical-properties-and-tools">
+<h2>Simple statistical properties and tools<a class="headerlink" href="#simple-statistical-properties-and-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="MarginalDistributionFromDMAP.html#butools.dmap.MarginalDistributionFromDMAP" title="butools.dmap.MarginalDistributionFromDMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromDMAP</span></tt></a></td>
+<td>Returns the discrete phase type distributed marginal distribution of a discrete Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalDistributionFromDRAP.html#butools.dmap.MarginalDistributionFromDRAP" title="butools.dmap.MarginalDistributionFromDRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromDRAP</span></tt></a></td>
+<td>Returns the matrix-geometrically distributed marginal of a discrete rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MarginalDistributionFromDMRAP.html#butools.dmap.MarginalDistributionFromDMRAP" title="butools.dmap.MarginalDistributionFromDMRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromDMRAP</span></tt></a></td>
+<td>Returns the matrix-geometrically distributed marginal of a discrete marked rational arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalDistributionFromDMMAP.html#butools.dmap.MarginalDistributionFromDMMAP" title="butools.dmap.MarginalDistributionFromDMMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalDistributionFromDMMAP</span></tt></a></td>
+<td>Returns the discrete phase type distributed marginal of a discrete marked Markovian arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MarginalMomentsFromDMAP.html#butools.dmap.MarginalMomentsFromDMAP" title="butools.dmap.MarginalMomentsFromDMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromDMAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a discrete Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalMomentsFromDRAP.html#butools.dmap.MarginalMomentsFromDRAP" title="butools.dmap.MarginalMomentsFromDRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromDRAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a discrete rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MarginalMomentsFromDMMAP.html#butools.dmap.MarginalMomentsFromDMMAP" title="butools.dmap.MarginalMomentsFromDMMAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromDMMAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a discrete marked Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MarginalMomentsFromDMRAP.html#butools.dmap.MarginalMomentsFromDMRAP" title="butools.dmap.MarginalMomentsFromDMRAP"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromDMRAP</span></tt></a></td>
+<td>Returns the moments of the marginal distribution of a discrete marked rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LagCorrelationsFromDMAP.html#butools.dmap.LagCorrelationsFromDMAP" title="butools.dmap.LagCorrelationsFromDMAP"><tt class="xref py py-func docutils literal"><span class="pre">LagCorrelationsFromDMAP</span></tt></a></td>
+<td>Returns the lag autocorrelations of a discrete Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LagCorrelationsFromDRAP.html#butools.dmap.LagCorrelationsFromDRAP" title="butools.dmap.LagCorrelationsFromDRAP"><tt class="xref py py-func docutils literal"><span class="pre">LagCorrelationsFromDRAP</span></tt></a></td>
+<td>Returns the lag autocorrelations of a discrete rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LagkJointMomentsFromDMAP.html#butools.dmap.LagkJointMomentsFromDMAP" title="butools.dmap.LagkJointMomentsFromDMAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromDMAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a discrete Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LagkJointMomentsFromDRAP.html#butools.dmap.LagkJointMomentsFromDRAP" title="butools.dmap.LagkJointMomentsFromDRAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromDRAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a discrete rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="LagkJointMomentsFromDMMAP.html#butools.dmap.LagkJointMomentsFromDMMAP" title="butools.dmap.LagkJointMomentsFromDMMAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromDMMAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a discrete marked Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="LagkJointMomentsFromDMRAP.html#butools.dmap.LagkJointMomentsFromDMRAP" title="butools.dmap.LagkJointMomentsFromDMRAP"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromDMRAP</span></tt></a></td>
+<td>Returns the lag-k joint moments of a discrete marked rational arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="RandomDMAP.html#butools.dmap.RandomDMAP" title="butools.dmap.RandomDMAP"><tt class="xref py py-func docutils literal"><span class="pre">RandomDMAP</span></tt></a></td>
+<td>Returns a random discrete Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="RandomDMMAP.html#butools.dmap.RandomDMMAP" title="butools.dmap.RandomDMMAP"><tt class="xref py py-func docutils literal"><span class="pre">RandomDMMAP</span></tt></a></td>
+<td>Returns a random discrete marked Markovian arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckDMAPRepresentation.html#butools.dmap.CheckDMAPRepresentation" title="butools.dmap.CheckDMAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckDMAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a discrete time MAP.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CheckDRAPRepresentation.html#butools.dmap.CheckDRAPRepresentation" title="butools.dmap.CheckDRAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckDRAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a discrete time RAP.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckDMMAPRepresentation.html#butools.dmap.CheckDMMAPRepresentation" title="butools.dmap.CheckDMMAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckDMMAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a discrete time MMAP.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CheckDMRAPRepresentation.html#butools.dmap.CheckDMRAPRepresentation" title="butools.dmap.CheckDMRAPRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckDMRAPRepresentation</span></tt></a></td>
+<td>Checks if the input matrixes define a discrete time MRAP.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="SamplesFromDMAP.html#butools.dmap.SamplesFromDMAP" title="butools.dmap.SamplesFromDMAP"><tt class="xref py py-func docutils literal"><span class="pre">SamplesFromDMAP</span></tt></a></td>
+<td>Generates random samples from a discrete Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SamplesFromDMMAP.html#butools.dmap.SamplesFromDMMAP" title="butools.dmap.SamplesFromDMMAP"><tt class="xref py py-func docutils literal"><span class="pre">SamplesFromDMMAP</span></tt></a></td>
+<td>Generates random samples from a discrete marked Markovian arrival process.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ImageFromDMAP.html#butools.dmap.ImageFromDMAP" title="butools.dmap.ImageFromDMAP"><tt class="xref py py-func docutils literal"><span class="pre">ImageFromDMAP</span></tt></a></td>
+<td>Depicts the given discrete Markovian arrival process, and either displays it or saves it to file.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="ImageFromDMMAP.html#butools.dmap.ImageFromDMMAP" title="butools.dmap.ImageFromDMMAP"><tt class="xref py py-func docutils literal"><span class="pre">ImageFromDMMAP</span></tt></a></td>
+<td>Depicts the given discrete marked Markovian arrival process, and either displays it or saves it to file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="inverse-characterization-tools">
+<h2>Inverse characterization tools<a class="headerlink" href="#inverse-characterization-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="DRAPFromMoments.html#butools.dmap.DRAPFromMoments" title="butools.dmap.DRAPFromMoments"><tt class="xref py py-func docutils literal"><span class="pre">DRAPFromMoments</span></tt></a></td>
+<td>Creates a discrete rational arrival process that has the same marginal and lag-1 joint moments as given.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DMRAPFromMoments.html#butools.dmap.DMRAPFromMoments" title="butools.dmap.DMRAPFromMoments"><tt class="xref py py-func docutils literal"><span class="pre">DMRAPFromMoments</span></tt></a></td>
+<td>Creates a discrete marked rational arrival process that has the same marginal and lag-1 joint moments as given.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="DMAP2FromMoments.html#butools.dmap.DMAP2FromMoments" title="butools.dmap.DMAP2FromMoments"><tt class="xref py py-func docutils literal"><span class="pre">DMAP2FromMoments</span></tt></a></td>
+<td>Returns a DMAP(2) which has the same 3 marginal moments and lag-1 autocorrelation as given.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="representation-transformation-methods">
+<h2>Representation transformation methods<a class="headerlink" href="#representation-transformation-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="CanonicalFromDMAP2.html#butools.dmap.CanonicalFromDMAP2" title="butools.dmap.CanonicalFromDMAP2"><tt class="xref py py-func docutils literal"><span class="pre">CanonicalFromDMAP2</span></tt></a></td>
+<td>Returns the canonical form of an order-2 discrete Markovian arrival process.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DMAPFromDRAP.html#butools.dmap.DMAPFromDRAP" title="butools.dmap.DMAPFromDRAP"><tt class="xref py py-func docutils literal"><span class="pre">DMAPFromDRAP</span></tt></a></td>
+<td>Obtains a Markovian representation of a discrete rational arrival process of the same size, if possible.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="DMMAPFromDMRAP.html#butools.dmap.DMMAPFromDMRAP" title="butools.dmap.DMMAPFromDMRAP"><tt class="xref py py-func docutils literal"><span class="pre">DMMAPFromDMRAP</span></tt></a></td>
+<td>Obtains a Markovian representation of a discrete marked rational arrival process of the same size, if possible.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

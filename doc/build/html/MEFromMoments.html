@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.ph.MEFromMoments &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
+    <link rel="next" title="butools.ph.APH2ndMomentLowerBound" href="APH2ndMomentLowerBound.html" >
+    <link rel="prev" title="butools.ph.PH3From5Moments" href="PH3From5Moments.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="APH2ndMomentLowerBound.html" title="butools.ph.APH2ndMomentLowerBound"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="PH3From5Moments.html" title="butools.ph.PH3From5Moments"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="PH3From5Moments.html"
+                        title="previous chapter">butools.ph.PH3From5Moments</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="APH2ndMomentLowerBound.html"
+                        title="next chapter">butools.ph.APH2ndMomentLowerBound</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-ph-mefrommoments">
+<h1>butools.ph.MEFromMoments<a class="headerlink" href="#butools-ph-mefrommoments" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.ph.MEFromMoments">
+<tt class="descclassname">butools.ph.</tt><tt class="descname">MEFromMoments</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.MEFromMoments" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">[alpha,</span> <span class="pre">A]</span> <span class="pre">=</span> <span class="pre">MEFromMoments(moms)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">{alpha,</span> <span class="pre">A}</span> <span class="pre">=</span> <span class="pre">MEFromMoments[moms]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">alpha,</span> <span class="pre">A</span> <span class="pre">=</span> <span class="pre">MEFromMoments(moms)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Creates a matrix-exponential distribution that has the
+same moments as given.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>moms</strong> : vector of doubles, length(2*M-1)</p>
+<blockquote>
+<div><p>The list of moments. The order of the resulting
+matrix-exponential distribution is
+determined based on the number of moments given. To
+obtain a matrix exponential distribution of order M,
+2*M-1 moments are required.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>alpha</strong> : matrix, shape (1,M)</p>
+<blockquote>
+<div><p>The initial vector of the matrix-exponential
+distribution.</p>
+</div></blockquote>
+<p><strong>A</strong> : matrix, shape (M,M)</p>
+<blockquote class="last">
+<div><p>The matrix parameter of the matrix-exponential
+distribution.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R22]</a></td><td>A. van de Liefvoort. The moment problem for
+continuous distributions. Technical report,
+University of Missouri, WP-CM-1990-02, Kansas City,
+1990.</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For Matlab:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.20939</span><span class="p">,</span> <span class="mf">0.10449</span><span class="p">,</span> <span class="mf">0.089092</span><span class="p">,</span> <span class="mf">0.11027</span><span class="p">,</span> <span class="mf">0.17953</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span><span class="o">=</span><span class="n">MEFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">      0.33333      0.33333      0.33333</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">       -8.085       10.177      -9.9999</span>
+<span class="go">      -1.2584      -5.1438       1.7873</span>
+<span class="go">      -1.9255       1.9599      -4.9712</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">      0.20939      0.10449     0.089092      0.11027      0.17953</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

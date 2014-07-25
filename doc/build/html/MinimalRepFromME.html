@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.ph.MinimalRepFromME &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
+    <link rel="next" title="Tools for Discrete Phase-Type Distributions (butools.dph)" href="dph.html" >
+    <link rel="prev" title="butools.ph.MEOrderFromMoments" href="MEOrderFromMoments.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="dph.html" title="Tools for Discrete Phase-Type Distributions (butools.dph)"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="MEOrderFromMoments.html" title="butools.ph.MEOrderFromMoments"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MEOrderFromMoments.html"
+                        title="previous chapter">butools.ph.MEOrderFromMoments</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dph.html"
+                        title="next chapter">Tools for Discrete Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.dph</span></tt>)</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-ph-minimalrepfromme">
+<h1>butools.ph.MinimalRepFromME<a class="headerlink" href="#butools-ph-minimalrepfromme" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.ph.MinimalRepFromME">
+<tt class="descclassname">butools.ph.</tt><tt class="descname">MinimalRepFromME</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.MinimalRepFromME" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">MinimalRepFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">how,</span> <span class="pre">precision)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">MinimalRepFromME[alpha,</span> <span class="pre">A,</span> <span class="pre">how,</span> <span class="pre">precision]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">MinimalRepFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">how,</span> <span class="pre">precision)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Returns the minimal representation of the given ME
+distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>alpha</strong> : vector, shape (1,M)</p>
+<blockquote>
+<div><p>The initial vector of the matrix-exponential
+distribution.</p>
+</div></blockquote>
+<p><strong>A</strong> : matrix, shape (M,M)</p>
+<blockquote>
+<div><p>The matrix parameter of the matrix-exponential
+distribution.</p>
+</div></blockquote>
+<p><strong>how</strong> : {&#8220;obs&#8221;, &#8220;cont&#8221;, &#8220;obscont&#8221;, &#8220;moment&#8221;}, optional</p>
+<blockquote>
+<div><p>Determines how the representation is minimized.
+Possibilities:
+&#8216;obs&#8217;: observability,
+&#8216;cont&#8217;: controllability,
+&#8216;obscont&#8217;: the minimum of observability and</p>
+<blockquote>
+<div><p>controllability order,</p>
+</div></blockquote>
+<p>&#8216;moment&#8217;: moment order (which is the default).</p>
+</div></blockquote>
+<p><strong>precision</strong> : double, optional</p>
+<blockquote>
+<div><p>Precision used by the Staircase algorithm. The default
+value is 1e-12.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>beta</strong> : vector, shape (1,N)</p>
+<blockquote>
+<div><p>The initial vector of the minimal representation</p>
+</div></blockquote>
+<p><strong>B</strong> : matrix, shape (N,N)</p>
+<blockquote class="last">
+<div><p>The matrix parameter of the minimal representation</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r30" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R30]</a></td><td>P. Buchholz, M. Telek, &#8220;On minimal representation
+of rational arrival processes.&#8221; Madrid Conference on
+Qeueuing theory (MCQT), June 2010.</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For Matlab:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">     9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">     9     9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">     9     9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">        1   1.3878e-17  -1.1102e-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">      -2.8362     0.036222   1.1102e-16</span>
+<span class="go">       -16.61      -3.3369       16.042</span>
+<span class="go">       1.1643    -0.051724     -0.82688</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">        1   1.3878e-17  -1.1102e-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">      -2.8362     0.036222   1.1102e-16</span>
+<span class="go">       -16.61      -3.3369       16.042</span>
+<span class="go">       1.1643    -0.051724     -0.82688</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;moment&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">      0.33333      0.33333      0.33333</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">      -2.1905       1.9222      -3.3698</span>
+<span class="go">      -1.0769      -2.3906      0.83162</span>
+<span class="go">     -0.51037       0.8033      -2.4189</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

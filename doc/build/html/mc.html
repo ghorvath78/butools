@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Markov Chains (butools.mc) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.mc.CTMCSolve" href="CTMCSolve.html" >
+    <link rel="prev" title="Utilities (butools.utils)" href="utils.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="CTMCSolve.html" title="butools.mc.CTMCSolve"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="utils.html" title="Utilities (butools.utils)"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Markov Chains (<tt class="docutils literal"><span class="pre">butools.mc</span></tt>)</a><ul>
+<li><a class="reference internal" href="#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="utils.html"
+                        title="previous chapter">Utilities (<tt class="docutils literal"><span class="pre">butools.utils</span></tt>)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="CTMCSolve.html"
+                        title="next chapter">butools.mc.CTMCSolve</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="markov-chains-butools-mc">
+<h1>Markov Chains (<tt class="xref py py-mod docutils literal"><span class="pre">butools.mc</span></tt>)<a class="headerlink" href="#markov-chains-butools-mc" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/mc')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`MC&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.mc</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="properties-of-markov-chains-and-rational-processes">
+<h2>Properties of Markov chains and rational processes<a class="headerlink" href="#properties-of-markov-chains-and-rational-processes" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="CTMCSolve.html#butools.mc.CTMCSolve" title="butools.mc.CTMCSolve"><tt class="xref py py-func docutils literal"><span class="pre">CTMCSolve</span></tt></a></td>
+<td>Steady state solution of a continuous time Markov chain</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DTMCSolve.html#butools.mc.DTMCSolve" title="butools.mc.DTMCSolve"><tt class="xref py py-func docutils literal"><span class="pre">DTMCSolve</span></tt></a></td>
+<td>Steady state solution of a discrete time Markov chain</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CRPSolve.html#butools.mc.CRPSolve" title="butools.mc.CRPSolve"><tt class="xref py py-func docutils literal"><span class="pre">CRPSolve</span></tt></a></td>
+<td>Steady state solution of a continuous time rational process</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DRPSolve.html#butools.mc.DRPSolve" title="butools.mc.DRPSolve"><tt class="xref py py-func docutils literal"><span class="pre">DRPCSolve</span></tt></a></td>
+<td>Steady state solution of a discrete time rational process</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckGenerator.html#butools.mc.CheckGenerator" title="butools.mc.CheckGenerator"><tt class="xref py py-func docutils literal"><span class="pre">CheckGenerator</span></tt></a></td>
+<td>Checks if a matrix is a valid generator of a CTMC</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CheckProbMatrix.html#butools.mc.CheckProbMatrix" title="butools.mc.CheckProbMatrix"><tt class="xref py py-func docutils literal"><span class="pre">CheckProbMatrix</span></tt></a></td>
+<td>Checks if a matrix is a valid transition probability matrix of a DTMC</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckProbVector.html#butools.mc.CheckProbVector" title="butools.mc.CheckProbVector"><tt class="xref py py-func docutils literal"><span class="pre">CheckProbVector</span></tt></a></td>
+<td>Checks if a vector is a valid probability vector</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

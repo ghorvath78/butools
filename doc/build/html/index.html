@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>BuTools Reference &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="#" >
+    <link rel="next" title="Utilities (butools.utils)" href="utils.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="utils.html" title="Utilities (butools.utils)"
+           accesskey="N">next</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">BuTools Reference</a><ul>
+<li><a class="reference internal" href="#about-butools">About BuTools</a></li>
+<li><a class="reference internal" href="#using-butools">Using BuTools</a><ul>
+<li><a class="reference internal" href="#supported-frameworks">Supported frameworks</a></li>
+<li><a class="reference internal" href="#loading-butools">Loading BuTools</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#packages">Packages</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utils.html"
+                        title="next chapter">Utilities (<tt class="docutils literal"><span class="pre">butools.utils</span></tt>)</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="module-butools">
+<span id="butools-reference"></span><span id="reference"></span><h1>BuTools Reference<a class="headerlink" href="#module-butools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-butools">
+<h2>About BuTools<a class="headerlink" href="#about-butools" title="Permalink to this headline">¶</a></h2>
+<p>BuTools is a large and growing set of functions related to Markovian performance
+and dependability analyis.</p>
+<p>Our main motivation was to make our life easier by collecting the most important
+tools which we use almost every day. The multi-platform nature of BuTools and the
+standardized call interfaces help us in the collaborative work in our research group.
+Several functions do something trivial, but there
+are some gems as well; procedures, which have a hard to understand background and
+difficult implementation.</p>
+<p>We hope that BuTools we be useful not only to us but to a broader community as well.</p>
+</div>
+<div class="section" id="using-butools">
+<h2>Using BuTools<a class="headerlink" href="#using-butools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="supported-frameworks">
+<h3>Supported frameworks<a class="headerlink" href="#supported-frameworks" title="Permalink to this headline">¶</a></h3>
+<p>At the moment BuTools supports the following three frameworks:</p>
+<ul class="simple">
+<li><em>MATLAB</em>: a widely used industry-standard framework with high license fees</li>
+<li><em>NumPy/Python</em>: a free (open source) alternative to MATLAB, with comparable performance. The popularity of python based scientific tools is rapidly growing, a huge and helpful community is available on the internet.</li>
+<li><em>Mathematica</em>: This is an expensive alternative again, but it supports arbitrary precision arithmetic and symbolic computations, that can frequently be useful.</li>
+</ul>
+</div>
+<div class="section" id="loading-butools">
+<h3>Loading BuTools<a class="headerlink" href="#loading-butools" title="Permalink to this headline">¶</a></h3>
+<p>The packages of BuTools can be loaded individually, but there is a convenience function <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt> available as well.
+If BuTools is located in directory &lt;BTDir&gt;, all BuTools packages can be loaded by</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">run('&lt;BTDir&gt;/BuToolsInit.m')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+</tbody>
+</table>
+<p>The <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt> function has two optional arguments as well, by which it is possible to initialize the BuToolsVerbose and
+BuToolsCheckInput global variables.</p>
+</div>
+</div>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities (<tt class="docutils literal"><span class="pre">butools.utils</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<tt class="docutils literal"><span class="pre">butools.mc</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<tt class="docutils literal"><span class="pre">butools.moments</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reptrans.html">Representation Transformation Tools (<tt class="docutils literal"><span class="pre">butools.reptrans</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph.html">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dph.html">Tools for Discrete Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.dph</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">Tools for Markovian Arrival Processes (<tt class="docutils literal"><span class="pre">butools.map</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmap.html">Tools for Discrete Markovian Arrival Processes (<tt class="docutils literal"><span class="pre">butools.dmap</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<tt class="docutils literal"><span class="pre">butools.trace</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html">Tools for fitting measurement traces (<tt class="docutils literal"><span class="pre">butools.fitting</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mam.html">Matrix-Analytic Methods (<tt class="docutils literal"><span class="pre">butools.mam</span></tt>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">Tools for the Analysis of Queues (<tt class="docutils literal"><span class="pre">butools.queues</span></tt>)</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

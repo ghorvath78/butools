@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Tools for the Analysis of Queues (butools.queues) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.queues.QBDQueueQLD" href="QBDQueueQLD.html" >
+    <link rel="prev" title="butools.mam.FluidStationaryDistr" href="FluidStationaryDistr.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="QBDQueueQLD.html" title="butools.queues.QBDQueueQLD"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="FluidStationaryDistr.html" title="butools.mam.FluidStationaryDistr"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tools for the Analysis of Queues (<tt class="docutils literal"><span class="pre">butools.queues</span></tt>)</a><ul>
+<li><a class="reference internal" href="#type-of-queues-supported-by-butools">Type of queues supported by BuTools</a></li>
+<li><a class="reference internal" href="#performance-measures">Performance measures</a></li>
+<li><a class="reference internal" href="#functions-for-discrete-queues">Functions for discrete queues</a></li>
+<li><a class="reference internal" href="#functions-for-continuous-queues">Functions for continuous queues</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FluidStationaryDistr.html"
+                        title="previous chapter">butools.mam.FluidStationaryDistr</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="QBDQueueQLD.html"
+                        title="next chapter">butools.queues.QBDQueueQLD</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="tools-for-the-analysis-of-queues-butools-queues">
+<h1>Tools for the Analysis of Queues (<tt class="xref py py-mod docutils literal"><span class="pre">butools.queues</span></tt>)<a class="headerlink" href="#tools-for-the-analysis-of-queues-butools-queues" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/queues')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`Queues&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.queues</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="type-of-queues-supported-by-butools">
+<h2>Type of queues supported by BuTools<a class="headerlink" href="#type-of-queues-supported-by-butools" title="Permalink to this headline">¶</a></h2>
+<p>The BuTools queues package supports the efficient analysis of
+queueing models that are driven by some Markovian structures.</p>
+<p>The supported queues can be classified to two groups:</p>
+<ul class="simple">
+<li>Discrete queues, where the jobs waiting in the queue are discrete.
+In most of the supported queueing models the inter-arrival and the service times are either given by
+Markovian arrival processes or PH distributions.
+BuTools has a relatively large set of tools to obtain, transform and analyze MAPs and PH distributions,
+furthermore, several performance measures of these queues are also PH distributed. This kind of
+elegant closeness property is the main motivation to restrict the focus of BuTools on these queues.</li>
+<li>In continuous queues the jobs are intinifesimally small, they are considered to be fluid drops.
+The rate at which fluid drops arrive and are being served are modulated by Markov chains. Again,
+several performance measures are PH distributed, thus these queues have their well deserved places in
+BuTools as well.</li>
+</ul>
+</div>
+<div class="section" id="performance-measures">
+<h2>Performance measures<a class="headerlink" href="#performance-measures" title="Permalink to this headline">¶</a></h2>
+<p>Currently, the functions in the queues package calculate two performance measures:</p>
+<ul class="simple">
+<li>Queue length distribution. By our definition, the jobs in the server and in the waiting room
+are all included in the queue length.</li>
+<li>Sojourn time distribution. The sojourn time of the jobs, including the waiting time in the waiting room
+and the service time. This quantity is also called &#8220;system time&#8221; or &#8220;response time&#8221;.</li>
+</ul>
+</div>
+<div class="section" id="functions-for-discrete-queues">
+<h2>Functions for discrete queues<a class="headerlink" href="#functions-for-discrete-queues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="QBDQueueQLD.html#butools.queues.QBDQueueQLD" title="butools.queues.QBDQueueQLD"><tt class="xref py py-func docutils literal"><span class="pre">QBDQueueQLD</span></tt></a></td>
+<td>Returns the matrix-geometric distribution of the queue length of a QBD queue.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="QBDQueueSTD.html#butools.queues.QBDQueueSTD" title="butools.queues.QBDQueueSTD"><tt class="xref py py-func docutils literal"><span class="pre">QBDQueueSTD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the sojourn time of the jobs in a QBD queue.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MAPMAP1QLD.html#butools.queues.MAPMAP1QLD" title="butools.queues.MAPMAP1QLD"><tt class="xref py py-func docutils literal"><span class="pre">MAPMAP1QLD</span></tt></a></td>
+<td>Returns the matrix-geometric distribution of the queue length of a MAP/MAP/1 queue.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MAPMAP1STD.html#butools.queues.MAPMAP1STD" title="butools.queues.MAPMAP1STD"><tt class="xref py py-func docutils literal"><span class="pre">MAPMAP1STD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the sojourn time of the jobs in a MAP/MAP/1 queue.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MAPPH1QLD.html#butools.queues.MAPPH1QLD" title="butools.queues.MAPPH1QLD"><tt class="xref py py-func docutils literal"><span class="pre">MAPPH1QLD</span></tt></a></td>
+<td>Returns the matrix-geometric distribution of the queue length of a MAP/PH/1 queue.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MAPPH1STD.html#butools.queues.MAPPH1STD" title="butools.queues.MAPPH1STD"><tt class="xref py py-func docutils literal"><span class="pre">MAPPH1STD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the sojourn time of the jobs in a MAP/PH/1 queue.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="PHPH1QLD.html#butools.queues.PHPH1QLD" title="butools.queues.PHPH1QLD"><tt class="xref py py-func docutils literal"><span class="pre">PHPH1QLD</span></tt></a></td>
+<td>Returns the matrix-geometric distribution of the queue length of a PH/PH/1 queue.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="PHPH1STD.html#butools.queues.PHPH1STD" title="butools.queues.PHPH1STD"><tt class="xref py py-func docutils literal"><span class="pre">PHPH1STD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the sojourn time of the jobs in a PH/PH/1 queue.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="functions-for-continuous-queues">
+<h2>Functions for continuous queues<a class="headerlink" href="#functions-for-continuous-queues" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="FluidQueueQLD.html#butools.queues.FluidQueueQLD" title="butools.queues.FluidQueueQLD"><tt class="xref py py-func docutils literal"><span class="pre">FluidQueueQLD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the fluid level in a fluid queue.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FluidQueueSTD.html#butools.queues.FluidQueueSTD" title="butools.queues.FluidQueueSTD"><tt class="xref py py-func docutils literal"><span class="pre">FluidQueueSTD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the sojourn time of fluid drops in a fluid queue.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="FluFluQLD.html#butools.queues.FluFluQLD" title="butools.queues.FluFluQLD"><tt class="xref py py-func docutils literal"><span class="pre">FluFluQLD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the fluid level in a fluid queue, where the input and output processes are independent.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FluFluSTD.html#butools.queues.FluFluSTD" title="butools.queues.FluFluSTD"><tt class="xref py py-func docutils literal"><span class="pre">FluFluSTD</span></tt></a></td>
+<td>Returns the matrix-exponential distribution of the sojourn time of fluid drops in a fluid queue, where the input and output processes are independent.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

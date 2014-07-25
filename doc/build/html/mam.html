@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Matrix-Analytic Methods (butools.mam) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.mam.QBDFundamentalMatrices" href="QBDFundamentalMatrices.html" >
+    <link rel="prev" title="butools.fitting.LikelihoodFromTrace" href="LikelihoodFromTrace.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="QBDFundamentalMatrices.html" title="butools.mam.QBDFundamentalMatrices"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="LikelihoodFromTrace.html" title="butools.fitting.LikelihoodFromTrace"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Matrix-Analytic Methods (<tt class="docutils literal"><span class="pre">butools.mam</span></tt>)</a><ul>
+<li><a class="reference internal" href="#quasi-birth-death-processes">Quasi Birth-Death Processes</a></li>
+<li><a class="reference internal" href="#m-g-1-and-g-m-1-type-markov-chains">M/G/1 and G/M/1 Type Markov Chains</a></li>
+<li><a class="reference internal" href="#markovian-fluid-models">Markovian Fluid Models</a></li>
+<li><a class="reference internal" href="#functions-to-solve-qbds">Functions to solve QBDs</a></li>
+<li><a class="reference internal" href="#functions-to-solve-m-g-1-and-g-m-1-type-markov-chains">Functions to solve M/G/1 and G/M/1 type Markov chains</a></li>
+<li><a class="reference internal" href="#functions-to-solve-markovian-fluid-models">Functions to solve Markovian fluid models</a></li>
+<li><a class="reference internal" href="#refereces">Refereces</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="LikelihoodFromTrace.html"
+                        title="previous chapter">butools.fitting.LikelihoodFromTrace</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="QBDFundamentalMatrices.html"
+                        title="next chapter">butools.mam.QBDFundamentalMatrices</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="module-butools.mam">
+<span id="matrix-analytic-methods-butools-mam"></span><h1>Matrix-Analytic Methods (<a class="reference internal" href="#module-butools.mam" title="butools.mam"><tt class="xref py py-mod docutils literal"><span class="pre">butools.mam</span></tt></a>)<a class="headerlink" href="#module-butools.mam" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/mam')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`MAM&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.mam</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<p>Under Matlab, the SMCSolver package <a class="footnote-reference" href="#id6" id="id1">[1]</a> (both for QBD and M/G/1,G/M/1 type Markov chains) must be in path as well.</p>
+<div class="section" id="quasi-birth-death-processes">
+<h2>Quasi Birth-Death Processes<a class="headerlink" href="#quasi-birth-death-processes" title="Permalink to this headline">¶</a></h2>
+<p>Quasi Birth-Death Processes (QBDs, <a class="footnote-reference" href="#id7" id="id2">[2]</a>) are discrete time or continuous time Markov chains.
+The state space is two dimensional, it is composed by the levels and the phases.
+QBDs have a block-tridiagonal generator.</p>
+<div class="math">
+\[\begin{split}Q=\begin{bmatrix}L_0 &amp; F &amp; &amp;\\ B &amp; L &amp; F &amp; \\ &amp; B &amp; L &amp; F \\ &amp; &amp; \ddots &amp; \ddots &amp; \ddots \end{bmatrix}\end{split}\]</div>
+<p>The matrix describing the transitions to the
+previous level is denoted by <span class="math">\(B\)</span> (backward), the ones to the next level by <span class="math">\(F\)</span>
+(forward), finally, transitions that are not accompanied by the change of the level
+are held by matrix <span class="math">\(L\)</span> (local).</p>
+<p>The QBDs have a matrix-geometrically distributed stationary distribution,</p>
+<div class="math">
+\[\pi_k=\pi_0 R^k,\]</div>
+<p>where the <span class="math">\(i\)</span> th entry of vector <span class="math">\(\pi_k\)</span> is the stationary probability that the
+level is <span class="math">\(k\)</span> and the phase is <span class="math">\(i\)</span>.</p>
+<p>Matrix <span class="math">\(R\)</span> is the solution of a matrix-quadratic equation.</p>
+<p>BuTools has functions to determine both <span class="math">\(\pi_0\)</span> and <span class="math">\(R\)</span>, thus all
+ingredients to easily calculate the stationary distribution of QBDs. Several functions
+are just wrappers to SMCSolver, so do not forget to give credit to <a class="footnote-reference" href="#id6" id="id3">[1]</a> as well if you are using it.</p>
+</div>
+<div class="section" id="m-g-1-and-g-m-1-type-markov-chains">
+<h2>M/G/1 and G/M/1 Type Markov Chains<a class="headerlink" href="#m-g-1-and-g-m-1-type-markov-chains" title="Permalink to this headline">¶</a></h2>
+<p>M/G/1 and G/M/1 type Markov chains are more general than QBDs. They both have a block-triangular
+generator. For M/G/1 the structure of the generator is</p>
+<div class="math">
+\[\begin{split}Q=\begin{bmatrix}B_0 &amp; B_1 &amp; B_2 &amp; B_3 &amp; \dots \\ A_0 &amp; A_1 &amp; A_2 &amp; A_3 &amp; \dots \\ &amp; A_0 &amp; A_1 &amp; A_2 &amp; \dots \\ &amp; &amp; \ddots &amp; \ddots &amp; \ddots \end{bmatrix}\end{split}\]</div>
+<p>while for G/M/1 type it is</p>
+<div class="math">
+\[\begin{split}Q=\begin{bmatrix}B_0 &amp; A_0  \\ B_1 &amp; A_1 &amp; A_0   \\ B_2 &amp; A_2 &amp; A_1 &amp; A_0  \\ \vdots &amp; \ddots &amp; \ddots &amp; \ddots  &amp; \ddots \end{bmatrix}\end{split}\]</div>
+<p>BuTools is able to calculate the stationary solution of such Markov chains. The
+corresponding functions are mostly wrappers of SMCTools, please cite <a class="footnote-reference" href="#id6" id="id4">[1]</a> if you are
+using them.</p>
+</div>
+<div class="section" id="markovian-fluid-models">
+<h2>Markovian Fluid Models<a class="headerlink" href="#markovian-fluid-models" title="Permalink to this headline">¶</a></h2>
+<p>Markovian fluid models <a class="footnote-reference" href="#id8" id="id5">[3]</a> are characterized by a continuous time Markov chain with generator
+<span class="math">\(Q\)</span>, and a diagonal matrix <span class="math">\(R\)</span>. The <span class="math">\(i\)</span> th entry of the diagonal of <span class="math">\(R\)</span>
+is the rate at which the fluid arrives to the fluid storage when the background Markov
+chain is in state <span class="math">\(i\)</span> . Fluid rates can be positive (the fluid level increases), negative
+(the fluid level decreases) and can be zero as well (while being in these states the fluid level of the
+storage remains the same).</p>
+<p>There is a class of Markovian fluid models, called <em>canonical</em> fluid models, which are
+much easier to hande technically. In canonical fluid models the fluid rates can be either
+1 or -1, zero rates or rates other than these two are not allowed.</p>
+<p>The steady state solution of Markovian fluid models (both canonical and general ones) is
+matrix-exponential. The probability that the fluid level is exactly 0 while being in various
+states of the background process are denoted by vector <span class="math">\(p_m\)</span>, and the density vector
+corresponding to fluid level is <span class="math">\(x\)</span> is expressed by</p>
+<div class="math">
+\[\pi(x)=\alpha e^{Kx} C,\]</div>
+<p>BuTools provides functions to obtain the initial vector <span class="math">\(\alpha\)</span>, matrix <span class="math">\(K\)</span> and
+closing matrix <span class="math">\(C\)</span> both for canonical and general fluid models.</p>
+</div>
+<div class="section" id="functions-to-solve-qbds">
+<h2>Functions to solve QBDs<a class="headerlink" href="#functions-to-solve-qbds" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="QBDFundamentalMatrices.html#butools.mam.QBDFundamentalMatrices" title="butools.mam.QBDFundamentalMatrices"><tt class="xref py py-func docutils literal"><span class="pre">QBDFundamentalMatrices</span></tt></a></td>
+<td>Returns any combination of the R, G, and U matrices of a discrete or continuous time QBD</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="QBDSolve.html#butools.mam.QBDSolve" title="butools.mam.QBDSolve"><tt class="xref py py-func docutils literal"><span class="pre">QBDSolve</span></tt></a></td>
+<td>Returns the parameters of the matrix-geometrically distributed stationary distribution of a QBD</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="QBDStationaryDistr.html#butools.mam.QBDStationaryDistr" title="butools.mam.QBDStationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">QBDStationaryDistr</span></tt></a></td>
+<td>Returns the stationary distribution of a QBD up to a given level</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="functions-to-solve-m-g-1-and-g-m-1-type-markov-chains">
+<h2>Functions to solve M/G/1 and G/M/1 type Markov chains<a class="headerlink" href="#functions-to-solve-m-g-1-and-g-m-1-type-markov-chains" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="MG1FundamentalMatrix.html#butools.mam.MG1FundamentalMatrix" title="butools.mam.MG1FundamentalMatrix"><tt class="xref py py-func docutils literal"><span class="pre">MG1FundamentalMatrix</span></tt></a></td>
+<td>Returns matrix G, the fundamental matrix of an M/G/1 type Markov chain</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MG1StationaryDistr.html#butools.mam.MG1StationaryDistr" title="butools.mam.MG1StationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">MG1StationaryDistr</span></tt></a></td>
+<td>Returns the stationary distribution of an M/G/1 type Markov chain up to a given level</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="GM1FundamentalMatrix.html#butools.mam.GM1FundamentalMatrix" title="butools.mam.GM1FundamentalMatrix"><tt class="xref py py-func docutils literal"><span class="pre">GM1FundamentalMatrix</span></tt></a></td>
+<td>Returns matrix R, the fundamental matrix of a G/M/1 type Markov chain</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="GM1StationaryDistr.html#butools.mam.GM1StationaryDistr" title="butools.mam.GM1StationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">GM1StationaryDistr</span></tt></a></td>
+<td>Returns the stationary distribution of a G/M/1 type Markov chain up to a given level</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="functions-to-solve-markovian-fluid-models">
+<h2>Functions to solve Markovian fluid models<a class="headerlink" href="#functions-to-solve-markovian-fluid-models" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="FluidFundamentalMatrices.html#butools.mam.FluidFundamentalMatrices" title="butools.mam.FluidFundamentalMatrices"><tt class="xref py py-func docutils literal"><span class="pre">FluidFundamentalMatrices</span></tt></a></td>
+<td>Returns any combination of the Psi, K, and U matrices of a canonical Markovian fluid model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FluidSolve.html#butools.mam.FluidSolve" title="butools.mam.FluidSolve"><tt class="xref py py-func docutils literal"><span class="pre">FluidSolve</span></tt></a></td>
+<td>Returns the parameters of the matrix-exponentially distributed stationary distribution of a canonical Markovian fluid model</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="GeneralFluidSolve.html#butools.mam.GeneralFluidSolve" title="butools.mam.GeneralFluidSolve"><tt class="xref py py-func docutils literal"><span class="pre">GeneralFluidSolve</span></tt></a></td>
+<td>Returns the parameters of the matrix-exponentially distributed stationary distribution of a general Markovian fluid model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FluidStationaryDistr.html#butools.mam.FluidStationaryDistr" title="butools.mam.FluidStationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">FluidStationaryDistr</span></tt></a></td>
+<td>Returns the cummulative distribution of the stationary fluid level of a Markovian fluid model</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="refereces">
+<h2>Refereces<a class="headerlink" href="#refereces" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id4">3</a>)</em> Bini, D. A., Meini, B., Steffé, S., Van Houdt, B. (2006, October). Structured Markov chains solver: software tools.
+In Proceeding from the 2006 workshop on Tools for solving structured Markov chains (p. 14). ACM.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Latouche, Guy, Vaidyanathan Ramaswami. &#8220;Introduction to matrix geometric methods in stochastic modeling.&#8221; ASA-SIAM
+Series on Statistics and Applied Probability. SIAM, Philadelphia PA (1999).</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td>A da Silva Soares. &#8220;Fluid Queues.&#8221; PhD dissertation, de l&#8217;Université libre de Bruxelles, 2005.</td></tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

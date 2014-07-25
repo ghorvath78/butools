@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Representation Transformation Tools (butools.reptrans) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.reptrans.SimilarityMatrix" href="SimilarityMatrix.html" >
+    <link rel="prev" title="butools.moments.CheckMoments" href="CheckMoments.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="SimilarityMatrix.html" title="butools.reptrans.SimilarityMatrix"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="CheckMoments.html" title="butools.moments.CheckMoments"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Representation Transformation Tools (<tt class="docutils literal"><span class="pre">butools.reptrans</span></tt>)</a><ul>
+<li><a class="reference internal" href="#tools-for-representation-transformation">Tools for representation transformation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CheckMoments.html"
+                        title="previous chapter">butools.moments.CheckMoments</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="SimilarityMatrix.html"
+                        title="next chapter">butools.reptrans.SimilarityMatrix</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="representation-transformation-tools-butools-reptrans">
+<h1>Representation Transformation Tools (<tt class="xref py py-mod docutils literal"><span class="pre">butools.reptrans</span></tt>)<a class="headerlink" href="#representation-transformation-tools-butools-reptrans" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/reptrans')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`RepTrans&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.reptrans</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="tools-for-representation-transformation">
+<h2>Tools for representation transformation<a class="headerlink" href="#tools-for-representation-transformation" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="SimilarityMatrix.html#butools.reptrans.SimilarityMatrix" title="butools.reptrans.SimilarityMatrix"><tt class="xref py py-func docutils literal"><span class="pre">SimilarityMatrix</span></tt></a></td>
+<td>Returns the matrix that transforms A1 to A2</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="TransformToOnes.html#butools.reptrans.TransformToOnes" title="butools.reptrans.TransformToOnes"><tt class="xref py py-func docutils literal"><span class="pre">TransformToOnes</span></tt></a></td>
+<td>Returns the similarity transformation matrix that converts the given column vector to a vector of ones</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="TransformToMonocyclic.html#butools.reptrans.TransformToMonocyclic" title="butools.reptrans.TransformToMonocyclic"><tt class="xref py py-func docutils literal"><span class="pre">TransformToMonocyclic</span></tt></a></td>
+<td>Transforms an arbitrary matrix to a Markovian monocyclic matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="TransformToAcyclic.html#butools.reptrans.TransformToAcyclic" title="butools.reptrans.TransformToAcyclic"><tt class="xref py py-func docutils literal"><span class="pre">TransformToAcyclic</span></tt></a></td>
+<td>Transforms an arbitrary matrix to a Markovian bi-diagonal matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ExtendToMarkovian.html#butools.reptrans.ExtendToMarkovian" title="butools.reptrans.ExtendToMarkovian"><tt class="xref py py-func docutils literal"><span class="pre">ExtendToMarkovian</span></tt></a></td>
+<td>Appends an appropriate Erlang tail to the representation that makes the initial vector Markovian</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="FindMarkovianRepresentation.html#butools.reptrans.FindMarkovianRepresentation" title="butools.reptrans.FindMarkovianRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">FindMarkovianRepresentation</span></tt></a></td>
+<td>Obtains a Markovian representation from a non-Markovian one, with keeping the size the same</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MStaircase.html#butools.reptrans.MStaircase" title="butools.reptrans.MStaircase"><tt class="xref py py-func docutils literal"><span class="pre">MStaircase</span></tt></a></td>
+<td>Computes a smaller representation of RAP using staircase algorithm</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

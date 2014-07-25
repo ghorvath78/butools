@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.dmap.LagkJointMomentsFromDMRAP &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Tools for Discrete Markovian Arrival Processes (butools.dmap)" href="dmap.html" >
+    <link rel="next" title="butools.dmap.RandomDMAP" href="RandomDMAP.html" >
+    <link rel="prev" title="butools.dmap.LagkJointMomentsFromDMMAP" href="LagkJointMomentsFromDMMAP.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="dmap.html" accesskey="U">Tools for Discrete Markovian Arrival Processes (<tt class="docutils literal"><span class="pre">butools.dmap</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="RandomDMAP.html" title="butools.dmap.RandomDMAP"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="LagkJointMomentsFromDMMAP.html" title="butools.dmap.LagkJointMomentsFromDMMAP"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="LagkJointMomentsFromDMMAP.html"
+                        title="previous chapter">butools.dmap.LagkJointMomentsFromDMMAP</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="RandomDMAP.html"
+                        title="next chapter">butools.dmap.RandomDMAP</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-dmap-lagkjointmomentsfromdmrap">
+<h1>butools.dmap.LagkJointMomentsFromDMRAP<a class="headerlink" href="#butools-dmap-lagkjointmomentsfromdmrap" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.dmap.LagkJointMomentsFromDMRAP">
+<tt class="descclassname">butools.dmap.</tt><tt class="descname">LagkJointMomentsFromDMRAP</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.dmap.LagkJointMomentsFromDMRAP" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">Nm</span> <span class="pre">=</span> <span class="pre">LagkJointMomentsFromDMRAP(H,</span> <span class="pre">K,</span> <span class="pre">L,</span> <span class="pre">prec)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">Nm</span> <span class="pre">=</span> <span class="pre">LagkJointMomentsFromDMRAP[H,</span> <span class="pre">K,</span> <span class="pre">L,</span> <span class="pre">prec]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">Nm</span> <span class="pre">=</span> <span class="pre">LagkJointMomentsFromDMRAP(H,</span> <span class="pre">K,</span> <span class="pre">L,</span> <span class="pre">prec)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Returns the lag-L joint moments of a discrete marked
+rational arrival process.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>H</strong> : list/cell of matrices of shape(M,M), length(N)</p>
+<blockquote>
+<div><p>The H0...HN matrices of the DMRAP to check</p>
+</div></blockquote>
+<p><strong>K</strong> : int, optional</p>
+<blockquote>
+<div><p>The dimension of the matrix of joint moments to
+compute. If K=0, the MxM joint moments will be
+computed. The default value is 0</p>
+</div></blockquote>
+<p><strong>L</strong> : int, optional</p>
+<blockquote>
+<div><p>The lag at which the joint moments are computed.
+The default value is 1</p>
+</div></blockquote>
+<p><strong>prec</strong> : double, optional</p>
+<blockquote>
+<div><p>Numerical precision to check if the input is valid.
+The default value is 1e-14</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Nm</strong> : list/cell of matrices of shape(K+1,K+1), length(L)</p>
+<blockquote class="last">
+<div><p>The matrices containing the lag-L joint moments,
+starting from moment 0.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For Matlab:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="o">=</span><span class="p">[</span><span class="mf">0.15</span> <span class="mf">0.2</span> <span class="mf">0.18</span><span class="p">;</span> <span class="o">-</span><span class="mf">0.23</span> <span class="mf">0.17</span> <span class="mf">0.22</span><span class="p">;</span> <span class="mf">0.19</span> <span class="mf">0.15</span> <span class="mf">0.16</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span><span class="o">=</span><span class="p">[</span><span class="mf">0.01</span> <span class="mf">0.08</span> <span class="mf">0.16</span><span class="p">;</span> <span class="mf">0.02</span> <span class="mf">0.2</span> <span class="mf">0.07</span><span class="p">;</span> <span class="mf">0.02</span> <span class="mf">0.15</span> <span class="mf">0.17</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H2</span><span class="o">=</span><span class="p">[</span><span class="mf">0.14</span> <span class="mf">0.07</span> <span class="mf">0.01</span><span class="p">;</span> <span class="mf">0.19</span> <span class="mf">0.02</span> <span class="mf">0.34</span><span class="p">;</span> <span class="mf">0.06</span> <span class="mf">0.1</span> <span class="mi">0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromDMRAP</span><span class="p">({</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="n">H2</span><span class="p">},</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+<span class="go">      0.48798      0.72584       1.4397       3.9503       14.457</span>
+<span class="go">      0.77458       1.1476       2.2651        6.188       22.583</span>
+<span class="go">       1.6539       2.4405       4.7925       13.033       47.422</span>
+<span class="go">       4.8092       7.0768       13.846       37.534       136.27</span>
+<span class="go">       18.218       26.768       52.274       141.45       512.98</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+<span class="go">      0.51202      0.86893       1.9788       6.0092       23.285</span>
+<span class="go">      0.82019       1.3944       3.1815       9.6755       37.526</span>
+<span class="go">       1.7647        3.005       6.8678       20.914       81.184</span>
+<span class="go">       5.1503       8.7784       20.083       61.205       237.71</span>
+<span class="go">       19.524       33.289       76.186       232.27       902.29</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

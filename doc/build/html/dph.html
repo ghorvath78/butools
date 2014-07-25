@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Tools for Discrete Phase-Type Distributions (butools.dph) &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="next" title="butools.dph.MomentsFromMG" href="MomentsFromMG.html" >
+    <link rel="prev" title="butools.ph.MinimalRepFromME" href="MinimalRepFromME.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="MomentsFromMG.html" title="butools.dph.MomentsFromMG"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="MinimalRepFromME.html" title="butools.ph.MinimalRepFromME"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tools for Discrete Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.dph</span></tt>)</a><ul>
+<li><a class="reference internal" href="#discrete-phase-type-and-matrix-geometric-distributions">Discrete phase-type and matrix-geometric distributions</a></li>
+<li><a class="reference internal" href="#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li><a class="reference internal" href="#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li><a class="reference internal" href="#representation-transformation-methods">Representation transformation methods</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MinimalRepFromME.html"
+                        title="previous chapter">butools.ph.MinimalRepFromME</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MomentsFromMG.html"
+                        title="next chapter">butools.dph.MomentsFromMG</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="tools-for-discrete-phase-type-distributions-butools-dph">
+<h1>Tools for Discrete Phase-Type Distributions (<tt class="xref py py-mod docutils literal"><span class="pre">butools.dph</span></tt>)<a class="headerlink" href="#tools-for-discrete-phase-type-distributions-butools-dph" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+script, or execute</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/dph')</span></tt></td>
+<td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`DPH&quot;</span></tt></td>
+<td>in Mathematica,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.dph</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<td>in Python/Numpy.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="discrete-phase-type-and-matrix-geometric-distributions">
+<h2>Discrete phase-type and matrix-geometric distributions<a class="headerlink" href="#discrete-phase-type-and-matrix-geometric-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Discrete time phase-type (DPH) distributions are characterized by two parameters, the initial probability vector <span class="math">\(\alpha\)</span>
+and the transition probability matrix of a transient discrete time Markov chain <span class="math">\(\alpha\)</span>. The DPH distribution represents
+the absorption time of this transient Markov chain starting from <span class="math">\(\alpha\)</span>.
+The cummulative distribution function (cdf) of DPH distributions is</p>
+<div class="math">
+\[F_{PH}(k) = P(\mathcal{X}_{PH}\leq k) = 1-\alpha A^k \mathbf{1},\]</div>
+<p>where <span class="math">\(\mathbf{1}\)</span> is the column vector of ones.</p>
+<p>Matrix geometric (MG) distributions are the generalizations of DPH distributions. Formally, the cdf and all the related formulas for
+the statistical quantities are very similar to the ones of DPH distributions</p>
+<div class="math">
+\[F_{MG}(t) = P(\mathcal{X}_{MG}\leq k) = 1-\mathbf{b} B^k \mathbf{e},\]</div>
+<p>however, <span class="math">\(\mathbf{b},B\)</span> and <span class="math">\(\mathbf{e}\)</span> can hold general numbers, the entries do not have to be valid probabilities.
+MG distributions therefore lack the simple stochastic interpretation that DPH distributions have. Vector <span class="math">\(\mathbf{b}\)</span> is
+called &#8220;starting operator&#8221;, matrix <span class="math">\(B\)</span> is the &#8220;process rate operator&#8221; and vector <span class="math">\(\mathbf{e}\)</span> is the &#8220;summing operator&#8221;.</p>
+<p>BuTools provides several tools for both distribution classes in the dph package. However, BuTools uses a special form of MG
+distributions, where the summing operator is a vector of ones, thus <span class="math">\(\mathbf{e}=\mathbf{1}\)</span>. This is not a restriction,
+as all MG distributions defined with general summing operator can be easily transformed to this representation. Assume we
+have an MG distribution in the general form with parameters <span class="math">\(\mathbf{b}, B, \mathbf{e}\)</span>. The necessary similarity transform
+is obtained by calling the <tt class="code docutils literal"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">TransformToOnes(e)</span></tt> procedure of the BuTools reptrans package. The parameters of the MG
+distribution used by all related BuTools tools can be calculated by <span class="math">\(\mathbf{b'}=\mathbf{b}T^{-1}\)</span> and
+<span class="math">\(B'=T\,B\,T^{-1}\)</span>.</p>
+</div>
+<div class="section" id="simple-statistical-properties-and-tools">
+<h2>Simple statistical properties and tools<a class="headerlink" href="#simple-statistical-properties-and-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="MomentsFromMG.html#butools.dph.MomentsFromMG" title="butools.dph.MomentsFromMG"><tt class="xref py py-func docutils literal"><span class="pre">MomentsFromMG</span></tt></a></td>
+<td>Returns the moments of a matrix geometric distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="MomentsFromDPH.html#butools.dph.MomentsFromDPH" title="butools.dph.MomentsFromDPH"><tt class="xref py py-func docutils literal"><span class="pre">MomentsFromDPH</span></tt></a></td>
+<td>Returns the moments of a discrete phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CdfFromMG.html#butools.dph.CdfFromMG" title="butools.dph.CdfFromMG"><tt class="xref py py-func docutils literal"><span class="pre">CdfFromMG</span></tt></a></td>
+<td>Returns the cummulative distribution function of a matrix-geometric distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CdfFromDPH.html#butools.dph.CdfFromDPH" title="butools.dph.CdfFromDPH"><tt class="xref py py-func docutils literal"><span class="pre">CdfFromDPH</span></tt></a></td>
+<td>Returns the cummulative distribution function of a discrete phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="PmfFromMG.html#butools.dph.PmfFromMG" title="butools.dph.PmfFromMG"><tt class="xref py py-func docutils literal"><span class="pre">PmfFromMG</span></tt></a></td>
+<td>Returns the probability mass function of a matrix-geometric distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="PmfFromDPH.html#butools.dph.PmfFromDPH" title="butools.dph.PmfFromDPH"><tt class="xref py py-func docutils literal"><span class="pre">PmfFromDPH</span></tt></a></td>
+<td>Returns the probability mass function of a discrete phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="RandomDPH.html#butools.dph.RandomDPH" title="butools.dph.RandomDPH"><tt class="xref py py-func docutils literal"><span class="pre">RandomDPH</span></tt></a></td>
+<td>Returns a random discrete phase-type distribution with a given mean value.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CheckDPHRepresentation.html#butools.dph.CheckDPHRepresentation" title="butools.dph.CheckDPHRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckDPHRepresentation</span></tt></a></td>
+<td>Checks if the given vector and matrix define a valid discrete phase-type representation.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CheckMGRepresentation.html#butools.dph.CheckMGRepresentation" title="butools.dph.CheckMGRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">CheckMGRepresentation</span></tt></a></td>
+<td>Checks if the given vector and matrix define a valid matrix-geometric representation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="SamplesFromDPH.html#butools.dph.SamplesFromDPH" title="butools.dph.SamplesFromDPH"><tt class="xref py py-func docutils literal"><span class="pre">SamplesFromDPH</span></tt></a></td>
+<td>Generates random samples from a discrete phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ImageFromDPH.html#butools.dph.ImageFromDPH" title="butools.dph.ImageFromDPH"><tt class="xref py py-func docutils literal"><span class="pre">ImageFromDPH</span></tt></a></td>
+<td>Depicts the given discrete phase-type distribution, and either displays it or saves it to file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="inverse-characterization-tools">
+<h2>Inverse characterization tools<a class="headerlink" href="#inverse-characterization-tools" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="DPH2From3Moments.html#butools.dph.DPH2From3Moments" title="butools.dph.DPH2From3Moments"><tt class="xref py py-func docutils literal"><span class="pre">DPH2From3Moments</span></tt></a></td>
+<td>Returns an order-2 discrete phase-type distribution which has the same 3 moments as given.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DPH3From5Moments.html#butools.dph.DPH3From5Moments" title="butools.dph.DPH3From5Moments"><tt class="xref py py-func docutils literal"><span class="pre">DPH3From5Moments</span></tt></a></td>
+<td>Returns an order-3 discrete phase-type distribution which has the same 5 moments as given.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MGFromMoments.html#butools.dph.MGFromMoments" title="butools.dph.MGFromMoments"><tt class="xref py py-func docutils literal"><span class="pre">MGFromMoments</span></tt></a></td>
+<td>Creates a matrix-geometric distribution that has the same moments as given.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="representation-transformation-methods">
+<h2>Representation transformation methods<a class="headerlink" href="#representation-transformation-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="AcyclicDPHFromMG.html#butools.dph.AcyclicDPHFromMG" title="butools.dph.AcyclicDPHFromMG"><tt class="xref py py-func docutils literal"><span class="pre">AcyclicDPHFromMG</span></tt></a></td>
+<td>Transforms a matrix-geometric representation to an acyclic DPH representation of the same size, if possible.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="CanonicalFromDPH2.html#butools.dph.CanonicalFromDPH2" title="butools.dph.CanonicalFromDPH2"><tt class="xref py py-func docutils literal"><span class="pre">CanonicalFromDPH2</span></tt></a></td>
+<td>Returns the canonical form of an order-2 discrete phase-type distribution.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="CanonicalFromDPH3.html#butools.dph.CanonicalFromDPH3" title="butools.dph.CanonicalFromDPH3"><tt class="xref py py-func docutils literal"><span class="pre">CanonicalFromDPH3</span></tt></a></td>
+<td>Returns the canonical form of an order-3 discrete phase-type distribution.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="DPHFromMG.html#butools.dph.DPHFromMG" title="butools.dph.DPHFromMG"><tt class="xref py py-func docutils literal"><span class="pre">DPHFromMG</span></tt></a></td>
+<td>Obtains a Markovian representation of a matrix geometric distribution of the same size, if possible.</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.mam.GeneralFluidSolve &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Matrix-Analytic Methods (butools.mam)" href="mam.html" >
+    <link rel="next" title="butools.mam.FluidStationaryDistr" href="FluidStationaryDistr.html" >
+    <link rel="prev" title="butools.mam.FluidSolve" href="FluidSolve.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="mam.html" accesskey="U">Matrix-Analytic Methods (<tt class="docutils literal"><span class="pre">butools.mam</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="FluidStationaryDistr.html" title="butools.mam.FluidStationaryDistr"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="FluidSolve.html" title="butools.mam.FluidSolve"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="FluidSolve.html"
+                        title="previous chapter">butools.mam.FluidSolve</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FluidStationaryDistr.html"
+                        title="next chapter">butools.mam.FluidStationaryDistr</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-mam-generalfluidsolve">
+<h1>butools.mam.GeneralFluidSolve<a class="headerlink" href="#butools-mam-generalfluidsolve" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.mam.GeneralFluidSolve">
+<tt class="descclassname">butools.mam.</tt><tt class="descname">GeneralFluidSolve</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.mam.GeneralFluidSolve" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">[mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo]</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">(Q,</span> <span class="pre">R,</span> <span class="pre">Q0)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">{mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo}</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">[Q,</span> <span class="pre">R,</span> <span class="pre">Q0]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">(Q,</span> <span class="pre">R,</span> <span class="pre">Q0)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Returns the parameters of the matrix-exponentially
+distributed stationary distribution of a general
+Markovian fluid model, where the fluid rates associated
+with the states of the background process can be
+arbitrary (zero is allowed as well).</p>
+<p>Using the returned 4 parameters the stationary
+solution can be obtained as follows.</p>
+<p>The probability that the fluid level is zero while
+being in different states of the background process
+is given by vector mass0.</p>
+<p>The density that the fluid level is x while being in
+different states of the background process is</p>
+<div class="math">
+\[\pi(x)=ini\cdot e^{K x}\cdot clo.\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>Q</strong> : matrix, shape (N,N)</p>
+<blockquote>
+<div><p>The generator of the background Markov chain</p>
+</div></blockquote>
+<p><strong>R</strong> : diagonal matrix, shape (N,N)</p>
+<blockquote>
+<div><p>The diagonal matrix of the fluid rates associated
+with the different states of the background process</p>
+</div></blockquote>
+<p><strong>Q0</strong> : matrix, shape (N,N), optional</p>
+<blockquote>
+<div><p>The generator of the background Markov chain at
+level 0. If not provided, or empty, then Q0=Q is
+assumed. The default value is empty.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>mass0</strong> : matrix, shape (1,Np+Nm)</p>
+<blockquote>
+<div><p>The stationary probability vector of zero level</p>
+</div></blockquote>
+<p><strong>ini</strong> : matrix, shape (1,Np)</p>
+<blockquote>
+<div><p>The initial vector of the stationary density</p>
+</div></blockquote>
+<p><strong>K</strong> : matrix, shape (Np,Np)</p>
+<blockquote>
+<div><p>The matrix parameter of the stationary density</p>
+</div></blockquote>
+<p><strong>clo</strong> : matrix, shape (Np,Np+Nm)</p>
+<blockquote class="last">
+<div><p>The closing matrix of the stationary density</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For Matlab:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">6</span> <span class="o">-</span><span class="mi">10</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">7</span> <span class="o">-</span><span class="mi">12</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">5</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">9</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">5</span> <span class="mi">0</span> <span class="mi">6</span> <span class="o">-</span><span class="mi">13</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">7</span> <span class="o">-</span><span class="mi">15</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">4</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">12</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">6</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">8</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">mass0</span><span class="p">,</span><span class="n">ini</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">clo</span><span class="p">]</span><span class="o">=</span><span class="n">GeneralFluidSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">R</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mass0</span>
+<span class="go">            0     0.082246     0.069492            0     0.023812     0.020724</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ini</span>
+<span class="go">      0.70195      0.20505</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K</span>
+<span class="go">      -2.4698       1.1349</span>
+<span class="go">        1.295      -1.1686</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clo</span>
+<span class="go">          0.5     0.061087     0.054574            0      0.01618     0.012595</span>
+<span class="go">            0     0.055389     0.043116      0.16667     0.038913     0.032631</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">emptyprob</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mass0</span><span class="p">)</span>
+<span class="go">      0.19628</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">densityat1</span> <span class="o">=</span> <span class="n">ini</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">clo</span>
+<span class="go">  0.40402      0.17384      0.14099      0.37455      0.10052      0.08351</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

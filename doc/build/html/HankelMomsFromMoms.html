@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.moments.HankelMomsFromMoms &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Moment expressions (butools.moments)" href="moments.html" >
+    <link rel="next" title="butools.moments.MomsFromHankelMoms" href="MomsFromHankelMoms.html" >
+    <link rel="prev" title="butools.moments.MomsFromReducedMoms" href="MomsFromReducedMoms.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="moments.html" accesskey="U">Moment expressions (<tt class="docutils literal"><span class="pre">butools.moments</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="MomsFromHankelMoms.html" title="butools.moments.MomsFromHankelMoms"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="MomsFromReducedMoms.html" title="butools.moments.MomsFromReducedMoms"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MomsFromReducedMoms.html"
+                        title="previous chapter">butools.moments.MomsFromReducedMoms</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MomsFromHankelMoms.html"
+                        title="next chapter">butools.moments.MomsFromHankelMoms</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-moments-hankelmomsfrommoms">
+<h1>butools.moments.HankelMomsFromMoms<a class="headerlink" href="#butools-moments-hankelmomsfrommoms" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.moments.HankelMomsFromMoms">
+<tt class="descclassname">butools.moments.</tt><tt class="descname">HankelMomsFromMoms</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.moments.HankelMomsFromMoms" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">rm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms(m)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">rm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms[m]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">rm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms(m)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Returns the Hankel moments given the raw moments.</p>
+<p>The raw moments are: <span class="math">\(m_i=E(\mathcal{X}^i)\)</span></p>
+<p>The ith Hankel moment is the determinant of matrix
+<span class="math">\(\Delta_{i/2}\)</span>, if i is even,
+and it is the determinant of <span class="math">\(\Delta^{(1)}_{(i+1)/2}\)</span>,
+if i is odd. For the definition of matrices <span class="math">\(\Delta\)</span>
+and <span class="math">\(\Delta^{(1)}\)</span> see <a class="reference internal" href="#r15" id="id1">[R15]</a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m</strong> : vector of doubles</p>
+<blockquote>
+<div><p>The list of raw moments (starting with the first
+moment)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>hm</strong> : vector of doubles</p>
+<blockquote class="last">
+<div><p>The list of Hankel moments</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R15]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> <a class="reference external" href="http://en.wikipedia.org/wiki/Stieltjes_moment_problem">http://en.wikipedia.org/wiki/Stieltjes_moment_problem</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For Matlab:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hm</span><span class="o">=</span><span class="n">HankelMomsFromMoms</span><span class="p">([</span><span class="mf">1.3</span> <span class="mf">2.4</span> <span class="mf">6.03</span> <span class="mf">20.5</span> <span class="mf">89.5</span> <span class="mf">474.9</span><span class="p">])</span>
+<span class="go">[1.3 0.71 2.079 1.9973 13.841 44.916]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">=</span><span class="n">MomsFromHankelMoms</span><span class="p">(</span><span class="n">hm</span><span class="p">)</span>
+<span class="go">[1.3 2.4 6.03 20.5 89.5 474.9]</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hm</span><span class="o">=</span><span class="n">HankelMomsFromMoms</span><span class="p">[{</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">}]</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hm</span><span class="o">=</span><span class="n">HankelMomsFromMoms</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Jul 25, 2014.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
