@@ -12,6 +12,31 @@ from butools.mc import CheckGenerator, CheckProbMatrix
 
 
 def CRPSolve (Q, prec=1e-14):
+    """
+    Computes the stationary solution of a continuous time 
+    rational process (CRP).
+    
+    Parameters
+    ----------
+    Q : matrix, shape (M,M)
+        The generator matrix of the rational process
+    prec : double, optional
+        Numerical precision for checking the rowsums.
+        The default value is 1e-14.
+        
+    Returns
+    -------
+    pi : row vector, shape (1,M)
+        The vector that satisfies 
+        `\pi\, Q = 0, \sum_i \pi_i=1`
+    
+    Notes
+    -----
+    Continuous time rational processes are like continuous 
+    time Markov chains, but the generator does not have to 
+    pass the :func:`CheckGenerator` test (but the rowsums 
+    still have to be zeros).
+    """
     
     if butools.checkInput and np.any(np.sum(Q,1)>prec):
         raise Exception("CRPSolve: The matrix has a rowsum which isn't zero!")
@@ -23,6 +48,28 @@ def CRPSolve (Q, prec=1e-14):
     return ml.matrix(la.solve (M.T, m))
     
 def CTMCSolve (Q, prec=1e-14):
+    """
+    Computes the stationary solution of a continuous time 
+    Markov chain.
+    
+    Parameters
+    ----------
+    Q : matrix, shape (M,M)
+        The generator matrix of the Markov chain
+    prec : double, optional
+        Numerical precision for checking whether Q is a 
+        valid generator. The default value is 1e-14.
+        
+    Returns
+    -------
+    pi : row vector, shape (1,M)
+        The vector that satisfies `\pi\, Q = 0, \sum_i \pi_i=1`
+    
+    Notes
+    -----
+    The procedure raises an exception if :code:`butools.checkInput` 
+    is set to :code:`true` and :func:`CheckGenerator(Q)` fails.
+    """
 
     if butools.checkInput and not CheckGenerator(Q, False, prec):
         raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.")
@@ -30,6 +77,31 @@ def CTMCSolve (Q, prec=1e-14):
     return CRPSolve(Q, prec)
     
 def DRPSolve (P, prec=1e-14):
+    """
+    Computes the stationary solution of a discrete time 
+    Markov chain.
+    
+    Parameters
+    ----------
+    P : matrix, shape (M,M)
+        The matrix parameter of the rational process
+    prec : double, optional
+        Numerical precision for checking the rowsums.
+        The default value is 1e-14.
+        
+    Returns
+    -------
+    pi : row vector, shape (1,M)
+        The vector that satisfies 
+        `\pi\, P = \pi, \sum_i \pi_i=1`
+    
+    Notes
+    -----
+    Discrete time rational processes are like discrete time 
+    Markov chains, but the P matrix does not have to pass 
+    the :func:`CheckProbMatrix` test (but the rowsums still 
+    have to be ones).
+    """
 
     if butools.checkInput and np.any(np.sum(P,1)-1.0>prec):
         raise Exception("DRPSolve: The matrix has a rowsum which isn't 1!")
@@ -40,6 +112,29 @@ def DRPSolve (P, prec=1e-14):
     return CRPSolve(P-ml.eye(P.shape[0]), prec)
     
 def DTMCSolve (P, prec=1e-14):
+    """
+    Computes the stationary solution of a discrete time 
+    Markov chain.
+    
+    Parameters
+    ----------
+    P : matrix, shape (M,M)
+        The transition probability matrix of the Markov 
+        chain
+    prec : double, optional
+        Numerical precision for checking whether P is a 
+        valid generator. The default value is 1e-14.
+        
+    Returns
+    -------
+    pi : row vector, shape (1,M)
+        The vector that satisfies `\pi\, P = \pi, \sum_i \pi_i=1`
+    
+    Notes
+    -----
+    The procedure raises an exception if :code:`butools.checkInput` 
+    is set to :code:`true` and :func:`CheckProbMatrix(P)` fails.
+    """
 
     if butools.checkInput and not CheckProbMatrix(P, False, prec):
         raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.")

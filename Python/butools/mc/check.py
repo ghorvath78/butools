@@ -10,6 +10,33 @@ import numpy.linalg as la
 import butools
 
 def CheckGenerator (Q, transient=False, prec=1e-14):
+    """
+    Checks if the matrix is a valid generator matrix: the 
+    matrix is a square matrix, the matrix has positive or 
+    zero off-diagonal elements, the diagonal of the matrix 
+    is negative, the rowsum of the matrix is 0.
+    
+    If the "transient" parameter is set to false, it checks 
+    if the real part of the maximum absolute eigenvalue is 
+    less than zero and the rowsum is equal or less than 0. 
+    
+    Parameters
+    ----------
+    Q : matrix, shape (M,M)
+        The generator to check.
+    transient : bool, optional
+        If true, the procedure checks if Q is a transient 
+        generator, otherwise it checks if it is a valid 
+        generator. The default value is false.
+    prec : double, optional
+        Entries with absolute value less than prec are 
+        considered to be zeros. The default value is 1e-14.
+        
+    Returns
+    -------
+    r : bool
+        The result of the check.
+    """
 
     if not isinstance(Q,np.ndarray):
         Q = np.array(Q)
@@ -52,6 +79,35 @@ def CheckGenerator (Q, transient=False, prec=1e-14):
     return True
 
 def CheckProbMatrix (P, transient=False, prec=1e-14):
+    """
+    Checks if the matrix is a valid probability matrix: the 
+    matrix is a square matrix, the matrix has positive or 
+    zero off-diagonal elements, the rowsum of the matrix is 1.
+    
+    If "transient" is true, it checks if the matrix is a 
+    valid transient probability matrix: the matrix is a square
+    matrix, the matrix has positive or zero off-diagonal 
+    elements, the rowsum of the matrix is less than or equal
+    to 1, the maximum absolute eigenvalue is less than 1. 
+    
+    Parameters
+    ----------
+    P : matrix, shape (M,M)
+        The matrix to check.
+    transient : bool, optional
+        If true, the procedure checks if P is a transient 
+        probability matrix, otherwise it checks if it is
+        a valid probability matrix. The default value is 
+        false.
+    prec : double, optional
+        Entries with absolute value less than prec are 
+        considered to be zeros. The default value is 1e-14.
+        
+    Returns
+    -------
+    r : bool
+        The result of the check.
+    """
 
     if not isinstance(P,np.ndarray):
         P = np.array(P)
@@ -84,6 +140,34 @@ def CheckProbMatrix (P, transient=False, prec=1e-14):
     return True
 
 def CheckProbVector (pi, sub=False, prec=1e-14):
+    """
+    Checks if the vector is a valid probability vector: the 
+    vector has only non-negative elements, the sum of the 
+    vector elements is 1.
+    
+    If parameter "sub" is set to true, it checks if the 
+    vector is a valid substochastic vector: the vector has 
+    only non-negative elements, the sum of the elements are
+    less than 1.
+    
+    Parameters
+    ----------
+    pi : vector, shape (1, M) or (M, 1)
+        The matrix to check.
+    sub : bool, optional
+        If false, the procedure checks for stochastic, if 
+        true, it checks for sub-stochastic property. The 
+        default value is false.
+    prec : double, optional
+        Numerical precision. Entries with absolute value 
+        less than prec are considered to be zeros. The 
+        default value is 1e-14.
+        
+    Returns
+    -------
+    r : bool
+        The result of the check.
+    """
 
     if np.min(pi)<-prec:
         if butools.verbose:
