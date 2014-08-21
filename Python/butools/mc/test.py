@@ -5,10 +5,9 @@ Created on Fri Jul 25 17:20:24 2014
 @author: gabor
 """
 
-import sys
 import numpy as np
 import numpy.matlib as ml
-import butools;
+import butools
 from butools.mc import *
 
 
@@ -366,3 +365,6 @@ def TestMCPackage ():
     flag=CheckProbVector(Q23,True)
     print(flag)
     assert flag==1,'CheckProbVector did not recognize that the input is valid!'
+
+if __name__ == "__main__":
+    TestMCPackage()

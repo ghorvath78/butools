@@ -25,21 +25,24 @@ def CRPSolve (Q, prec=1e-14):
 def CTMCSolve (Q, prec=1e-14):
 
     if butools.checkInput and not CheckGenerator(Q, False, prec):
-        raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.");
+        raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.")
 
     return CRPSolve(Q, prec)
     
 def DRPSolve (P, prec=1e-14):
 
     if butools.checkInput and np.any(np.sum(P,1)-1.0>prec):
-        raise Exception("DRPSolve: The matrix has a rowsum which isn't 1!");
+        raise Exception("DRPSolve: The matrix has a rowsum which isn't 1!")
+
+    if not isinstance(P,np.ndarray):
+        P = np.array(P)
 
     return CRPSolve(P-ml.eye(P.shape[0]), prec)
     
 def DTMCSolve (P, prec=1e-14):
 
     if butools.checkInput and not CheckProbMatrix(P, False, prec):
-        raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.");
+        raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.")
 
     return DRPSolve(P, prec)
 

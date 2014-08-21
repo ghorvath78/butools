@@ -59,8 +59,9 @@ butools.mc.CheckGenerator
     
     For Python/Numpy:
     
-    >>> q= [[-0.9, 0.2, 0.4], [0, -0.9, 0.9], [0, 0.6, -0.6]]
-    >>> CheckGenerator(q, True)
-    >>> CheckGenerator(q)
-    
+    >>> Q=[[-0.9, 0.2, 0.4], [0, -0.9, 0.9], [0, 0.6, -0.6]]
+    >>> CheckGenerator(Q, True)
+    True
+    >>> CheckGenerator(Q)
+    False    
     

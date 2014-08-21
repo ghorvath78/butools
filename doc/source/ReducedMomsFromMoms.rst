@@ -48,5 +48,10 @@ butools.moments.ReducedMomsFromMoms
     
     For Python/Numpy:
 
-    >>> rm=ReducedMomsFromMoms([1, 2, 6, 24, 120])
+    >>> rm=ReducedMomsFromMoms([1.2, 5, 38, 495, 9215])
+    >>> print(rm)
+    [1.2, 2.5, 6.333333333333333, 20.625, 76.79166666666667]
+    >>> m=MomsFromReducedMoms(rm)
+    >>> print(m)
+    [1.2, 5.0, 38.0, 495.0, 9215.0]
 

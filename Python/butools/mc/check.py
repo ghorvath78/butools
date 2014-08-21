@@ -11,6 +11,9 @@ import butools
 
 def CheckGenerator (Q, transient=False, prec=1e-14):
 
+    if not isinstance(Q,np.ndarray):
+        Q = np.array(Q)
+        
     if Q.shape[0]!=Q.shape[1]:
         if butools.verbose:
             print ("CheckGenerator: Generator is not a square matrix!\n")
@@ -49,6 +52,9 @@ def CheckGenerator (Q, transient=False, prec=1e-14):
     return True
 
 def CheckProbMatrix (P, transient=False, prec=1e-14):
+
+    if not isinstance(P,np.ndarray):
+        P = np.array(P)
 
     if P.shape[0]!= P.shape[1]:
         if butools.verbose:

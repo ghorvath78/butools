@@ -49,7 +49,10 @@ butools.moments.MomsFromNormMoms
     
     For Python/Numpy:
 
-    >>> nm=NormMomsFromMoms([1.2, 5, 8]);
+    >>> nm=NormMomsFromMoms([1.2, 5, 8])
+    >>> print(nm)
+    [1.2, 3.4722222222222228, 6.333333333333333, 10.855263157894738, 15.513468013468014]
     >>> m=MomsFromNormMoms(nm)
-    [1.2, 5, 8]
+    >>> print(m)
+    [1.2, 5.000000000000001, 38.00000000000001, 495.00000000000017, 9215.000000000004]
 

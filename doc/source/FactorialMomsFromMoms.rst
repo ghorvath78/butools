@@ -51,5 +51,10 @@ butools.moments.FactorialMomsFromMoms
     
     For Python/Numpy:
 
-    >>> fm=FactorialMomsFromMoms([1.2, 5, 38])
-
+    >>> fm=FactorialMomsFromMoms([1.3, 2.4, 6.03, 20.5, 89.5, 474.9])
+    >>> print(fm)
+    [1.3, 1.0999999999999999, 1.4300000000000006, 2.9199999999999982, 6.7500000000000142, 19.75]
+    >>> m=MomsFromFactorialMoms(fm)
+    >>> print(m)
+    [1.3, 2.3999999999999999, 6.0300000000000002, 20.5, 89.5, 474.89999999999998]
+        
