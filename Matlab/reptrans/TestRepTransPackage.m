@@ -1,6 +1,6 @@
 format short g;
 
-disp('---BuTools: Moments package test file---');
+disp('---BuTools: RepTrans package test file---');
 
 disp('Enable the verbose messages with the BuToolsVerbose flag')
 global BuToolsVerbose;
@@ -27,7 +27,8 @@ disp('-----');
 disp('B=SimilarityMatrix(A1,A2):');
 B=SimilarityMatrix(A1,A2);
 disp(B);
-assert(max(max(abs(A1*B-B*A2)))<1e-14, 'The resulting matrix T does not satisfy A1*T = T*A2!');
+err = norm(A1*B-B*A2)
+assert(err<sqrt(eps), 'The resulting matrix T does not satisfy A1*T = T*A2!');
 
 disp('----------------------------------------------------------------------------');
 help TransformToAcyclic
@@ -44,8 +45,8 @@ disp('B=TransformToAcyclic(A):');
 B=TransformToAcyclic(A);
 disp(B);
 C=SimilarityMatrix(A,B);
-err = max(max(abs(A*C-C*B)))
-assert(max(max(abs(A*C-C*B)))<sqrt(eps), 'The original and the transformed matrix are not similar!');
+err = norm(A*C-C*B)
+assert(err<sqrt(eps), 'The original and the transformed matrix are not similar!');
 
 disp('----------------------------------------------------------------------------');
 help TransformToMonocyclic
@@ -63,8 +64,8 @@ disp('B=TransformToMonocyclic(A):');
 B=TransformToMonocyclic(A);
 disp(B);
 C=SimilarityMatrix(A,B);
-err = max(max(abs(A*C-C*B)))
-assert(max(max(abs(A*C-C*B)))<sqrt(eps), 'The original and the transformed matrix are not similar!');
+err = norm(A*C-C*B)
+assert(err<sqrt(eps), 'The original and the transformed matrix are not similar!');
 
 disp('----------------------------------------------------------------------------');
 help ExtendToMarkovian
@@ -93,8 +94,8 @@ disp('[m,M]=ExtendToMarkovian(beta,B):');
 disp(m);
 disp(M);
 C=SimilarityMatrix(B,M);
-err = max(max(abs(B*C-C*M)))
-assert(max(max(abs(B*C-C*M)))<sqrt(eps), 'The original and the transformed matrix are not similar!');
+err = norm(B*C-C*M)
+assert(err<sqrt(eps), 'The original and the transformed matrix are not similar!');
 assert(min(m)>-1e-14, 'The initial vector is still not Markovian!');
 
 disp('----------------------------------------------------------------------------');

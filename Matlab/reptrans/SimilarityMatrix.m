@@ -25,17 +25,16 @@ function B = SimilarityMatrix (A1, A2)
         error('SimilarityMatrix: The input matrices must be square!');
     end
 
-    if size(A1,1)>size(A2,1)
+    N1 = size(A1,1);
+    N2 = size(A2,1);
+
+    if N1>N2
         error('SimilarityMatrix: The first input matrix must be smaller than the second one!');
     end
-
-    N = size(A1,2);
-    M = size(A2,1);
-    X = kron(eye(M), A1) - kron(A2',eye(N));
-    Y = kron(ones(1,M),eye(N));
-    x = zeros(N*M,1);
-    y = ones(N,1);
-    Z = [X; Y];
-    z = [x; y];
-    B = reshape(linsolve(Z,z), N, M);
+       
+    Ax = A2;
+    Ax(:,1)=Ax(:,1)+ones(N2,1);
+    C = zeros(N1,N2);
+    C(:,1) = C(:,1)+ones(N1,1);
+    B = lyap(A1,-Ax,C);    
 end
