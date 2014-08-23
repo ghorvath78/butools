@@ -39,5 +39,5 @@ function pdf = PdfFromPH (alpha, A, x, prec)
         error('PdfFromPH: Input isn''t a valid PH distribution!');
     end
 
-    pdf = PdfFromME (alpha, A, x);
+    pdf = PdfFromME (alpha, A, x, prec);
 end

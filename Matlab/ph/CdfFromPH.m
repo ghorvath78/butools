@@ -38,6 +38,6 @@ function cdf = CdfFromPH (alpha, A, x, prec)
         error('CdfFromPH: Input isn''t a valid PH distribution!');
     end
 
-    cdf = CdfFromME (alpha, A, x);
+    cdf = CdfFromME (alpha, A, x, prec);
 end
 

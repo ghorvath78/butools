@@ -42,7 +42,7 @@ function [beta, B] = MinimalRepFromME (alpha, A, how, precision)
         precision=1e-12;
     end
     if ~exist('how','var')
-        how='both';
+        how='moment';
     end
 
     if strcmp(how,'cont')
