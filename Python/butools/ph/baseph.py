@@ -5,8 +5,8 @@ import numpy.matlib as ml
 import math
 import butools
 from butools.ph import CheckMERepresentation, CheckPHRepresentation
-from butools.utils import Diag
 from butools.mc import CTMCSolve
+from butools.utils import Diag
 
 def MomentsFromME (alpha, A, K=0, prec=1e-14):
 

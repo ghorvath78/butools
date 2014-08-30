@@ -41,7 +41,7 @@ function r = CheckMEPositiveDensity (alpha, A, maxSize, prec)
 
     try
         [beta, B] = MonocyclicPHFromME (alpha, A, maxSize, prec);
-        r = CheckMERepresentation (alpha, A, prec);
+        r = CheckMERepresentation (beta, B, prec);
     catch err
         r = false;
     end

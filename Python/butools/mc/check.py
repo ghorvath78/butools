@@ -123,7 +123,7 @@ def CheckProbMatrix (P, transient=False, prec=1e-14):
         return False
 
     if transient:
-        if np.any(np.sum(P,1)-1.0>prec):
+        if np.any(np.sum(P,1)-1.0>prec*P.shape[1]):
             if butools.verbose:
                 print ("CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: {0})!\n", prec)
             return False
@@ -133,7 +133,7 @@ def CheckProbMatrix (P, transient=False, prec=1e-14):
                 print ("CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: {0})!\n".format(prec))
             return False
     else:
-        if np.any(np.abs(np.sum(P,1)-1.0)>prec):
+        if np.any(np.abs(np.sum(P,1)-1.0)>prec*P.shape[1]):
             if butools.verbose:
                 print ("CheckProbMatrix: The rowsum of the matrix is not 1 (precision: {0})!\n".format(prec))
             return False
@@ -175,12 +175,12 @@ def CheckProbVector (pi, sub=False, prec=1e-14):
         return False
 
     if sub:
-        if np.sum(pi)>1.0+prec:
+        if np.sum(pi)>1.0+prec*pi.size:
             if butools.verbose:
                 print ("CheckProbVector: The sum of the substochastic vector is not less than 1 (precision: {0})!".format(prec))
             return False
     else:
-        if np.abs(np.sum(pi)-1.0)>prec:
+        if np.abs(np.sum(pi)-1.0)>prec*pi.size:
             if butools.verbose:
                 print ("CheckProbVector: The sum of the vector is not 1 (precision: {0})!\n".format(prec))
             return False

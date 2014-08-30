@@ -68,8 +68,8 @@ function [D0, D1] = MAPFromFewMomentsAndCorrelations (moms, corr1, r)
             cv22 = (c2*(1.0+c2)*(1-r)) / ((1+c2*sqrt(r)) * (1.0+sqrt(c2)*(1-sqrt(r))+c2*sqrt(r)));
             m21 = (cv21+1.0) * m11^2;
             m22 = (cv22+1.0) * m12^2;
-            [alpha1, A1] = APHFrom2Moments (m11, m21);
-            [alpha2, A2] = APHFrom2Moments (m12, m22);
+            [alpha1, A1] = APHFrom2Moments ([m11, m21]);
+            [alpha2, A2] = APHFrom2Moments ([m12, m22]);
         else
             cv21 = (c2 + sqrt(r)) / (1.0 - sqrt(r));
             cv22 = c2 * (1.0 - sqrt(r)) / (1.0 + c2*sqrt(r));
@@ -115,8 +115,8 @@ function [D0, D1] = MAPFromFewMomentsAndCorrelations (moms, corr1, r)
             cv22 = c2 * (1.0-r) / (1.0+sqrt(c2*r));
             m21 = (cv21+1.0) * m11^2;
             m22 = (cv22+1.0) * m12^2;
-            [alpha1, A1] = APHFrom2Moments (m11, m21);
-            [alpha2, A2] = APHFrom2Moments (m12, m22);
+            [alpha1, A1] = APHFrom2Moments ([m11, m21]);
+            [alpha2, A2] = APHFrom2Moments ([m12, m22]);
         else
             cv21 = (c2+sqrt(c2*r)) / (1.0-sqrt(r*c2));
             cv22 = (c2-sqrt(c2*r)) / (1.0+sqrt(r*c2));

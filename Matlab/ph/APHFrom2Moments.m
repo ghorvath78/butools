@@ -1,6 +1,6 @@
-function [alpha, A] = APHFrom2Moments (m1, m2)
-    cv2 = m2/m1^2 - 1.0;
-    lambda = 1.0 / m1;
+function [alpha, A] = APHFrom2Moments (moms)
+    cv2 = moms(2)/moms(1)^2 - 1.0;
+    lambda = 1.0 / moms(1);
     N = max(ceil(1.0/cv2), 2);
     p = 1.0 / (cv2 + 1.0 + (cv2-1.0)/(N-1));
     A = -lambda*p*N * eye(N);

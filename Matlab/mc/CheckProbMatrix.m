@@ -61,7 +61,7 @@ function r = CheckProbMatrix (P,transient,prec)
     end
 
     if transient
-        if any(sum(P,2)-1>prec)
+        if any(sum(P,2)-1>size(P,2)*prec)
             if BuToolsVerbose
                 fprintf ('CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: %g)!\n', prec);
             end
@@ -77,7 +77,7 @@ function r = CheckProbMatrix (P,transient,prec)
             return;
         end
     else
-        if any(abs(sum(P,2)-1)>prec)
+        if any(abs(sum(P,2)-1)>size(P,2)*prec)
             if BuToolsVerbose
                 fprintf ('CheckProbMatrix: The rowsum of the matrix is not 1 (precision: %g)!\n', prec);
             end

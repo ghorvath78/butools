@@ -3,7 +3,7 @@ import numpy.matlib as ml
 import math
 import cmath
 import butools
-from butools.ph import CheckMERepresentation, MomentsFromME
+from butools.ph import CheckMERepresentation, MomentsFromPH
 from butools.moments import ReducedMomsFromMoms, NormMomsFromMoms
 
 def APH2ndMomentLowerBound (m1, n):
@@ -33,8 +33,9 @@ def APH3rdMomentUpperBound (m1, m2, n):
     else:
         return np.inf
 
-def APHFrom2Moments (m1, m2):
-
+def APHFrom2Moments (moms):
+    
+    m1, m2 = moms
     cv2 = m2/m1/m1 - 1.0
     lambd = 1.0 / m1
     N = max(int(math.ceil(1.0/cv2)), 2)
@@ -49,7 +50,9 @@ def APHFrom2Moments (m1, m2):
     return (alpha,A)
 
     
-def PH2From3Moments (m1, m2, m3, prec=1e-14):
+def PH2From3Moments (moms, prec=1e-14):
+
+  m1, m2, m3 = moms
 
   # check moment boounds
   m2l = APH2ndMomentLowerBound(m1, 2)  
@@ -91,7 +94,9 @@ def PH2From3Moments (m1, m2, m3, prec=1e-14):
   # return the result
   return (np.matrix([p,1.0-p]), np.matrix([[-lambda1, lambda1], [0,-lambda2]]))
   
-def APHFrom3Moments (m1, m2, m3, maxSize=100):
+def APHFrom3Moments (moms, maxSize=100):
+
+  m1, m2, m3 = moms
 
   # detect number of phases needed
   n = 2
@@ -143,19 +148,21 @@ def APHFrom3Moments (m1, m2, m3, maxSize=100):
       mu = (n-1.0) / (n1 - p/lamb)
       if np.isreal(p) and np.isreal(lamb) and np.isreal(mu) and p>=0 and p<=1 and lamb>0 and mu>0:
         alpha = ml.zeros((1,n))
-        alpha[0,0] = p
-        alpha[0,1] = 1.0-p
+        alpha[0,0] = p.real
+        alpha[0,1] = 1.0-p.real
         A = ml.zeros((n,n));
-        A[0,0] = -lamb
-        A[0,1] = lamb
+        A[0,0] = -lamb.real
+        A[0,1] = lamb.real
         for i in range(1,n):
-          A[i,i] = -mu
+          A[i,i] = -mu.real
           if i<n-1:
             A[i,i+1] = mu.real
         return (alpha,A)
   raise Exception("No APH found for the given 3 moments!")
     
-def PH3From5Moments (m1, m2, m3, m4, m5):
+def PH3From5Moments (moms):
+    
+    m1, m2, m3, m4, m5 = moms
     
     #convert the moments to reduced moments
     moms = ReducedMomsFromMoms([m1,m2,m3,m4,m5])
@@ -248,15 +255,15 @@ def CanonicalFromPH2 (alpha, A, prec=1e-14):
     if A.shape[0]!=2:
         raise Exception("CanonicalFromPH2: Dimension is not 2!")
 
-    return PH2From3Moments (MomentsFromME(alpha, A, 3, prec), prec)
+    return PH2From3Moments (MomentsFromPH(alpha, A, 3, prec), prec)
 
 def CanonicalFromPH3 (alpha, A, prec=1e-14):
 
     if butools.checkInput and not CheckMERepresentation(alpha,A,prec):
-        raise Exception("CanonicalFromPH2: Input isn''t a valid ME distribution!")
+        raise Exception("CanonicalFromPH3: Input isn''t a valid ME distribution!")
 
     if A.shape[0]!=3:
-        raise Exception("CanonicalFromPH2: Dimension is not 3!")
-
-    return PH3From5Moments (MomentsFromME(alpha, A, 5, prec))
+        raise Exception("CanonicalFromPH3: Dimension is not 3!")
+    
+    return PH3From5Moments (MomentsFromPH(alpha, A, 5, prec))
 

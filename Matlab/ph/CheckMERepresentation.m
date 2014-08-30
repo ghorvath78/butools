@@ -51,7 +51,7 @@ function r = CheckMERepresentation (alpha, A, prec)
         return;
     end
 
-    if sum(alpha)<-prec || sum(alpha)>1+prec
+    if sum(alpha)<-prec*length(alpha) || sum(alpha)>1+prec*length(alpha)
         if BuToolsVerbose
             fprintf ('CheckMERepresentation: The sum of the vector elements is less than zero or greater than one (precision: %g)!\n',prec);
         end

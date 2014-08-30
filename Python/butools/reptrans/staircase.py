@@ -9,7 +9,7 @@ import numpy as np
 import numpy.matlib as ml
 import numpy.linalg as la
 
-def MStaircase (Y,Z, precision=1e-8):
+def MStaircase (Y,Z, precision=1e-12):
     """
     Computes a smaller representation using the staircase 
     algorithm.
@@ -54,7 +54,7 @@ def MStaircase (Y,Z, precision=1e-8):
         if la.norm(Z) < precision or la.matrix_rank(Z, tol=precision) == m-ranksum:
             crit = False
 
-    n = ranksum    
+    n = ranksum  
     if la.norm(Z) < precision:
         n = ranksum
         x = np.sum(U.T,1)

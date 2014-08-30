@@ -7,6 +7,7 @@ Created on Fri Mar 22 15:19:44 2013
 
 import numpy as np
 import scipy.linalg as la
+import numpy.linalg as nla
 from numpy import matlib as ml
 from butools.moments import ReducedMomsFromMoms
 from butools.reptrans import MStaircase
@@ -32,21 +33,21 @@ def MEOrder (alpha, A, kind="moment", prec=1e-10):
         re = np.zeros ((N,N))
         for n in range(N):
             re[n,:] = np.sum(A.T**n, 0)
-        return la.matrix_rank (re, prec)
+        return nla.matrix_rank (re, prec)
     elif kind=="obs":
         re = np.zeros ((N,N))
         for n in range(N):
             re[n,:] = alpha*A**n
-        return la.matrix_rank (re, prec)
+        return nla.matrix_rank (re, prec)
     elif kind=="obscont":
         re = np.zeros ((N,N))
         for n in range(N):
             re[n,:] = alpha*A**n
-        obsOrder = la.matrix_rank (re, prec)
+        obsOrder = nla.matrix_rank (re, prec)
         re = np.zeros ((N,N))
         for n in range(N):
             re[n,:] = np.sum(A.T**n, 0)
-        contOrder = la.matrix_rank (re, prec)
+        contOrder = nla.matrix_rank (re, prec)
         return min(obsOrder,contOrder)        
     elif kind=="moment":
         return MEOrderFromMoments (MomentsFromME(alpha, A), prec)
@@ -59,7 +60,7 @@ def MinimalRepFromME (alpha, A, how="moment", precision=1e-12):
         H0 = A
         H1 = np.sum(-A,1) * alpha
         B, n = MStaircase ([H0, H1], ml.ones((A.shape[0],1)), precision)
-        return ((alpha*B)[0:n], (la.inv(B)*A*B)[0:n,0:n])
+        return ((alpha*B)[0,0:n], (la.inv(B)*A*B)[0:n,0:n])
     elif how=="obs":
         H0 = A
         H1 = np.sum(-A,1) * alpha

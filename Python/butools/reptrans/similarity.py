@@ -7,6 +7,7 @@ Created on Mon Jun 24 15:28:54 2013
 import numpy as np
 import numpy.matlib as ml
 import scipy.linalg as la
+from butools.utils import Linsolve
 
 def TransformToOnes (clovec):
     """
@@ -71,9 +72,21 @@ def SimilarityMatrix (A1, A2):
 
     if N1>N2:
         raise Exception("SimilarityMatrix: The first input matrix must be smaller than the second one!")
-       
-    Ax = ml.matrix(A2)
-    Ax[:,0]=Ax[:,0] + ml.ones((N2,1))
-    C = ml.zeros((N1,N2))
-    C[:,0] = C[:,0] - ml.ones((N1,1))
-    return la.solve_sylvester(A1,-Ax,C)
+
+    [R1,Q1]=la.schur(A1,'complex')
+    [R2,Q2]=la.schur(A2,'complex')
+    Q1 = ml.matrix(Q1)
+    Q2 = ml.matrix(Q2)
+    
+    c1 = ml.matrix(np.sum(Q2.H,1))
+    c2 = np.sum(Q1.H,1)
+    I = ml.eye(N2)
+    X = ml.zeros((N1,N2), dtype=complex)
+    for k in range(N1-1,-1,-1):
+        M = R1[k,k]*I-R2
+        if k==N1:
+            m = ml.zeros((1,N2))
+        else:
+            m = -R1[k,k+1:]*X[k+1:,:]
+        X[k,:] = Linsolve(np.hstack((M,c1)),np.hstack((m,c2[k])))
+    return (Q1*X*ml.matrix(Q2).H ).real
