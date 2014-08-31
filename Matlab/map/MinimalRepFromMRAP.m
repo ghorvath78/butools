@@ -37,7 +37,7 @@ function D = MinimalRepFromMRAP (H, how, precision)
     end
 
     if ~exist('how','var')
-        how = 'both';
+        how = 'obscont';
     end
     
     global BuToolsCheckInput;

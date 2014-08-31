@@ -43,8 +43,8 @@ function acf = LagCorrelationsFromRAP (H0, H1, L, prec)
 
     H0i = inv(-H0);
     P = H0i*H1;
-    pi = DRPSolve(P);
-    moms = MomentsFromME(pi, H0, 2);
+    pi = DRPSolve(P, prec);
+    moms = MomentsFromME(pi, H0, 2, prec);
     pi = pi * H0i * P;
 
     acf = zeros(L,1);

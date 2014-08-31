@@ -46,7 +46,7 @@ function [D0, D1] = MAPFromRAP (H0, H1, prec)
 
     H{1}=H0;
     H{2}=H1;
-    Y=MMAPFromMRAP(H);
+    Y=MMAPFromMRAP(H, prec);
     D0=Y{1};
     D1=Y{2};
 end

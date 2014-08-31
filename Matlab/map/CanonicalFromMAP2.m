@@ -46,8 +46,7 @@ function [G0, G1] = CanonicalFromMAP2 (D0, D1, prec)
         end
     end
 
-    [alpha, A] = MarginalDistributionFromMAP (D0, D1, prec);
-    moms = MomentsFromPH (alpha, A, 3, prec);
+    moms = MarginalMomentsFromMAP (D0, D1, 3, prec);
     corr1 = LagCorrelationsFromMAP (D0, D1, 1, prec);
     [G0, G1] = MAP2FromMoments (moms, corr1);
 end
