@@ -91,7 +91,9 @@ function r = CheckRAPRepresentation (D0, D1, prec)
     end
 
     if max(reig)==max(ceig)
-        fprintf('CheckRAPRepresentation: The dominant and a complex eigenvalue of D0 has the same real part!\n');
+        if BuToolsVerbose
+            fprintf('CheckRAPRepresentation: The dominant and a complex eigenvalue of D0 has the same real part!\n');
+        end
     end
 
     r = true;

@@ -332,6 +332,7 @@ D=RandomMMAP(4,3,1.62,10);
 disp(D{1});
 disp(D{2});
 disp(D{3});
+disp(D{4});
 
 disp('Check the mean of the obtained MMAP:');
 m = MarginalMomentsFromMMAP(D,1);

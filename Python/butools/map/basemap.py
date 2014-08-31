@@ -10,7 +10,8 @@ import numpy as np
 import numpy.matlib as ml
 import numpy.linalg as la
 import butools
-from butools.utils import CTMCSolve, DRPSolve, Diag
+from butools.utils import Diag
+from butools.mc import CTMCSolve, DRPSolve
 from butools.map import CheckRAPRepresentation, CheckMAPRepresentation, CheckMRAPRepresentation, CheckMMAPRepresentation
 
 def MarginalDistributionFromRAP (H0, H1, prec=1e-14):
@@ -86,7 +87,7 @@ def LagCorrelationsFromRAP (H0, H1, L=1, prec=1e-14):
     H0i = la.inv(-H0)
     P = H0i*H1
     pi = DRPSolve(P, prec)
-    m1, m2 = MomentsFromPH(pi, H0, 2, prec)
+    m1, m2 = MomentsFromME(pi, H0, 2, prec)
     pi = pi * H0i * P
 
     corr = np.zeros(L)
@@ -133,7 +134,7 @@ def LagkJointMomentsFromMRAP (H, K=0, L=1, prec=1e-14):
         for i in range(K+1):
             for j in range(K+1):
                 Nmm[i,j] = np.sum (pi * H0p[i] * H0i * H[m+1] * Pl * H0p[j])
-            Nm.append (Nmm)
+        Nm.append(ml.matrix(Nmm))
     return Nm
 
 def LagkJointMomentsFromMMAP (D, K=0, L=1, prec=1e-14):
@@ -141,15 +142,15 @@ def LagkJointMomentsFromMMAP (D, K=0, L=1, prec=1e-14):
     if butools.checkInput and not CheckMMAPRepresentation (D, prec):
         raise Exception("LagkJointMomentsFromMMAP: Input is not a valid MMAP representation!")    
 
-    moms = LagkJointMomentsFromMRAP(D, K, L, prec)
-    return moms[0]
+    return LagkJointMomentsFromMRAP(D, K, L, prec)
+
     
 def LagkJointMomentsFromRAP (H0, H1, K=0, L=1, prec=1e-14):
 
     if butools.checkInput and not CheckRAPRepresentation (H0, H1, prec):
         raise Exception("LagkJointMomentsFromRAP: Input is not a valid RAP representation!")    
 
-    return LagkJointMomentsFromMRAP((H0,H1), K, L, prec)
+    return LagkJointMomentsFromMRAP((H0,H1), K, L, prec)[0]
 
 def LagkJointMomentsFromMAP (D0, D1, K=0, L=1, prec=1e-14):
 
@@ -222,7 +223,7 @@ def RandomMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-1
                             break
                     if not fullZero:
                         # scale to the mean value
-                        m = MarginalMomentsFromMMAP (D, prec)[0]
+                        m = MarginalMomentsFromMMAP (D, 1, prec)[0]
                         for i in range(types+1):
                             D[i] *= m / mean
                         return D

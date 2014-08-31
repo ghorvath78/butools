@@ -28,7 +28,7 @@ function r = CheckMAPRepresentation (D0, D1, prec)
         prec = 1e-14;
     end
 
-    if ~CheckGenerator(D0,1)
+    if ~CheckGenerator(D0,1,prec)
         r = false;
         return;
     end

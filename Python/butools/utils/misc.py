@@ -68,3 +68,9 @@ def Linsolve(A,b):
         Q,R = la.qr(A)
         N = A.shape[1]
         return ml.matrix(la.solve(R[0:N,0:N], np.array(np.conj(Q.T)*b).flatten()[0:N])).T
+
+def SumMatrixList(C):
+    sumC = ml.zeros(C[0].shape)
+    for i in range(len(C)):
+        sumC += C[i]
+    return sumC
