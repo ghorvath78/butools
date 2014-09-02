@@ -90,11 +90,14 @@ def LagCorrelationsFromRAP (H0, H1, L=1, prec=1e-14):
     m1, m2 = MomentsFromME(pi, H0, 2, prec)
     pi = pi * H0i * P
 
-    corr = np.zeros(L)
+    corr = []
     for i in range(L):
-        corr[i] = (np.sum(pi*H0i) - m1*m1) / (m2 - m1*m1)
+        corr.append((np.sum(pi*H0i) - m1*m1) / (m2 - m1*m1))
         pi = pi * P
-    return corr
+    if L>1:
+        return corr
+    else:
+        return corr[0]
 
 def LagCorrelationsFromMAP (D0, D1, L=1, prec=1e-14):
 

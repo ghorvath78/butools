@@ -10,6 +10,8 @@ import numpy as np
 import numpy.matlib as ml
 from butools.map import CheckMAPRepresentation, CheckMMAPRepresentation, MarginalDistributionFromMMAP
 from numpy.random import rand
+from butools.mc import CTMCSolve
+from butools.utils import SumMatrixList
 
 
 def SamplesFromMMAP (D, k, initial=None, prec=1e-14):
@@ -21,7 +23,7 @@ def SamplesFromMMAP (D, k, initial=None, prec=1e-14):
     
     if initial==None:
         # draw initial state according to the stationary distribution
-        stst = MarginalDistributionFromMMAP(D).A.flatten()
+        stst = CTMCSolve(SumMatrixList(D)).A.flatten()
         cummInitial = np.cumsum(stst)
         r = rand()
         state = 0

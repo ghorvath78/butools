@@ -26,7 +26,9 @@ def MStaircase (Y,Z, precision=1e-12):
             on Qeueuing theory (MCQT), June 2010.
     """
 
-    X = Y[:]
+    X = []
+    for y in Y:
+        X.append(ml.matrix(y))
     M = len(X)
     m = X[0].shape[0]
     U = ml.eye(m)

@@ -22,5 +22,5 @@ def LagCorrelationsFromTrace (trace, K=3):
     v = np.var(trace)
     return [ (np.dot(trace[0:-i], trace[i:])/(len(trace)-i) - m*m) / v for i in range(1,K+1)]
   
-def LagkJointMomentsFromTrace (trace, lag=1, K=3):
-    return np.array([ [ np.dot(np.power(trace[:-lag],i), np.power(trace[lag:],j))/(len(trace)-lag) for j in range(1,K+1) ] for i in range(1,K+1)])
+def LagkJointMomentsFromTrace (trace, K=3, L=1):
+    return np.array([ [ np.dot(np.power(trace[:-L],i), np.power(trace[L:],j))/(len(trace)-L) for j in range(0,K+1) ] for i in range(0,K+1)])

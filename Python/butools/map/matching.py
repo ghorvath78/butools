@@ -214,7 +214,7 @@ def RAPFromMomentsAndCorrelations (moms, corr):
     
     rcorr=corr[0:2*M-3]/((moms[1]/2.0-moms[0]**2)/(moms[1]-moms[0]**2))
     rcorr = MomsFromReducedMoms (rcorr)
-    tmp,X = MEFromMoments (np.reshape(rcorr,1,len(rcorr)))
+    tmp,X = MEFromMoments (rcorr.tolist())
     
     N = X.shape[1]
 
