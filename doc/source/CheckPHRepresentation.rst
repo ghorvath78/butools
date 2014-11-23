@@ -47,3 +47,16 @@ butools.ph.CheckPHRepresentation
     >>> A=[-1 1; 1 -2];
     >>> CheckPHRepresentation(a,A)
      1
+     
+     For Python/Numpy:
+     
+     >>> a=ml.matrix([[0.2]])
+     >>> A=ml.matrix([[-1, 1],[1,-2]])
+     >>> print(CheckPHRepresentation(a,A))
+     CheckPHRepresentation: The vector and the matrix have different sizes!
+     False
+     >>> a=ml.matrix([[0.2, 0.7]])
+     >>> A=ml.matrix([[-1, 1],[1, -2]])
+     >>> print(CheckPHRepresentation(a,A))
+     True
+

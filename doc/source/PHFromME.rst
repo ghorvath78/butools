@@ -65,3 +65,19 @@ butools.ph.PHFromME
     >>> norm(a*C-b)
       6.1455e-16
       
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[-0.4, 1.4]])
+    >>> A=ml.matrix([[-3.8, 2],[2, -9]])
+    >>> b,B=PHFromME(a,A)
+    >>> print(b)
+    [[ 0.01303711  0.98696289]]
+    >>> print(B)
+    [[-3.26045719  2.59242998]
+     [ 0.34842636 -9.53954281]]
+    >>> C=SimilarityMatrix(A,B)
+    >>> print(la.norm(A*C-C*B))
+    1.18018326364e-15
+    >>> print(la.norm(a*C-b))
+    2.35922392733e-16
+

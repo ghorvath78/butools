@@ -115,7 +115,7 @@
 </tbody>
 </table>
 <p>Transforms an arbitrary matrix-exponential representation
-to an acyclic phase-type representation. (see <a class="reference internal" href="#r5" id="id1">[R5]</a>).</p>
+to an acyclic phase-type representation. (see <a class="reference internal" href="#r1" id="id1">[R1]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -158,10 +158,10 @@ acyclic representation</p>
 <p>Raises an error if no Markovian acyclic representation
 has been found.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r5" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R5]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Mocanu, S., Commault, C.: &#8220;Sparse representations of
+<tr><td class="label">[R1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Mocanu, S., Commault, C.: &#8220;Sparse representations of
 phase-type distributions,&#8221; Stoch. Models 15, 759-778
 (1999)</td></tr>
 </tbody>
@@ -181,6 +181,22 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
 <span class="go">  0.64918      0.73131       1.1825       2.5062       6.5898</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span><span class="o">=</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
 <span class="go">  0.64918      0.73131       1.1825       2.5062       6.5898</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">AcyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">[[ 0.55272626  0.37410038  0.07317336]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[-1.91446829  1.91446829  0.        ]</span>
+<span class="go"> [ 0.         -3.88582674  3.88582674]</span>
+<span class="go"> [ 0.          0.         -8.19970497]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[0.64918032786885238, 0.73130878796022558, 1.1825377454500594, 2.5062091064024199, 6.5897616854469261]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[0.64918032649380331, 0.73130878479925954, 1.182537737569604, 2.5062090835980859, 6.5897616090589066]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -208,10 +224,10 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

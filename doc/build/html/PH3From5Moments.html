@@ -143,10 +143,10 @@ a PH(3). Also note that the numerical behavior of the
 procedure can be poor if the moments are close to the
 boundary of the feasible region.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r36" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R36]</a></td><td>G. Horvath and M. Telek, &#8220;On the canonical
+<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td>G. Horvath and M. Telek, &#8220;On the canonical
 representation of phase type distributions,&#8221;
 Performance Evaluation, vol. 66, no. 8, pp.
 396 - 409, 2009.</td></tr>
@@ -178,6 +178,31 @@ Performance Evaluation, vol. 66, no. 8, pp.
 <span class="go">  0.44865       0.5496       1.3298       4.9428       24.182</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.20939</span><span class="p">,</span> <span class="mf">0.10449</span><span class="p">,</span> <span class="mf">0.089092</span><span class="p">,</span> <span class="mf">0.11027</span><span class="p">,</span> <span class="mf">0.17953</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="n">PH3From5Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.57641145  0.33239799  0.09119055]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-10.10242487   0.           0.        ]</span>
+<span class="go"> [  5.3797402   -5.3797402    0.        ]</span>
+<span class="go"> [  0.           2.87975038  -2.87975038]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[0.20938999999999752, 0.10448999999999731, 0.089091999999996285, 0.11026999999999371, 0.17952999999998739]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.44865</span><span class="p">,</span> <span class="mf">0.5496</span><span class="p">,</span> <span class="mf">1.3298</span><span class="p">,</span> <span class="mf">4.9428</span><span class="p">,</span> <span class="mf">24.182</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="n">PH3From5Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.96611708  0.00950097  0.02438196]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-2.92453876  0.          0.12768624]</span>
+<span class="go"> [ 2.80961128 -2.80961128  0.        ]</span>
+<span class="go"> [ 0.          1.11527694 -1.11527694]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[0.44865000000000199, 0.5496000000000052, 1.3298000000000183, 4.9428000000000774, 24.182000000000411]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -203,10 +228,10 @@ Performance Evaluation, vol. 66, no. 8, pp.
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

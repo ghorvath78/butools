@@ -115,7 +115,7 @@
 </tbody>
 </table>
 <p>Transforms an arbitrary matrix to a Markovian monocyclic
-matrix (see <a class="reference internal" href="#r43" id="id1">[R43]</a>).</p>
+matrix (see <a class="reference internal" href="#r1" id="id1">[R1]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -150,10 +150,10 @@ eigenvalues.</p>
 <p>Raises an exception if no Markovian monocyclic generator
 has been found up to the given size.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r43" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R43]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Mocanu, S., Commault, C.: &#8220;Sparse representations
+<tr><td class="label">[R1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Mocanu, S., Commault, C.: &#8220;Sparse representations
 of phase-type distributions,&#8221; Stoch. Models 15,
 759-778 (1999)</td></tr>
 </tbody>
@@ -176,6 +176,26 @@ of phase-type distributions,&#8221; Stoch. Models 15,
 <span class="go">   1.9399e-15     -0.12308     -0.18462     -0.27692     -0.41538</span>
 <span class="go">   1.1658e-16       2.0923      -1.2923      -4.7077       2.9077</span>
 <span class="go">   1.4348e-16      0.86154       3.1385      -1.9385      -7.0615</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">TransformToMonocyclic</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[-1.          1.          0.          0.          0.        ]</span>
+<span class="go"> [ 0.         -3.          3.          0.          0.        ]</span>
+<span class="go"> [ 0.          0.         -3.          3.          0.        ]</span>
+<span class="go"> [ 0.          0.          0.         -3.          3.        ]</span>
+<span class="go"> [ 0.          0.59259259  0.          0.         -3.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="p">)</span>
+<span class="go">[[ -3.74874698e-16  -1.23076923e-01  -1.84615385e-01  -2.76923077e-01   -4.15384615e-01]</span>
+<span class="go"> [  1.33934087e-15   2.09230769e+00  -1.29230769e+00  -4.70769231e+00    2.90769231e+00]</span>
+<span class="go"> [  1.49596465e-15   8.61538462e-01   3.13846154e+00  -1.93846154e+00   -7.06153846e+00]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[ -3.74874698e-16  -1.23076923e-01  -1.84615385e-01  -2.76923077e-01   -4.15384615e-01]</span>
+<span class="go"> [  5.39227071e-16   2.09230769e+00  -1.29230769e+00  -4.70769231e+00    2.90769231e+00]</span>
+<span class="go"> [  1.39170171e-16   8.61538462e-01   3.13846154e+00  -1.93846154e+00   -7.06153846e+00]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -203,10 +223,10 @@ of phase-type distributions,&#8221; Stoch. Models 15,
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

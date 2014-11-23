@@ -48,4 +48,14 @@ butools.ph.MomentsFromME
           0.35385      0.41893       1.1552       4.6998       23.838
     >>> mean = MomentsFromME(a,A,1)
           0.35385
+    
+    For Python/Numpy:
+    
+    >>> a = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
+    >>> moms=MomentsFromME(a,A)
+    >>> print(moms)
+    [0.35384615384615381, 0.41893491124260357, 1.1552116522530724, 4.6998354399355771, 23.837756165615836]
+    >>> mean = MomentsFromME(a,A,1)
+    [0.35384615384615381]
 

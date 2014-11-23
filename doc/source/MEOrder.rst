@@ -31,7 +31,7 @@ butools.ph.MEOrder
         'obs': observability, 
         'cont': controllability,
         'obscont': the minimum of observability and 
-            controllability order,
+        controllability order,
         'moment': moment order (which is the default).
     prec : double, optional
         Precision used to detect if the determinant of the 
@@ -92,5 +92,43 @@ butools.ph.MEOrder
     >>> mo=MEOrder(a,A,'moment');
          3
      
-     
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[1.0, 1.0, 1.0, 1.0, 1.0, 1.0]])/6.0
+    >>> A=ml.matrix([[-1, 0, 0, 0, 0, 0],[0.5, -2, 1, 0, 0, 0],[1, 0, -3, 1, 0, 0],[1, 0, 1, -4, 1, 0],[4, 0, 0, 0, -5, 0],[5, 0, 0, 0, 0, -6]])
+    >>> print(MEOrder(a,A,"cont"))
+    2
+    >>> print(MEOrder(a,A,"obs"))
+    6
+    >>> print(MEOrder(a,A,"obscont"))
+    2
+    >>> print(MEOrder(a,A,"moment"))
+    2
+    
+    >>> a=ml.matrix([[2, 1]])/3
+    >>> A=ml.matrix([[-1, 1],[0, -3]])
+    >>> print(MEOrder(a,A,"cont"))
+    2
+    >>> print(MEOrder(a,A,"obs"))
+    1
+    >>> print(MEOrder(a,A,"obscont"))
+    1
+    >>> print(MEOrder(a,A,"moment"))
+    1   
+    
+    >>> b = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> B = ml.matrix([[-1,0,0],[0,-3,1],[0,-1,-3]])
+    >>> a,A = MonocyclicPHFromME(b,B)
+    >>> print(a.shape)
+    (1, 9)
+    >>> print(A.shape)
+    (9, 9)
+    >>> print(MEOrder(a,A,"cont"))
+    9
+    >>> print(MEOrder(a,A,"obs"))
+    3
+    >>> print(MEOrder(a,A,"obscont"))
+    3
+    >>> print(MEOrder(a,A,"moment"))
+    3
 

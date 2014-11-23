@@ -16,6 +16,40 @@ from butools.map import CheckMAPRepresentation, MarginalMomentsFromMAP, LagCorre
 from butools.moments import MomsFromReducedMoms
 
 def MRAPFromMoments (moms, Nm):
+    """
+    Creates a marked rational arrival process that has the same 
+    marginal and lag-1 joint moments as given (see [1]_).
+    
+    Parameters
+    ----------
+    moms : vector of doubles
+        The list of marginal moments. To obtain a marked 
+        rational process of order M, 2*M-1 marginal moments
+        are required.
+    Nm : list of matrices, shape (M,M)
+        The list of lag-1 joint moment matrices. The 
+        length of the list determines K, the number of arrival 
+        types of the rational process.
+    
+    Returns
+    -------
+    H : list of matrices, shape (M,M)
+        The H0, H1, ..., HK matrices of the marked rational 
+        process
+    
+    Notes
+    -----
+    There is no guarantee that the returned matrices define
+    a valid stochastic process. The joint densities may be
+    negative.
+    
+    References
+    ----------
+    .. [1] Andras Horvath, Gabor Horvath, Miklos Telek, "A 
+           traffic based decomposition of two-class queueing
+           networks with priority service," Computer Networks 
+           53:(8) pp. 1235-1248. (2009)
+    """
 
     v, H0 = MEFromMoments (moms)
     H0i = la.inv(-H0)
@@ -35,10 +69,69 @@ def MRAPFromMoments (moms, Nm):
     return [-H0*Gei*Nm[i-1]*G1i if i>0 else H0 for i in range(len(Nm)+1)]    
 
 def RAPFromMoments (moms, Nm):
+    """
+    Creates a rational arrival process that has the same 
+    marginal and lag-1 joint moments as given (see [1]_).
+    
+    Parameters
+    ----------
+    moms : vector of doubles
+        The list of marginal moments. To obtain a rational 
+        process of order M, 2*M-1 marginal moments are 
+        required.
+    Nm : matrix, shape (M,M)
+        The matrix of lag-1 joint moments. 
+    
+    Returns
+    -------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the rational process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the rational process
+    
+    Notes
+    -----
+    There is no guarantee that the returned matrices define
+    a valid stochastic process. The joint densities may be
+    negative.
+    
+    References
+    ----------
+    .. [1] G Horvath, M Telek, "A minimal representation of 
+           Markov arrival processes and a moments matching 
+           method," Performance Evaluation 64:(9-12) pp. 
+           1153-1168. (2007)       
+    """
 
     return MRAPFromMoments (moms, [Nm])
     
 def MAP2CorrelationBounds (moms):
+    """
+    Returns the upper and lower correlation bounds for a MAP(2)
+    given the three marginal moments.
+    
+    !!!TO CHECK!!!
+    
+    Parameters
+    ----------
+    moms : vector, length(3)
+        First three marginal moments of the inter-arrival times
+    
+    Returns
+    -------
+    lb : double
+        Lower correlation bound
+    ub : double
+        Upper correlation bound
+    
+    References
+    ----------
+    .. [1] L Bodrog, A Heindl, G Horvath, M Telek, "A Markovian
+           Canonical Form of Second-Order Matrix-Exponential 
+           Processes," EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
+           190:(2) pp. 459-477. (2008)
+           
+    """
 
     m1, m2, m3 = moms
 
@@ -62,6 +155,45 @@ def MAP2CorrelationBounds (moms):
         return (gub/cv2, glb/cv2)
 
 def MAP2FromMoments (moms, corr1):
+    """
+    Returns a MAP(2) which has the same 3 marginal moments 
+    and lag-1 autocorrelation as given.
+    
+    Parameters
+    ----------
+    moms : vector, length(3)
+        First three marginal moments of the inter-arrival times
+    corr1 : double
+        The lag-1 autocorrelation of the inter-arrival times
+    
+    Returns
+    -------
+    D0 : matrix, shape (2,2)
+        The D0 matrix of the MAP(2)
+    D1 : matrix, shape (2,2)
+        The D1 matrix of the MAP(2)
+    
+    Raises an exception if the moments are not feasible with
+    a MAP(2).
+    
+    Notes
+    -----
+    The result is always a valid MAP(2) as long as the input
+    moments can be realized by a PH(2) (can be checked with 
+    :func:`butools.ph.APH2ndMomentLowerBound`, 
+    :func:`butools.ph.APH3rdMomentLowerBound`, 
+    :func:`butools.ph.APH3rdMomentUpperBound` with n=2) and the 
+    correlation falls between the feasible lower and upper 
+    bound (check by :func:`MAP2CorrelationBounds`).
+    
+    References
+    ----------
+    .. [1] L Bodrog, A Heindl, G Horvath, M Telek, "A Markovian
+           Canonical Form of Second-Order Matrix-Exponential 
+           Processes," EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
+           190:(2) pp. 459-477. (2008)
+        
+    """
 
     m1, m2, m3 = moms
 
@@ -102,6 +234,32 @@ def MAP2FromMoments (moms, corr1):
     return (D0, D1)
 
 def CanonicalFromMAP2 (D0, D1, prec=1e-14):
+    """
+    Returns the canonical form of an order-2 Markovian
+    arrival process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (2,2)
+        The D0 matrix of the MAP(2)
+    D1 : matrix, shape (2,2)
+        The D1 matrix of the MAP(2)
+    prec : double, optional
+        Numerical precision to check the input, default 
+        value is 1e-14
+    
+    Returns
+    -------
+    G0 : matrix, shape (1,2)
+        The D0 matrix of the canonical MAP(2)
+    G1 : matrix, shape (2,2)
+        The D1 matrix of the canonical MAP(2)
+    
+    Notes
+    -----
+    This procedure calculates 3 marginal moments and the lag-1
+    autocorrelation of the input and calls 'MAP2FromMoments'.
+    """
 
     if butools.checkInput:
         if D0.shape[0]!=2:
@@ -115,6 +273,42 @@ def CanonicalFromMAP2 (D0, D1, prec=1e-14):
 
 
 def MAPFromFewMomentsAndCorrelations (moms, corr1=0, r=None):
+    """
+    Creates a Markovian arrival process that has the given
+    2 or 3 marginal moments and lag-1 autocorrelation.
+    The decay of the autocorrelation function can be optionally
+    adjusted as well.
+    The lag-k autocorrelation function `\rho_k` of the 
+    resulting MAP is `\rho_k=r(corr_1/r)^k`.
+    
+    Parameters
+    ----------
+    moms : vector of doubles, length 2 or 3
+        The list of marginal moments to match. 
+    corr1 : double
+        The lag-1 autocorrelation coefficient to match.
+    r : double, optional
+        The decay of the autocorrelation function.
+    
+    Returns
+    -------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the Markovian arrival process
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the Markovian arrival process
+    
+    Notes
+    -----
+    With 2 marginal moments, or with 3 marginal moments and 
+    positive autocorrelation the procedure always returns a 
+    valid Markovian representation.
+    
+    References
+    ----------
+    .. [1] G Horvath, "Matching marginal moments and lag 
+           autocorrelations with MAPs," ValueTools 2013, 
+           Torino, Italy (2013).
+    """
 
     m1 = moms[0]
     c2 = moms[1]/moms[0]/moms[0] - 1.0
@@ -205,6 +399,39 @@ def MAPFromFewMomentsAndCorrelations (moms, corr1=0, r=None):
     return D0, D1
     
 def RAPFromMomentsAndCorrelations (moms, corr):
+    """
+    Returns a rational arrival process that has the same moments
+    and lag autocorrelation coefficients as given.
+    
+    Parameters
+    ----------
+    moms : vector of doubles
+        The vector of marginal moments. To obtain a RAP of 
+        size M, 2*M-1 moments are required.
+    corr : vector of doubles
+        The vector of lag autocorrelation coefficients. To 
+        obtain a RAP of size M, 2*M-3 coefficients are needed.
+    
+    Returns
+    -------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the rational arrival process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the rational arrival process
+    
+    Notes
+    -----
+    There is no guarantee that the returned matrices define
+    a valid stochastic process. The joint densities may be
+    negative.
+    
+    References
+    ----------
+    .. [1] Mitchell, Kenneth, and Appie van de Liefvoort. 
+           "Approximation models of feed-forward G/G/1/N 
+           queueing networks with correlated arrivals." 
+           Performance Evaluation 51.2 (2003): 137-152.
+    """
 
     alpha, D0 = MEFromMoments (moms)
     M = alpha.shape[1]

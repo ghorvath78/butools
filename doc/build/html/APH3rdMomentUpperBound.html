@@ -144,10 +144,10 @@ the given first and second moment.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r3" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R3]</a></td><td>A. Bobbio, A. Horvath, M. Telek, &#8220;Matching three
+<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td>A. Bobbio, A. Horvath, M. Telek, &#8220;Matching three
 moments with minimal acyclic phase type
 distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
 </tbody>
@@ -170,6 +170,25 @@ distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
 <span class="go">   16.079</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <span class="go">    Inf</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="go">16.577458090899107</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="go">17.081405365964276</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="go">16.079377140256387</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="go">inf</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -197,10 +216,10 @@ distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

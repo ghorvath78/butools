@@ -13,6 +13,37 @@ from butools.reptrans import MStaircase
 from butools.map import CheckRAPRepresentation, CheckMRAPRepresentation
 
 def MinimalRepFromMRAP (H, how="obscont", precision=1e-12):
+    """
+    Returns the minimal representation of a marked rational
+    arrival process.
+    
+    Parameters
+    ----------
+    H : list of matrices of shape (M,M)
+        The list of H0, H1, ..., HK matrices of the marked
+        rational arrival process
+    how : {"obs", "cont", "obscont"}, optional        
+        Determines how the representation is minimized. 
+        "cont" means controllability, "obs" means 
+        observability, "obscont" means that the rational arrival
+        process is minimized in both respects. Default value 
+        is "obscont".
+    precision : double, optional
+       Precision used by the Staircase algorithm. The default
+       value is 1e-12.
+    
+    Returns
+    -------
+    D : list of matrices of shape (M,M)
+        The D0, D1, ..., DK matrices of the minimal 
+        representation
+    
+    References
+    ----------
+    .. [1] P. Buchholz, M. Telek, "On minimal representation of 
+           rational arrival processes." Madrid Conference on 
+           Qeueuing theory (MCQT), June 2010.
+    """
 
     if butools.checkInput and not CheckMRAPRepresentation (H, precision):
         raise Exception("MinimalRepFromMRAP: Input is not a valid MRAP representation!")    
@@ -30,6 +61,39 @@ def MinimalRepFromMRAP (H, how="obscont", precision=1e-12):
         return MinimalRepFromMRAP(D, "obs", precision)
    
 def MinimalRepFromRAP (H0, H1, how="obscont", precision=1e-12):
+    """
+    Returns the minimal representation of a rational arrival 
+    process.
+    
+    Parameters
+    ----------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the rational arrival process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the rational arrival process
+    how : {"obs", "cont", "obscont"}, optional      
+        Determines how the representation is minimized. "cont" 
+        means controllability, "obs" means observability, 
+        "obscont" means that the rational arrival process is 
+        minimized in both respects. The default value is 
+        "obscont"
+    precision : double, optional
+       Precision used by the Staircase algorithm. The default 
+       value is 1e-12.
+    
+    Returns
+    -------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the minimal representation
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the minimal representation
+    
+    References
+    ----------
+    .. [1] P. Buchholz, M. Telek, "On minimal representation of 
+           rational arrival processes." Madrid Conference on 
+           Qeueuing theory (MCQT), June 2010.
+    """
 
     if butools.checkInput and not CheckRAPRepresentation (H0, H1, precision):
         raise Exception("MinimalRepFromRAP: Input is not a valid RAP representation!")    

@@ -181,6 +181,22 @@ parameter.</p>
 <span class="go">        8</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">RandomPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+<span class="go">[[ 0.53928457  0.46071543  0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-1.14323874  0.1175927   0.46955765]</span>
+<span class="go"> [ 0.59310796 -1.23831621  0.64520825]</span>
+<span class="go"> [ 0.          0.6843269  -0.6843269 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">[[-0.55608839]</span>
+<span class="go"> [ 0.        ]</span>
+<span class="go"> [ 0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="go">[7.9999999999999911]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -206,10 +222,10 @@ parameter.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

@@ -60,4 +60,22 @@ butools.ph.MEOrderFromMoments
     >>> mo = MEOrderFromMoments(moms)
          3
 
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[0.1, 0.9, 0]])
+    >>> A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
+    >>> moms=MomentsFromME(a,A)
+    >>> print(MEOrderFromMoments(moms))
+    3
+    
+    >>> b = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> B = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
+    >>> a,A = MonocyclicPHFromME(b,B)
+    >>> print(a.shape)
+    (1, 27)
+    >>> print(A.shape)
+    (27, 27)
+    >>> moms=MomentsFromME(a,A)
+    >>> print(MEOrderFromMoments(moms))
+    3
 

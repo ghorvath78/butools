@@ -12,6 +12,28 @@ import numpy as np
 import scipy.linalg as la
 
 def CheckMAPRepresentation (D0, D1, prec=1e-14):
+    """
+    Checks if the input matrixes define a continuous time MAP.
+    
+    Matrices D0 and D1 must have the same size, D0 must be a 
+    transient generator matrix, D1 has only non-negative 
+    elements, and the rowsum of D0+D1 is 0 (up to the numerical
+    precision).
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the MAP to check
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the MAP to check
+    prec : double, optional
+        Numerical precision, the default value is 1e-14
+    
+    Returns
+    -------
+    r : bool 
+        The result of the check
+    """
 
     if not CheckGenerator(D0,True):
         return False
@@ -34,6 +56,24 @@ def CheckMAPRepresentation (D0, D1, prec=1e-14):
     return True
 
 def CheckMMAPRepresentation (H,prec=1e-14):
+    """
+    Checks if the input matrixes define a continuous time MMAP.
+    
+    All matrices D0...DK must have the same size, D0 must be a 
+    transient generator matrix, D1 has only non-negative 
+    elements, and the rowsum of D0+D1+...+DK is 0 (up to the 
+    numerical precision).
+    
+    Parameters
+    ----------
+    D : list/cell of matrices, length(K)
+        The D0...DK matrices of the MMAP to check
+    
+    Returns
+    -------
+    r : bool 
+        The result of the check
+    """
 
     if np.min(np.hstack(H[1:])) < -prec:
         if butools.verbose:
@@ -42,6 +82,27 @@ def CheckMMAPRepresentation (H,prec=1e-14):
     return CheckMAPRepresentation(H[0],SumMatrixList(H[1:]),prec)
 
 def CheckRAPRepresentation (D0, D1, prec=1e-14):
+    """
+    Checks if the input matrixes define a continuous time RAP.
+    
+    Matrices H0 and H1 must have the same size, the dominant
+    eigenvalue of H0 is negative and real, and the rowsum of 
+    H0+H1 is 0 (up to the numerical precision).
+    
+    Parameters
+    ----------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the RAP to check
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the RAP to check
+    prec : double, optional
+        Numerical precision, the default value is 1e-14
+    
+    Returns
+    -------
+    r : bool 
+        The result of the check
+    """
 
     if D0.shape[0]!=D0.shape[1]:
         if butools.verbose:
@@ -91,5 +152,22 @@ def CheckRAPRepresentation (D0, D1, prec=1e-14):
     return True
 
 def CheckMRAPRepresentation(H,prec=1e-14):
+    """
+    Checks if the input matrixes define a continuous time MRAP.
+    
+    All matrices H0...HK must have the same size, the dominant
+    eigenvalue of H0 is negative and real, and the rowsum of 
+    H0+H1+...+HK is 0 (up to the numerical precision).
+    
+    Parameters
+    ----------
+    H : list/cell of matrices, length(K)
+        The H0...HK matrices of the MRAP to check
+    
+    Returns
+    -------
+    r : bool 
+        The result of the check
+    """
 
     return CheckRAPRepresentation(H[0],SumMatrixList(H[1:]),prec)

@@ -62,3 +62,20 @@ butools.ph.CheckMERepresentation
     >>> CheckMERepresentation(a,A)
      1
 
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[-0.2, 0.2]])
+    >>> A=ml.matrix([[1, -1],[1, -2]])
+    >>> print(CheckMERepresentation(a,A))
+    CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part!
+    False
+    >>> a=ml.matrix([[-0.2, 0.4, 0.8]])
+    >>> A=ml.matrix([[-2, 0, 3],[0, -1, 1],[0, -1, -1]])
+    >>> print(CheckMERepresentation(a,A))
+    CheckMERepresentation: The dominant eigenvalue of the matrix is not real!
+    False
+    >>> a = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
+    >>> print(CheckMERepresentation(a,A))
+    True
+

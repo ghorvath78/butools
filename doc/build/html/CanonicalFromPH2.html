@@ -166,6 +166,22 @@ calls &#8216;PH2From3Moments&#8217;.</p>
 <span class="go">  1.8501e-15</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.28</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">3.94</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.94</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">CanonicalFromPH2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">[[ 0.96101523  0.03898477]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[-1.28  1.28]</span>
+<span class="go"> [ 0.   -3.94]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">))</span>
+<span class="go">4.86095148111e-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">b</span><span class="p">))</span>
+<span class="go">2.06083980779e-15</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -191,10 +207,10 @@ calls &#8216;PH2From3Moments&#8217;.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

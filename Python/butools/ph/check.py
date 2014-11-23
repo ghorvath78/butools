@@ -11,6 +11,26 @@ import numpy as np
 import scipy.linalg as la
 
 def CheckPHRepresentation (alpha, A, prec=1e-14):
+    """
+    Checks if the given vector and matrix define a valid phase-
+    type representation.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        Initial vector of the phase-type distribution to check
+    A : matrix, shape (M,M)
+        Transient generator of the phase-type distribution to
+        check
+    prec : double, optional
+        Numerical precision. The default value is 1e-14.
+    
+    Returns
+    -------
+    r : bool
+        True, if vector alpha is a probability vector and matrix
+        A is a transient generator, and they have the same size.
+    """
 
     if len(alpha.shape)<2:
         if butools.verbose:
@@ -28,6 +48,35 @@ def CheckPHRepresentation (alpha, A, prec=1e-14):
     return True
 
 def CheckMERepresentation (alpha, A, prec=1e-14):
+    """
+    Checks if the given vector and matrix define a valid matrix-
+    exponential representation.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        Initial vector of the matrix-exponential distribution 
+        to check
+    A : matrix, shape (M,M)
+        Matrix parameter of the matrix-exponential distribution
+        to check
+    prec : double, optional
+        Numerical precision. The default value is 1e-14.
+    
+    Returns
+    -------
+    r : bool
+        True, if the matrix is a square matrix, the vector and 
+        the matrix have the same size, the dominant eigenvalue
+        is negative and real
+    
+    Notes
+    -----
+    This procedure does not check the positivity of the density!
+    Call 'CheckMEPositiveDensity' if it is needed, but keep in
+    mind that it can be time-consuming, while this procedure
+    is fast.
+    """
 
     if len(alpha.shape)<2:
         if butools.verbose:

@@ -145,10 +145,10 @@
 <p>Raises an error if the moments are not feasible with
 a PH(2).</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r35" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R35]</a></td><td>M. Telek and A. Heindl, &#8220;Moment bounds for acyclic
+<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td>M. Telek and A. Heindl, &#8220;Moment bounds for acyclic
 discrete and continuous phase-type distributions of
 second order,&#8221; in In Proc. of UK Performance
 Evaluation Workshop, UKPEW, 2002&#8221;</td></tr>
@@ -165,6 +165,18 @@ Evaluation Workshop, UKPEW, 2002&#8221;</td></tr>
 <span class="go">        0     -0.22659</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">      10         160        3500</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="mi">3500</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">PH2From3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.87019999  0.12980001]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-0.15576002  0.15576002]</span>
+<span class="go"> [ 0.         -0.22659293]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[10.0, 160.0, 3500.0]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -192,10 +204,10 @@ Evaluation Workshop, UKPEW, 2002&#8221;</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

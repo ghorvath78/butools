@@ -154,6 +154,20 @@ matrix has to inherit the eigenvalues of the smaller one.</p>
 <span class="go"> -1.5613e-15   1.3323e-15  -6.6613e-16   6.6613e-16</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.00880575</span><span class="p">,</span> <span class="mf">0.29904484</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.46719731</span><span class="p">,</span>  <span class="mf">0.24887238</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.03469139</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00354648</span><span class="p">,</span>  <span class="mf">0.457289</span>  <span class="p">,</span>  <span class="mf">0.02035023</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2015826</span> <span class="p">,</span>  <span class="mf">1.76869638</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.33776127</span><span class="p">,</span>  <span class="mf">0.82114619</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.09095889</span><span class="p">,</span> <span class="mf">2.26380561</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.29973763</span><span class="p">,</span>  <span class="mf">1.63250199</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span><span class="n">A2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[ 0.06843307  0.701873   -0.74627684  0.97597076]</span>
+<span class="go"> [ 0.0302878   0.95883965 -1.00986752  1.02074006]</span>
+<span class="go"> [ 0.07724989  0.71553221 -0.80571037  1.01292828]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A1</span><span class="o">*</span><span class="n">B</span><span class="o">-</span><span class="n">B</span><span class="o">*</span><span class="n">A2</span><span class="p">)</span>
+<span class="go">[[ -9.71445147e-17   0.00000000e+00  -2.22044605e-16   2.22044605e-16]</span>
+<span class="go"> [  1.52655666e-16  -3.33066907e-16   5.55111512e-16  -4.44089210e-16]</span>
+<span class="go"> [ -4.85722573e-17   2.22044605e-16  -2.22044605e-16   2.22044605e-16]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -179,10 +193,10 @@ matrix has to inherit the eigenvalues of the smaller one.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

@@ -57,3 +57,15 @@ butools.ph.PH2From3Moments
     >>> MomentsFromPH(a,A,3)
           10         160        3500
 
+    For Python/Numpy:
+
+    >>> moms = [10,160,3500]
+    >>> a,A = PH2From3Moments(moms)
+    >>> print(a)
+    [[ 0.87019999  0.12980001]]
+    >>> print(A)
+    [[-0.15576002  0.15576002]
+     [ 0.         -0.22659293]]
+    >>> print(MomentsFromPH(a,A,3))
+    [10.0, 160.0, 3500.0]
+    

@@ -9,6 +9,31 @@ from butools.mc import CTMCSolve
 from butools.utils import Diag
 
 def MomentsFromME (alpha, A, K=0, prec=1e-14):
+    """
+    Returns the first K moments of a matrix-exponential
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial vector of the matrix-exponential
+        distribution.
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix-exponential
+        distribution.
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments
+        are computed. The default value is K=0.
+    prec : double, optional
+        Numerical precision for checking the input.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    moms : row vector of doubles
+        The vector of moments.
+        
+    """
 
     if butools.checkInput and not CheckMERepresentation (alpha, A, prec):
         raise Exception("MomentsFromME: Input is not a valid ME representation!")
@@ -18,6 +43,30 @@ def MomentsFromME (alpha, A, K=0, prec=1e-14):
     return [math.factorial(i)*np.sum(alpha*la.inv(-A)**i) for i in range(1,K+1)]
   
 def MomentsFromPH (alpha, A, K=0, prec=1e-14):
+    """
+    Returns the first K moments of a continuous phase-type
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial probability vector of the phase-type
+        distribution.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the phase-type
+        distribution.
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments
+        are computed. The default value is K=0.
+    prec : double, optional
+        Numerical precision for checking the input.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    moms : row vector of doubles
+        The vector of moments.
+    """
 
     if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
         raise Exception("MomentsFromPH: Input is not a valid PH representation!")
@@ -25,6 +74,30 @@ def MomentsFromPH (alpha, A, K=0, prec=1e-14):
     return MomentsFromME (alpha, A, K, prec)
 
 def PdfFromME (alpha, A, x, prec=1e-14):
+    """
+    Returns the probability density function of a matrix-
+    exponential distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial vector of the matrix-exponential
+        distribution.
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix-exponential
+        distribution.
+    x : vector of doubles
+        The density function will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input ME 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    pdf : column vector of doubles
+        The values of the density function at the 
+        corresponding "x" values
+    """
 
     if butools.checkInput and not CheckMERepresentation (alpha, A, prec):
         raise Exception("PdfFromME: Input is not a valid ME representation!")
@@ -33,6 +106,30 @@ def PdfFromME (alpha, A, x, prec=1e-14):
     return np.array(y)
 
 def PdfFromPH (alpha, A, x, prec=1e-14):
+    """
+    Returns the probability density function of a continuous
+    phase-type distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial probability vector of the phase-type
+        distribution.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the phase-type
+        distribution.
+    x : vector of doubles
+        The density function will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input ME 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    pdf : column vector of doubles
+        The values of the density function at the 
+        corresponding "x" values
+    """
 
     if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
         raise Exception("PdfFromPH: Input is not a valid PH representation!")
@@ -40,6 +137,41 @@ def PdfFromPH (alpha, A, x, prec=1e-14):
     return PdfFromME (alpha, A, x, prec)
 
 def IntervalPdfFromPH (alpha, A, intBounds, prec=1e-14):
+    """
+    Returns the approximate probability density function of a
+    continuous phase-type distribution, based on the 
+    probability of falling into intervals.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial probability vector of the phase-type
+        distribution.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the phase-type
+        distribution.
+    intBounds : vector, shape (K)
+        The array of interval boundaries. The pdf is the
+        probability of falling into an interval divided by
+        the interval length. 
+        If the size of intBounds is K, the size of the result is K-1.
+    prec : double, optional
+        Numerical precision to check if the input is a valid
+        phase-type distribution. The default value is 1e-14
+    
+    Returns
+    -------
+    x : matrix of doubles, shape(K-1,1)
+        The points at which the pdf is computed. It holds the center of the 
+        intervals defined by intBounds.
+    y : matrix of doubles, shape(K-1,1)
+        The values of the density function at the corresponding "x" values
+    
+    Notes
+    -----
+    This method is more suitable for comparisons with empirical
+    density functions than the exact one (given by PdfFromPH).
+    """
 
     if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
         raise Exception("IntervalPdfFromPH: Input is not a valid PH representation!")
@@ -50,6 +182,29 @@ def IntervalPdfFromPH (alpha, A, intBounds, prec=1e-14):
     return (np.array(x), np.array(y))
 
 def CdfFromME (alpha, A, x, prec=1e-14):
+    """
+    Returns the cummulative distribution function of a
+    matrix-exponential distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        The initial vector of the matrix-exponential
+        distribution.
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix-exponential
+        distribution.
+    x : vector of doubles
+        The cdf will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input ME 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    cdf : column vector of doubles
+        The values of the cdf at the corresponding "x" values
+    """
 
     if butools.checkInput and not CheckMERepresentation (alpha, A, prec):
         raise Exception("CdfFromME: Input is not a valid ME representation!")
@@ -57,6 +212,29 @@ def CdfFromME (alpha, A, x, prec=1e-14):
     return np.array([1.0-np.sum(alpha*expm(A*xv)) for xv in x])
 
 def CdfFromPH (alpha, A, x, prec=1e-14):
+    """
+    Returns the cummulative distribution function of a
+    continuous phase-type distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        The initial probability vector of the phase-type
+        distribution.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the phase-type
+        distribution.
+    x : vector of doubles
+        The cdf will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input PH 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    cdf : column vector of doubles
+        The values of the cdf at the corresponding "x" values
+    """
 
     if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
         raise Exception("CdfFromPH: Input is not a valid PH representation!")
@@ -64,6 +242,42 @@ def CdfFromPH (alpha, A, x, prec=1e-14):
     return CdfFromME (alpha, A, x, prec)
     
 def RandomPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+    """
+    Returns a random phase-type distribution with a given 
+    order.
+    
+    Parameters
+    ----------
+    order : int
+        The size of the phase-type distribution
+    mean : double, optional
+        The mean of the phase-type distribution 
+    zeroEntries : int, optional
+        The number of zero entries in the initial vector, 
+        generator matrix and closing vector
+    maxTrials : int, optional
+        The maximum number of trials to find a proper PH 
+        (that has an irreducible phase process and none of 
+        its parameters is all-zero). The default value is 
+        1000.
+    prec : double, optional
+        Numerical precision for checking the irreducibility.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    alpha : vector, shape (1,M)
+        The initial probability vector of the phase-type 
+        distribution.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the phase-type 
+        distribution.
+    
+    Notes
+    -----
+    If the procedure fails, try to increase the 'maxTrials'
+    parameter.   
+    """
 
     if zeroEntries > (order+1)*(order-1):
         raise Exception ("RandomPH: Too many zero entries requested! Try to decrease the zero entries number!")

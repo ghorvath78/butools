@@ -32,7 +32,7 @@ butools.ph.MinimalRepFromME
         'obs': observability, 
         'cont': controllability,
         'obscont': the minimum of observability and 
-            controllability order,
+        controllability order,
         'moment': moment order (which is the default).
     precision : double, optional
        Precision used by the Staircase algorithm. The default
@@ -87,4 +87,37 @@ butools.ph.MinimalRepFromME
           -1.0769      -2.3906      0.83162
          -0.51037       0.8033      -2.4189
        
+    For Python/Numpy:
+    
+    >>> b = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> B = ml.matrix([[-1,0,0],[0,-3,1],[0,-1,-3]])
+    >>> a,A = MonocyclicPHFromME(b,B)
+    >>> print(a.shape)
+    (1, 9)
+    >>> print(A.shape)
+    (9, 9)
+    >>> b,B=MinimalRepFromME(a,A,"cont")
+    >>> print(B.shape)
+    (9, 9)
+    >>> b,B=MinimalRepFromME(a,A,"obs")
+    >>> print(b)
+    [[  1.00000000e+00   6.93889390e-18   5.55111512e-17]]
+    >>> print(B)
+    [[ -2.83622213e+00   3.62221260e-02  -2.22044605e-16]
+     [ -1.66096147e+01  -3.33690177e+00   1.60422190e+01]
+     [  1.16434507e+00  -5.17235914e-02  -8.26876101e-01]]
+    >>> b,B=MinimalRepFromME(a,A,"obscont")
+    >>> print(b)
+    [[  1.00000000e+00   6.93889390e-18   5.55111512e-17]]
+    >>> print(B)
+    [[ -2.83622213e+00   3.62221260e-02  -2.22044605e-16]
+     [ -1.66096147e+01  -3.33690177e+00   1.60422190e+01]
+     [  1.16434507e+00  -5.17235914e-02  -8.26876101e-01]]
+    >>> b,B=MinimalRepFromME(a,A,"moment")
+    >>> print(b)
+    [[ 0.33333333  0.33333333  0.33333333]]
+    >>> print(B)
+    [[-2.19047619  1.92219048 -3.36980952]
+     [-1.07693087 -2.3905979   0.83162432]
+     [-0.51037072  0.80329631 -2.41892591]]
 

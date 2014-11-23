@@ -48,3 +48,11 @@ butools.ph.PdfFromPH
     >>> pdf = PdfFromPH(a, A, x);
     >>> plot(x, pdf)
 
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[0.1, 0.9, 0]])
+    >>> A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
+    >>> x = np.linspace(0,1,501)
+    >>> pdf = PdfFromPH(a,A,x)
+    >>> plt.plot(x,pdf)
+

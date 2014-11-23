@@ -15,5 +15,23 @@ def  CdfFromWeightedTrace (trace, weights):
     return (trace[ix], np.cumsum(weights[ix])/np.sum(weights)) 
   
 def MarginalMomentsFromWeightedTrace (trace, weights, K=5):
+    """
+    Returns the marginal moments of a trace consisting of 
+    weighted data.
+    
+    Parameters
+    ----------
+    trace : vector of doubles
+        The trace data
+    weights : vector of doubles
+        The weights corresponding to the trace data
+    K : int
+        The number of moments to compute
+    
+    Returns
+    -------
+    moms : vector of doubles
+        The (raw) moments of the weighted trace
+    """
     return [np.power(trace,k).dot(weights)/np.sum(weights) for k in range(1,K+1)]
   

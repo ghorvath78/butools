@@ -7,10 +7,59 @@ from butools.ph import CheckMERepresentation, MomentsFromPH
 from butools.moments import ReducedMomsFromMoms, NormMomsFromMoms
 
 def APH2ndMomentLowerBound (m1, n):
+    """
+    Returns the lower bound of the second moment of acyclic 
+    phase-type (APH) distributions of order n.
+    
+    Parameters
+    ----------
+    m1 : double
+        The first moment
+    n : int
+        Number of states
+    
+    Returns
+    -------
+    m2 : double
+        The lowest second moment an order-n APH can have with
+        the given first moment.
+    
+    References
+    ----------
+    .. [1]  M. Telek and A. Heindl, "Moment bounds for acyclic 
+            discrete and continuous phase-type distributions of
+            second order," in In Proc. of UK Performance 
+            Evaluation Workshop, UKPEW, 2002"
+    """
 
     return float(m1)*m1*(n+1) / n
     
 def APH3rdMomentLowerBound (m1, m2, n):
+    """
+    Returns the lower bound of the third moment of acyclic
+    phase-type (APH) distributions of order n.
+    
+    Parameters
+    ----------
+    m1 : double
+        The first moment
+    m2 : double
+        The second moment
+    n : int
+        Number of states
+    
+    Returns
+    -------
+    m3 : double
+        The lowest third moment an order-n APH can have with
+        the given first and second moment.
+    
+    References
+    ----------
+    .. [1] A. Bobbio, A. Horvath, M. Telek, "Matching three 
+           moments with minimal acyclic phase type 
+           distributions," Stochastic models, pp. 303-326, 2005.
+    """
 
     n2 = m2 / m1 / m1
     if n2<(n+1.0)/n:
@@ -24,6 +73,31 @@ def APH3rdMomentLowerBound (m1, m2, n):
         return (n+1.0)/n * n2 * m1 * m2
     
 def APH3rdMomentUpperBound (m1, m2, n):
+    """
+    Returns the upper bound of the third moment of acyclic
+    phase-type (APH) distributions of order n.
+    
+    Parameters
+    ----------
+    m1 : double
+        The first moment
+    m2 : double
+        The second moment
+    n : int
+        Number of states
+    
+    Returns
+    -------
+    m3 : double
+        The highest third moment an order-n APH can have with
+        the given first and second moment.
+    
+    References
+    ----------
+    .. [1] A. Bobbio, A. Horvath, M. Telek, "Matching three 
+           moments with minimal acyclic phase type 
+           distributions," Stochastic models, pp. 303-326, 2005.
+    """
 
     n2 = m2 / m1 / m1
     if n2<(n+1.0)/n:
@@ -51,6 +125,35 @@ def APHFrom2Moments (moms):
 
     
 def PH2From3Moments (moms, prec=1e-14):
+  """
+  Returns a PH(2) which has the same 3 moments as given.
+  
+  Parameters
+  ----------
+  moms : vector of doubles, length(3)
+    The moments to match
+  prec : double, optional
+    Numerical precision, default value is 1e-14
+  
+  Returns
+  -------
+  alpha : matrix, shape (1,2)
+    The initial probability vector of the PH(2)
+  A : matrix, shape (2,2)
+    Transient generator matrix of the PH(2)
+  
+  Notes
+  -----
+  Raises an error if the moments are not feasible with
+  a PH(2).
+  
+  References
+  ----------
+  .. [1]  M. Telek and A. Heindl, "Moment bounds for acyclic 
+          discrete and continuous phase-type distributions of
+          second order," in In Proc. of UK Performance 
+          Evaluation Workshop, UKPEW, 2002"
+  """
 
   m1, m2, m3 = moms
 
@@ -95,6 +198,35 @@ def PH2From3Moments (moms, prec=1e-14):
   return (np.matrix([p,1.0-p]), np.matrix([[-lambda1, lambda1], [0,-lambda2]]))
   
 def APHFrom3Moments (moms, maxSize=100):
+  """
+  Returns an acyclic PH which has the same 3 moments as
+  given. If detects the order and the structure 
+  automatically to match the given moments.
+  
+  Parameters
+  ----------
+  moms : vector of doubles, length(3)
+    The moments to match
+  maxSize : int, optional
+    The maximal size of the resulting APH. The default value
+    is 100.
+  
+  Returns
+  -------
+  alpha : vector, shape (1,M)
+    The initial probability vector of the APH
+  A : matrix, shape (M,M)
+    Transient generator matrix of the APH
+  
+  Raises an error if the moments are not feasible with an
+  APH of size "maxSize".
+  
+  References
+  ----------
+  .. [1] A. Bobbio, A. Horvath, M. Telek, "Matching three 
+         moments with minimal acyclic phase type 
+         distributions," Stochastic models, pp. 303-326, 2005.
+  """
 
   m1, m2, m3 = moms
 
@@ -161,6 +293,35 @@ def APHFrom3Moments (moms, maxSize=100):
   raise Exception("No APH found for the given 3 moments!")
     
 def PH3From5Moments (moms):
+    """
+    Returns a PH(3) which has the same 5 moments as given.
+    
+    Parameters
+    ----------
+    moms : vector of doubles, length(5)
+      The moments to match
+    
+    Returns
+    -------
+    alpha : vector, shape (1,3)
+        The initial probability vector of the PH(3)
+    A : matrix, shape (3,3)
+        Transient generator matrix of the PH(3)
+    
+    Notes
+    -----
+    Raises an error if the moments are not feasible with
+    a PH(3). Also note that the numerical behavior of the 
+    procedure can be poor if the moments are close to the 
+    boundary of the feasible region.
+    
+    References
+    ----------
+    .. [1] G. Horvath and M. Telek, "On the canonical 
+           representation of phase type distributions," 
+           Performance Evaluation, vol. 66, no. 8, pp. 
+           396 - 409, 2009.
+    """
     
     m1, m2, m3, m4, m5 = moms
     
@@ -248,6 +409,31 @@ def PH3From5Moments (moms):
     return (alpha, T)
 
 def CanonicalFromPH2 (alpha, A, prec=1e-14):
+    """
+    Returns the canonical form of an order-2 phase-type 
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,2)
+      Initial vector of the phase-type distribution
+    A : matrix, shape (2,2)
+      Transient generator of the phase-type distribution
+    prec : double, optional
+      Numerical precision, default value is 1e-14
+    
+    Returns
+    -------
+    beta : matrix, shape (1,2)
+      The initial probability vector of the canonical form
+    B : matrix, shape (2,2)
+      Transient generator matrix of the canonical form
+    
+    Notes
+    -----
+    This procedure calculates 3 moments of the input and
+    calls 'PH2From3Moments'.
+    """
 
     if butools.checkInput and not CheckMERepresentation(alpha,A,prec):
         raise Exception("CanonicalFromPH2: Input isn''t a valid ME distribution!")
@@ -258,6 +444,31 @@ def CanonicalFromPH2 (alpha, A, prec=1e-14):
     return PH2From3Moments (MomentsFromPH(alpha, A, 3, prec), prec)
 
 def CanonicalFromPH3 (alpha, A, prec=1e-14):
+    """
+    Returns the canonical form of an order-3 phase-type 
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,3)
+        Initial vector of the phase-type distribution
+    A : matrix, shape (3,3)
+        Transient generator of the phase-type distribution
+    prec : double, optional
+      Numerical precision, default value is 1e-14
+    
+    Returns
+    -------
+    beta : matrix, shape (1,3)
+      The initial probability vector of the canonical form
+    B : matrix, shape (3,3)
+      Transient generator matrix of the canonical form
+    
+    Notes
+    -----
+    This procedure calculates 5 moments of the input and
+    calls 'PH3From5Moments'.
+    """
 
     if butools.checkInput and not CheckMERepresentation(alpha,A,prec):
         raise Exception("CanonicalFromPH3: Input isn''t a valid ME distribution!")

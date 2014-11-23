@@ -59,3 +59,16 @@ butools.ph.CheckMEPositiveDensity
     >>> PdfFromME(a,A,1.0)
      -0.049993
      
+    For Python/Numpy:
+
+    >>> a = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
+    >>> print(CheckMEPositiveDensity(a,A))
+    True
+    >>> a = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> A = ml.matrix([[-1,0,0],[0,-3,2.9],[0,-2.9,-3]])
+    >>> print(CheckMEPositiveDensity(a,A))
+    False
+    >>> print(PdfFromME(a,A,[1.0]))
+    [-0.04999295]
+

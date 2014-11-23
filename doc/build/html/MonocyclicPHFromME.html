@@ -158,10 +158,10 @@ monocyclic representation</p>
 <p>Raises an error if no Markovian monocyclic representation
 has been found.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r34" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R34]</a></td><td>Mocanu, S., Commault, C.: &#8220;Sparse representations of
+<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td>Mocanu, S., Commault, C.: &#8220;Sparse representations of
 phase-type distributions,&#8221; Stoch. Models 15, 759-778
 (1999)</td></tr>
 </tbody>
@@ -175,8 +175,20 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
 <span class="go">  27</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span><span class="o">=</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="go">  0.35385      0.41893       1.1552       4.6998       23.838</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span><span class="o">=</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
 <span class="go">  0.35385      0.41893       1.1552       4.6998       23.838</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(1, 27)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[0.35384615384615381, 0.41893491124260357, 1.1552116522530724, 4.6998354399355771, 23.837756165615836]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[0.35384615384615531, 0.41893491124260573, 1.155211652253076, 4.699835439935578, 23.83775616561579]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -204,10 +216,10 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>

@@ -49,4 +49,14 @@ butools.ph.APH2ndMomentLowerBound
     >>> cv2 = mom2/mean^2-1
          0.25
 
+    For Python/Numpy:
+    
+    >>> mean = 1.9
+    >>> n = 4
+    >>> mom2 = APH2ndMomentLowerBound(mean,n)
+    >>> print(mom2)
+    4.5125
+    >>> cv2 = mom2/mean**2-1
+    >>> print(cv2)
+    0.25
 

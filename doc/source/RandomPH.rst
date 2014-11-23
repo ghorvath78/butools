@@ -68,3 +68,19 @@ butools.ph.RandomPH
     >>> mean = MomentsFromPH (alpha, A, 1)
             8
 
+    For Python/Numpy:
+
+    >>> alpha,A = RandomPH(3,8,4)
+    >>> print(alpha)
+    [[ 0.53928457  0.46071543  0.        ]]
+    >>> print(A)
+    [[-1.14323874  0.1175927   0.46955765]
+     [ 0.59310796 -1.23831621  0.64520825]
+     [ 0.          0.6843269  -0.6843269 ]]
+    >>> print(np.sum(A,1))
+    [[-0.55608839]
+     [ 0.        ]
+     [ 0.        ]]
+    >>> print(MomentsFromPH (alpha, A, 1))
+    [7.9999999999999911]
+

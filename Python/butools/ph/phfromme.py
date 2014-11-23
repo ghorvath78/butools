@@ -10,6 +10,39 @@ from numpy import linalg as la
 from butools.reptrans import FindMarkovianRepresentation
 
 def PHFromME (alpha, A, precision=1e-14):
+    """
+    Obtains a Markovian representation of a matrix 
+    exponential distribution of the same size, if possible.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial vector of the matrix-exponential
+        distribution.
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix-exponential 
+        distribution.
+    precision : double, optional
+        A representation is considered to be a Markovian one
+        if it is closer than the precision. The default value
+        is 1e-14.
+    
+    Returns
+    -------
+    beta : vector, shape (1,M)
+        The initial probability vector of the Markovian 
+        monocyclic representation
+    B : matrix, shape (M,M)
+        Transient generator matrix of the Markovian 
+        monocyclic representation
+    
+    References
+    ----------
+    .. [1] G Horváth, M Telek, "A minimal representation of 
+           Markov arrival processes and a moments matching 
+           method," Performance Evaluation 64:(9-12) pp. 
+           1153-1168. (2007)
+    """
 
     def transfun (orep, B):
         ao, Ao = orep

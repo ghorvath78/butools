@@ -47,3 +47,11 @@ butools.ph.CdfFromME
     >>> cdf = CdfFromME(a, A, x);
     >>> plot(x, cdf)
 
+    For Python/Numpy:
+    
+    >>> a = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
+    >>> x = np.linspace(0,2,201)
+    >>> cdf = CdfFromME(a,A,x)
+    >>> plt.plot(x,cdf)
+

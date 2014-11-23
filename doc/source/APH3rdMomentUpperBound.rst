@@ -58,4 +58,22 @@ butools.ph.APH3rdMomentUpperBound
        16.079
     >>> APH3rdMomentUpperBound(mean,mom2,n)
         Inf
+ 
+    For Python/Numpy:
+    
+    >>> mean = 1.9
+    >>> mom2 = 5
+    >>> n = 3
+    >>> print(APH3rdMomentLowerBound(mean,mom2,n))
+    16.577458090899107
+    >>> print(APH3rdMomentUpperBound(mean,mom2,n))
+    17.081405365964276
 
+    >>> mean = 1.9
+    >>> mom2 = 5
+    >>> n = 4
+    >>> print(APH3rdMomentLowerBound(mean,mom2,n))
+    16.079377140256387
+    >>> print(APH3rdMomentUpperBound(mean,mom2,n))
+    inf
+ 

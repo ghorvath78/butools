@@ -69,103 +69,103 @@ def TestPHPackage ():
     
     assert CheckMoments(moms)==True, "The function returned invalid moments!"
     
-#    print("--CdfFromME-------------------------------------------------------------------------")
-#    
-#    print("Input:")
-#    print("------")
-#    
-#    a = ml.matrix([[0.2, 0.3, 0.5]])
-#    print(a)
-#    A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
-#    print(A)
-#    
-#    print("Test:")
-#    print("-----")
-#    
-#    print("cdf=CdfFromME(a,A,(0:0.01:5)'):")
-#    cdf = CdfFromME(a,A,np.linspace(0,5,500))
-#    
-#    assert np.all(np.diff(cdf)>0), "The cdf is not increasing monotonously!"
-#    assert abs(np.sum(1.0-cdf)*0.01 - MomentsFromME(a,A,1))<0.01, "The mean computed from the cdf does not match the theoretical result!"
-#    
-#    print("--CdfFromPH-------------------------------------------------------------------------")
-#    
-#    print("Input:")
-#    print("------")
-#    
-#    a=ml.matrix([[0.1, 0.9, 0]])
-#    print(a)
-#    A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
-#    print(A)
-#    
-#    print("Test:")
-#    print("-----")
-#    
-#    print("cdf=CdfFromPH(a,A,(0:0.002:3)''):")
-#    cdf = CdfFromPH(a,A,np.linspace(0,3,1500))
-#    
-#    assert np.all(np.diff(cdf)>0), "The cdf is not increasing monotonously!"
-#    assert abs(np.sum(1.0-cdf)*0.002 - MomentsFromPH(a,A,1))<0.01, "The mean computed from the cdf does not match the theoretical result!"
-#    
-#    print("--PdfFromME-------------------------------------------------------------------------")
-#    
-#    print("Input:")
-#    print("------")
-#    
-#    a = ml.matrix([[0.2, 0.3, 0.5]])
-#    print(a)
-#    A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
-#    print(A)
-#    x = np.linspace(0,5,500);
-#    
-#    print("Test:")
-#    print("-----")
-#    
-#    print("pdf=PdfFromME(a,A,x):")
-#    pdf = PdfFromME(a,A,x)
-#    
-#    assert np.all(pdf)>=0, "The pdf is negative!"
-#    assert abs(np.dot(pdf,x)*0.01 - MomentsFromME(a,A,1))<0.01, "The mean computed from the pdf does not match the theoretical result!"
-#    
-#    print("--PdfFromPH-------------------------------------------------------------------------")
-#    
-#    print("Input:")
-#    print("------")
-#    
-#    a=ml.matrix([[0.1, 0.9, 0]])
-#    print(a)
-#    A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
-#    print(A)
-#    x = np.linspace(0,3,1500)
-#    
-#    print("Test:")
-#    print("-----")
-#    
-#    print("pdf=PdfFromPH(a,A,x):")
-#    pdf = PdfFromPH(a,A,x)
-#    
-#    assert np.all(pdf)>=0, "The pdf is negative!"
-#    assert abs(np.dot(pdf,x)*0.002 - MomentsFromPH(a,A,1))<0.002, "The mean computed from the pdf does not match the theoretical result!"
-#    
-#    print("--IntervalPdfFromPH-----------------------------------------------------------------")
-#    
-#    print("Input:")
-#    print("------")
-#    
-#    a=ml.matrix([[0.1, 0.9, 0]])
-#    print(a)
-#    A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
-#    print(A)
-#    x = np.linspace(0,3,1500)
-#    
-#    print("Test:")
-#    print("-----")
-#    
-#    print("[x,y]=IntervalPdfFromPH(a,A,x):")
-#    [x,y] = IntervalPdfFromPH(a,A,x)
-#       
-#    assert np.all(y)>=0, "The interval pdf is negative!"
-#    assert abs(dot(y,x)*0.002 - MomentsFromPH(a,A,1))<0.01, "The mean computed from the interval pdf does not match the theoretical result!"
+    print("--CdfFromME-------------------------------------------------------------------------")
+    
+    print("Input:")
+    print("------")
+    
+    a = ml.matrix([[0.2, 0.3, 0.5]])
+    print(a)
+    A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
+    print(A)
+    
+    print("Test:")
+    print("-----")
+    
+    print("cdf=CdfFromME(a,A,(0:0.01:5)'):")
+    cdf = CdfFromME(a,A,np.linspace(0,5,500))
+    
+    assert np.all(np.diff(cdf)>0), "The cdf is not increasing monotonously!"
+    assert abs(np.sum(1.0-cdf)*0.01 - MomentsFromME(a,A,1))<0.01, "The mean computed from the cdf does not match the theoretical result!"
+    
+    print("--CdfFromPH-------------------------------------------------------------------------")
+    
+    print("Input:")
+    print("------")
+    
+    a=ml.matrix([[0.1, 0.9, 0]])
+    print(a)
+    A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
+    print(A)
+    
+    print("Test:")
+    print("-----")
+    
+    print("cdf=CdfFromPH(a,A,(0:0.002:3)''):")
+    cdf = CdfFromPH(a,A,np.linspace(0,3,1500))
+    
+    assert np.all(np.diff(cdf)>0), "The cdf is not increasing monotonously!"
+    assert abs(np.sum(1.0-cdf)*0.002 - MomentsFromPH(a,A,1))<0.01, "The mean computed from the cdf does not match the theoretical result!"
+    
+    print("--PdfFromME-------------------------------------------------------------------------")
+    
+    print("Input:")
+    print("------")
+    
+    a = ml.matrix([[0.2, 0.3, 0.5]])
+    print(a)
+    A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
+    print(A)
+    x = np.linspace(0,5,500);
+    
+    print("Test:")
+    print("-----")
+    
+    print("pdf=PdfFromME(a,A,x):")
+    pdf = PdfFromME(a,A,x)
+    
+    assert np.all(pdf)>=0, "The pdf is negative!"
+    assert abs(np.dot(pdf,x)*0.01 - MomentsFromME(a,A,1))<0.01, "The mean computed from the pdf does not match the theoretical result!"
+    
+    print("--PdfFromPH-------------------------------------------------------------------------")
+    
+    print("Input:")
+    print("------")
+    
+    a=ml.matrix([[0.1, 0.9, 0]])
+    print(a)
+    A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
+    print(A)
+    x = np.linspace(0,3,1500)
+    
+    print("Test:")
+    print("-----")
+    
+    print("pdf=PdfFromPH(a,A,x):")
+    pdf = PdfFromPH(a,A,x)
+    
+    assert np.all(pdf)>=0, "The pdf is negative!"
+    assert abs(np.dot(pdf,x)*0.002 - MomentsFromPH(a,A,1))<0.002, "The mean computed from the pdf does not match the theoretical result!"
+    
+    print("--IntervalPdfFromPH-----------------------------------------------------------------")
+    
+    print("Input:")
+    print("------")
+    
+    a=ml.matrix([[0.1, 0.9, 0]])
+    print(a)
+    A=ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
+    print(A)
+    x = np.linspace(0,3,1500)
+    
+    print("Test:")
+    print("-----")
+    
+    print("[x,y]=IntervalPdfFromPH(a,A,x):")
+    [x,y] = IntervalPdfFromPH(a,A,x)
+       
+    assert np.all(y)>=0, "The interval pdf is negative!"
+    assert abs(dot(y,x)*0.002 - MomentsFromPH(a,A,1))<0.01, "The mean computed from the interval pdf does not match the theoretical result!"
     
     print("--RandomPH--------------------------------------------------------------------------")
     

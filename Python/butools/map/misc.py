@@ -15,6 +15,27 @@ from butools.utils import SumMatrixList
 
 
 def SamplesFromMMAP (D, k, initial=None, prec=1e-14):
+    """
+    Generates random samples from a marked Markovian 
+    arrival process.
+    
+    Parameters
+    ----------
+    D : list of matrices of shape(M,M), length(N)
+        The D0...DN matrices of the MMAP
+    K : integer
+        The number of samples to generate.
+    prec : double, optional
+        Numerical precision to check if the input MMAP is
+        valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    x : matrix, shape(K,2)
+        The random samples. Each row consists of two 
+        columns: the inter-arrival time and the type of the
+        arrival.        
+    """
 
     if butools.checkInput and not CheckMMAPRepresentation (D, prec):
         raise Exception("SamplesFromMMAP: Input is not a valid MMAP representation!")    
@@ -66,6 +87,28 @@ def SamplesFromMMAP (D, k, initial=None, prec=1e-14):
     return x
 
 def SamplesFromMAP (D0, D1, k, initial=None, prec=1e-14):
+    """
+    Generates random samples from a Markovian arrival 
+    process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the Markovian arrival process
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the Markovian arrival process
+    K : integer
+        The number of samples to generate.
+    prec : double, optional
+        Numerical precision to check if the input Markovian
+        arrival process is valid. The default value is 
+        1e-14.
+    
+    Returns
+    -------
+    x : vector, length(K)
+        The vector of random samples (inter-arrival times).
+    """
 
     if butools.checkInput and not CheckMAPRepresentation (D0, D1, prec):
         raise Exception("SamplesFromMAP: Input is not a valid MAP representation!")    

@@ -147,10 +147,10 @@ is 100.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r4" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R4]</a></td><td>A. Bobbio, A. Horvath, M. Telek, &#8220;Matching three
+<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td>A. Bobbio, A. Horvath, M. Telek, &#8220;Matching three
 moments with minimal acyclic phase type
 distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
 </tbody>
@@ -189,6 +189,39 @@ distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
 <span class="go">       10          525        31400</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">8400</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[  1.32117149e-05   9.99986788e-01   0.00000000e+00   0.00000000e+00    0.00000000e+00   0.00000000e+00]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-0.00229356  0.00229356  0.          0.          0.          0.        ]</span>
+<span class="go"> [ 0.         -0.50028818  0.50028818  0.          0.          0.        ]</span>
+<span class="go"> [ 0.          0.         -0.50028818  0.50028818  0.          0.        ]</span>
+<span class="go"> [ 0.          0.          0.         -0.50028818  0.50028818  0.        ]</span>
+<span class="go"> [ 0.          0.          0.          0.         -0.50028818  0.50028818]</span>
+<span class="go"> [ 0.          0.          0.          0.          0.         -0.50028818]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[9.9999999999999964, 124.99999999999994, 8400.0000000001164]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">525</span><span class="p">,</span><span class="mi">31400</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.21178753  0.          0.          0.          0.          0.          0.   0.78821247]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-0.15078539  0.15078539  0.          0.          0.          0.          0.   0.        ]</span>
+<span class="go"> [ 0.         -0.15078539  0.15078539  0.          0.          0.          0.   0.        ]</span>
+<span class="go"> [ 0.          0.         -0.15078539  0.15078539  0.          0.          0.   0.        ]</span>
+<span class="go"> [ 0.          0.          0.         -0.15078539  0.15078539  0.          0.   0.        ]</span>
+<span class="go"> [ 0.          0.          0.          0.         -0.15078539  0.15078539   0.          0.        ]</span>
+<span class="go"> [ 0.          0.          0.          0.          0.         -0.15078539   0.15078539  0.        ]</span>
+<span class="go"> [ 0.          0.          0.          0.          0.          0.  -0.15078539  0.15078539]</span>
+<span class="go"> [ 0.          0.          0.          0.          0.          0.          0.  -5.95019746]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[10.0, 525.0, 31399.999999999993]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -214,10 +247,10 @@ distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jul 25, 2014.
+      Last updated on Nov 23, 2014.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
       </li>
     </ul>
     </div>
