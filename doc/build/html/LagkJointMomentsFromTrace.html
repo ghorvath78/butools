@@ -160,6 +160,22 @@ The default value is 1.</p>
 <span class="go">    0.0012051   6.8486e-05   8.3605e-06   1.5913e-06</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="mi">7</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">32</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagkJointMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">[[  1.00000000e+00   5.41123946e-02   6.41988295e-03   1.20353966e-03]</span>
+<span class="go"> [  5.41124533e-02   3.01077030e-03   3.63307127e-04   6.87763588e-05]</span>
+<span class="go"> [  6.41989123e-03   3.63113615e-04   4.41962106e-05   8.38796443e-06]</span>
+<span class="go"> [  1.20354094e-03   6.85773090e-05   8.35435654e-06   1.57742546e-06]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">[[  1.00000000e+00   5.41237113e-02   6.42296483e-03   1.20514648e-03]</span>
+<span class="go"> [  5.41237113e-02   3.00610342e-03   3.62213432e-04   6.84916891e-05]</span>
+<span class="go"> [  6.42296483e-03   3.62201355e-04   4.40235733e-05   8.36100066e-06]</span>
+<span class="go"> [  1.20514648e-03   6.84863446e-05   8.36049904e-06   1.59132033e-06]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -185,7 +201,7 @@ The default value is 1.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 27, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

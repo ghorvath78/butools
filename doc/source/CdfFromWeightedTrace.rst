@@ -41,3 +41,10 @@ butools.trace.CdfFromWeightedTrace
     >>> [x,y]=CdfFromWeightedTrace(wtr,wei);
     >>> plot(x,y);
 
+    For Python/Numpy:
+    
+    >>> wtr=np.array([0.12, 1.23, 0.546, 0.6765, 1.34, 2.34])
+    >>> wei=np.array([12, 1, 34, 23, 8, 2])
+    >>> [x,y]=CdfFromWeightedTrace(wtr,wei)
+    >>> plt.plot(x,y)
+
