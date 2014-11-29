@@ -175,6 +175,29 @@ starting from moment 0.</p>
 <span class="go">       2.0808       2.0455       4.2565        13.73</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.78</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">],[</span><span class="mf">0.07</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.92</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.49</span><span class="p">],[</span><span class="mf">0.23</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMMAP</span><span class="p">((</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">),</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[  0.60206805   0.60500978   1.27553128   4.14378573]</span>
+<span class="go"> [  0.62912776   0.62913243   1.32261153   4.29008767]</span>
+<span class="go"> [  1.35605875   1.35243652   2.83870631   9.19984045]</span>
+<span class="go"> [  4.45762029   4.43946157   9.31048778  30.16025576]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.08005337  0.07837208  0.16268009  0.5240068 ]</span>
+<span class="go"> [ 0.06033     0.05827646  0.11997332  0.38466901]</span>
+<span class="go"> [ 0.10243942  0.09766197  0.19940381  0.63636866]</span>
+<span class="go"> [ 0.28923472  0.27292599  0.55359606  1.76007675]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[  0.31787859   0.31728525   0.66628527   2.15989562]</span>
+<span class="go"> [  0.31120935   0.30821204   0.64423812   2.08313644]</span>
+<span class="go"> [  0.64599846   0.63672449   1.32709784   4.28439099]</span>
+<span class="go"> [  2.08083314   2.04550556   4.25651626  13.72951731]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -200,7 +223,7 @@ starting from moment 0.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 29, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

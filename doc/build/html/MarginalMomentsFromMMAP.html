@@ -154,6 +154,15 @@ The default value is 1e-14</p>
 <span class="go">       1.0007       2.1045       6.8277</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.78</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">],[</span><span class="mf">0.07</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.92</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.49</span><span class="p">],[</span><span class="mf">0.23</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromMMAP</span><span class="p">((</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">)))</span>
+<span class="go">[1.0006671114076049, 2.1044966311760755, 6.8276881494346]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -179,7 +188,7 @@ The default value is 1e-14</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 29, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

@@ -55,3 +55,19 @@ butools.map.CheckMAPRepresentation
     >>> CheckMAPRepresentation(D0,D1)
          1
 
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[-1, 0, 1],[0, -2, 0],[1, 0, -3]])
+    >>> D1=ml.matrix([[-1, 0, 1, 0],[ 0, -2, 0, 1],[ 1, 0, -3, 0],[1, 2, 2, 1]])
+    >>> print(CheckMAPRepresentation(D0,D1))
+    CheckMAPRepresentation: D0 and D1 have different sizes!
+    False
+    >>> D0=ml.matrix([[-1, 0, 1],[0, -2, 0],[1, 0, -3]])
+    >>> D1=ml.matrix([[1, 0, 1],[0, 2, 0],[1, 0, 3]])
+    >>> print(CheckMAPRepresentation(D0,D1))
+    CheckMAPRepresentation: The rowsum of D0+D1 is not 0!
+    False
+    >>> D0=ml.matrix([[-3, 0, 1],[0, -2, 0],[1, 0, -5]])
+    >>> D1=ml.matrix([[1, 0, 1],[0, 2, 0],[1, 0, 3]])
+    True
+

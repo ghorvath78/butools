@@ -45,3 +45,10 @@ butools.map.MarginalMomentsFromRAP
     >>> MarginalMomentsFromRAP(H0,H1)
           0.44444      0.38095      0.48299      0.82216       1.7944
 
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[-2, 0, 0],[0, -3, 1],[0, -1, -2]])
+    >>> H1=ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1]])
+    >>> print(MarginalMomentsFromRAP(H0,H1))
+    [0.44444444444444442, 0.38095238095238093, 0.48299319727891149, 0.82215743440233213, 1.7943912258781058]
+

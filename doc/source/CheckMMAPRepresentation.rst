@@ -42,4 +42,13 @@ butools.map.CheckMMAPRepresentation
     >>> D3=[0.19 0.06 0.2; 0.17 0.16 0.27; 0 0 0.14];
     >>> CheckMMAPRepresentation({D0,D1,D2,D3})
          1
+   
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[-1.05, 0.03, 0.07],[ 0.19, -1.63, 0.06],[ 0, 0.2, -1.03]])
+    >>> D1=ml.matrix([[0.16, 0.11, 0],[ 0.1, 0.16, 0],[ 0.27, 0, 0.19]])
+    >>> D2=ml.matrix([[0.01, 0.09, 0.13],[ 0.26, 0.21, 0.05],[ 0, 0.16, 0.07]])
+    >>> D3=ml.matrix([[0.19, 0.06, 0.2],[ 0.17, 0.16, 0.27],[ 0, 0, 0.14]])
+    >>> print(CheckMMAPRepresentation((D0,D1,D2,D3)))
+    True
 

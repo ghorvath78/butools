@@ -4,3 +4,4 @@ from .matching import *
 from .mapfromrap import *
 from .minimalrep import *
 from .misc import *
+from .test import *

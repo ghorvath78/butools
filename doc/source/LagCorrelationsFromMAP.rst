@@ -47,4 +47,11 @@ butools.map.LagCorrelationsFromMAP
       -0.00022001
     >>> plot(LagCorrelationsFromMAP(D0,D1,10));
 
-
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[-5, 0, 1, 1],[1, -8, 1, 0],[1, 0, -4, 1],[1, 2, 3, -9]])
+    >>> D1=ml.matrix([[0, 1, 0, 2],[2, 1, 3, 0],[0, 0, 1, 1],[1, 1, 0, 1]])
+    >>> print(LagCorrelationsFromMAP(D0,D1,3))
+    [0.00012012478025432307, 0.00086176493661020996, -0.00022001393374405749]
+    >>> plt.plot(LagCorrelationsFromMAP(D0,D1,10))
+    

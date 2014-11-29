@@ -38,7 +38,7 @@ def CheckMAPRepresentation (D0, D1, prec=1e-14):
     if not CheckGenerator(D0,True):
         return False
 
-    if D0.shape!=D0.shape:
+    if D0.shape!=D1.shape:
         if butools.verbose:
             print ("CheckMAPRepresentation: D0 and D1 have different sizes!")
         return False
@@ -127,7 +127,7 @@ def CheckRAPRepresentation (D0, D1, prec=1e-14):
     ev=la.eigvals(D0)
     if np.max(np.real(ev))>=-prec:
         if butools.verbose:
-            print ("heckRAPRepresentation: there is an eigenvalue of D0 with non-negative real part")
+            print ("CheckRAPRepresentation: there is an eigenvalue of D0 with non-negative real part")
         return False
 
     ceig=np.array(ev)

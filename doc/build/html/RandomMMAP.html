@@ -181,6 +181,29 @@ The default value is 1e-14.</p>
 <span class="go">    10</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">=</span><span class="n">RandomMMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[-1.20043764  0.05686545  0.17894297  0.03642876]</span>
+<span class="go"> [ 0.0746768  -1.042511    0.05897844  0.03616775]</span>
+<span class="go"> [ 0.10703581  0.15982011 -0.78408293  0.        ]</span>
+<span class="go"> [ 0.          0.          0.         -0.40896525]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.06671026  0.09825053  0.20481737  0.18312201]</span>
+<span class="go"> [ 0.00370989  0.12024972  0.20318316  0.09044313]</span>
+<span class="go"> [ 0.08165806  0.05115381  0.1339248   0.        ]</span>
+<span class="go"> [ 0.07774122  0.09463614  0.          0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 0.11557699  0.06062982  0.14678981  0.05230366]</span>
+<span class="go"> [ 0.06895695  0.06299849  0.15758806  0.16555862]</span>
+<span class="go"> [ 0.14566491  0.02460299  0.          0.08022243]</span>
+<span class="go"> [ 0.          0.0533731   0.18321478  0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">[1.6200000000000001]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span>
+<span class="go">10</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -206,7 +229,7 @@ The default value is 1e-14.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 29, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

@@ -115,7 +115,7 @@
 </tbody>
 </table>
 <p>Creates a rational arrival process that has the same
-marginal and lag-1 joint moments as given (see <a class="reference internal" href="#r40" id="id1">[R40]</a>).</p>
+marginal and lag-1 joint moments as given (see <a class="reference internal" href="#r1" id="id1">[R1]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -149,10 +149,10 @@ required.</p>
 a valid stochastic process. The joint densities may be
 negative.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r40" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R40]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> G Horvath, M Telek, &#8220;A minimal representation of
+<tr><td class="label">[R1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> G Horvath, M Telek, &#8220;A minimal representation of
 Markov arrival processes and a moments matching
 method,&#8221; Performance Evaluation 64:(9-12) pp.
 1153-1168. (2007)</td></tr>
@@ -177,6 +177,26 @@ method,&#8221; Performance Evaluation 64:(9-12) pp.
 <span class="go">            1      0.36585      0.25535</span>
 <span class="go">      0.36585      0.12866     0.088334</span>
 <span class="go">      0.25535     0.088802      0.06067</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.36585365853658536</span><span class="p">,</span> <span class="mf">0.25535027188603043</span><span class="p">,</span> <span class="mf">0.26507255497329191</span><span class="p">,</span> <span class="mf">0.36691170692675046</span><span class="p">,</span> <span class="mf">0.635727559166956</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.36585366</span><span class="p">,</span> <span class="mf">0.25535027</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.36585366</span><span class="p">,</span> <span class="mf">0.12866312</span><span class="p">,</span> <span class="mf">0.08833353</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25535027</span><span class="p">,</span> <span class="mf">0.08880202</span><span class="p">,</span> <span class="mf">0.06066984</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">RAPFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">Nm</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H0</span><span class="p">)</span>
+<span class="go">[[-12.94938582  36.77982874 -24.81743479]</span>
+<span class="go"> [ -1.1101688   -2.51134002   0.91705194]</span>
+<span class="go"> [ -0.71205342   0.6891178   -2.73927416]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H1</span><span class="p">)</span>
+<span class="go">[[  9.26722501 -99.95808207  91.67784892]</span>
+<span class="go"> [  1.16930673  -2.17714855   3.71229869]</span>
+<span class="go"> [  0.65291549   3.99937077  -1.89007647]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">1e-12</span><span class="p">))</span>
+<span class="go">[0.36585365853658869, 0.25535027188603343, 0.26507255497329529, 0.36691170692675534, 0.635727559166965]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagkJointMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e-12</span><span class="p">))</span>
+<span class="go">[[ 1.          0.36585366  0.25535027]</span>
+<span class="go"> [ 0.36585366  0.12866312  0.08833353]</span>
+<span class="go"> [ 0.25535027  0.08880202  0.06066984]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -204,7 +224,7 @@ method,&#8221; Performance Evaluation 64:(9-12) pp.
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 29, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

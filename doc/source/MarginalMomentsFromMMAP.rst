@@ -45,3 +45,12 @@ butools.map.MarginalMomentsFromMMAP
     >>> MarginalMomentsFromMMAP({D0,D1,D2,D3})
            1.0007       2.1045       6.8277
 
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[-1.78, 0.29],[0.07, -0.92]])
+    >>> D1=ml.matrix([[0.15, 0.49],[0.23, 0.36]])
+    >>> D2=ml.matrix([[0.11, 0.2],[0.01, 0]])
+    >>> D3=ml.matrix([[0.14, 0.4],[0.11, 0.14]])
+    >>> print(MarginalMomentsFromMMAP((D0,D1,D2,D3)))
+    [1.0006671114076049, 2.1044966311760755, 6.8276881494346]
+

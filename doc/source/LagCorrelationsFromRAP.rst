@@ -47,3 +47,11 @@ butools.map.LagCorrelationsFromRAP
         0.0058956
     >>> plot(LagCorrelationsFromRAP(H0,H1,20));
 
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[-2, 0, 0],[0, -3, 1],[0, -1, -2]])
+    >>> H1=ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1]])
+    >>> print(LagCorrelationsFromRAP(H0,H1,3))
+    [-0.0038461538461539674, 0.0045604395604395744, 0.005895604395604547]
+    >>> plt.plot(LagCorrelationsFromRAP(H0,H1,20))
+    

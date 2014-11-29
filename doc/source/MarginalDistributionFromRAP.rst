@@ -55,3 +55,19 @@ butools.map.MarginalDistributionFromRAP
     >>> x = (0:0.01:1);
     >>> plot(x,PdfFromME(a,A,x));
 
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[-2, 0, 0],[0, -3, 1],[0, -1, -2]])
+    >>> H1=ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1]])
+    >>> [a,A]=MarginalDistributionFromRAP(H0,H1)
+    >>> print(a)
+    [[ 0.44444444  0.44444444  0.11111111]]
+    >>> print(A)
+    [[-2  0  0]
+     [ 0 -3  1]
+     [ 0 -1 -2]]
+    >>> print(MomentsFromME(a,A))
+    [0.44444444444444442, 0.38095238095238093, 0.48299319727891149, 0.82215743440233213, 1.7943912258781058]
+    >>> x = np.arange(0,1,0.01)
+    >>> plt.plot(x,PdfFromME(a,A,x))
+
