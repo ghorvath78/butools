@@ -153,10 +153,10 @@ moments can be realized by a PH(2) (can be checked with
 correlation falls between the feasible lower and upper
 bound (check by <a class="reference internal" href="MAP2CorrelationBounds.html#butools.map.MAP2CorrelationBounds" title="butools.map.MAP2CorrelationBounds"><tt class="xref py py-func docutils literal"><span class="pre">MAP2CorrelationBounds()</span></tt></a>).</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r17" rules="none">
+<table class="docutils citation" frame="void" id="r2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R17]</a></td><td>L Bodrog, A Heindl, G Horvath, M Telek, &#8220;A Markovian
+<tr><td class="label"><a class="fn-backref" href="#id1">[R2]</a></td><td>L Bodrog, A Heindl, G Horvath, M Telek, &#8220;A Markovian
 Canonical Form of Second-Order Matrix-Exponential
 Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
 190:(2) pp. 459-477. (2008)</td></tr>
@@ -177,6 +177,22 @@ Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
 <span class="go">      0.04918    0.0052609   0.00091819</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">     0.022416</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.049180327868852472</span><span class="p">,</span> <span class="mf">0.005260932876133214</span><span class="p">,</span> <span class="mf">0.00091818676015607825</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="mf">0.022415711104</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span><span class="o">=</span><span class="n">MAP2FromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">corr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
+<span class="go">[[-13.90983006   9.19902797]</span>
+<span class="go"> [  0.         -25.09016994]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
+<span class="go">[[  4.71080208   0.        ]</span>
+<span class="go"> [  2.80097203  22.28919792]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">[0.049180327868852479, 0.0052609328761332123, 0.00091818676015607728]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="go">0.022415711104</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -204,7 +220,7 @@ Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

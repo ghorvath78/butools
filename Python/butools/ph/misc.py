@@ -6,6 +6,7 @@ Created on Sun Aug 24 15:47:28 2014
 """
 
 import subprocess
+import os
 import os.path
 import butools
 from butools.ph import CheckPHRepresentation
@@ -102,7 +103,7 @@ def ImageFromPH(alpha,A,outFileName=None,prec=1e-13):
     """
 
     if outFileName==None or outFileName=="display":
-        outputFile = "_result.png"
+        outputFile = ".result.png"
         displ = True
     else:
         outputFile = outFileName
@@ -116,30 +117,32 @@ def ImageFromPH(alpha,A,outFileName=None,prec=1e-13):
     fid.write ('\tnode [shape=circle,width=0.3,height=0.3,label=""];\n')
     
     # nodes
-    alpha = np.flatten(alpha)
+    alpha = alpha.A.flatten()
     for i in range(len(alpha)):
-        fid.write ('\tn%d [xlabel=<<i>%g</i>>];\n' % (i, alpha[i]))
+        fid.write ('\tn{0} [xlabel=<<i>{1}</i>>];\n'.format(i, alpha[i]))
     
     # transitions to a non-absorbing state
     for i in range(len(alpha)):
         for j in range(len(alpha)):
             if i!=j and abs(A[i,j])>prec:
-                fid.write('\tn%d -> n%d [label="%g"];\n' % (i, j, A[i,j]))
+                fid.write('\tn{0} -> n{1} [label="{2}"];\n'.format(i, j, A[i,j]))
     
     # transitions to the absorbing state
     fid.write('\tab [style=filled];\n')
-    a = -np.sum(A,1)
+    a = -np.sum(A,1).A.flatten()
     for i in range(len(alpha)):
         if abs(a[i])>prec:
-            fid.write('\tn%d -> ab [label="%g"];\n' % (i, a[i]))
+            fid.write('\tn{0} -> ab [label="{1}"];\n'.format(i, a[i]))
 
     fid.write('}\n')
     fid.close()
 
     ext = os.path.splitext(outputFile)[1]
-    subprocess.call(['dot', "-T"+ext, inputFile, "-o", outputFile])
-    
-#    delete (inputFile);
-#    if displ:
-#        delete(outputFile);
-
+    subprocess.call(['dot', "-T"+ext[1:], inputFile, "-o", outputFile])
+    os.remove (inputFile)
+   
+    if displ:
+        from IPython.display import Image
+        i = Image(filename=outputFile)
+        os.remove(outputFile)        
+        return i

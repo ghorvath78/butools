@@ -50,3 +50,12 @@ butools.map.MAP2CorrelationBounds
     >>> ub
          0.074506    
 
+    For Python/Numpy:
+    
+    >>> moms = [0.049180327868852472, 0.005260932876133214, 0.00091818676015607825]
+    >>> [lb,ub]=MAP2CorrelationBounds(moms)
+    >>> print(lb)
+    -0.0305881459726
+    >>> print(ub)
+    0.0745055540504
+

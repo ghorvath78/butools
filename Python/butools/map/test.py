@@ -709,7 +709,7 @@ def TestMAPPackage ():
     print("------")
     
     moms = [1.2, 4.32, 20]
-    corr1 = -0.4
+    corr1 = 0.4
     print(moms)
     print(corr1)
     

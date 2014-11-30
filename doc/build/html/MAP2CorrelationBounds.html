@@ -140,10 +140,10 @@ given the three marginal moments.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r16" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R16]</a></td><td>L Bodrog, A Heindl, G Horvath, M Telek, &#8220;A Markovian
+<tr><td class="label"><a class="fn-backref" href="#id1">[R1]</a></td><td>L Bodrog, A Heindl, G Horvath, M Telek, &#8220;A Markovian
 Canonical Form of Second-Order Matrix-Exponential
 Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
 190:(2) pp. 459-477. (2008)</td></tr>
@@ -157,6 +157,15 @@ Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
 <span class="go">    -0.030588</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ub</span>
 <span class="go">     0.074506</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.049180327868852472</span><span class="p">,</span> <span class="mf">0.005260932876133214</span><span class="p">,</span> <span class="mf">0.00091818676015607825</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">]</span><span class="o">=</span><span class="n">MAP2CorrelationBounds</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">lb</span><span class="p">)</span>
+<span class="go">-0.0305881459726</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ub</span><span class="p">)</span>
+<span class="go">0.0745055540504</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -184,7 +193,7 @@ Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

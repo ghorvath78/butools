@@ -116,7 +116,7 @@
 </table>
 <p>Obtains a Markovian representation of a rational
 arrival process of the same size, if possible, using the
-procedure published in <a class="reference internal" href="#r19" id="id1">[R19]</a>.</p>
+procedure published in <a class="reference internal" href="#r4" id="id1">[R4]</a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -149,10 +149,10 @@ if it is closer to it than this precision</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r19" rules="none">
+<table class="docutils citation" frame="void" id="r4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R19]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> G Horvath, M Telek, &#8220;A minimal representation of
+<tr><td class="label">[R4]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> G Horvath, M Telek, &#8220;A minimal representation of
 Markov arrival processes and a moments matching
 method,&#8221; Performance Evaluation 64:(9-12) pp.
 1153-1168. (2007)</td></tr>
@@ -176,6 +176,25 @@ method,&#8221; Performance Evaluation 64:(9-12) pp.
 <span class="go">     1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">error</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">LagkJointMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="go">   6.4694e-16</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">CheckMAPRepresentation</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">))</span>
+<span class="go">CheckMAPRepresentation: H1 has negative element!</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span><span class="o">=</span><span class="n">MAPFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
+<span class="go">[[-1.84137254  0.07946777]</span>
+<span class="go"> [ 0.01250933 -9.55862746]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
+<span class="go">[[ 0.02450852  1.73739624]</span>
+<span class="go"> [ 7.17062665  2.37549148]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">CheckMAPRepresentation</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">LagkJointMomentsFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">LagkJointMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<span class="go">4.674749869e-16</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -203,7 +222,7 @@ method,&#8221; Performance Evaluation 64:(9-12) pp.
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

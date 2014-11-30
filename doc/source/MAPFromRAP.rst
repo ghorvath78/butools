@@ -64,3 +64,24 @@ butools.map.MAPFromRAP
     >>> error = norm(LagkJointMomentsFromRAP(H0,H1,3,1)-LagkJointMomentsFromMAP(D0,D1,3,1))
        6.4694e-16
     
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[-2.4, 2],[2, -9]])
+    >>> H1=ml.matrix([[-1.6, 2],[3, 4]])
+    >>> print(CheckMAPRepresentation(H0,H1))
+    CheckMAPRepresentation: H1 has negative element!
+    False
+    >>> [D0,D1]=MAPFromRAP(H0,H1)
+    >>> print(D0)
+    [[-1.84137254  0.07946777]
+     [ 0.01250933 -9.55862746]]
+    >>> print(D1)
+    [[ 0.02450852  1.73739624]
+     [ 7.17062665  2.37549148]]
+    >>> print(CheckMAPRepresentation(D0,D1))
+    True
+    >>> print(la.norm(LagkJointMomentsFromRAP(D0,D1,3,1)-LagkJointMomentsFromRAP(H0,H1,3,1)))
+    4.674749869e-16
+    
+
+    

@@ -116,7 +116,7 @@
 </table>
 <p>Obtains a Markovian representation of a rational
 arrival process of the same size, if possible, using the
-procedure published in <a class="reference internal" href="#r27" id="id1">[R27]</a>.</p>
+procedure published in <a class="reference internal" href="#r5" id="id1">[R5]</a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -141,10 +141,10 @@ if it is closer to it than this precision</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r27" rules="none">
+<table class="docutils citation" frame="void" id="r5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R27]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> András Horváth, Gábor Horváth, Miklós Telek, &#8220;A
+<tr><td class="label">[R5]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> András Horváth, Gábor Horváth, Miklós Telek, &#8220;A
 traffic based decomposition of two-class queueing
 networks with priority service&#8221;. COMPUTER NETWORKS
 53:(8) pp. 1235-1248. (2009)</td></tr>
@@ -182,6 +182,39 @@ networks with priority service&#8221;. COMPUTER NETWORKS
 <span class="go">   1.1874e-15</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H2</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">],[</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">=</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="n">H2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">CheckMMAPRepresentation</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+<span class="go">CheckMMAPRepresentation: Some of the matrices H1 ... HM have a negative element!</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">=</span><span class="n">MMAPFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[-4.64977368  0.17674317  0.87431693  0.9296875 ]</span>
+<span class="go"> [ 1.0891793  -8.01818988  0.67254576  0.0371875 ]</span>
+<span class="go"> [ 1.24047394  0.0390625  -4.20922394  0.9296875 ]</span>
+<span class="go"> [ 0.92119055  2.04994681  2.9219339  -9.1228125 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.0092309   0.54117557  0.10706401  0.19567014]</span>
+<span class="go"> [ 0.21578177  0.95606452  1.88387129  0.08801829]</span>
+<span class="go"> [ 0.22072296  0.05546875  0.07302704  0.65078125]</span>
+<span class="go"> [ 0.956814    0.07543657  0.0328261   0.08167755]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 0.31294725  0.01689127  0.17944857  1.30659838]</span>
+<span class="go"> [ 2.35272587  0.09333804  0.62247422  0.00700332]</span>
+<span class="go"> [ 0.14228058  0.08828125  0.67646942  0.09296875]</span>
+<span class="go"> [ 0.41102999  0.96500448  0.08970727  0.61724529]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">CheckMMAPRepresentation</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span><span class="o">=</span><span class="n">MarginalMomentsFromMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmom</span><span class="o">=</span><span class="n">LagkJointMomentsFromMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">error</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">rjmom</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">jmom</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">rjmom</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">jmom</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="go">9.65812159364e-16</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -207,7 +240,7 @@ networks with priority service&#8221;. COMPUTER NETWORKS
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

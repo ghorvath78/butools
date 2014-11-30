@@ -150,10 +150,10 @@ representation</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r31" rules="none">
+<table class="docutils citation" frame="void" id="r7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R31]</a></td><td>P. Buchholz, M. Telek, &#8220;On minimal representation of
+<tr><td class="label"><a class="fn-backref" href="#id1">[R7]</a></td><td>P. Buchholz, M. Telek, &#8220;On minimal representation of
 rational arrival processes.&#8221; Madrid Conference on
 Qeueuing theory (MCQT), June 2010.</td></tr>
 </tbody>
@@ -201,6 +201,49 @@ Qeueuing theory (MCQT), June 2010.</td></tr>
 <span class="go">       2.2296     -0.82963</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">=</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">=</span><span class="n">MinimalRepFromMRAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[-4.40740741  1.69312169]</span>
+<span class="go"> [ 0.84259259 -2.59259259]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.40740741  0.13544974]</span>
+<span class="go"> [ 0.55740741 -0.20740741]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 1.62962963  0.54179894]</span>
+<span class="go"> [ 2.22962963 -0.82962963]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="go">4.72728076906e-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">=</span><span class="n">MinimalRepFromMRAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[-5.  1.  0.]</span>
+<span class="go"> [ 3. -3.  0.]</span>
+<span class="go"> [ 1.  1. -5.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.   0.   0.8]</span>
+<span class="go"> [ 0.   0.   0. ]</span>
+<span class="go"> [ 0.2  0.2  0.2]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 0.   0.   3.2]</span>
+<span class="go"> [ 0.   0.   0. ]</span>
+<span class="go"> [ 0.8  0.8  0.8]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">=</span><span class="n">MinimalRepFromMRAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[-4.40740741  1.69312169]</span>
+<span class="go"> [ 0.84259259 -2.59259259]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.40740741  0.13544974]</span>
+<span class="go"> [ 0.55740741 -0.20740741]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 1.62962963  0.54179894]</span>
+<span class="go"> [ 2.22962963 -0.82962963]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -226,7 +269,7 @@ Qeueuing theory (MCQT), June 2010.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

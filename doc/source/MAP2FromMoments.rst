@@ -70,3 +70,19 @@ butools.map.MAP2FromMoments
     >>> LagCorrelationsFromMAP(D0, D1, 1)
          0.022416    
 
+    For Python/Numpy:
+    
+    >>> moms = [0.049180327868852472, 0.005260932876133214, 0.00091818676015607825]
+    >>> corr = 0.022415711104
+    >>> [D0,D1]=MAP2FromMoments(moms,corr)
+    >>> print(D0)
+    [[-13.90983006   9.19902797]
+     [  0.         -25.09016994]]
+    >>> print(D1)
+    [[  4.71080208   0.        ]
+     [  2.80097203  22.28919792]]
+    >>> print(MarginalMomentsFromMAP(D0, D1, 3))
+    [0.049180327868852479, 0.0052609328761332123, 0.00091818676015607728]
+    >>> print(LagCorrelationsFromMAP(D0, D1, 1))
+    0.022415711104
+

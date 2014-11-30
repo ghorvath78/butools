@@ -115,7 +115,7 @@
 </tbody>
 </table>
 <p>Creates a marked rational arrival process that has the same
-marginal and lag-1 joint moments as given (see <a class="reference internal" href="#r28" id="id1">[R28]</a>).</p>
+marginal and lag-1 joint moments as given (see <a class="reference internal" href="#r6" id="id1">[R6]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -148,10 +148,10 @@ process</p>
 a valid stochastic process. The joint densities may be
 negative.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r28" rules="none">
+<table class="docutils citation" frame="void" id="r6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R28]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Andras Horvath, Gabor Horvath, Miklos Telek, &#8220;A
+<tr><td class="label">[R6]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Andras Horvath, Gabor Horvath, Miklos Telek, &#8220;A
 traffic based decomposition of two-class queueing
 networks with priority service,&#8221; Computer Networks
 53:(8) pp. 1235-1248. (2009)</td></tr>
@@ -197,6 +197,41 @@ networks with priority service,&#8221; Computer Networks
 <span class="go">      0.71836      0.75239       1.5716</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.99804861334547901</span><span class="p">,</span> <span class="mf">2.0262345014785748</span><span class="p">,</span> <span class="mf">6.2347773609141584</span><span class="p">,</span> <span class="mf">25.738432370871866</span><span class="p">,</span> <span class="mf">133.30214790750446</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span> <span class="mf">0.34000092</span><span class="p">,</span>  <span class="mf">0.34054528</span><span class="p">,</span>  <span class="mf">0.69321737</span><span class="p">],[</span> <span class="mf">0.34966003</span><span class="p">,</span>  <span class="mf">0.35185598</span><span class="p">,</span>  <span class="mf">0.71829122</span><span class="p">],[</span> <span class="mf">0.72396246</span><span class="p">,</span>  <span class="mf">0.73078643</span><span class="p">,</span>  <span class="mf">1.49469082</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span> <span class="mf">0.2955327</span> <span class="p">,</span>  <span class="mf">0.27734236</span><span class="p">,</span>  <span class="mf">0.54077735</span><span class="p">],[</span> <span class="mf">0.29028126</span><span class="p">,</span>  <span class="mf">0.27210886</span><span class="p">,</span>  <span class="mf">0.53013258</span><span class="p">],[</span> <span class="mf">0.5839079</span> <span class="p">,</span>  <span class="mf">0.546818</span>  <span class="p">,</span>  <span class="mf">1.06457498</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms3</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span> <span class="mf">0.36446638</span><span class="p">,</span>  <span class="mf">0.38016098</span><span class="p">,</span>  <span class="mf">0.79223978</span><span class="p">],[</span> <span class="mf">0.35810733</span><span class="p">,</span>  <span class="mf">0.37445996</span><span class="p">,</span>  <span class="mf">0.78147648</span><span class="p">],[</span> <span class="mf">0.71836414</span><span class="p">,</span>  <span class="mf">0.75238761</span><span class="p">,</span>  <span class="mf">1.57164577</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">MRAPFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,(</span><span class="n">jmoms1</span><span class="p">,</span><span class="n">jmoms2</span><span class="p">,</span><span class="n">jmoms3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[-1.94730519  3.03441393 -2.17035543]</span>
+<span class="go"> [-0.3343442  -0.88117688  0.21354779]</span>
+<span class="go"> [-0.33362593  0.21320675 -0.88151792]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.22303552  7.49252265 -7.3936431 ]</span>
+<span class="go"> [ 0.09280522  7.91365871 -7.66639786]</span>
+<span class="go"> [ 0.08698437  7.87984763 -7.6255667 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 0.49394577  0.92090262 -1.071202  ]</span>
+<span class="go"> [ 0.44180109 -2.44500194  2.29906455]</span>
+<span class="go"> [ 0.44567871 -2.39209787  2.24277651]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">1e-7</span><span class="p">))</span>
+<span class="go">[0.99804866709421602, 2.0262346537338147, 6.2347778420947577, 25.738434141923204, 133.30215529953227]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e-7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="k">print</span><span class="p">(</span><span class="n">rjmoms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[ 0.34000159  0.34054613  0.69321931]</span>
+<span class="go"> [ 0.34966065  0.35185676  0.71829299]</span>
+<span class="go"> [ 0.72396359  0.73078784  1.49469405]]</span>
+<span class="go"> &gt;&gt;&gt; print(rjmoms[1])</span>
+<span class="go">[[ 0.29553296  0.27734252  0.54077755]</span>
+<span class="go"> [ 0.29028152  0.27210903  0.5301328 ]</span>
+<span class="go"> [ 0.58390841  0.54681833  1.06457543]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rjmoms</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 0.36446544  0.38016002  0.7922378 ]</span>
+<span class="go"> [ 0.3581065   0.37445911  0.78147472]</span>
+<span class="go"> [ 0.71836265  0.75238608  1.57164262]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -222,7 +257,7 @@ networks with priority service,&#8221; Computer Networks
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

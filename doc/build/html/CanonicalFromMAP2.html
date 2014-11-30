@@ -166,6 +166,22 @@ autocorrelation of the input and calls &#8216;MAP2FromMoments&#8217;.</p>
 <span class="go">      5.3e-13</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:
+&gt;&gt;&gt; D0=ml.matrix([[-14, 1],[1, -25]])
+&gt;&gt;&gt; D1=ml.matrix([[6, 7],[3, 21]])
+&gt;&gt;&gt; [H0,H1]=CanonicalFromMAP2(D0,D1)
+&gt;&gt;&gt; print(H0)
+[[-13.90983006   9.19902797]</p>
+<blockquote>
+<div>[  0.         -25.09016994]]</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H1</span><span class="p">)</span>
+<span class="go">[[  4.71080208   0.        ]</span>
+<span class="go"> [  2.80097203  22.28919792]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span> <span class="o">+</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D1</span><span class="p">))</span>
+<span class="go">4.67918996173e-13</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -191,7 +207,7 @@ autocorrelation of the input and calls &#8216;MAP2FromMoments&#8217;.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

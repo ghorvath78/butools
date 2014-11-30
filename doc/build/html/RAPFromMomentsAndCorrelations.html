@@ -149,10 +149,10 @@ obtain a RAP of size M, 2*M-3 coefficients are needed.</p>
 a valid stochastic process. The joint densities may be
 negative.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r41" rules="none">
+<table class="docutils citation" frame="void" id="r9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R41]</a></td><td>Mitchell, Kenneth, and Appie van de Liefvoort.
+<tr><td class="label"><a class="fn-backref" href="#id1">[R9]</a></td><td>Mitchell, Kenneth, and Appie van de Liefvoort.
 &#8220;Approximation models of feed-forward G/G/1/N
 queueing networks with correlated arrivals.&#8221;
 Performance Evaluation 51.2 (2003): 137-152.</td></tr>
@@ -177,6 +177,24 @@ Performance Evaluation 51.2 (2003): 137-152.</td></tr>
 <span class="go">     0.012394</span>
 <span class="go">    0.0027412</span>
 <span class="go">   0.00072384</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.29774127310061604</span><span class="p">,</span> <span class="mf">0.19283643304803644</span><span class="p">,</span> <span class="mf">0.19448147792730755</span><span class="p">,</span> <span class="mf">0.26597325539245531</span><span class="p">,</span> <span class="mf">0.45833053059627116</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.012393574884970124</span><span class="p">,</span> <span class="mf">0.0027411959690404088</span><span class="p">,</span> <span class="mf">0.00072383642135696988</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">]</span><span class="o">=</span><span class="n">RAPFromMomentsAndCorrelations</span><span class="p">(</span><span class="n">mom</span><span class="p">,</span><span class="n">corr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">G0</span><span class="p">)</span>
+<span class="go">[[ -8.96289388  22.25257011 -18.54409809]</span>
+<span class="go"> [ -0.99178156  -4.66699225   2.33103341]</span>
+<span class="go"> [ -1.2472989    2.42791179  -4.57011387]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+<span class="go">[[ 2.20274746 -1.3172514   4.36892581]</span>
+<span class="go"> [ 1.2179263   1.82172664  0.28808746]</span>
+<span class="go"> [ 1.02115416  0.41735382  1.950993  ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">))</span>
+<span class="go">[0.29774127310061604, 0.19283643304803638, 0.19448147792730741, 0.26597325539245492, 0.45833053059627044]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[0.012393574884970265, 0.0027411959690409431, 0.00072383642135750309]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -204,7 +222,7 @@ Performance Evaluation 51.2 (2003): 137-152.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Nov 30, 2014.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

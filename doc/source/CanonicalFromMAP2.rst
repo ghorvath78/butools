@@ -57,4 +57,18 @@ butools.map.CanonicalFromMAP2
     >>> dissimilarity = norm(H0*C-C*D0) + norm(H1*C-C*D1)
           5.3e-13
   
+    For Python/Numpy:
+    >>> D0=ml.matrix([[-14, 1],[1, -25]])   
+    >>> D1=ml.matrix([[6, 7],[3, 21]])
+    >>> [H0,H1]=CanonicalFromMAP2(D0,D1)
+    >>> print(H0)
+    [[-13.90983006   9.19902797]
+     [  0.         -25.09016994]]
+    >>> print(H1)
+    [[  4.71080208   0.        ]
+     [  2.80097203  22.28919792]]
+    >>> C=SimilarityMatrix(H0,D0)
+    >>> print(la.norm(H0*C-C*D0) + la.norm(H1*C-C*D1))
+    4.67918996173e-13
 
+    

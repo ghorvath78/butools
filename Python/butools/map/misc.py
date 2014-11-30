@@ -114,3 +114,60 @@ def SamplesFromMAP (D0, D1, k, initial=None, prec=1e-14):
         raise Exception("SamplesFromMAP: Input is not a valid MAP representation!")    
 
     return SamplesFromMMAP((D0,D1),k,initial,prec);
+
+import os
+import os.path
+from subprocess import call
+
+def ImageFromMMAP (D, outFileName="display", prec=1e-13):
+
+    if outFileName=="display":
+        outputFile = ".result.png"
+        displ = True
+    else:
+        outputFile = outFileName
+        displ = False
+    
+    inputFile = "_temp.dot"
+
+    f = open(inputFile,"w")
+    f.write("digraph G {\n")
+    f.write("\trankdir=LR;\n")
+    f.write('\tnode [shape=circle,width=0.3,height=0.3,label=""];\n')
+
+    N = D[0].shape[0]
+    
+    # transitions without arrivals
+    Dx=D[0]
+    for i in range(N):
+        for j in range(N):
+            if i!=j and abs(Dx[i,j])>prec:
+                f.write('\tn{0} -> n{1} [label="{2}"];\n'.format(i, j, Dx[i,j]))
+    
+    # transitions with arrivals
+    for k in range(1,len(D)):
+        Dx=D[k]
+        for i in range(N):
+            for j in range(N):
+                if abs(Dx[i,j])>prec:
+                    if len(D)==2:
+                        f.write('\tn{0} -> n{1} [style="dashed",label="{2}"];\n'.format(i, j, Dx[i,j]))
+                    else:
+                        f.write('\tn{0} -> n{1} [style="solid",fontcolor="/dark28/{2}",color="/dark28/{3}",label="{4}"];\n'.format(i, j, min(k-1,8), min(k-1,8), Dx[i,j]))
+
+    f.write('}\n')
+    f.close()
+
+    ext = os.path.splitext(outputFile)[1]
+    call(['dot', '-T' + ext[1:], "_temp.dot", '-o', outputFile])   
+    os.remove (inputFile)
+   
+    if displ:
+        from IPython.display import Image
+        i = Image(filename=outputFile)
+        os.remove(outputFile)        
+        return i
+
+def ImageFromMAP (D0, D1, outFileName="display", prec=1e-13):
+
+    return ImageFromMMAP((D0,D1),outFileName,prec)
