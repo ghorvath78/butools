@@ -49,8 +49,7 @@ def MEFromMoments (moms):
             rm = rmom
             m = int ((m+1)/2)
 
-        rm.insert (0, 1.0)
-        rm = np.array(rm)
+        rm = np.insert(np.array(rm),0,1.0)
         f = np.zeros((2*m, 1))
         f[0] = 1.0
         y = np.zeros((2*m, 1))
