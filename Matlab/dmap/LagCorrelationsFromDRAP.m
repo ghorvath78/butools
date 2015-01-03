@@ -43,7 +43,7 @@ function acf = LagCorrelationsFromDRAP (H0, H1, L, prec)
 
     H0i = inv(eye(size(H0))-H0);
     P = H0i*H1;
-    pi = DRPSolve(P);
+    pi = DRPSolve(P, prec);
     moms = MomentsFromMG(pi, H0, 2);
     
     pi = pi * H0i * P;

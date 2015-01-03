@@ -55,7 +55,6 @@ function [Nm] = LagkJointMomentsFromDMRAP (h, K, L, prec)
 
     pi = DRPSolve(iH0*sumH,prec);
     Pw = eye(size(h{1},1));
-    invH0=inv(h{1});
     H0p = cell(K+1);
     H0p{1} = Pw;
     Pw = Pw * iH0;

@@ -75,7 +75,7 @@ def ImageFromDPH(alpha,A,outFileName=None,prec=1e-13):
     # transitions to a non-absorbing state
     for i in range(len(alpha)):
         for j in range(len(alpha)):
-            if i!=j and abs(A[i,j])>prec:
+            if abs(A[i,j])>prec:
                 fid.write('\tn{0} -> n{1} [label="{2}"];\n'.format(i, j, A[i,j]))
     
     # transitions to the absorbing state
