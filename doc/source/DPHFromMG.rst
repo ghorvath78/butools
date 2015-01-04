@@ -69,3 +69,24 @@ butools.dph.DPHFromMG
     >>> norm(a*C-b)
        6.8807e-16
       
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[-0.6, 0.3, 1.3]])
+    >>> A=ml.matrix([[0.1, 0.2, 0],[0.3, 0.1, 0.25],[-0.3, 0.2, 0.77]])
+    >>> print(CheckMGRepresentation(a,A))
+    False    
+    >>> b,B=DPHFromMG(a,A)
+    >>> print(b)
+    [[ 0.05    0.1375  0.8125]]   
+    >>> print(B)
+    [[ 0.1      0.2      0.     ]
+     [ 0.425    0.06875  0.15625]
+     [ 0.141    0.01975  0.80125]]
+    >>> print(CheckDPHRepresentation(b,B))
+    True
+    >>> C=SimilarityMatrix(A,B)
+    >>> la.norm(A*C-C*B)
+    3.3442694215099699e-16
+    >>> la.norm(a*C-b)
+    7.1143122604013212e-16
+    

@@ -49,3 +49,14 @@ butools.dph.MomentsFromMG
     >>> mean = MomentsFromMG(a,A,1)
            3.4675
 
+    For Python/Numpy:
+    
+    >>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+    >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
+    >>> moms=MomentsFromMG(a,A,3)
+    >>> print(moms)
+    [3.4674735249621778, 16.202576158568199, 97.728650249528698]
+    >>> mean=MomentsFromMG(a,A,1)
+    >>> print(mean)
+    [3.4674735249621778]
+

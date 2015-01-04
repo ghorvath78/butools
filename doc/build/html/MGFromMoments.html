@@ -145,10 +145,10 @@ distribution.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r26" rules="none">
+<table class="docutils citation" frame="void" id="r2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R26]</a></td><td>A. van de Liefvoort. The moment problem for
+<tr><td class="label"><a class="fn-backref" href="#id1">[R2]</a></td><td>A. van de Liefvoort. The moment problem for
 continuous distributions. Technical report,
 University of Missouri, WP-CM-1990-02, Kansas City,
 1990.</td></tr>
@@ -166,6 +166,19 @@ University of Missouri, WP-CM-1990-02, Kansas City,
 <span class="go">    -0.030408    0.0073107      0.66695</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="go">       3.4675       16.203       97.729       731.45       6576.8</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.4675</span><span class="p">,</span> <span class="mf">16.203</span><span class="p">,</span> <span class="mf">97.729</span><span class="p">,</span> <span class="mf">731.45</span><span class="p">,</span> <span class="mf">6576.8</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="n">MGFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.33333333  0.33333333  0.33333333]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[ 0.26190621  3.69367602 -2.58213389]</span>
+<span class="go"> [-0.02530173 -0.00569967  0.66958705]</span>
+<span class="go"> [-0.03040818  0.00731073  0.66694767]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[3.4674999999999931, 16.203000000000046, 97.729000000001236, 731.45000000001903, 6576.8000000002794]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -193,7 +206,7 @@ University of Missouri, WP-CM-1990-02, Kansas City,
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 04, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

@@ -49,3 +49,11 @@ butools.dph.CdfFromDPH
     >>> cdf = CdfFromDPH(a, A, x);
     >>> plot(x, cdf)
 
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[0.76, 0, 0.24]])
+    >>> A=ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
+    >>> x = np.linspace(0,100,101)
+    >>> pmf = CdfFromDPH(a,A,x)
+    >>> plt.plot(x, pmf)
+

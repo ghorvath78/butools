@@ -49,3 +49,9 @@ butools.dph.ImageFromDPH
     >>> ImageFromDPH(alpha,A,'figure.pdf');
     >>> ImageFromDPH(alpha,A);
 
+    For Python/Numpy:
+    
+    >>> alpha,A=RandomDPH(3,8,7)
+    >>> ImageFromDPH(alpha,A,"figure.pdf")
+    >>> ImageFromDPH(alpha,A)
+

@@ -66,4 +66,20 @@ butools.dph.AcyclicDPHFromMG
     >>> norm(a*C-b)
      0
   
+    For Python/Numpy:
+
+    >>> a=ml.matrix([[0, 0, 1.0]])
+    >>> A=ml.matrix([[0.22, 0, 0],[0.3, 0.1, 0.55],[0.26, 0, 0.73]])
+    >>> b,B=AcyclicDPHFromMG(a,A)
+    >>> print(b)
+    [[  1.12101174e-16   9.62962963e-01   3.70370370e-02]]
+    >>> print(B)
+    [[ 0.10+0.j  0.90+0.j  0.00+0.j]
+     [ 0.00+0.j  0.22+0.j  0.78+0.j]
+     [ 0.00+0.j  0.00+0.j  0.73+0.j]]
+    >>> C=SimilarityMatrix(A,B)
+    >>> print(la.norm(A*C-C*B))
+    8.23408130779e-16
+    >>> print(la.norm(a*C-b))
+    0.0
 

@@ -50,3 +50,11 @@ butools.dph.PmfFromMG
     >>> pmf = PmfFromMG(a, A, x);
     >>> plot(x, pmf)
 
+    For Python/Numpy:
+    
+    >>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+    >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
+    >>> x = np.linspace(0,20,21)
+    >>> pmf = PmfFromMG(a,A,x)
+    >>> plt.plot(x, pmf)
+

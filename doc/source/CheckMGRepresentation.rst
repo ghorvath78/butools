@@ -55,4 +55,16 @@ butools.dph.CheckMGRepresentation
     >>> CheckMGRepresentation(a,A)
     CheckMGRepresentation: The largest eigenvalue of the matrix is complex!
          0
-        
+
+    For Python/Numpy:
+    
+    >>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+    >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
+    >>> print(CheckMGRepresentation(a,A))
+    True
+    >>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+    >>> A = ml.matrix([[0.35, 0.2, -0.25],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
+    >>> print(CheckMGRepresentation(a,A))
+    CheckMGRepresentation: The largest eigenvalue of the matrix is complex!
+    False
+    

@@ -54,3 +54,19 @@ butools.dph.CanonicalFromDPH2
     >>> norm(a*C-b)
     1.3878e-16
   
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[0, 1.0]])
+    >>> A=ml.matrix([[0.23, 0.22],[0.41, 0.48]])
+    >>> b,B=CanonicalFromDPH2(a,A)
+    >>> print(b)
+    [[ 0.88663388  0.11336612]]   
+    >>> print(B)
+    [[ 0.68030755  0.31969245]
+     [ 0.          0.02969245]]
+    >>> C=SimilarityMatrix(A,B)
+    >>> print(la.norm(A*C-C*B))
+    1.1443916996305594e-16
+    >>> print(la.norm(a*C-b))
+    1.1857187100668868e-16
+        

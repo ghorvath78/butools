@@ -179,6 +179,20 @@ parameter, or increase the mean value.</p>
 <span class="go">     0.045964</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="n">RandomDPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.23191789  0.76808211  0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[ 0.37841386  0.23180007  0.13802   ]</span>
+<span class="go"> [ 0.36207828  0.63792172  0.        ]</span>
+<span class="go"> [ 0.40193095  0.          0.59806905]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">[[ 0.25176607]</span>
+<span class="go"> [ 0.        ]</span>
+<span class="go"> [ 0.        ]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -204,7 +218,7 @@ parameter, or increase the mean value.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 04, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

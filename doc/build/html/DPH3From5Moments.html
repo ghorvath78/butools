@@ -161,6 +161,19 @@ it to DPH(3) by &#8216;CanonicalFromDPH3&#8217;.</p>
 <span class="go">   9.3096        175.1       4968.7   1.8805e+05   8.8966e+06</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.3096349745331022</span><span class="p">,</span> <span class="mf">175.10327171027393</span><span class="p">,</span> <span class="mf">4968.6635221500701</span><span class="p">,</span> <span class="mf">188050.43861215009</span><span class="p">,</span> <span class="mf">8896632.7151740566</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="n">DPH3From5Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.73989251  0.07683743  0.18327005]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[ 0.89970693  0.10029307  0.        ]</span>
+<span class="go"> [ 0.          0.01029307  0.98970693]</span>
+<span class="go"> [ 0.          0.05058138  0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromDPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">))</span>
+<span class="go">[9.3096349745330773, 175.10327171027262, 4968.6635221500082, 188050.4386121468, 8896632.7151738554]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -186,7 +199,7 @@ it to DPH(3) by &#8216;CanonicalFromDPH3&#8217;.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 04, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

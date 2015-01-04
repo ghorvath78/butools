@@ -47,6 +47,14 @@ butools.dph.PmfFromDPH
     >>> a=[0.76 0 0.24];
     >>> A=[0.34 0.66 0; 0.79 0.05 0.07; 0.26 0.73 0.01];
     >>> x = (0:1:50)';
-    >>> pmf = PmfFromMG(a, A, x);
+    >>> pmf = PmfFromDPH(a, A, x);
     >>> plot(x, pmf)
+
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[0.76, 0, 0.24]])
+    >>> A=ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
+    >>> x = np.linspace(0,50,51)
+    >>> pmf = PmfFromDPH(a,A,x)
+    >>> plt.plot(x, pmf)
 

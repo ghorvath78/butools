@@ -166,6 +166,23 @@ is 1e-14</p>
 <span class="go">7.8505e-17</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],[</span><span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">CanonicalFromDPH3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">[[ 0.15814295  0.3791547   0.46270235]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">[[  3.10000000e-01   6.90000000e-01   0.00000000e+00]</span>
+<span class="go"> [  0.00000000e+00   8.00000000e-02   9.20000000e-01]</span>
+<span class="go"> [  0.00000000e+00   8.69565217e-04   0.00000000e+00]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">))</span>
+<span class="go">3.7082529313579547e-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">b</span><span class="p">))</span>
+<span class="go">1.9229626863835638e-16</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -191,7 +208,7 @@ is 1e-14</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 04, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

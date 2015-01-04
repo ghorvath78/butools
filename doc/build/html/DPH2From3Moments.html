@@ -160,6 +160,20 @@ it to DPH(2) by &#8216;CanonicalFromDPH2&#8217;.</p>
 <span class="go">   10.305       215.13       6764.2</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.305</span><span class="p">,</span> <span class="mf">215.13</span><span class="p">,</span> <span class="mf">6764.2</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="n">DPH2From3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.45919188  0.54080812]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[ 0.63160922  0.36839078]</span>
+<span class="go"> [ 0.68448995  0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromDPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">))</span>
+<span class="go">[10.305000000000007, 215.13000000000028, 6764.2000000000135]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -185,7 +199,7 @@ it to DPH(2) by &#8216;CanonicalFromDPH2&#8217;.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 04, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

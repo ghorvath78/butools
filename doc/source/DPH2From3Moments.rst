@@ -54,3 +54,16 @@ butools.dph.DPH2From3Moments
     >>> MomentsFromDPH(a,A)
        10.305       215.13       6764.2
 
+    For Python/Numpy:
+    
+    >>> moms = [10.305, 215.13, 6764.2]
+    
+    >>> a,A=DPH2From3Moments(moms)
+    >>> print(a)
+    [[ 0.45919188  0.54080812]]
+    >>> print(A)
+    [[ 0.63160922  0.36839078]
+     [ 0.68448995  0.        ]]
+    >>> print(MomentsFromDPH(a,A))
+    [10.305000000000007, 215.13000000000028, 6764.2000000000135]
+

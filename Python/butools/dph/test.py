@@ -78,7 +78,7 @@ def TestDPHPackage ():
     print(a)
     A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
     print(A)
-    x = np.linspace(0,100,101);
+    x = np.linspace(0,100,101)
     
     print("Test:")
     print("-----")

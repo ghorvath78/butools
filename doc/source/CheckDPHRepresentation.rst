@@ -48,3 +48,15 @@ butools.dph.CheckDPHRepresentation
     CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: 1e-14)!
          0
         
+    For Python/Numpy:
+    
+    >>> a=ml.matrix([[0.48, 0.08, 0.26, 0.18]])
+    >>> A=ml.matrix([[0, 0.08, 0.08, 0.8],[0.55, 0, 0.24, 0.19],[0.06, 0.03, 0, 0.001],[0.23, 0.005, 0.2, 0.53]])
+    >>> print(CheckDPHRepresentation(a,A))
+    True
+    >>> a=ml.matrix([[0.48, 0.08]])
+    >>> A=ml.matrix([[0, 0.08],[0.55, 0.5]])
+    >>> print(CheckDPHRepresentation(a,A))
+    CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: 1e-14)!
+    False
+    

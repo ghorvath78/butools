@@ -33,7 +33,7 @@ def CanonicalFromDPH2 (alpha,A,prec=1e-14):
         d2=p1-d1
         beta=ml.matrix([[(d1*lambd[0]+d2*lambd[1])/((1-lambd[0])*(1-lambd[1])),(d1+d2)*(1-lambd[0]-lambd[1])/((1-lambd[0])*(1-lambd[1]))]])
         B=ml.matrix([[lambd[0]+lambd[1],1-lambd[0]-lambd[1]],[lambd[0]*lambd[1]/(lambd[0]+lambd[1]-1),0]])
-    return (beta,B)
+    return (np.real(beta),np.real(B))
 
 def CanonicalFromDPH3 (alpha,A,prec=1e-14):
    
@@ -124,7 +124,7 @@ def CanonicalFromDPH3 (alpha,A,prec=1e-14):
         else:
            [alphaout,A2]=CanonicalFromPH3(alpha,A-eye,prec)
            Aout=A2+eye
-    return (alphaout,Aout)
+    return (np.real(alphaout),np.real(Aout))
 
 def firstInitElem(m33,sortEigs,alpha,A):
 
