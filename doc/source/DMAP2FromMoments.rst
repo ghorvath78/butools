@@ -56,3 +56,19 @@ butools.dmap.DMAP2FromMoments
     >>> LagCorrelationsFromDMAP(D0, D1, 1)
       -0.00080286
 
+    For Python/Numpy:
+    
+    >>> moms = [5.1536, 46.587, 626.45]
+    >>> corr = -0.00080286
+    >>> D0,D1=DMAP2FromMoments(moms,corr)
+    >>> print(D0)
+    [[ 0.29830828  0.65161096]
+     [ 0.61594046  0.        ]]
+    >>> print(D1)
+    [[ 0.05008076  0.        ]
+     [ 0.24416514  0.13989441]]
+    >>> print(MarginalMomentsFromDMAP(D0, D1, 3))
+    [5.1536000000000604, 46.587000000000629, 626.45000000000846]
+    >>> print(LagCorrelationsFromDMAP(D0, D1, 1))
+    -0.00080286
+    

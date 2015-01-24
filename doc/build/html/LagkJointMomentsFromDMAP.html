@@ -169,6 +169,21 @@ starting from moment 0.</p>
 <span class="go">       1.4955       2.9542       7.8852       27.282</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">],[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],[</span><span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="o">=</span><span class="n">LagkJointMomentsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">)</span>
+<span class="go">[[   1.            1.49553586    2.95424797    7.88522691   27.28232811]</span>
+<span class="go"> [   1.49553586    2.20371824    4.2826734    11.29331758   38.82178903]</span>
+<span class="go"> [   2.95424797    4.28748775    8.18989941   21.3152751    72.75329018]</span>
+<span class="go"> [   7.88522691   11.32649028   21.37905525   55.12908744  187.21290957]</span>
+<span class="go"> [  27.28232811   38.99277691   73.17046612  187.82217578  636.23062275]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span><span class="o">=</span><span class="n">MarginalMomentsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="go">[1.4955358592094412, 2.9542479654368474, 7.885226907678561, 27.282328108669493]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -194,7 +209,7 @@ starting from moment 0.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 24, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

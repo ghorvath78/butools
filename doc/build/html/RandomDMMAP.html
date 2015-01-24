@@ -183,6 +183,35 @@ or/and the &#8216;mean&#8217; parameter.</p>
 <span class="go">    10</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">=</span><span class="n">RandomDMMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">5.62</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[[ 0.75291635  0.02838976  0.00623525  0.00355369]</span>
+<span class="go"> [ 0.01363156  0.88103764  0.00648297  0.00752309]</span>
+<span class="go"> [ 0.05029372  0.04629122  0.5646528   0.03090788]</span>
+<span class="go"> [ 0.03333324  0.12876645  0.          0.42277574]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">[[ 0.0229293   0.          0.03024724  0.01160849]</span>
+<span class="go"> [ 0.00811442  0.0006299   0.01401004  0.0117653 ]</span>
+<span class="go"> [ 0.00889419  0.          0.01204694  0.        ]</span>
+<span class="go"> [ 0.          0.10835255  0.05132838  0.03689629]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 0.00836467  0.0221283   0.01718271  0.02484342]</span>
+<span class="go"> [ 0.00497048  0.00130812  0.00556127  0.01410468]</span>
+<span class="go"> [ 0.03284471  0.04024043  0.03279771  0.023646  ]</span>
+<span class="go"> [ 0.          0.          0.08162577  0.01997635]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[[ 0.02548598  0.01142023  0.01925548  0.01543914]</span>
+<span class="go"> [ 0.          0.0133691   0.00716768  0.01032375]</span>
+<span class="go"> [ 0.04677512  0.04188656  0.03148354  0.0372392 ]</span>
+<span class="go"> [ 0.          0.03594718  0.08099805  0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromDMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">5.62</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span>
+<span class="go">10</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -208,7 +237,7 @@ or/and the &#8216;mean&#8217; parameter.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 24, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

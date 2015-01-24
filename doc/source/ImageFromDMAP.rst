@@ -48,3 +48,10 @@ butools.dmap.ImageFromDMAP
     >>> ImageFromDMAP(D0,D1,'figure.pdf');
     >>> ImageFromDMAP(D0,D1);
 
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[0, 0.02, 0],[0, 0.17, 0.2],[0.16, 0.17, 0.24]])
+    >>> D1=ml.matrix([[0, 0.88, 0.1],[0.42, 0.07, 0.14],[0.13, 0.15, 0.15]])
+    >>> ImageFromDMAP(D0,D1,'figure.pdf')
+    >>> ImageFromDMAP(D0,D1)
+    

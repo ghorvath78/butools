@@ -55,3 +55,21 @@ butools.dmap.CheckDMAPRepresentation
     >>> CheckDMAPRepresentation(D0,D1)
              1
 
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[0, 0.02, 0],[0, 0.17, 0.2],[0.16, 0.17, 0.02]])
+    >>> D1=ml.matrix([[0, 0.88, 0.1, 0],[0.18, 0.07, 0.14, 0.1],[0.13, 0.15, 0.15, 0.04],[0.31, 0.18, 0.12, 0.27]])
+    >>> print(CheckDMAPRepresentation(D0,D1))
+    CheckDMAPRepresentation: D0 and D1 have different sizes!
+    False
+    >>> D0=ml.matrix([[0, 0.02, 0],[0, 0.17, 0.2],[0.16, 0.17, 0.02]])
+    >>> D1=ml.matrix([[0, 0.88, 0.1],[0.18, 0.07, 0.14],[0.13, 0.15, 0.15]])
+    >>> print(CheckDMAPRepresentation(D0,D1))
+    CheckDMAPRepresentation: The rowsum of D0+D1 is not 1!
+    False
+    >>> D0=ml.matrix([[0, 0.02, 0, 0],[0, 0.17, 0.2, 0.14],[0.16, 0.17, 0.02, 0.18],[0, 0, 0, 0.12]])
+    >>> D1=ml.matrix([[0, 0.88, 0.1, 0],[0.18, 0.07, 0.14, 0.1],[0.13, 0.15, 0.15, 0.04],[0.31, 0.18, 0.12, 0.27]])
+    >>> print(CheckDMAPRepresentation(D0,D1))
+    True
+
+    

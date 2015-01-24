@@ -52,3 +52,20 @@ butools.dmap.CanonicalFromDMAP2
     >>> dissimilarity = norm(H0*C-C*D0) + norm(H1*C-C*D1)
         1.551e-14
 
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[0.26, 0.28],[0.35, 0.23]])
+    >>> D1=ml.matrix([[0.28, 0.18],[0.14, 0.28]])
+    >>> [H0,H1]=CanonicalFromDMAP2(D0,D1)
+    >>> print(H0)
+    [[ 0.49        0.38874508]
+     [ 0.09826491  0.        ]]
+    >>> print(H1)
+    [[ 0.12125492  0.        ]
+     [ 0.46299001  0.43874508]]
+    >>> C=SimilarityMatrix(H0,D0)
+    >>> dissimilarity = la.norm(H0*C-C*D0) + la.norm(H1*C-C*D1)
+    >>> print(dissimilarity)
+    8.93193641585e-14
+
+    

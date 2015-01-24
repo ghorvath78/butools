@@ -54,4 +54,20 @@ butools.dmap.MarginalDistributionFromDRAP
             3.207       16.898       130.77       1347.1        17343
     >>> x = (1:10);
     >>> bar(x,PmfFromMG(a,A,x));
-
+    
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> [a,A]=MarginalDistributionFromDRAP(H0,H1)
+    >>> print(a)
+    [[ 0.02149305  0.71252719  0.26597976]]
+    >>> print(A)
+    [[ 0.    0.    0.13]
+     [ 0.    0.6   0.18]
+     [ 0.31  0.26  0.02]]
+    >>> print(MomentsFromMG(a,A))
+    [3.2070236684078202, 16.897636691953394, 130.77054574356021, 1347.0743893905096, 17343.182467560622]
+    >>> x = np.linspace(1,10,10)
+    >>> plt.bar(x,PmfFromMG(a,A,x))
+    

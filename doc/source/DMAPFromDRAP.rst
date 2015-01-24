@@ -66,3 +66,24 @@ butools.dmap.DMAPFromDRAP
     >>> error = norm(LagkJointMomentsFromDRAP(H0,H1,4,1)-LagkJointMomentsFromDMAP(D0,D1,4,1))
        1.1971e-08
     
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> print(CheckDMAPRepresentation(H0,H1))
+    >>> [D0,D1]=DMAPFromDRAP(H0,H1)
+    CheckDMAPRepresentation: One of the matrices has negative element!
+    False
+    >>> print(D0)
+    [[ 0.13782182  0.05941882  0.11896676]
+     [ 0.01119302  0.45679107  0.39466723]
+     [ 0.35307609  0.2799368   0.02538711]]
+    >>> print(D1)  
+    [[ 0.09145377  0.53680894  0.05552988]
+     [ 0.00597601  0.07746849  0.05390418]
+     [ 0.03150948  0.00901278  0.30107773]]
+    >>> print(CheckDMAPRepresentation(D0,D1))
+    True
+    >>> print(la.norm(LagkJointMomentsFromDRAP(D0,D1,4,1)-LagkJointMomentsFromDRAP(H0,H1,4,1)))
+    8.68475473209e-09
+    

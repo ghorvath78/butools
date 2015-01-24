@@ -70,4 +70,33 @@ butools.dmap.DMMAPFromDMRAP
     >>> rjmom=LagkJointMomentsFromDMMAP(D,3,1);
     >>> error = norm(rjmom{1}-jmom{1}) + norm(rjmom{2}-jmom{2})
         1.748e-13
-            
+
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[0.15, 0.2, 0.18],[-0.23, 0.17, 0.22],[0.19, 0.15, 0.16]])
+    >>> H1=ml.matrix([[0.01, 0.08, 0.16],[0.02, 0.2, 0.07],[0.02, 0.15, 0.17]])
+    >>> H2=ml.matrix([[0.14, 0.07, 0.01],[0.19, 0.02, 0.34],[0.06, 0.1, 0]])
+    >>> H=(H0,H1,H2)
+    >>> print(CheckDMMAPRepresentation(H))
+    CheckDMMAPRepresentation: Some of the matrices D1 . DM have negative elements!
+    False
+    >>> G=DMMAPFromDMRAP(H)
+    >>> print(G[0])
+    [[ 0.1938957   0.30016357  0.06930581]
+     [ 0.00362193  0.19802927  0.05257102]
+     [ 0.17332384  0.08210431  0.08807503]]
+    >>> print(G[1])
+    [[ 0.09378854  0.02312092  0.08708653]
+     [ 0.0389764   0.27630863  0.00115942]
+     [ 0.06692413  0.38832768  0.00990284]]
+    >>> print(G[2])
+    [[ 0.13483834  0.08530725  0.01249334]
+     [ 0.25689245  0.01182789  0.16061299]
+     [ 0.01252221  0.16548619  0.01333377]]
+    >>> print(CheckDMMAPRepresentation(G))
+    True
+    >>> jmom=LagkJointMomentsFromDMRAP(H,3,1)
+    >>> rjmom=LagkJointMomentsFromDMMAP(G,3,1)
+    >>> print(la.norm(rjmom[0]-jmom[0]) + la.norm(rjmom[1]-jmom[1]))
+    3.07346210369e-14
+

@@ -47,3 +47,11 @@ butools.dmap.LagCorrelationsFromDMAP
        -0.0047996
     >>> plot(LagCorrelationsFromDMAP(D0,D1,10));
 
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[0, 0.02, 0, 0],[0, 0.17, 0.2, 0.14],[0.16, 0.17, 0.02, 0.18],[0, 0, 0, 0.12]])
+    >>> D1=ml.matrix([[0, 0.88, 0.1, 0],[0.18, 0.07, 0.14, 0.1],[0.13, 0.15, 0.15, 0.04],[0.31, 0.18, 0.12, 0.27]])
+    >>> corr = LagCorrelationsFromDMAP(D0,D1,3)
+    >>> print(corr)
+    [-0.045858873104012689, 0.010753286512163932, -0.0047995959751940508]
+

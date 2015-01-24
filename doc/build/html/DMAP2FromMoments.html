@@ -163,6 +163,22 @@ followed by <a class="reference internal" href="CanonicalFromDMAP2.html#butools.
 <span class="go">  -0.00080286</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.1536</span><span class="p">,</span> <span class="mf">46.587</span><span class="p">,</span> <span class="mf">626.45</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.00080286</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="o">=</span><span class="n">DMAP2FromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">corr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
+<span class="go">[[ 0.29830828  0.65161096]</span>
+<span class="go"> [ 0.61594046  0.        ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
+<span class="go">[[ 0.05008076  0.        ]</span>
+<span class="go"> [ 0.24416514  0.13989441]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">[5.1536000000000604, 46.587000000000629, 626.45000000000846]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagCorrelationsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="go">-0.00080286</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -188,7 +204,7 @@ followed by <a class="reference internal" href="CanonicalFromDMAP2.html#butools.
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 24, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

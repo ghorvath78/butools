@@ -49,7 +49,6 @@ butools.dmap.CheckDRAPRepresentation
     >>> CheckDRAPRepresentation(H0,H1)
     CheckDRAPRepresentation: A rowsum of D0+D1 is not 1 (at precision 1e-14)!
          0
-
     >>> H0=[0 0 15; 0 0.6 0.18; 0.31 0.26 0.02];
     >>> H1=[0 1 -15; 0 0.18 0.04; 0.03 0.09 0.29];
     >>> CheckDRAPRepresentation(H0,H1)
@@ -64,4 +63,31 @@ butools.dmap.CheckDRAPRepresentation
     >>> H1=[0 1 -0.13; 0 0.18 0.04; 0.03 0.09 0.29];
     >>> CheckDRAPRepresentation(H0,H1)
          1
+
+    For Python/Numpy:
+    
+    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02],[0.2, 0, 0]])
+    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29],[0, 0.8, 0]])
+    >>> print(CheckDRAPRepresentation(H0,H1))
+    CheckDRAPRepresentation: D0 is not a quadratic matrix!
+    False
+    >>> H0=ml.matrix([[0.2, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> print(CheckDRAPRepresentation(H0,H1))
+    CheckDRAPRepresentation: A rowsum of D0+D1 is not 1!
+    False
+    >>> H0=ml.matrix([[0, 0, 15],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1=ml.matrix([[0, 1, -15],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> print(CheckDRAPRepresentation(H0,H1))
+    CheckDRAPRepresentation: The largest eigenvalue of matrix D0 is greater than 1!
+    False
+    >>> H0=ml.matrix([[0, 0.5, 0.1],[0, -1.4, 3.1],[0.67, 0, 0.4]])
+    >>> H1=ml.matrix([[0, 0.4, 0],[0, -0.2, -0.5],[0.3, -0.7, 0.33]])
+    >>> print(CheckDRAPRepresentation(H0,H1))
+    CheckDRAPRepresentation: The largest eigenvalue of matrix D0 is complex!
+    False
+    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> print(CheckDRAPRepresentation(H0,H1))
+    True
 

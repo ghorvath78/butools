@@ -45,3 +45,11 @@ butools.dmap.MarginalMomentsFromDRAP
     >>> MarginalMomentsFromDRAP(H0,H1)
             3.207       16.898       130.77       1347.1        17343
 
+    For Python/Numpy:
+
+    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> moms=MarginalMomentsFromDRAP(H0,H1)
+    >>> print(moms)
+    [3.2070236684078202, 16.897636691953394, 130.77054574356021, 1347.0743893905096, 17343.182467560622]
+

@@ -47,3 +47,13 @@ butools.dmap.SamplesFromDMAP
     >>> MarginalMomentsFromTrace(x,5)
        1.4958       2.9551        7.888       27.292       116.27
     
+    For Python/Numpy:
+    
+    >>> D0=ml.matrix([[0, 0.02, 0, 0],[0, 0.17, 0.2, 0.14],[0.16, 0.17, 0.02, 0.18],[0, 0, 0, 0.12]])
+    >>> D1=ml.matrix([[0, 0.88, 0.1, 0],[0.18, 0.07, 0.14, 0.1],[0.13, 0.15, 0.15, 0.04],[0.31, 0.18, 0.12, 0.27]])
+    >>> x=SamplesFromDMAP(D0,D1,100000)
+    >>> print(MarginalMomentsFromTrace(x,3))
+    [1.4984, 2.9738000000000002, 8.0096600000000002]
+    >>> print(MarginalMomentsFromDMAP(D0,D1,3))
+    [1.4955358592094412, 2.9542479654368474, 7.885226907678561]
+

@@ -169,6 +169,21 @@ starting from moment 0.</p>
 <span class="go">        3.207       16.898       130.77       1347.1</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">],[</span><span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],[</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="o">=</span><span class="n">LagkJointMomentsFromDRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">)</span>
+<span class="go">[[  1.00000000e+00   3.20702367e+00   1.68976367e+01   1.30770546e+02    1.34707439e+03]</span>
+<span class="go"> [  3.20702367e+00   1.03795811e+01   5.49648649e+01   4.26107199e+02    4.39132149e+03]</span>
+<span class="go"> [  1.68976367e+01   5.48429776e+01   2.90863052e+02   2.25605103e+03    2.32532721e+04]</span>
+<span class="go"> [  1.30770546e+02   4.24600661e+02   2.25239031e+03   1.74717611e+04    1.80086149e+05]</span>
+<span class="go"> [  1.34707439e+03   4.37393687e+03   2.32028367e+04   1.79984886e+05    1.85515486e+06]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span><span class="o">=</span><span class="n">MarginalMomentsFromDRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="go">[3.2070236684078202, 16.897636691953394, 130.77054574356021, 1347.0743893905096]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -194,7 +209,7 @@ starting from moment 0.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Jan 24, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
