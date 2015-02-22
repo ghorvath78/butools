@@ -40,4 +40,14 @@ butools.fitting.SquaredDifference
     >>> mAcf = LagCorrelationsFromMAP(D0, D1, 10, 1e-13);
     >>> SquaredDifference (mAcf, trAcf)
          0.023828
+    
+    For Python/Numpy:
+    
+    >>> tr = np.loadtxt('trace.txt')
+    >>> trAcf = LagCorrelationsFromTrace(tr[0:10000], 10)
+    >>> D0, D1 = MAPFromTrace(tr[0:10000],5)
+    >>> mAcf = LagCorrelationsFromMAP(D0, D1, 10, 1e-13)
+    >>> print(SquaredDifference (mAcf, trAcf))
+    0.0238340444119
+
          

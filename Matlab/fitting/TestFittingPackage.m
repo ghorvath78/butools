@@ -72,8 +72,8 @@ disp('--------------------------------------------------------------------------
     disp('Perform fitting: [alpha,A]=PHFromTrace(tr,5)');   
     [alpha,A]=PHFromTrace(tr,5)
     
-    [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
-    cdfPHY = CdfFromPH(alpha, A, cdfTrX);
+    [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds, 1e-12);
+    cdfPHY = CdfFromPH(alpha, A, cdfTrX, 1e-12);
 
     disp('Calculating pdf squared difference: sqPdf = EmpiricalSquaredDifference (pdfTrY, pdfPHY, intBounds)');
     sqPdf = EmpiricalSquaredDifference (pdfTrY, pdfPHY, intBounds)

@@ -42,3 +42,12 @@ butools.fitting.RelativeEntropy
     >>> RelativeEntropy (mAcf, trAcf)
           0.32132
     
+    For Python/Numpy:
+    
+    >>> tr = np.loadtxt('trace.txt')
+    >>> trAcf = LagCorrelationsFromTrace(tr[0:10000], 10)
+    >>> D0, D1 = MAPFromTrace(tr[0:10000],5)
+    >>> mAcf = LagCorrelationsFromMAP(D0, D1, 10, 1e-13)
+    >>> print(RelativeEntropy (mAcf, trAcf))
+    0.321362238531
+

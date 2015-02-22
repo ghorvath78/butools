@@ -50,5 +50,15 @@ butools.fitting.EmpiricalRelativeEntropy
     >>> [alpha,A]=PHFromTrace(tr,5)   
     >>> [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
     >>> EmpiricalRelativeEntropy (pdfTrY, pdfPHY, intBounds)
-          0.37827
+          0.35834
     
+    For Python/Numpy:
+    
+    >>> tr = np.loadtxt('trace.txt')
+    >>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr,1)[0]*4, 50)
+    >>> pdfTrX, pdfTrY = PdfFromTrace(tr,intBounds)
+    >>> [alpha,A]=PHFromTrace(tr,5)
+    >>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
+    >>> print(EmpiricalRelativeEntropy (pdfTrY, pdfPHY, intBounds))
+    0.358335256398
+

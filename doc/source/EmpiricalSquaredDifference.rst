@@ -50,5 +50,16 @@ butools.fitting.EmpiricalSquaredDifference
     >>> [alpha,A]=PHFromTrace(tr,5)   
     >>> [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
     >>> EmpiricalSquaredDifference (pdfTrY, pdfPHY, intBounds)
-        0.0090696
+        0.0079115
+    
+    For Python/Numpy:
+    
+    >>> tr = np.loadtxt('trace.txt')
+    >>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr,1)[0]*4, 50)
+    >>> pdfTrX, pdfTrY = PdfFromTrace(tr,intBounds)
+    >>> [alpha,A]=PHFromTrace(tr,5)
+    >>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
+    >>> print(EmpiricalSquaredDifference (pdfTrY, pdfPHY, intBounds))
+    0.00791151022468
+
     

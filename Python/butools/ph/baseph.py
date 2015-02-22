@@ -177,8 +177,8 @@ def IntervalPdfFromPH (alpha, A, intBounds, prec=1e-14):
         raise Exception("IntervalPdfFromPH: Input is not a valid PH representation!")
 
     steps = len(intBounds)
-    x = [(intBounds[i+1]+intBounds[i])/2.0 for i in range(steps-1)];
-    y = [(np.sum(alpha*expm(A*intBounds[i])) - np.sum(alpha*expm(A*intBounds[i+1])))/(intBounds[i+1]-intBounds[i]) for i in range(steps-1)]
+    x = [(intBounds[i+1]+intBounds[i])/2.0 for i in range(steps-1)]
+    y = [(np.sum(alpha*expm((A*intBounds[i]).A)) - np.sum(alpha*expm((A*intBounds[i+1]).A)))/(intBounds[i+1]-intBounds[i]) for i in range(steps-1)]
     return (np.array(x), np.array(y))
 
 def CdfFromME (alpha, A, x, prec=1e-14):
@@ -209,7 +209,7 @@ def CdfFromME (alpha, A, x, prec=1e-14):
     if butools.checkInput and not CheckMERepresentation (alpha, A, prec):
         raise Exception("CdfFromME: Input is not a valid ME representation!")
 
-    return np.array([1.0-np.sum(alpha*expm(A*xv)) for xv in x])
+    return np.array([1.0-np.sum(alpha*expm(A.A*xv)) for xv in x])
 
 def CdfFromPH (alpha, A, x, prec=1e-14):
     """

@@ -58,5 +58,20 @@ butools.fitting.LikelihoodFromTrace
            4.8496
     >>> corr1 = LagCorrelationsFromTrace(tr,1);
     >>> [D0,D1]=MAPFromFewMomentsAndCorrelations(moms,corr1)
-           4.9704
+    >>> LikelihoodFromTrace(tr,D0,D1)
+           4.6523    
+    
+    For Python/Numpy:
+    
+    >>> tr = np.loadtxt('trace.txt')
+    >>> moms = MarginalMomentsFromTrace(tr,3)
+    >>> alpha,A = APHFrom3Moments(moms)
+    >>> print(LikelihoodFromTrace(tr,alpha,A))
+    4.8496353019637972
+    >>> corr1 = LagCorrelationsFromTrace(tr,1)[0]
+    >>> D0,D1=MAPFromFewMomentsAndCorrelations(moms,corr1)
+    >>> LikelihoodFromTrace(tr,D0,D1)
+    4.652346100436191
+
+           
     

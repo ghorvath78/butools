@@ -165,7 +165,7 @@ def TestPHPackage ():
     [x,y] = IntervalPdfFromPH(a,A,x)
        
     assert np.all(y)>=0, "The interval pdf is negative!"
-    assert abs(dot(y,x)*0.002 - MomentsFromPH(a,A,1))<0.01, "The mean computed from the interval pdf does not match the theoretical result!"
+    assert abs(np.dot(y,x)*0.002 - MomentsFromPH(a,A,1))<0.01, "The mean computed from the interval pdf does not match the theoretical result!"
     
     print("--RandomPH--------------------------------------------------------------------------")
     

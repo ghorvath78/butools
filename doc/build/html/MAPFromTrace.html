@@ -115,7 +115,7 @@
 </tbody>
 </table>
 <p>Performs MAP fitting using the EM algorithm (ErCHMM,
-<a class="reference internal" href="#r20" id="id1">[R20]</a>, <a class="reference internal" href="#r21" id="id2">[R21]</a>).</p>
+<a class="reference internal" href="#r1" id="id1">[R1]</a>, <a class="reference internal" href="#r2" id="id2">[R2]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -190,20 +190,20 @@ mathematical frameworks. If the maximum speed is
 needed, please use the multi-core optimized c++
 implementation called <a class="reference external" href="https://bitbucket.org/ghorvath78/spemfit">SPEM-FIT</a>.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r20" rules="none">
+<table class="docutils citation" frame="void" id="r1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R20]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> Okamura, Hiroyuki, and Tadashi Dohi. Faster
+<tr><td class="label">[R1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> Okamura, Hiroyuki, and Tadashi Dohi. Faster
 maximum likelihood estimation algorithms for
 Markovian arrival processes. Quantitative
 Evaluation of Systems, 2009. QEST&#8216;09. Sixth
 International Conference on the. IEEE, 2009.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r21" rules="none">
+<table class="docutils citation" frame="void" id="r2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R21]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> Horváth, Gábor, and Hiroyuki Okamura. A Fast EM
+<tr><td class="label">[R2]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> Horváth, Gábor, and Hiroyuki Okamura. A Fast EM
 Algorithm for Fitting Marked Markovian Arrival
 Processes with a New Special Structure. Computer
 Performance Engineering. Springer Berlin
@@ -226,6 +226,23 @@ Heidelberg, 2013. 119-133.</td></tr>
 <span class="go">            0            0            0            0            0</span>
 <span class="go">            0            0            0            0            0</span>
 <span class="go">       42.647       96.944       886.57            0            0</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&#39;trace.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10000</span><span class="p">],</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
+<span class="go">[[  -83.42943389     0.             0.             0.             0.        ]</span>
+<span class="go"> [    0.          -718.67798921     0.             0.             0.        ]</span>
+<span class="go"> [    0.             0.         -1026.16062945  1026.16062945     0.        ]</span>
+<span class="go"> [    0.             0.             0.         -1026.16062945  1026.16062945]</span>
+<span class="go"> [    0.             0.             0.             0.         -1026.16062945]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
+<span class="go">[[  54.14857309    4.90186422   24.37899658    0.            0.        ]</span>
+<span class="go"> [   3.39151863  665.84734646   49.43912412    0.            0.        ]</span>
+<span class="go"> [   0.            0.            0.            0.            0.        ]</span>
+<span class="go"> [   0.            0.            0.            0.            0.        ]</span>
+<span class="go"> [  42.64730202   96.94396094  886.5693665     0.            0.        ]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -253,7 +270,7 @@ Heidelberg, 2013. 119-133.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Feb 22, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
