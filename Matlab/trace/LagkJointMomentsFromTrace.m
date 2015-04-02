@@ -22,10 +22,10 @@
 function Nm = LagkJointMomentsFromTrace (trace, K, L)
     
     if nargin<3
-        K = 3;
+        L = 1;
     end
     if nargin<2
-        L = 1;
+        K = 3;
     end
     
     Nm = zeros(K,K);
