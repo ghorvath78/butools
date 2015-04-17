@@ -17,7 +17,7 @@
 %      'obs': observability, 
 %      'cont': controllability,
 %      'obscont': the minimum of observability and 
-%          controllability order,
+%      controllability order,
 %      'moment': moment order (which is the default).
 %  precision : double, optional
 %     Precision used by the Staircase algorithm. The default

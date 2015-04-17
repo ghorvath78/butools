@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">[pi0,</span> <span class="pre">R]</span> <span class="pre">=</span> <span class="pre">QBDSolve</span> <span class="pre">(B,</span> <span class="pre">L,</span> <span class="pre">F,</span> <span class="pre">L0)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">[pi0,</span> <span class="pre">R]</span> <span class="pre">=</span> <span class="pre">QBDSolve</span> <span class="pre">(B,</span> <span class="pre">L,</span> <span class="pre">F,</span> <span class="pre">L0,</span> <span class="pre">prec)</span></tt></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">{pi0,</span> <span class="pre">R}</span> <span class="pre">=</span> <span class="pre">QBDSolve</span> <span class="pre">[B,</span> <span class="pre">L,</span> <span class="pre">F,</span> <span class="pre">L0]</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">{pi0,</span> <span class="pre">R}</span> <span class="pre">=</span> <span class="pre">QBDSolve</span> <span class="pre">[B,</span> <span class="pre">L,</span> <span class="pre">F,</span> <span class="pre">L0,</span> <span class="pre">prec]</span></tt></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">pi0,</span> <span class="pre">R</span> <span class="pre">=</span> <span class="pre">QBDSolve</span> <span class="pre">(B,</span> <span class="pre">L,</span> <span class="pre">F,</span> <span class="pre">L0)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi0,</span> <span class="pre">R</span> <span class="pre">=</span> <span class="pre">QBDSolve</span> <span class="pre">(B,</span> <span class="pre">L,</span> <span class="pre">F,</span> <span class="pre">L0,</span> <span class="pre">prec)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -136,10 +136,15 @@ the stationary solution can be obtained by</p>
 <blockquote>
 <div><p>The matrix corresponding to forward transitions</p>
 </div></blockquote>
-<p><strong>L</strong> : matrix, shape (N,N)</p>
+<p><strong>L0</strong> : matrix, shape (N,N)</p>
 <blockquote>
 <div><p>The matrix corresponding to local transitions at
 level zero</p>
+</div></blockquote>
+<p><strong>precision</strong> : double, optional</p>
+<blockquote>
+<div><p>The fundamental matrix R is computed up to this
+precision. The default value is 1e-14</p>
 </div></blockquote>
 </td>
 </tr>
@@ -174,6 +179,23 @@ distribution of the QBD</p>
 <span class="go">     0.094781     0.048638</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pi0</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">QBDSolve</span> <span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pi0</span><span class="p">)</span>
+<span class="go">[[ 0.22992392  0.18681319]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="go">[[ 0.27838828  0.14285714]</span>
+<span class="go"> [ 0.55677656  0.28571429]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pi0</span><span class="o">*</span><span class="n">R</span><span class="p">)</span>
+<span class="go">[[ 0.16802133  0.08622147]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pi0</span><span class="o">*</span><span class="n">R</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[[ 0.09478126  0.04863775]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -199,7 +221,7 @@ distribution of the QBD</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Apr 17, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

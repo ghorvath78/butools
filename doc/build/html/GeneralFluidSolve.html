@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">[mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo]</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">(Q,</span> <span class="pre">R,</span> <span class="pre">Q0)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">[mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo]</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">(Q,</span> <span class="pre">R,</span> <span class="pre">Q0,</span> <span class="pre">prec)</span></tt></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">{mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo}</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">[Q,</span> <span class="pre">R,</span> <span class="pre">Q0]</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">{mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo}</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">[Q,</span> <span class="pre">R,</span> <span class="pre">Q0,</span> <span class="pre">prec]</span></tt></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">(Q,</span> <span class="pre">R,</span> <span class="pre">Q0)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">mass0,</span> <span class="pre">ini,</span> <span class="pre">K,</span> <span class="pre">clo</span> <span class="pre">=</span> <span class="pre">GeneralFluidSolve</span> <span class="pre">(Q,</span> <span class="pre">R,</span> <span class="pre">Q0,</span> <span class="pre">prec)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -146,6 +146,11 @@ with the different states of the background process</p>
 <div><p>The generator of the background Markov chain at
 level 0. If not provided, or empty, then Q0=Q is
 assumed. The default value is empty.</p>
+</div></blockquote>
+<p><strong>precision</strong> : double, optional</p>
+<blockquote>
+<div><p>Numerical precision for computing the fundamental
+matrix and for checking. The default value is 1e-14</p>
 </div></blockquote>
 </td>
 </tr>
@@ -187,7 +192,29 @@ assumed. The default value is empty.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">emptyprob</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mass0</span><span class="p">)</span>
 <span class="go">      0.19628</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">densityat1</span> <span class="o">=</span> <span class="n">ini</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">clo</span>
-<span class="go">  0.40402      0.17384      0.14099      0.37455      0.10052      0.08351</span>
+<span class="go">     0.098961     0.027218     0.022577     0.045517      0.01383     0.011405</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mass0</span><span class="p">,</span><span class="n">ini</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">clo</span><span class="o">=</span><span class="n">GeneralFluidSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">R</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mass0</span><span class="p">)</span>
+<span class="go">[[ 0.          0.08224613  0.0694924   0.          0.02381248  0.02072428]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ini</span><span class="p">)</span>
+<span class="go">[[ 0.70195397  0.20504772]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="go">[[-2.46975215  1.1348626 ]</span>
+<span class="go"> [ 1.29501774 -1.16863056]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">clo</span><span class="p">)</span>
+<span class="go">[[ 0.5         0.06108742  0.05457444  0.          0.01617979  0.01259463]</span>
+<span class="go"> [ 0.          0.05538938  0.04311605  0.16666667  0.03891262  0.03263124]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">emptyprob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mass0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">emptyprob</span><span class="p">)</span>
+<span class="go">0.196275290213</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">densityat1</span> <span class="o">=</span> <span class="n">ini</span><span class="o">*</span><span class="n">la</span><span class="o">.</span><span class="n">expm</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">clo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">densityat1</span><span class="p">)</span>
+<span class="go">[[ 0.09896148  0.0272177   0.02257673  0.04551746  0.01382957  0.01140451]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -215,7 +242,7 @@ assumed. The default value is empty.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Apr 17, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

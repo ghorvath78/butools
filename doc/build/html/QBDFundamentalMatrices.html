@@ -110,7 +110,7 @@
 <td><tt class="code docutils literal"><span class="pre">M</span> <span class="pre">=</span> <span class="pre">QBDFundamentalMatrices[xxx]</span></tt></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">M</span> <span class="pre">=</span> <span class="pre">QBDFundamentalMatrices(xxx)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">M</span> <span class="pre">=</span> <span class="pre">QBDFundamentalMatrices(B,</span> <span class="pre">L,</span> <span class="pre">F,</span> <span class="pre">matrices,</span> <span class="pre">precision,</span> <span class="pre">maxNumIt,</span> <span class="pre">method)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -205,6 +205,22 @@ Markov chains (p. 14). ACM.</td></tr>
 <span class="go">       3.8571      -10.857</span>
 </pre></div>
 </div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">QBDFundamentalMatrices</span> <span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="s">&quot;RGU&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="go">[[ 0.27838828  0.14285714]</span>
+<span class="go"> [ 0.55677656  0.28571429]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="go">[[ 0.42857143  0.57142857]</span>
+<span class="go"> [ 0.42857143  0.57142857]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="go">[[ -5.57142857   5.57142857]</span>
+<span class="go"> [  3.85714286 -10.85714286]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -230,7 +246,7 @@ Markov chains (p. 14). ACM.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Apr 17, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

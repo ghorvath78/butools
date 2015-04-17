@@ -180,6 +180,51 @@ def MG1TypeShifts (A, shiftType):
     return (hatA,drift,tau,v)
 
 def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", maxNumRoot=2048, shiftType="one"):
+    """
+    Returns matrix G corresponding to the M/G/1 type Markov
+    chain given by matrices A.
+    
+    Matrix G is the minimal non-negative solution of the 
+    following matrix equation:
+    
+    .. math::
+        G = A_0 + A_1 G + A_2 G^2 + A_3 G^3 + \dots.
+    
+    The implementation is based on [1]_, please cite it if
+    you use this method.
+    
+    Parameters
+    ----------
+    A : matrix, shape (N,M*N)
+        Matrix blocks of the M/G/1 type generator from
+        0 to M-1, concatenated horizontally.
+    precision : double, optional
+        Matrix G is computed iteratively up to this
+        precision. The default value is 1e-14
+    maxNumIt : int, optional
+        The maximal number of iterations. The default value
+        is 50.
+    method : {"CR", "RR", "NI", "FI", "IS"}, optional
+        The method used to solve the matrix-quadratic
+        equation (CR: cyclic reduction, RR: Ramaswami
+        reduction, NI: Newton iteration, FI: functional
+        iteration, IS: invariant subspace method). The 
+        default is "CR".
+    
+    Returns
+    -------
+    G : matrix, shape (N,N)
+        The G matrix of the M/G/1 type Markov chain.
+        (G is stochastic.)
+    
+    References
+    ----------
+    .. [1] Bini, D. A., Meini, B., Steffé, S., Van Houdt,
+           B. (2006, October). Structured Markov chains 
+           solver: software tools. In Proceeding from the
+           2006 workshop on Tools for solving structured 
+           Markov chains (p. 14). ACM.
+    """
 
     if not isinstance(A,np.ndarray):
         D = np.hstack(A)
@@ -396,6 +441,30 @@ def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", m
     return G
     
 def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
+    """
+    Returns the stationary distribution of the M/G/1 type
+    Markov chain up to a given level K.
+    
+    Parameters
+    ----------
+    A : matrix, shape (N,M*N)
+        Matrix blocks of the M/G/1 type generator in the
+        regular part, from 0 to M-1, concatenated 
+        horizontally.
+    B : matrix, shape (N,M*N)
+        Matrix blocks of the M/G/1 type generator at the
+        boundary, from 0 to M-1, concatenated horizontally.
+    G : matrix, shape (N,N)
+        Matrix G of the M/G/1 type Markov chain
+    K : integer
+        The stationary distribution is returned up to
+        this level.
+    
+    Returns
+    -------
+    pi : matrix, shape (1,(K+1)*N)
+        The stationary probability vector up to level K
+    """
 
     A = np.hstack(A)
     m = A.shape[0]
@@ -496,6 +565,50 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
 
 
 def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", dual="R", maxNumRoot=2048, shiftType="one"):
+    """
+    Returns matrix R corresponding to the G/M/1 type Markov
+    chain given by matrices A.
+    
+    Matrix R is the minimal non-negative solution of the 
+    following matrix equation:
+    
+    .. math::
+        R = A_0 + R A_1 + R^2 A_2 + R^3 A_3 + \dots.
+    
+    The implementation is based on [1]_, please cite it if
+    you use this method.
+    
+    Parameters
+    ----------
+    A : matrix, shape (N,M*N)
+        Matrix blocks of the G/M/1 type generator from
+        0 to M-1, concatenated horizontally.
+    precision : double, optional
+        Matrix R is computed iteratively up to this
+        precision. The default value is 1e-14
+    maxNumIt : int, optional
+        The maximal number of iterations. The default value
+        is 50.
+    method : {"CR", "RR", "NI", "FI", "IS"}, optional
+        The method used to solve the matrix-quadratic
+        equation (CR: cyclic reduction, RR: Ramaswami
+        reduction, NI: Newton iteration, FI: functional
+        iteration, IS: invariant subspace method). The 
+        default is "CR".
+    
+    Returns
+    -------
+    R : matrix, shape (N,N)
+        The R matrix of the G/M/1 type Markov chain.
+    
+    References
+    ----------
+    .. [1] Bini, D. A., Meini, B., Steffé, S., Van Houdt,
+           B. (2006, October). Structured Markov chains 
+           solver: software tools. In Proceeding from the
+           2006 workshop on Tools for solving structured 
+           Markov chains (p. 14). ACM.
+    """
 
     A = np.hstack(A)
     m = A.shape[0]
@@ -542,6 +655,30 @@ def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", d
         return Diag(1.0/theta) * G.T * Diag(theta) * eta
 
 def GM1StationaryDistr (B, R, K, prec=1e-14):
+    """
+    Returns the stationary distribution of the G/M/1 type
+    Markov chain up to a given level K.
+    
+    Parameters
+    ----------
+    A : matrix, shape (N,M*N)
+        Matrix blocks of the G/M/1 type generator in the
+        regular part, from 0 to M-1, concatenated 
+        horizontally.
+    B : matrix, shape (N,M*N)
+        Matrix blocks of the G/M/1 type generator at the
+        boundary, from 0 to M-1, concatenated horizontally.
+    R : matrix, shape (N,N)
+        Matrix R of the G/M/1 type Markov chain
+    K : integer
+        The stationary distribution is returned up to
+        this level.
+    
+    Returns
+    -------
+    pi : matrix, shape (1,(K+1)*N)
+        The stationary probability vector up to level K
+    """
 
     if not isinstance(B,np.ndarray):
         B = np.vstack(B)

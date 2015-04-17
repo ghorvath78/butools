@@ -15,6 +15,29 @@ import numpy.matlib as ml
 from numpy.random import rand
 
 def SamplesFromDPH (a,A,k,prec=1e-14):
+    """
+    Generates random samples from a discrete phase-type 
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        The initial probability vector of the discrete phase-
+        type distribution.
+    A : matrix, shape (M,M)
+        The transition probability  matrix of the discrete phase-
+        type distribution.
+    K : integer
+        The number of samples to generate.
+    prec : double, optional
+        Numerical precision to check if the input phase-type
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    x : vector, length(K)
+        The vector of random samples
+    """
 
     if butools.checkInput and not CheckDPHRepresentation(a,A,prec):
         raise Exception("SamplesFromDPH: input is not a valid DPH representation!")
@@ -52,6 +75,33 @@ def SamplesFromDPH (a,A,k,prec=1e-14):
     return x
     
 def ImageFromDPH(alpha,A,outFileName=None,prec=1e-13):
+    """
+    Depicts the given discrete phase-type distribution,
+    and either displays it or saves it to file.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        The initial probability vector of the discrete phase-
+        type distribution.
+    A : matrix, shape (M,M)
+        The transition probability  matrix of the discrete phase-
+        type distribution.
+    outFileName : string, optional
+        If it is not provided, or equals to 'display', the
+        image is displayed on the screen, otherwise it is 
+        written to the file. The file format is deduced 
+        from the file name.
+    prec : double, optional
+        Transition probabilities less then prec are 
+        considered to be zero and are left out from the 
+        image. The default value is 1e-13.
+    
+    Notes
+    -----
+    The 'graphviz' software must be installed and available
+    in the path to use this feature.
+    """
 
     if outFileName==None or outFileName=="display":
         outputFile = ".result.png"

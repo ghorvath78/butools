@@ -13,6 +13,26 @@ import scipy.linalg as la
 
 
 def CheckDPHRepresentation (alpha, A, prec=1e-14):
+    """
+    Checks if the given vector and matrix define a valid 
+    discrete phase-type representation.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        Initial vector of the phase-type distribution to check
+    A : matrix, shape (M,M)
+        Transient generator of the phase-type distribution to
+        check
+    prec : double, optional
+        Numerical precision. The default value is 1e-14.
+    
+    Returns
+    -------
+    r : bool
+        True, if vector alpha is a probability vector and matrix
+        A is substochastic, and they have the same size.
+    """
 
     if len(alpha.shape)<2:
         if butools.verbose:
@@ -30,6 +50,34 @@ def CheckDPHRepresentation (alpha, A, prec=1e-14):
     return True
 
 def CheckMGRepresentation (alpha, A, prec=1e-14):
+    """
+    Checks if the given vector and matrix define a valid matrix-
+    geometric representation.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        Initial vector of the matrix-geometric distribution 
+        to check
+    A : matrix, shape (M,M)
+        Matrix parameter of the matrix-geometric distribution
+        to check
+    prec : double, optional
+        Numerical precision. The default value is 1e-14.
+    
+    Returns
+    -------
+    r : bool
+        True, if the matrix is a square matrix, the vector and 
+        the matrix have the same size, the dominant eigenvalue
+        is positive, less than 1 and real. 
+    
+    Notes
+    -----
+    This procedure does not check the positivity of the density!
+    The discrete counterpart of 'CheckMEPositiveDensity' does
+    not exist yet (research is needed).
+    """
 
     if len(alpha.shape)<2:
         if butools.verbose:

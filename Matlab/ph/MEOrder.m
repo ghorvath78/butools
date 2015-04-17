@@ -16,7 +16,7 @@
 %      'obs': observability, 
 %      'cont': controllability,
 %      'obscont': the minimum of observability and 
-%          controllability order,
+%      controllability order,
 %      'moment': moment order (which is the default).
 %  prec : double, optional
 %      Precision used to detect if the determinant of the 

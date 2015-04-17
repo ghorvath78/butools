@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">GM1StationaryDistr</span> <span class="pre">(A,</span> <span class="pre">B,</span> <span class="pre">R,</span> <span class="pre">K)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">GM1StationaryDistr</span> <span class="pre">(B,</span> <span class="pre">R,</span> <span class="pre">K)</span></tt></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">GM1StationaryDistr</span> <span class="pre">[A,</span> <span class="pre">B,</span> <span class="pre">R,</span> <span class="pre">K]</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">GM1StationaryDistr</span> <span class="pre">[B,</span> <span class="pre">R,</span> <span class="pre">K]</span></tt></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">GM1StationaryDistr</span> <span class="pre">(A,</span> <span class="pre">B,</span> <span class="pre">R,</span> <span class="pre">K)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">GM1StationaryDistr</span> <span class="pre">(B,</span> <span class="pre">R,</span> <span class="pre">K)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -156,20 +156,43 @@ this level.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">;</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">;</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">;</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">A0</span><span class="p">,</span><span class="n">A1</span><span class="p">,</span><span class="n">A2</span><span class="p">,</span><span class="n">A3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">A0</span><span class="p">,</span><span class="n">A1</span><span class="p">,</span><span class="n">A2</span><span class="p">,</span><span class="n">A3</span><span class="p">,</span><span class="n">A4</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">B0</span><span class="p">,</span><span class="n">B1</span><span class="p">,</span><span class="n">B2</span><span class="p">,</span><span class="n">B3</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">GM1FundamentalMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span> <span class="o">=</span> <span class="n">GM1StationaryDistr</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">      0.43907      0.43403</span>
+<span class="go">   0.5152      0.35773</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>
-<span class="go">     0.044441     0.066373</span>
+<span class="go">  0.05209     0.058853</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span>
-<span class="go">    0.0045117    0.0095383</span>
+<span class="go">    0.0052815    0.0088014</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">B0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B3</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A3</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A4</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="n">B0</span><span class="p">,</span><span class="n">B1</span><span class="p">,</span><span class="n">B2</span><span class="p">,</span><span class="n">B3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">A0</span><span class="p">,</span><span class="n">A1</span><span class="p">,</span><span class="n">A2</span><span class="p">,</span><span class="n">A3</span><span class="p">,</span><span class="n">A4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">GM1FundamentalMatrix</span> <span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span> <span class="o">=</span> <span class="n">GM1StationaryDistr</span> <span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">[[ 0.51519712  0.35773254]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+<span class="go">[[ 0.05208979  0.05885256]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pi</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+<span class="go">[[ 0.00528148  0.0088014 ]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -197,7 +220,7 @@ this level.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Nov 23, 2014.
+      Last updated on Apr 17, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

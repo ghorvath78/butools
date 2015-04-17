@@ -1,4 +1,4 @@
-%  [pi0, R] = QBDSolve (B, L, F, L0)
+%  [pi0, R] = QBDSolve (B, L, F, L0, prec)
 %  
 %  Returns the parameters of the matrix-geometrically 
 %  distributed stationary distribution of a QBD.
@@ -17,9 +17,12 @@
 %      The matrix corresponding to local transitions
 %  F : matrix, shape (N,N)
 %      The matrix corresponding to forward transitions
-%  L : matrix, shape (N,N)
+%  L0 : matrix, shape (N,N)
 %      The matrix corresponding to local transitions at
 %      level zero
+%  precision : double, optional
+%      The fundamental matrix R is computed up to this
+%      precision. The default value is 1e-14
 %  
 %  Returns
 %  -------

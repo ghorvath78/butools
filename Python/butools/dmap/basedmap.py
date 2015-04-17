@@ -16,6 +16,29 @@ from butools.mc import DTMCSolve, DRPSolve
 from butools.dmap import CheckDRAPRepresentation, CheckDMAPRepresentation, CheckDMRAPRepresentation, CheckDMMAPRepresentation
 
 def MarginalDistributionFromDRAP (H0, H1, prec=1e-14):
+    """
+    Returns the matrix geometrically distributed marginal 
+    distribution of a discrete rational arrival process.
+    
+    Parameters
+    ----------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the discrete rational arrival process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the discrete rational arrival process
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    alpha : matrix, shape (1,M)
+        The initial vector of the matrix geometrically
+        distributed marginal distribution
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix geometrically
+        distributed marginal distribution    
+    """
 
     if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
         raise Exception("MarginalDistributionFromDRAP: Input is not a valid DRAP representation!")    
@@ -23,6 +46,29 @@ def MarginalDistributionFromDRAP (H0, H1, prec=1e-14):
     return (DRPSolve(la.inv(ml.eye(H0.shape[0])-H0)*H1, prec), H0)
 
 def MarginalDistributionFromDMAP (D0, D1, prec=1e-14):
+    """
+    Returns the discrete phase type distributed marginal 
+    distribution of a discrete Markovian arrival process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the discrete Markovian arrival process
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the discrete Markovian arrival process
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    alpha : matrix, shape (1,M)
+        The initial probability vector of the discrete phase 
+        type distributed marginal distribution
+    A : matrix, shape (M,M)
+        The transient generator of the discrete phase type 
+        distributed marginal distribution    
+    """
 
     if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
         raise Exception("MarginalDistributionFromDMAP: Input is not a valid DMAP representation!")    
@@ -30,6 +76,28 @@ def MarginalDistributionFromDMAP (D0, D1, prec=1e-14):
     return MarginalDistributionFromDRAP (D0, D1, prec)
 
 def MarginalDistributionFromDMRAP (H, prec=1e-14):
+    """
+    Returns the matrix geometrically distributed marginal 
+    distribution of a discrete marked rational arrival 
+    process.
+    
+    Parameters
+    ----------
+    H : list/cell of matrices of shape(M,M), length(N)
+        The H0...HN matrices of the DMRAP
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    alpha : matrix, shape (1,M)
+        The initial vector of the matrix geometrically
+        distributed marginal distribution
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix geometrically
+        distributed marginal distribution    
+    """
 
     if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
         raise Exception("MarginalDistributionFromDMRAP: Input is not a valid DMRAP representation!")    
@@ -37,6 +105,28 @@ def MarginalDistributionFromDMRAP (H, prec=1e-14):
     return (DRPSolve(la.inv(ml.eye(H[0].shape[0])-H[0])*SumMatrixList(H[1:]), prec), H[0])
 
 def MarginalDistributionFromDMMAP (D, prec=1e-14):
+    """
+    Returns the discrete phase type distributed marginal 
+    distribution of a discrete marked Markovian arrival 
+    process.
+    
+    Parameters
+    ----------
+    D : list/cell of matrices of shape(M,M), length(N)
+        The D0...DN matrices of the DMMAP
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    alpha : matrix, shape (1,M)
+        The initial probability vector of the discrete phase 
+        type distributed marginal distribution
+    A : matrix, shape (M,M)
+        The transient generator of the discrete phase type 
+        distributed marginal distribution    
+    """
 
     if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
         raise Exception("MarginalDistributionFromDMMAP: Input is not a valid DMMAP representation!")    
@@ -46,6 +136,28 @@ def MarginalDistributionFromDMMAP (D, prec=1e-14):
 from butools.dph import MomentsFromDPH, MomentsFromMG
 
 def MarginalMomentsFromDRAP (H0, H1, K=0, prec=1e-14):
+    """
+    Returns the moments of the marginal distribution of a 
+    discrete rational arrival process.
+    
+    Parameters
+    ----------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the discrete rational arrival process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the discrete rational arrival process
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments
+        are computed. The default value is K=0.
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    moms : row vector of doubles, length K
+        The vector of moments.
+    """
 
     if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
         raise Exception("MarginalMomentsFromDRAP: Input is not a valid DRAP representation!")    
@@ -54,6 +166,28 @@ def MarginalMomentsFromDRAP (H0, H1, K=0, prec=1e-14):
     return MomentsFromMG(alpha,A,K,prec)
 
 def MarginalMomentsFromDMAP (D0, D1, K=0, prec=1e-14):
+    """
+    Returns the moments of the marginal distribution of a 
+    discrete Markovian arrival process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the discrete Markovian arrival process
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the discrete Markovian arrival process
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments
+        are computed. The default value is K=0.
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    moms : row vector of doubles, length K
+        The vector of moments.
+    """
 
     if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
         raise Exception("MarginalMomentsFromDMAP: Input is not a valid DMAP representation!")    
@@ -62,6 +196,26 @@ def MarginalMomentsFromDMAP (D0, D1, K=0, prec=1e-14):
     return MomentsFromDPH(alpha,A,K,prec)
     
 def MarginalMomentsFromDMRAP (H, K=0, prec=1e-14):
+    """
+    Returns the moments of the marginal distribution of a 
+    discrete marked rational arrival process.
+    
+    Parameters
+    ----------
+    H : list/cell of matrices of shape(M,M), length(N)
+        The H0...HN matrices of the DMRAP
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments
+        are computed. The default value is K=0.
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    moms : row vector of doubles, length K
+        The vector of moments.
+    """
 
     if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
         raise Exception("MarginalMomentsFromDMRAP: Input is not a valid DMRAP representation!")    
@@ -70,6 +224,26 @@ def MarginalMomentsFromDMRAP (H, K=0, prec=1e-14):
     return MomentsFromMG(alpha,A,K,prec)
 
 def MarginalMomentsFromDMMAP (D, K=0, prec=1e-14):
+    """
+    Returns the moments of the marginal distribution of a 
+    discrete marked Markovian arrival process.
+    
+    Parameters
+    ----------
+    D : list/cell of matrices of shape(M,M), length(N)
+        The D0...DN matrices of the DMMAP
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments
+        are computed. The default value is K=0.
+    precision : double, optional
+        Numerical precision for checking if the input is valid.
+        The default value is 1e-14
+    
+    Returns
+    -------
+    moms : row vector of doubles, length K
+        The vector of moments.
+    """
 
     if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
         raise Exception("MarginalMomentsFromDMMAP: Input is not a valid DMMAP representation!")    
@@ -78,6 +252,28 @@ def MarginalMomentsFromDMMAP (D, K=0, prec=1e-14):
     return MomentsFromDPH(alpha,A,K,prec)
 
 def LagCorrelationsFromDRAP (H0, H1, L=1, prec=1e-14):
+    """
+    Returns the lag autocorrelations of a discrete rational 
+    arrival process.
+    
+    Parameters
+    ----------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the discrete rational arrival process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the discrete rational arrival process
+    L : double, optional
+        The number of lags to compute. The default value is 1
+    prec : double, optional
+        Numerical precision to check if the input is valid. 
+        The default value is 1e-14
+    
+    Returns
+    -------
+    acf : column vector of doubles, length (L)
+        The lag autocorrelation function up to lag L
+        
+    """
 
     if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
         raise Exception("LagCorrelationsFromDRAP: Input is not a valid DRAP representation!")    
@@ -98,6 +294,28 @@ def LagCorrelationsFromDRAP (H0, H1, L=1, prec=1e-14):
         return corr[0]
 
 def LagCorrelationsFromDMAP (D0, D1, L=1, prec=1e-14):
+    """
+    Returns the lag autocorrelations of a discrete Markovian 
+    arrival process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the discrete Markovian arrival process
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the discrete Markovian arrival process
+    L : double, optional
+        The number of lags to compute. The default value is 1
+    prec : double, optional
+        Numerical precision to check if the input is valid. 
+        The default value is 1e-14
+    
+    Returns
+    -------
+    acf : column vector of doubles, length (L)
+        The lag autocorrelation function up to lag L
+        
+    """
 
     if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
         raise Exception("LagCorrelationsFromDMAP: Input is not a valid DMAP representation!")    
@@ -105,6 +323,31 @@ def LagCorrelationsFromDMAP (D0, D1, L=1, prec=1e-14):
     return LagCorrelationsFromDRAP (D0, D1, L, prec)
 
 def LagkJointMomentsFromDMRAP (H, K=0, L=1, prec=1e-14):
+    """
+    Returns the lag-L joint moments of a discrete marked 
+    rational arrival process.
+    
+    Parameters
+    ----------
+    H : list/cell of matrices of shape(M,M), length(N)
+        The H0...HN matrices of the DMRAP to check
+    K : int, optional
+        The dimension of the matrix of joint moments to 
+        compute. If K=0, the MxM joint moments will be 
+        computed. The default value is 0
+    L : int, optional
+        The lag at which the joint moments are computed.
+        The default value is 1
+    prec : double, optional
+        Numerical precision to check if the input is valid. 
+        The default value is 1e-14
+    
+    Returns
+    -------
+    Nm : list/cell of matrices of shape(K+1,K+1), length(L)
+        The matrices containing the lag-L joint moments,
+        starting from moment 0.
+    """
 
     if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
         raise Exception("LagkJointMomentsFromDMRAP: Input is not a valid DMRAP representation!")    
@@ -142,6 +385,31 @@ def LagkJointMomentsFromDMRAP (H, K=0, L=1, prec=1e-14):
     return Nm
 
 def LagkJointMomentsFromDMMAP (D, K=0, L=1, prec=1e-14):
+    """
+    Returns the lag-L joint moments of a discrete marked 
+    Markovian arrival process.
+    
+    Parameters
+    ----------
+    D : list/cell of matrices of shape(M,M), length(N)
+        The D0...DN matrices of the DMMAP to check
+    K : int, optional
+        The dimension of the matrix of joint moments to 
+        compute. If K=0, the MxM joint moments will be 
+        computed. The default value is 0
+    L : int, optional
+        The lag at which the joint moments are computed.
+        The default value is 1
+    prec : double, optional
+        Numerical precision to check if the input is valid. 
+        The default value is 1e-14
+    
+    Returns
+    -------
+    Nm : list/cell of matrices of shape(K+1,K+1), length(L)
+        The matrices containing the lag-L joint moments,
+        starting from moment 0.
+    """
 
     if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
         raise Exception("LagkJointMomentsFromDMMAP: Input is not a valid DMMAP representation!")    
@@ -150,6 +418,33 @@ def LagkJointMomentsFromDMMAP (D, K=0, L=1, prec=1e-14):
 
     
 def LagkJointMomentsFromDRAP (H0, H1, K=0, L=1, prec=1e-14):
+    """
+    Returns the lag-L joint moments of a discrete rational 
+    arrival process.
+    
+    Parameters
+    ----------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the discrete rational arrival process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the discrete rational arrival process
+    K : int, optional
+        The dimension of the matrix of joint moments to 
+        compute. If K=0, the MxM joint moments will be 
+        computed. The default value is 0
+    L : int, optional
+        The lag at which the joint moments are computed.
+        The default value is 1
+    prec : double, optional
+        Numerical precision to check if the input is valid. 
+        The default value is 1e-14
+    
+    Returns
+    -------
+    Nm : matrix, shape(K+1,K+1)
+        The matrix containing the lag-L joint moments, 
+        starting from moment 0.
+    """
 
     if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
         raise Exception("LagkJointMomentsFromDRAP: Input is not a valid DRAP representation!")    
@@ -157,6 +452,33 @@ def LagkJointMomentsFromDRAP (H0, H1, K=0, L=1, prec=1e-14):
     return LagkJointMomentsFromDMRAP((H0,H1), K, L, prec)[0]
 
 def LagkJointMomentsFromDMAP (D0, D1, K=0, L=1, prec=1e-14):
+    """
+    Returns the lag-L joint moments of a discrete Markovian 
+    arrival process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the discrete Markovian arrival process
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the discrete Markovian arrival process
+    K : int, optional
+        The dimension of the matrix of joint moments to 
+        compute. If K=0, the MxM joint moments will be 
+        computed. The default value is 0
+    L : int, optional
+        The lag at which the joint moments are computed.
+        The default value is 1
+    prec : double, optional
+        Numerical precision to check if the input is valid. 
+        The default value is 1e-14
+    
+    Returns
+    -------
+    Nm : matrix, shape(K+1,K+1)
+        The matrix containing the lag-L joint moments, 
+        starting from moment 0.
+    """
 
     if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
         raise Exception("LagkJointMomentsFromDMAP: Input is not a valid DMAP representation!")    
@@ -164,6 +486,37 @@ def LagkJointMomentsFromDMAP (D0, D1, K=0, L=1, prec=1e-14):
     return LagkJointMomentsFromDRAP(D0, D1, K, L, prec)
     
 def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+    """
+    Returns a random discrete Markovian arrival process.
+    
+    Parameters
+    ----------
+    order : int
+        The size of the DMAP
+    mean : double, optional
+        The mean inter-arrival times of the DMMAP
+    types : int
+        The number of different arrival types
+    zeroEntries : int, optional
+        The number of zero entries in the D0 and D1 matrices
+    maxTrials : int, optional
+        The maximum number of trials to find a proper DMMAP 
+        (that has an irreducible phase process and none of 
+        its parameters is all-zero)
+    prec : double, optional
+        Numerical precision for checking the irreducibility.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    D : list/cell of matrices of shape(M,M), length(types+1)
+        The D0...Dtypes matrices of the DMMAP 
+    
+    Notes
+    -----
+    If it fails, try to increase the 'maxTrials' parameter,
+    or/and the 'mean' parameter.
+    """
 
     # distribute the zero entries among the rows
     def allZeroDistr (states, zeros):
@@ -251,5 +604,36 @@ def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-
     raise Exception("No feasible random DMAP/DMMAP found with such many zero entries! Try to increase the maxTrials parameter!")
 
 def RandomDMAP (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+    """
+    Returns a random disctere Markovian arrival process.
+    
+    Parameters
+    ----------
+    order : int
+        The size of the DMAP
+    mean : double, optional
+        The mean inter-arrival times of the DMAP
+    zeroEntries : int, optional
+        The number of zero entries in the D0 and D1 matrices
+    maxTrials : int, optional
+        The maximum number of trials to find a proper DMAP 
+        (that has an irreducible phase process and none of 
+        its parameters is all-zero)
+    prec : double, optional
+        Numerical precision for checking the irreducibility.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    D0 : vector, shape (1,M)
+        The D0 matrix of the DMAP
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the DMAP
+    
+    Notes
+    -----
+    If it fails, try to increase the 'maxTrials' parameter,
+    or/and the 'mean' parameter.
+    """
     
     return RandomDMMAP (order, 1, mean, zeroEntries, maxTrials, prec)

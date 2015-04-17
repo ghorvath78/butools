@@ -13,6 +13,52 @@ from butools.mc import CTMCSolve
 from butools.utils import Diag, Linsolve
 
 def FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision=1e-14, maxNumIt=50, method="CR"):
+    """
+    Returns the fundamental matrices corresponding to the
+    given canonical Markov fluid model. Matrices Psi, K and
+    U are returned depending on the "matrices" parameter.
+    
+    Parameters
+    ----------
+    Fpp : matrix, shape (Np,Np)
+        The matrix of transition rates between states 
+        having positive fluid rates
+    Fpm : matrix, shape (Np,Nm)
+        The matrix of transition rates where the source
+        state has a positive, the destination has a 
+        negative fluid rate associated.
+    Fpm : matrix, shape (Nm,Np)
+        The matrix of transition rates where the source
+        state has a negative, the destination has a 
+        positive fluid rate associated.
+    Fpp : matrix, shape (Nm,Nm)
+        The matrix of transition rates between states 
+        having negative fluid rates
+    matrices : string
+        Specifies which matrices are required. 'P' means 
+        that only matrix Psi is needed. 'UK' means that
+        matrices U and K are needed. Any combinations of
+        'P', 'K' and 'U' are allowed, in any order.
+    precision : double, optional
+        The matrices are computed iteratively up to this
+        precision. The default value is 1e-14
+    maxNumIt : int, optional
+        The maximal number of iterations. The default value
+        is 50.
+    method : {"CR", "ADDA", "SDA"}, optional
+        The method used to solve the algebraic Riccati
+        equation (CR: cyclic reduction, ADDA: alternating-
+        directional doubling algorithm, SDA: structured
+        doubling algorithm). The default is "CR".
+    
+    Returns
+    -------
+    M : list of matrices
+        The list of calculated matrices in the order as
+        requested in the 'matrices' parameter. If a single
+        matrix is requested, the return value will be the
+        matrix itself instead of a list.
+    """
 
     if method=="CR":
         F = np.bmat ([[Fpp,Fpm],[Fmp,Fmm]])
@@ -104,6 +150,55 @@ def FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision=1e-14, max
         return ret                   
     
 def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
+    """
+    Returns the parameters of the matrix-exponentially 
+    distributed stationary distribution of a canonical 
+    Markovian fluid model
+    
+    Using the returned 4 parameters the stationary
+    solution can be obtained as follows.
+    
+    The probability that the fluid level is zero while 
+    being in different states of the background process
+    is given by vector mass0.
+    
+    The density that the fluid level is x while being in
+    different states of the background process is
+    
+    .. math::
+        \pi(x)=ini\cdot e^{K x}\cdot clo.    
+    
+    Parameters
+    ----------
+    Fpp : matrix, shape (Np,Np)
+        The matrix of transition rates between states 
+        having positive fluid rates
+    Fpm : matrix, shape (Np,Nm)
+        The matrix of transition rates where the source
+        state has a positive, the destination has a 
+        negative fluid rate associated.
+    Fpm : matrix, shape (Nm,Np)
+        The matrix of transition rates where the source
+        state has a negative, the destination has a 
+        positive fluid rate associated.
+    Fpp : matrix, shape (Nm,Nm)
+        The matrix of transition rates between states 
+        having negative fluid rates
+    precision : double, optional
+        Numerical precision for computing the fundamental
+        matrix and for checking. The default value is 1e-14
+    
+    Returns
+    -------
+    mass0 : matrix, shape (1,Np+Nm)
+        The stationary probability vector of zero level
+    ini : matrix, shape (1,Np)
+        The initial vector of the stationary density
+    K : matrix, shape (Np,Np)
+        The matrix parameter of the stationary density
+    clo : matrix, shape (Np,Np+Nm)
+        The closing matrix of the stationary density
+    """
     
     Psi, K, U = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, "PKU", prec/100)
     
@@ -113,6 +208,52 @@ def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
     return mass0/nr, mass0*Fmp/nr, K, ml.hstack((ml.eye(Fpp.shape[0]), Psi))
 
 def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
+    """
+    Returns the parameters of the matrix-exponentially 
+    distributed stationary distribution of a general 
+    Markovian fluid model, where the fluid rates associated
+    with the states of the background process can be
+    arbitrary (zero is allowed as well).
+    
+    Using the returned 4 parameters the stationary
+    solution can be obtained as follows.
+    
+    The probability that the fluid level is zero while 
+    being in different states of the background process
+    is given by vector mass0.
+    
+    The density that the fluid level is x while being in
+    different states of the background process is
+    
+    .. math::
+        \pi(x)=ini\cdot e^{K x}\cdot clo.    
+    
+    Parameters
+    ----------
+    Q : matrix, shape (N,N)
+        The generator of the background Markov chain
+    R : diagonal matrix, shape (N,N)
+        The diagonal matrix of the fluid rates associated
+        with the different states of the background process
+    Q0 : matrix, shape (N,N), optional
+        The generator of the background Markov chain at 
+        level 0. If not provided, or empty, then Q0=Q is 
+        assumed. The default value is empty.
+    precision : double, optional
+        Numerical precision for computing the fundamental
+        matrix and for checking. The default value is 1e-14
+    
+    Returns
+    -------
+    mass0 : matrix, shape (1,Np+Nm)
+        The stationary probability vector of zero level
+    ini : matrix, shape (1,Np)
+        The initial vector of the stationary density
+    K : matrix, shape (Np,Np)
+        The matrix parameter of the stationary density
+    clo : matrix, shape (Np,Np+Nm)
+        The closing matrix of the stationary density
+    """
     
     N = Q.shape[0]
     # partition the state space according to zero, positive and negative fluid rates
@@ -172,6 +313,31 @@ def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
     return mass0, ini, K, clo
 
 def FluidStationaryDistr (mass0, ini, K, clo, x):
+    """
+    Returns the stationary distribution of a Markovian 
+    fluid model at the given points.
+    
+    Parameters
+    ----------
+    mass0 : matrix, shape (1,Np+Nm)
+        The stationary probability vector of zero level
+    ini : matrix, shape (1,Np)
+        The initial vector of the stationary density
+    K : matrix, shape (Np,Np)
+        The matrix parameter of the stationary density
+    clo : matrix, shape (Np,Np+Nm)
+        The closing matrix of the stationary density
+    x : vector, length (K)
+        The distribution function is computed at these 
+        points.
+    
+    Returns
+    -------
+    pi : matrix, shape (K,Nm+Np)
+        The ith row of pi is the probability that the fluid
+        level is less than or equal to x(i), while being in
+        different states of the background process.
+    """
 
     m = clo.shape[1]
     y = ml.empty((len(x),m))

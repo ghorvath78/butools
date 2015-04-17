@@ -1,4 +1,4 @@
-%  [mass0, ini, K, clo] = GeneralFluidSolve (Q, R, Q0)
+%  [mass0, ini, K, clo] = GeneralFluidSolve (Q, R, Q0, prec)
 %  
 %  Returns the parameters of the matrix-exponentially 
 %  distributed stationary distribution of a general 
@@ -30,6 +30,9 @@
 %      The generator of the background Markov chain at 
 %      level 0. If not provided, or empty, then Q0=Q is 
 %      assumed. The default value is empty.
+%  precision : double, optional
+%      Numerical precision for computing the fundamental
+%      matrix and for checking. The default value is 1e-14
 %  
 %  Returns
 %  -------

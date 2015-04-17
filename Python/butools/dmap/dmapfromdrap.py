@@ -13,6 +13,31 @@ from butools.reptrans import FindMarkovianRepresentation
 from butools.dmap import CheckDRAPRepresentation, CheckDMRAPRepresentation
 
 def DMMAPFromDMRAP (H, prec=1e-14):
+    """
+    Obtains a Markovian representation of a discrete rational
+    arrival process of the same size, if possible, using the
+    procedure published in [1]_.
+    
+    Parameters
+    ----------
+    H : list/cell of matrices of shape(M,M), length(N)
+        The H0...HN matrices of the DMRAP to transform
+    precision : double, optional
+        A representation is considered to be a Markovian one
+        if it is closer to it than this precision
+    
+    Returns
+    -------
+    D : list/cell of matrices of shape(M,M), length(N)
+        The D0...DN matrices of the DMMAP (if found)
+    
+    References
+    ----------
+    .. [1] András Horváth, Gábor Horváth, Miklós Telek, "A 
+           traffic based decomposition of two-class queueing 
+           networks with priority service". COMPUTER NETWORKS 
+           53:(8) pp. 1235-1248. (2009)
+    """
 
     if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
         raise Exception("DMMAPFromDMRAP: Input is not a valid DMRAP representation!")    
@@ -36,6 +61,35 @@ def DMMAPFromDMRAP (H, prec=1e-14):
     return FindMarkovianRepresentation (H, transfun, evalfun, prec)
 
 def DMAPFromDRAP (H0, H1, prec=1e-14):
+    """
+    Obtains a Markovian representation of a discrete rational
+    arrival process of the same size, if possible, using the
+    procedure published in [1]_.
+    
+    Parameters
+    ----------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the discrete rational arrival process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the discrete rational arrival process
+    precision : double, optional
+        A representation is considered to be a Markovian one
+        if it is closer to it than this precision
+    
+    Returns
+    -------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the discrete Markovian arrival process
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the discrete Markovian arrival process
+    
+    References
+    ----------
+    .. [1] G Horvath, M Telek, "A minimal representation of 
+           Markov arrival processes and a moments matching 
+           method," Performance Evaluation 64:(9-12) pp. 
+           1153-1168. (2007)       
+    """
 
     if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
         raise Exception("DMAPFromDRAP: Input is not a valid DRAP representation!")    

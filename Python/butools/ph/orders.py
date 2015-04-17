@@ -69,7 +69,7 @@ def MEOrder (alpha, A, kind="moment", prec=1e-10):
         'obs': observability, 
         'cont': controllability,
         'obscont': the minimum of observability and 
-            controllability order,
+        controllability order,
         'moment': moment order (which is the default).
     prec : double, optional
         Precision used to detect if the determinant of the 
@@ -134,7 +134,7 @@ def MinimalRepFromME (alpha, A, how="moment", precision=1e-12):
         'obs': observability, 
         'cont': controllability,
         'obscont': the minimum of observability and 
-            controllability order,
+        controllability order,
         'moment': moment order (which is the default).
     precision : double, optional
        Precision used by the Staircase algorithm. The default

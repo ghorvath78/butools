@@ -6,6 +6,39 @@ import scipy.linalg as la
 import numpy.matlib as ml
 
 def AcyclicDPHFromMG (alpha, A, maxSize=100, precision=1e-14):
+    """
+    Transforms a matrix-geometric representation to an acyclic
+    DPH representation of the same size, if possible.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,N)
+        Initial vector of the distribution
+    A : matrix, shape (N,N)
+        Matrix parameter of the distribution
+    precision : double, optional
+        Vector and matrix entries smaller than the precision
+        are considered to be zeros. The default value is 1e-14.
+    
+    Returns
+    -------
+    beta : matrix, shape (1,M)
+        The initial probability vector of the acyclic discrete
+        phase-type representation
+    B : matrix, shape (M,M)
+        Transition probability matrix of the acyclic discrete
+        phase-type representation
+    
+    Notes
+    -----
+    Contrary to 'AcyclicPHFromME' of the 'ph' package, this 
+    procedure is not able to extend the size in order to obtain
+    a Markovian initial vector.
+    
+    Raises an error if A has complex eigenvalues. In this case
+    the transformation to an acyclic representation is not 
+    possible
+    """
 
     if butools.checkInput and not CheckMGRepresentation(alpha,A,precision):
         raise Exception("AcyclicDPHFromMG: input is not a valid MG representation!")

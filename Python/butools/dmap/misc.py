@@ -15,6 +15,27 @@ from butools.utils import SumMatrixList
 
 
 def SamplesFromDMMAP (D, k, initial=None, prec=1e-14):
+    """
+    Generates random samples from a discrete marked 
+    Markovian arrival process.
+    
+    Parameters
+    ----------
+    D : list of matrices of shape(M,M), length(N)
+        The D0...DN matrices of the DMMAP
+    K : integer
+        The number of samples to generate.
+    prec : double, optional
+        Numerical precision to check if the input DMMAP is
+        valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    x : matrix, shape(K,2)
+        The random samples. Each row consists of two 
+        columns: the (discrete) inter-arrival time and the
+        type of the arrival.        
+    """
 
     if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
         raise Exception("SamplesFromDMMAP: Input is not a valid DMMAP representation!")    
@@ -67,6 +88,27 @@ def SamplesFromDMMAP (D, k, initial=None, prec=1e-14):
     return x
 
 def SamplesFromDMAP (D0, D1, k, initial=None, prec=1e-14):
+    """
+    Generates random samples from a discrete Markovian 
+    arrival process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the discrete MAP.
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the discrete MAP.
+    K : integer
+        The number of samples to generate.
+    prec : double, optional
+        Numerical precision to check if the input DMAP is
+        valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    x : vector, length(K)
+        The vector of random samples (inter-arrival times).
+    """
 
     if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
         raise Exception("SamplesFromDMAP: Input is not a valid DMAP representation!")    
@@ -78,6 +120,29 @@ import os.path
 from subprocess import call
 
 def ImageFromDMMAP (D, outFileName="display", prec=1e-13):
+    """
+    Depicts the given discrete marked Markovian arrival
+    process, and either displays it or saves it to file.
+    
+    Parameters
+    ----------
+    D : list of matrices of shape(M,M), length(N)
+        The D0...DN matrices of the DMMAP
+    outFileName : string, optional
+        If it is not provided, or equals to 'display', the
+        image is displayed on the screen, otherwise it is 
+        written to the file. The file format is deduced 
+        from the file name.
+    prec : double, optional
+        Transition probabilities less then prec are 
+        considered to be zero and are left out from the 
+        image. The default value is 1e-13.
+    
+    Notes
+    -----
+    The 'graphviz' software must be installed and available
+    in the path to use this feature.
+    """
 
     if outFileName=="display":
         outputFile = ".result.png"
@@ -127,5 +192,30 @@ def ImageFromDMMAP (D, outFileName="display", prec=1e-13):
         return i
 
 def ImageFromDMAP (D0, D1, outFileName="display", prec=1e-13):
+    """
+    Depicts the given discrete Markovian arrival process,
+    and either displays it or saves it to file.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (M,M)
+        The D0 matrix of the discrete MAP.
+    D1 : matrix, shape (M,M)
+        The D1 matrix of the discrete MAP.
+    outFileName : string, optional
+        If it is not provided, or equals to 'display', the
+        image is displayed on the screen, otherwise it is 
+        written to the file. The file format is deduced 
+        from the file name.
+    prec : double, optional
+        Transition probabilities less then prec are 
+        considered to be zero and are left out from the 
+        image. The default value is 1e-13.
+    
+    Notes
+    -----
+    The 'graphviz' software must be installed and available
+    in the path to use this feature.
+    """
 
     return ImageFromDMMAP((D0,D1),outFileName,prec)

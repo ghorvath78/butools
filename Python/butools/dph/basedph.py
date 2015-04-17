@@ -10,6 +10,31 @@ from butools.utils import Diag
 
 
 def MomentsFromMG (alpha, A, K=0, prec=1e-14):
+    """
+    Returns the first K moments of a matrix geometric 
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial vector of the matrix-geometric distribution.
+        The sum of the entries of alpha is less or equal to 1.
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix-geometric 
+        distribution.
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments are
+        computed. The default value is 0.
+    prec : double, optional
+        Numerical precision for checking the input.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    moms : row vector of doubles
+        The vector of moments.
+        
+    """
 
     if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
         raise Exception("MomentsFromMG: Input is not a valid MG representation!")
@@ -21,6 +46,32 @@ def MomentsFromMG (alpha, A, K=0, prec=1e-14):
     return MomsFromFactorialMoms([math.factorial(i)*np.sum(alpha*Ai**i*A**(i-1)) for i in range(1,K+1)])
 
 def MomentsFromDPH (alpha, A, K=0, prec=1e-14):
+    """
+    Returns the first K moments of a discrete phase-type
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial probability vector of the discrete phase-
+        type distribution. The sum of the entries of pi0 is 
+        less or equal to 1.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the discrete phase-
+        type distribution.
+    K : int, optional
+        Number of moments to compute. If K=0, 2*M-1 moments
+        are computed. The default value is 0.
+    prec : double, optional
+        Numerical precision for checking the input.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    moms : row vector of doubles
+        The vector of moments.
+        
+    """
 
     if butools.checkInput and not CheckDPHRepresentation (alpha, A, prec):
         raise Exception("MomentsFromDPH: Input is not a valid DPH representation!")
@@ -28,6 +79,33 @@ def MomentsFromDPH (alpha, A, K=0, prec=1e-14):
     return MomentsFromMG (alpha, A, K)
 
 def PmfFromMG (alpha, A, x, prec=1e-14):
+    """
+    Returns the probability mass function of a matrix-
+    geometric distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial vector of the matrix-geometric
+        distribution. The sum of the entries of pi0 is less
+        or equal to 1.
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix-geometric
+        distribution.
+    x : vector of non-negative integers
+        The density function will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input MG 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    pmf : column vector of doubles
+        The probabilities that the matrix-geometrically 
+        distributed random variable takes the corresponding "x"
+        values
+        
+    """
 
     if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
         raise Exception("PmfFromMG: Input is not a valid MG representation!")
@@ -42,6 +120,33 @@ def PmfFromMG (alpha, A, x, prec=1e-14):
     return y
 
 def PmfFromDPH (alpha, A, x, prec=1e-14):
+    """
+    Returns the probability mass function of a discrete
+    phase-type distribution.
+    
+    Parameters
+    ----------
+    alpha : vector, shape (1,M)
+        The initial probability vector of the discrete phase-
+        type distribution. The sum of the entries of pi0 is
+        less or equal to 1.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the discrete phase-
+        type distribution.
+    x : vector of non-negative integers
+        The density function will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input DPH 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    pmf : column vector of doubles
+        The probabilities that the discrete phase type
+        distributed random variable takes the corresponding
+        "x" values
+        
+    """
 
     if butools.checkInput and not CheckDPHRepresentation (alpha, A, prec):
         raise Exception("PmfFromDPH: Input is not a valid DPH representation!")
@@ -49,6 +154,31 @@ def PmfFromDPH (alpha, A, x, prec=1e-14):
     return PmfFromMG (alpha, A, x)
 
 def CdfFromMG (alpha, A, x, prec=1e-14):
+    """
+    Returns the cummulative distribution function of a 
+    matrix-geometric distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        The initial vector of the matrix-geometric distribution.
+    A : matrix, shape (M,M)
+        The matrix parameter of the matrix-geometric 
+        distribution.
+    x : vector of non-negative integers
+        The density function will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input MG 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    cdf : column vector of doubles
+        The probabilities that the matrix-geometrically 
+        distributed random variable is less or equal to
+        the corresponding "x" values
+        
+    """
 
     if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
         raise Exception("CdfFromMG: Input is not a valid MG representation!")
@@ -59,6 +189,32 @@ def CdfFromMG (alpha, A, x, prec=1e-14):
     return y
 
 def CdfFromDPH (alpha, A, x, prec=1e-14):
+    """
+    Returns the cummulative distribution function of a 
+    discrete phase-type distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,M)
+        The initial probability vector of the discrete phase-
+        type distribution.
+    A : matrix, shape (M,M)
+        The transition probability  matrix of the discrete phase-
+        type distribution.
+    x : vector of non-negative integers
+        The cdf will be computed at these points
+    prec : double, optional
+        Numerical precision to check if the input DPH 
+        distribution is valid. The default value is 1e-14.
+    
+    Returns
+    -------
+    cdf : column vector of doubles
+        The probabilities that the discrete phase type 
+        distributed random variable is less or equal to the
+        corresponding "x" values
+        
+    """
 
     if butools.checkInput and not CheckDPHRepresentation (alpha, A, prec):
         raise Exception("CdfFromDPH: Input is not a valid DPH representation!")
@@ -66,6 +222,42 @@ def CdfFromDPH (alpha, A, x, prec=1e-14):
     return CdfFromMG (alpha, A, x)
 
 def RandomDPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+    """
+    Returns a random discrete phase-type distribution with a 
+    given mean value.
+    
+    Parameters
+    ----------
+    order : int
+        The size of the discrete phase-type distribution
+    mean : double, optional
+        The mean of the discrete phase-type distribution 
+    zeroEntries : int, optional
+        The number of zero entries in the initial vector, 
+        generator matrix and closing vector
+    maxTrials : int, optional
+        The maximum number of trials to find a proper DPH 
+        (that has an irreducible phase process and none of 
+        its parameters is all-zero). The default value is 
+        1000.
+    prec : double, optional
+        Numerical precision for checking the irreducibility.
+        The default value is 1e-14.
+    
+    Returns
+    -------
+    alpha : vector, shape (1,M)
+        The initial probability vector of the phase-type 
+        distribution.
+    A : matrix, shape (M,M)
+        The transient generator matrix of the phase-type 
+        distribution.
+    
+    Notes
+    -----
+    If the procedure fails, try to increase the 'maxTrials'
+    parameter, or increase the mean value.
+    """
 
     if zeroEntries > (order+1)*(order-1):
         raise Exception ("RandomDPH: Too many zero entries requested! Try to decrease the zero entries number!")

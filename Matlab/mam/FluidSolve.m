@@ -1,4 +1,4 @@
-%  [mass0, ini, K, clo] = FluidSolve (Fpp, Fpm, Fmp, Fmm)
+%  [mass0, ini, K, clo] = FluidSolve (Fpp, Fpm, Fmp, Fmm, prec)
 %  
 %  Returns the parameters of the matrix-exponentially 
 %  distributed stationary distribution of a canonical 
@@ -33,6 +33,9 @@
 %  Fpp : matrix, shape (Nm,Nm)
 %      The matrix of transition rates between states 
 %      having negative fluid rates
+%  precision : double, optional
+%      Numerical precision for computing the fundamental
+%      matrix and for checking. The default value is 1e-14
 %  
 %  Returns
 %  -------

@@ -16,7 +16,7 @@
 %  
 %  Returns
 %  -------
-%  pi : matrix, shape (1,(K+1)*N)
+%  pi : matrix, shape (K+1,N)
 %      The stationary probability vector up to level K
 
 function pi = QBDStationaryDistr (pi0, R, K)

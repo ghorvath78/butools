@@ -17,6 +17,35 @@ from butools.dph import MGFromMoments
 from butools.dmap import CheckDMAPRepresentation
 
 def DMRAPFromMoments (moms, Nm):
+    """
+    Creates a discrete marked rational arrival process that
+    has the same marginal and lag-1 joint moments as given 
+    (see [1]_).
+    
+    Parameters
+    ----------
+    moms : vector of doubles
+        The list of marginal moments. To obtain a discrete 
+        marked rational process of order M, 2*M-1 marginal 
+        moments are required.
+    Nm : list of matrices, shape (M,M)
+        The list of lag-1 joint moment matrices. The 
+        length of the list determines K, the number of arrival 
+        types of the discrete rational process.
+    
+    Returns
+    -------
+    H : list of matrices, shape (M,M)
+        The H0, H1, ..., HK matrices of the discrete marked
+        rational process
+    
+    References
+    ----------
+    .. [1] Andras Horvath, Gabor Horvath, Miklos Telek, "A 
+           traffic based decomposition of two-class queueing
+           networks with priority service," Computer Networks 
+           53:(8) pp. 1235-1248. (2009)
+    """
 
     v, H0 = MGFromMoments (moms)
     H0i = la.inv(ml.eye(H0.shape[0])-H0)
@@ -46,10 +75,58 @@ def DMRAPFromMoments (moms, Nm):
     return H
 
 def DRAPFromMoments (moms, Nm):
+    """
+    Creates a discrete rational arrival process that has the 
+    same marginal and lag-1 joint moments as given (see [1]_).
+    
+    Parameters
+    ----------
+    moms : vector of doubles
+        The list of marginal moments. To obtain a rational 
+        process of order M, 2*M-1 marginal moments are 
+        required.
+    Nm : matrix, shape (M,M)
+        The matrix of lag-1 joint moments. 
+    
+    Returns
+    -------
+    H0 : matrix, shape (M,M)
+        The H0 matrix of the discrete rational process
+    H1 : matrix, shape (M,M)
+        The H1 matrix of the discrete rational process
+    
+    References
+    ----------
+    .. [1] G Horvath, M Telek, "A minimal representation of 
+           Markov arrival processes and a moments matching 
+           method," Performance Evaluation 64:(9-12) pp. 
+           1153-1168. (2007)       
+    """
 
     return DMRAPFromMoments (moms, [Nm])
     
 def CanonicalFromDMAP2 (D0, D1, prec=1e-14):
+    """
+    Returns the canonical form of an order-2 discrete Markovian
+    arrival process.
+    
+    Parameters
+    ----------
+    D0 : matrix, shape (2,2)
+        The D0 matrix of the DMAP(2)
+    D1 : matrix, shape (2,2)
+        The D1 matrix of the DMAP(2)
+    prec : double, optional
+        Numerical precision to check the input, default 
+        value is 1e-14
+    
+    Returns
+    -------
+    G0 : matrix, shape (1,2)
+        The D0 matrix of the canonical DMAP(2)
+    G1 : matrix, shape (2,2)
+        The D1 matrix of the canonical DMAP(2)
+    """
 
     if butools.checkInput:
         if D0.shape[0]!=2:
@@ -100,6 +177,31 @@ def CanonicalFromDMAP2 (D0, D1, prec=1e-14):
     return (G0, G1)
 
 def DMAP2FromMoments (moms, corr1, prec=1e-14):
+    """
+    Returns a discrete MAP(2) which has the same 3 marginal
+    moments and lag-1 autocorrelation as given.
+    
+    Parameters
+    ----------
+    moms : vector, length(3)
+        First three marginal moments of the inter-arrival times
+    corr1 : double
+        The lag-1 autocorrelation of the inter-arrival times
+    
+    Returns
+    -------
+    D0 : matrix, shape (2,2)
+        The D0 matrix of the discrete MAP(2)
+    D1 : matrix, shape (2,2)
+        The D1 matrix of the discrete MAP(2)
+    
+    Notes
+    -----
+    Raises an exception if the moments are not feasible with
+    a DMAP(2). This procedure calls :func:`butools.dmap.DRAPFromMoments`
+    followed by :func:`butools.dmap.CanonicalFromDMAP2`.
+       
+    """
 
     Nm = ml.matrix([[1, moms[0]],[moms[0], corr1*(moms[1]-moms[0]**2)+moms[0]**2]])
     

@@ -13,6 +13,79 @@ import sys
 from IPython.display import clear_output
 
 def MAPFromTrace (trace, orders, maxIter=200, stopCond=1e-7, initial=None, result="matmat", retlogli=False):
+    """
+    Performs MAP fitting using the EM algorithm (ErCHMM, 
+    [1]_, [2]_).
+    
+    Parameters
+    ----------
+    trace : column vector, length K
+        The samples of the trace
+    orders : list of int, length(N), or int
+        The length of the list determines the number of 
+        Erlang branches to use in the fitting method.
+        The entries of the list are the orders of the 
+        Erlang distributions. If this parameter is a 
+        single integer, all possible branch number - order
+        combinations are tested where the total number of 
+        states is "orders".
+    maxIter : int, optional
+        Maximum number of iterations. The default value is
+        200
+    stopCond : double, optional
+        The algorithm stops if the relative improvement of
+        the log likelihood falls below stopCond. The 
+        default value is 1e-7
+    initial : tuple of a vector and a matrix, shape(N,N), optional
+        The rate parameters of the Erlang distributions 
+        and the branch transition probability matrix to be
+        used initially. If not given, a default initial 
+        guess is determined and the algorithm starts from 
+        there.
+    result : {"vecmat", "matmat"}, optional
+        The result can be returned two ways. If "matmat" is
+        selected, the result is returned in the classical
+        representation of MAPs, thus the D0 and D1 matrices.
+        If "vecmat" is selected, the rate parameters of the
+        Erlang branches and the branch transition probability
+        matrix are returned. The default value is "matmat"
+    
+    Returns
+    -------
+    (D0, D1) : tuple of matrix, shape (M,M) and matrix, shape (M,M)
+        If the "matmat" result format is chosen, the function
+        returns the D0 and D1 matrices of the MAP
+    (lambda, P) : tuple of vector, length N and matrix, shape (M,M)
+        If the "vecmat" result format is chosen, the function
+        returns the vector of the Erlang rate parameters of 
+        the branches and the branch transition probability 
+        matrix
+    logli : double
+        The log-likelihood divided by the trace length
+        
+    Notes
+    -----
+    This procedure is quite slow in the supported 
+    mathematical frameworks. If the maximum speed is
+    needed, please use the multi-core optimized c++
+    implementation called SPEM-FIT_.
+    
+    .. _SPEM-FIT: https://bitbucket.org/ghorvath78/spemfit
+    
+    References
+    ----------
+    .. [1] Okamura, Hiroyuki, and Tadashi Dohi. Faster 
+           maximum likelihood estimation algorithms for 
+           Markovian arrival processes. Quantitative 
+           Evaluation of Systems, 2009. QEST'09. Sixth 
+           International Conference on the. IEEE, 2009.
+    
+    .. [2] Horváth, Gábor, and Hiroyuki Okamura. A Fast EM
+           Algorithm for Fitting Marked Markovian Arrival 
+           Processes with a New Special Structure. Computer
+           Performance Engineering. Springer Berlin 
+           Heidelberg, 2013. 119-133.
+    """
     
     def allorders (branches, sumorders):
         if branches==1:

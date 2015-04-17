@@ -6,6 +6,28 @@ from butools.ph import CanonicalFromPH3
 import scipy.linalg as la
 
 def CanonicalFromDPH2 (alpha,A,prec=1e-14):
+    """
+    Returns the canonical form of an order-2 discrete phase-type 
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,2)
+        Initial vector of the discrete phase-type distribution
+    A : matrix, shape (2,2)
+        Transition probability matrix of the discrete phase-type
+        distribution
+    prec : double, optional
+      Numerical precision for checking the input, default value
+      is 1e-14
+    
+    Returns
+    -------
+    beta : matrix, shape (1,2)
+      The initial probability vector of the canonical form
+    B : matrix, shape (2,2)
+      Transition probability matrix of the canonical form
+    """
 
     if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
         raise Exception("CanonicalFromDPH2: Input is not a valid DPH representation!")
@@ -36,6 +58,28 @@ def CanonicalFromDPH2 (alpha,A,prec=1e-14):
     return (np.real(beta),np.real(B))
 
 def CanonicalFromDPH3 (alpha,A,prec=1e-14):
+    """
+    Returns the canonical form of an order-3 discrete phase-type 
+    distribution.
+    
+    Parameters
+    ----------
+    alpha : matrix, shape (1,3)
+        Initial vector of the discrete phase-type distribution
+    A : matrix, shape (3,3)
+        Transition probability matrix of the discrete phase-type
+        distribution
+    prec : double, optional
+      Numerical precision for checking the input, default value
+      is 1e-14
+    
+    Returns
+    -------
+    beta : matrix, shape (1,3)
+      The initial probability vector of the canonical form
+    B : matrix, shape (3,3)
+      Transition probability matrix of the canonical form
+    """
    
     if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
         raise Exception("CanonicalFromDPH3: Input is not a valid DPH representation!")
@@ -160,11 +204,63 @@ def firstInitElem(m33,sortEigs,alpha,A):
     return (a1,m1,m2,m3,B)
     
 def DPH2From3Moments (moms, prec=1e-14):
+    """
+    Returns an order-2 discrete phase-type distribution 
+    which has the same 3 moments as given.
+    
+    Parameters
+    ----------
+    moms : vector of doubles, length(3)
+      The moments to match
+    prec : double, optional
+      Numerical precision, default value is 1e-14
+    
+    Returns
+    -------
+    alpha : matrix, shape (1,2)
+      The initial probability vector of the DPH(2)
+    A : matrix, shape (2,2)
+      Transition probability matrix of the DPH(2)
+    
+    Notes
+    -----
+    Raises an error if the moments are not feasible with
+    a DPH(2).
+    
+    This procedure first calls 'MGFromMoments', then transforms
+    it to DPH(2) by 'CanonicalFromDPH2'.
+    """
 
     beta, B = MGFromMoments(moms[0:3])
     return CanonicalFromDPH2(beta,B,prec)
     
 def DPH3From5Moments (moms, prec=1e-14):
+    """
+    Returns an order-3 discrete phase-type distribution 
+    which has the same 5 moments as given.
+    
+    Parameters
+    ----------
+    moms : vector of doubles, length(5)
+      The moments to match
+    prec : double, optional
+      Numerical precision, default value is 1e-14
+    
+    Returns
+    -------
+    alpha : matrix, shape (1,3)
+      The initial probability vector of the DPH(3)
+    A : matrix, shape (3,3)
+      Transition probability matrix of the DPH(3)
+    
+    Notes
+    -----
+    Raises an error if the moments are not feasible with
+    a DPH(3).
+    
+    This procedure first calls 'MGFromMoments', then transforms
+    it to DPH(3) by 'CanonicalFromDPH3'.
+    """
 
     beta, B = MGFromMoments(moms[0:5])
     return CanonicalFromDPH3(beta,B,prec)
