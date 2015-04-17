@@ -72,3 +72,15 @@ butools.mam.MG1FundamentalMatrix
           0.60503      0.39497
           0.45912      0.54088
 
+    For Python/Numpy:
+
+    >>> A0 = ml.matrix([[0.4, 0.2],[0.3, 0.4]])
+    >>> A1 = ml.matrix([[0, 0.1],[0, 0]])
+    >>> A2 = ml.matrix([[0, 0.2],[0, 0.2]])
+    >>> A3 = ml.matrix([[0.1, 0],[0.1, 0]])
+    >>> A = (A0,A1,A2,A3)
+    >>> G = MG1FundamentalMatrix(A)
+    >>> print(G)
+    [[ 0.60503453  0.39496547]
+     [ 0.4591223   0.5408777 ]]
+

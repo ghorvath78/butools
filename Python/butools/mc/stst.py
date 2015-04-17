@@ -46,6 +46,7 @@ def CRPSolve (Q, prec=1e-14):
     m = np.zeros(M.shape[0])
     m[0] = 1.0
     return ml.matrix(la.solve (M.T, m))
+#    return la.solve (M.T, m)
     
 def CTMCSolve (Q, prec=1e-14):
     """

@@ -13,7 +13,7 @@ butools.mam.QBDFundamentalMatrices
         * - Mathematica:
           - :code:`M = QBDFundamentalMatrices[xxx]`
         * - Python/Numpy:
-          - :code:`M = QBDFundamentalMatrices(xxx)`
+          - :code:`M = QBDFundamentalMatrices(B, L, F, matrices, precision, maxNumIt, method)`
 
     Returns the fundamental matrices corresponding to the
     given QBD. Matrices R, G and U can be returned
@@ -87,4 +87,20 @@ butools.mam.QBDFundamentalMatrices
     >>> U=M{3}
           -5.5714       5.5714
            3.8571      -10.857
+
+    For Python/Numpy:
+    
+    >>> B = ml.matrix([[0,0],[3,4]])
+    >>> L = ml.matrix([[-6,5],[3,-12]])
+    >>> F = ml.matrix([[1,0],[2,0]])
+    >>> R, G, U = QBDFundamentalMatrices (B,L,F,"RGU")
+    >>> print(R)
+    [[ 0.27838828  0.14285714]
+     [ 0.55677656  0.28571429]]
+    >>> print(G)
+    [[ 0.42857143  0.57142857]
+     [ 0.42857143  0.57142857]]
+    >>> print(U)
+    [[ -5.57142857   5.57142857]
+     [  3.85714286 -10.85714286]]
 

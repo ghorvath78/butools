@@ -59,5 +59,5 @@ function R = GM1FundamentalMatrix (A, precision, maxNumIt, method)
     
     global BuToolsVerbose;
     
-    R = GIM1_R (A, 'A', method, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
+    R = GIM1_R (A, 'R', method, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
 end

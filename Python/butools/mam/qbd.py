@@ -11,10 +11,13 @@ import numpy.linalg as la
 import butools
 from butools.mc import DTMCSolve
 
-def QBDFundamentalMatrices (B, L, F, matrices="G", precision=1e-14, maxNumIt=50, shift=True):
+def QBDFundamentalMatrices (B, L, F, matrices="G", precision=1e-14, maxNumIt=50, method="CR", shift=True):
 
     m = L.shape[0]
     I = ml.eye(m)
+    
+    if method!="CR" and butools.verbose:
+        print("Warning: Currently only the 'CR' method is available in the Python implementation!")        
 
     # Convert to discrete time problem, if needed
     continuous = False
@@ -123,8 +126,9 @@ def QBDStationaryDistr (pi0, R, K):
 
     m = R.shape[0]    
     qld = ml.empty((1,(K+1)*m))
-    pik = pi0
-    for k in range(K+1):
-        qld[0,k*m:(k+1)*m] = pik
-        pik = pik * R
+    qld[0,0:m] = pi0
+    pix = pi0
+    for k in range(1,K+1):
+        pix = pix*R
+        qld[0,k*m:(k+1)*m] = pix
     return qld

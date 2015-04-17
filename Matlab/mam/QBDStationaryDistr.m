@@ -23,9 +23,10 @@ function pi = QBDStationaryDistr (pi0, R, K)
 
     m = size(R,1);
     pi = zeros(1,(K+1)*m);
-    pik = pi0;
-    for k=0:K
-        pi(k*m+1:(k+1)*m) = pik;
-        pik = pik * R;
+    pi(1:m) = pi0;
+    pix = pi0;
+    for k=1:K
+        pix = pix * R;
+        pi(k*m+1:(k+1)*m) = pix;
     end
 end

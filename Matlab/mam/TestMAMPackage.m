@@ -90,9 +90,10 @@ A0 = [0.1, 0; 0, 0.1];
 A1 = [0, 0.2; 0, 0.2];
 A2 = [0, 0.1; 0, 0];
 A3 = [0.3, 0.2; 0.3, 0.2];
+A4 = B3;
 
-B = [B0,B1,B2,B3];
-A = [A0,A1,A2,A3];
+B = [B0;B1;B2;B3];
+A = [A0,A1,A2,A3,A4];
 
 R = GM1FundamentalMatrix (A)
 pi = GM1StationaryDistr (B,R,300);

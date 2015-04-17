@@ -10,7 +10,7 @@ import numpy.matlib as ml
 import numpy.linalg as la
 from scipy.fftpack import fft, ifft
 import butools
-from butools.mc import DTMCSolve
+from butools.mc import DTMCSolve, DRPSolve
 from butools.utils import Diag
 import math
 import cmath
@@ -36,7 +36,7 @@ def GM1TypeCaudal(A):
     Bini, Meini, Steffe and Van Houdt (SMCtools workshop).   
     """
     m = A.shape[0]
-    dega = A.shape[1]/m-1
+    dega = A.shape[1]//m-1
     eta_min = 0
     eta_max = 1
     eta = 0.5
@@ -116,14 +116,14 @@ def MG1TypeShifts (A, shiftType):
     I = ml.eye(m)
     v = ml.zeros((m,1)) # default value if redundant
     tau = 1 # default value if redundant
-    maxd = A.shape[1]/m-1
-    sumA = A[:,maxd*m:]
+    maxd = A.shape[1]//m-1
+    sumA = ml.matrix(A[:,maxd*m:])
     beta = np.sum(sumA,1)
     # beta = (A_maxd)e + (A_maxd + A_maxd-1)e + ... + (Amaxd+...+A1)e
     for i in range(maxd-1,0,-1):
-        sumA = sumA + A[:,i*m:(i+1)*m]
-        beta = beta + np.sum(sumA,1)
-    sumA = sumA + A[:,:m]
+        sumA += A[:,i*m:(i+1)*m]
+        beta += np.sum(sumA,1)
+    sumA += A[:,:m]
     theta = DTMCSolve(sumA)
     drift = (theta * beta)[0,0]
     
@@ -181,8 +181,11 @@ def MG1TypeShifts (A, shiftType):
 
 def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", maxNumRoot=2048, shiftType="one"):
 
-    D = np.hstack(A)
-    
+    if not isinstance(A,np.ndarray):
+        D = np.hstack(A)
+    else:
+        D = ml.matrix(A)
+   
     if method=="ShiftPWCR":
         if butools.verbose:
             Dold = ml.matrix(D)
@@ -203,7 +206,7 @@ def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", m
     Ahateven = Aodd
 
     Rj = D[m:2*m,:]
-    for i in range(3,M/m+1):
+    for i in range(3,M//m+1):
         Rj = Rj + D[(i-1)*m:i*m,:]
     Rj = la.inv(I-Rj)
     Rj = D[:m,:] * Rj
@@ -212,7 +215,7 @@ def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", m
 
     while numit < maxNumIt:
         numit+=1
-        nj=Aodd.shape[0]/m
+        nj=Aodd.shape[0]//m
         if nj > 0:
             # Evaluate the 4 functions in the nj+1 roots using FFT
             # prepare for FFTs (such that they can be performed in 4 calls)
@@ -255,13 +258,13 @@ def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", m
             Anew = np.vstack((temp*Aeven, Aodd))
     
         nAnew = 0
-        deg = Anew.shape[0]/m
-        for i in range(deg/2,deg):
+        deg = Anew.shape[0]//m
+        for i in range(deg//2,deg):
             nAnew = max(nAnew, la.norm(Anew[i*m:(i+1)*m,:],np.inf))
 
         nAhatnew = 0
-        deghat = Ahatnew.shape[0]/m
-        for i in range(deghat/2,deghat):
+        deghat = Ahatnew.shape[0]//m
+        for i in range(deghat//2,deghat):
             nAhatnew = max(nAhatnew, la.norm(Ahatnew[i*m:(i+1)*m,:],np.inf))
         
         # c) the test
@@ -306,18 +309,18 @@ def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", m
     
             vec1 = ml.zeros((1,m))
             vec2 = ml.zeros((1,m))
-            for i in range(1,Anew.shape[0]/m):
+            for i in range(1,Anew.shape[0]//m):
                 vec1 += i*np.sum(Anew[i*m:(i+1)*m,:],0)
                 vec2 += i*np.sum(Ahatnew[i*m:(i+1)*m,:],0)
 
             nAnew = 0
-            deg = Anew.shape[0]/m
-            for i in range(deg/2,deg):
+            deg = Anew.shape[0]//m
+            for i in range(deg//2,deg):
                 nAnew = max(nAnew, la.norm(Anew[i*m:(i+1)*m,:],np.inf))
 
             nAhatnew = 0
-            deghat = Ahatnew.shape[0]/m
-            for i in range(deghat/2,deghat):
+            deghat = Ahatnew.shape[0]//m
+            for i in range(deghat//2,deghat):
                 nAhatnew = max(nAhatnew, la.norm(Ahatnew[i*m:(i+1)*m,:],np.inf))
         if (nAnew > nj*precision or nAhatnew > nj*precision) and nj >= maxNumRoot:
             print("MaxNumRoot reached, accuracy might be affected!")
@@ -385,7 +388,7 @@ def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", m
         else:
             D = Dold
         temp = D[:,-m:]
-        for i in range (D.shape[1]/m-1,0,-1):
+        for i in range (D.shape[1]//m-1,0,-1):
             temp = D[:,(i-1)*m:i*m] + temp*G
         res_norm = la.norm(G-temp,np.inf)
         print("Final Residual Error for G: ", res_norm)
@@ -397,18 +400,18 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     A = np.hstack(A)
     m = A.shape[0]
     I = ml.eye(m)
-    dega = A.shape[1]/m-1
+    dega = A.shape[1]//m-1
     
-    if B==None:
+    if B is None:
         mb = m
         degb = dega
-        B=A;
+        B=ml.matrix(A)
     else:
-        B = np.stack(B)
+        B = np.hstack(B)
         mb = B.shape[0]
         if mb != m:
             raise Exception ("Matrix B has an incorrect number of columns")
-        degb = (B.shape[0]-mb)/m
+        degb = (B.shape[1]-mb)//m
     
     # Compute theta and beta, sum_v>=0 Av and sum_v>=k Av G^v-1 
     # the last sums (for k=1,...,amax) are stored in A
@@ -422,33 +425,33 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
 
     sumA = sumA+A[:,0:m]
     theta = DTMCSolve(sumA, prec)
-    drift = theta * beta
+    drift = (theta * beta)[0,0]
     
     if drift >= 1:
         raise Exception("The Markov chain characterized by A is not positive recurrent")
     
     # Compute g
-    if G==None:
+    if G is None:
         G = MG1FundamentalMatrix (A, prec)
     
     g = DTMCSolve(G, prec)
     
-    if B==None:
+    if B is None:
         # Compute pi_0
         pi0 = (1.0-drift) * g
     else:
         # Compute sum_v>=1 Bv, sum_v>=1 (v-1) Bv e, sum_v>=k Bv G^v-1
         # the last sums (for k=1,...,bmax) are stored in B
-        sumBB0 = B[:,mb+(degb-1)*m:]
+        sumBB0 = ml.matrix(B[:,mb+(degb-1)*m:])
         Bbeta = np.zeros((mb,1))
-        for i in range(degb-1,0,-0):
+        for i in range(degb-1,0,-1):
             Bbeta = Bbeta + np.sum(sumBB0,1)
             sumBB0 = sumBB0 + B[:,mb+(i-1)*m:mb+i*m]
             B[:,mb+(i-1)*m:mb+i*m] = B[:,mb+(i-1)*m:mb+i*m] + B[:,mb+i*m:mb+(i+1)*m] * G
         
         # Compute K, kappa
-        K = B[:,0:mb] + B[:,mb:mb+m] * G
-        kappa = DTMCSolve(K, prec)
+        Km = B[:,0:mb] + B[:,mb:mb+m] * G
+        kappa = DTMCSolve(Km, prec)
 
         # Compute psi1, psi2
         temp = np.sum(la.inv(I-sumA-(ml.ones((m,1))-beta)*g),1)
@@ -469,7 +472,7 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     invbarA1 = la.inv(I-A[:,m:2*m])
     while sumpi < 1.0-1e-10 and numit < K:
         if numit <= degb:
-            if B==None:
+            if B is None:
                 pix = pi0 * A[:,numit*mb:(numit+1)*mb]
             else:
                 pix = pi0 * B[:,mb+(numit-1)*m:mb+numit*m]
@@ -477,7 +480,7 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
             pix = ml.zeros((1,m))
 
         for j in range(1,min(numit,dega)):
-            pix += pi[numit-j,:] * A[:,(j+1)*m:(j+2)*m]
+            pix += pi[numit-1-j] * A[:,(j+1)*m:(j+2)*m]
 
         pix *= invbarA1
         sumpi = sumpi + np.sum(pix)
@@ -492,12 +495,12 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     return np.hstack(pi)
 
 
-def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", dual="A", maxNumRoot=2048, shiftType="one"):
+def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", dual="R", maxNumRoot=2048, shiftType="one"):
 
     A = np.hstack(A)
     m = A.shape[0]
     I = ml.eye(m)
-    dega = A.shape[1]/m-1
+    dega = A.shape[1]//m-1
     
     # compute invariant vector of A and the drift
     # drift > 1: positive recurrent GIM1, drift < 1: transient GIM1
@@ -526,7 +529,7 @@ def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", d
         sumAeta = eta**dega * A[:,dega*m:]
         for i in range(dega-1,-1,-1):
             sumAeta = sumAeta + eta**i * A[:,i*m:(i+1)*m]
-        theta = DTMCSolve(sumAeta+(1.0-eta)*I, precision)
+        theta = DRPSolve(sumAeta+(1.0-eta)*I, precision)
         # compute the Bright Dual process
         for i in range(dega+1):
             A[:,i*m:(i+1)*m] = eta**(i-1) * Diag(1.0/theta) * A[:,i*m:(i+1)*m].T * Diag(theta)
@@ -540,14 +543,17 @@ def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", d
 
 def GM1StationaryDistr (B, R, K, prec=1e-14):
 
-    m = B.shape[0]
+    if not isinstance(B,np.ndarray):
+        B = np.vstack(B)
+
+    m = R.shape[0]
     I = ml.eye(m)   
 
     temp = (I-R).I
-    if np.max(temp<-100*1e-15):
+    if np.max(temp<-100*prec):
         raise Exception("The spectral radius of R is not below 1: GM1 is not pos. recurrent")
     
-    maxb = B.shape[0]/m
+    maxb = B.shape[0]//m
     BR = B[(maxb-1)*m:,:]
     for i in range(maxb-1,0,-1):
         BR = R * BR + B[(i-1)*m:i*m,:]

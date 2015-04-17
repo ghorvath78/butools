@@ -31,7 +31,7 @@ butools.mam.QBDStationaryDistr
     
     Returns
     -------
-    pi : matrix, shape (1,(K+1)*N)
+    pi : matrix, shape (K+1,N)
         The stationary probability vector up to level K
     
     Examples
@@ -50,4 +50,21 @@ butools.mam.QBDStationaryDistr
           0.16802     0.086221
     >>> pi(5:6)
          0.094781     0.048638
-    >>> plot(sum(reshape(pi,2,6)',2));
+    >>> plot(sum(pi,2));
+
+    For Python/Numpy:
+    
+    >>> B = ml.matrix([[0,0],[3,4]])
+    >>> L = ml.matrix([[-6,5],[3,-12]])
+    >>> F = ml.matrix([[1,0],[2,0]])
+    >>> L0 = ml.matrix([[-6,5],[6,-8]])
+    >>> pi0, R = QBDSolve (B, L, F, L0)
+    >>> pi = QBDStationaryDistr (pi0, R, 5)
+    >>> print(pi[0,0:2])
+    [[ 0.22992392  0.18681319]]    
+    >>> print(pi[0,2:4])
+    [[ 0.16802133  0.08622147]]
+    >>> print(pi[0,4:6])    
+    [[ 0.09478126  0.04863775]]
+    >>> plt.plot(np.sum(pi,1))
+    

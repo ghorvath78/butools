@@ -105,12 +105,12 @@ def FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision=1e-14, max
     
 def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
     
-    Psi, K, U = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, "PKU", prec)
+    Psi, K, U = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, "PKU", prec/100)
     
-    mass0 = CTMCSolve(U, prec)
+    mass0 = CTMCSolve(U, prec*10)
     nr = np.sum(mass0) + 2.0*np.sum(mass0*Fmp*-K.I)
     
-    return mass0/nr, mass0*Fmp, K, ml.hstack((ml.eye(Fpp.shape[0]), Psi))
+    return mass0/nr, mass0*Fmp/nr, K, ml.hstack((ml.eye(Fpp.shape[0]), Psi))
 
 def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
     
@@ -136,7 +136,7 @@ def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
     Rv = P*R*iP
 
     # new fluid process censored to states + and -
-    iQv00 = np.pinv(-Qv[:Nz,:Nz])
+    iQv00 = la.pinv(-Qv[:Nz,:Nz])
     Qbar = Qv[Nz:, Nz:] + Qv[Nz:,:Nz]*iQv00*Qv[:Nz,Nz:]
     absRi = Diag(np.abs(1./np.diag(Rv[Nz:,Nz:])))
     Qz = absRi * Qbar
@@ -147,14 +147,14 @@ def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
     Pm = np.hstack((ml.eye(Np), Psi)) * absRi
     iCn = absRi[Np:,Np:]
     iCp = absRi[:Np,:Np]
-    clo = np.hstack(((iCp*Qv[Nz:,Nz+Np,:Nz]+Psi*iCn*Qv[Nz+Np:,:Nz])*iQv00, Pm))
+    clo = np.hstack(((iCp*Qv[Nz:Nz+Np,:Nz]+Psi*iCn*Qv[Nz+Np:,:Nz])*iQv00, Pm))
     
     if Q0==None: # regular boundary behavior
         clo = clo * P # go back the the original state ordering
 
         # calculate boundary vector   
         Ua = iCn*Qv[Nz+Np:,:Nz]*iQv00*ml.ones((Nz,1)) + iCn*ml.ones((Nn,1)) + Qz[Np:,:Np]*la.inv(-K)*clo*ml.ones((Nz+Np+Nn,1))
-        pm = Linsolve (ml.hstack((U,Ua)).T, ml.hstack((ml.zeros((1,Nn)),1)).T).T
+        pm = Linsolve (ml.hstack((U,Ua)).T, ml.hstack((ml.zeros((1,Nn)),ml.ones((1,1)))).T).T
 
         # create the result
         mass0 = ml.hstack((pm*iCn*Qv[Nz+Np:,:Nz]*iQv00, ml.zeros((1,Np)), pm*iCn))*P

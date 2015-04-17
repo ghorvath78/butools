@@ -9,11 +9,11 @@ butools.mam.GeneralFluidSolve
         :widths: 25 150
 
         * - Matlab:
-          - :code:`[mass0, ini, K, clo] = GeneralFluidSolve (Q, R, Q0)`
+          - :code:`[mass0, ini, K, clo] = GeneralFluidSolve (Q, R, Q0, prec)`
         * - Mathematica:
-          - :code:`{mass0, ini, K, clo} = GeneralFluidSolve [Q, R, Q0]`
+          - :code:`{mass0, ini, K, clo} = GeneralFluidSolve [Q, R, Q0, prec]`
         * - Python/Numpy:
-          - :code:`mass0, ini, K, clo = GeneralFluidSolve (Q, R, Q0)`
+          - :code:`mass0, ini, K, clo = GeneralFluidSolve (Q, R, Q0, prec)`
 
     Returns the parameters of the matrix-exponentially 
     distributed stationary distribution of a general 
@@ -45,6 +45,9 @@ butools.mam.GeneralFluidSolve
         The generator of the background Markov chain at 
         level 0. If not provided, or empty, then Q0=Q is 
         assumed. The default value is empty.
+    precision : double, optional
+        Numerical precision for computing the fundamental
+        matrix and for checking. The default value is 1e-14
     
     Returns
     -------
@@ -77,6 +80,27 @@ butools.mam.GeneralFluidSolve
     >>> emptyprob = sum(mass0)
           0.19628
     >>> densityat1 = ini*exp(K*1)*clo
-      0.40402      0.17384      0.14099      0.37455      0.10052      0.08351
+         0.098961     0.027218     0.022577     0.045517      0.01383     0.011405
 
+    For Python/Numpy:
+
+    >>> Q=ml.matrix([[-6, 1, 3, 2, 0, 0],[6, -10, 2, 0, 2, 0],[3, 7, -12, 0, 0, 2],[5, 0, 0, -9, 1, 3],[0, 5, 0, 6, -13, 2],[0, 0, 5, 3, 7, -15]])
+    >>> R=ml.matrix([[2, 0, 0, 0, 0, 0],[0, -4, 0, 0, 0, 0],[0, 0, -12, 0, 0, 0],[0, 0, 0, 6, 0, 0],[0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, -8]])
+    >>> mass0,ini,K,clo=GeneralFluidSolve(Q,R)
+    >>> print(mass0)
+    [[ 0.          0.08224613  0.0694924   0.          0.02381248  0.02072428]]
+    >>> print(ini)
+    [[ 0.70195397  0.20504772]]
+    >>> print(K)
+    [[-2.46975215  1.1348626 ]
+     [ 1.29501774 -1.16863056]]
+    >>> print(clo)
+    [[ 0.5         0.06108742  0.05457444  0.          0.01617979  0.01259463]
+     [ 0.          0.05538938  0.04311605  0.16666667  0.03891262  0.03263124]]
+    >>> emptyprob = np.sum(mass0)
+    >>> print(emptyprob)
+    0.196275290213
+    >>> densityat1 = ini*la.expm(K*1)*clo
+    >>> print(densityat1)
+    [[ 0.09896148  0.0272177   0.02257673  0.04551746  0.01382957  0.01140451]]
 

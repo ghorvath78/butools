@@ -9,11 +9,11 @@ butools.mam.FluidSolve
         :widths: 25 150
 
         * - Matlab:
-          - :code:`[mass0, ini, K, clo] = FluidSolve (Fpp, Fpm, Fmp, Fmm)`
+          - :code:`[mass0, ini, K, clo] = FluidSolve (Fpp, Fpm, Fmp, Fmm, prec)`
         * - Mathematica:
-          - :code:`{mass0, ini, K, clo} = FluidSolve [Fpp, Fpm, Fmp, Fmm]`
+          - :code:`{mass0, ini, K, clo} = FluidSolve [Fpp, Fpm, Fmp, Fmm, prec]`
         * - Python/Numpy:
-          - :code:`mass0, ini, K, clo = FluidSolve (Fpp, Fpm, Fmp, Fmm)`
+          - :code:`mass0, ini, K, clo = FluidSolve (Fpp, Fpm, Fmp, Fmm, prec)`
 
     Returns the parameters of the matrix-exponentially 
     distributed stationary distribution of a canonical 
@@ -48,6 +48,9 @@ butools.mam.FluidSolve
     Fpp : matrix, shape (Nm,Nm)
         The matrix of transition rates between states 
         having negative fluid rates
+    precision : double, optional
+        Numerical precision for computing the fundamental
+        matrix and for checking. The default value is 1e-14
     
     Returns
     -------
@@ -81,7 +84,30 @@ butools.mam.FluidSolve
                 0            1       0.3318      0.12995      0.53825
     >>> emptyprob = sum(mass0)
           0.15074    
-    >>> densityat1 = ini*exp(K*1)*clo
-           1.9876      0.89595      0.96753      0.44471       1.4713
-  
+    >>> densityat1 = ini*expm(K*1)*clo
+         0.063509      0.06175     0.041905     0.018514      0.06484
+
+    For Python/Numpy:
+
+    >>> Fpp=ml.matrix([[-5, 1],[2, -3]])
+    >>> Fpm=ml.matrix([[2, 1, 1],[1, 0, 0]])
+    >>> Fmm=ml.matrix([[-8, 4, 1],[2, -12, 3],[2, 0, -2]])
+    >>> Fmp=ml.matrix([[3, 0],[2, 5],[0, 0]])
+    >>> mass0,ini,K,clo = FluidSolve(Fpp,Fpm,Fmp,Fmm)
+    >>> print(mass0)
+    [[ 0.03751363  0.01530344  0.09792059]]
+    >>> print(ini)
+    [[ 0.14314775  0.07651718]]
+    >>> print(K)
+    [[-3.6579964   1.82582941]
+     [ 3.25529376 -2.35023773]]
+    >>> print(clo)
+    [[ 1.          0.          0.33722394  0.16516588  0.49761017]
+     [ 0.          1.          0.33179629  0.12995245  0.53825126]]
+    >>> emptyprob = np.sum(mass0)
+    >>> print(emptyprob)
+    0.150737652341
+    >>> densityat1 = ini*la.expm(K*1)*clo
+    >>> print(densityat1)
+    [[ 0.06350914  0.0617499   0.04190519  0.01851409  0.06483976]]
 
