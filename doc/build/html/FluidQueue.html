@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.queues.FluidQueue &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Tools for the Analysis of Queues (butools.queues)" href="queues.html" >
+    <link rel="next" title="butools.queues.FluFluQueue" href="FluFluQueue.html" >
+    <link rel="prev" title="butools.queues.FluidQueue" href="" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="queues.html" accesskey="U">Tools for the Analysis of Queues (<tt class="docutils literal"><span class="pre">butools.queues</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="FluFluQueue.html" title="butools.queues.FluFluQueue"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="#" title="butools.queues.FluidQueue"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href=""
+                        title="previous chapter">butools.queues.FluidQueue</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FluFluQueue.html"
+                        title="next chapter">butools.queues.FluFluQueue</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-queues-fluidqueue">
+<h1>butools.queues.FluidQueue<a class="headerlink" href="#butools-queues-fluidqueue" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.queues.FluidQueue">
+<tt class="descclassname">butools.queues.</tt><tt class="descname">FluidQueue</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.queues.FluidQueue" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">Ret</span> <span class="pre">=</span> <span class="pre">FluidQueue(Q,</span> <span class="pre">Rin,</span> <span class="pre">Rout,</span> <span class="pre">Q0,</span> <span class="pre">...)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">Ret</span> <span class="pre">=</span> <span class="pre">FluidQueue[Q,</span> <span class="pre">Rin,</span> <span class="pre">Rout,</span> <span class="pre">Q0,</span> <span class="pre">...]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">Ret</span> <span class="pre">=</span> <span class="pre">FluidQueue(Q,</span> <span class="pre">Rin,</span> <span class="pre">Rout,</span> <span class="pre">Q0,</span> <span class="pre">...)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Returns various performane measures of a fluid queue.</p>
+<p>In a fluid queue there is a background continuous time
+Markov chain (given by generator Q), and diagonal
+matrix Rin (Rout) whose ith entry provides the
+fluid rate at which fluid enters the queue (can be
+served) while the background process is in state i.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>Q</strong> : matrix, shape (N,N)</p>
+<blockquote>
+<div><p>The generator of the background Markov chain</p>
+</div></blockquote>
+<p><strong>Rin</strong> : matrix, shape (N,N)</p>
+<blockquote>
+<div><p>Diagonal matrix containing the fluid input rates
+associated to the states of the background process</p>
+</div></blockquote>
+<p><strong>Rout</strong> : matrix, shape (N,N)</p>
+<blockquote>
+<div><p>Diagonal matrix containing the fluid output rates
+associated to the states of the background process</p>
+</div></blockquote>
+<p><strong>Q0</strong> : matrix, shape (N,N), optional</p>
+<blockquote>
+<div><p>The generator of the background Markov chain when
+the queue level is zero. If empty or missing, Q0=Q
+is assumed</p>
+</div></blockquote>
+<p><strong>The rest of the function parameters specify the options</strong></p>
+<p><strong>and the performance measures to be computed.</strong></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Ret</strong> : list of the performance measures</p>
+<blockquote class="last">
+<div><p>Each entry of the list corresponds to a performance
+measure requested. If there is just a single item,
+then it is not put into a list.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>The supported performance measures in this function are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="27%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter name</th>
+<th class="head">Input parameters</th>
+<th class="head">Output</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8220;qlMoms&#8221;</td>
+<td>Number of moments</td>
+<td>The moments of the fluid level</td>
+</tr>
+<tr class="row-odd"><td>&#8220;qlDistr&#8221;</td>
+<td>A vector of points</td>
+<td>The fluid level distribution at
+the requested points (cdf)</td>
+</tr>
+<tr class="row-even"><td>&#8220;qlDistrME&#8221;</td>
+<td>None</td>
+<td>The vector-matrix parameters of the
+matrix-exponentially distributed
+fluid level distribution</td>
+</tr>
+<tr class="row-odd"><td>&#8220;qlDistrPH&#8221;</td>
+<td>None</td>
+<td>The vector-matrix parameters of the
+matrix-exponentially distributed
+fluid level distribution, converted
+to a PH representation</td>
+</tr>
+<tr class="row-even"><td>&#8220;stMoms&#8221;</td>
+<td>Number of moments</td>
+<td>The sojourn time moments of fluid
+drops</td>
+</tr>
+<tr class="row-odd"><td>&#8220;stDistr&#8221;</td>
+<td>A vector of points</td>
+<td>The sojourn time distribution at the
+requested points (cummulative, cdf)</td>
+</tr>
+<tr class="row-even"><td>&#8220;stDistrME&#8221;</td>
+<td>None</td>
+<td>The vector-matrix parameters of the
+matrix-exponentially distributed
+sojourn time distribution</td>
+</tr>
+<tr class="row-odd"><td>&#8220;stDistrPH&#8221;</td>
+<td>None</td>
+<td>The vector-matrix parameters of the
+matrix-exponentially distributed
+sojourn time distribution, converted
+to a PH representation</td>
+</tr>
+<tr class="row-even"><td>&#8220;prec&#8221;</td>
+<td>The precision</td>
+<td>Numerical precision to check if the
+input is valid and it is also used
+as a stopping condition when solving
+the Riccati equation</td>
+</tr>
+</tbody>
+</table>
+<p>Note that &#8220;qlDistrME&#8221; and &#8220;stDistrME&#8221; behave much better numerically than
+&#8220;qlDistrPH&#8221; and &#8220;stDistrPH&#8221;.</p>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Apr 20, 2015.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
