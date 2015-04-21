@@ -52,9 +52,7 @@ butools.mam.QBDFundamentalMatrices
     -------
     M : list of matrices
         The list of calculated matrices in the order as
-        requested in the 'matrices' parameter. If a single
-        matrix is requested, the return value will be the
-        matrix itself instead of a list.
+        requested in the 'matrices' parameter.
     
     Notes
     -----
@@ -77,14 +75,14 @@ butools.mam.QBDFundamentalMatrices
     >>> B = [0,0;3,4];
     >>> L = [-6,5;3,-12];
     >>> F = [1,0;2,0];
-    >>> M = QBDFundamentalMatrices (B,L,F,'RGU');
-    >>> R=M{1}
+    >>> [R, G, U] = QBDFundamentalMatrices (B,L,F,'RGU');
+    >>> R
           0.27839      0.14286
           0.55678      0.28571
-    >>> G=M{2}
+    >>> G
           0.42857      0.57143
           0.42857      0.57143
-    >>> U=M{3}
+    >>> U
           -5.5714       5.5714
            3.8571      -10.857
 

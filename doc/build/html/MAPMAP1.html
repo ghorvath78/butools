@@ -142,23 +142,12 @@ job service</p>
 <div><p>The transitions of the service MAP accompanied by
 job service</p>
 </div></blockquote>
-<p><strong>The rest of the function parameters specify the options</strong></p>
-<p><strong>and the performance measures to be computed.</strong></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Ret</strong> : list of the performance measures</p>
-<blockquote class="last">
-<div><p>Each entry of the list corresponds to a performance
-measure requested. If there is just a single item,
-then it is not put into a list.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<p>The supported performance measures in this function are:</p>
+<p><strong>further parameters :</strong></p>
+<blockquote>
+<div><p>The rest of the function parameters specify the options
+and the performance measures to be computed.</p>
+<p>The supported performance measures and options in this
+function are:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -228,8 +217,70 @@ the matrix-quadratic equation</td>
 <p>(The queue length related quantities include the customer
 in the server, and the sojourn time related quantities
 include the service times as well)</p>
-<p>Note that &#8220;qlDistrMG&#8221; and &#8220;stDistrME&#8221; behave much better numerically than
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Ret</strong> : list of the performance measures</p>
+<blockquote class="last">
+<div><p>Each entry of the list corresponds to a performance
+measure requested. If there is just a single item,
+then it is not put into a list.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>&#8220;qlDistrMG&#8221; and &#8220;stDistrME&#8221; behave much better numerically than
 &#8220;qlDistrDPH&#8221; and &#8220;stDistrPH&#8221;.</p>
+<p class="rubric">Examples</p>
+<p>For MATLAB:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S0</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S1</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">qld</span><span class="p">,</span><span class="n">qlm</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPMAP1</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">S0</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">),</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qld</span>
+<span class="go">      0.67697      0.18891      0.07951     0.032563     0.013182    0.0053087    0.0021328   0.00085583   0.00034322    0.0001376   5.5158e-05</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qlm</span>
+<span class="go">      0.54864        1.306        4.357       19.193       105.39</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span><span class="n">Ap</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPMAP1</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">S0</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="s">&#39;qlDistrDPH&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alphap</span>
+<span class="go">     0.067133     0.075328       0.0407     0.047054     0.035736     0.057079</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Ap</span>
+<span class="go">       0.2813     0.046292    0.0076126    0.0034456            0            0</span>
+<span class="go">      0.10552      0.33506    0.0083548      0.01223            0            0</span>
+<span class="go">      0.17544     0.045811      0.13666     0.010563            0            0</span>
+<span class="go">     0.079843      0.20353     0.042265      0.16552            0            0</span>
+<span class="go">      0.20818     0.091826      0.05939     0.013516            0            0</span>
+<span class="go">       0.1325      0.20874     0.034792     0.065764            0            0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PmfFromDPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span><span class="n">Ap</span><span class="p">,(</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">))</span><span class="s">&#39;</span>
+<span class="go">      0.67697      0.18891      0.07951     0.032563     0.013182    0.0053087    0.0021328   0.00085583   0.00034322    0.0001376   5.5158e-05</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromDPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span><span class="n">Ap</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">      0.54864        1.306        4.357       19.193       105.39</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPMAP1</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">S0</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">1</span><span class="p">),</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">std</span>
+<span class="go">   1.1102e-16       0.3122      0.53197      0.68345      0.78667      0.85655      0.90367      0.93538      0.95667      0.97097      0.98055</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stm</span>
+<span class="go">      0.25908      0.13145      0.09911     0.099178      0.12376</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPMAP1</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">S0</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="s">&#39;stDistrME&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span>
+<span class="go">      0.40071      0.26596      0.19675      0.13659            0            0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">      -8.1822        4.607      0.61259      0.21807            0            0</span>
+<span class="go">       1.4951      -5.9854      0.51299      0.33032            0            0</span>
+<span class="go">      0.24927      0.11789      -9.0589       4.3127            0            0</span>
+<span class="go">      0.20579       0.1273      0.75919      -6.4625            0            0</span>
+<span class="go">       0.5575      0.23374      0.18872     0.080814          -10            4</span>
+<span class="go">      0.44853      0.30439       0.1539     0.099095            0           -7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">CdfFromME</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="n">B</span><span class="p">,(</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">1</span><span class="p">))</span><span class="s">&#39;</span>
+<span class="go">   1.1102e-16       0.3122      0.53197      0.68345      0.78667      0.85655      0.90367      0.93538      0.95667      0.97097      0.98055</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">      0.25908      0.13145      0.09911     0.099178      0.12376</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 
 
@@ -253,7 +304,7 @@ include the service times as well)</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 20, 2015.
+      Last updated on Apr 21, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

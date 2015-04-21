@@ -45,7 +45,7 @@
 %      matrix is requested, the return value will be the
 %      matrix itself instead of a list.
 
-function M = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision, maxNumIt, method)
+function varargout = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision, maxNumIt, method)
 
     if ~exist('precision','var')
         precision = 1e-14;
@@ -152,10 +152,6 @@ function M = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision, 
             ret{i} = Fmm+Fmp*Psi;
         end
     end
-    if length(ret)==1
-        M=ret{1};
-    else
-        M=ret;
-    end
+    varargout=ret;
 end
 

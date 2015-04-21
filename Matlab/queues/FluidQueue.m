@@ -1,11 +1,17 @@
-function Ret = FluidQueue(Q, Rin, Rout, Q0, varargin)
+function varargout = FluidQueue(Q, Rin, Rout, varargin)
 
     % parse options
-    prec = 1e-15;
+    prec = 1e-14;
     needST = 0;
+    Q0 = [];
+    eaten = [];
     for i=1:length(varargin)
         if strcmp(varargin{i},'prec')
             prec = varargin{i+1};
+            eaten = [eaten, i, i+1];
+        elseif strcmp(varargin{i},'Q0')
+            Q0 = varargin{i+1};
+            eaten = [eaten, i, i+1];
         elseif length(varargin{i})>2 && strcmp(varargin{i}(1:2),'st')
             needST = 1;
         end
@@ -38,7 +44,10 @@ function Ret = FluidQueue(Q, Rin, Rout, Q0, varargin)
     retIx = 1;
     argIx = 1;
     while argIx<=length(varargin)
-        if strcmp(varargin{argIx},'qlDistrPH')
+        if any(ismember(eaten, argIx))
+            argIx = argIx + 1;
+            continue;
+        elseif strcmp(varargin{argIx},'qlDistrPH')
             % transform it to PH
             Delta = diag(linsolve(K',-ini')); % Delta = diag (ini*inv(-K));
             A = inv(Delta)*K'*Delta;
@@ -113,12 +122,14 @@ function Ret = FluidQueue(Q, Rin, Rout, Q0, varargin)
             Ret{retIx} = values;
             retIx = retIx + 1;
         else
-            error (['QBDQueue: Unknown parameter ' varargin{argIx}])
+            error (['FluidQueue: Unknown parameter ' varargin{argIx}])
         end
         argIx = argIx + 1;
     end
-    if length(Ret)==1
-        Ret = Ret{1};
+    if length(Ret)==1 && iscell(Ret{1})
+        varargout = Ret{1};
+    else
+        varargout = Ret;
     end
 end
 

@@ -56,9 +56,7 @@ butools.mam.FluidFundamentalMatrices
     -------
     M : list of matrices
         The list of calculated matrices in the order as
-        requested in the 'matrices' parameter. If a single
-        matrix is requested, the return value will be the
-        matrix itself instead of a list.
+        requested in the 'matrices' parameter.
     
     Examples
     --------
@@ -68,14 +66,14 @@ butools.mam.FluidFundamentalMatrices
     >>> Fpm=[2 1 1; 1 0 0];
     >>> Fmm=[-8 4 1; 2 -12 3; 2 0 -2];
     >>> Fmp=[3 0; 2 5; 0 0];
-    >>> M = FluidFundamentalMatrices(Fpp,Fpm,Fmp,Fmm,'PKU');
-    >>> Psi=M{1}
+    >>> [Psi, K, U] = FluidFundamentalMatrices(Fpp,Fpm,Fmp,Fmm,'PKU');
+    >>> Psi
           0.33722      0.16517      0.49761
            0.3318      0.12995      0.53825
-    >>> K=M{2}
+    >>> K
            -3.658       1.8258
            3.2553      -2.3502
-    >>> U=M{3}
+    >>> U
           -6.9883       4.4955       2.4928
            4.3334       -11.02       6.6865
                 2            0           -2

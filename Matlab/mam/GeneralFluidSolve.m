@@ -90,10 +90,7 @@ function [mass0, ini, K, clo] = GeneralFluidSolve (Q, R, Q0, prec)
     Qz = absRi * Qbar;
     
     % calculate fundamental matrices
-    M = FluidFundamentalMatrices (Qz(1:Np,1:Np), Qz(1:Np,Np+1:end), Qz(Np+1:end,1:Np), Qz(Np+1:end,Np+1:end), 'PKU', prec);
-    Psi = M{1};
-    K = M{2};
-    U = M{3};    
+    [Psi, K, U] = FluidFundamentalMatrices (Qz(1:Np,1:Np), Qz(1:Np,Np+1:end), Qz(Np+1:end,1:Np), Qz(Np+1:end,Np+1:end), 'PKU', prec);
     
     % closing matrix
     Pm = [eye(Np), Psi];

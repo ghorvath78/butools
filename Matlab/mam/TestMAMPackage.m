@@ -29,10 +29,7 @@ disp('Test:');
 disp('-----');
 
 disp('M = QBDFundamentalMatrices (B,L,F,''RGU''):');
-M = QBDFundamentalMatrices (B,L,F,'RGU');
-R=M{1}
-G=M{2}
-U=M{3}
+[R, G, U] = QBDFundamentalMatrices (B,L,F,'RGU');
 
 assert(CheckGenerator(U,1)==1, 'QBDFundamentalMatrices: matrix U is not a transient generator!');
 assert(all(abs(eig(R))<1), 'QBDFundamentalMatrices: the eigenvalues of matrix R are not inside the unit disc!');
@@ -134,10 +131,8 @@ disp('Test:');
 disp('-----');
 
 disp('M = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, ''PKU''):');
-M = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, 'PKU');
-Psi=M{1}
-K=M{2}
-U=M{3}
+[Psi, K, U] = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, 'PKU');
+
 assert(CheckGenerator(U)==1, 'FluidFundamentalMatrices: matrix U is not a generator!');
 assert(all(eig(K)<0), 'FluidFundamentalMatrices: the eigenvalues of matrix K are not negative!');
 assert(all(all(Psi>=0)) && all(all(Psi<=1)) && norm(sum(Psi,2)-1)<1e-14, 'FluidFundamentalMatrices: matrix Psi is not a transition prob. matrix!');

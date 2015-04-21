@@ -1,63 +1,40 @@
-% out = MMAPPH1PRPR(D, sigma, S, perfmeas1, param1, perfmeas2, param2, ...)
-%
-% Solution of the MMAP[K]/PH[K]/1 preemptive resume priority queue
-%
-% Parameters
-% ----------
-% D : cell of matrices of shape (N,N), length (K+1)
-%     The D0...DK matrices of the arrival process.
-%     D1 corresponds to the lowest, DK to the highest priority.
-% sigma : cell of row vectors, length (K)
-%     The cell containing the initial probability vectors of the service
-%     time distributions of the various customer types. The length of the
-%     vectors does not have to be the same.
-% S : cell of square matrices, length (K)
-%     The transient generators of the phase type distributions representing
-%     the service time of the jobs belonging to various types.
-% list of perfmeas -- param pairs, where
-%     perfmeas describes a performance measure to calculate, and the
-%     corresponding param is the parameter of the calculation.
-%     Supported performance measures are:
-%     perfmeas = 'stmoms': returns the moments of the sojourn time. The
-%     parameter is the number of moments to compute.
-%     perfmeas = 'stdistr': returns the distribution of the sojourn time.
-%     The parameter is the vector of points where the cdf is evaluated.
-%     perfmeas = 'qlmoms': returns the moments of the number of jobs.
-%     The parameter is the number of moments to compute.
-%     perfmeas = 'qldistr': returns the distribution of the number of jobs.
-%     The parameter is the upper bound.
-% list of optionname -- value pairs, where the valid options are
-%     optionname = 'erlMaxOrder': sets the maximal Erlang order used in the
-%     erlangization procedure. The default value is 200.
-%     optionname = 'precision': sets the numerical precision for the
-%     solution of the Riccati and the matrix quadratic equations. The
-%     default value is 1e-15.
-%     optionname = 'classes': specifies which job classes are analyzed.
-%     The default value is 1:K (all classes are analyzed).
-%
-% Returns
-% -------
-% Ret : cell of matrices
-%     Each entry of the cell corresponds to a performance measure
-%     requested.
-%     Each entry is a matrix, where the columns belong to the various job
-%     types.
-%
-function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
+function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
     
     K = length(D)-1;
 
     % parse options
     erlMaxOrder = 200;
-    precision = 1e-15;
+    precision = 1e-14;
     classes = 1:K;
+    eaten = [];
     for i=1:length(varargin)
         if strcmp(varargin{i},'erlMaxOrder')
             erlMaxOrder = varargin{i+1};
-        elseif strcmp(varargin{i},'precision')
+            eaten = [eaten, i, i+1];
+        elseif strcmp(varargin{i},'prec')
             precision = varargin{i+1};
+            eaten = [eaten, i, i+1];
         elseif strcmp(varargin{i},'classes')
             classes = varargin{i+1};
+            eaten = [eaten, i, i+1];
+        end
+    end
+
+    global BuToolsCheckInput;
+
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckMMAPRepresentation(D,precision)
+        error('MMAPPH1PRPR: The arrival process is not a valid MMAP representation!');
+    end
+    
+    if BuToolsCheckInput
+        for k=1:K
+            if ~CheckPHRepresentation(sigma{k},S{k},precision)
+                error('MMAPPH1PRPR: the vector and matrix describing the service times is not a valid PH representation!');
+            end
         end
     end
 
@@ -99,11 +76,9 @@ function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
         end
 
         % calculate fundamental matrices
-        Psiw = SolveRiccati (Qwpp, Qwpm, Qwmp, Qwmm, precision);
-        Kw = Qwpp + Psiw*Qwmp;
-
+        [Psiw, Kw, Uw] = FluidFundamentalMatrices (Qwpp, Qwpm, Qwmp, Qwmm, 'PKU', precision);
+        
         % calculate boundary vector
-        Uw = Qwmm + Qwmp*Psiw;
         Ua = ones(N,1) + 2*sum(Qwmp*inv(-Kw),2);   
         pm = linsolve ([Uw,Ua]', [zeros(1,N),1]')';
       
@@ -133,19 +108,21 @@ function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
                 kix = kix + N*M(i);
             end           
             inis = [kappa, zeros(1,N*sum(M(k+1:K)))];
-            Psis = SolveRiccati (Qspp, Qspm, Qsmp, Qsmm, precision);            
+            Psis = FluidFundamentalMatrices (Qspp, Qspm, Qsmp, Qsmm, 'P', precision);            
             
             % step 3. calculate the performance measures
             % ==========================================   
             retIx = 1;
-            for va=1:length(varargin)/2
-                perfmeas = varargin{va*2-1};
-                param = varargin{va*2};
+            argIx = 1;
+            while argIx<=length(varargin)
                 res = [];
-                if strcmp(perfmeas,'stmoms') 
+                if any(ismember(eaten, argIx))
+                    argIx = argIx + 1;
+                    continue;
+                elseif strcmp(varargin{argIx},'stMoms') 
                     % MOMENTS OF THE SOJOURN TIME
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    numOfSTMoms = param;
+                    numOfSTMoms = varargin{argIx+1};
                     Pn = {Psis};
                     rtMoms = zeros(numOfSTMoms,1);
                     for n=1:numOfSTMoms
@@ -162,14 +139,15 @@ function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
                         rtMoms(n) = sum(inis*P*(-1)^n) / 2^n;
                     end
                     res = rtMoms;
-                elseif strcmp(perfmeas,'stdistr') 
+                    argIx = argIx + 1;
+                elseif strcmp(varargin{argIx},'stDistr') 
                     % DISTRIBUTION OF THE SOJOURN TIME
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    stCdfPoints = param;
+                    stCdfPoints = varargin{argIx+1};
                     for t=stCdfPoints
                         L = erlMaxOrder;
                         lambda = L/t/2;
-                        Psie = SolveRiccati (Qspp-lambda*eye(size(Qspp)), Qspm, Qsmp, Qsmm-lambda*eye(size(Qsmm)), precision);
+                        Psie = FluidFundamentalMatrices (Qspp-lambda*eye(size(Qspp)), Qspm, Qsmp, Qsmm-lambda*eye(size(Qsmm)), 'P', precision);
                         Pn = {Psie};
                         pr = sum(inis*Psie);
                         for n=1:L-1
@@ -185,10 +163,11 @@ function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
                         end
                         res = [res; pr];
                     end
-                elseif strcmp(perfmeas,'qlmoms')
+                    argIx = argIx + 1;
+                elseif strcmp(varargin{argIx},'qlMoms')
                     % MOMENTS OF THE NUMBER OF JOBS
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    numOfQLMoms = param;
+                    numOfQLMoms = varargin{argIx+1};
                     % first calculate it at departure instants
                     QLDPn = {Psis};
                     dqlMoms = zeros(numOfQLMoms,1);
@@ -220,16 +199,17 @@ function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
                     end
                     qlMoms = MomsFromFactorialMoms(qlMoms);
                     res = qlMoms;
-                elseif strcmp(perfmeas,'qldistr')
+                    argIx = argIx + 1;
+                elseif strcmp(varargin{argIx},'qlDistr')
                     % DISTRIBUTION OF THE NUMBER OF JOBS
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    numOfQLProbs = param;
+                    numOfQLProbs = varargin{argIx+1};
                     sDk = D0;
                     for i=1:k-1
                         sDk = sDk + D{i+1};
                     end
                     % first calculate it at departure instants
-                    Psid = SolveRiccati (Qspp, Qspm, Qsmp, sDk, precision);
+                    Psid = FluidFundamentalMatrices (Qspp, Qspm, Qsmp, sDk, 'P', precision);
                     Pn = {Psid};
                     dqlProbs = inis*Psid;
                     for n=1:numOfQLProbs-1
@@ -254,67 +234,78 @@ function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
                     end
                     qlProbs = sum(qlProbs,2);
                     res = qlProbs;
-                end                                        
+                    argIx = argIx + 1;
+                else
+                    error (['MMAPPH1PRPR: Unknown parameter ' varargin{argIx}])
+                end
                 if retIx>length(Ret)
                     Ret{retIx} = res;
                 else
                     Ret{retIx} = [Ret{retIx}, res];
                 end
                 retIx = retIx+1;
+                argIx = argIx + 1;
             end
         elseif k==K
             % step 3. calculate the performance measures
             % ==========================================   
             retIx = 1;
-            for va=1:length(varargin)/2
-                perfmeas = varargin{va*2-1};
-                param = varargin{va*2};
+            argIx = 1;
+            while argIx<=length(varargin)
                 res = [];
-                if strcmp(perfmeas,'stmoms') 
+                if any(ismember(eaten, argIx))
+                    argIx = argIx + 1;
+                    continue;
+                elseif strcmp(varargin{argIx},'stMoms') 
                     % MOMENTS OF THE SOJOURN TIME
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    numOfSTMoms = param;
+                    numOfSTMoms = varargin{argIx+1};
                     rtMoms = zeros(numOfSTMoms,1);
                     for i=1:numOfSTMoms
                         rtMoms(i) = factorial(i)*kappa*inv(-Kw)^(i+1)*sum(Bw,2);
                     end
                     res = rtMoms;
-                elseif strcmp(perfmeas,'stdistr') 
+                    argIx = argIx + 1;
+                elseif strcmp(varargin{argIx},'stDistr') 
                     % DISTRIBUTION OF THE SOJOURN TIME
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    stCdfPoints = param;
+                    stCdfPoints = varargin{argIx+1};
                     rtDistr = [];
                     for t=stCdfPoints
                         rtDistr = [rtDistr; kappa*inv(-Kw)*(eye(size(Kw))-expm(Kw*t))*sum(Bw,2)];
                     end
                     res = rtDistr;
-                elseif strcmp(perfmeas,'qlmoms') || strcmp(perfmeas,'qldistr')
+                    argIx = argIx + 1;
+                elseif strcmp(varargin{argIx},'qlMoms') || strcmp(varargin{argIx},'qlDistr')
                     L = kron(sD-D{k+1},eye(M(k)))+kron(eye(N),S{k});
                     B = kron(eye(N),s{k}*sigma{k});
                     F = kron(D{k+1},eye(M(k)));
                     L0 = kron(sD-D{k+1},eye(M(k)));
-                    R = SolveMatrixQuadratic (F, L, B, precision);
+                    R = QBDFundamentalMatrices (B, L, F, 'R', precision);
                     p0 = CTMCSolve(L0+R*B);
                     p0 = p0/sum(p0*inv(eye(size(R))-R));                    
-                    if strcmp(perfmeas,'qlmoms')
+                    if strcmp(varargin{argIx},'qlMoms')
                         % MOMENTS OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                        numOfQLMoms = param;
+                        numOfQLMoms = varargin{argIx+1};
                         qlMoms = zeros(numOfQLMoms,1);
                         for i=1:numOfQLMoms
                             qlMoms(i) = sum(factorial(i)*p0*R^i*inv(eye(size(R))-R)^(i+1));
                         end
                         res = MomsFromFactorialMoms(qlMoms);
-                    elseif strcmp(perfmeas,'qldistr')        
+                    elseif strcmp(varargin{argIx},'qlDistr')        
                         % DISTRIBUTION OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                        numOfQLProbs = param;
+                        numOfQLProbs = varargin{argIx+1};
                         qlProbs = p0;
                         for i=1:numOfQLProbs-1
                             qlProbs = [qlProbs; p0*R^i];
                         end
                         res = sum(qlProbs,2);                       
                     end
+                    argIx = argIx + 1;
+                else
+                    error (['MMAPPH1PRPR: Unknown parameter ' varargin{argIx}])
                 end                                        
                 if retIx>length(Ret)
                     Ret{retIx} = res;
@@ -322,7 +313,9 @@ function Ret = MMAPPH1PRPR(D, sigma, S, varargin)
                     Ret{retIx} = [Ret{retIx}, res];
                 end
                 retIx = retIx+1;
+                argIx = argIx + 1;
             end
         end
     end
+    varargout = Ret;
 end

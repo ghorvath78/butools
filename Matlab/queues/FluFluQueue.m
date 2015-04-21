@@ -1,12 +1,14 @@
-function Ret = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
+function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
 
     % parse options
-    prec = 1e-15;
+    prec = 1e-14;
     needST = 0;
     needQL = 0;
+    eaten = [];
     for i=1:length(varargin)
         if strcmp(varargin{i},'prec')
             prec = varargin{i+1};
+            eaten = [eaten, i, i+1];
         elseif length(varargin{i})>2 && strcmp(varargin{i}(1:2),'st')
             needST = 1;
         elseif length(varargin{i})>2 && strcmp(varargin{i}(1:2),'ql')
@@ -35,14 +37,12 @@ function Ret = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
 
     if needQL
         Q = kron(Qin,Iout)+kron(Iin,Qout);
-        Rin = kron(Rin,Iout);
-        Rout = kron(Iin,Rout);
         if srv0stop
             Q0 = kron(Qin,Iout)+kron(Rin, pinv(Rout)*Qout);
         else
             Q0 = Q;
         end
-        [mass0, ini, K, clo] = GeneralFluidSolve (Q, Rin-Rout, Q0, prec);
+        [mass0, ini, K, clo] = GeneralFluidSolve (Q, kron(Rin,Iout)-kron(Iin,Rout), Q0, prec);
     end
     if needST
         Rh = kron(Rin,Iout) - kron(Iin,Rout);
@@ -61,7 +61,10 @@ function Ret = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
     retIx = 1;
     argIx = 1;
     while argIx<=length(varargin)
-        if strcmp(varargin{argIx},'qlDistrPH')
+        if any(ismember(eaten, argIx))
+            argIx = argIx + 1;
+            continue;
+        elseif strcmp(varargin{argIx},'qlDistrPH')
             % transform it to PH
             Delta = diag(linsolve(K',-ini')); % Delta = diag (ini*inv(-K));
             A = inv(Delta)*K'*Delta;
@@ -150,12 +153,14 @@ function Ret = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             Ret{retIx} = values;
             retIx = retIx + 1;
         else
-            error (['QBDQueue: Unknown parameter ' varargin{argIx}])
+            error (['FluFluQueue: Unknown parameter ' varargin{argIx}])
         end
         argIx = argIx + 1;
     end
-    if length(Ret)==1
-        Ret = Ret{1};
+    if length(Ret)==1 && iscell(Ret{1})
+        varargout = Ret{1};
+    else
+        varargout = Ret;
     end
 end
 

@@ -53,6 +53,10 @@ Functions for discrete queues
       - Returns various performance measures of a QBD queue.
     * - :py:func:`MAPMAP1 <butools.queues.MAPMAP1>`
       - Returns various performance measures of a MAP/MAP/1 queue.
+    * - :py:func:`MMAPPH1PRPR <butools.queues.MMAPPH1PRPR>`
+      - Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.
+    * - :py:func:`MMAPPH1NPPR <butools.queues.MMAPPH1NPPR>`
+      - Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.
 
 Functions for continuous queues
 -------------------------------
@@ -70,6 +74,8 @@ Functions for continuous queues
 
     QBDQueue
     MAPMAP1
+    MMAPPH1PRPR
+    MMAPPH1NPPR
     FluidQueue
     FluidQueue
     FluFluQueue

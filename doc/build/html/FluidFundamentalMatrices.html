@@ -172,9 +172,7 @@ doubling algorithm). The default is &#8220;CR&#8221;.</p>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>M</strong> : list of matrices</p>
 <blockquote class="last">
 <div><p>The list of calculated matrices in the order as
-requested in the &#8216;matrices&#8217; parameter. If a single
-matrix is requested, the return value will be the
-matrix itself instead of a list.</p>
+requested in the &#8216;matrices&#8217; parameter.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -186,14 +184,14 @@ matrix itself instead of a list.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Fpm</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Fmm</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">8</span> <span class="mi">4</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">12</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">2</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Fmp</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">FluidFundamentalMatrices</span><span class="p">(</span><span class="n">Fpp</span><span class="p">,</span><span class="n">Fpm</span><span class="p">,</span><span class="n">Fmp</span><span class="p">,</span><span class="n">Fmm</span><span class="p">,</span><span class="s">&#39;PKU&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Psi</span><span class="o">=</span><span class="n">M</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">Psi</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">U</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluidFundamentalMatrices</span><span class="p">(</span><span class="n">Fpp</span><span class="p">,</span><span class="n">Fpm</span><span class="p">,</span><span class="n">Fmp</span><span class="p">,</span><span class="n">Fmm</span><span class="p">,</span><span class="s">&#39;PKU&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Psi</span>
 <span class="go">      0.33722      0.16517      0.49761</span>
 <span class="go">       0.3318      0.12995      0.53825</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">K</span><span class="o">=</span><span class="n">M</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">K</span>
 <span class="go">       -3.658       1.8258</span>
 <span class="go">       3.2553      -2.3502</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">U</span><span class="o">=</span><span class="n">M</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">U</span>
 <span class="go">      -6.9883       4.4955       2.4928</span>
 <span class="go">       4.3334       -11.02       6.6865</span>
 <span class="go">            2            0           -2</span>
@@ -242,7 +240,7 @@ matrix itself instead of a list.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on Apr 21, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

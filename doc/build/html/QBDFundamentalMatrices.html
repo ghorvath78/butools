@@ -117,7 +117,7 @@
 <p>Returns the fundamental matrices corresponding to the
 given QBD. Matrices R, G and U can be returned
 depending on the &#8220;matrices&#8221; parameter.</p>
-<p>The implementation is based on <a class="reference internal" href="#r39" id="id1">[R39]</a>, please cite it if
+<p>The implementation is based on <a class="reference internal" href="#r2" id="id1">[R2]</a>, please cite it if
 you use this method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -165,9 +165,7 @@ default is &#8220;CR&#8221;.</p>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>M</strong> : list of matrices</p>
 <blockquote class="last">
 <div><p>The list of calculated matrices in the order as
-requested in the &#8216;matrices&#8217; parameter. If a single
-matrix is requested, the return value will be the
-matrix itself instead of a list.</p>
+requested in the &#8216;matrices&#8217; parameter.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -178,10 +176,10 @@ matrix itself instead of a list.</p>
 procedure auto-detects it based on the diagonal entries
 of matrix L.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r39" rules="none">
+<table class="docutils citation" frame="void" id="r2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R39]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Bini, D. A., Meini, B., Steffé, S., Van Houdt,
+<tr><td class="label">[R2]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Bini, D. A., Meini, B., Steffé, S., Van Houdt,
 B. (2006, October). Structured Markov chains
 solver: software tools. In Proceeding from the
 2006 workshop on Tools for solving structured
@@ -193,14 +191,14 @@ Markov chains (p. 14). ACM.</td></tr>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">;</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">12</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">QBDFundamentalMatrices</span> <span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="s">&#39;RGU&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span><span class="o">=</span><span class="n">M</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">U</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDFundamentalMatrices</span> <span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="s">&#39;RGU&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">R</span>
 <span class="go">      0.27839      0.14286</span>
 <span class="go">      0.55678      0.28571</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">=</span><span class="n">M</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span>
 <span class="go">      0.42857      0.57143</span>
 <span class="go">      0.42857      0.57143</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">U</span><span class="o">=</span><span class="n">M</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">U</span>
 <span class="go">      -5.5714       5.5714</span>
 <span class="go">       3.8571      -10.857</span>
 </pre></div>
@@ -246,7 +244,7 @@ Markov chains (p. 14). ACM.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on Apr 21, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

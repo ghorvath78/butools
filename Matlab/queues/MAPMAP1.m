@@ -1,11 +1,13 @@
-function Ret = MAPMAP1(D0, D1, S0, S1, varargin)
+function varargout = MAPMAP1(D0, D1, S0, S1, varargin)
 
     % parse options
-    prec = 1e-15;
+    prec = 1e-14;
     needST = 0;
+    eaten = [];
     for i=1:length(varargin)
         if strcmp(varargin{i},'prec')
             prec = varargin{i+1};
+            eaten = [eaten, i, i+1];
         elseif length(varargin{i})>2 && strcmp(varargin{i}(1:2),'st')
             needST = 1;
         end
@@ -50,7 +52,10 @@ function Ret = MAPMAP1(D0, D1, S0, S1, varargin)
     retIx = 1;
     argIx = 1;
     while argIx<=length(varargin)
-        if strcmp(varargin{argIx},'qlDistrDPH')
+        if any(ismember(eaten, argIx))
+            argIx = argIx + 1;
+            continue;
+        elseif strcmp(varargin{argIx},'qlDistrDPH')
             % transform it to DPH
             alpha = pi0*R*inv(eye(N)-R);
             A = inv(diag(alpha))*R'*diag(alpha);           
@@ -113,7 +118,7 @@ function Ret = MAPMAP1(D0, D1, S0, S1, varargin)
             argIx = argIx + 1;
             values = zeros(size(points));
             for p=1:length(points)
-                values(p) = sum(eta*expm(T*points(p)));
+                values(p) = 1-sum(eta*expm(T*points(p)));
             end
             Ret{retIx} = values;
             retIx = retIx + 1;
@@ -122,7 +127,9 @@ function Ret = MAPMAP1(D0, D1, S0, S1, varargin)
         end
         argIx = argIx + 1;
     end
-    if length(Ret)==1
-        Ret = Ret{1};
+    if length(Ret)==1 && iscell(Ret{1})
+        varargout = Ret{1};
+    else
+        varargout = Ret;
     end
 end

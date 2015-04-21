@@ -148,23 +148,12 @@ there is fewer fluid in the queue than it can
 serve. If false, the output process evolves
 continuously.</p>
 </div></blockquote>
-<p><strong>The rest of the function parameters specify the options</strong></p>
-<p><strong>and the performance measures to be computed.</strong></p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Ret</strong> : list of the performance measures</p>
-<blockquote class="last">
-<div><p>Each entry of the list corresponds to a performance
-measure requested. If there is just a single item,
-then it is not put into a list.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<p>The supported performance measures in this function are:</p>
+<p><strong>further parameters :</strong></p>
+<blockquote>
+<div><p>The rest of the function parameters specify the options
+and the performance measures to be computed.</p>
+<p>The supported performance measures and options in this
+function are:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -232,8 +221,54 @@ the Riccati equation</td>
 </tr>
 </tbody>
 </table>
-<p>Note that &#8220;qlDistrME&#8221; and &#8220;stDistrME&#8221; behave much better numerically than
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Ret</strong> : list of the performance measures</p>
+<blockquote class="last">
+<div><p>Each entry of the list corresponds to a performance
+measure requested. If there is just a single item,
+then it is not put into a list.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>&#8220;qlDistrME&#8221; and &#8220;stDistrME&#8221; behave much better numerically than
 &#8220;qlDistrPH&#8221; and &#8220;stDistrPH&#8221;.</p>
+<p class="rubric">Examples</p>
+<p>For MATLAB:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Qin</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">4</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Rin</span> <span class="o">=</span> <span class="n">diag</span><span class="p">([</span><span class="mi">3</span> <span class="mi">7</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Qout</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">6</span> <span class="o">-</span><span class="mi">8</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">7</span> <span class="o">-</span><span class="mi">10</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Rout</span> <span class="o">=</span> <span class="n">diag</span><span class="p">([</span><span class="mi">1</span> <span class="mi">7</span> <span class="mi">15</span><span class="p">]);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span><span class="p">,</span> <span class="n">std</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#39;stDistrPH&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qld</span>
+<span class="go">       0.3918      0.68193      0.81605      0.88805      0.93027</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qlm</span>
+<span class="go">       0.5357       1.0765       3.4298        14.87       81.162</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="p">{:};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span>
+<span class="go">      0.45285      0.24877</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">      -5.4973      0.83675</span>
+<span class="go">       1.4492      -3.7914</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">std</span><span class="p">,</span> <span class="n">qld</span><span class="p">,</span> <span class="n">stm</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;qlDistrME&#39;</span><span class="p">,</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">std</span>
+<span class="go">      0.57864      0.92608      0.98589      0.99725      0.99946</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stm</span>
+<span class="go">      0.12096     0.071546     0.064592      0.07852      0.11997</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">qld</span><span class="p">{:};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span>
+<span class="go">     -0.24261      0.59524</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">      -2.1425       1.5194</span>
+<span class="go">      0.43807      -1.4538</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 
 
@@ -257,7 +292,7 @@ the Riccati equation</td>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 20, 2015.
+      Last updated on Apr 21, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>butools.queues.MMAPPH1PRPR &mdash; butools v2.0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="top" title="butools v2.0 Manual" href="index.html" >
+    <link rel="up" title="Tools for the Analysis of Queues (butools.queues)" href="queues.html" >
+    <link rel="next" title="butools.queues.MMAPPH1NPPR" href="MMAPPH1NPPR.html" >
+    <link rel="prev" title="butools.queues.MAPMAP1" href="MAPMAP1.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="["></a></li>
+        <li class="active"><a href="]"></a></li>
+	
+        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
+	
+          <li class="active"><a href="queues.html" accesskey="U">Tools for the Analysis of Queues (<tt class="docutils literal"><span class="pre">butools.queues</span></tt>)</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="MMAPPH1NPPR.html" title="butools.queues.MMAPPH1NPPR"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="MAPMAP1.html" title="butools.queues.MAPMAP1"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MAPMAP1.html"
+                        title="previous chapter">butools.queues.MAPMAP1</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MMAPPH1NPPR.html"
+                        title="next chapter">butools.queues.MMAPPH1NPPR</a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="butools-queues-mmapph1prpr">
+<h1>butools.queues.MMAPPH1PRPR<a class="headerlink" href="#butools-queues-mmapph1prpr" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="butools.queues.MMAPPH1PRPR">
+<tt class="descclassname">butools.queues.</tt><tt class="descname">MMAPPH1PRPR</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.queues.MMAPPH1PRPR" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Matlab:</td>
+<td><tt class="code docutils literal"><span class="pre">Ret</span> <span class="pre">=</span> <span class="pre">MMAPPH1PRPR(D,</span> <span class="pre">sigma,</span> <span class="pre">S,</span> <span class="pre">...)</span></tt></td>
+</tr>
+<tr class="row-even"><td>Mathematica:</td>
+<td><tt class="code docutils literal"><span class="pre">Ret</span> <span class="pre">=</span> <span class="pre">MMAPPH1PRPR[D,</span> <span class="pre">sigma,</span> <span class="pre">S,</span> <span class="pre">...]</span></tt></td>
+</tr>
+<tr class="row-odd"><td>Python/Numpy:</td>
+<td><tt class="code docutils literal"><span class="pre">Ret</span> <span class="pre">=</span> <span class="pre">MMAPPH1PRPR(D,</span> <span class="pre">sigma,</span> <span class="pre">S,</span> <span class="pre">...)</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Returns various performane measures of a MMAP[K]/PH[K]/1
+preemptive resume priority queue, see <a class="reference internal" href="#r1" id="id1">[R1]</a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>D</strong> : list of matrices of shape (N,N), length (K+1)</p>
+<blockquote>
+<div><p>The D0...DK matrices of the arrival process.
+D1 corresponds to the lowest, DK to the highest priority.</p>
+</div></blockquote>
+<p><strong>sigma</strong> : list of row vectors, length (K)</p>
+<blockquote>
+<div><blockquote>
+<div><p>The list containing the initial probability vectors of the service
+time distributions of the various customer types. The length of the</p>
+</div></blockquote>
+<p>vectors does not have to be the same.</p>
+</div></blockquote>
+<p><strong>S</strong> : list of square matrices, length (K)</p>
+<blockquote>
+<div><p>The transient generators of the phase type distributions representing
+the service time of the jobs belonging to various types.</p>
+</div></blockquote>
+<p><strong>further parameters :</strong></p>
+<blockquote>
+<div><p>The rest of the function parameters specify the options
+and the performance measures to be computed.</p>
+<p>The supported performance measures and options in this
+function are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="27%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter name</th>
+<th class="head">Input parameters</th>
+<th class="head">Output</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8220;qlMoms&#8221;</td>
+<td>Number of moments</td>
+<td>The queue length moments</td>
+</tr>
+<tr class="row-odd"><td>&#8220;qlDistr&#8221;</td>
+<td>Upper bound (int)</td>
+<td>The queue length distribution is
+returned up to this bound.</td>
+</tr>
+<tr class="row-even"><td>&#8220;stMoms&#8221;</td>
+<td>Number of moments</td>
+<td>The sojourn time moments</td>
+</tr>
+<tr class="row-odd"><td>&#8220;stDistr&#8221;</td>
+<td>A vector of points</td>
+<td>The sojourn time distribution at the
+requested points (cummulative, cdf)</td>
+</tr>
+<tr class="row-even"><td>&#8220;prec&#8221;</td>
+<td>The precision</td>
+<td>Numerical precision to check if the
+input is valid and it is also used
+as a stopping condition when solving
+the matrix-quadratic equation</td>
+</tr>
+<tr class="row-odd"><td>&#8220;erlMaxOrder&#8221;</td>
+<td>Integer number</td>
+<td>The maximal Erlang order used in the
+erlangization procedure. The default
+value is 200.</td>
+</tr>
+<tr class="row-even"><td>&#8220;classes&#8221;</td>
+<td>Vector of integers</td>
+<td>Only the performance measures
+belonging to these classes are
+returned. If not given, all classes
+are analyzed.</td>
+</tr>
+</tbody>
+</table>
+<p>(The queue length related quantities include the customer
+in the server, and the sojourn time related quantities
+include the service times as well)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Ret</strong> : list of the performance measures</p>
+<blockquote class="last">
+<div><p>Each entry of the list corresponds to a performance
+measure requested. Each entry is a matrix, where the
+columns belong to the various job types.
+If there is just a single item,
+then it is not put into a list.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> G. Horvath, &#8220;Efficient analysis of the MMAP[K]/PH[K]/1
+priority queue&#8221;, European Journal of Operational
+Research, 2015, to appear.
+doi:10.1016/j.ejor.2015.03.004</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For MATLAB:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">5.49</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.29</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.32</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">1.17</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.07</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.09</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.24</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.37</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.61</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.31</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sigma1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sigma2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mf">1.7</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mf">1.7</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mf">0.85</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mf">0.85</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sigma3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">6</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S3</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">stm</span><span class="p">,</span> <span class="n">std</span><span class="p">]</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span><span class="n">sigma2</span><span class="p">,</span><span class="n">sigma3</span><span class="p">},{</span><span class="n">S1</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">S3</span><span class="p">},</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">std</span>
+<span class="go">      0.22167      0.34046      0.55657</span>
+<span class="go">      0.43232      0.69522      0.88197</span>
+<span class="go">      0.56982      0.83254      0.97479</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stm</span>
+<span class="go">       16.228        5.482       1.9703</span>
+<span class="go">       799.15       106.86       11.741</span>
+<span class="go">        64508       3809.4       112.85</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meanQlFromLittlesLaw</span> <span class="o">=</span> <span class="p">[</span><span class="n">stm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="o">+</span><span class="n">D2</span><span class="o">+</span><span class="n">D3</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">stm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="o">+</span><span class="n">D1</span><span class="o">+</span><span class="n">D3</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">stm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="o">+</span><span class="n">D1</span><span class="o">+</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="go">       17.931       1.3035       1.4978</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">qlm</span><span class="p">,</span> <span class="n">qld</span><span class="p">]</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span><span class="n">sigma2</span><span class="p">,</span><span class="n">sigma3</span><span class="p">},{</span><span class="n">S1</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span><span class="n">S3</span><span class="p">},</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qlm</span>
+<span class="go">       17.492       1.2717       1.7072</span>
+<span class="go">       998.47       7.6071       9.0878</span>
+<span class="go">        93527       78.416       76.218</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">qld</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2013-2014, The BuTools Team.
+      </li>
+      <li>
+      Last updated on Apr 21, 2015.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

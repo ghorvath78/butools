@@ -55,7 +55,7 @@
 %         2006 workshop on Tools for solving structured 
 %         Markov chains (p. 14). ACM.
 
-function M = QBDFundamentalMatrices (B, L, F, matrices, precision, maxNumIt, method)
+function varargout = QBDFundamentalMatrices (B, L, F, matrices, precision, maxNumIt, method)
 
     if ~exist('precision','var')
         precision = 1e-14;
@@ -101,9 +101,5 @@ function M = QBDFundamentalMatrices (B, L, F, matrices, precision, maxNumIt, met
             ret{i} = L+F*G;
         end
     end
-    if length(ret)==1
-        M=ret{1};
-    else
-        M=ret;
-    end
+    varargout=ret;
 end
