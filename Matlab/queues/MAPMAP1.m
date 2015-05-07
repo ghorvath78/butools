@@ -90,8 +90,8 @@ function varargout = MAPMAP1(D0, D1, S0, S1, varargin)
             retIx = retIx + 1;
         elseif strcmp(varargin{argIx},'stDistrPH')
             % transform it to PH representation
-            beta = CTMCSolve(S0+S1);
-            theta = DTMCSolve(inv(-D0)*D1);
+            beta = CTMCSolve(S0+S1, prec);
+            theta = DTMCSolve(inv(-D0)*D1, prec);
             vv = kron(theta,beta);
             ix = 1:N;
             nz = ix(vv>prec);

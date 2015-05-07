@@ -305,10 +305,10 @@ def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
         Q0v = P*Q0*iP
         M = ml.vstack((-clo*Rv, Q0v[Nz+Np:,:], Q0v[:Nz,:]))
         Ma = ml.vstack((np.sum(la.inv(-K)*clo,1), ml.ones((Nz+Nn,1))))
-        sol = Linsolve (ml.hstack((M,Ma)).T, ml.hstack((ml.zeros((1,N)),1)).T).T;
-        ini = sol[:Np]
+        sol = Linsolve (ml.hstack((M,Ma)).T, ml.hstack((ml.zeros((1,N)),ml.ones((1,1)))).T).T;
+        ini = sol[:,:Np]
         clo = clo * P
-        mass0 = ml.hstack((sol[Np+Nn:], ml.zeros((1,Np)), sol[Np:Np+Nn]))*P
+        mass0 = ml.hstack((sol[:,Np+Nn:], ml.zeros((1,Np)), sol[:,Np:Np+Nn]))*P
 
     return mass0, ini, K, clo
 

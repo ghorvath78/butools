@@ -175,7 +175,7 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
         end
         Mx = eye(size(Ak{k}))-Ak{k};
         Mx(:,1) = ones(N,1);
-        phi{k+1} = [pk(k), ztag(2:end)]*inv(Mx);
+        phi{k+1} = [pk(k), ztag(2:end)]*inv(Mx); % phi(k) = Psi^(k)_k * p(k). Psi^(k)_i = phi(i) / p(k)
         
         q0{k+1} = phi{1}*inv(-D0);
         qL{k+1} = [];

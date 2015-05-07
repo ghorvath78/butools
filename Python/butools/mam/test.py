@@ -14,6 +14,9 @@ from butools.mc import CheckGenerator, CheckProbMatrix
 
 def TestMAMPackage ():
 
+    import os
+    print(os.path.dirname(os.path.realpath(__file__)))
+
     print("---BuTools: MAM package test file---")
     
     print("Enable the verbose messages with the BuToolsVerbose flag")

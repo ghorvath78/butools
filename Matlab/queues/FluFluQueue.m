@@ -53,8 +53,8 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
         % srv0stop = false: inih*expm(Kh*x)*cloh*kron(Rin,Iout)/lambda
         % srv0stop = true: inih*expm(Kh*x)*cloh*kron(Rin,Rout)/lambda/mu    
 
-        lambda = sum(CTMCSolve(Qin)*Rin);
-        mu = sum(CTMCSolve(Qout)*Rout);
+        lambda = sum(CTMCSolve(Qin,prec)*Rin);
+        mu = sum(CTMCSolve(Qout,prec)*Rout);
     end
     
     Ret = {};

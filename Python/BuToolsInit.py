@@ -1,10 +1,11 @@
 import os, sys
 
 def BuToolsInit (verbose=False, checkInput=True):
-    btDir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+#    btDir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    btDir = os.path.dirname(os.path.realpath(__file__))
     sys.path.append(btDir)
     print("Butools V2.0")
-    packages = ['utils', 'mc', 'moments', 'reptrans', 'trace', 'ph', 'dph', 'map', 'dmap', 'fitting'] # , 'mam', 'queues'
+    packages = ['utils', 'mc', 'moments', 'reptrans', 'trace', 'ph', 'dph', 'map', 'dmap', 'fitting' , 'mam', 'queues']
     get_ipython().ex("import butools")
     get_ipython().ex("import numpy as np")
     get_ipython().ex("import numpy.matlib as ml")

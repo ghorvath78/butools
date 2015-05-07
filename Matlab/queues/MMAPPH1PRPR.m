@@ -95,9 +95,9 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                 Qsmm = Qsmm + D{i+1};
             end
             Np = size(Kw,1);
-            Qspm = zeros(Np+N*sum(M(1:k-1)), N);
-            Qsmp = zeros(N, Np+N*sum(M(1:k-1)));
-            Qspp = zeros(Np+N*sum(M(1:k-1)));
+            Qspm = zeros(Np+N*sum(M(k+1:K)), N);
+            Qsmp = zeros(N, Np+N*sum(M(k+1:K)));
+            Qspp = zeros(Np+N*sum(M(k+1:K)));
             Qspp(1:Np,1:Np) = Kw;
             Qspm(1:Np,1:N) = Bw;
             kix = Np+1;
