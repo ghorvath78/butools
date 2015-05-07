@@ -55,9 +55,7 @@ def FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision=1e-14, max
     -------
     M : list of matrices
         The list of calculated matrices in the order as
-        requested in the 'matrices' parameter. If a single
-        matrix is requested, the return value will be the
-        matrix itself instead of a list.
+        requested in the 'matrices' parameter.
     """
 
     if method=="CR":

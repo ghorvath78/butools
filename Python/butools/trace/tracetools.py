@@ -1,14 +1,49 @@
 from scipy import stats
 import numpy as np
 
-def  PdfFromTrace (trace, intBounds):
+def PdfFromTrace (trace, intBounds):
+    """
+    Returns the empirical density function of a trace.
+    
+    Parameters
+    ----------
+    trace : vector of doubles
+        The trace data
+    intBounds : vector of doubles
+        The array of interval boundaries. The pdf is the
+        number of samples falling into an interval divided
+        by the interval length.
+    
+    Returns
+    -------
+    x : vector of doubles
+        The center of the intervals (the points where the 
+        empirical pdf is calculated)
+    y : vector of doubles
+        The values of the empirical pdf at the given points
+    """
     hist = stats.histogram2 (trace, intBounds)
     intlens = intBounds[1:] - intBounds[0:-1]
     y = hist[0:-1] / intlens / len(trace)
     x = (intBounds[1:] + intBounds[0:-1]) / 2.0
     return (x,y)
   
-def  CdfFromTrace (trace):
+def CdfFromTrace (trace):
+    """
+    Returns the empirical distribution function of the trace.
+    
+    Parameters
+    ----------
+    trace : vector of doubles
+        The trace data
+    
+    Returns
+    -------
+    x : vector of doubles
+        The points where the empirical cdf is calculated
+    y : vector of doubles
+        The values of the empirical cdf at the given points
+    """
     return (np.sort(trace), np.linspace(0.0, 1.0, len(trace)))
   
 def IATimesFromCummulative (tr):

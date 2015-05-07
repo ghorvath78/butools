@@ -37,9 +37,7 @@
 %  -------
 %  M : list of matrices
 %      The list of calculated matrices in the order as
-%      requested in the 'matrices' parameter. If a single
-%      matrix is requested, the return value will be the
-%      matrix itself instead of a list.
+%      requested in the 'matrices' parameter.
 %  
 %  Notes
 %  -----

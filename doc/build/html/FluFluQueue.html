@@ -260,11 +260,40 @@ then it is not put into a list.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stm</span>
 <span class="go">      0.12096     0.071546     0.064592      0.07852      0.11997</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">qld</span><span class="p">{:};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span>
 <span class="go">     -0.24261      0.59524</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
 <span class="go">      -2.1425       1.5194</span>
 <span class="go">      0.43807      -1.4538</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Qin</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Rin</span> <span class="o">=</span> <span class="n">Diag</span><span class="p">(</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Qout</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Rout</span> <span class="o">=</span> <span class="n">Diag</span><span class="p">(</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#39;stDistrPH&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qld</span><span class="p">)</span>
+<span class="go">[ 0.39180087  0.68192691  0.81605281  0.88804626  0.93026677]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qlm</span><span class="p">)</span>
+<span class="go">[0.53570356276760078, 1.0765385576008903, 3.4298090557057193, 14.869885651621992, 81.162335691323889]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">std</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+<span class="go">[[ 0.45285051  0.24877407]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[-5.49734397  0.8367526 ]</span>
+<span class="go"> [ 1.44916617 -3.79142652]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">std</span><span class="p">,</span> <span class="n">qld</span><span class="p">,</span> <span class="n">stm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="s">&#39;qlDistrME&#39;</span><span class="p">,</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
+<span class="go">[[ 0.57863816  0.92608217  0.985895    0.99724611  0.99945918]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stm</span><span class="p">)</span>
+<span class="go">[0.12096271585043798, 0.071546261021158727, 0.064592069915750366, 0.078520337012782174, 0.11996554734440762]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">qld</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+<span class="go">[[-0.24260694  0.59524366]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-2.14252917  1.51937881]</span>
+<span class="go"> [ 0.4380681  -1.45384643]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -292,7 +321,7 @@ then it is not put into a list.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 21, 2015.
+      Last updated on May 07, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
