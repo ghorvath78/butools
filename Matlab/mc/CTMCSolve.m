@@ -21,22 +21,17 @@
 %  The procedure raises an exception if :code:`butools.checkInput` 
 %  is set to :code:`true` and :func:`CheckGenerator(Q)` fails.
 
-function pi = CTMCSolve(Q, prec)
-
-    if ~exist('prec','var')
-        prec=1e-14;
-    end
+function pi = CTMCSolve(Q)
 
     global BuToolsCheckInput;
-    
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end
 
-    if BuToolsCheckInput && ~CheckGenerator(Q, false, prec)
+    if BuToolsCheckInput && ~CheckGenerator(Q, false)
         error('CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.');
     end
 
-    pi = CRPSolve (Q, prec);
+    pi = CRPSolve (Q);
 end
 

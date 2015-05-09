@@ -22,23 +22,18 @@
 %      The matrix parameter of the matrix exponentially
 %      distributed marginal    
 
-function [alpha,A] = MarginalDistributionFromRAP (H0, H1, prec )
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [alpha,A] = MarginalDistributionFromRAP (H0, H1)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1,prec)
+    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1)
         error('MarginalDistributionFromRAP: Input isn''t a valid RAP representation!');
     end
 
-    alpha = DRPSolve(inv(-H0)*H1,prec);
+    alpha = DRPSolve(inv(-H0)*H1);
     A = H0;
 end
 

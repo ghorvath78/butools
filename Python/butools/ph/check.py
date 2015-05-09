@@ -10,7 +10,7 @@ from butools.mc import CheckGenerator, CheckProbVector
 import numpy as np
 import scipy.linalg as la
 
-def CheckPHRepresentation (alpha, A, prec=1e-14):
+def CheckPHRepresentation (alpha, A, prec=None):
     """
     Checks if the given vector and matrix define a valid phase-
     type representation.
@@ -32,6 +32,9 @@ def CheckPHRepresentation (alpha, A, prec=1e-14):
         A is a transient generator, and they have the same size.
     """
 
+    if prec==None:
+        prec=butools.checkPrecision
+
     if len(alpha.shape)<2:
         if butools.verbose:
             print("CheckPHRepresentation: Initial vector must be a matrix of size (1,N)!")
@@ -47,7 +50,7 @@ def CheckPHRepresentation (alpha, A, prec=1e-14):
 
     return True
 
-def CheckMERepresentation (alpha, A, prec=1e-14):
+def CheckMERepresentation (alpha, A, prec=None):
     """
     Checks if the given vector and matrix define a valid matrix-
     exponential representation.
@@ -77,6 +80,9 @@ def CheckMERepresentation (alpha, A, prec=1e-14):
     mind that it can be time-consuming, while this procedure
     is fast.
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     if len(alpha.shape)<2:
         if butools.verbose:

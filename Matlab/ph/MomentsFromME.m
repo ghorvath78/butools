@@ -24,19 +24,14 @@
 %      The vector of moments.
 %      
 
-function moms = MomentsFromME (alpha, A, K, prec)
+function moms = MomentsFromME (alpha, A, K)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A)
         error('MomentsFromME: Input isn''t a valid ME representation!');
     end
 

@@ -31,8 +31,13 @@
 function r = CheckMERepresentation (alpha, A, prec)
 
     global BuToolsVerbose;
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-14;
+    end
+    
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = BuToolsCheckPrecision;
     end
 
     if size(A,1)~=size(A,2)

@@ -22,9 +22,13 @@
 function r = CheckDPHRepresentation (alpha, A, prec)
 
     global BuToolsVerbose;
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-14;
+    end
     
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = BuToolsCheckPrecision;
     end
 
     if length(alpha)~=size(A,1)

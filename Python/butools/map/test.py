@@ -532,8 +532,8 @@ def TestMAPPackage ():
     print(H0)
     print(H1)
     
-    rmoms=MarginalMomentsFromRAP(H0,H1,5,1e-12)
-    rNm=LagkJointMomentsFromRAP(H0,H1,2,1,1e-12)
+    rmoms=MarginalMomentsFromRAP(H0,H1,5)
+    rNm=LagkJointMomentsFromRAP(H0,H1,2,1)
     print(rmoms)
     print(rNm)
     
@@ -558,8 +558,9 @@ def TestMAPPackage ():
     print(H0)
     print(H1)
     
-    rmoms=MarginalMomentsFromRAP(H0,H1,7,1e-8)
-    rNm=LagkJointMomentsFromRAP(H0,H1,3,1,1e-8)
+    butools.checkPrecision = 1e-8
+    rmoms=MarginalMomentsFromRAP(H0,H1,7)
+    rNm=LagkJointMomentsFromRAP(H0,H1,3,1)
     print(rmoms)
     print(rNm)
     
@@ -594,9 +595,10 @@ def TestMAPPackage ():
     print(H[2])
     print(H[3])
     
-    rmoms=MarginalMomentsFromMRAP(H,5,1e-11)
+    butools.checkPrecision = 1e-11
+    rmoms=MarginalMomentsFromMRAP(H,5)
     print(rmoms)
-    rNm1, rNm2, rNm3 = LagkJointMomentsFromMRAP(H,2,1,1e-11)
+    rNm1, rNm2, rNm3 = LagkJointMomentsFromMRAP(H,2,1)
     print(rNm1)    
     print(rNm2)    
     print(rNm3)    
@@ -721,8 +723,9 @@ def TestMAPPackage ():
     print(D0)
     print(D1)
     
-    rmoms = MarginalMomentsFromMAP(D0,D1,3,1e-13)
-    rcorr1 = LagCorrelationsFromMAP(D0,D1,1,1e-13)
+    butools.checkPrecision = 1e-12
+    rmoms = MarginalMomentsFromMAP(D0,D1,3)
+    rcorr1 = LagCorrelationsFromMAP(D0,D1,1)
     print(rmoms)
     print(rcorr1)
     
@@ -745,8 +748,8 @@ def TestMAPPackage ():
     print(D0)
     print(D1)
     
-    rmoms = MarginalMomentsFromMAP(D0,D1,3,1e-13)
-    rcorr1 = LagCorrelationsFromMAP(D0,D1,1,1e-13)
+    rmoms = MarginalMomentsFromMAP(D0,D1,3)
+    rcorr1 = LagCorrelationsFromMAP(D0,D1,1)
     print(rmoms)
     print(rcorr1)
     
@@ -792,7 +795,7 @@ def TestMAPPackage ():
     print(H0)
     print(H1)
     
-    err = la.norm(LagkJointMomentsFromRAP(D0,D1,3,1,1e-12)-LagkJointMomentsFromRAP(H0,H1,3,1,1e-12))
+    err = la.norm(LagkJointMomentsFromRAP(D0,D1,3,1)-LagkJointMomentsFromRAP(H0,H1,3,1))
     print(err)
     assert err<1e-12, "The RAP returned by MAPFromRAP is not similar to the input!"
     

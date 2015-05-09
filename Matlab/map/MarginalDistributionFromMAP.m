@@ -22,21 +22,16 @@
 %      The transient generator of the phase type distributed
 %      marginal distribution    
 
-function [alpha,A] = MarginalDistributionFromMAP (D0, D1, prec )
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [alpha,A] = MarginalDistributionFromMAP (D0, D1)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1)
         error('MarginalDistributionFromMAP: input isn''t a valid MAP representation!');
     end
 
-    [alpha,A] = MarginalDistributionFromRAP(D0,D1,prec);
+    [alpha,A] = MarginalDistributionFromRAP(D0,D1);
 end

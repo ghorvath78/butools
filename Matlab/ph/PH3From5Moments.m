@@ -28,7 +28,11 @@
 %         Performance Evaluation, vol. 66, no. 8, pp. 
 %         396 - 409, 2009.
 
-function [alpha, A] = PH3From5Moments (moms)
+function [alpha, A] = PH3From5Moments (moms, prec)
+
+    if ~exist('prec','var')
+        prec = 1e-10;
+    end
 
     % convert the moments to reduced moments
     rmoms = ReducedMomsFromMoms(moms);
@@ -65,26 +69,26 @@ function [alpha, A] = PH3From5Moments (moms)
         error('Invalid eigenvalues!');
     end
 
-    if imag(lambda(1)) < 1e-6
+    if imag(lambda(1)) < prec
         gl = real(lambda(1));
     else
         gl = g0;
     end
     
-    if gl>gu+1e-14
+    if gl>gu+prec
         error('Invalid eigenvalues (gl>gu detected)!');
     end
     if gl>gu
         gl = gu;
     end
     
-    if abs(d1)<1e-10
+    if abs(d1)<prec
         g2 = 0;
     else
         g2 = -d2 / d1;
     end
 
-    if g2>gu+1e-9
+    if g2>gu+prec
         error('alpha_2 is negative!');
     end
     if g2>gu
@@ -100,7 +104,7 @@ function [alpha, A] = PH3From5Moments (moms)
     end
 
     bels = (a(3)-x1)^2 - 4*(x1^2-a(3)*x1+a(2));
-    if bels<0 && bels>-1e-12
+    if bels<0 && bels>-prec
         bels = 0;
     end
 
@@ -113,19 +117,19 @@ function [alpha, A] = PH3From5Moments (moms)
     A = [-x1 0 x13; x2 -x2 0; 0 x3 -x3] / moms(1);
     alpha = [p1 p2 p3];
 
-    if x13<-1e-9 || x13>x1
+    if x13<-prec || x13>x1
         error('Invalid generator!');
     end
 
-    if min(real(alpha))<-1e-10
+    if min(real(alpha))<-prec
         error('Initial vector has negative entries!');
     end
     
-    if max(abs(imag(alpha)))>1e-5
+    if max(abs(imag(alpha)))>prec
         error('Inital vector has complex entries!');
     end
 
-    if max(real(alpha))>1+1e-10
+    if max(real(alpha))>1+prec
         error('Initial vector has entries that are greater than 1!');
     end
 end

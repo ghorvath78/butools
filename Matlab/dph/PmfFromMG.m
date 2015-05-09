@@ -26,19 +26,14 @@
 %      values
 %      
 
-function pmf = PmfFromMG (alpha, A, x, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function pmf = PmfFromMG (alpha, A, x)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMGRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckMGRepresentation(alpha, A)
         error('PmfFromMG: Input isn''t a valid MG distribution!');
     end
 

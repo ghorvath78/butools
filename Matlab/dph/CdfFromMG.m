@@ -24,19 +24,14 @@
 %      the corresponding "x" values
 %      
 
-function cdf = CdfFromMG (alpha, A, x, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function cdf = CdfFromMG (alpha, A, x)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMGRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckMGRepresentation(alpha, A)
         error('CdfFromMG: Input isn''t a valid MG distribution!');
     end
 

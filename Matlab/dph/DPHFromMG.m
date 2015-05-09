@@ -56,6 +56,15 @@ function [beta, B] = DPHFromMG (alpha, A, precision)
         precision = 1e-14;
     end
 
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckMGRepresentation(alpha, A)
+        error('DPHFromMG: Input isn''t a valid MG distribution!');
+    end
+
     nrep = FindMarkovianRepresentation ({alpha, A}, @transfun, @evalfun, precision);
     beta = nrep{1};
     B = nrep{2};

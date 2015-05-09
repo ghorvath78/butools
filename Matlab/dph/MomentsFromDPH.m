@@ -25,19 +25,14 @@
 %      The vector of moments.
 %      
 
-function moms = MomentsFromDPH (alpha, A, K, prec)
+function moms = MomentsFromDPH (alpha, A, K)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDPHRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckDPHRepresentation(alpha, A)
         error('MomentsFromDPH: Input isn''t a valid PH representation!');
     end
 
@@ -45,6 +40,6 @@ function moms = MomentsFromDPH (alpha, A, K, prec)
         K = 0;
     end
     
-    moms = MomentsFromMG (alpha, A, K, prec);
+    moms = MomentsFromMG (alpha, A, K);
 end
 

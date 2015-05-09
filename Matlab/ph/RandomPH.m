@@ -42,7 +42,7 @@ function [alpha, A] = RandomPH(order, mean, zeroEntries, maxTrials, prec)
     end
 
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = 1e-7;
     end
 
     if ~exist('mean','var')
@@ -113,10 +113,10 @@ function [alpha, A] = RandomPH(order, mean, zeroEntries, maxTrials, prec)
             alpha = alpha / sum(alpha);
             D = A + a*alpha;
             if rank(D) == order-1
-                pi = CTMCSolve(D, prec);
-                if min(abs(pi)) > sqrt(prec)
+                pi = CTMCSolve(D);
+                if min(abs(pi)) > prec
                     % scale to the mean value
-                    m = MomentsFromPH (alpha, A, 1, prec);
+                    m = MomentsFromPH (alpha, A, 1);
                     A = A * m(1) / mean;
                     return;
                 end

@@ -21,19 +21,14 @@
 %  x : vector, length(K)
 %      The vector of random samples
 
-function x = SamplesFromPH(a,A,k,prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function x = SamplesFromPH(a,A,k)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckPHRepresentation(a,A,prec)
+    if BuToolsCheckInput && ~CheckPHRepresentation(a,A)
         error('SamplesFromPH: input isn''t a valid PH representation!');
     end
 

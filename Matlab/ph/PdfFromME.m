@@ -23,19 +23,14 @@
 %      The values of the density function at the 
 %      corresponding "x" values
 
-function pdf = PdfFromME (alpha, A, x, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function pdf = PdfFromME (alpha, A, x)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A)
         error('PdfFromME: Input isn''t a valid ME distribution!');
     end
 

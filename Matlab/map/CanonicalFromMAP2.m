@@ -25,14 +25,9 @@
 %  This procedure calculates 3 marginal moments and the lag-1
 %  autocorrelation of the input and calls 'MAP2FromMoments'.
 
-function [G0, G1] = CanonicalFromMAP2 (D0, D1, prec) 
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [G0, G1] = CanonicalFromMAP2 (D0, D1) 
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
@@ -41,12 +36,12 @@ function [G0, G1] = CanonicalFromMAP2 (D0, D1, prec)
         if size(D0,1)~=2
             error('CanonicalFromMAP2: size is not 2!');
         end
-        if ~CheckMAPRepresentation(D0, D1, prec)
+        if ~CheckMAPRepresentation(D0, D1)
 	        error('CanonicalFromMAP2: Input isn''t a valid MAP representation!');
         end
     end
 
-    moms = MarginalMomentsFromMAP (D0, D1, 3, prec);
-    corr1 = LagCorrelationsFromMAP (D0, D1, 1, prec);
+    moms = MarginalMomentsFromMAP (D0, D1, 3);
+    corr1 = LagCorrelationsFromMAP (D0, D1, 1);
     [G0, G1] = MAP2FromMoments (moms, corr1);
 end

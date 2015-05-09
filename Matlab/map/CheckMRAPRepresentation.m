@@ -17,14 +17,16 @@
 %      The result of the check
 
 function r = CheckMRAPRepresentation(H,prec)
-% CheckMRAPRepresentation [ (vector of D0, D1 .. DM), prec[10^-14] ] : 
-%     Checks if the input matrixes define a continuous time MRAP: D0 and
-% 	  the sum of D1..DM define a RAP. 'prec' is the numerical precision.
 
-if ~exist('prec','var')
-    prec = 1e-14;
-end
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-12;
+    end
+    
+    if ~exist('prec','var')
+        prec = BuToolsCheckPrecision;
+    end
 
-r = CheckRAPRepresentation(H{1},SumMatrixList(H(2:end)),prec);
+    r = CheckRAPRepresentation(H{1},SumMatrixList(H(2:end)),prec);
 
 end

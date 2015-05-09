@@ -22,19 +22,14 @@
 %  x : vector, length(K)
 %      The vector of random samples
 
-function x = SamplesFromDPH(a,A,k,prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function x = SamplesFromDPH(a,A,k)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDPHRepresentation(a,A,prec)
+    if BuToolsCheckInput && ~CheckDPHRepresentation(a,A)
         error('SamplesFromDPH: input isn''t a valid DPH representation!');
     end
 

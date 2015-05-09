@@ -20,19 +20,14 @@
 %      columns: the inter-arrival time and the type of the
 %      arrival.        
 
-function x = SamplesFromMMAP(D,k,initial,prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function x = SamplesFromMMAP(D,k,initial)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMMAPRepresentation(D,prec)
+    if BuToolsCheckInput && ~CheckMMAPRepresentation(D)
         error('SamplesFromMMAP: input isn''t a valid MMAP representation!');
     end
 

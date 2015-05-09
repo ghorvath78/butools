@@ -26,19 +26,14 @@
 %      "x" values
 %      
 
-function pmf = PmfFromDPH (alpha, A, x, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function pmf = PmfFromDPH (alpha, A, x)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDPHRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckDPHRepresentation(alpha, A)
         error('PmfFromDPH: Input isn''t a valid DPH distribution!');
     end
 

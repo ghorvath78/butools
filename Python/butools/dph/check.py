@@ -12,7 +12,7 @@ import scipy.linalg as la
 
 
 
-def CheckDPHRepresentation (alpha, A, prec=1e-14):
+def CheckDPHRepresentation (alpha, A, prec=None):
     """
     Checks if the given vector and matrix define a valid 
     discrete phase-type representation.
@@ -34,6 +34,9 @@ def CheckDPHRepresentation (alpha, A, prec=1e-14):
         A is substochastic, and they have the same size.
     """
 
+    if prec==None:
+        prec=butools.checkPrecision
+
     if len(alpha.shape)<2:
         if butools.verbose:
             print("CheckDPHRepresentation: Initial vector must be a matrix of size (1,N)!")
@@ -49,7 +52,7 @@ def CheckDPHRepresentation (alpha, A, prec=1e-14):
 
     return True
 
-def CheckMGRepresentation (alpha, A, prec=1e-14):
+def CheckMGRepresentation (alpha, A, prec=None):
     """
     Checks if the given vector and matrix define a valid matrix-
     geometric representation.
@@ -78,6 +81,9 @@ def CheckMGRepresentation (alpha, A, prec=1e-14):
     The discrete counterpart of 'CheckMEPositiveDensity' does
     not exist yet (research is needed).
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     if len(alpha.shape)<2:
         if butools.verbose:

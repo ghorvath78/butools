@@ -37,7 +37,7 @@ def SamplesFromMMAP (D, k, initial=None, prec=1e-14):
         arrival.        
     """
 
-    if butools.checkInput and not CheckMMAPRepresentation (D, prec):
+    if butools.checkInput and not CheckMMAPRepresentation (D):
         raise Exception("SamplesFromMMAP: Input is not a valid MMAP representation!")    
 
     N = D[0].shape[0]
@@ -110,7 +110,7 @@ def SamplesFromMAP (D0, D1, k, initial=None, prec=1e-14):
         The vector of random samples (inter-arrival times).
     """
 
-    if butools.checkInput and not CheckMAPRepresentation (D0, D1, prec):
+    if butools.checkInput and not CheckMAPRepresentation (D0, D1):
         raise Exception("SamplesFromMAP: Input is not a valid MAP representation!")    
 
     return SamplesFromMMAP((D0,D1),k,initial,prec);
@@ -143,6 +143,9 @@ def ImageFromMMAP (D, outFileName="display", prec=1e-13):
     The 'graphviz' software must be installed and available
     in the path to use this feature.
     """
+
+    if butools.checkInput and not CheckMMAPRepresentation (D):
+        raise Exception("ImageFromMMAP: Input is not a valid MMAP representation!")    
 
     if outFileName=="display":
         outputFile = ".result.png"
@@ -217,5 +220,8 @@ def ImageFromMAP (D0, D1, outFileName="display", prec=1e-13):
     The 'graphviz' software must be installed and available
     in the path to use this feature.
     """
+
+    if butools.checkInput and not CheckMAPRepresentation (D0, D1):
+        raise Exception("ImageFromMAP: Input is not a valid MAP representation!")    
 
     return ImageFromMMAP((D0,D1),outFileName,prec)

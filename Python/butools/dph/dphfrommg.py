@@ -7,6 +7,8 @@ Created on Wed Mar 20 08:21:05 2013
 
 import numpy as np
 from numpy import linalg as la
+import butools
+from butools.dph import CheckMGRepresentation
 from butools.reptrans import FindMarkovianRepresentation
 
 def DPHFromMG (alpha, A, precision=1e-14):
@@ -55,5 +57,8 @@ def DPHFromMG (alpha, A, precision=1e-14):
             return -min(np.min(ao), np.min(av), np.min(Ad))
         else:
             return -np.sum(ao[ao<0]) - np.sum(av[av<0]) - np.sum(Ad[Ad<0])
+
+    if butools.checkInput and not CheckMGRepresentation (alpha, A):
+        raise Exception("DPHFromMG: Input is not a valid MG representation!")
 
     return FindMarkovianRepresentation ((alpha,A), transfun, evalfun, precision)

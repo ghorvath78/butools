@@ -21,26 +21,21 @@
 %  moms : row vector of doubles, length K
 %      The vector of moments.
 
-function moms = MarginalMomentsFromMAP (D0, D1, K, prec )
+function moms = MarginalMomentsFromMAP (D0, D1, K)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     if ~exist('K','var') || K==0
         K = 2*size(D0,1)-1;
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1)
         error('MarginalMomentsFromMAP: input isn''t a valid MAP representation!');
     end
 
-    [alpha,A] = MarginalDistributionFromMAP(D0,D1,prec);
-    moms = MomentsFromPH(alpha,A,K,prec);
+    [alpha,A] = MarginalDistributionFromMAP(D0,D1);
+    moms = MomentsFromPH(alpha,A,K);
 end

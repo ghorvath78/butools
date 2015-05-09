@@ -14,7 +14,7 @@ import numpy as np
 import numpy.matlib as ml
 from numpy.random import rand
 
-def SamplesFromPH (a,A,k,prec=1e-14):
+def SamplesFromPH (a,A,k):
     """
     Generates random samples from a phase-type distribution.
     
@@ -39,7 +39,7 @@ def SamplesFromPH (a,A,k,prec=1e-14):
     """
 
 
-    if butools.checkInput and not CheckPHRepresentation(a,A,prec):
+    if butools.checkInput and not CheckPHRepresentation(a,A):
         raise Exception("SamplesFromPH: input is not a valid PH representation!")
 
     # auxilary variables

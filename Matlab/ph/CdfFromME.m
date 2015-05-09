@@ -22,19 +22,14 @@
 %  cdf : column vector of doubles
 %      The values of the cdf at the corresponding "x" values
 
-function cdf = CdfFromME (alpha, A, x, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function cdf = CdfFromME (alpha, A, x)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A)
         error('CdfFromME: Input isn''t a valid ME distribution!');
     end
     

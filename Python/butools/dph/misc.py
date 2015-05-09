@@ -14,7 +14,7 @@ import numpy as np
 import numpy.matlib as ml
 from numpy.random import rand
 
-def SamplesFromDPH (a,A,k,prec=1e-14):
+def SamplesFromDPH (a,A,k):
     """
     Generates random samples from a discrete phase-type 
     distribution.
@@ -39,7 +39,7 @@ def SamplesFromDPH (a,A,k,prec=1e-14):
         The vector of random samples
     """
 
-    if butools.checkInput and not CheckDPHRepresentation(a,A,prec):
+    if butools.checkInput and not CheckDPHRepresentation(a,A):
         raise Exception("SamplesFromDPH: input is not a valid DPH representation!")
 
     # auxilary variables
@@ -102,6 +102,9 @@ def ImageFromDPH(alpha,A,outFileName=None,prec=1e-13):
     The 'graphviz' software must be installed and available
     in the path to use this feature.
     """
+
+    if butools.checkInput and not CheckDPHRepresentation(alpha,A):
+        raise Exception("ImageFromDPH: input is not a valid DPH representation!")
 
     if outFileName==None or outFileName=="display":
         outputFile = ".result.png"

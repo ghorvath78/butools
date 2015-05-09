@@ -35,12 +35,11 @@ function [D0, D1] = MAPFromRAP (H0, H1, prec)
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1,prec)
+    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1)
         error('MAPFromRAP: Input isn''t a valid RAP representation!');
     end
 

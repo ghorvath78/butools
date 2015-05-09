@@ -31,12 +31,11 @@ function D = MMAPFromMRAP (H,prec)
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMRAPRepresentation(H,prec)
+    if BuToolsCheckInput && ~CheckMRAPRepresentation(H)
         error('MMAPFromMRAP: Input isn''t a valid MRAP representation');
     end
 

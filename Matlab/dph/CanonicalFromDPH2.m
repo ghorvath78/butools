@@ -21,19 +21,14 @@
 %  B : matrix, shape (2,2)
 %    Transition probability matrix of the canonical form
 
-function [beta,B] = CanonicalFromDPH2 (alpha,A,prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [beta,B] = CanonicalFromDPH2 (alpha,A)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMGRepresentation(alpha,A,prec)
+    if BuToolsCheckInput && ~CheckMGRepresentation(alpha,A)
         error('CanonicalFromDPH2: Input isn''t a valid MG distribution!');
     end
 

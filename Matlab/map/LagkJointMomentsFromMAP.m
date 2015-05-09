@@ -26,19 +26,14 @@
 %      The matrix containing the lag-L joint moments, 
 %      starting from moment 0.
 
-function Nm = LagkJointMomentsFromMAP (D0, D1, K, L, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function Nm = LagkJointMomentsFromMAP (D0, D1, K, L)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1)
         error('LagkJointMomentsFromMAP: Input isn''t a valid MAP representation!');
     end
 
@@ -50,6 +45,6 @@ function Nm = LagkJointMomentsFromMAP (D0, D1, K, L, prec)
         L=1;
     end
 
-    moms=LagkJointMomentsFromMRAP({D0,D1},K,L,prec);
+    moms=LagkJointMomentsFromMRAP({D0,D1},K,L);
     Nm=moms{1};
 end

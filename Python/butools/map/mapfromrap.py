@@ -38,7 +38,7 @@ def MMAPFromMRAP (H, prec=1e-14):
            53:(8) pp. 1235-1248. (2009)
     """
 
-    if butools.checkInput and not CheckMRAPRepresentation (H, prec):
+    if butools.checkInput and not CheckMRAPRepresentation (H):
         raise Exception("MMAPFromMRAP: Input is not a valid MRAP representation!")    
 
     def transfun (oH, B):
@@ -90,7 +90,7 @@ def MAPFromRAP (H0, H1, prec=1e-14):
            1153-1168. (2007)       
     """
 
-    if butools.checkInput and not CheckRAPRepresentation (H0, H1, prec):
+    if butools.checkInput and not CheckRAPRepresentation (H0, H1):
         raise Exception("MAPFromRAP: Input is not a valid RAP representation!")    
 
     return MMAPFromMRAP([H0,H1], prec)

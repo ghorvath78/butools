@@ -11,7 +11,7 @@ from butools.utils import SumMatrixList
 import numpy as np
 import scipy.linalg as la
 
-def CheckMAPRepresentation (D0, D1, prec=1e-14):
+def CheckMAPRepresentation (D0, D1, prec=None):
     """
     Checks if the input matrixes define a continuous time MAP.
     
@@ -35,6 +35,9 @@ def CheckMAPRepresentation (D0, D1, prec=1e-14):
         The result of the check
     """
 
+    if prec==None:
+        prec=butools.checkPrecision
+
     if not CheckGenerator(D0,True):
         return False
 
@@ -55,7 +58,7 @@ def CheckMAPRepresentation (D0, D1, prec=1e-14):
 
     return True
 
-def CheckMMAPRepresentation (H,prec=1e-14):
+def CheckMMAPRepresentation (H,prec=None):
     """
     Checks if the input matrixes define a continuous time MMAP.
     
@@ -75,13 +78,16 @@ def CheckMMAPRepresentation (H,prec=1e-14):
         The result of the check
     """
 
+    if prec==None:
+        prec=butools.checkPrecision
+
     if np.min(np.hstack(H[1:])) < -prec:
         if butools.verbose:
             print ("CheckMMAPRepresentation: Some of the matrices H1 ... HM have a negative element!")
         return False
     return CheckMAPRepresentation(H[0],SumMatrixList(H[1:]),prec)
 
-def CheckRAPRepresentation (D0, D1, prec=1e-14):
+def CheckRAPRepresentation (D0, D1, prec=None):
     """
     Checks if the input matrixes define a continuous time RAP.
     
@@ -103,6 +109,9 @@ def CheckRAPRepresentation (D0, D1, prec=1e-14):
     r : bool 
         The result of the check
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     if D0.shape[0]!=D0.shape[1]:
         if butools.verbose:
@@ -151,7 +160,7 @@ def CheckRAPRepresentation (D0, D1, prec=1e-14):
 
     return True
 
-def CheckMRAPRepresentation(H,prec=1e-14):
+def CheckMRAPRepresentation(H,prec=None):
     """
     Checks if the input matrixes define a continuous time MRAP.
     
@@ -169,5 +178,8 @@ def CheckMRAPRepresentation(H,prec=1e-14):
     r : bool 
         The result of the check
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     return CheckRAPRepresentation(H[0],SumMatrixList(H[1:]),prec)

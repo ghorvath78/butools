@@ -8,7 +8,7 @@ from butools.ph import CheckMERepresentation, CheckPHRepresentation
 from butools.mc import CTMCSolve
 from butools.utils import Diag
 
-def MomentsFromME (alpha, A, K=0, prec=1e-14):
+def MomentsFromME (alpha, A, K=0):
     """
     Returns the first K moments of a matrix-exponential
     distribution.
@@ -35,14 +35,14 @@ def MomentsFromME (alpha, A, K=0, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckMERepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckMERepresentation (alpha, A):
         raise Exception("MomentsFromME: Input is not a valid ME representation!")
         
     if K==0:
         K = 2*np.size(alpha,1)-1
     return [math.factorial(i)*np.sum(alpha*la.inv(-A)**i) for i in range(1,K+1)]
   
-def MomentsFromPH (alpha, A, K=0, prec=1e-14):
+def MomentsFromPH (alpha, A, K=0):
     """
     Returns the first K moments of a continuous phase-type
     distribution.
@@ -68,12 +68,12 @@ def MomentsFromPH (alpha, A, K=0, prec=1e-14):
         The vector of moments.
     """
 
-    if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckPHRepresentation (alpha, A):
         raise Exception("MomentsFromPH: Input is not a valid PH representation!")
 
-    return MomentsFromME (alpha, A, K, prec)
+    return MomentsFromME (alpha, A, K)
 
-def PdfFromME (alpha, A, x, prec=1e-14):
+def PdfFromME (alpha, A, x):
     """
     Returns the probability density function of a matrix-
     exponential distribution.
@@ -99,13 +99,13 @@ def PdfFromME (alpha, A, x, prec=1e-14):
         corresponding "x" values
     """
 
-    if butools.checkInput and not CheckMERepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckMERepresentation (alpha, A):
         raise Exception("PdfFromME: Input is not a valid ME representation!")
 
     y = [np.sum(alpha*expm(A*xv)*(-A)) for xv in x]
     return np.array(y)
 
-def PdfFromPH (alpha, A, x, prec=1e-14):
+def PdfFromPH (alpha, A, x):
     """
     Returns the probability density function of a continuous
     phase-type distribution.
@@ -131,12 +131,12 @@ def PdfFromPH (alpha, A, x, prec=1e-14):
         corresponding "x" values
     """
 
-    if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckPHRepresentation (alpha, A):
         raise Exception("PdfFromPH: Input is not a valid PH representation!")
 
-    return PdfFromME (alpha, A, x, prec)
+    return PdfFromME (alpha, A, x)
 
-def IntervalPdfFromPH (alpha, A, intBounds, prec=1e-14):
+def IntervalPdfFromPH (alpha, A, intBounds):
     """
     Returns the approximate probability density function of a
     continuous phase-type distribution, based on the 
@@ -173,7 +173,7 @@ def IntervalPdfFromPH (alpha, A, intBounds, prec=1e-14):
     density functions than the exact one (given by PdfFromPH).
     """
 
-    if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckPHRepresentation (alpha, A):
         raise Exception("IntervalPdfFromPH: Input is not a valid PH representation!")
 
     steps = len(intBounds)
@@ -181,7 +181,7 @@ def IntervalPdfFromPH (alpha, A, intBounds, prec=1e-14):
     y = [(np.sum(alpha*expm((A*intBounds[i]).A)) - np.sum(alpha*expm((A*intBounds[i+1]).A)))/(intBounds[i+1]-intBounds[i]) for i in range(steps-1)]
     return (np.array(x), np.array(y))
 
-def CdfFromME (alpha, A, x, prec=1e-14):
+def CdfFromME (alpha, A, x):
     """
     Returns the cummulative distribution function of a
     matrix-exponential distribution.
@@ -206,12 +206,12 @@ def CdfFromME (alpha, A, x, prec=1e-14):
         The values of the cdf at the corresponding "x" values
     """
 
-    if butools.checkInput and not CheckMERepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckMERepresentation (alpha, A):
         raise Exception("CdfFromME: Input is not a valid ME representation!")
 
     return np.array([1.0-np.sum(alpha*expm(A.A*xv)) for xv in x])
 
-def CdfFromPH (alpha, A, x, prec=1e-14):
+def CdfFromPH (alpha, A, x):
     """
     Returns the cummulative distribution function of a
     continuous phase-type distribution.
@@ -236,12 +236,12 @@ def CdfFromPH (alpha, A, x, prec=1e-14):
         The values of the cdf at the corresponding "x" values
     """
 
-    if butools.checkInput and not CheckPHRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckPHRepresentation (alpha, A):
         raise Exception("CdfFromPH: Input is not a valid PH representation!")
 
-    return CdfFromME (alpha, A, x, prec)
+    return CdfFromME (alpha, A, x)
     
-def RandomPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+def RandomPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
     """
     Returns a random phase-type distribution with a given 
     order.
@@ -326,10 +326,10 @@ def RandomPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
             alpha = alpha / np.sum(alpha)
             D = A + a*alpha
             if la.matrix_rank(D) == order-1:
-                pi = CTMCSolve(D, prec)
-                if np.min(np.abs(pi)) > math.sqrt(prec):
+                pi = CTMCSolve(D)
+                if np.min(np.abs(pi)) > prec:
                     # scale to the mean value
-                    m = MomentsFromPH (alpha, A, 1, prec)[0]
+                    m = MomentsFromPH (alpha, A, 1)[0]
                     A *= m / mean
                     return (alpha, A)
             trials += 1

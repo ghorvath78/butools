@@ -20,21 +20,16 @@
 %      The transient generator of the phase type distributed
 %      marginal distribution    
 
-function [alpha,A] = MarginalDistributionFromMMAP (D,prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [alpha,A] = MarginalDistributionFromMMAP (D)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMMAPRepresentation(D,prec)
+    if BuToolsCheckInput && ~CheckMMAPRepresentation(D)
         error('MarginalDistributionFromMMAP: Input isn''t a valid MMAP representation');
     end
 
-    [alpha,A] = MarginalDistributionFromMRAP(D,prec);
+    [alpha,A] = MarginalDistributionFromMRAP(D);
 end

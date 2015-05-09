@@ -41,12 +41,11 @@ function D = MinimalRepFromMRAP (H, how, precision)
     end
     
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end       
 
-    if BuToolsCheckInput && ~CheckMRAPRepresentation (H, precision)
+    if BuToolsCheckInput && ~CheckMRAPRepresentation (H)
         error('MinimalRepFromMRAP: Input isn''t a valid MRAP representation');
     end
 

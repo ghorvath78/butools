@@ -27,16 +27,15 @@
 function [beta, B] = CanonicalFromPH3 (alpha, A, prec)
 
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = 1e-10;
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMERepresentation(alpha,A,prec)
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha,A)
         error('CanonicalFromPH3: Input isn''t a valid ME distribution!');
     end
 
@@ -44,6 +43,6 @@ function [beta, B] = CanonicalFromPH3 (alpha, A, prec)
         error('CanonicalFromPH3: Dimension is not 3!');
     end
 
-    [beta, B] = PH3From5Moments (MomentsFromME(alpha, A, 5, prec));
+    [beta, B] = PH3From5Moments (MomentsFromME(alpha, A, 5), prec);
 end
 

@@ -44,7 +44,7 @@ function [beta,B] = AcyclicDPHFromMG (alpha, A, prec)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMGRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckMGRepresentation(alpha, A)
         error('AcyclicDPHFromMG: Input isn''t a valid MG distribution!');
     end
 
@@ -61,4 +61,7 @@ function [beta,B] = AcyclicDPHFromMG (alpha, A, prec)
     beta = alpha*T;
     B = mx;
 
+    if ~CheckDPHRepresentation (beta, B, prec)
+        error('AcyclicDPHFromMG: No acyclic representation found!');
+    end
 end

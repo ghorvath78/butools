@@ -21,12 +21,8 @@
 %  x : vector, length(K)
 %      The vector of random samples (inter-arrival times).
 
-function x = SamplesFromMAP(D0,D1,k,initial,prec)
+function x = SamplesFromMAP(D0,D1,k,initial)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     if ~exist('initial','var')
         initial=[];
     end
@@ -37,9 +33,9 @@ function x = SamplesFromMAP(D0,D1,k,initial,prec)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1)
         error('SamplesFromMAP: input isn''t a valid MAP representation!');
     end
     
-    x = SamplesFromMMAP({D0,D1},k,initial,prec);
+    x = SamplesFromMMAP({D0,D1},k,initial);
 end

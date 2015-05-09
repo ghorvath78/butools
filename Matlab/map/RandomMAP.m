@@ -37,7 +37,7 @@ function [D0,D1] = RandomMAP(order, mean, zeroEntries, maxTrials, prec)
     end
 
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = 1e-7;
     end
 
     if ~exist('maxTrials','var')

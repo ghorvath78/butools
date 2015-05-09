@@ -9,7 +9,7 @@ from butools.mc import DTMCSolve
 from butools.utils import Diag
 
 
-def MomentsFromMG (alpha, A, K=0, prec=1e-14):
+def MomentsFromMG (alpha, A, K=0):
     """
     Returns the first K moments of a matrix geometric 
     distribution.
@@ -36,7 +36,7 @@ def MomentsFromMG (alpha, A, K=0, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckMGRepresentation (alpha, A):
         raise Exception("MomentsFromMG: Input is not a valid MG representation!")
 
     m = A.shape[0]
@@ -45,7 +45,7 @@ def MomentsFromMG (alpha, A, K=0, prec=1e-14):
     Ai = la.inv(ml.eye(m)-A)
     return MomsFromFactorialMoms([math.factorial(i)*np.sum(alpha*Ai**i*A**(i-1)) for i in range(1,K+1)])
 
-def MomentsFromDPH (alpha, A, K=0, prec=1e-14):
+def MomentsFromDPH (alpha, A, K=0):
     """
     Returns the first K moments of a discrete phase-type
     distribution.
@@ -73,12 +73,12 @@ def MomentsFromDPH (alpha, A, K=0, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckDPHRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckDPHRepresentation (alpha, A):
         raise Exception("MomentsFromDPH: Input is not a valid DPH representation!")
 
     return MomentsFromMG (alpha, A, K)
 
-def PmfFromMG (alpha, A, x, prec=1e-14):
+def PmfFromMG (alpha, A, x):
     """
     Returns the probability mass function of a matrix-
     geometric distribution.
@@ -107,7 +107,7 @@ def PmfFromMG (alpha, A, x, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckMGRepresentation (alpha, A):
         raise Exception("PmfFromMG: Input is not a valid MG representation!")
 
     a = 1-np.sum(A,1)
@@ -119,7 +119,7 @@ def PmfFromMG (alpha, A, x, prec=1e-14):
             y[i] = np.sum(alpha*(A**int(x[i]-1))*a)
     return y
 
-def PmfFromDPH (alpha, A, x, prec=1e-14):
+def PmfFromDPH (alpha, A, x):
     """
     Returns the probability mass function of a discrete
     phase-type distribution.
@@ -148,12 +148,12 @@ def PmfFromDPH (alpha, A, x, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckDPHRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckDPHRepresentation (alpha, A):
         raise Exception("PmfFromDPH: Input is not a valid DPH representation!")
 
     return PmfFromMG (alpha, A, x)
 
-def CdfFromMG (alpha, A, x, prec=1e-14):
+def CdfFromMG (alpha, A, x):
     """
     Returns the cummulative distribution function of a 
     matrix-geometric distribution.
@@ -180,7 +180,7 @@ def CdfFromMG (alpha, A, x, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckMGRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckMGRepresentation (alpha, A):
         raise Exception("CdfFromMG: Input is not a valid MG representation!")
 
     y = np.empty(len(x))
@@ -188,7 +188,7 @@ def CdfFromMG (alpha, A, x, prec=1e-14):
         y[i] = 1.0-np.sum(alpha*(A**int(x[i])))
     return y
 
-def CdfFromDPH (alpha, A, x, prec=1e-14):
+def CdfFromDPH (alpha, A, x):
     """
     Returns the cummulative distribution function of a 
     discrete phase-type distribution.
@@ -216,12 +216,12 @@ def CdfFromDPH (alpha, A, x, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckDPHRepresentation (alpha, A, prec):
+    if butools.checkInput and not CheckDPHRepresentation (alpha, A):
         raise Exception("CdfFromDPH: Input is not a valid DPH representation!")
 
     return CdfFromMG (alpha, A, x)
 
-def RandomDPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+def RandomDPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
     """
     Returns a random discrete phase-type distribution with a 
     given mean value.
@@ -311,12 +311,12 @@ def RandomDPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
             alpha = alpha / np.sum(alpha)
             D = A + a*alpha
             if la.matrix_rank(D) == order-1:
-                pi = DTMCSolve(D, prec)
-                if np.min(np.abs(pi)) > math.sqrt(prec):
+                pi = DTMCSolve(D)
+                if np.min(np.abs(pi)) > prec:
                     # diagonals of matrix A:
                     d = np.random.rand(order)
                     # scale to the mean value
-                    m = MomentsFromDPH (alpha, Diag(1-d)*A+Diag(d), 1, prec)[0]
+                    m = MomentsFromDPH (alpha, Diag(1-d)*A+Diag(d), 1)[0]
                     d = 1 - (1-d)*m/mean
                     A = Diag(1-d)*A+Diag(d)
                     if CheckDPHRepresentation(alpha,A,prec):

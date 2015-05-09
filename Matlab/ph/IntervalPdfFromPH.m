@@ -34,19 +34,14 @@
 %  This method is more suitable for comparisons with empirical
 %  density functions than the exact one (given by PdfFromPH).
 
-function [x, y] = IntervalPdfFromPH (alpha, A, intBounds, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [x, y] = IntervalPdfFromPH (alpha, A, intBounds)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A)
         error('IntervalPdfFromPH: Input isn''t a valid PH distribution!');
     end
     

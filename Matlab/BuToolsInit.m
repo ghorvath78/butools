@@ -1,4 +1,4 @@
-function BuToolsInit (verbose, checkInput)
+function BuToolsInit (verbose, checkInput, checkPrecision)
 
     fname = mfilename('fullpath');
     [pathstr, ~, ~] = fileparts(fname);
@@ -21,6 +21,7 @@ function BuToolsInit (verbose, checkInput)
     
     global BuToolsVerbose;
     global BuToolsCheckInput;
+    global BuToolsCheckPrecision;
     
     if exist('verbose','var')
         BuToolsVerbose = verbose;
@@ -34,6 +35,12 @@ function BuToolsInit (verbose, checkInput)
         BuToolsCheckInput = true;
     end
     
-    fprintf('Global variables: BuToolsVerbose = %d, BuToolsCheckInput = %d\n',BuToolsVerbose,BuToolsCheckInput);   
+    if exist('checkPrecision','var')
+        BuToolsCheckPrecision = checkPrecision;
+    else
+        BuToolsCheckPrecision = 1e-12;
+    end
+    
+    fprintf('Global variables: BuToolsVerbose = %d, BuToolsCheckInput = %d, BuToolsCheckPrecision = %g\n',BuToolsVerbose,BuToolsCheckInput,BuToolsCheckPrecision);
 end
 

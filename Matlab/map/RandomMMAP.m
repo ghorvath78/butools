@@ -37,7 +37,7 @@ function D = RandomMMAP(order, types, mean, zeroEntries, maxTrials, prec)
     end
 
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = 1e-7;
     end
 
     if ~exist('maxTrials','var')
@@ -119,8 +119,8 @@ function D = RandomMMAP(order, types, mean, zeroEntries, maxTrials, prec)
                 sumD = sumD + D{i};
             end
             if rank(D{1})==order && rank(sumD)==order-1
-                alpha = CTMCSolve(sumD, prec);
-                if min(abs(alpha)) > sqrt(prec)
+                alpha = CTMCSolve(sumD);
+                if min(abs(alpha)) > prec
                     fullZero = 0;
                     for i=1:length(D)
                         if all(all(D{i}==0.0))
@@ -130,7 +130,7 @@ function D = RandomMMAP(order, types, mean, zeroEntries, maxTrials, prec)
                     end
                     if fullZero==0
                         % scale to the mean value
-                        m = MarginalMomentsFromMMAP(D, 1, prec);
+                        m = MarginalMomentsFromMMAP(D, 1);
                         for i=1:types+1
                             D{i} = D{i} * m / mean;
                         end

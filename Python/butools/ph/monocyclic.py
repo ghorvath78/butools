@@ -1,3 +1,4 @@
+import butools
 import numpy as np
 from butools.reptrans import TransformToMonocyclic, TransformToAcyclic, SimilarityMatrix, ExtendToMarkovian
 from butools.ph import CheckPHRepresentation, CheckMERepresentation
@@ -108,7 +109,7 @@ def AcyclicPHFromME (alpha, A, maxSize=100, precision=1e-14):
     else:
         return (gamma, G)
 
-def CheckMEPositiveDensity (alpha, A, maxSize=100, prec=1e-14):
+def CheckMEPositiveDensity (alpha, A, maxSize=100, prec=None):
     """
     Checks if the given matrix-exponential distribution has 
     positive density.
@@ -139,6 +140,9 @@ def CheckMEPositiveDensity (alpha, A, maxSize=100, prec=1e-14):
     This procedure calls MonocyclicPHFromME, and can be time 
     consuming. 
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     try:
         beta, B = MonocyclicPHFromME (alpha, A, maxSize, prec)

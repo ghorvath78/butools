@@ -23,21 +23,16 @@
 %      The values of the density function at the 
 %      corresponding "x" values
 
-function pdf = PdfFromPH (alpha, A, x, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function pdf = PdfFromPH (alpha, A, x)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A)
         error('PdfFromPH: Input isn''t a valid PH distribution!');
     end
 
-    pdf = PdfFromME (alpha, A, x, prec);
+    pdf = PdfFromME (alpha, A, x);
 end

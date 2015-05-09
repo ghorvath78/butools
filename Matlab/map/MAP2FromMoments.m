@@ -45,7 +45,11 @@ function [D0, D1] = MAP2FromMoments (moms, corr1)
     m3 = moms(3);
 
     % If we have an exponential distribution, we do not allow correlation
-    if abs(m2-2.0*m1*m1) < 1e-14 && abs(corr1) > 1e-14
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-12;
+    end   
+    if abs(m2-2.0*m1*m1) < BuToolsCheckPrecision && abs(corr1) > BuToolsCheckPrecision
         error('We do not allow correlation in case of exponentially distributed marginal');
     end
 

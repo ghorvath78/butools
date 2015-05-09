@@ -45,7 +45,7 @@ def MinimalRepFromMRAP (H, how="obscont", precision=1e-12):
            Qeueuing theory (MCQT), June 2010.
     """
 
-    if butools.checkInput and not CheckMRAPRepresentation (H, precision):
+    if butools.checkInput and not CheckMRAPRepresentation (H):
         raise Exception("MinimalRepFromMRAP: Input is not a valid MRAP representation!")    
 
     if how=="cont":
@@ -95,7 +95,7 @@ def MinimalRepFromRAP (H0, H1, how="obscont", precision=1e-12):
            Qeueuing theory (MCQT), June 2010.
     """
 
-    if butools.checkInput and not CheckRAPRepresentation (H0, H1, precision):
+    if butools.checkInput and not CheckRAPRepresentation (H0, H1):
         raise Exception("MinimalRepFromRAP: Input is not a valid RAP representation!")    
 
     return MinimalRepFromMRAP ([H0,H1], how, precision)

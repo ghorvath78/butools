@@ -25,19 +25,14 @@
 %      corresponding "x" values
 %      
 
-function cdf = CdfFromDPH (alpha, A, x, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function cdf = CdfFromDPH (alpha, A, x)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDPHRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckDPHRepresentation(alpha, A)
         error('CdfFromDPH: Input isn''t a valid PH distribution!');
     end
     

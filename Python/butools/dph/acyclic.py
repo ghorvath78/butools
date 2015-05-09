@@ -40,13 +40,16 @@ def AcyclicDPHFromMG (alpha, A, maxSize=100, precision=1e-14):
     possible
     """
 
-    if butools.checkInput and not CheckMGRepresentation(alpha,A,precision):
+    if butools.checkInput and not CheckMGRepresentation(alpha,A):
         raise Exception("AcyclicDPHFromMG: input is not a valid MG representation!")
 
     ev = la.eigvals(A)
     ix = np.argsort(np.abs(np.real(ev)))
     lambda2 = ev[ix]
     lambda3 = lambda2[lambda2!=lambda2[-1]]
+
+    if np.max(np.abs(np.imag(ev)))>precision:
+        raise Exception("AcyclicDPHFromMG: The input matrix has complex eigenvalue!")
 
     mx = ml.matrix(np.diag(lambda2)+np.diag(1.0-lambda3, 1))
     T = SimilarityMatrix (A, mx)

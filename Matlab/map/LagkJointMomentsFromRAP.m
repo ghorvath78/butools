@@ -26,19 +26,14 @@
 %      The matrix containing the lag-L joint moments, 
 %      starting from moment 0.
 
-function Nm = LagkJointMomentsFromRAP (H0, H1, K, L, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function Nm = LagkJointMomentsFromRAP (H0, H1, K, L)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1,prec)
+    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1)
         error('LagkJointMomentsFromRAP: Input isn''t a valid RAP representation!');
     end
 
@@ -50,6 +45,6 @@ function Nm = LagkJointMomentsFromRAP (H0, H1, K, L, prec)
         L=1;
     end
 
-    mom=LagkJointMomentsFromMRAP({H0, H1},K,L,prec);
+    mom=LagkJointMomentsFromMRAP({H0, H1},K,L);
     Nm=mom{1};
 end

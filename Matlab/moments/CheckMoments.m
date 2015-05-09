@@ -28,15 +28,17 @@
 function r = CheckMoments (m, prec)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-14;
+    end
     
     if ~exist('prec','var')
-        prec=1e-14;
+        prec=BuToolsCheckPrecision;
     end
-
 
     if BuToolsCheckInput && mod(length(m),2)==0
         error ('CheckMoments: the number of moments must be odd!');

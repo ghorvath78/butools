@@ -866,7 +866,7 @@ disp(B);
 C = SimilarityMatrix(B,A);
 sim = norm(B*C-C*A) + norm(b*C-a);
 
-assert(length(b)==3 && sim<1e-14, 'Non-minimal representation returned based on observability!');
+assert(length(b)==3 && sim<1e-12, 'Non-minimal representation returned based on observability!');
 
 disp('[b,B]=MinimalRepFromME(a,A,''obscont'')');
 [b,B]=MinimalRepFromME(a,A,'obscont');
@@ -876,7 +876,7 @@ disp(B);
 C = SimilarityMatrix(B,A);
 sim = norm(B*C-C*A) + norm(b*C-a);
 
-assert(length(b)==3 && sim<1e-14, 'Non-minimal representation returned based on observability and controllability!');
+assert(length(b)==3 && sim<1e-12, 'Non-minimal representation returned based on observability and controllability!');
 
 disp('[b,B]=MinimalRepFromME(a,A,''moment'')');
 [b,B]=MinimalRepFromME(a,A,'moment');
@@ -886,7 +886,7 @@ disp(B);
 C = SimilarityMatrix(B,A);
 sim = norm(B*C-C*A) + norm(b*C-a);
 
-assert(length(b)==3 && sim<1e-14, 'Non-minimal representation returned based on the moments!');
+assert(length(b)==3 && sim<1e-12, 'Non-minimal representation returned based on the moments!');
 
 disp('----------------------------------------------------------------------------');
 help SamplesFromPH

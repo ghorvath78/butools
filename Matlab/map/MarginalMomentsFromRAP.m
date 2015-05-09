@@ -21,27 +21,22 @@
 %  moms : row vector of doubles, length K
 %      The vector of moments.
 
-function moms = MarginalMomentsFromRAP (H0, H1, K, prec )
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function moms = MarginalMomentsFromRAP (H0, H1, K)
 
     if ~exist('K','var') || K==0
         K = 2*size(H0,1)-1;
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1,prec)
+    if BuToolsCheckInput && ~CheckRAPRepresentation(H0,H1)
         error('MarginalMomentsFromRAP: Input isn''t a valid RAP representation!');
     end
 
-    [alpha,A] = MarginalDistributionFromRAP(H0,H1,prec);
-    moms = MomentsFromME(alpha,A,K,prec);
+    [alpha,A] = MarginalDistributionFromRAP(H0,H1);
+    moms = MomentsFromME(alpha,A,K);
 end
 

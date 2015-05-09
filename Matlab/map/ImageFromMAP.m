@@ -26,6 +26,15 @@
 
 function ImageFromMAP(D0,D1,outFileName,prec)
 
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1)
+        error('ImageFromMAP: Input isn''t a valid MAP representation!');
+    end
+    
     if ~exist('prec','var')
         prec = 1e-13;
     end

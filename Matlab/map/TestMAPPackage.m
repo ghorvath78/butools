@@ -526,8 +526,8 @@ disp('[H0,H1]=RAPFromMoments(moms,Nm):');
 disp(H0);
 disp(H1);
 
-rmoms=MarginalMomentsFromRAP(H0,H1,5,1e-12)
-rNm=LagkJointMomentsFromRAP(H0,H1,2,1,1e-12)
+rmoms=MarginalMomentsFromRAP(H0,H1,5)
+rNm=LagkJointMomentsFromRAP(H0,H1,2,1)
 
 assert(norm(moms-rmoms)<1e-12 && norm(Nm-rNm)<1e-12, 'The moments and joint moments returned by RAPFromMoments are not the same as given!');
 
@@ -547,8 +547,10 @@ disp('[H0,H1]=RAPFromMoments(moms,Nm):');
 disp(H0);
 disp(H1);
 
-rmoms=MarginalMomentsFromRAP(H0,H1,7,1e-8)
-rNm=LagkJointMomentsFromRAP(H0,H1,3,1,1e-8)
+global BuToolsCheckPrecision;
+BuToolsCheckPrecision = 1e-8;
+rmoms=MarginalMomentsFromRAP(H0,H1,7)
+rNm=LagkJointMomentsFromRAP(H0,H1,3,1)
 
 assert(CheckRAPRepresentation(H0,H1,1e-8), 'RAPFromMoments returned an invalid RAP representation!');
 assert(norm(moms-rmoms)<1e-8 && norm(Nm-rNm)<1e-8, 'The moments and joint moments returned by RAPFromMoments are not the same as given!');
@@ -580,8 +582,9 @@ disp(H{2});
 disp(H{3});
 disp(H{4});
 
-rmoms=MarginalMomentsFromMRAP(H,5,1e-11)
-rNm=LagkJointMomentsFromMRAP(H,2,1,1e-11);
+BuToolsCheckPrecision = 1e-11;
+rmoms=MarginalMomentsFromMRAP(H,5)
+rNm=LagkJointMomentsFromMRAP(H,2,1);
 rNm1=rNm{1}
 rNm2=rNm{2}
 rNm3=rNm{3}
@@ -695,8 +698,8 @@ disp('[D0,D1]=MAPFromFewMomentsAndCorrelations(moms, corr1):');
 disp(D0);
 disp(D1);
 
-rmoms = MarginalMomentsFromMAP(D0,D1,3,1e-13);
-rcorr1 = LagCorrelationsFromMAP(D0,D1,1,1e-13);
+rmoms = MarginalMomentsFromMAP(D0,D1,3);
+rcorr1 = LagCorrelationsFromMAP(D0,D1,1);
 
 assert(CheckMAPRepresentation(D0,D1,1e-13), 'MAPFromFewMomentsAndCorrelations returned with a non-Markovian representation!');
 assert(norm(rmoms-moms)<1e-12 && norm(rcorr1-corr1)<1e-12, 'MAPFromFewMomentsAndCorrelations failed to match the marginal moments or the lag-1 autocorrelation!');
@@ -715,8 +718,8 @@ disp('[D0,D1]=MAPFromFewMomentsAndCorrelations(moms, corr1):');
 disp(D0);
 disp(D1);
 
-rmoms = MarginalMomentsFromMAP(D0,D1,3,1e-13);
-rcorr1 = LagCorrelationsFromMAP(D0,D1,1,1e-13);
+rmoms = MarginalMomentsFromMAP(D0,D1,3);
+rcorr1 = LagCorrelationsFromMAP(D0,D1,1);
 
 assert(CheckMAPRepresentation(D0,D1,1e-13), 'MAPFromFewMomentsAndCorrelations returned with a non-Markovian representation!');
 assert(norm(rmoms-moms)<1e-12 && norm(rcorr1-corr1)<1e-12, 'MAPFromFewMomentsAndCorrelations failed to match the marginal moments or the lag-1 autocorrelation!');
@@ -761,7 +764,7 @@ disp('[H0,H1]=MAPFromRAP(D0,D1):');
 disp(H0);
 disp(H1);
 
-err = norm(LagkJointMomentsFromRAP(D0,D1,3,1,1e-12)-LagkJointMomentsFromRAP(H0,H1,3,1,1e-12));
+err = norm(LagkJointMomentsFromRAP(D0,D1,3,1)-LagkJointMomentsFromRAP(H0,H1,3,1));
 assert(err<1e-12, 'The RAP returned by MAPFromRAP is not similar to the input!');
 
 disp('Input:');

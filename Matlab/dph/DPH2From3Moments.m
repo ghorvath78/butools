@@ -25,12 +25,8 @@
 %  This procedure first calls 'MGFromMoments', then transforms
 %  it to DPH(2) by 'CanonicalFromDPH2'.
 
-function [alpha, A] = DPH2From3Moments (moms, prec)
+function [alpha, A] = DPH2From3Moments (moms)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     [beta, B] = MGFromMoments(moms(1:3));
-    [alpha,A] = CanonicalFromDPH2(beta,B,prec);    
+    [alpha,A] = CanonicalFromDPH2(beta,B);    
 end

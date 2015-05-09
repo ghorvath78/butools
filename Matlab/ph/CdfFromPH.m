@@ -22,22 +22,21 @@
 %  cdf : column vector of doubles
 %      The values of the cdf at the corresponding "x" values
 
-function cdf = CdfFromPH (alpha, A, x, prec)
+function cdf = CdfFromPH (alpha, A, x)
 
     if ~exist('prec','var')
         prec = 1e-14;
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A)
         error('CdfFromPH: Input isn''t a valid PH distribution!');
     end
 
-    cdf = CdfFromME (alpha, A, x, prec);
+    cdf = CdfFromME (alpha, A, x);
 end
 

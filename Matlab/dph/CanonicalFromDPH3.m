@@ -33,7 +33,7 @@ function [beta,B] = CanonicalFromDPH3 (alpha,A,prec)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMGRepresentation(alpha,A,prec)
+    if BuToolsCheckInput && ~CheckMGRepresentation(alpha,A)
         error('CanonicalFromDPH3: Input isn''t a valid MG distribution!');
     end
 

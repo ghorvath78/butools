@@ -42,7 +42,7 @@ function [alpha, A] = RandomDPH(order, mean, zeroEntries, maxTrials, prec)
     end
 
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = 1e-7;
     end
 
     if ~exist('mean','var')
@@ -121,7 +121,7 @@ function [alpha, A] = RandomDPH(order, mean, zeroEntries, maxTrials, prec)
                     % diagonals of matrix A:
                     d = rand(1,order);
                     % scale to the mean value
-                    m = MomentsFromDPH (alpha, diag(1-d)*A+diag(d), 1, prec);
+                    m = MomentsFromDPH (alpha, diag(1-d)*A+diag(d), 1);
                     d = 1 - (1-d)*m(1)/mean;
                     A = diag(1-d)*A+diag(d);
                     if CheckDPHRepresentation(alpha,A,prec)

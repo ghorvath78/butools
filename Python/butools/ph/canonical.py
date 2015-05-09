@@ -197,7 +197,7 @@ def PH2From3Moments (moms, prec=1e-14):
   # return the result
   return (np.matrix([p,1.0-p]), np.matrix([[-lambda1, lambda1], [0,-lambda2]]))
   
-def APHFrom3Moments (moms, maxSize=100):
+def APHFrom3Moments (moms, maxSize=100, prec=1e-14):
   """
   Returns an acyclic PH which has the same 3 moments as
   given. If detects the order and the structure 
@@ -292,7 +292,7 @@ def APHFrom3Moments (moms, maxSize=100):
         return (alpha,A)
   raise Exception("No APH found for the given 3 moments!")
     
-def PH3From5Moments (moms):
+def PH3From5Moments (moms, prec=1e-10):
     """
     Returns a PH(3) which has the same 5 moments as given.
     
@@ -348,28 +348,28 @@ def PH3From5Moments (moms):
     d2 = a[0] - a[1] - a[2] * d1;
     d3 = -a[0] - a[1]*d1 - a[2]*d2;
 
-    if d1>1e-10 or (abs(d1)<1e-10 and d2>0):
+    if d1>1e-10 or (abs(d1)<prec and d2>0):
       raise Exception("Negative density around 0!")
 
     if lamb[2]<0:
       raise Exception("Invalid eigenvalues!")
 
-    if lamb[0].imag < 1e-6:
+    if lamb[0].imag < prec:
         gl = lamb[0].real
     else:
         gl = g0
 
-    if gl > gu+1e-14:
+    if gl > gu+prec:
       raise Exception("Invalid eigenvalues (gl>gu detected)!")
     if gl > gu:
         gl = gu
 
-    if abs(d1) < 1e-10:
+    if abs(d1) < prec:
         g2 = 0
     else:
         g2 = -d2 / d1
 
-    if g2>gu+1e-9:
+    if g2>gu+prec:
       raise Exception("alpha_2 is negative!")
     if g2 > gu:
         g2 = gu;
@@ -382,7 +382,7 @@ def PH3From5Moments (moms):
       x13 = x1 - a[0] / (x1*x1 - a[2]*x1 + a[1])
 
     bels = (a[2]-x1)**2 - 4.0*(x1*x1-a[2]*x1+a[1])
-    if bels<0 and bels>-1e-12:
+    if bels<0 and bels>-prec:
         bels = 0
 
     x2 = (a[2] - x1 + math.sqrt(bels)) / 2.0
@@ -394,16 +394,16 @@ def PH3From5Moments (moms):
     T = np.matrix([[-x1, 0, x13],[x2, -x2, 0],[0, x3, -x3]]) / m1
     alpha = np.matrix([p1,p2,p3])
 
-    if x13<-1e-9 or x13>x1:
+    if x13<-prec or x13>x1:
       raise Exception("Invalid genrator!")
 
-    if np.min(np.real(alpha))<-1e-10:
+    if np.min(np.real(alpha))<-prec:
       raise Exception("Initial vector has negative entries!")
     
-    if np.max(abs(np.imag(alpha)))>1e-5:
+    if np.max(abs(np.imag(alpha)))>prec:
       raise Exception("Inital vector has complex entries!")
 
-    if np.max(np.real(alpha))>1+1e-10:
+    if np.max(np.real(alpha))>1+prec:
       raise Exception("Initial vector has entries that are greater than 1!")
 
     return (alpha, T)
@@ -435,13 +435,13 @@ def CanonicalFromPH2 (alpha, A, prec=1e-14):
     calls 'PH2From3Moments'.
     """
 
-    if butools.checkInput and not CheckMERepresentation(alpha,A,prec):
+    if butools.checkInput and not CheckMERepresentation(alpha,A):
         raise Exception("CanonicalFromPH2: Input isn''t a valid ME distribution!")
 
     if A.shape[0]!=2:
         raise Exception("CanonicalFromPH2: Dimension is not 2!")
 
-    return PH2From3Moments (MomentsFromPH(alpha, A, 3, prec), prec)
+    return PH2From3Moments (MomentsFromPH(alpha, A, 3), prec)
 
 def CanonicalFromPH3 (alpha, A, prec=1e-14):
     """
@@ -470,11 +470,11 @@ def CanonicalFromPH3 (alpha, A, prec=1e-14):
     calls 'PH3From5Moments'.
     """
 
-    if butools.checkInput and not CheckMERepresentation(alpha,A,prec):
+    if butools.checkInput and not CheckMERepresentation(alpha,A):
         raise Exception("CanonicalFromPH3: Input isn''t a valid ME distribution!")
 
     if A.shape[0]!=3:
         raise Exception("CanonicalFromPH3: Dimension is not 3!")
     
-    return PH3From5Moments (MomentsFromPH(alpha, A, 5, prec))
+    return PH3From5Moments (MomentsFromPH(alpha, A, 5), prec)
 

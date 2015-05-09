@@ -23,19 +23,14 @@
 %  moms : row vector of doubles
 %      The vector of moments.
 
-function moms = MomentsFromPH (alpha, A, K, prec)
+function moms = MomentsFromPH (alpha, A, K)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A, prec)
+    if BuToolsCheckInput && ~CheckPHRepresentation(alpha, A)
         error('MomentsFromPH: Input isn''t a valid PH representation!');
     end
 
@@ -43,5 +38,5 @@ function moms = MomentsFromPH (alpha, A, K, prec)
         K = 0;
     end
 
-    moms = MomentsFromME (alpha, A, K, prec);
+    moms = MomentsFromME (alpha, A, K);
 end

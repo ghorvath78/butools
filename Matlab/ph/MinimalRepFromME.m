@@ -45,6 +45,15 @@ function [beta, B] = MinimalRepFromME (alpha, A, how, precision)
         how='moment';
     end
 
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A)
+        error('MinimalRepFromME: Input isn''t a valid ME distribution!');
+    end
+
     if strcmp(how,'cont')
         H0 = A;
         H1 = sum(-A,2) * alpha;
@@ -66,7 +75,7 @@ function [beta, B] = MinimalRepFromME (alpha, A, how, precision)
         [beta, B] = MinimalRepFromME (alphav, Av, 'obs', precision);
     elseif strcmp(how,'moment')
         mo = MEOrder (alpha, A, 'moment', precision);
-        [beta, B] = MEFromMoments(MomentsFromME(alpha, A, 2*mo-1, precision));
+        [beta, B] = MEFromMoments(MomentsFromME(alpha, A, 2*mo-1));
     else
         error('MinimalRepFromME: Invalid ''how'' parameter!')
     end

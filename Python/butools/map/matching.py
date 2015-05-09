@@ -198,7 +198,7 @@ def MAP2FromMoments (moms, corr1):
     m1, m2, m3 = moms
 
     # If we have an exponential distribution, we do not allow correlation
-    if abs(m2-2.0*m1*m1) < 1e-14 and abs(corr1) > 1e-14:
+    if abs(m2-2.0*m1*m1) < butools.checkPrecision and abs(corr1) > butools.checkPrecision:
         raise Exception ("We do not allow correlation in case of exponentially distributed marginal")
 
     # Perform PH fitting  
@@ -233,7 +233,7 @@ def MAP2FromMoments (moms, corr1):
         D1 = ml.matrix([[0, 0], [p*l2, (1.0-p)*l2]])
     return (D0, D1)
 
-def CanonicalFromMAP2 (D0, D1, prec=1e-14):
+def CanonicalFromMAP2 (D0, D1):
     """
     Returns the canonical form of an order-2 Markovian
     arrival process.
@@ -264,11 +264,11 @@ def CanonicalFromMAP2 (D0, D1, prec=1e-14):
     if butools.checkInput:
         if D0.shape[0]!=2:
             raise Exception("CanonicalFromMAP2: size is not 2!")
-        if not CheckMAPRepresentation(D0, D1, prec):
+        if not CheckMAPRepresentation(D0, D1):
 	        raise Exception("CanonicalFromMAP2: Input is not a valid MAP representation!")
 
-    moms = MarginalMomentsFromMAP (D0, D1, 3, prec)
-    corr1 = LagCorrelationsFromMAP (D0, D1, 1, prec)
+    moms = MarginalMomentsFromMAP (D0, D1, 3)
+    corr1 = LagCorrelationsFromMAP (D0, D1, 1)
     return MAP2FromMoments (moms, corr1)
 
 

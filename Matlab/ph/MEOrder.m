@@ -45,6 +45,15 @@ function order = MEOrder (alpha, A, kind, prec)
        kind = 'moment';
    end
 
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A)
+        error('MinimalRepFromME: Input isn''t a valid ME distribution!');
+    end
+   
    N = length(alpha);  
    if strcmp(kind,'cont')
        re = zeros (N);

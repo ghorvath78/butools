@@ -22,21 +22,16 @@
 %  The procedure raises an exception if :code:`butools.checkInput` 
 %  is set to :code:`true` and :func:`CheckProbMatrix(P)` fails.
 
-function pi = DTMCSolve (P, prec)
-
-    if ~exist('prec','var')
-        prec=1e-14;
-    end
+function pi = DTMCSolve (P)
 
     global BuToolsCheckInput;
-    
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end
 
-    if BuToolsCheckInput && ~CheckProbMatrix(P, false, prec)
+    if BuToolsCheckInput && ~CheckProbMatrix(P, false)
         error('DTMCSolve: The given matrix is not a valid transient probability matrix. If you are sure you want this use DRPSolve instead of DTMCSolve.');
     end
 
-    pi = DRPSolve(P, prec);
+    pi = DRPSolve(P);
 end

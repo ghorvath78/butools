@@ -31,12 +31,11 @@ function [beta, B] = CanonicalFromPH2 (alpha, A, prec)
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMERepresentation(alpha,A,prec)
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha,A)
         error('CanonicalFromPH2: Input isn''t a valid ME distribution!');
     end
 
@@ -44,6 +43,6 @@ function [beta, B] = CanonicalFromPH2 (alpha, A, prec)
         error('CanonicalFromPH2: Dimension is not 2!');
     end
 
-    [beta, B] = PH2From3Moments (MomentsFromME(alpha, A, 3, prec), prec);
+    [beta, B] = PH2From3Moments (MomentsFromME(alpha, A, 3), prec);
 end
 

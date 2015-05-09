@@ -24,19 +24,18 @@
 %  pass the :func:`CheckGenerator` test (but the rowsums 
 %  still have to be zeros).
 
-function pi = CRPSolve (Q, prec)
-
-    if ~exist('prec','var')
-        prec=1e-14;
-    end
+function pi = CRPSolve (Q)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-14;
+    end
 
-    if BuToolsCheckInput && any(sum(Q,2)>prec)
+    if BuToolsCheckInput && any(abs(sum(Q,2))>BuToolsCheckPrecision)
         error('CRPSolve: The matrix has a rowsum which isn''t zero!');
     end
 

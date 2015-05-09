@@ -11,7 +11,8 @@ import numpy.linalg as nla
 from numpy import matlib as ml
 from butools.moments import ReducedMomsFromMoms
 from butools.reptrans import MStaircase
-from butools.ph import MomentsFromME, MEFromMoments
+import butools
+from butools.ph import MomentsFromME, MEFromMoments, CheckMERepresentation
 
 def MEOrderFromMoments (moms, prec=1e-12):
     """
@@ -89,6 +90,9 @@ def MEOrder (alpha, A, kind="moment", prec=1e-10):
             Qeueuing theory (MCQT), June 2010.
     """
 
+    if butools.checkInput and not CheckMERepresentation (alpha, A):
+        raise Exception("MEOrder: Input is not a valid ME representation!")
+
     N = alpha.shape[1]
     if kind=="cont":
         re = np.zeros ((N,N))
@@ -154,6 +158,9 @@ def MinimalRepFromME (alpha, A, how="moment", precision=1e-12):
             Qeueuing theory (MCQT), June 2010.
     """
 
+    if butools.checkInput and not CheckMERepresentation (alpha, A):
+        raise Exception("MinimalRepFromME: Input is not a valid ME representation!")
+
     if how=="cont":
         H0 = A
         H1 = np.sum(-A,1) * alpha
@@ -170,6 +177,6 @@ def MinimalRepFromME (alpha, A, how="moment", precision=1e-12):
         return MinimalRepFromME (alphav, Av, "obs", precision)      
     elif how=="moment":
         N = MEOrder (alpha, A, "moment", precision)
-        moms = MomentsFromME (alpha, A, 2*N-1, precision)
+        moms = MomentsFromME (alpha, A, 2*N-1)
         return MEFromMoments (moms)
         

@@ -9,7 +9,7 @@ import numpy as np
 import numpy.linalg as la
 import butools
 
-def CheckGenerator (Q, transient=False, prec=1e-14):
+def CheckGenerator (Q, transient=False, prec=None):
     """
     Checks if the matrix is a valid generator matrix: the 
     matrix is a square matrix, the matrix has positive or 
@@ -37,6 +37,9 @@ def CheckGenerator (Q, transient=False, prec=1e-14):
     r : bool
         The result of the check.
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     if not isinstance(Q,np.ndarray):
         Q = np.array(Q)
@@ -78,7 +81,7 @@ def CheckGenerator (Q, transient=False, prec=1e-14):
             return False
     return True
 
-def CheckProbMatrix (P, transient=False, prec=1e-14):
+def CheckProbMatrix (P, transient=False, prec=None):
     """
     Checks if the matrix is a valid probability matrix: the 
     matrix is a square matrix, the matrix has positive or 
@@ -108,6 +111,9 @@ def CheckProbMatrix (P, transient=False, prec=1e-14):
     r : bool
         The result of the check.
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     if not isinstance(P,np.ndarray):
         P = np.array(P)
@@ -139,7 +145,7 @@ def CheckProbMatrix (P, transient=False, prec=1e-14):
             return False
     return True
 
-def CheckProbVector (pi, sub=False, prec=1e-14):
+def CheckProbVector (pi, sub=False, prec=None):
     """
     Checks if the vector is a valid probability vector: the 
     vector has only non-negative elements, the sum of the 
@@ -168,6 +174,9 @@ def CheckProbVector (pi, sub=False, prec=1e-14):
     r : bool
         The result of the check.
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     if np.min(pi)<-prec:
         if butools.verbose:

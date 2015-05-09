@@ -24,8 +24,13 @@ function r = CheckRAPRepresentation (D0, D1, prec)
 
     global BuToolsVerbose;
 
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-12;
+    end
+    
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = BuToolsCheckPrecision;
     end
 
     if size(D0,1)~=size(D0,2)

@@ -57,6 +57,15 @@ function [beta, B] = PHFromME (alpha, A, precision)
         precision = 1e-14;
     end
 
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A)
+        error('PHFromME: Input isn''t a valid ME distribution!');
+    end
+
     nrep = FindMarkovianRepresentation ({alpha, A}, @transfun, @evalfun, precision);
     beta = nrep{1};
     B = nrep{2};

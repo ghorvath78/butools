@@ -7,6 +7,8 @@ Created on Wed Mar 20 08:21:05 2013
 
 import numpy as np
 from numpy import linalg as la
+import butools
+from butools.ph import CheckMERepresentation
 from butools.reptrans import FindMarkovianRepresentation
 
 def PHFromME (alpha, A, precision=1e-14):
@@ -56,5 +58,8 @@ def PHFromME (alpha, A, precision=1e-14):
             return -min(np.min(ao), np.min(av), np.min(Ad))
         else:
             return -np.sum(ao[ao<0]) - np.sum(av[av<0]) - np.sum(Ad[Ad<0])
+
+    if butools.checkInput and not CheckMERepresentation (alpha, A):
+        raise Exception("PHFromME: Input is not a valid ME representation!")
 
     return FindMarkovianRepresentation ((alpha,A), transfun, evalfun, precision)

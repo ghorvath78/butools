@@ -28,12 +28,16 @@
 %         moments with minimal acyclic phase type 
 %         distributions," Stochastic models, pp. 303-326, 2005.
 
-function [alpha, A] = APHFrom3Moments (moms, maxSize)
+function [alpha, A] = APHFrom3Moments (moms, maxSize, prec)
 
-    if nargin<4
+    if ~exist('prec','var')
+        prec=1e-14;
+    end
+    if ~exist('maxSize','var')
         maxSize = 100;
     end
-
+    
+    
     m1 = moms(1);
     m2 = moms(2);
     m3 = moms(3);
@@ -90,7 +94,7 @@ function [alpha, A] = APHFrom3Moments (moms, maxSize)
         fs = roots([c4 c3 c2 c1 c0]);
         for i=1:length(fs)
             f = fs(i);
-            if abs((n-1)*(n2*f^2-2*f+2)-n)<1e-14
+            if abs((n-1)*(n2*f^2-2*f+2)-n)<prec
                 continue;
             end
             a = 2*(f-1)*(n-1) / ((n-1)*(n2*f^2-2*f+2)-n);

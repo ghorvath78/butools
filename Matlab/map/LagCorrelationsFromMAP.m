@@ -21,19 +21,14 @@
 %      The lag autocorrelation function up to lag L
 %      
 
-function acf = LagCorrelationsFromMAP (D0, D1, L, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function acf = LagCorrelationsFromMAP (D0, D1, L)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1)
         error('LagCorrelationsFromMAP: input isn''t a valid MAP representation!');
     end
 
@@ -41,5 +36,5 @@ function acf = LagCorrelationsFromMAP (D0, D1, L, prec)
         L=1;
     end
 
-    acf = LagCorrelationsFromRAP(D0, D1, L, prec);
+    acf = LagCorrelationsFromRAP(D0, D1, L);
 end

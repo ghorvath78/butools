@@ -26,12 +26,21 @@
 %  The 'graphviz' software must be installed and available
 %  in the path to use this feature.
 
-function img = ImageFromPH(alpha,A,outFileName,prec)
+function ImageFromPH(alpha,A,outFileName,prec)
 
     if ~exist('prec','var')
         prec = 1e-13;
     end
 
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckPHRepresentation(alpha,A)
+        error('ImageFromPH: input isn''t a valid PH representation!');
+    end
+    
     if ~exist('outFileName','var') || strcmp(outFileName,'display')
         outputFile = '.result.png';
         displ = true;

@@ -11,7 +11,7 @@ import butools
 from butools.mc import CheckGenerator, CheckProbMatrix
 
 
-def CRPSolve (Q, prec=1e-14):
+def CRPSolve (Q):
     """
     Computes the stationary solution of a continuous time 
     rational process (CRP).
@@ -38,7 +38,7 @@ def CRPSolve (Q, prec=1e-14):
     still have to be zeros).
     """
     
-    if butools.checkInput and np.any(np.sum(Q,1)>prec):
+    if butools.checkInput and np.any(np.sum(Q,1)>butools.checkPrecision):
         raise Exception("CRPSolve: The matrix has a rowsum which isn't zero!")
     
     M = np.array(Q)
@@ -48,7 +48,7 @@ def CRPSolve (Q, prec=1e-14):
     return ml.matrix(la.solve (M.T, m))
 #    return la.solve (M.T, m)
     
-def CTMCSolve (Q, prec=1e-14):
+def CTMCSolve (Q):
     """
     Computes the stationary solution of a continuous time 
     Markov chain.
@@ -72,12 +72,12 @@ def CTMCSolve (Q, prec=1e-14):
     is set to :code:`true` and :func:`CheckGenerator(Q)` fails.
     """
 
-    if butools.checkInput and not CheckGenerator(Q, False, prec):
+    if butools.checkInput and not CheckGenerator(Q, False):
         raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.")
 
-    return CRPSolve(Q, prec)
+    return CRPSolve(Q)
     
-def DRPSolve (P, prec=1e-14):
+def DRPSolve (P):
     """
     Computes the stationary solution of a discrete time 
     Markov chain.
@@ -104,15 +104,15 @@ def DRPSolve (P, prec=1e-14):
     have to be ones).
     """
 
-    if butools.checkInput and np.any(np.sum(P,1)-1.0>prec):
+    if butools.checkInput and np.any(np.sum(P,1)-1.0>butools.checkPrecision):
         raise Exception("DRPSolve: The matrix has a rowsum which isn't 1!")
 
     if not isinstance(P,np.ndarray):
         P = np.array(P)
 
-    return CRPSolve(P-ml.eye(P.shape[0]), prec)
+    return CRPSolve(P-ml.eye(P.shape[0]))
     
-def DTMCSolve (P, prec=1e-14):
+def DTMCSolve (P):
     """
     Computes the stationary solution of a discrete time 
     Markov chain.
@@ -137,8 +137,8 @@ def DTMCSolve (P, prec=1e-14):
     is set to :code:`true` and :func:`CheckProbMatrix(P)` fails.
     """
 
-    if butools.checkInput and not CheckProbMatrix(P, False, prec):
+    if butools.checkInput and not CheckProbMatrix(P, False):
         raise Exception("CTMCSolve: The given matrix is not a valid generator. If you are sure you want this use CRPSolve instead of CTMCSolve.")
 
-    return DRPSolve(P, prec)
+    return DRPSolve(P)
 

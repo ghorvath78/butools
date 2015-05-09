@@ -52,7 +52,7 @@ function [beta, B] = AcyclicPHFromME (alpha, A, maxSize, precision)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A, precision)
+    if BuToolsCheckInput && ~CheckMERepresentation(alpha, A)
         error('AcyclicPHFromME: Input isn''t a valid ME distribution!');
     end
 

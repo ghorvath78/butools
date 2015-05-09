@@ -24,21 +24,7 @@
 %  the :func:`CheckProbMatrix` test (but the rowsums still 
 %  have to be ones).
 
-function pi = DRPSolve (P, prec)
+function pi = DRPSolve (P)
 
-    if ~exist('prec','var')
-        prec=1e-14;
-    end
-
-    global BuToolsCheckInput;
-    
-    if isempty(BuToolsCheckInput)
-        BuToolsCheckInput = true;
-    end
-
-    if BuToolsCheckInput && any(sum(P,2)-1>prec)
-        error('DRPSolve: The matrix has a rowsum which isn''t 1!');
-    end
-
-    pi = CRPSolve(P-eye(size(P)), prec);
+    pi = CRPSolve(P-eye(size(P)));
 end
