@@ -14,7 +14,7 @@ from butools.mc import DTMCSolve
 from butools.utils import SumMatrixList
 
 
-def SamplesFromDMMAP (D, k, initial=None, prec=1e-14):
+def SamplesFromDMMAP (D, k, initial=None):
     """
     Generates random samples from a discrete marked 
     Markovian arrival process.
@@ -37,7 +37,7 @@ def SamplesFromDMMAP (D, k, initial=None, prec=1e-14):
         type of the arrival.        
     """
 
-    if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
+    if butools.checkInput and not CheckDMMAPRepresentation (D):
         raise Exception("SamplesFromDMMAP: Input is not a valid DMMAP representation!")    
 
     N = D[0].shape[0]
@@ -87,7 +87,7 @@ def SamplesFromDMMAP (D, k, initial=None, prec=1e-14):
     
     return x
 
-def SamplesFromDMAP (D0, D1, k, initial=None, prec=1e-14):
+def SamplesFromDMAP (D0, D1, k, initial=None):
     """
     Generates random samples from a discrete Markovian 
     arrival process.
@@ -110,10 +110,10 @@ def SamplesFromDMAP (D0, D1, k, initial=None, prec=1e-14):
         The vector of random samples (inter-arrival times).
     """
 
-    if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
+    if butools.checkInput and not CheckDMAPRepresentation (D0, D1):
         raise Exception("SamplesFromDMAP: Input is not a valid DMAP representation!")    
 
-    return SamplesFromDMMAP((D0,D1),k,initial,prec);
+    return SamplesFromDMMAP((D0,D1),k,initial);
 
 import os
 import os.path
@@ -143,6 +143,9 @@ def ImageFromDMMAP (D, outFileName="display", prec=1e-13):
     The 'graphviz' software must be installed and available
     in the path to use this feature.
     """
+
+    if butools.checkInput and not CheckDMMAPRepresentation (D):
+        raise Exception("ImageFromDMMAP: Input is not a valid DMMAP representation!")    
 
     if outFileName=="display":
         outputFile = ".result.png"
@@ -217,5 +220,8 @@ def ImageFromDMAP (D0, D1, outFileName="display", prec=1e-13):
     The 'graphviz' software must be installed and available
     in the path to use this feature.
     """
+
+    if butools.checkInput and not CheckDMAPRepresentation (D0, D1):
+        raise Exception("ImageFromDMAP: Input is not a valid DMAP representation!")    
 
     return ImageFromDMMAP((D0,D1),outFileName,prec)

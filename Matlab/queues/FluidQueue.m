@@ -104,13 +104,15 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckGenerator(Q,false,prec)
+    global BuToolsCheckPrecision;
+    
+    if BuToolsCheckInput && ~CheckGenerator(Q,false)
         error('FluidQueue: Generator matrix Q is not Markovian!');
     end
-    if BuToolsCheckInput && ~isempty(Q0) && ~CheckGenerator(Q0,false,prec)
+    if BuToolsCheckInput && ~isempty(Q0) && ~CheckGenerator(Q0,false)
         error('FluidQueue: Generator matrix Q0 is not Markovian!');
     end
-    if BuToolsCheckInput && (any(diag(Rin)<-prec) || any(diag(Rout)<-prec))
+    if BuToolsCheckInput && (any(diag(Rin)<-BuToolsCheckPrecision) || any(diag(Rout)<-BuToolsCheckPrecision))
         error('FluidQueue: Fluid rates Rin and Rout must be non-negative !');
     end  
 

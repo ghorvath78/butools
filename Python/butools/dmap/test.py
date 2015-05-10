@@ -526,8 +526,8 @@ def TestDMAPPackage ():
     print(H0)
     print(H1)
     
-    rmoms=MarginalMomentsFromDRAP(H0,H1,5,1e-12)
-    rNm=LagkJointMomentsFromDRAP(H0,H1,2,1,1e-12)
+    rmoms=MarginalMomentsFromDRAP(H0,H1,5)
+    rNm=LagkJointMomentsFromDRAP(H0,H1,2,1)
     print(rmoms)
     print(rNm)
     
@@ -561,9 +561,10 @@ def TestDMAPPackage ():
     print(H[2])
     print(H[3])
     
-    rmoms=MarginalMomentsFromDMRAP(H,5,1e-10)
+    butools.checkPrecision = 1e-10
+    rmoms=MarginalMomentsFromDMRAP(H,5)
     print(rmoms)
-    rNm1, rNm2, rNm3 = LagkJointMomentsFromDMRAP(H,2,1,1e-10)
+    rNm1, rNm2, rNm3 = LagkJointMomentsFromDMRAP(H,2,1)
     print(rNm1)    
     print(rNm2)    
     print(rNm3)    

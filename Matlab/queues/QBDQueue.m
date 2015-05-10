@@ -105,11 +105,11 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckGenerator(B+L+F,prec)
+    if BuToolsCheckInput && ~CheckGenerator(B+L+F)
         error('QBDQueue: The matrix sum (B+L+F) is not a valid generator of a Markov chain!');
     end
     
-    if BuToolsCheckInput && ~CheckGenerator(L0+F,prec)
+    if BuToolsCheckInput && ~CheckGenerator(L0+F)
         error('QBDQueue: The matrix sum (L0+F) is not a valid generator of a Markov chain!');
     end
 

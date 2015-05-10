@@ -112,14 +112,15 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
+    global BuToolsCheckPrecision;
 
-    if BuToolsCheckInput && ~CheckGenerator(Qin,false,prec)
+    if BuToolsCheckInput && ~CheckGenerator(Qin,false)
         error('FluFlu: Generator matrix Qin is not Markovian!');
     end
-    if BuToolsCheckInput && ~CheckGenerator(Qout,false,prec)
+    if BuToolsCheckInput && ~CheckGenerator(Qout,false)
         error('FluFlu: Generator matrix Qout is not Markovian!');
     end
-    if BuToolsCheckInput && (any(diag(Rin)<-prec) || any(diag(Rout)<-prec))
+    if BuToolsCheckInput && (any(diag(Rin)<-BuToolsCheckPrecision) || any(diag(Rout)<-BuToolsCheckPrecision))
         error('FluFlu: Fluid rates Rin and Rout must be non-negative !');
     end  
     
@@ -144,8 +145,8 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
         % srv0stop = false: inih*expm(Kh*x)*cloh*kron(Rin,Iout)/lambda
         % srv0stop = true: inih*expm(Kh*x)*cloh*kron(Rin,Rout)/lambda/mu    
 
-        lambda = sum(CTMCSolve(Qin,prec)*Rin);
-        mu = sum(CTMCSolve(Qout,prec)*Rout);
+        lambda = sum(CTMCSolve(Qin)*Rin);
+        mu = sum(CTMCSolve(Qout)*Rout);
     end
     
     Ret = {};

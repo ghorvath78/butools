@@ -33,7 +33,16 @@ function ImageFromDMAP(D0,D1,outFileName,prec)
     if ~exist('outFileName','var')
         outFileName = 'display';
     end
-    
+
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckDMAPRepresentation(D0,D1)
+        error('ImageFromDMAP: Input isn''t a valid DMAP representation!');
+    end
+
     ImageFromDMMAP({D0,D1},outFileName,prec);
 end
 

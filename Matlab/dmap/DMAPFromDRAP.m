@@ -40,13 +40,13 @@ function [D0, D1] = DMAPFromDRAP (H0, H1, prec)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDRAPRepresentation(H0,H1,prec)
+    if BuToolsCheckInput && ~CheckDRAPRepresentation(H0,H1)
         error('DMAPFromDRAP: Input isn''t a valid DRAP representation!');
     end
 
     H{1}=H0;
     H{2}=H1;
-    Y=DMMAPFromDMRAP(H);
+    Y=DMMAPFromDMRAP(H, prec);
     D0=Y{1};
     D1=Y{2};
 end

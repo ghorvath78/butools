@@ -526,8 +526,8 @@ disp('[H0,H1]=DRAPFromMoments(moms,Nm):');
 disp(H0);
 disp(H1);
 
-rmoms=MarginalMomentsFromDRAP(H0,H1,5,1e-12)
-rNm=LagkJointMomentsFromDRAP(H0,H1,2,1,1e-12)
+rmoms=MarginalMomentsFromDRAP(H0,H1,5)
+rNm=LagkJointMomentsFromDRAP(H0,H1,2,1)
 
 assert(norm(moms-rmoms)<1e-11 && norm(Nm-rNm)<1e-12, 'The moments and joint moments returned by DRAPFromMoments are not the same as given!');
 
@@ -559,8 +559,8 @@ disp(H{2});
 disp(H{3});
 disp(H{4});
 
-rmoms=MarginalMomentsFromDMRAP(H,5,1e-11)
-rNm=LagkJointMomentsFromDMRAP(H,2,1,1e-11);
+rmoms=MarginalMomentsFromDMRAP(H,5)
+rNm=LagkJointMomentsFromDMRAP(H,2,1);
 rNm1=rNm{1}
 rNm2=rNm{2}
 rNm3=rNm{3}
@@ -585,7 +585,7 @@ disp('[D0,D1]=DMAPFromDRAP(H0,H1):');
 disp(D0);
 disp(D1);
 
-err = norm(LagkJointMomentsFromDRAP(H0,H1,3,1,1e-12)-LagkJointMomentsFromDRAP(D0,D1,3,1,1e-12));
+err = norm(LagkJointMomentsFromDRAP(H0,H1,3,1)-LagkJointMomentsFromDRAP(D0,D1,3,1));
 assert(err<1e-10, 'The DRAP returned by DMAPFromDRAP is not similar to the input!');
 assert(CheckDMAPRepresentation(D0,D1), 'The result of DMAPFromDRAP is not a DMAP, as it should be!');
 

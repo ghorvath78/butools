@@ -24,19 +24,14 @@
 %      The matrices containing the lag-L joint moments,
 %      starting from moment 0.
 
-function [Nm] = LagkJointMomentsFromDMRAP (h, K, L, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [Nm] = LagkJointMomentsFromDMRAP (h, K, L)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMRAPRepresentation(h,prec)
+    if BuToolsCheckInput && ~CheckDMRAPRepresentation(h)
         error('LagkJointMomentsFromDMRAP: Input isn''t a valid DMRAP representation!');
     end
 
@@ -53,7 +48,7 @@ function [Nm] = LagkJointMomentsFromDMRAP (h, K, L, prec)
     sumH = SumMatrixList(h(2:end));
     iH0= inv(eye(size(h{1},1))-h{1});
 
-    pi = DRPSolve(iH0*sumH,prec);
+    pi = DRPSolve(iH0*sumH);
     Pw = eye(size(h{1},1));
     H0p = cell(K+1);
     H0p{1} = Pw;

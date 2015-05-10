@@ -15,7 +15,7 @@ from butools.moments import MomsFromFactorialMoms, JMomsFromJFactorialMoms
 from butools.mc import DTMCSolve, DRPSolve
 from butools.dmap import CheckDRAPRepresentation, CheckDMAPRepresentation, CheckDMRAPRepresentation, CheckDMMAPRepresentation
 
-def MarginalDistributionFromDRAP (H0, H1, prec=1e-14):
+def MarginalDistributionFromDRAP (H0, H1):
     """
     Returns the matrix geometrically distributed marginal 
     distribution of a discrete rational arrival process.
@@ -40,12 +40,12 @@ def MarginalDistributionFromDRAP (H0, H1, prec=1e-14):
         distributed marginal distribution    
     """
 
-    if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
+    if butools.checkInput and not CheckDRAPRepresentation (H0, H1):
         raise Exception("MarginalDistributionFromDRAP: Input is not a valid DRAP representation!")    
 
-    return (DRPSolve(la.inv(ml.eye(H0.shape[0])-H0)*H1, prec), H0)
+    return (DRPSolve(la.inv(ml.eye(H0.shape[0])-H0)*H1), H0)
 
-def MarginalDistributionFromDMAP (D0, D1, prec=1e-14):
+def MarginalDistributionFromDMAP (D0, D1):
     """
     Returns the discrete phase type distributed marginal 
     distribution of a discrete Markovian arrival process.
@@ -70,12 +70,12 @@ def MarginalDistributionFromDMAP (D0, D1, prec=1e-14):
         distributed marginal distribution    
     """
 
-    if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
+    if butools.checkInput and not CheckDMAPRepresentation (D0, D1):
         raise Exception("MarginalDistributionFromDMAP: Input is not a valid DMAP representation!")    
 
-    return MarginalDistributionFromDRAP (D0, D1, prec)
+    return MarginalDistributionFromDRAP (D0, D1)
 
-def MarginalDistributionFromDMRAP (H, prec=1e-14):
+def MarginalDistributionFromDMRAP (H):
     """
     Returns the matrix geometrically distributed marginal 
     distribution of a discrete marked rational arrival 
@@ -99,12 +99,12 @@ def MarginalDistributionFromDMRAP (H, prec=1e-14):
         distributed marginal distribution    
     """
 
-    if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
+    if butools.checkInput and not CheckDMRAPRepresentation (H):
         raise Exception("MarginalDistributionFromDMRAP: Input is not a valid DMRAP representation!")    
 
-    return (DRPSolve(la.inv(ml.eye(H[0].shape[0])-H[0])*SumMatrixList(H[1:]), prec), H[0])
+    return (DRPSolve(la.inv(ml.eye(H[0].shape[0])-H[0])*SumMatrixList(H[1:])), H[0])
 
-def MarginalDistributionFromDMMAP (D, prec=1e-14):
+def MarginalDistributionFromDMMAP (D):
     """
     Returns the discrete phase type distributed marginal 
     distribution of a discrete marked Markovian arrival 
@@ -128,14 +128,14 @@ def MarginalDistributionFromDMMAP (D, prec=1e-14):
         distributed marginal distribution    
     """
 
-    if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
+    if butools.checkInput and not CheckDMMAPRepresentation (D):
         raise Exception("MarginalDistributionFromDMMAP: Input is not a valid DMMAP representation!")    
 
-    return MarginalDistributionFromDMRAP (D, prec)
+    return MarginalDistributionFromDMRAP (D)
 
 from butools.dph import MomentsFromDPH, MomentsFromMG
 
-def MarginalMomentsFromDRAP (H0, H1, K=0, prec=1e-14):
+def MarginalMomentsFromDRAP (H0, H1, K=0):
     """
     Returns the moments of the marginal distribution of a 
     discrete rational arrival process.
@@ -159,13 +159,13 @@ def MarginalMomentsFromDRAP (H0, H1, K=0, prec=1e-14):
         The vector of moments.
     """
 
-    if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
+    if butools.checkInput and not CheckDRAPRepresentation (H0, H1):
         raise Exception("MarginalMomentsFromDRAP: Input is not a valid DRAP representation!")    
 
-    alpha,A = MarginalDistributionFromDRAP(H0,H1,prec)
-    return MomentsFromMG(alpha,A,K,prec)
+    alpha,A = MarginalDistributionFromDRAP(H0,H1)
+    return MomentsFromMG(alpha,A,K)
 
-def MarginalMomentsFromDMAP (D0, D1, K=0, prec=1e-14):
+def MarginalMomentsFromDMAP (D0, D1, K=0):
     """
     Returns the moments of the marginal distribution of a 
     discrete Markovian arrival process.
@@ -189,13 +189,13 @@ def MarginalMomentsFromDMAP (D0, D1, K=0, prec=1e-14):
         The vector of moments.
     """
 
-    if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
+    if butools.checkInput and not CheckDMAPRepresentation (D0, D1):
         raise Exception("MarginalMomentsFromDMAP: Input is not a valid DMAP representation!")    
 
-    alpha,A = MarginalDistributionFromDMAP(D0,D1,prec)
-    return MomentsFromDPH(alpha,A,K,prec)
+    alpha,A = MarginalDistributionFromDMAP(D0,D1)
+    return MomentsFromDPH(alpha,A,K)
     
-def MarginalMomentsFromDMRAP (H, K=0, prec=1e-14):
+def MarginalMomentsFromDMRAP (H, K=0):
     """
     Returns the moments of the marginal distribution of a 
     discrete marked rational arrival process.
@@ -217,13 +217,13 @@ def MarginalMomentsFromDMRAP (H, K=0, prec=1e-14):
         The vector of moments.
     """
 
-    if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
+    if butools.checkInput and not CheckDMRAPRepresentation (H):
         raise Exception("MarginalMomentsFromDMRAP: Input is not a valid DMRAP representation!")    
 
-    alpha,A = MarginalDistributionFromDMRAP(H,prec)
-    return MomentsFromMG(alpha,A,K,prec)
+    alpha,A = MarginalDistributionFromDMRAP(H)
+    return MomentsFromMG(alpha,A,K)
 
-def MarginalMomentsFromDMMAP (D, K=0, prec=1e-14):
+def MarginalMomentsFromDMMAP (D, K=0):
     """
     Returns the moments of the marginal distribution of a 
     discrete marked Markovian arrival process.
@@ -245,13 +245,13 @@ def MarginalMomentsFromDMMAP (D, K=0, prec=1e-14):
         The vector of moments.
     """
 
-    if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
+    if butools.checkInput and not CheckDMMAPRepresentation (D):
         raise Exception("MarginalMomentsFromDMMAP: Input is not a valid DMMAP representation!")    
 
-    alpha,A = MarginalDistributionFromDMMAP(D,prec)
-    return MomentsFromDPH(alpha,A,K,prec)
+    alpha,A = MarginalDistributionFromDMMAP(D)
+    return MomentsFromDPH(alpha,A,K)
 
-def LagCorrelationsFromDRAP (H0, H1, L=1, prec=1e-14):
+def LagCorrelationsFromDRAP (H0, H1, L=1):
     """
     Returns the lag autocorrelations of a discrete rational 
     arrival process.
@@ -275,13 +275,13 @@ def LagCorrelationsFromDRAP (H0, H1, L=1, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
+    if butools.checkInput and not CheckDRAPRepresentation (H0, H1):
         raise Exception("LagCorrelationsFromDRAP: Input is not a valid DRAP representation!")    
 
     H0i = la.inv(ml.eye(H0.shape[0])-H0)
     P = H0i*H1
-    pi = DRPSolve(P, prec)
-    m1, m2 = MomentsFromMG(pi, H0, 2, prec)
+    pi = DRPSolve(P)
+    m1, m2 = MomentsFromMG(pi, H0, 2)
     pi = pi * H0i * P
 
     corr = []
@@ -293,7 +293,7 @@ def LagCorrelationsFromDRAP (H0, H1, L=1, prec=1e-14):
     else:
         return corr[0]
 
-def LagCorrelationsFromDMAP (D0, D1, L=1, prec=1e-14):
+def LagCorrelationsFromDMAP (D0, D1, L=1):
     """
     Returns the lag autocorrelations of a discrete Markovian 
     arrival process.
@@ -317,12 +317,12 @@ def LagCorrelationsFromDMAP (D0, D1, L=1, prec=1e-14):
         
     """
 
-    if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
+    if butools.checkInput and not CheckDMAPRepresentation (D0, D1):
         raise Exception("LagCorrelationsFromDMAP: Input is not a valid DMAP representation!")    
 
-    return LagCorrelationsFromDRAP (D0, D1, L, prec)
+    return LagCorrelationsFromDRAP (D0, D1, L)
 
-def LagkJointMomentsFromDMRAP (H, K=0, L=1, prec=1e-14):
+def LagkJointMomentsFromDMRAP (H, K=0, L=1):
     """
     Returns the lag-L joint moments of a discrete marked 
     rational arrival process.
@@ -349,7 +349,7 @@ def LagkJointMomentsFromDMRAP (H, K=0, L=1, prec=1e-14):
         starting from moment 0.
     """
 
-    if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
+    if butools.checkInput and not CheckDMRAPRepresentation (H):
         raise Exception("LagkJointMomentsFromDMRAP: Input is not a valid DMRAP representation!")    
 
     if K==0:
@@ -360,7 +360,7 @@ def LagkJointMomentsFromDMRAP (H, K=0, L=1, prec=1e-14):
 
     H0i = la.inv(ml.eye(H0.shape[0])-H0)
     P = H0i*sumH
-    pi = DRPSolve(P, prec)
+    pi = DRPSolve(P)
     
     Pw = ml.eye(H0.shape[0])
     H0p = [ml.matrix(Pw)]
@@ -384,7 +384,7 @@ def LagkJointMomentsFromDMRAP (H, K=0, L=1, prec=1e-14):
         Nm.append(np.bmat([[[[Nmm[0,0]]], row1 ], [col1, mid]]))
     return Nm
 
-def LagkJointMomentsFromDMMAP (D, K=0, L=1, prec=1e-14):
+def LagkJointMomentsFromDMMAP (D, K=0, L=1):
     """
     Returns the lag-L joint moments of a discrete marked 
     Markovian arrival process.
@@ -411,13 +411,13 @@ def LagkJointMomentsFromDMMAP (D, K=0, L=1, prec=1e-14):
         starting from moment 0.
     """
 
-    if butools.checkInput and not CheckDMMAPRepresentation (D, prec):
+    if butools.checkInput and not CheckDMMAPRepresentation (D):
         raise Exception("LagkJointMomentsFromDMMAP: Input is not a valid DMMAP representation!")    
 
-    return LagkJointMomentsFromDMRAP(D, K, L, prec)
+    return LagkJointMomentsFromDMRAP(D, K, L)
 
     
-def LagkJointMomentsFromDRAP (H0, H1, K=0, L=1, prec=1e-14):
+def LagkJointMomentsFromDRAP (H0, H1, K=0, L=1):
     """
     Returns the lag-L joint moments of a discrete rational 
     arrival process.
@@ -446,12 +446,12 @@ def LagkJointMomentsFromDRAP (H0, H1, K=0, L=1, prec=1e-14):
         starting from moment 0.
     """
 
-    if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
+    if butools.checkInput and not CheckDRAPRepresentation (H0, H1):
         raise Exception("LagkJointMomentsFromDRAP: Input is not a valid DRAP representation!")    
 
-    return LagkJointMomentsFromDMRAP((H0,H1), K, L, prec)[0]
+    return LagkJointMomentsFromDMRAP((H0,H1), K, L)[0]
 
-def LagkJointMomentsFromDMAP (D0, D1, K=0, L=1, prec=1e-14):
+def LagkJointMomentsFromDMAP (D0, D1, K=0, L=1):
     """
     Returns the lag-L joint moments of a discrete Markovian 
     arrival process.
@@ -480,12 +480,12 @@ def LagkJointMomentsFromDMAP (D0, D1, K=0, L=1, prec=1e-14):
         starting from moment 0.
     """
 
-    if butools.checkInput and not CheckDMAPRepresentation (D0, D1, prec):
+    if butools.checkInput and not CheckDMAPRepresentation (D0, D1):
         raise Exception("LagkJointMomentsFromDMAP: Input is not a valid DMAP representation!")    
 
-    return LagkJointMomentsFromDRAP(D0, D1, K, L, prec)
+    return LagkJointMomentsFromDRAP(D0, D1, K, L)
     
-def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
     """
     Returns a random discrete Markovian arrival process.
     
@@ -576,7 +576,7 @@ def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-
             sumD = SumMatrixList(D)
             if la.matrix_rank(D[0])==order and la.matrix_rank(ml.eye(D[0].shape[0])-sumD)==order-1:
                 alpha = DTMCSolve(sumD)
-                if np.min(np.abs(alpha)) > sqrt(prec):
+                if np.min(np.abs(alpha)) > prec:
                     fullZero = False
                     for Di in D:
                         if np.all(Di==0.0):
@@ -591,19 +591,19 @@ def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-
                             Dv.append(Diag(1-d)*D[i])
                         Dv[0] = Dv[0] + Diag(d)                        
                         try:                        
-                            m = MarginalMomentsFromDMMAP(Dv, 1, prec)[0]
+                            m = MarginalMomentsFromDMMAP(Dv, 1)[0]
                             d = 1 - (1-d)*m/mean
                             for i in range(types+1):         
                                 D[i] = Diag(1-d)*D[i]
                             D[0] = D[0] + Diag(d)                        
-                            if CheckDMMAPRepresentation(D,prec):
+                            if CheckDMMAPRepresentation(D):
                                 return D
                         except:
                             pass
             trials += 1
     raise Exception("No feasible random DMAP/DMMAP found with such many zero entries! Try to increase the maxTrials parameter!")
 
-def RandomDMAP (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-14):
+def RandomDMAP (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
     """
     Returns a random disctere Markovian arrival process.
     

@@ -22,22 +22,17 @@
 %      The matrix parameter of the matrix geometrically
 %      distributed marginal distribution    
 
-function [alpha,A] = MarginalDistributionFromDRAP( H0, H1, prec )
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [alpha,A] = MarginalDistributionFromDRAP( H0, H1)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDRAPRepresentation(H0,H1,prec)
+    if BuToolsCheckInput && ~CheckDRAPRepresentation(H0,H1)
         error('MarginalDistributionFromDRAP: Input isn''t a valid DRAP representation!');
     end
 
-    alpha = DRPSolve(inv(eye(size(H0,1))-H0)*H1,prec);
+    alpha = DRPSolve(inv(eye(size(H0,1))-H0)*H1);
     A=H0;
 end

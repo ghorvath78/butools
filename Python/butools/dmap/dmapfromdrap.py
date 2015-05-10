@@ -39,7 +39,7 @@ def DMMAPFromDMRAP (H, prec=1e-14):
            53:(8) pp. 1235-1248. (2009)
     """
 
-    if butools.checkInput and not CheckDMRAPRepresentation (H, prec):
+    if butools.checkInput and not CheckDMRAPRepresentation (H):
         raise Exception("DMMAPFromDMRAP: Input is not a valid DMRAP representation!")    
 
     def transfun (oH, B):
@@ -91,7 +91,7 @@ def DMAPFromDRAP (H0, H1, prec=1e-14):
            1153-1168. (2007)       
     """
 
-    if butools.checkInput and not CheckDRAPRepresentation (H0, H1, prec):
+    if butools.checkInput and not CheckDRAPRepresentation (H0, H1):
         raise Exception("DMAPFromDRAP: Input is not a valid DRAP representation!")    
 
     return DMMAPFromDMRAP([H0,H1], prec)

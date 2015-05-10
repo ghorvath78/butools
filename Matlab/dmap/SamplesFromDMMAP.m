@@ -20,19 +20,14 @@
 %      columns: the (discrete) inter-arrival time and the
 %      type of the arrival.        
 
-function x = SamplesFromDMMAP(D,k,initial,prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function x = SamplesFromDMMAP(D,k,initial)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMMAPRepresentation(D,prec)
+    if BuToolsCheckInput && ~CheckDMMAPRepresentation(D)
         error('SamplesFromDMMAP: input isn''t a valid DMMAP representation!');
     end
 

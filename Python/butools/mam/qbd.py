@@ -203,7 +203,7 @@ def QBDSolve (B, L, F, L0, prec=1e-14):
         B = ml.matrix(B) / lamb
         L0 = ml.matrix(L0) / lamb + I
     
-    pi0 = DTMCSolve(L0+R*B, prec)
+    pi0 = DTMCSolve(L0+R*B)
     nr = np.sum(pi0*la.inv(I-R))
     pi0 /= nr
     

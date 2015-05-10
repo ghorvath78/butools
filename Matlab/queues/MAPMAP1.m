@@ -100,11 +100,11 @@ function varargout = MAPMAP1(D0, D1, S0, S1, varargin)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckMAPRepresentation(D0,D1)
         error('MAPMAP1: The arrival process (D0,D1) is not a valid MAP representation!');
     end
     
-    if BuToolsCheckInput && ~CheckMAPRepresentation(S0,S1,prec)
+    if BuToolsCheckInput && ~CheckMAPRepresentation(S0,S1)
         error('MAPMAP1: The service process (S0,S1) is not a valid MAP representation!');
     end
 
@@ -171,8 +171,8 @@ function varargout = MAPMAP1(D0, D1, S0, S1, varargin)
             retIx = retIx + 1;
         elseif strcmp(varargin{argIx},'stDistrPH')
             % transform it to PH representation
-            beta = CTMCSolve(S0+S1, prec);
-            theta = DTMCSolve(inv(-D0)*D1, prec);
+            beta = CTMCSolve(S0+S1);
+            theta = DTMCSolve(inv(-D0)*D1);
             vv = kron(theta,beta);
             ix = 1:N;
             nz = ix(vv>prec);

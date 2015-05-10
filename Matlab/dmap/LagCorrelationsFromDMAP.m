@@ -21,19 +21,14 @@
 %      The lag autocorrelation function up to lag L
 %      
 
-function [lagcorrs] = LagCorrelationsFromDMAP (d0, d1, L, prec)
+function [lagcorrs] = LagCorrelationsFromDMAP (d0, d1, L)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMAPRepresentation(d0,d1,prec)
+    if BuToolsCheckInput && ~CheckDMAPRepresentation(d0,d1)
         error('LagCorrelationsFromDMAP: input isn''t a valid DMAP representation!');
     end
 
@@ -41,5 +36,5 @@ function [lagcorrs] = LagCorrelationsFromDMAP (d0, d1, L, prec)
         L=1;
     end
 
-    lagcorrs = LagCorrelationsFromDRAP(d0, d1, L, prec);
+    lagcorrs = LagCorrelationsFromDRAP(d0, d1, L);
 end

@@ -20,19 +20,14 @@
 %  G1 : matrix, shape (2,2)
 %      The D1 matrix of the canonical DMAP(2)
 
-function [g0,g1]=CanonicalFromDMAP2(d0, d1, prec)
-
-    if ~exist('prec','var')
-        prec=1e-14;
-    end
+function [g0,g1]=CanonicalFromDMAP2(d0, d1)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMAPRepresentation(d0,d1,prec)
+    if BuToolsCheckInput && ~CheckDMAPRepresentation(d0,d1)
         error('DMAP2Canonical: Input isn''t a valid DMAP representation!');
     end
 
@@ -45,7 +40,7 @@ function [g0,g1]=CanonicalFromDMAP2(d0, d1, prec)
     s2=ev(2);
 
     if s2 >= 0
-        [g0,g1]=CanonicalFromMAP2(d0-eye(2),d1,prec);
+        [g0,g1]=CanonicalFromMAP2(d0-eye(2),d1);
         g0=g0+eye(2);
         return;
     end

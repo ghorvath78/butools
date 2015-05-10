@@ -21,21 +21,16 @@
 %      The transient generator of the discrete phase type 
 %      distributed marginal distribution    
 
-function [alpha,A] = MarginalDistributionFromDMMAP(H,prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [alpha,A] = MarginalDistributionFromDMMAP(H)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMMAPRepresentation(H,prec)
+    if BuToolsCheckInput && ~CheckDMMAPRepresentation(H)
         error('MarginalDistributionFromDMMAP: Input isn''t a valid DMMAP representation');
     end
 
-	[alpha,A] = MarginalDistributionFromDMRAP(H,prec);
+	[alpha,A] = MarginalDistributionFromDMRAP(H);
 end

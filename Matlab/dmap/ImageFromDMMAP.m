@@ -24,6 +24,15 @@
 
 function ImageFromDMMAP(D,outFileName,prec)
 
+    global BuToolsCheckInput;
+    if isempty(BuToolsCheckInput)
+        BuToolsCheckInput = true;
+    end   
+
+    if BuToolsCheckInput && ~CheckDMMAPRepresentation(D)
+        error('ImageFromDMMAP: Input isn''t a valid DMMAP representation!');
+    end
+
     if ~exist('prec','var')
         prec = 1e-13;
     end

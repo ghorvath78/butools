@@ -22,23 +22,18 @@
 
 function x = SamplesFromDMAP(D0,D1,k,initial,prec)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     if ~exist('initial','var')
         initial=[];
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckDMAPRepresentation(D0,D1)
         error('SamplesFromDMAP: input isn''t a valid DMAP representation!');
     end
     
-    x = SamplesFromDMMAP({D0,D1},k,initial,prec);
+    x = SamplesFromDMMAP({D0,D1},k,initial);
 end

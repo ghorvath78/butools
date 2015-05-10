@@ -109,10 +109,10 @@ def QBDQueue(B, L, F, L0, *argv):
         elif type(argv[i]) is str and len(argv[i])>2 and argv[i][0:2]=="st":
             needST = True
     
-    if butools.checkInput and not CheckGenerator(B+L+F,prec):
+    if butools.checkInput and not CheckGenerator(B+L+F):
         raise Exception('QBDQueue: The matrix sum (B+L+F) is not a valid generator of a Markov chain!')
     
-    if butools.checkInput and not CheckGenerator(L0+F,prec):
+    if butools.checkInput and not CheckGenerator(L0+F):
         raise Exception('QBDQueue: The matrix sum (L0+F) is not a valid generator of a Markov chain!')
 
     pi0, R = QBDSolve (B, L, F, L0, prec)
@@ -294,10 +294,10 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
         elif type(argv[i]) is str and len(argv[i])>2 and argv[i][0:2]=="st":
             needST = True
     
-    if butools.checkInput and not CheckMAPRepresentation(D0,D1,prec):
+    if butools.checkInput and not CheckMAPRepresentation(D0,D1):
         raise Exception('MAPMAP1: The arrival process (D0,D1) is not a valid MAP representation!')
     
-    if butools.checkInput and not CheckMAPRepresentation(S0,S1,prec):
+    if butools.checkInput and not CheckMAPRepresentation(S0,S1):
         raise Exception('MAPMAP1: The service process (S0,S1) is not a valid MAP representation!')
 
     IA = ml.eye(D0.shape[0])
@@ -355,8 +355,8 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
             Ret.append(values)
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrPH":
             # transform it to PH representation
-            beta = CTMCSolve(S0+S1, prec)
-            theta = DTMCSolve(-D0.I*D1, prec)
+            beta = CTMCSolve(S0+S1)
+            theta = DTMCSolve(-D0.I*D1)
             vv = np.kron(theta,beta)
             ix = np.arange(N)
             nz = ix[vv.flat>prec]

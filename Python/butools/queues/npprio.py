@@ -110,12 +110,12 @@ def MMAPPH1NPPR(D, sigma, S, *argv):
             eaten.append(i)
             eaten.append(i+1) 
     
-    if butools.checkInput and not CheckMMAPRepresentation(D,precision):
+    if butools.checkInput and not CheckMMAPRepresentation(D):
         raise Exception('MMAPPH1PRPR: The arrival process is not a valid MMAP representation!')
     
     if butools.checkInput:
         for k in range(K):
-            if not CheckPHRepresentation(sigma[k],S[k],precision):
+            if not CheckPHRepresentation(sigma[k],S[k]):
                 raise Exception('MMAPPH1PRPR: the vector and matrix describing the service times is not a valid PH representation!')
 
     # some preparation
@@ -156,7 +156,7 @@ def MMAPPH1NPPR(D, sigma, S, *argv):
     ro =  ((1.0-np.sum(pm))/2.0)/(np.sum(pm)+(1.0-np.sum(pm))/2.0) # calc idle time with weight=1, and the busy time with weight=1/2
     kappa = pm/np.sum(pm)
     
-    pi = CTMCSolve (sD, precision)
+    pi = CTMCSolve (sD)
     lambd = []
     for i in range(K):
         lambd.append(np.sum(pi*D[i+1]))

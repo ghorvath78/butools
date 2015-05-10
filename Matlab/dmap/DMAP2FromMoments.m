@@ -24,11 +24,7 @@
 %  followed by :func:`butools.dmap.CanonicalFromDMAP2`.
 %     
 
-function [D0, D1] = DMAP2FromMoments (moms, corr1, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [D0, D1] = DMAP2FromMoments (moms, corr1)
 
     Nm = [1, moms(1); moms(1), corr1*(moms(2)-moms(1)^2)+moms(1)^2];
     [H0, H1] = DRAPFromMoments (moms, Nm);
@@ -42,7 +38,7 @@ function [D0, D1] = DMAP2FromMoments (moms, corr1, prec)
     oldCheckInput = BuToolsCheckInput;
     BuToolsCheckInput = false;
     
-    [D0, D1] = CanonicalFromDMAP2 (H0, H1, prec);
+    [D0, D1] = CanonicalFromDMAP2 (H0, H1);
     
     BuToolsCheckInput = oldCheckInput;
 end

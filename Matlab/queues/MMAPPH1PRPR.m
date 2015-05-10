@@ -98,13 +98,13 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckMMAPRepresentation(D,precision)
+    if BuToolsCheckInput && ~CheckMMAPRepresentation(D)
         error('MMAPPH1PRPR: The arrival process is not a valid MMAP representation!');
     end
     
     if BuToolsCheckInput
         for k=1:K
-            if ~CheckPHRepresentation(sigma{k},S{k},precision)
+            if ~CheckPHRepresentation(sigma{k},S{k})
                 error('MMAPPH1PRPR: the vector and matrix describing the service times is not a valid PH representation!');
             end
         end

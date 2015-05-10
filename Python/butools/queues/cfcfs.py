@@ -107,13 +107,13 @@ def FluidQueue (Q, Rin, Rout, *argv):
         elif type(argv[i]) is str and len(argv[i])>2 and argv[i][0:2]=="st":
             needST = True
 
-    if butools.checkInput and not CheckGenerator(Q,False,prec):
+    if butools.checkInput and not CheckGenerator(Q,False):
         raise Exception('FluidQueue: Generator matrix Q is not Markovian!')
 
-    if butools.checkInput and Q0!=None and not CheckGenerator(Q0,False,prec):
+    if butools.checkInput and Q0!=None and not CheckGenerator(Q0,False):
         raise Exception('FluidQueue: Generator matrix Q0 is not Markovian!')
 
-    if butools.checkInput and (np.any(np.diag(Rin)<-prec) or np.any(np.diag(Rout)<-prec)):
+    if butools.checkInput and (np.any(np.diag(Rin)<-butools.checkPrecision) or np.any(np.diag(Rout)<-butools.checkPrecision)):
         raise Exception('FluidQueue: Fluid rates Rin and Rout must be non-negative !')
 
     mass0, ini, K, clo = GeneralFluidSolve (Q, Rin-Rout, Q0, prec)
@@ -307,13 +307,13 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
         elif type(argv[i]) is str and len(argv[i])>2 and argv[i][0:2]=="ql":
             needQL = True
 
-    if butools.checkInput and not CheckGenerator(Qin,False,prec):
+    if butools.checkInput and not CheckGenerator(Qin,False):
         raise Exception('FluFluQueue: Generator matrix Qin is not Markovian!')
 
-    if butools.checkInput and not CheckGenerator(Qout,False,prec):
+    if butools.checkInput and not CheckGenerator(Qout,False):
         raise Exception('FluFluQueue: Generator matrix Qout is not Markovian!')
 
-    if butools.checkInput and (np.any(np.diag(Rin)<-prec) or np.any(np.diag(Rout)<-prec)):
+    if butools.checkInput and (np.any(np.diag(Rin)<-butools.checkPrecision) or np.any(np.diag(Rout)<-butools.checkPrecision)):
         raise Exception('FluFluQueue: Fluid rates Rin and Rout must be non-negative !')
 
     Iin = ml.eye(Qin.shape[0])
@@ -335,8 +335,8 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
         # sojourn time density in case of 
         # srv0stop = false: inih*expm(Kh*x)*cloh*kron(Rin,Iout)/lambda
         # srv0stop = true: inih*expm(Kh*x)*cloh*kron(Rin,Rout)/lambda/mu    
-        lambd = np.sum(CTMCSolve(Qin,prec)*Rin)
-        mu = np.sum(CTMCSolve(Qout,prec)*Rout)
+        lambd = np.sum(CTMCSolve(Qin)*Rin)
+        mu = np.sum(CTMCSolve(Qout)*Rout)
     
     Ret = []
     argIx = 0

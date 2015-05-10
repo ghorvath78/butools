@@ -11,7 +11,7 @@ from butools.utils import SumMatrixList
 import numpy as np
 import scipy.linalg as la
 
-def CheckDMAPRepresentation (D0, D1, prec=1e-14):
+def CheckDMAPRepresentation (D0, D1, prec=None):
     """
     Checks if the input matrixes define a discrete time MAP.
     
@@ -35,6 +35,9 @@ def CheckDMAPRepresentation (D0, D1, prec=1e-14):
         The result of the check
     """
 
+    if prec==None:
+        prec=butools.checkPrecision
+
     if not CheckProbMatrix(D0,True, prec):
         if butools.verbose:
             print ("CheckDMAPRepresentation: D0 is not a transient probability matrix!")
@@ -57,7 +60,7 @@ def CheckDMAPRepresentation (D0, D1, prec=1e-14):
 
     return True
 
-def CheckDMMAPRepresentation (D,prec=1e-14):
+def CheckDMMAPRepresentation (D,prec=None):
     """
     Checks if the input matrixes define a discrete time MMAP.
     
@@ -77,13 +80,16 @@ def CheckDMMAPRepresentation (D,prec=1e-14):
         The result of the check
     """
 
+    if prec==None:
+        prec=butools.checkPrecision
+
     if np.min(np.hstack(D)) < -prec:
         if butools.verbose:
             print ("CheckDMMAPRepresentation: Some of the matrices D1 ... DM have negative elements!")
         return False
     return CheckDMAPRepresentation(D[0],SumMatrixList(D[1:]),prec)
 
-def CheckDRAPRepresentation (D0, D1, prec=1e-14):
+def CheckDRAPRepresentation (D0, D1, prec=None):
     """
     Checks if the input matrixes define a discrete time RAP.
     
@@ -105,6 +111,9 @@ def CheckDRAPRepresentation (D0, D1, prec=1e-14):
     r : bool 
         The result of the check
     """
+    
+    if prec==None:
+        prec=butools.checkPrecision
 
     if D0.shape[0]!=D0.shape[1]:
         if butools.verbose:
@@ -145,7 +154,7 @@ def CheckDRAPRepresentation (D0, D1, prec=1e-14):
 
     return True
 
-def CheckDMRAPRepresentation(H,prec=1e-14):
+def CheckDMRAPRepresentation(H,prec=None):
     """
     Checks if the input matrixes define a discrete time MRAP.
     
@@ -163,5 +172,8 @@ def CheckDMRAPRepresentation(H,prec=1e-14):
     r : bool 
         The result of the check
     """
+
+    if prec==None:
+        prec=butools.checkPrecision
 
     return CheckDRAPRepresentation(H[0],SumMatrixList(H[1:]),prec)

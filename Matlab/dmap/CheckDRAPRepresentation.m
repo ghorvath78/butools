@@ -21,15 +21,15 @@
 %      The result of the check
 
 function r=CheckDRAPRepresentation(d0, d1, prec)
-% CheckDRAPRepresentation [ D0, D1, prec[10^-14] ] :
-%     Checks if the input matrixes define a discrete time RAP: D0, D1 
-%     have the same size,	the dominant eigenvalue of matrix0 is less
-%     than 1 and real and the rowsum of D0+D1 is 1. 'prec' is the numerical
-%     precision.
 
     global BuToolsVerbose;
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-12;
+    end
+    
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = BuToolsCheckPrecision;
     end
 
     if size(d0,1) ~= size(d1,1) || size(d0,2) ~= size(d1,2) || size(d0,1) ~= size(d0,2)

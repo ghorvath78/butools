@@ -24,19 +24,14 @@
 %      The matrices containing the lag-L joint moments,
 %      starting from moment 0.
 
-function [Nm] = LagkJointMomentsFromDMMAP (h, K, L, prec)
-
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
+function [Nm] = LagkJointMomentsFromDMMAP (h, K, L)
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMMAPRepresentation(h,prec)
+    if BuToolsCheckInput && ~CheckDMMAPRepresentation(h)
         error('LagkJointMomentsFromDMMAP: Input isn''t a valid DMMAP representation!');
     end
 
@@ -48,5 +43,5 @@ function [Nm] = LagkJointMomentsFromDMMAP (h, K, L, prec)
         L=1;
     end
 
-    Nm=LagkJointMomentsFromDMRAP(h,K,L,prec);
+    Nm=LagkJointMomentsFromDMRAP(h,K,L);
 end

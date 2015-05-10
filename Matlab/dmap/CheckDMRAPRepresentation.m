@@ -17,14 +17,16 @@
 %      The result of the check
 
 function r = CheckDMRAPRepresentation(H,prec)
-% CheckDMRAPRepresentation [ (vector of D0, D1 .. DM), prec[10^-14] ] :
-%     Checks if the input matrixes define a discrete time MRAP: D0 and
-% 	  the sum of D1..DM define a DRAP. 'prec' is the numerical precision.
 
-if ~exist('prec','var')
-    prec = 10^-14;
-end
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-12;
+    end
+    
+    if ~exist('prec','var')
+        prec = BuToolsCheckPrecision;
+    end
 
-r = CheckDRAPRepresentation(H{1},SumMatrixList(H(2:end)),prec);
+    r = CheckDRAPRepresentation(H{1},SumMatrixList(H(2:end)),prec);
 
 end

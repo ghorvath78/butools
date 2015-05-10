@@ -22,20 +22,24 @@ function r = CheckDMMAPRepresentation(D,prec)
 %     Checks if the input matrixes define a discrete time MMAP: D0 and
 % 	  the sum of D1..DM define a DMAP. 'prec' is the numerical precision.
 
-if ~exist('prec','var')
-    prec = 10^-14;
-end
-
-global BuToolsVerbose;
-
-if min(min(cell2mat(D(2:end)))) < -prec
-    if BuToolsVerbose
-        fprintf ('CheckDMMAPRepresentation: One of the matrices D1 ... DM has a negative element!\n');
+    global BuToolsVerbose;
+    global BuToolsCheckPrecision;
+    if isempty(BuToolsCheckPrecision)
+        BuToolsCheckPrecision = 1e-12;
     end
-    r=0;
-    return;
-end
+    
+    if ~exist('prec','var')
+        prec = BuToolsCheckPrecision;
+    end
 
-r = CheckDMAPRepresentation(D{1},SumMatrixList(D(2:end)),prec);
+    if min(min(cell2mat(D(2:end)))) < -prec
+        if BuToolsVerbose
+            fprintf ('CheckDMMAPRepresentation: One of the matrices D1 ... DM has a negative element!\n');
+        end
+        r=0;
+        return;
+    end
+
+    r = CheckDMAPRepresentation(D{1},SumMatrixList(D(2:end)),prec);
 
 end

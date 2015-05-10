@@ -21,26 +21,21 @@
 %  moms : row vector of doubles, length K
 %      The vector of moments.
 
-function moms = MarginalMomentsFromDMAP (D0, D1, K, prec )
+function moms = MarginalMomentsFromDMAP (D0, D1, K)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-    
     if ~exist('K','var') || K==0
         K = 2*size(D0,1)-1;
     end
 
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMAPRepresentation(D0,D1,prec)
+    if BuToolsCheckInput && ~CheckDMAPRepresentation(D0,D1)
         error('MarginalMomentsFromDMAP: input isn''t a valid DMAP representation!');
     end
 
-    [alpha,A] = MarginalDistributionFromDMAP(D0,D1,prec);
-    moms = MomentsFromDPH(alpha,A,K,prec);
+    [alpha,A] = MarginalDistributionFromDMAP(D0,D1);
+    moms = MomentsFromDPH(alpha,A,K);
 end

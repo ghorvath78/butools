@@ -21,19 +21,14 @@
 %      The lag autocorrelation function up to lag L
 %      
 
-function acf = LagCorrelationsFromDRAP (H0, H1, L, prec)
+function acf = LagCorrelationsFromDRAP (H0, H1, L)
 
-    if ~exist('prec','var')
-        prec = 1e-14;
-    end
-        
     global BuToolsCheckInput;
-
     if isempty(BuToolsCheckInput)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDRAPRepresentation(H0,H1,prec)
+    if BuToolsCheckInput && ~CheckDRAPRepresentation(H0,H1)
         error('LagCorrelationsFromDRAP: input isn''t a valid DRAP representation!');
     end
 
@@ -43,7 +38,7 @@ function acf = LagCorrelationsFromDRAP (H0, H1, L, prec)
 
     H0i = inv(eye(size(H0))-H0);
     P = H0i*H1;
-    pi = DRPSolve(P, prec);
+    pi = DRPSolve(P);
     moms = MomentsFromMG(pi, H0, 2);
     
     pi = pi * H0i * P;

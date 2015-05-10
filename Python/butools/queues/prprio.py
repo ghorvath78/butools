@@ -110,12 +110,12 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
             eaten.append(i)
             eaten.append(i+1) 
     
-    if butools.checkInput and not CheckMMAPRepresentation(D,precision):
+    if butools.checkInput and not CheckMMAPRepresentation(D):
         raise Exception('MMAPPH1PRPR: The arrival process is not a valid MMAP representation!')
     
     if butools.checkInput:
         for k in range(K):
-            if not CheckPHRepresentation(sigma[k],S[k],precision):
+            if not CheckPHRepresentation(sigma[k],S[k]):
                 raise Exception('MMAPPH1PRPR: the vector and matrix describing the service times is not a valid PH representation!')
 
     # some preparation
@@ -257,7 +257,7 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                         dqlMoms.append(np.sum(inis*P))
                     dqlMoms = MomsFromFactorialMoms(dqlMoms)
                     # now calculate it at random time instance
-                    pi = CTMCSolve (sD, precision)
+                    pi = CTMCSolve (sD)
                     lambdak = np.sum(pi*D[k+1])
                     QLPn = [pi]
                     qlMoms = []
@@ -291,7 +291,7 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                         Pn.append(P)
                         dqlProbs = ml.vstack((dqlProbs, inis*P))
                     # now calculate it at random time instance
-                    pi = CTMCSolve (sD, precision)
+                    pi = CTMCSolve (sD)
                     lambdak = np.sum(pi*D[k+1])
                     iTerm = -(sD-D[k+1]).I
                     qlProbs = lambdak*dqlProbs[0,:]*iTerm
@@ -343,7 +343,7 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                     F = np.kron(D[k+1],ml.eye(M[k]))
                     L0 = np.kron(sD-D[k+1],ml.eye(M[k]))
                     R = QBDFundamentalMatrices (B, L, F, 'R', precision)
-                    p0 = CTMCSolve(L0+R*B, precision)
+                    p0 = CTMCSolve(L0+R*B)
                     p0 = p0/np.sum(p0*(ml.eye(R.shape[0])-R).I)
                     if argv[argIx]=="qlMoms":
                         # MOMENTS OF THE NUMBER OF JOBS

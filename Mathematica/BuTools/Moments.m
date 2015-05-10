@@ -24,8 +24,9 @@ TestMomentsPackage::usage = "TestMomentsPackage[] : Executes various tests to ch
 Begin["`Private`"];
 
 
-If[BuTools`Verbose==False,Null,Null,BuTools`Verbose=False];
-If[BuTools`CheckInput==True,Null,Null,BuTools`CheckInput=True];
+If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckInput"]],BuTools`CheckInput=True];
+If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckPrecision"]],BuTools`CheckPrecision=N[10^-12]];
+If[Not[MemberQ[Names["BuTools`*"],"BuTools`Verbose"]],BuTools`Verbose=False];
 
 
 NormMomsFromMoms[ moms_]:=Prepend[Table[moms[[i]]/(moms[[i-1]] moms[[1]]),{i,2,Length[moms]}],moms[[1]]];
@@ -140,8 +141,9 @@ Return[ret];
 ];
 
 
-CheckMoments[moms_,prec_:N[10^-14]]:=
-Module[{NN,H,H0,m,res},
+CheckMoments[moms_,precision_:Null]:=
+Module[{NN,H,H0,m,res,prec},
+If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
 If[BuTools`CheckInput && Mod[Length[moms],2]==0,Throw["CheckMoments: the number of moments must be odd!"]];
 m=Prepend[moms,1];
 NN=Floor[Length[m]/2]-1;

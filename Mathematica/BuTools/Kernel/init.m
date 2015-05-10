@@ -10,7 +10,11 @@ Do[
 WriteString["stdout","\n"];
 BuTools`Verbose=False;
 BuTools`CheckInput=True;
-Print["Global variables: BuTools`Verbose = ",BuTools`Verbose, ", BuTools`CheckInput = ",BuTools`CheckInput];
+BuTools`CheckPrecision=N[10^-12];
+Print["Global variables: BuTools`Verbose = ",BuTools`Verbose, ", BuTools`CheckInput = ",BuTools`CheckInput,", BuTools`CheckPrecision = ",BuTools`CheckPrecision];
+
+
+
 
 
 

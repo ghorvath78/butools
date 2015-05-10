@@ -105,7 +105,7 @@ def DRAPFromMoments (moms, Nm):
 
     return DMRAPFromMoments (moms, [Nm])
     
-def CanonicalFromDMAP2 (D0, D1, prec=1e-14):
+def CanonicalFromDMAP2 (D0, D1):
     """
     Returns the canonical form of an order-2 discrete Markovian
     arrival process.
@@ -131,7 +131,7 @@ def CanonicalFromDMAP2 (D0, D1, prec=1e-14):
     if butools.checkInput:
         if D0.shape[0]!=2:
             raise Exception("CanonicalFromDMAP2: size is not 2!")
-        if not CheckDMAPRepresentation(D0, D1, prec):
+        if not CheckDMAPRepresentation(D0, D1):
 	        raise Exception("CanonicalFromDMAP2: Input is not a valid DMAP representation!")
 
     ev = la.eigvals(D0)
@@ -142,7 +142,7 @@ def CanonicalFromDMAP2 (D0, D1, prec=1e-14):
     s2=ev[1]
 
     if s2>=0:
-        G0, G1 = CanonicalFromMAP2 (D0-ml.eye(2),D1,prec)
+        G0, G1 = CanonicalFromMAP2 (D0-ml.eye(2),D1)
         G0 = G0 + ml.eye(2)
         return (G0, G1)
 
@@ -176,7 +176,7 @@ def CanonicalFromDMAP2 (D0, D1, prec=1e-14):
         G1=ml.matrix([[0, (1-a)*(1-s1-s2)],[b*(1-s1*s2/(a*(s1+s2-1))), (1-b)*(1-s1*s2/(a*(s1+s2-1)))]])
     return (G0, G1)
 
-def DMAP2FromMoments (moms, corr1, prec=1e-14):
+def DMAP2FromMoments (moms, corr1):
     """
     Returns a discrete MAP(2) which has the same 3 marginal
     moments and lag-1 autocorrelation as given.
@@ -210,7 +210,7 @@ def DMAP2FromMoments (moms, corr1, prec=1e-14):
     oldCheckInput = butools.checkInput
     butools.checkInput = False
     
-    D0, D1 = CanonicalFromDMAP2 (H0, H1, prec)
+    D0, D1 = CanonicalFromDMAP2 (H0, H1)
     
     butools.checkInput = oldCheckInput
     

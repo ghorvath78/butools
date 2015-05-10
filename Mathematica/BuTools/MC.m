@@ -25,34 +25,36 @@ CheckProbVector::usage = "CheckProbVector [ vector, sub[False], \[Epsilon][10^-1
 Begin["`Private`"];
 
 
-If[BuTools`Verbose==False,Null,Null,BuTools`Verbose=False];
-If[BuTools`CheckInput==True,Null,Null,BuTools`CheckInput=True];
+If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckInput"]],BuTools`CheckInput=True];
+If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckPrecision"]],BuTools`CheckPrecision=N[10^-12]];
+If[Not[MemberQ[Names["BuTools`*"],"BuTools`Verbose"]],BuTools`Verbose=False];
 
 
-CRPSolve[Q_,prec_:N[10^-14]] :=
+CRPSolve[Q_] :=
 Module[{mx},
-	If[BuTools`CheckInput && Max[Abs[Total[Q,{2}]]]>prec,Throw["CRPSolve: The matrix has a rowsum which isn't zero!"]];
+	If[BuTools`CheckInput && Max[Abs[Total[Q,{2}]]]>BuTools`CheckPrecision,Throw["CRPSolve: The matrix has a rowsum which isn't zero!"]];
 	mx=Q;
 	mx[[;;,1]]=1;
 	Return[LinearSolve[Transpose[mx], Prepend[ConstantArray[0,Dimensions[Q][[1]]],1]]];
 ]
 
 
-DRPSolve[P_,prec_:N[10^-14]] :=(
-If[BuTools`CheckInput && Max[Abs[Total[P,{2}]]-1]>prec,Throw["DRPSolve: The matrix has a rowsum which isn't 1!"]];
-Return[CRPSolve[P-IdentityMatrix[Dimensions[P][[1]]],prec]];)
+DRPSolve[P_] :=(
+If[BuTools`CheckInput && Max[Abs[Total[P,{2}]]-1]>BuTools`CheckPrecision,Throw["DRPSolve: The matrix has a rowsum which isn't 1!"]];
+Return[CRPSolve[P-IdentityMatrix[Dimensions[P][[1]]]]];)
 
 
-CTMCSolve[Q_,prec_:N[10^-14]] :=
-(If[BuTools`CheckInput && Not[CheckGenerator[Q,False,prec]],Throw["CTMCSolve/DTMCSolve: The given matrix is not a valid generator. If you are sure you want this, use CRPSolve/DRPSolve instead CTMCSolve/DTMCSolve."]];
-Return[CRPSolve[Q,prec]]; )
+CTMCSolve[Q_] :=
+(If[BuTools`CheckInput && Not[CheckGenerator[Q,False]],Throw["CTMCSolve/DTMCSolve: The given matrix is not a valid generator. If you are sure you want this, use CRPSolve/DRPSolve instead CTMCSolve/DTMCSolve."]];
+Return[CRPSolve[Q]]; )
 
 
-DTMCSolve[P_,prec_:N[10^-14]]:= CTMCSolve[P-IdentityMatrix[Dimensions[P][[1]]],prec];
+DTMCSolve[P_]:= CTMCSolve[P-IdentityMatrix[Dimensions[P][[1]]]];
 
 
-CheckGenerator[Q_,transient_ : False,prec_ : N[10^-14]]:=
-Module[ {k,myh0,h,size1,size2},
+CheckGenerator[Q_,transient_ : False,precision_ : Null]:=
+Module[ {k,myh0,h,size1,size2,prec},
+If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
 {size1,size2}=Dimensions[Q];
 If[size1!=size2,
 If[BuTools`Verbose==True,Print["CheckGenerator: the generator is not a square matrix!"]];
@@ -92,8 +94,9 @@ Return[True]
 ];
 
 
-CheckProbMatrix[Q_,transient_ : False,prec_ : N[10^-14]]:=
-Module[{size1, size2, h},
+CheckProbMatrix[Q_,transient_ : False,precision_ :Null]:=
+Module[{size1, size2, h, prec},
+If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
 {size1,size2}=Dimensions[Q];
 If[size1!=size2,
 If[BuTools`Verbose==True,Print["CheckProbMatrix: the matrix is not a square matrix!"]];
@@ -128,8 +131,10 @@ Return[True]
 ];
 
 
-CheckProbVector[pi_,sub_ : False, prec_ : N[10^-14]]:=
-(If[ Min[pi]<-prec,
+CheckProbVector[pi_,sub_ : False, precision_ : Null]:=
+Module[{prec},
+If[prec==Null, prec=BuTools`CheckPrecision];
+If[ Min[pi]<-prec,
 If[BuTools`Verbose==True,Print["CheckProbVector: The vector has negative element!"]];
 Return[False]
 ];
@@ -146,7 +151,8 @@ If[BuTools`Verbose==True,Print["CheckProbVector: The sum of the vector is not 1 
 Return[False]
 ]
 ];
-Return[True])
+Return[True]
+];
 
 
 End[(* Private *)];

@@ -36,7 +36,7 @@ function D = DMMAPFromDMRAP(H,prec)
         BuToolsCheckInput = true;
     end   
 
-    if BuToolsCheckInput && ~CheckDMRAPRepresentation(H,prec)
+    if BuToolsCheckInput && ~CheckDMRAPRepresentation(H)
         error('DMMAPFromDMRAP: Input isn''t a valid DMRAP representation');
     end
 

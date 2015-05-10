@@ -49,7 +49,7 @@ function D = RandomDMMAP(order, types, mean, zeroEntries, maxTrials, prec)
     end
 
     if ~exist('prec','var')
-        prec = 1e-14;
+        prec = 1e-7;
     end
 
     if ~exist('maxTrials','var')
@@ -139,8 +139,8 @@ function D = RandomDMMAP(order, types, mean, zeroEntries, maxTrials, prec)
                 sumD = sumD + D{i};
             end
             if rank(D{1})==order && rank(eye(order)-sumD)==order-1
-                alpha = DTMCSolve(sumD, prec);
-                if min(abs(alpha)) > sqrt(prec)
+                alpha = DTMCSolve(sumD);
+                if min(abs(alpha)) > prec
                     fullZero = 0;
                     for i=1:length(D)
                         if all(all(D{i}==0.0))
@@ -157,13 +157,13 @@ function D = RandomDMMAP(order, types, mean, zeroEntries, maxTrials, prec)
                             Dv{i} = diag(1-d)*D{i};
                         end
                         Dv{1} = Dv{1}+diag(d);                        
-                        m = MarginalMomentsFromDMMAP (Dv, 1, prec);
+                        m = MarginalMomentsFromDMMAP (Dv, 1);
                         d = 1 - (1-d)*m(1)/mean;
                         for i=1:types+1
                             D{i} = diag(1-d)*D{i};
                         end
                         D{1} = D{1}+diag(d);                        
-                        if CheckDMMAPRepresentation(D,prec)
+                        if CheckDMMAPRepresentation(D)
                             return;
                         end
                     end
