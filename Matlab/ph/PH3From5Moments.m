@@ -61,7 +61,7 @@ function [alpha, A] = PH3From5Moments (moms, prec)
     d2 = a(1) - a(2) - a(3) * d1;
     d3 = -a(1) - a(2)*d1 - a(3)*d2;
 
-    if d1>1e-10 || (abs(d1)<1e-10 && d2>0)
+    if d1>prec || (abs(d1)<prec && d2>0)
         error ('Negative density around 0!');
     end
 

@@ -47,7 +47,7 @@ DTMCSolve[P_]:= CTMCSolve[P-IdentityMatrix[Dimensions[P][[1]]]];
 
 CheckGenerator[Q_,transient_ : False,precision_ : Null]:=
 Module[ {k,myh0,h,size1,size2,prec},
-If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
+If[Not[NumericQ[precision]], prec=BuTools`CheckPrecision, prec=precision];
 {size1,size2}=Dimensions[Q];
 If[size1!=size2,
 If[BuTools`Verbose==True,Print["CheckGenerator: the generator is not a square matrix!"]];
@@ -89,7 +89,7 @@ Return[True]
 
 CheckProbMatrix[Q_,transient_ : False,precision_ :Null]:=
 Module[{size1, size2, h, prec},
-If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
+If[Not[NumericQ[precision]], prec=BuTools`CheckPrecision, prec=precision];
 {size1,size2}=Dimensions[Q];
 If[size1!=size2,
 If[BuTools`Verbose==True,Print["CheckProbMatrix: the matrix is not a square matrix!"]];
@@ -126,7 +126,7 @@ Return[True]
 
 CheckProbVector[pi_,sub_ : False, precision_ : Null]:=
 Module[{prec},
-If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
+If[Not[NumericQ[precision]], prec=BuTools`CheckPrecision, prec=precision];
 If[ Min[pi]<-prec,
 If[BuTools`Verbose==True,Print["CheckProbVector: The vector has negative element!"]];
 Return[False]

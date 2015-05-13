@@ -141,7 +141,7 @@ Return[ret];
 
 CheckMoments[moms_,precision_:Null]:=
 Module[{NN,H,H0,m,res,prec},
-If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
+If[Not[NumericQ[precision]], prec=BuTools`CheckPrecision, prec=precision];
 If[BuTools`CheckInput && Mod[Length[moms],2]==0,Throw["CheckMoments: the number of moments must be odd!"]];
 m=Prepend[moms,1];
 NN=Floor[Length[m]/2]-1;
