@@ -9,11 +9,11 @@ butools.mc.DTMCSolve
         :widths: 25 150
 
         * - Matlab:
-          - :code:`pi = DTMCSolve(Q, prec)`
+          - :code:`pi = DTMCSolve(Q)`
         * - Mathematica:
-          - :code:`pi = DTMCSolve[Q, prec]`
+          - :code:`pi = DTMCSolve[Q]`
         * - Python/Numpy:
-          - :code:`pi = DTMCSolve(Q, prec)`
+          - :code:`pi = DTMCSolve(Q)`
     
     Computes the stationary solution of a discrete time 
     Markov chain.
@@ -23,9 +23,6 @@ butools.mc.DTMCSolve
     P : matrix, shape (M,M)
         The transition probability matrix of the Markov 
         chain
-    prec : double, optional
-        Numerical precision for checking whether P is a 
-        valid generator. The default value is 1e-14.
         
     Returns
     -------
@@ -51,8 +48,12 @@ butools.mc.DTMCSolve
     
     For Mathematica:
     
-    >>> q={{0.1, 0.5, 0.4}, {0.9, 0.1, 0}, {0.3, 0.3, 0.4}}
-    >>> pi=DTMCSolve[q]
+    >>> Q={{0.1, 0.5, 0.4}, {0.9, 0.1, 0}, {0.3, 0.3, 0.4}};
+    >>> pi=DTMCSolve[Q]
+    {0.409091, 0.318182, 0.272727}
+    >>> Q = {{1/10, 5/10, 4/10}, {9/10, 1/10, 0}, {3/10, 3/10, 4/10}};
+    >>> pi=DTMCSolve[Q]
+    {9/22, 7/22, 3/11}
     
     For Python/Numpy:
 

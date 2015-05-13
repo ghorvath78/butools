@@ -1,36 +1,38 @@
-%  B = TransformToOnes(clovec)
+%  B = SimilarityMatrixForVectors(vecA, vecB)
 %  
 %  Returns the similarity transformation matrix that converts 
-%  the given column vector to a vector of ones. It works even
-%  if it has zero entries.
+%  a given column vector to an other column vector. It works 
+%  even with zero entries.
 %  
 %  Parameters
 %  ----------
-%  clovec : column vector, shape(M,1)
-%      The original closing vector
+%  vecA : column vector, shape(M,1)
+%      The original column vector
+%  vecB : column vector, shape(M,1)
+%      The target column vector
 %      
 %  Returns
 %  -------
 %  B : matrix, shape(M,M)
-%      The matrix by which `B\cdot clovec = \mathbf{1}` holds
+%      The matrix by which `B\cdot vecA = vecB` holds
 
-function B = TransformToOnes (clovec)
+function B = SimilarityMatrixForVectors (vecA, vecB)
 
     % construct permutation matrix to move at least one non-zero element to the first position
     % to acchieve it, the code below sorts it in a reverse order
-    m = length(clovec);
+    m = length(vecA);
     
-    [~,ix] = sort(-clovec);
+    [~,ix] = sort(-vecA);
     P = zeros(m);
     for i=1:m
         P(i,ix(i)) = 1.0;
     end
-    cp = P*clovec;
+    cp = P*vecA;
 
     % construct transformation matrix B for which B*rp=1 holds
     B = zeros(m);
     for i=1:m
-        B(i,1:i) = 1.0 / sum(cp(1:i,1));
+        B(i,1:i) = vecB(i) / sum(cp(1:i,1));
     end
     % construct matrix B for which B*r=1 holds
     B = B*P;

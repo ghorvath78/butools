@@ -55,9 +55,11 @@ butools.mc.CheckProbMatrix
 
     For Mathematica:
     
-    >>> q={{0.1, 0.5, 0.4}, {0.9, 0.1, 0}, {0.3, 0.1, 0.4}}
+    >>> q={{0.1, 0.5, 0.4}, {0.9, 0.1, 0}, {0.3, 0.1, 0.4}};
     >>> CheckProbMatrix[q, True]
+    True
     >>> CheckProbMatrix[q]
+    False
     
     For Python/Numpy:
     

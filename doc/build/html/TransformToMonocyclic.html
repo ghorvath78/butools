@@ -28,7 +28,7 @@
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Representation Transformation Tools (butools.reptrans)" href="reptrans.html" >
     <link rel="next" title="butools.reptrans.TransformToAcyclic" href="TransformToAcyclic.html" >
-    <link rel="prev" title="butools.reptrans.TransformToOnes" href="TransformToOnes.html" > 
+    <link rel="prev" title="butools.reptrans.SimilarityMatrixForVectors" href="SimilarityMatrixForVectors.html" > 
   </head>
   <body>
 
@@ -65,7 +65,7 @@
            accesskey="N">next</a>
       </li>
       <li class="active">
-        <a href="TransformToOnes.html" title="butools.reptrans.TransformToOnes"
+        <a href="SimilarityMatrixForVectors.html" title="butools.reptrans.SimilarityMatrixForVectors"
            accesskey="P">previous</a>
       </li>
     </ul>
@@ -79,8 +79,8 @@
       <div class="spc-rightsidebar span3">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="TransformToOnes.html"
-                        title="previous chapter">butools.reptrans.TransformToOnes</a></p>
+  <p class="topless"><a href="SimilarityMatrixForVectors.html"
+                        title="previous chapter">butools.reptrans.SimilarityMatrixForVectors</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="TransformToAcyclic.html"
                         title="next chapter">butools.reptrans.TransformToAcyclic</a></p>
@@ -115,7 +115,7 @@
 </tbody>
 </table>
 <p>Transforms an arbitrary matrix to a Markovian monocyclic
-matrix (see <a class="reference internal" href="#r43" id="id1">[R43]</a>).</p>
+matrix (see <a class="reference internal" href="#r45" id="id1">[R45]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -150,10 +150,10 @@ eigenvalues.</p>
 <p>Raises an exception if no Markovian monocyclic generator
 has been found up to the given size.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r43" rules="none">
+<table class="docutils citation" frame="void" id="r45" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R43]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Mocanu, S., Commault, C.: &#8220;Sparse representations
+<tr><td class="label">[R45]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Mocanu, S., Commault, C.: &#8220;Sparse representations
 of phase-type distributions,&#8221; Stoch. Models 15,
 759-778 (1999)</td></tr>
 </tbody>
@@ -176,6 +176,25 @@ of phase-type distributions,&#8221; Stoch. Models 15,
 <span class="go">   1.9399e-15     -0.12308     -0.18462     -0.27692     -0.41538</span>
 <span class="go">   1.1658e-16       2.0923      -1.2923      -4.7077       2.9077</span>
 <span class="go">   1.4348e-16      0.86154       3.1385      -1.9385      -7.0615</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">TransformToMonocyclic</span><span class="p">[</span><span class="n">A</span><span class="p">]</span>
+<span class="go">{{-1, 1, 0, 0, 0},</span>
+<span class="go"> {0, -3, 3, 0, 0},</span>
+<span class="go"> {0, 0, -3, 3, 0},</span>
+<span class="go"> {0, 0, 0, -3, 3},</span>
+<span class="go"> {0, 16/27, 0, 0, -3}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">Cm</span>
+<span class="go">{{0, -(8/65), -(12/65), -(18/65), -(27/65)},</span>
+<span class="go">{0, 136/65, -(84/65), -(306/65), 189/65},</span>
+<span class="go">{0, 56/65, 204/65, -(126/65), -(459/65)}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span><span class="o">.</span><span class="n">B</span>
+<span class="go">{{0, -(8/65), -(12/65), -(18/65), -(27/65)},</span>
+<span class="go">{0, 136/65, -(84/65), -(306/65), 189/65},</span>
+<span class="go">{0, 56/65, 204/65, -(126/65), -(459/65)}}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
@@ -223,7 +242,7 @@ of phase-type distributions,&#8221; Stoch. Models 15,
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

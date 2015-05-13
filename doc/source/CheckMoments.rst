@@ -51,7 +51,10 @@ butools.moments.CheckMoments
 
     For Mathematica:
     
-    >>> CheckMoments[{1.2, 5, 38}]
+    >>> CheckMoments[{1.2, 5, 8, 29, 3412}]
+    False
+    >>> CheckMoments[{1.3, 2.4, 6.03, 20.5, 89.5}]
+    True
     
     For Python/Numpy:
     

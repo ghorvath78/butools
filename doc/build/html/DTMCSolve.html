@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">DTMCSolve(Q,</span> <span class="pre">prec)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">DTMCSolve(Q)</span></tt></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">DTMCSolve[Q,</span> <span class="pre">prec]</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">DTMCSolve[Q]</span></tt></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">DTMCSolve(Q,</span> <span class="pre">prec)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">DTMCSolve(Q)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -124,11 +124,6 @@ Markov chain.</p>
 <blockquote>
 <div><p>The transition probability matrix of the Markov
 chain</p>
-</div></blockquote>
-<p><strong>prec</strong> : double, optional</p>
-<blockquote>
-<div><p>Numerical precision for checking whether P is a
-valid generator. The default value is 1e-14.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -155,8 +150,12 @@ is set to <tt class="code docutils literal"><span class="pre">true</span></tt> a
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">=</span><span class="p">{{</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">},</span> <span class="p">{</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="n">DTMCSolve</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span><span class="o">=</span><span class="p">{{</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">},</span> <span class="p">{</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="n">DTMCSolve</span><span class="p">[</span><span class="n">Q</span><span class="p">]</span>
+<span class="go">{0.409091, 0.318182, 0.272727}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">10</span><span class="p">},</span> <span class="p">{</span><span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">10</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="n">DTMCSolve</span><span class="p">[</span><span class="n">Q</span><span class="p">]</span>
+<span class="go">{9/22, 7/22, 3/11}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
@@ -190,7 +189,7 @@ is set to <tt class="code docutils literal"><span class="pre">true</span></tt> a
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

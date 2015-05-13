@@ -24,13 +24,13 @@ Properties of Markov chains and rational processes
     :widths: 25 150
 
     * - :py:func:`CTMCSolve <butools.mc.CTMCSolve>`
-      - Steady state solution of a continuous time Markov chain
+      - Returns the steady state solution of a continuous time Markov chain
     * - :py:func:`DTMCSolve <butools.mc.DTMCSolve>`
-      - Steady state solution of a discrete time Markov chain
+      - Returns the steady state solution of a discrete time Markov chain
     * - :py:func:`CRPSolve <butools.mc.CRPSolve>`
-      - Steady state solution of a continuous time rational process
+      - Returns the steady state solution of a continuous time rational process
     * - :py:func:`DRPCSolve <butools.mc.DRPSolve>`
-      - Steady state solution of a discrete time rational process
+      - Returns the steady state solution of a discrete time rational process
     * - :py:func:`CheckGenerator <butools.mc.CheckGenerator>`
       - Checks if a matrix is a valid generator of a CTMC
     * - :py:func:`CheckProbMatrix <butools.mc.CheckProbMatrix>`

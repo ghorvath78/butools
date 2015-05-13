@@ -5,28 +5,26 @@
 *)
 
 BeginPackage["BuTools`Moments`"];
-NormMomsFromMoms::usage = "NormMomsFromMoms [ moments ] -> [ moments ] : Makes normalized moments from moments.";
-MomsFromNormMoms::usage = "MomsFromNormmoms [ moments ] -> [ moments ] : Makes moments from normalized moments.";
-ReducedMomsFromMoms::usage = "ReducedmomsFromMoms [ moments ] -> [ moments ] : Computes reduced moments from moments.";
-MomsFromReducedMoms::usage = "MomsFromReducedMoms [ moments ] -> [ moments ] : Computes moments from reduced moments.";
-FactorialMomsFromMoms::usage = "FactorialMomFromMoms [ moments ] -> [ fmoments ] : Computes the factorial moments from raw moments.";
-MomsFromFactorialMoms::usage = "MomsFromFactorialmoms [ fmoments ] -> [ moments ] : Computes the raw moments from factorial moments.";
-HankelMomsFromMoms::usage = "HankelMomFromMoms [ moments ] -> [ hmoments ] : Computes the Hankel moments from raw moments.";
-MomsFromHankelMoms::usage = "MomsFromHankelmoms [ hmoments ] -> [ moments ] : Computes the raw moments from Hankel moments.";
-JFactorialMomsFromJMoms::usage = "JFactorialMomsFromJMoms [ joint moments matrix ] -> [ joint fmoments matrix ] : Computes the factorial moments from raw moments. The {ij}th element of
-	joint moments matrix contains, the E(\!\(\*SuperscriptBox[\(X\), \(i\)]\)\!\(\*SuperscriptBox[\(Y\), \(j\)]\)) joint moment. It doesn't contain the marginal moments (when i or j is 0).";
-JMomsFromJFactorialMoms::usage = "JMomsFromJFactorialMoms [ joint fmoments matrix ] -> [ joint moments matrix ] : Computes the raw moments from factorial moments. The {ij}th element of
-	joint moments matrix contains, the E(\!\(\*SuperscriptBox[\(X\), \(i\)]\)\!\(\*SuperscriptBox[\(Y\), \(j\)]\)) joint moment. It doesn't contain the marginal moments (when i or j is 0).";
-CheckMoments::usage="CheckMoments[moms,prec] -> Bool : Checks if the given vector is a valid moment sequence up the the given precision.";
-TestMomentsPackage::usage = "TestMomentsPackage[] : Executes various tests to check the functions of the package";
+NormMomsFromMoms::usage = "nm = NormMomsFromMoms[m]: Returns the normalized moments given the raw moments.";
+MomsFromNormMoms::usage = "m = MomsFromNormMoms[nm]: Returns the raw moments given the normalized moments.";
+ReducedMomsFromMoms::usage = "rm = ReducedMomsFromMoms[m]: Returns the reduced moments given the raw moments.";
+MomsFromReducedMoms::usage = "m = MomsFromReducedMoms[rm]: Returns the raw moments given the reduced moments.";
+FactorialMomsFromMoms::usage = "fm = FactorialMomsFromMoms[m]: Returns the factorial moments given the raw moments.";
+MomsFromFactorialMoms::usage = "m = MomsFromFactorialMoms[fm]: Returns the raw moments given the factorial moments.";
+HankelMomsFromMoms::usage = "hm = HankelMomsFromMoms[m]: Returns the Hankel moments given the raw moments.";
+MomsFromHankelMoms::usage = "m = MomsFromHankelMoms[hm]: Returns the raw moments given the Hankel moments.";
+JFactorialMomsFromJMoms::usage = "jfm = JFactorialMomsFromJMoms[jm]: Returns the joint factorial moments given the joint raw moments.";
+JMomsFromJFactorialMoms::usage = "jm = JMomsFromJFactorialMoms[jfm]: Returns the joint raw moments given the joint factorial moments.";
+CheckMoments::usage="r = CheckMoments[m, prec]: Checks if the given moment sequence belongs to a distribution with support (0,inf).";
+TestMomentsPackage::usage = "TestMomentsPackage[] : Executes various tests to check the functions of the moments package";
 
 
 Begin["`Private`"];
 
 
-If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckInput"]],BuTools`CheckInput=True];
-If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckPrecision"]],BuTools`CheckPrecision=N[10^-12]];
-If[Not[MemberQ[Names["BuTools`*"],"BuTools`Verbose"]],BuTools`Verbose=False];
+If[Not[ValueQ[BuTools`CheckInput]],BuTools`CheckInput=True];
+If[Not[ValueQ[BuTools`CheckPrecision]],BuTools`CheckPrecision=N[10^-12]];
+If[Not[ValueQ[BuTools`Verbose]],BuTools`Verbose=False];
 
 
 NormMomsFromMoms[ moms_]:=Prepend[Table[moms[[i]]/(moms[[i-1]] moms[[1]]),{i,2,Length[moms]}],moms[[1]]];

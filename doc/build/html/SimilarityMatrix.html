@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Representation Transformation Tools (butools.reptrans)" href="reptrans.html" >
-    <link rel="next" title="butools.reptrans.TransformToOnes" href="TransformToOnes.html" >
+    <link rel="next" title="butools.reptrans.SimilarityMatrixForVectors" href="SimilarityMatrixForVectors.html" >
     <link rel="prev" title="Representation Transformation Tools (butools.reptrans)" href="reptrans.html" > 
   </head>
   <body>
@@ -61,7 +61,7 @@
            accesskey="I">index</a>
       </li>
       <li class="active">
-        <a href="TransformToOnes.html" title="butools.reptrans.TransformToOnes"
+        <a href="SimilarityMatrixForVectors.html" title="butools.reptrans.SimilarityMatrixForVectors"
            accesskey="N">next</a>
       </li>
       <li class="active">
@@ -82,8 +82,8 @@
   <p class="topless"><a href="reptrans.html"
                         title="previous chapter">Representation Transformation Tools (<tt class="docutils literal"><span class="pre">butools.reptrans</span></tt>)</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="TransformToOnes.html"
-                        title="next chapter">butools.reptrans.TransformToOnes</a></p>
+  <p class="topless"><a href="SimilarityMatrixForVectors.html"
+                        title="next chapter">butools.reptrans.SimilarityMatrixForVectors</a></p>
 
         </div>
       </div>
@@ -154,6 +154,22 @@ matrix has to inherit the eigenvalues of the smaller one.</p>
 <span class="go"> -1.5613e-15   1.3323e-15  -6.6613e-16   6.6613e-16</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A1</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">},</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">},{</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A2</span> <span class="o">=</span> <span class="n">PseudoInverse</span><span class="p">[</span><span class="n">T</span><span class="p">]</span><span class="o">.</span><span class="n">A1</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A2</span><span class="p">];</span>
+<span class="go">{{0.00880575,0.299045,-0.467197,0.248872},{-0.0346914,-0.00354648,0.457289,0.0203502},{-0.201583,1.7687,-1.33776,0.821146},{-0.0909589,2.26381,-2.29974,1.6325}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A1</span><span class="p">,</span><span class="n">A2</span><span class="p">]</span>
+<span class="go">{{0.0684331, 0.701873, -0.746277, 0.975971},</span>
+<span class="go"> {0.0302878, 0.95884, -1.00987, 1.02074},</span>
+<span class="go"> {0.0772499, 0.715532, -0.80571, 1.01293}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A1</span><span class="o">.</span><span class="n">B</span><span class="o">-</span><span class="n">B</span><span class="o">.</span><span class="n">A2</span>
+<span class="go">{{-2.77556*10^-16, -8.88178*10^-16, 5.55112*10^-16, -2.22045*10^-16},</span>
+<span class="go"> {-1.249*10^-16, -4.44089*10^-16, 6.66134*10^-16, -4.44089*10^-16},</span>
+<span class="go"> {-2.498*10^-16, -4.44089*10^-16, 3.33067*10^-16, 0.}}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.00880575</span><span class="p">,</span> <span class="mf">0.29904484</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.46719731</span><span class="p">,</span>  <span class="mf">0.24887238</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.03469139</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00354648</span><span class="p">,</span>  <span class="mf">0.457289</span>  <span class="p">,</span>  <span class="mf">0.02035023</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2015826</span> <span class="p">,</span>  <span class="mf">1.76869638</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.33776127</span><span class="p">,</span>  <span class="mf">0.82114619</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.09095889</span><span class="p">,</span> <span class="mf">2.26380561</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.29973763</span><span class="p">,</span>  <span class="mf">1.63250199</span><span class="p">]])</span>
@@ -193,7 +209,7 @@ matrix has to inherit the eigenvalues of the smaller one.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

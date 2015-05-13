@@ -153,10 +153,10 @@ given size.</p>
 <p>Raises an error if no Markovian acyclic generator
 has been found up to the given size.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r42" rules="none">
+<table class="docutils citation" frame="void" id="r44" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R42]</a></td><td>Mocanu, S., Commault, C.: &#8220;Sparse representations
+<tr><td class="label"><a class="fn-backref" href="#id1">[R44]</a></td><td>Mocanu, S., Commault, C.: &#8220;Sparse representations
 of phase-type distributions,&#8221; Stoch. Models 15,
 759-778 (1999)</td></tr>
 </tbody>
@@ -177,6 +177,23 @@ of phase-type distributions,&#8221; Stoch. Models 15,
 <span class="go">  -0.10221    0.0096089     0.092604</span>
 <span class="go"> -0.086842    -0.013158  -1.9665e-09</span>
 <span class="go"> -0.053839    -0.072529     -0.17363</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">},{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">TransformToAcyclic</span><span class="p">[</span><span class="n">A</span><span class="p">]</span>
+<span class="go">{{-0.120304, 0.120304, 0},</span>
+<span class="go"> {0, -0.615799, 0.615799},</span>
+<span class="go"> {0, 0, -0.863897}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">Cm</span>
+<span class="go">{{-0.102212, 0.00960886, 0.0926036},</span>
+<span class="go">{-0.0868418, -0.0131582, -6.93889*10^-18},</span>
+<span class="go">{-0.0538391, -0.0725292, -0.173632}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span><span class="o">.</span><span class="n">B</span>
+<span class="go">{{-0.102212, 0.00960886, 0.0926036},</span>
+<span class="go">{-0.0868418, -0.0131582, -8.32667*10^-17},</span>
+<span class="go">{-0.0538391, -0.0725292, -0.173632}}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
@@ -222,7 +239,7 @@ of phase-type distributions,&#8221; Stoch. Models 15,
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

@@ -54,9 +54,11 @@ butools.mc.CheckProbVector
 
     For Mathematica:
     
-    >>> pi={0.8, 0.1}
+    >>> pi={0.8, 0.1};
     >>> CheckProbVector[pi, True]
+    True
     >>> CheckProbVector[pi]
+    False
     
     For Python/Numpy:
     

@@ -9,11 +9,11 @@ butools.mc.CTMCSolve
         :widths: 25 150
 
         * - Matlab:
-          - :code:`pi = CTMCSolve(Q, prec)`
+          - :code:`pi = CTMCSolve(Q)`
         * - Mathematica:
-          - :code:`pi = CTMCSolve[Q, prec]`
+          - :code:`pi = CTMCSolve[Q]`
         * - Python/Numpy:
-          - :code:`pi = CTMCSolve(Q, prec)`
+          - :code:`pi = CTMCSolve(Q)`
     
     Computes the stationary solution of a continuous time 
     Markov chain.
@@ -22,9 +22,6 @@ butools.mc.CTMCSolve
     ----------
     Q : matrix, shape (M,M)
         The generator matrix of the Markov chain
-    prec : double, optional
-        Numerical precision for checking whether Q is a 
-        valid generator. The default value is 1e-14.
         
     Returns
     -------
@@ -50,8 +47,12 @@ butools.mc.CTMCSolve
     
     For Mathematica:
     
-    >>> q={{-0.9, 0.5, 0.4}, {0.9, -0.9, 0}, {0.3, 0.3, -0.6}}
+    >>> q={{-0.9, 0.5, 0.4}, {0.9, -0.9, 0}, {0.3, 0.3, -0.6}};
     >>> pi=CTMCSolve[q]
+    {0.409091, 0.318182, 0.272727}
+    >>> q={{-9/10, 5/10, 4/10}, {9/10, -9/10, 0}, {3/10, 3/10, -6/10}};
+    >>> pi=CTMCSolve[q]
+    {9/22, 7/22, 3/11}
     
     For Python/Numpy:
 

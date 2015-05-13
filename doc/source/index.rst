@@ -38,18 +38,23 @@ At the moment BuTools supports the following three frameworks:
 Loading BuTools
 ---------------
 
-The packages of BuTools can be loaded individually, but there is a convenience function :func:`BuToolsInit()` available as well.
+The packages of BuTools can be loaded individually, but there are convenience functions available to load everything as well.
 If BuTools is located in directory <BTDir>, all BuTools packages can be loaded by
 
 .. list-table::
     :widths: 50 50
 
-    * - :code:`run('<BTDir>/BuToolsInit.m')` 
+    * - :code:`run('<BTDir>/Matlab/BuToolsInit.m')` 
       - in Matlab,
+    * - :code:`%run "<BTDir>/Python/BuToolsInit"` 
+      - in an IPython console,
+    * - :code:`AppendTo[$Path,"<BTDir>/Mathematica"]; <<BuTools`` 
+      - in Mathematica.
 
-The :func:`BuToolsInit()` function has two optional arguments as well, by which it is possible to initialize the BuToolsVerbose and
-BuToolsCheckInput global variables.
+In case of Matlab and IPython no other preparations and installation steps are required, BuToolsInit adjusts the Path variable, too.
 
+The :func:`BuToolsInit()` function has two optional arguments as well, by which it is possible to initialize the BuToolsVerbose,
+BuToolsCheckInput and BuToolsCheckPrecision global variables.
 
 
 Packages

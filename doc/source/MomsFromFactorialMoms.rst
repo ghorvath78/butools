@@ -49,6 +49,7 @@ butools.moments.MomsFromFactorialMoms
     
     >>> fm=FactorialMomsFromMoms[{1.2, 5, 38}];
     >>> m=MomsFromFactorialMoms[fm]
+    {1.2, 5., 38.}    
     
     For Python/Numpy:
 

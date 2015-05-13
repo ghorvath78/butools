@@ -87,7 +87,7 @@ def MMAPPH1NPPR(D, sigma, S, *argv):
            priority queue", European Journal of Operational 
            Research, 2015, to appear.
            doi:10.1016/j.ejor.2015.03.004
-    """
+        """
     
     K = len(D)-1
 

@@ -122,7 +122,7 @@ difficult implementation.</p>
 </div>
 <div class="section" id="loading-butools">
 <h3>Loading BuTools<a class="headerlink" href="#loading-butools" title="Permalink to this headline">¶</a></h3>
-<p>The packages of BuTools can be loaded individually, but there is a convenience function <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt> available as well.
+<p>The packages of BuTools can be loaded individually, but there are convenience functions available to load everything as well.
 If BuTools is located in directory &lt;BTDir&gt;, all BuTools packages can be loaded by</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -130,13 +130,20 @@ If BuTools is located in directory &lt;BTDir&gt;, all BuTools packages can be lo
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">run('&lt;BTDir&gt;/BuToolsInit.m')</span></tt></td>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">run('&lt;BTDir&gt;/Matlab/BuToolsInit.m')</span></tt></td>
 <td>in Matlab,</td>
+</tr>
+<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">%run</span> <span class="pre">&quot;&lt;BTDir&gt;/Python/BuToolsInit&quot;</span></tt></td>
+<td>in an IPython console,</td>
+</tr>
+<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">AppendTo[$Path,&quot;&lt;BTDir&gt;/Mathematica&quot;];</span> <span class="pre">&lt;&lt;BuTools`</span></tt></td>
+<td>in Mathematica.</td>
 </tr>
 </tbody>
 </table>
-<p>The <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt> function has two optional arguments as well, by which it is possible to initialize the BuToolsVerbose and
-BuToolsCheckInput global variables.</p>
+<p>In case of Matlab and IPython no other preparations and installation steps are required, BuToolsInit adjusts the Path variable, too.</p>
+<p>The <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt> function has two optional arguments as well, by which it is possible to initialize the BuToolsVerbose,
+BuToolsCheckInput and BuToolsCheckPrecision global variables.</p>
 </div>
 </div>
 <div class="section" id="packages">
@@ -189,7 +196,7 @@ BuToolsCheckInput global variables.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 07, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

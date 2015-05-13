@@ -140,7 +140,7 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
             retIx = retIx + 1;
         elseif strcmp(varargin{argIx},'qlDistrMG')
             % transform it to MG
-            B = TransformToOnes(sum(inv(I-R)*R,2));
+            B = SimilarityMatrixForVectors(sum(inv(I-R)*R,2), ones(N,1));
             Bi = inv(B);
             A = B*R*Bi;
             alpha = pi0*Bi;       
@@ -177,7 +177,7 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
         elseif strcmp(varargin{argIx},'stDistrME')
             % transform it such that the closing vector is a vector of ones
             % this is the way butools accepts ME distributions
-            Bm = TransformToOnes(z);
+            Bm = SimilarityMatrixForVectors(z,ones(length(z),1));
             Bmi = inv(Bm);
             A = Bm * (kron(L'+F',I) + kron(B',Rh)) * Bmi;
             alpha = kron(ones(1,N), eta) * Bmi;

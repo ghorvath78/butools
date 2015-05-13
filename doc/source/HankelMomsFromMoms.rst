@@ -9,11 +9,11 @@ butools.moments.HankelMomsFromMoms
         :widths: 25 150
 
         * - Matlab:
-          - :code:`rm = HankelMomsFromMoms(m)`
+          - :code:`hm = HankelMomsFromMoms(m)`
         * - Mathematica:
-          - :code:`rm = HankelMomsFromMoms[m]`
+          - :code:`hm = HankelMomsFromMoms[m]`
         * - Python/Numpy:
-          - :code:`rm = HankelMomsFromMoms(m)`
+          - :code:`hm = HankelMomsFromMoms(m)`
     
     Returns the Hankel moments given the raw moments.
     
@@ -51,7 +51,10 @@ butools.moments.HankelMomsFromMoms
     
     For Mathematica:
     
-    >>> hm=HankelMomsFromMoms[{1.2, 5, 38}]
+    >>> hm=HankelMomsFromMoms[{1.3, 2.4, 6.03, 20.5, 89.5, 474.9}]
+    {1.3, 0.71, 2.079, 1.9973, 13.8413, 44.9157}
+    >>> m=MomsFromHankelMoms[hm]
+    {1.3, 2.4, 6.03, 20.5, 89.5, 474.9}
     
     For Python/Numpy:
 

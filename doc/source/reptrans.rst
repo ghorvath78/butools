@@ -25,8 +25,8 @@ Tools for representation transformation
 
     * - :py:func:`SimilarityMatrix <butools.reptrans.SimilarityMatrix>`
       - Returns the matrix that transforms A1 to A2
-    * - :py:func:`TransformToOnes <butools.reptrans.TransformToOnes>`
-      - Returns the similarity transformation matrix that converts the given column vector to a vector of ones
+    * - :py:func:`SimilarityMatrixForVectors <butools.reptrans.SimilarityMatrixForVectors>`
+      - Returns the similarity transformation matrix that transforms a given column a to a column vector b
     * - :py:func:`TransformToMonocyclic <butools.reptrans.TransformToMonocyclic>`
       - Transforms an arbitrary matrix to a Markovian monocyclic matrix
     * - :py:func:`TransformToAcyclic <butools.reptrans.TransformToAcyclic>`
@@ -43,7 +43,7 @@ Tools for representation transformation
     :hidden:
 
     SimilarityMatrix
-    TransformToOnes
+    SimilarityMatrixForVectors
     TransformToMonocyclic
     TransformToAcyclic
     ExtendToMarkovian

@@ -9,36 +9,38 @@ import numpy.matlib as ml
 import scipy.linalg as la
 from butools.utils import Linsolve
 
-def TransformToOnes (clovec):
+def SimilarityMatrixForVectors (vecA, vecB):
     """
     Returns the similarity transformation matrix that converts 
-    the given column vector to a vector of ones. It works even
-    if it has zero entries.
+    a given column vector to an other column vector. It works 
+    even with zero entries.
     
     Parameters
     ----------
-    clovec : column vector, shape(M,1)
-        The original closing vector
+    vecA : column vector, shape(M,1)
+        The original column vector
+    vecB : column vector, shape(M,1)
+        The target column vector
         
     Returns
     -------
     B : matrix, shape(M,M)
-        The matrix by which `B\cdot clovec = \mathbf{1}` holds
+        The matrix by which `B\cdot vecA = vecB` holds
     """
 
     # construct permutation matrix to move at least one non-zero element to the first position
     # to acchieve it, the code below sorts it in a reverse order
-    m = clovec.shape[0]    
-    ix = np.argsort(-np.array(clovec).flatten())
+    m = vecA.shape[0]    
+    ix = np.argsort(-np.array(vecA).flatten())
     P=ml.zeros((m,m))
     for i in range(m):
         P[i,ix[i]] = 1.0
-    cp = P*clovec
+    cp = P*vecA
 
     # construct transformation matrix B for which B*rp=1 holds
     B = ml.zeros((m,m))
     for i in range(m):
-        B[i,0:i+1] = 1.0 / np.sum(cp[0:i+1,0])
+        B[i,0:i+1] = vecB.flat[i] / np.sum(cp[0:i+1,0])
     # construct matrix Bp for which Bp*r=1 holds
     return B*P
    

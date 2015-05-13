@@ -139,7 +139,7 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
             retIx = retIx + 1;
         elseif strcmp(varargin{argIx},'qlDistrME')
             % transform it to ME
-            B = TransformToOnes(inv(-K)*sum(clo,2));
+            B = SimilarityMatrixForVectors(inv(-K)*sum(clo,2), ones(size(K,1),1));
             Bi = inv(B);
             alpha = ini*Bi;
             A = B*K*Bi;
@@ -173,7 +173,7 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
             Ret{retIx} = {alpha, A};
             retIx = retIx + 1;
         elseif strcmp(varargin{argIx},'stDistrME')
-            B = TransformToOnes(reshape(inv(-K)*clo*Rin,N*length(ini),1));
+            B = SimilarityMatrixForVectors(reshape(inv(-K)*clo*Rin,N*length(ini),1),ones(N*length(ini),1));
             Bi = inv(B);
             alpha = kron(ones(1,N), ini/lambda)*Bi;
             A = B*(kron(sparse(Q'),speye(size(K))) + kron(sparse(Rout),sparse(K)))*Bi;        

@@ -4,7 +4,7 @@ import scipy.linalg as la
 import butools
 import math
 from butools.utils import Diag
-from butools.reptrans import TransformToOnes
+from butools.reptrans import SimilarityMatrixForVectors
 from butools.mam import QBDSolve
 from butools.moments import MomsFromFactorialMoms
 from butools.map import CheckMAPRepresentation
@@ -139,7 +139,7 @@ def QBDQueue(B, L, F, L0, *argv):
             Ret.append((alpha, A))
         elif type(argv[argIx]) is str and argv[argIx]=="qlDistrMG":
             # transform it to MG
-            B = TransformToOnes(np.sum((I-R).I*R,1))
+            B = SimilarityMatrixForVectors(np.sum((I-R).I*R,1), np.ones((N,1)))
             Bi = B.I
             A = B*R*Bi
             alpha = pi0*Bi
@@ -170,7 +170,7 @@ def QBDQueue(B, L, F, L0, *argv):
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrME":
             # transform it such that the closing vector is a vector of ones
             # this is the way butools accepts ME distributions
-            Bm = TransformToOnes(z)
+            Bm = SimilarityMatrixForVectors(z, np.ones(z.shape))
             Bmi = Bm.I
             A = Bm * (np.kron(L.T+F.T,I) + np.kron(B.T,Rh)) * Bmi
             alpha = np.kron(ml.ones((1,N)), eta) * Bmi
@@ -333,7 +333,7 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
             Ret.append((alpha, A))
         elif type(argv[argIx]) is str and argv[argIx]=="qlDistrMG":
             # transform it to MG
-            B = TransformToOnes(np.sum((I-R).I*R,1))
+            B = SimilarityMatrixForVectors(np.sum((I-R).I*R,1), np.ones((N,1)))
             Bi = B.I
             A = B*R*Bi
             alpha = pi0*Bi

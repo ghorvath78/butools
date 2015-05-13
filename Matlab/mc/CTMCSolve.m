@@ -1,4 +1,4 @@
-%  pi = CTMCSolve(Q, prec)
+%  pi = CTMCSolve(Q)
 %  
 %  Computes the stationary solution of a continuous time 
 %  Markov chain.
@@ -7,9 +7,6 @@
 %  ----------
 %  Q : matrix, shape (M,M)
 %      The generator matrix of the Markov chain
-%  prec : double, optional
-%      Numerical precision for checking whether Q is a 
-%      valid generator. The default value is 1e-14.
 %      
 %  Returns
 %  -------

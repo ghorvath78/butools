@@ -1,4 +1,4 @@
-%  pi = DTMCSolve(Q, prec)
+%  pi = DTMCSolve(Q)
 %  
 %  Computes the stationary solution of a discrete time 
 %  Markov chain.
@@ -8,9 +8,6 @@
 %  P : matrix, shape (M,M)
 %      The transition probability matrix of the Markov 
 %      chain
-%  prec : double, optional
-%      Numerical precision for checking whether P is a 
-%      valid generator. The default value is 1e-14.
 %      
 %  Returns
 %  -------

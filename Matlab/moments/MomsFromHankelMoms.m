@@ -1,4 +1,4 @@
-%  hm = MomsFromHankelMoms(m)
+%  m = MomsFromHankelMoms(hm)
 %  
 %  Returns the raw moments given the Hankel moments.
 %  

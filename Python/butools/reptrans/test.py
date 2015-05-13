@@ -110,22 +110,23 @@ def TestRepTransPackage ():
     assert err<sqrt(eps), 'The original and the transformed matrix are not similar!'
     assert np.min(m)>-1e-14, 'The initial vector is still not Markovian!'
     
-    print('--TransformToOnes-------------------------------------------------------------------')
+    print('--SimilarityMatrixForVectors-------------------------------------------------------------------')
     
     print('Input:')
     print('------')
     
     print('Original column vector:')
-    clovec = ml.matrix([[0.0], [0.3], [-1.5], [0.0]])
+    vecA = ml.matrix([[0.0], [0.3], [-1.5], [0.0]])
+    vecB = ml.matrix([[1.0], [0.2], [0.0], [1.0]])
     
     print('Test:')
     print('-----')
     
-    print('B=TransformToOnes (clovec):')
-    B = TransformToOnes (clovec)
+    print('B=SimilarityMatrixForVectors (vecA, vecB):')
+    B = SimilarityMatrixForVectors (vecA, vecB)
     print(B)
     
-    assert np.max(np.abs(B*clovec-ml.ones(clovec.shape)))<1e-14, 'The resulting matrix T does not satisfy T*clovec = ones!'
+    assert np.max(np.abs(B*vecA-vecB))<1e-14, 'The resulting matrix T does not satisfy T*vecA = vecB!'
     
     print('--FindMarkovianRepresentation-------------------------------------------------------')    
     print('Tested in the PH and in the MAP package')

@@ -165,7 +165,7 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             retIx = retIx + 1;
         elseif strcmp(varargin{argIx},'qlDistrME')
             % transform it to ME
-            B = TransformToOnes(inv(-K)*sum(clo,2));
+            B = SimilarityMatrixForVectors(inv(-K)*sum(clo,2), ones(size(K,1),2));
             Bi = inv(B);
             alpha = ini*Bi;
             A = B*K*Bi;
@@ -205,9 +205,9 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
         elseif strcmp(varargin{argIx},'stDistrME')
             % convert result to ME representation
             if ~srv0stop
-                B = TransformToOnes(sum(cloh*kron(Rin,Iout)/lambda,2));
+                B = SimilarityMatrixForVectors(sum(cloh*kron(Rin,Iout)/lambda,2), ones(size(Kh,1),1));
             else
-                B = TransformToOnes(sum(cloh*kron(Rin,Rout)/lambda/mu,2));
+                B = SimilarityMatrixForVectors(sum(cloh*kron(Rin,Rout)/lambda/mu,2), ones(size(Kh,1),1));
             end
             iB = inv(B);
             A = B*Kh*iB;

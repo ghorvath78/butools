@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">rm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms(m)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">hm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms(m)</span></tt></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">rm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms[m]</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">hm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms[m]</span></tt></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">rm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms(m)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">hm</span> <span class="pre">=</span> <span class="pre">HankelMomsFromMoms(m)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -156,7 +156,10 @@ moment)</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hm</span><span class="o">=</span><span class="n">HankelMomsFromMoms</span><span class="p">[{</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">}]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hm</span><span class="o">=</span><span class="n">HankelMomsFromMoms</span><span class="p">[{</span><span class="mf">1.3</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">6.03</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mf">89.5</span><span class="p">,</span> <span class="mf">474.9</span><span class="p">}]</span>
+<span class="go">{1.3, 0.71, 2.079, 1.9973, 13.8413, 44.9157}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">=</span><span class="n">MomsFromHankelMoms</span><span class="p">[</span><span class="n">hm</span><span class="p">]</span>
+<span class="go">{1.3, 2.4, 6.03, 20.5, 89.5, 474.9}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
@@ -193,7 +196,7 @@ moment)</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

@@ -99,22 +99,23 @@ assert(err<sqrt(eps), 'The original and the transformed matrix are not similar!'
 assert(min(m)>-1e-14, 'The initial vector is still not Markovian!');
 
 disp('----------------------------------------------------------------------------');
-help TransformToOnes
+help SimilarityMatrixForVectors
 
 disp('Input:');
 disp('------');
 
-disp('Original column vector:');
-clovec = [0.0, 0.3, -1.5, 0.0]'
+disp('Original column vectors:');
+vecA = [0.0, 0.3, -1.5, 0.0]'
+vecB = [1.0, 0.2, 0.0, 1.0]'
 
 disp('Test:');
 disp('-----');
 
-disp('B=TransformToOnes (clovec):');
-B = TransformToOnes (clovec);
+disp('B=SimilarityMatrixForVectors (vecA, vecB):');
+B = SimilarityMatrixForVectors (vecA, vecB);
 disp(B);
 
-assert(max(abs(B*clovec-ones(size(clovec))))<1e-14, 'The resulting matrix T does not satisfy T*clovec = ones!');
+assert(max(abs(B*vecA-vecB))<1e-14, 'The resulting matrix T does not satisfy T*vecA = vecB!');
 
 disp('----------------------------------------------------------------------------');
 help FindMarkovianRepresentation

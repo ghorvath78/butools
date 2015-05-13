@@ -43,13 +43,13 @@ butools.moments.MomsFromNormMoms
     
     For Mathematica:
     
-    >>> nm=NormMomsFromMoms[{1.2, 5, 8}];
+    >>> nm=NormMomsFromMoms[{1.2, 5, 38, 495, 9215}];
     >>> m=MomsFromNormMoms[nm]
-    {1.2, 5, 8}
+    {1.2, 5., 38., 495., 9215.}
     
     For Python/Numpy:
 
-    >>> nm=NormMomsFromMoms([1.2, 5, 8])
+    >>> nm=NormMomsFromMoms([1.2, 5, 38, 495, 9215])
     >>> print(nm)
     [1.2, 3.4722222222222228, 6.333333333333333, 10.855263157894738, 15.513468013468014]
     >>> m=MomsFromNormMoms(nm)

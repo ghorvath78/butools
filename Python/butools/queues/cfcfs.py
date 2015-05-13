@@ -5,7 +5,7 @@ import butools
 import math
 from butools.mam import GeneralFluidSolve
 from butools.utils import Linsolve, Diag
-from butools.reptrans import TransformToOnes
+from butools.reptrans import SimilarityMatrixForVectors
 from butools.mc import CTMCSolve, CheckGenerator
 
 def FluidQueue (Q, Rin, Rout, *argv):
@@ -136,7 +136,7 @@ def FluidQueue (Q, Rin, Rout, *argv):
             Ret.append((alpha, A))
         elif type(argv[argIx]) is str and argv[argIx]=='qlDistrME':
             # transform it to ME
-            B = TransformToOnes((-K).I*np.sum(clo,1))
+            B = SimilarityMatrixForVectors((-K).I*np.sum(clo,1), np.ones((K.shape[0],1)))
             Bi = B.I
             alpha = ini*Bi
             A = B*K*Bi
@@ -164,7 +164,7 @@ def FluidQueue (Q, Rin, Rout, *argv):
             A = np.kron(Rout, Delta.I*K.T*Delta) + np.kron(Q, ml.eye(K.shape[0]))
             Ret.append((alpha, A))
         elif type(argv[argIx]) is str and argv[argIx]=='stDistrME':
-            B = TransformToOnes(np.reshape(-K.I*clo*Rin,(N*ini.size,1),'F'))
+            B = SimilarityMatrixForVectors(np.reshape(-K.I*clo*Rin,(N*ini.size,1),'F'), np.ones((N*ini.size,1)))
             Bi = B.I
             alpha = np.kron(ml.ones((1,N)), ini/lambd)*Bi
             A = B*(np.kron(Q.T,ml.eye(K.shape[0])) + np.kron(Rout,K))*Bi        
@@ -352,7 +352,7 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
             Ret.append((alpha, A))
         elif type(argv[argIx]) is str and argv[argIx]=='qlDistrME':
             # transform it to ME
-            B = TransformToOnes((-K).I*np.sum(clo,1))
+            B = SimilarityMatrixForVectors((-K).I*np.sum(clo,1), np.ones((K.shape[0],1)))
             Bi = B.I
             alpha = ini*Bi
             A = B*K*Bi
@@ -385,9 +385,9 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
         elif type(argv[argIx]) is str and argv[argIx]=='stDistrME':
             # convert result to ME representation
             if not srv0stop:
-                B = TransformToOnes(np.sum(cloh*np.kron(Rin,Iout)/lambd,1))
+                B = SimilarityMatrixForVectors(np.sum(cloh*np.kron(Rin,Iout)/lambd,1), np.ones((Kh.shape[0],1)))
             else:
-                B = TransformToOnes(np.sum(cloh*np.kron(Rin,Rout)/lambd/mu,1))
+                B = SimilarityMatrixForVectors(np.sum(cloh*np.kron(Rin,Rout)/lambd/mu,1), np.ones((Kh.shape[0],1)))
             iB = B.I
             A = B*Kh*iB
             alpha = inih*(-Kh).I*iB

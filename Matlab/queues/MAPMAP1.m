@@ -144,7 +144,7 @@ function varargout = MAPMAP1(D0, D1, S0, S1, varargin)
             retIx = retIx + 1;
         elseif strcmp(varargin{argIx},'qlDistrMG')
             % transform it to MG
-            B = TransformToOnes(sum(inv(I-R)*R,2));
+            B = SimilarityMatrixForVectors(sum(inv(I-R)*R,2), ones(N,1));
             Bi = inv(B);
             A = B*R*Bi;
             alpha = pi0*Bi;       

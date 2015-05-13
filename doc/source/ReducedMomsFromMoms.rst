@@ -43,8 +43,10 @@ butools.moments.ReducedMomsFromMoms
     
     For Mathematica:
     
-    >>> rm=ReducedMomsFromMoms[{1, 2, 6, 24, 120}]
-    {1, 1, 1, 1, 1}
+    >>> rm=ReducedMomsFromMoms[{1.2, 5, 38, 495, 9215}]
+    {1.2, 5/2, 19/3, 165/8, 1843/24}
+    >>> m=MomsFromReducedMoms[rm]
+    {1.2, 5, 38, 495, 9215}
     
     For Python/Numpy:
 

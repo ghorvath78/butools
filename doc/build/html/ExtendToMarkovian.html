@@ -201,6 +201,30 @@ Markovian, too, while keeping the distribution the same.</p>
 <span class="go">    0            0            0            0            0            0      -3.2908</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gamma</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">TransformToMonocyclic</span><span class="p">[</span><span class="n">G</span><span class="p">]</span>
+<span class="go">{{-1.,1.,0,0},</span>
+<span class="go"> {0,-2.65359,2.65359,0},</span>
+<span class="go"> {0,0,-2.65359,2.65359},</span>
+<span class="go"> {0,0.0472274,0,-2.65359}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">G</span><span class="p">,</span> <span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span> <span class="o">=</span> <span class="n">gamma</span><span class="o">.</span><span class="n">Cm</span>
+<span class="go">{0.0456492,-0.000438356,-0.0888109,1.0436}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">}</span> <span class="o">=</span> <span class="n">ExtendToMarkovian</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
+<span class="go">{0.0153989,0.0101923,0.0176208,0.0181141,0.00879908,0.103327,0.826547}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+<span class="go">{{-1.,1.,0.,0.,0.,0.,0.},</span>
+<span class="go"> {0.,-2.65359,2.65359,0.,0.,0.,0.},</span>
+<span class="go"> {0.,0.,-2.65359,2.65359,0.,0.,0.},</span>
+<span class="go"> {0.,0.0472274,0.,-2.65359,2.60636,0.,0.},</span>
+<span class="go"> {0.,0.,0.,0.,-3.2908,3.2908,0.},</span>
+<span class="go"> {0.,0.,0.,0.,0.,-3.2908,3.2908},</span>
+<span class="go"> {0.,0.,0.,0.,0.,0.,-3.2908}}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gamma</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
@@ -252,7 +276,7 @@ Markovian, too, while keeping the distribution the same.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

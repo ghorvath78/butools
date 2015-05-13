@@ -9,11 +9,11 @@ butools.mc.DRPSolve
         :widths: 25 150
 
         * - Matlab:
-          - :code:`pi = DRPSolve(Q, prec)`
+          - :code:`pi = DRPSolve(Q)`
         * - Mathematica:
-          - :code:`pi = DRPSolve[Q, prec]`
+          - :code:`pi = DRPSolve[Q]`
         * - Python/Numpy:
-          - :code:`pi = DRPSolve(Q, prec)`
+          - :code:`pi = DRPSolve(Q)`
     
     Computes the stationary solution of a discrete time 
     Markov chain.
@@ -22,9 +22,6 @@ butools.mc.DRPSolve
     ----------
     P : matrix, shape (M,M)
         The matrix parameter of the rational process
-    prec : double, optional
-        Numerical precision for checking the rowsums.
-        The default value is 1e-14.
         
     Returns
     -------
@@ -53,8 +50,9 @@ butools.mc.DRPSolve
     
     For Mathematica:
     
-    >>> q={{-0.9, 0.5, 1.4}, {0.9, -0.9, 1}, {0.3, 1.3, -0.6}}
+    >>> q={{-0.9, 0.5, 1.4}, {0.9, -0.9, 1}, {0.3, 1.3, -0.6}};
     >>> pi=DRPSolve[q]
+    {0.231383, 0.348404, 0.420213}
     
     For Python/Numpy:
 

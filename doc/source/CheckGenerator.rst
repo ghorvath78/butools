@@ -53,9 +53,11 @@ butools.mc.CheckGenerator
 
     For Mathematica:
     
-    >>> q={{-0.9, 0.2, 0.4}, {0, -0.9, 0.9}, {0, 0.6, -0.6}}
+    >>> q={{-0.9, 0.2, 0.4}, {0, -0.9, 0.9}, {0, 0.6, -0.6}};
     >>> CheckGenerator[q, True]
+    True
     >>> CheckGenerator[q]
+    False    
     
     For Python/Numpy:
     

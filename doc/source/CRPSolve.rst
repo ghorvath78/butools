@@ -9,11 +9,11 @@ butools.mc.CRPSolve
         :widths: 25 150
 
         * - Matlab:
-          - :code:`pi = CRPSolve(Q, prec)`
+          - :code:`pi = CRPSolve(Q)`
         * - Mathematica:
-          - :code:`pi = CRPSolve[Q, prec]`
+          - :code:`pi = CRPSolve[Q]`
         * - Python/Numpy:
-          - :code:`pi = CRPSolve(Q, prec)`
+          - :code:`pi = CRPSolve(Q)`
     
     Computes the stationary solution of a continuous time 
     rational process (CRP).
@@ -22,9 +22,6 @@ butools.mc.CRPSolve
     ----------
     Q : matrix, shape (M,M)
         The generator matrix of the rational process
-    prec : double, optional
-        Numerical precision for checking the rowsums.
-        The default value is 1e-14.
         
     Returns
     -------
@@ -53,8 +50,9 @@ butools.mc.CRPSolve
     
     For Mathematica:
     
-    >>> q={{-0.9, 0.5, 0.4}, {0.9, -0.9, 0}, {0.3, 0.3, -0.6}}
+    >>> q={{-4.3, 3.5, 0.8}, {-8.4, 6.5, 1.9}, {17.3, -12.7, -4.6}};
     >>> pi=CRPSolve[q]
+    {-3.56173, 3.66667, 0.895062}
     
     For Python/Numpy:
 

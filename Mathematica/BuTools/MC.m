@@ -5,21 +5,14 @@
 *)
 
 BeginPackage["BuTools`MC`"];
-CRPSolve::usage = "CRPSolve [ mx, \[Epsilon][10^-14] ] -> [ vector ] : Gives the steady state distribution of the CRP (without generator matrix check). \[Epsilon] is the numerical precision.";
-DRPSolve::usage = "DRPSolve [ mx, \[Epsilon][10^-14] ] -> [ vector ] : Gives the steady state distribution of the DRP. \[Epsilon] is the numerical precision.";
-CTMCSolve::usage = "CTMCSolve[ mx, \[Epsilon][10^-14] ] -> [ vector ] : Gives the steady state distribution of the CTMC with generator matrix x. \[Epsilon] is the numerical precision.";
-DTMCSolve::usage = "DTMCSolve[ mx, \[Epsilon][10^-14] ] -> [ vector ] : Gives the steady state distribution of the DTMC with transition probability matrix mx. \[Epsilon] is the numerical precision.";
-CheckGenerator::usage = "CheckGenerator [ matrix, transient[False], \[Epsilon][10^-14] ] : Checks if the matrix is a valid generator matrix: the matrix is a square matrix, the matrix has 
-	positive or zero off-diagonal elements, the diagonal of the matrix is negative, the rowsum of the matrix is 0.
-	Transient: checks if the matrix is a valid transient generator matrix: the matrix is a square matrix, the diagonal of the matrix is negative, the matrix has positive or zero
-	off-diagonal elements, the real part of the maximum absolute eigenvalue is less than zero. \[Epsilon] is the numerical precision.";
-CheckProbMatrix::usage = "CheckProbMatrix [ matrix, transient[False], \[Epsilon][10^-14] ] : Checks if the matrix is a valid probability matrix: the matrix is a square matrix, the matrix 
-	has positive or zero off-diagonal elements, the rowsum of the matrix is 1.
-	Transient: checks if the matrix is a valid transient probability matrix: the matrix is a square matrix, the matrix has positive or zero off-diagonal elements, the rowsum of
-	the matrix is less than or equal to 1, the maximum absolute eigenvalue is less than 1. \[Epsilon] is the numerical precision.";
-CheckProbVector::usage = "CheckProbVector [ vector, sub[False], \[Epsilon][10^-14] ] : Checks if the vector is a valid probability vector: the vector has only non-negative elements, the 
-	sum of the vector elements is 1.
-	Sub: checks if the vector is a valid substochastic vector: the vector has only non-negative elements, the sum of the elements are less than 1. \[Epsilon] is the numerical precision.";
+CTMCSolve::usage = "pi = CTMCSolve[Q]: Returns the steady state solution of a continuous time Markov chain.";
+DTMCSolve::usage = "pi = DTMCSolve[Q]: Returns the steady state solution of a discrete time Markov chain.";
+CRPSolve::usage = "pi = CRPSolve[Q]: Returns the steady state solution of a continuous time rational process.";
+DRPSolve::usage = "pi = DRPSolve[Q]: Returns the steady state solution of a discrete time rational process.";
+CheckGenerator::usage = "r = CheckGenerator[Q, transient, prec]: Checks if a matrix is a valid generator of a CTMC.";
+CheckProbMatrix::usage = "r = CheckProbMatrix[P, transient, prec]: Checks if a matrix is a valid transition probability matrix of a DTMC.";
+CheckProbVector::usage = "r = CheckProbVector[pi, sub, prec]: Checks if a vector is a valid probability vector.";
+TestMCPackage::usage = "TestMCPackage[] : Executes various tests to check the functions of the MC package";
 
 
 Begin["`Private`"];
@@ -35,7 +28,7 @@ Module[{mx},
 	If[BuTools`CheckInput && Max[Abs[Total[Q,{2}]]]>BuTools`CheckPrecision,Throw["CRPSolve: The matrix has a rowsum which isn't zero!"]];
 	mx=Q;
 	mx[[;;,1]]=1;
-	Return[LinearSolve[Transpose[mx], Prepend[ConstantArray[0,Dimensions[Q][[1]]],1]]];
+	Return[LinearSolve[Transpose[mx], Prepend[ConstantArray[0,Dimensions[Q][[1]]-1],1]]];
 ]
 
 
@@ -133,7 +126,7 @@ Return[True]
 
 CheckProbVector[pi_,sub_ : False, precision_ : Null]:=
 Module[{prec},
-If[prec==Null, prec=BuTools`CheckPrecision];
+If[precision==Null, prec=BuTools`CheckPrecision, prec=precision];
 If[ Min[pi]<-prec,
 If[BuTools`Verbose==True,Print["CheckProbVector: The vector has negative element!"]];
 Return[False]
@@ -152,6 +145,337 @@ Return[False]
 ]
 ];
 Return[True]
+];
+
+
+TestMCPackage[]:=Module[{ret,flag,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19,Q20,Q21,Q22,Q23},
+Print["---BuTools: MC package test file---"];
+Print["Enable the verbose messages with the BuToolsVerbose flag"];
+BuTools`Verbose = True;
+Print["Enable input parameter checking with the BuToolsCheckInput flag"];
+BuTools`CheckInput = True;
+On[Assert];
+Print["----------------------------"];
+?CRPSolve
+
+Print["Input:"];
+Print["------"];
+
+Q1= {{-4.3, 3.5, 0.8},{-8.4, 6.5, 1.9},{17.3, -12.7, -4.6}};
+Print["Q1=",Q1];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CRPSolve[Q1]:"];
+ret=CRPSolve[Q1];
+Print[ret];
+Assert[Norm[ret.Q1]<10^-12, "The solution does not satisfy ret*Q1=0!"];
+
+Print["----------------------------"];
+?DRPSolve;
+
+Print["Input:"];
+Print["------"];
+
+Q2={{-0.9, 0.5, 1.4},{0.9, -0.9, 1},{0.3, 1.3, -0.6}};
+Print["Q2=",Q2];
+
+Print["Test:"];
+Print["-----"];
+
+Print["DRPSolve[Q2]:"];
+ret=DRPSolve[Q2];
+Print[ret];
+Assert[Norm[ret.Q2-ret]<10^-12, "The solution does not satisfy ret*Q2=ret!"];
+
+Print["----------------------------"];
+?CTMCSolve;
+
+Print["Input:"];
+Print["------"];
+
+Q3 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0}};
+Print["Q3=",Q3];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CTMCSolve[Q3]:"];
+Print[Catch[CTMCSolve[Q3]]];
+
+Print["Input:"];
+Print["------"];
+
+Q4 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.9, 0.1, 0}};
+Print["Q4=",Q4];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CTMCSolve[Q4]:"];
+Print[Catch[CTMCSolve[Q4]]];
+    
+Print["Input:"];
+Print["------"];
+
+Q5 = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+Print["Q5=",Q5];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CTMCSolve[Q5]:"];
+ret=CTMCSolve[Q5];
+Print[ret];
+Assert[Norm[ret.Q5]<10^-12, "The solution does not satisfy ret*Q5=0!"];
+
+Print["----------------------------"];
+?DTMCSolve;
+
+Print["Input:"];
+Print["------"];
+
+Q6 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, -0.3, 0.4}};
+Print["Q6=",Q6];
+
+Print["Test:"];
+Print["-----"];
+
+Print["DTMCSolve[Q6]:"];
+Print[Catch[DTMCSolve[Q6]]];
+
+Print["Input:"];
+Print["------"];
+
+Q7 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
+Print["Q7=",Q7];
+
+Print["Test:"];
+Print["-----"];
+
+Print["DTMCSolve[Q7]:"];
+ret=DTMCSolve[Q7];
+Print[ret];
+Assert[Norm[ret.Q7-ret]<10^-12, "The solution does not satisfy ret*Q7=ret!"];
+
+Print["----------------------------"];
+?CheckGenerator;
+
+Print["Input:"];
+Print["------"];
+
+Q8 = {{-0.9, 0.2, 0.4},{0, 0.9, 0.9},{0, 0.6, -0.6}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckGenerator[Q8,true]:"];
+flag=CheckGenerator[Q8,True];
+Print[flag];
+Assert[flag==False,"CheckGenerator did not detect bad row sum!"];
+
+Print["Input:"];
+Print["------"];
+
+Q9 = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckGenerator[Q9,true]:"];
+flag=CheckGenerator[Q9,True];
+Print[flag];
+Assert[flag==True,"CheckGenerator did not recognize a valid input!"];
+
+
+Print["Input:"];
+Print["------"];
+
+Q10 = {{-0.9, 0.2, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckGenerator[Q10,true]:"];
+flag=CheckGenerator[Q10,True];
+Print[flag];
+Assert[flag==True,"CheckGenerator did not recognize a valid input!"];
+
+Print["Input:"];
+Print["------"];
+
+Q11 = {{-0.9, 0.5, 0.4},{0.9, -1.1, 0},{0.3, 0.3, -0.6}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckGenerator[Q11]:"];
+flag=CheckGenerator[Q11];
+Print[flag];
+Assert[flag==False,"CheckGenerator did not recognize the non-zero row sum!"];
+
+Print["Input:"];
+Print["------"];
+
+Q12 = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckGenerator[Q12]:"];
+flag=CheckGenerator[Q12];
+Print[flag];
+Assert[flag==True,"CheckGenerator did not recognize a valid input!"];
+
+Print["----------------------------"];
+?CheckProbMatrix;
+
+Print["Input:"];
+Print["------"];
+
+Q13 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, -0.1, 0.4}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbMatrix[Q13]:"];
+flag=CheckProbMatrix[Q13];
+Print[flag];
+Assert[flag==False,"CheckProbMatrix did not recognize the negative entry!"];
+
+Print["Input:"];
+Print["------"];
+
+Q14 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbMatrix[Q14]:"];
+flag=CheckProbMatrix[Q14];
+Print[flag];
+Assert[flag==False,"CheckProbMatrix did not recognize the invalid row sum!"];
+
+Print["Input:"];
+Print["------"];
+
+Q15 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbMatrix[Q15]:"];
+flag=CheckProbMatrix[Q15];
+Print[flag];
+Assert[flag==True,"CheckProbMatrix did not recognize that the input is valid!"];
+
+Print["Input:"];
+Print["------"];
+
+Q16 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbMatrix[Q16,true]:"];
+flag=CheckProbMatrix[Q16,True];
+Print[flag];
+Assert[flag==False,"CheckProbMatrix did not recognize wrong transient matrix!"];
+
+Print["Input:"];
+Print["------"];
+
+Q17 = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbMatrix[Q17,true]:"];
+flag=CheckProbMatrix[Q17,True];
+Print[flag];
+Assert[flag==True,"CheckProbMatrix did not recognize that the input is valid!"];
+
+Print["----------------------------"];
+?CheckProbVector;
+
+Print["Input:"];
+Print["------"];
+
+Q18 = {1.1, -0.1};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbVector[Q18]:"];
+flag=CheckProbVector[Q18];
+Print[flag];
+Assert[flag==False,"CheckProbVector did not recognize the negative entry!"];
+
+Print["Input:"];
+Print["------"];
+
+Q19 = {1.1, 0.1};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbVector[Q19]:"];
+flag=CheckProbVector[Q19];
+Print[flag];
+Assert[flag==False,"CheckProbVector did not recognize invalid sum!"];
+
+Print["Input:"];
+Print["------"];
+
+Q20 = {1, 0};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbVector[Q20]:"];
+flag=CheckProbVector[Q20];
+Print[flag];
+Assert[flag==True,"CheckProbVector did not recognize that the input is valid!"];
+
+Print["Input:"];
+Print["------"];
+
+Q21 = {0.9, -0.1};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbVector[Q21,true]:"];
+flag=CheckProbVector[Q21,True];
+Print[flag];
+Assert[flag==False,"CheckProbVector did not recognize the negative entry!"];
+
+Print["Input:"];
+Print["------"];
+
+Q22 = {0.9, 0.1};
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbVector[Q22,true]:"];
+flag=CheckProbVector[Q22,True];
+Print[flag];
+Assert[flag==True,"CheckProbVector did not recognize that the prob. vector is not transient!"];
+
+Print["Input:"];
+Print["------"];
+
+Q23 = {0.8, 0.1}
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckProbVector[Q23,true]:"];
+flag=CheckProbVector[Q23,True];
+Print[flag];
+Assert[flag==True,"CheckProbVector did not recognize that the input is valid!"];
 ];
 
 

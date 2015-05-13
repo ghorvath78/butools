@@ -20,9 +20,6 @@ def CRPSolve (Q):
     ----------
     Q : matrix, shape (M,M)
         The generator matrix of the rational process
-    prec : double, optional
-        Numerical precision for checking the rowsums.
-        The default value is 1e-14.
         
     Returns
     -------
@@ -57,9 +54,6 @@ def CTMCSolve (Q):
     ----------
     Q : matrix, shape (M,M)
         The generator matrix of the Markov chain
-    prec : double, optional
-        Numerical precision for checking whether Q is a 
-        valid generator. The default value is 1e-14.
         
     Returns
     -------
@@ -86,9 +80,6 @@ def DRPSolve (P):
     ----------
     P : matrix, shape (M,M)
         The matrix parameter of the rational process
-    prec : double, optional
-        Numerical precision for checking the rowsums.
-        The default value is 1e-14.
         
     Returns
     -------
@@ -122,9 +113,6 @@ def DTMCSolve (P):
     P : matrix, shape (M,M)
         The transition probability matrix of the Markov 
         chain
-    prec : double, optional
-        Numerical precision for checking whether P is a 
-        valid generator. The default value is 1e-14.
         
     Returns
     -------

@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">CRPSolve(Q,</span> <span class="pre">prec)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">CRPSolve(Q)</span></tt></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">CRPSolve[Q,</span> <span class="pre">prec]</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">CRPSolve[Q]</span></tt></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">CRPSolve(Q,</span> <span class="pre">prec)</span></tt></td>
+<td><tt class="code docutils literal"><span class="pre">pi</span> <span class="pre">=</span> <span class="pre">CRPSolve(Q)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -123,11 +123,6 @@ rational process (CRP).</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>Q</strong> : matrix, shape (M,M)</p>
 <blockquote>
 <div><p>The generator matrix of the rational process</p>
-</div></blockquote>
-<p><strong>prec</strong> : double, optional</p>
-<blockquote>
-<div><p>Numerical precision for checking the rowsums.
-The default value is 1e-14.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -157,8 +152,9 @@ still have to be zeros).</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">},</span> <span class="p">{</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">}}</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">},</span> <span class="p">{</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">},</span> <span class="p">{</span><span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">}};</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="n">CRPSolve</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
+<span class="go">{-3.56173, 3.66667, 0.895062}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
@@ -192,7 +188,7 @@ still have to be zeros).</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Apr 17, 2015.
+      Last updated on May 13, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.

@@ -1,4 +1,4 @@
-%  pi = CRPSolve(Q, prec)
+%  pi = CRPSolve(Q)
 %  
 %  Computes the stationary solution of a continuous time 
 %  rational process (CRP).
@@ -7,9 +7,6 @@
 %  ----------
 %  Q : matrix, shape (M,M)
 %      The generator matrix of the rational process
-%  prec : double, optional
-%      Numerical precision for checking the rowsums.
-%      The default value is 1e-14.
 %      
 %  Returns
 %  -------
