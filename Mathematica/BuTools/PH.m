@@ -8,46 +8,49 @@
 (*A PROBA FAJLBAN A DIR, APPENTO, PATH RESZT LEFUTTATOD!!! *)
 
 BeginPackage["BuTools`PH`"];
-RandomPH::usage = "RandomPH [ order, zeroEntries, mean[1], \[Epsilon][10^-14], maxTrials[100] ] -> [ vector, matrix ] : Generates a random continous time Phase Type process of the given order. The obtained representation containes 'zeroEntries' zeros, its first moment is 'mean'. If it fails after 'maxTrials' trials, then it decreases the number of zero entries. It prints a message, if the found representation contains less zeros than given. \[Epsilon] is the numerical precision.";
-RandomDPH::usage = "RandomDPH [ order, zeroEntries, \[Epsilon][10^-14], maxTrials[100] ] -> [ vector, matrix ] : Generates a random continous time Phase Type process of the given order. The obtained representation containes 'zeroEntries' zeros. If it fails after 'maxTrials' trials, then it decreases the number of zero entries. It prints a message, if the found representation contains less zeros than given. \[Epsilon] is the numerical precision.";
-PHFromME::usage = "PHFromME [ vector, matrix ] -> [ vector, matrix ] : Converts  matrix exponential vector-matrix pair to phase type vector-matrix pair.";
-MomentsFromME::usage = "MomentsFromME [ vector, matrix, k[2n-1], \[Epsilon][10^-14] ] -> [ moments ] : Calculates the first k moments of a ME given with a vector-matrix pair. \[Epsilon] is the numerical precision.";
-MomentsFromMG::usage = "MomentsFromMG [ vector, matrix, k[2n-1], \[Epsilon][10^-14] ] -> [ moments ] : Calculates the first k moments of a MG given with a vector-matrix pair. \[Epsilon] is the numerical precision.";
-MomentsFromPH::usage = "MomentsFromPH [ vector, matrix, k[2n-1], \[Epsilon][10^-14] ] -> [ moments ] : Calculates the first k moments of a PH given with a vector-matrix pair. \[Epsilon] is the numerical precision.";
-MomentsFromDPH::usage = "MomentsFromDPH [ vector, matrix, k[2n-1], \[Epsilon][10^-14] ] -> [ moments ] : Calculates the first k moments of a DPH given with a vector-matrix pair. \[Epsilon] is the numerical precision.";
-MEFromMoments::usage = "MEFromMoments [ moments ] -> [ vector, matrix ] : Calculates the minimal ME representation based on 2n-1 moments.";
-MGFromMoments::usage = "MGFromMoments [ moments ] -> [ vector, matrix ] : Calculates the minimal MG representation based on 2n-1 moments.";
-PH2Canonical::usage = "PH2Canonical [ vector, matrix, \[Epsilon][10^-14] ] -> [ vector, matrix ] : Calculates the order 2 canonical representation from any order 2 vector-matrix representation, if exists. \[Epsilon] is the numerical precision.";
-DPH2Canonical::usage = "DPH2Canonical [ vector, matrix, \[Epsilon][10^-14] ] -> [ vector, matrix ] : Calculates the order 2 canonical representation from any order 2 vector-matrix representation, if exists. \[Epsilon] is the numerical precision.";
-PH3Canonical::usage = "PH3Canonical [ vector, matrix, \[Epsilon][10^-14] ] -> [ vector, matrix ] : Calculates the order 3 canonical representation from any order 3 PH representation. \[Epsilon] is the numerical precision.";
-DPH3Canonical::usage = "DPH3Canonical [ vector, matrix, \[Epsilon][10^-14] ] -> [ vector, matrix ] : Calculates the order 3 canonical representation from any order 3 DPH representation. \[Epsilon] is the numerical precision.";
-APHRepresentation::usage = "APHRepresentation [ vector, matrix, \[Epsilon][10^-14] ] -> [ vector, matrix ] : Calculates the APH (CF1) representation from any order n vector-matrix representation, if exists. \[Epsilon] is the numerical precision.";
-ADPHRepresentation::usage = "ADPHRepresentation [ vector, matrix, \[Epsilon][10^-14] ] -> [ vector, matrix ] : Calculates the ADPH (CF1) representation from any order n vector-matrix representation, if exists. \[Epsilon] is the numerical precision.";
-MonocyclicRepresentation::usage = "MonocyclicRepresentation [ vector, matrix, exitProb[0] ] -> [ vector, matrix ] : Calculates the representation of the input ME distribution with Markovian monocyclic generator.  The process terminates with 'exitProb' probability and jumps to the next FE block with 1-exitProb probability at every arrival.";
-RepTrafo::usage = "RepTrafo [ inVector, inMatrix, outMatrix ] -> [ vector ] : Calculates the transformation from inMatrix to outMatrix, and returns the transformed inVector.";
-Appie::usage = "Appie [ reducedmoments, print flag ] -> [ matrix ] : Calculates the minimal ME representation with e_1 opening and closing vector based on 2n-1 reducedmoments.";
-APHFrom3Moments::usage = "APHFrom3Moments [ mom1, mom2, mom3] -> [ vector, matrix ] : Calculates the smallest APH with these 3 moments.";
-MEOrderFromMoments::usage = "MEOrderFromMoments [ moments ] -> [ order ] : Calculates the order of the ME distribution based on its moments using the determinant of the Hankel matrix.";
-ME3member::usage = "ME3member [ vector, matrix ] -> [ flag ] : Checks if the vector-matrix pair is a member of ME3.";
-MEContOrder::usage = "MEContOrder [ vector, matrix ] -> [ order ] : Controllability (closing vector) order of the vector-matrix pair.";
-MEObsOrder::usage = "MEObsOrder [ vector, matrix ] -> [ order ] : Observability (initial vector) order of the vector-matrix pair.";
-MEContMinimize::usage = "MEContMinimize [ vector, matrix ] -> [ vector, matrix ] : Minimizies the representation according to the closing vector.";
-MEObsMinimize::usage = "MEObsminimize [ vector, matrix ] -> [ vector, matrix ] : Minimizies the representation according to the initial vector.";
-MEMinimize::usage = "MEMiminize [ vector, matrix ] -> [ vector, matrix ] : Minimizies the representation according to the initial and the closing vector.";
-CheckMEPositiveDensity::usage = "CheckMEPositiveDensity [ vector, matrix ] -> [ flag ] : Checks if the vector-matrix pair results in a positive density.";
-MEDensity::usage = "MEDensity [ vector, matrix, x ]  -> [ density value ] : Gives back the value of the probability density function at point x.";
+AcyclicPHFromME::usage = "alma";
+APH2ndMomentLowerBound::usage = "alma";
+APH3rdMomentLowerBound::usage = "alma";
+APH3rdMomentUpperBound::usage = "alma";
+APHFrom2Moments::usage = "alma";
+APHFrom3Moments::usage = "alma";
+CanonicalFromPH2::usage = "alma";
+CanonicalFromPH3::usage = "alma";
+CdfFromME::usage = "alma";
+CdfFromPH::usage = "alma";
+CheckMEPositiveDensity::usage = "alma";
+CheckMERepresentation::usage = "alma";
+CheckPHRepresentation::usage = "alma";
+IntervalPdfFromPH::usage = "alma";
+MEFromMoments::usage = "alma";
+MEOrder::usage = "alma";
+MEOrderFromMoments::usage = "alma";
+MinimalRepFromME::usage = "alma";
+MomentsFromME::usage = "alma";
+MomentsFromPH::usage = "alma";
+MonocyclicPHFromME::usage = "alma";
+PdfFromME::usage = "alma";
+PdfFromPH::usage = "alma";
+PH2From3Moments::usage = "alma";
+PH3From5Moments::usage = "alma";
+PHFromME::usage = "alma";
+RandomPH::usage = "alma";
+SamplesFromPH::usage = "alma";
+TestPHPackage::usage = "TestPHPackage[] : Executes various tests to check the functions of the PH package.";
 
 
 Begin["`Private`"];
 
 
-Needs["BuTools`RepTrans"];
+Needs["BuTools`RepTrans`"];
+Needs["BuTools`Moments`"];
+Needs["BuTools`MC`"];
 If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckInput"]],BuTools`CheckInput=True];
 If[Not[MemberQ[Names["BuTools`*"],"BuTools`CheckPrecision"]],BuTools`CheckPrecision=N[10^-12]];
 If[Not[MemberQ[Names["BuTools`*"],"BuTools`Verbose"]],BuTools`Verbose=False];
 
 
-AcyclicPHFromME[alpha_, A_, maxSize_, precision_]:=
+AcyclicPHFromME[alpha_, A_, maxSize_:100, precision_:N[10^-14]]:=
 Module[{G,T,gamma,beta,B},
 	If[BuTools`CheckInput && Not[CheckMERepresentation[alpha, A]],Throw["AcyclicPHFromME: Input is not a valid ME distribution!"]];
 	G = TransformToAcyclic[A, maxSize, precision];
@@ -211,7 +214,7 @@ Module[{beta,B},
 
 
 CheckMERepresentation[alpha_, A_, precision_:Null]:=
-Module[{size,eig,ceig,reig,prec},
+Module[{size,eig,maxev,prec},
 
 If[Not[NumericQ[precision]], prec=BuTools`CheckPrecision, prec=precision];
 
@@ -224,24 +227,23 @@ If[BuTools`Verbose,Print["CheckMERepresentation: The vector and the matrix have 
 Return[False]];
 
 If[ Total[alpha]<-prec Length[alpha] || Total[alpha]>1+prec Length[alpha],
-If[BuTools`Verbose,Print["CheckMERepresentation: The sum of the vector elements is not 1 (precision:",\[Epsilon],")!"]];
+If[BuTools`Verbose,Print["CheckMERepresentation: The sum of the vector elements is not 1 (precision:",prec,")!"]];
 Return[False]];
 
 eig=Eigenvalues[A//N];
 If[Max[Re[eig]]>=prec,
-If[BuTools`Verbose,Print["CheckMERepresentation: There is an eigenvalue of the matrix with not negative real part at precision ",\[Epsilon],")!"]];
+If[BuTools`Verbose,Print["CheckMERepresentation: There is an eigenvalue of the matrix with not negative real part at precision ",prec,")!"]];
  Return[False]];
 
-size=Dimensions[A][[1]];
-ceig=Table[Switch[Element[eig[[i]],Reals],True,-Infinity,False,Re[eig[[i]]]],{i,size}];
-reig=Table[Switch[Element[eig[[i]],Reals],True,Re[eig[[i]]],False,-Infinity],{i,size}];
+eig=Sort[eig,Abs[Re[#1]]<Abs[Re[#2]] &];
+maxev=eig[[1]];
 
-If[Max[reig]+prec<Max[ceig],
-If[BuTools`Verbose,Print["CheckMERepresentation: The dominant eigenvalue of the matrix is not real at precision ",\[Epsilon],")!"]];
+If[Abs[Im[maxev]]>prec,
+If[BuTools`Verbose,Print["CheckMERepresentation: The dominant eigenvalue of the matrix is not real at precision ",prec,")!"]];
  Return[False]];
 
-If[Abs[Max[reig]-Max[ceig]]<prec && BuTools`Verbose,
-Print["CheckMERepresentation: The dominant and a complex eigenvalue has the same real part at precision ",\[Epsilon],")!!! "]];
+If[Length[Select[eig,Abs[Im[#]]>prec && Re[#]==Re[eig[[1]]]&]]>0 && BuTools`Verbose,
+Print["CheckMERepresentation: The dominant and a complex eigenvalue has the same real part at precision ",prec,")!!! "]];
 
 Return[True] ;
 ];
@@ -253,8 +255,168 @@ If[Not[NumericQ[precision]], prec=BuTools`CheckPrecision, prec=precision];
 If[Dimensions[alpha][[1]]!=Dimensions[A][[1]],
 If[BuTools`Verbose==True,Print["CheckPHRepresentation: the vector and the matrix have different sizes!"]];
 Return[False]];
-
 If[Not[CheckProbVector[alpha,True,prec]],Return[False],Return[CheckGenerator[A,True,prec]]];
+];
+
+
+IntervalPdfFromPH[alpha_, A_, intBounds_]:=
+Module[{K,x},
+    If[BuTools`CheckInput && Not[CheckPHRepresentation[alpha, A]],Throw["IntervalPdfFromPH: Input is not a valid PH distribution!"]];
+    K = Length[intBounds];
+	x = (intBounds[[2;;]] + intBounds[[1;;-2]])/2;
+    Return[{x,Table[(Total[alpha.MatrixExp[A intBounds[[i]]]]-Total[alpha.MatrixExp[A intBounds[[i+1]]]])/(intBounds[[i+1]]-intBounds[[i]]),{i,1,K-1}]}];
+];
+
+
+MEFromMoments[moms_]:=
+Module[{NN,KK,TT,UU,alpha,A,Appie},
+
+	Appie[rmom_] :=
+	Module[ {rm,m, i,j,f,y,dd,nold,yold,k,q,d,\[Alpha],\[Beta],n,\[Rho],kk,ind,inc},
+		m = Length[rmom];
+		If[Mod[m,2]==0, rm=Drop[rmom,-1];m=m/2, rm=rmom;m=Ceiling[m/2]];
+		rm=Prepend[rm,1];
+		f=ConstantArray[0,{2m,1}];
+		f[[1,1]]=1;
+		y=ConstantArray[0,{2m,1}];
+		dd=ConstantArray[0,{2m,2m}];
+		n=0;
+		k=0;
+		q=1;
+		d=ConstantArray[0,{m}];
+		\[Alpha]=ConstantArray[0,{m,m}];
+		\[Beta]=ConstantArray[0,{m}];
+		For[i=2,i<=2m,dd[[i,i-1]]=1;i++];
+		For[i=1,i<=2m,
+			\[Rho]=FullSimplify[q (rm.f)[[1]] ];
+			nold=n;
+			n=nold+1;
+			yold=y;
+			If[n>0 &&\[Rho]!=0,
+				If[k>0,\[Beta][[k]]=\[Rho]/(rm[[1+1]])^(d[[k]]+n-1)];
+				k=k+1;
+				d[[k]]=n;
+				n=-n;
+				q=q/\[Rho];
+				y=dd.f;
+			, If[n<=0,
+				j=nold+d[[k]]+1;
+				\[Alpha][[k,j]]=\[Rho]/(rm[[1+1]])^(j-1);
+			], (*UNDEFINED /in case of symbolic analysis/ *)
+			If[n>0 ,
+				If[k>0,\[Beta][[k]]=\[Rho]/(rm[[1+1]])^(d[[k]]+n-1)];
+				k=k+1;
+				d[[k]]=n;
+				n=-n;
+				q=q/\[Rho];
+				y=dd.f;
+			, If[n<=0,
+				j=nold+d[[k]]+1;
+				\[Alpha][[k,j]]=\[Rho]/(rm[[1+1]])^(j-1);
+			]]];
+			f= dd.f-\[Rho] yold;
+			i++;
+		];
+		If[Sum[d[[i]],{i,1,m}]!=m,Print["Insufficient matrix order !!!!"]];
+		kk=ConstantArray[0,{m,m}];
+		kk[[1,1]]=rm[[2]];
+		For[i=1,i<=m-1,kk[[i,i+1]]=rm[[2]];i++];
+		ind=d[[1]];
+		For[i=2,i<=m,
+			If[ind<m,
+				inc=d[[i]];
+				If[(ind=ind+inc)<=m,
+					kk[[ind,ind-inc-d[[i-1]]+1]]=\[Beta][[i-1]];
+					For[j=1,j<=inc,
+						kk[[ind,ind-j+1]]=\[Alpha][[i,j]];
+						j++];
+				];
+			];
+		i++];
+		Return[kk];
+	];
+
+	KK = Appie[ReducedMomsFromMoms[moms]];
+	NN = Ceiling[Length[moms]/2];
+
+	TT = ConstantArray[0,{NN,NN}];
+	Do[TT[[i,;;i]]=1,{i,NN}];
+
+	UU = ConstantArray[0,{NN,NN}];
+	Do[UU[[i,i;;]]=1/(NN-i+1),{i,NN}];
+
+	alpha = ConstantArray[0,{NN}];
+	alpha[[1]] = 1;
+	alpha = alpha.Inverse[TT].UU;
+	A = Inverse[-Inverse[UU].TT.KK.Inverse[TT].UU];
+	Return[{alpha,A}];
+] 
+
+
+MEOrder[alpha_, A_, kind_:"moment", prec_:N[10^-10]]:=
+Module[{NN,order,obsOrder,contOrder},
+	If[BuTools`CheckInput && Not[CheckMERepresentation[alpha, A]],Throw["MinimalRepFromME: Input is not a valid ME distribution!"]];
+	NN = Length[alpha];
+	If[kind=="cont",
+		order = MatrixRank[Table[Total[MatrixPower[Transpose[A],n-1],{1}],{n,NN}],Tolerance->prec];
+    , If[kind=="obs",
+		order = MatrixRank[Table[alpha.MatrixPower[A,n-1],{n,NN}],Tolerance->prec];
+	, If[kind=="obscont",
+		obsOrder = MatrixRank[Table[alpha.MatrixPower[A,n-1],{n,NN}],Tolerance->prec];
+		contOrder = MatrixRank[Table[Total[MatrixPower[Transpose[A],n-1],{1}],{n,NN}],Tolerance->prec];
+		order = Min[obsOrder,contOrder];
+	, If[kind=="moment",
+		order = MEOrderFromMoments[MomentsFromME[alpha, A], prec];
+	, Throw["MEOrder: Invalid 'kind' parameter!"];
+	]]]];
+	Return[order];
+];
+
+
+MEOrderFromMoments[moms_,prec_ : N[10^-10] ]:=
+Module[{size,rmoms,n,hankel,order},
+	
+	size = Floor[(Length[moms]+1)/2];
+	rmoms = Prepend[ReducedMomsFromMoms[moms],1];
+	order = size;
+	For[n=1,n<=size,n++,
+		hankel=Table[rmoms[[i+j-1]],{i,1,n},{j,1,n}];
+		If[Abs[Det[hankel]] < prec, order=n-1; Break[]];
+	];
+	Return[order];
+];
+
+
+MinimalRepFromME[alpha_, A_, how_:"moment", precision_: N[10^-10]]:=
+Module[{H0,H1,h,n,beta,B,alphav,Av,mo},
+	If[BuTools`CheckInput && Not[CheckMERepresentation[alpha, A]],Throw["MinimalRepFromME: Input is not a valid ME distribution!"]];
+	If[how=="cont",
+		h = ConstantArray[1,{Length[alpha],1}];
+		H0=A; 
+		H1=-A.h.{alpha};
+		{B,n} = MStaircase[{H0,H1},h,precision];
+		beta = alpha.B;
+		beta = beta[[1;;n]];
+		B=Inverse[B].A.B;
+		B=B[[1;;n,1;;n]];
+    , If[how=="obs",
+		h = ConstantArray[1,{Length[alpha],1}];
+		H0=A; 
+		H1=-A.h.{alpha};
+		{B,n}=MStaircase[{Transpose[H0],Transpose[H1]},Transpose[{alpha}],precision];
+		beta = alpha.B;
+		beta = beta[[1;;n]];		
+		B=Inverse[B].A.B;
+		B=B[[1;;n,1;;n]];
+	, If[how=="obscont",
+		{alphav,Av}=MinimalRepFromME[alpha,A,"cont",precision];
+		{beta,B}=MinimalRepFromME[alphav,Av,"obs",precision];
+	, If[how=="moment",
+        mo = MEOrder[alpha, A, "moment", precision];
+        {beta, B} = MEFromMoments[MomentsFromME[alpha, A, 2 mo-1]];
+	, Throw["MinimalRepFromME: Invalid 'how' parameter!"];
+	]]]];
+	Return[{beta,B}];
 ];
 
 
@@ -287,7 +449,7 @@ Module[{G,T,gamma,beta,B},
 ];
 
 
- PdfFromME[alpha_, A_, x_]:=(
+PdfFromME[alpha_, A_, x_]:=(
     If[BuTools`CheckInput && Not[CheckMERepresentation[alpha, A]],Throw["CdfFromME: Input is not a valid ME distribution!"]];
 	If[ListQ[x],
 		Return[Table[Total[alpha.MatrixExp[A xv].(-A)],{xv,x}]]
@@ -419,7 +581,7 @@ Module[{Transfun,Evalfun,nrep},
 ];
 
 
-RandomPH[order_,zeroEntries_,mean_: 1,\[Epsilon]_: N[10^-14],maxTrials_: 100]:=
+RandomPH[order_,mean_:1,zeroEntries_:0,maxTrials_:1000,prec_: N[10^-7]]:=
 Module[{trials,zeros,numZeros,idx,zeroInRow,Row,B,sumRow,elem,vector,m,actualZeros},
 If[zeroEntries>(order+1)(order-1),Throw["RandomPH: You have given too many zeros! Try to decrease the zero entries number!"]];
 actualZeros=zeroEntries;
@@ -452,9 +614,9 @@ vector=Table[elem=Random[Real,1-sumRow];sumRow=sumRow+elem;elem,{i,order-zeros[[
 vector=Join[vector,{1-sumRow}];
 vector=Join[vector,Table[0,{i,zeros[[order+1]]}]];
 vector=vector[[RandomSample[Range[order],order]]];
-If[Min[Abs[vector.Inverse[-B]]] < \[Epsilon],trials++;Continue[]];
+If[Min[Abs[vector.Inverse[-B]]] < prec,trials++;Continue[]];
 
-m=MomentsFromPH[vector,B,1,\[Epsilon]];
+m=MomentsFromPH[vector,B,1];
 B=B*m[[1]]/mean;
 If[zeroEntries>actualZeros,
 Print["RandomPH: Number of zero entries are different! Given:",zeroEntries,", in the returned representation:",actualZeros]];
@@ -465,262 +627,983 @@ Return[{vector,B}];
 ];
 
 
-MEFromMoments[mom_]:=
-Module[{size,kk,rmom,hh,e1,tt,uu,i,j,tti,uui},
-rmom=ReducedmomsFromMoms[mom];
-{kk,size}=Appie[rmom,False] ;
-
-hh=ConstantArray[1,{size,1}];
-e1=ConstantArray[0,{1,size}];
-e1[[1,1]]=1;
-
-tt=ConstantArray[0,{size,size}];
-For[i=1,i<=size,i++,For[j=1,j<=i,j++,tt[[i,j]]= 1;];];
-tti=Inverse[tt];
-
-uu=ConstantArray[0,{size,size}];
-For[i=1,i<=size,i++,For[j=i,j<=size,j++,uu[[i,j]]= 1/(size-i+1);];];
-uui=Inverse[uu];
-
-Return[{(e1)[[1]].tti.uu,-Inverse[uui.tt.kk.tti.uu]}];
-] 
-
-
-PH3Canonical[v_,h0_,\[Epsilon]_ : N[10^-14] ] :=
-Module[ {ii,\[Lambda],a0,a1,a2,a3,x1,x2,x3,x13,\[Gamma]u,\[Gamma]0,\[Gamma]l,\[Gamma]2,f,p1,p2,p3,p,e,\[Alpha]},
-
-If[Not[CheckMERepresentation[v, h0, \[Epsilon]]], Throw["PH3Canonical: Input isn't a valid ME distribution!"]];
-If[Dimensions[h0][[1]] !=3, Throw["PH3Canonical: Dimension \[NotEqual] 3!"] ];
-
-If[Not[CheckPHRepresentation[v,h0,\[Epsilon]]], 
-If[BuToolsVerbose,Print["PH3Canonical Warning: The input isn't a PH representation!"]];
+SamplesFromPH[a_,A_,k_]:=
+Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate},
+	If[BuTools`CheckInput && Not[CheckPHRepresentation[a,A]],Throw["SamplesFromPH: input is not a valid PH representation!"]];
+    (* auxilary variables*)
+    NN = Length[a];
+    cummInitial = Accumulate[a];
+    sojourn = -1/Diagonal[A];
+    nextpr = DiagonalMatrix[sojourn].A;
+    nextpr = nextpr - DiagonalMatrix[Diagonal[nextpr]];
+    nextpr = Join[nextpr, Transpose[{1-Total[nextpr,{2}]}],2];
+    nextpr = Transpose[Accumulate[Transpose[nextpr]]];
+    
+    x = ConstantArray[0,{k}];
+	Do[
+		time = 0;
+	    (* draw initial distribution *)
+        r = RandomReal[];
+        state = 1;
+        While[cummInitial[[state]]<=r, state++];
+        (* play state transitions *)
+        While[state<=N,
+            time -= Log[RandomReal[]] sojourn[[state]];
+            r = RandomReal[];
+            nstate = 1;
+            While[nextpr[[state,nstate]]<=r, nstate++];
+            state = nstate;
+        ];
+        x[[n]] = time;
+	,{n,k}];
+	Return[x];
 ];
 
 
-e={{1},{1},{1}};
+TestPHPackage[]:=
+Module[{a,A,b,B,moms,err1,err2,x,cdf,pdf,y,flag,normMoms,phmoms,memoms,mean,n,mom2,cv2,
+mp,Cm,co,oo,coo,mo,ma,mb,mom3lower,mom3upper},
+Print["---BuTools: PH package test fil0^--"];
+Print["Enable the verbose messages with the BuToolsVerbose flag"];
+BuTools`Verbose = True;
+Print["Enable input parameter checking with the BuToolsCheckInput flag"];
+BuTools`CheckInput = True;
+On[Assert];
+Print["----------------------------"];
+?MomentsFromME;
 
-If[-(v.h0.e)[[1]]<-\[Epsilon],Throw["PH3Canonical: Negative density at 0!"]];
-ii=IdentityMatrix[3];
-\[Lambda]=Sort[Eigenvalues[-h0],Abs[#1]>Abs[#2]||(Abs[#1]==Abs[#2] && Re[#1]>Re[#2])||(Abs[#1]==Abs[#2]&&Re[#1]==Re[#2]&&Im[#1]>=Im[#2])&];
-If[BuToolsVerbose,Print["eigenvalues: ",\[Lambda]]];
+Print["Input:"];
+Print["------"];
 
-If[(Re[\[Lambda][[3]]]<0 )||Abs[Im[\[Lambda][[3]]]]>\[Epsilon], 
- Throw["PH3Canonical: eigenvalue error!!! \[Lambda]3=",\[Lambda][[3]]];
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,2},{0,-2,-3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["MomentsFromME[a,A]:"];
+moms=MomentsFromME[a,A];
+Print[moms];
+
+Assert[CheckMoments[moms]==True, "The function returned invalid moments!"];
+
+Print["Test:"];
+Print["-----"];
+
+Print["MomentsFromME[a,A,9]:"];
+moms=MomentsFromME[a,A,9];
+Print[moms];
+
+Assert[CheckMoments[moms]==True, "The function returned invalid moments!"];
+
+Print["----------------------------"];
+?MomentsFromPH;
+
+Print["Input:"];
+Print["------"];
+
+a={0.1, 0.9, 0}; Print[a];
+A={{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["MomentsFromPH[a,A,5)"];
+moms=MomentsFromPH[a,A,5];
+Print[moms];
+
+Assert[CheckMoments[moms]==True, "The function returned invalid moments!"];
+
+Print["----------------------------"];
+?CdfFromME;
+
+Print["Input:"];
+Print["------"];
+
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,2},{0,-2,-3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["cdf=CdfFromME[a,A,Range[0,5,0.01]]:"];
+cdf = CdfFromME[a,A,Range[0,5,0.01]];
+
+Assert[AllTrue[Differences[cdf],Positive], "The cdf is not increasing monotonously!"];
+Assert[Abs[Total[1-cdf]*0.01 - MomentsFromME[a,A,1][[1]]]<0.01, "The mean computed from the cdf does not match the theoretical result!"];
+
+Print["----------------------------"];
+?CdfFromPH;
+
+Print["Input:"];
+Print["------"];
+
+a={0.1, 0.9, 0}; Print[a];
+A={{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["cdf=CdfFromPH[a,A,Range[0,3,0.002]]:"];
+cdf = CdfFromPH[a,A,Range[0,3,0.002]];
+
+Assert[AllTrue[Differences[cdf],Positive], "The cdf is not increasing monotonously!"];
+Assert[Abs[Total[1-cdf]*0.002 - MomentsFromME[a,A,1][[1]]]<0.002, "The mean computed from the cdf does not match the theoretical result!"];
+
+Print["----------------------------"];
+?PdfFromME;
+
+Print["Input:"];
+Print["------"];
+
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,2},{0,-2,-3}}; Print[A];
+x = Range[0,5,0.01];
+
+Print["Test:"];
+Print["-----"];
+
+Print["pdf=PdfFromME[a,A,x]:"];
+pdf = PdfFromME[a,A,x];
+
+Assert[AllTrue[pdf,NonNegative], "The pdf is negative!"];
+Assert[Abs[pdf.x*0.01 - MomentsFromME[a,A,1][[1]]]<0.01, "The mean computed from the pdf does not match the theoretical result!"];
+
+Print["----------------------------"];
+?PdfFromPH;
+
+Print["Input:"];
+Print["------"];
+
+a = {0.1, 0.9, 0}; Print[a];
+A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+x = Range[0,3,0.002];
+
+Print["Test:"];
+Print["-----"];
+
+Print["pdf=PdfFromPH[a,A,x]:"];
+pdf = PdfFromPH[a,A,x];
+
+Assert[AllTrue[pdf,NonNegative], "The pdf is negative!"];
+Assert[Abs[pdf.x*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002, "The mean computed from the pdf does not match the theoretical result!"];
+
+Print["----------------------------"];
+?IntervalPdfFromPH;
+
+Print["Input:"];
+Print["------"];
+
+a = {0.1, 0.9, 0}; Print[a];
+A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+x = Range[0,3,0.002];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{x,y}=IntervalPdfFromPH[a,A,x]:"];
+{x,y} = IntervalPdfFromPH[a,A,x];
+
+Assert[AllTrue[y,NonNegative], "The interval pdf is negative!"];
+Assert[Abs[y.x*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002, "The mean computed from the interval pdf does not match the theoretical result!"];
+
+Print["----------------------------"];
+?RandomPH;
+
+Print["Test:"];
+Print["-----"];
+   
+Print["[a,A]=RandomPH(3,8,4]:"];
+{a,A}=RandomPH[3,8,4];
+Print[a];
+Print[A];
+
+Assert[CheckPHRepresentation[a,A], "RandomPH failed to return a valid PH representation!"];
+Assert[Max[Abs[MomentsFromPH[a,A,1][[1]]-8]]<10^-14, "RandomPH failed to match the given mean value!"];
+
+Print["----------------------------"];
+?CheckMERepresentation;
+
+Print["Input:"];
+Print["------"];
+
+a={-0.2, 0.2}; Print[a];
+A={{1, -1},{1, -2}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckMERepresentation[a,A]:"];
+flag=CheckMERepresentation[a,A];
+Print[flag];
+
+Assert[flag==False, "CheckMERepresentation did not detect that the initial vector is invalid!"];
+
+Print["Input:"];
+Print["------"];
+
+a={-0.2, 0.4, 0.8}; Print[a];
+A={{-2, 0, 3},{0, -1, 1},{ 0, -1, -1}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckMERepresentation[a,A]:"];
+flag=CheckMERepresentation[a,A];
+Print[flag];
+
+Assert[flag==False, "CheckMERepresentation did not detect that the dominant eigenvalue is invalid!"];
+
+Print["Input:"];
+Print["------"];
+
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,2},{0,-2,-3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckMERepresentation[a,A]:"];
+flag=CheckMERepresentation[a,A];
+Print[flag];
+
+Assert[flag==True, "CheckMERepresentation did not recognize that the given ME representation is valid!"];
+
+Print["----------------------------"];
+?CheckPHRepresentation;
+
+Print["Input:"];
+Print["------"];
+
+a={0.2}; Print[a];
+A={{-1, 1},{1, -2}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckPHRepresentation[a,A]:"];
+flag=CheckPHRepresentation[a,A];
+Print[flag];
+
+Assert[flag==False, "CheckPHRepresentation did not recognize the wrong input dimensions!"];
+
+Print["Input:"];
+Print["------"];
+
+a={0.2, 0.7}; Print[a];
+A={{-1, 1},{1, -2}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckPHRepresentation[a,A]:"];
+flag=CheckPHRepresentation[a,A];
+Print[flag];
+
+Assert[flag==True, "CheckPHRepresentation did not recognize that the given PH representation is valid!"];
+
+Print["----------------------------"];
+?CheckMEPositiveDensity;
+
+Print["Input:"];
+Print["------"];
+
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,2},{0,-2,-3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckMEPositiveDensity[a,A]:"];
+flag=CheckMEPositiveDensity[a,A//N];
+Print[flag];
+
+Assert[flag==True, "CheckMEPositiveDensity did not recognize that the given ME distribution has positive density!"];
+
+Print["Input:"];
+Print["------"];
+
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,2.9},{0,-2.9,-3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckMEPositiveDensity[a,A]:"];
+flag=CheckMEPositiveDensity[a,A];
+Print[flag];
+
+Assert[flag==False, "CheckMEPositiveDensity did not recognize that the given ME distribution does not have positive density!"];
+
+Print["----------------------------"];
+?APHFrom3Moments;
+
+Print["Input:"];
+Print["------"];
+
+moms = {10,125,8400}; Print[moms];
+normMoms = NormMomsFromMoms[moms]; Print[normMoms];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{a,A}=APHFrom3Moments[moms]:"];
+Print["Length[a]"];
+{a,A}=APHFrom3Moments[moms//N];
+Print[a];
+Print[A];
+Print[Length[a]];
+
+Print["MomentsFromPH[a,A,3]:"];
+phmoms = MomentsFromPH[a,A,3];
+Print[phmoms];
+
+Assert[Norm[(phmoms-moms)/moms]<10^-12, "APHFrom3Moments failed to match the given moments!"];
+
+Print["Input:"];
+Print["------"];
+
+moms = {10,525,31400}; Print[moms];
+normMoms = NormMomsFromMoms[moms]; Print[normMoms];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{a,A}=APHFrom3Moments[moms]:"];
+Print["Length[a]"];
+{a,A}=APHFrom3Moments[moms//N];
+Print[a];
+Print[A];
+Print[Length[a]];
+
+Print["MomentsFromPH[a,A,3]:"];
+phmoms = MomentsFromPH[a,A,3];
+Print[phmoms];
+
+Assert[Norm[(phmoms-moms)/moms]<10^-12, "APHFrom3Moments failed to match the given moments!"];
+
+
+Print["----------------------------"];
+?PH2From3Moments;
+
+Print["Input:"];
+Print["------"];
+
+moms = {10,160,3500}; Print[moms];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{a,A}=PH2From3Moments[moms]"];
+{a,A}=PH2From3Moments[moms//N];
+Print[a];
+Print[A];
+
+Print["MomentsFromPH[a,A,3]:"];
+phmoms = MomentsFromPH[a,A,3];
+Print[phmoms];
+
+Assert[Norm[(phmoms-moms)/moms]<10^-12, "PH2From3Moments failed to match the given moments!"];
+
+Print["Input:"];
+Print["------"];
+
+moms = {10,260,13500}; Print[moms];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{a,A}=PH2From3Moments[moms]"];
+{a,A}=PH2From3Moments[moms//N];
+Print[a];
+Print[A];
+
+Print["MomentsFromPH[a,A,3]:"];
+phmoms = MomentsFromPH[a,A,3];
+Print[phmoms];
+
+Assert[Norm[(phmoms-moms)/moms]<10^-12, "PH2From3Moments failed to match the given moments!"];
+
+Print["----------------------------"];
+?PH3From5Moments;
+
+Print["Input:"];
+Print["------"];
+
+a={0.1, 0.9, 0}; Print[a];
+A={{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+moms = MomentsFromPH[a,A]; Print[moms];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{a,A}=PH3From5Moments[moms]"];
+{a,A}=PH3From5Moments[moms]; 
+Print[a];
+Print[A];
+
+Print["MomentsFromPH[a,A,5]:"];
+phmoms = MomentsFromPH[a,A,5];
+Print[phmoms];
+
+Assert[Norm[(phmoms-moms)/moms]<10^-12, "PH3From5Moments failed to match the given moments!"];
+
+Print["Input:"];
+Print["------"];
+
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,0.5},{0,-0.5,-3}}; Print[A];
+moms = MomentsFromME[a,A]; Print[moms];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{a,A}=PH3From5Moments[moms]"];
+{a,A}=PH3From5Moments[moms]; 
+Print[a];
+Print[A];
+
+Print["MomentsFromPH[a,A,5]:"];
+phmoms = MomentsFromPH[a,A,5];
+Print[phmoms];
+
+Assert[Norm[(phmoms-moms)/moms]<10^-12, "PH3From5Moments failed to match the given moments!"];
+
+Print["----------------------------"];
+?MEFromMoments;
+
+Print["Input:"];
+Print["------"];
+
+a={0.1, 0.9, 0}; Print[a];
+A={{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+moms=MomentsFromPH[a,A,5]; Print[moms];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{a,A}=MEFromMoments[moms]:"];
+{a,A}=MEFromMoments[moms];
+Print[a];
+Print[A];
+
+Print["MomentsFromME[a,A,5]:"];
+memoms = MomentsFromME[a,A,5];
+Print[memoms];
+
+Assert[Norm[(memoms-moms)/moms]<10^-12, "MEFromMoments failed to match the given moments!"];
+
+Print["----------------------------"];
+?APH2ndMomentLowerBound;
+
+Print["Input:"];
+Print["------"];
+
+mean = 1.9;
+n = 4;
+
+Print["Test:"];
+Print["-----"];
+
+Print["mom2 = APH2ndMomentLowerBound[mean,n]:"];
+mom2 = APH2ndMomentLowerBound[mean,n];
+Print[mom2];
+
+cv2 = mom2/mean^2-1;
+
+Assert[Abs[cv2-1/n]<10^-14, "APH2ndMomentLowerBound did not give the expected result!"];
+
+
+Print["----------------------------"];
+?APH3rdMomentLowerBound;
+?APH3rdMomentUpperBound;
+
+Print["Input:"];
+Print["------"];
+
+mean = 1.9;
+mom2 = 5;
+n = 3;
+
+Print["Test:"];
+Print["-----"];
+
+Print["mom3lower = APH3rdMomentLowerBound[mean,mom2,n]:"];
+mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+Print[mom3lower];
+Print["mom3upper = APH3rdMomentUpperBound[mean,mom2,n]:"];
+mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+Print[mom3upper];
+
+Assert[mom3upper>mom3lower, "Lower bound is larger than the upper bound!"];
+
+Print["Input:"];
+Print["------"];
+
+mean = 1.9;
+mom2 = 5;
+n = 4;
+
+Print["Test:"];
+Print["-----"];
+
+Print["mom3lower = APH3rdMomentLowerBound[mean,mom2,n]:"];
+mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+Print[mom3lower];
+Print["mom3upper = APH3rdMomentUpperBound[mean,mom2,n]:"];
+mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+Print[mom3upper];
+
+Assert[mom3upper>mom3lower, "Lower bound is larger than the upper bound!"];
+Assert[mom3upper==Infinity, "Upper bound must be infinity with 4 phases!"];
+
+Print["----------------------------"];
+?CanonicalFromPH2;
+
+Print["Input:"];
+Print["------"];
+
+a={0.12, 0.88}; Print[a];
+A={{-1.28, 0},{3.94, -3.94}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{b,B}=CanonicalFromPH2[a,A]:"];
+{b,B}=CanonicalFromPH2[a,A];
+Print[b];
+Print[B];
+
+Cm=SimilarityMatrix[A,B];
+err1 = Norm[A.Cm-Cm.B];
+err2 = Norm[a.Cm-b];
+
+Print["Transformation errors:"];
+Print[err1];
+Print[err2];
+
+Assert[err1<10^-12 && err2<10^-12, "Transformation to canonical PH(2) failed!"];
+
+Print["----------------------------"];
+?CanonicalFromPH3;
+
+Print["Input:"];
+Print["------"];
+
+a={0.1, 0.9, 0}; Print[a];
+A={{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{b,B}=CanonicalFromPH3[a,A]:"];
+{b,B}=CanonicalFromPH3[a,A];
+Print[b];
+Print[B];
+
+Cm=SimilarityMatrix[A,B];
+err1 = Norm[A.Cm-Cm.B];
+err2 = Norm[a.Cm-b];
+
+Print["Transformation errors:"];
+Print[err1];
+Print[err2];
+
+Assert[err1<10^12 && err2<10^12, "Transformation to canonical PH(3) failed!"];
+
+Print["----------------------------"];
+?AcyclicPHFromME;
+
+Print["Input:"];
+Print["------"];
+
+a={-0.4, 1.4, 0}; Print[a];
+A={{-4, 1, 1},{0, -2, 1},{1, 0, -8}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{b,B}=AcyclicPHFromME[a,A]:"];
+{b,B}=AcyclicPHFromME[a,A//N];
+Print[b];
+Print[B];
+
+Print["Moments of [a,A) and (b,B)"];
+ma=MomentsFromME[a,A,5];
+mb=MomentsFromME[b,B,5];
+Print[ma];
+Print[mb];
+
+Assert[Norm[(ma-mb)/ma]<10^7, "Transformation to acyclic representation failed!"];
+
+Print["----------------------------"];
+?MonocyclicPHFromME;
+
+Print["Input:"];
+Print["------"];
+
+a = {0.2, 0.3, 0.5}; Print[a];
+A = {{-1,0,0},{0,-3,2},{0,-2,-3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{b,B}=MonocyclicPHFromME[a,A]:"];
+{b,B}=MonocyclicPHFromME[a,A//N];
+Print[b];
+Print[B];
+
+Print["Moments of [a,A) and (b,B)"];
+ma=MomentsFromME[a,A,5];
+mb=MomentsFromME[b,B,5];
+Print[ma];
+Print[mb];
+
+Assert[Norm[(ma-mb)/ma]<10^7, "Transformation to monocyclic representation failed!"];
+
+Print["----------------------------"];
+?PHFromME;
+
+Print["Input:"];
+Print["------"];
+
+a={-0.4, 1.4}; Print[a];
+A={{-3.8, 2},{2, -9}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckMERepresentation[a,A]:"];
+flag=CheckMERepresentation[a,A];
+Print[flag];
+
+Print["CheckPHRepresentation[a,A]:"];
+flag=CheckPHRepresentation[a,A];
+Print[flag];
+
+Print["{b,B}=PHFromME[a,A)"];
+{b,B}=PHFromME[a,A];
+Print[b];
+Print[B];
+
+Print["Check the obtained PH, CheckPHRepresentation(b,B]:"];
+flag=CheckPHRepresentation[b,B];
+Print[flag];
+
+Cm=SimilarityMatrix[A,B];
+err1 = Norm[A.Cm-Cm.B];
+err2 = Norm[a.Cm-b];
+
+Assert[flag && err1<10^12 && err2<10^12, "Transformation to PH failed!"];
+
+Print["Input:"];
+Print["------"];
+
+a={-0.5, 1.5}; Print[a];
+A={{-3.8, 2},{2, -9}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["CheckMERepresentation[a,A]:"];
+flag=CheckMERepresentation[a,A];
+Print[flag];
+
+Print["CheckPHRepresentation[a,A]:"];
+flag=CheckPHRepresentation[a,A];
+Print[flag];
+
+Print["{b,B}=PHFromME[a,A]"];
+{b,B}=PHFromME[a,A];
+Print[b];
+Print[B];
+
+Print["Check the obtained PH, CheckPHRepresentation(b,B]:"];
+flag=CheckPHRepresentation[b,B];
+Print[flag];
+
+Cm=SimilarityMatrix[A,B];
+err1 = Norm[A.Cm-Cm.B];
+err2 = Norm[a.Cm-b];
+
+Assert[flag && err1<10^12 && err2<10^12, "Transformation to PH failed!"];
+
+Print["----------------------------"];
+?MEOrder;
+
+Print["Input:"];
+Print["------"];
+
+a={1, 1, 1, 1, 1, 1}/6; Print[a];
+A={{-1, 0, 0, 0, 0, 0},{0.5, -2, 1, 0, 0, 0},{1, 0, -3, 1, 0, 0},{1, 0, 1, -4, 1, 0},{4, 0, 0, 0, -5, 0},{5, 0, 0, 0, 0, -6}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["co=MEOrder[a,A,\"cont\")"];
+co=MEOrder[a,A//N,"cont"];
+Print[co];
+Print["oo=MEOrder[a,A,\"obs\")"];
+oo=MEOrder[a,A//N,"obs"];
+Print[oo];
+Print["coo=MEOrder[a,A,\"obscont\")"];
+coo=MEOrder[a,A//N,"obscont"];
+Print[coo];
+Print["coo=MEOrder[a,A,\"moment\")"];
+mo=MEOrder[a,A//N,"moment"];
+Print[mo];
+
+Assert[co==2, "Wrong controllability order returned!"];
+Assert[oo==6, "Wrong observability order returned!"];
+Assert[coo==2, "The minimum of the controllability and observability order is wrong!"];
+Assert[mo==2, "Wrong moment order returned!"];
+
+Print["Input:"];
+Print["------"];
+
+a={2, 1}/3; Print[a];
+A={{-1, 1},{0, -3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["co=MEOrder[a,A,\"cont\")"];
+co=MEOrder[a,A//N,"cont"];
+Print[co];
+Print["oo=MEOrder[a,A,\"obs\")"];
+oo=MEOrder[a,A//N,"obs"];
+Print[oo];
+Print["coo=MEOrder[a,A,\"obscont\")"];
+coo=MEOrder[a,A//N,"obscont"];
+Print[coo];
+Print["coo=MEOrder[a,A,\"moment\")"];
+mo=MEOrder[a,A//N,"moment"];
+Print[mo];
+
+Assert[co==2, "Wrong controllability order returned!"];
+Assert[oo==1, "Wrong observability order returned!"];
+Assert[coo==1, "The minimum of the controllability and observability order is wrong!"];
+Assert[mo==1, "Wrong moment order returned!"];
+
+Print["Input:"];
+Print["------"];
+
+b = {0.2, 0.3, 0.5}; Print[b];
+B = {{-1,0,0},{0,-3,1},{0,-1,-3}}; Print[B];
+{a,A} = MonocyclicPHFromME[b,B//N];
+Print[a];
+Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["co=MEOrder[a,A,\"cont\")"];
+co=MEOrder[a,A//N,"cont"];
+Print[co];
+Print["oo=MEOrder[a,A,\"obs\")"];
+oo=MEOrder[a,A//N,"obs"];
+Print[oo];
+Print["coo=MEOrder[a,A,\"obscont\")"];
+coo=MEOrder[a,A//N,"obscont"];
+Print[coo];
+Print["coo=MEOrder[a,A,\"moment\")"];
+mo=MEOrder[a,A//N,"moment"];
+Print[mo];
+
+Assert[co==9, "Wrong controllability order returned!"];
+Assert[oo==3, "Wrong observability order returned!"];
+Assert[coo==3, "The minimum of the controllability and observability order is wrong!"];
+Assert[mo==3, "Wrong moment order returned!"];
+
+Print["----------------------------"];
+?MEOrderFromMoments;
+
+Print["Input:"];
+Print["------"];
+
+a={0.1, 0.9, 0}; Print[a];
+A={{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["moms=MomentsFromME[a,A)"];
+Print["mo=MEOrderFromMoments[moms]:"];
+moms=MomentsFromME[a,A];
+mo = MEOrderFromMoments[moms];
+Print[mo];
+
+Assert[mo==3, "Wrong moment order returned!"];
+
+Print["Input:"];
+Print["------"];
+
+b = {0.2, 0.3, 0.5}; Print[b];
+B = {{-1,0,0},{0,-3,2},{0,-2,-3}}; Print[B];
+{a,A} = MonocyclicPHFromME[b,B//N];
+Print[a];
+Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["moms=MomentsFromME[a,A]"];
+Print["mo=MEOrderFromMoments[moms]:"];
+moms=MomentsFromME[a,A];
+mo = MEOrderFromMoments[moms];
+Print[mo];
+
+Assert[mo==3, "Wrong moment order returned!"];
+
+Print["----------------------------"];
+?MinimalRepFromME;
+
+Print["Input:"];
+Print["------"];
+
+a={1, 1, 1, 1, 1, 1}/6; Print[a];
+A={{-1, 0, 0, 0, 0, 0},{0.5, -2, 1, 0, 0, 0},{1, 0, -3, 1, 0, 0},{1, 0, 1, -4, 1, 0},{4, 0, 0, 0, -5, 0},{5, 0, 0, 0, 0, -6}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"cont\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"cont"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==2, "Non-minimal representation returned based on controllability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"obs\")"];
+{b,B}=MinimalRepFromME[a,A//N,"obs"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==6, "Non-minimal representation returned based on observability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A, \"obscont\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"obscont"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==2, "Non-minimal representation returned based on observability and controllability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"moment\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"moment"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==2, "Non-minimal representation returned based on the moments!"];
+
+Print["Input:"];
+Print["------"];
+
+a={2, 1}/3; Print[a];
+A={{-1, 1},{0, -3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"cont\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"cont"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==2, "Non-minimal representation returned based on controllability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"obs\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"obs"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==1, "Non-minimal representation returned based on observability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"obscont\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"obscont"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==1, "Non-minimal representation returned based on observability and controllability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"moment\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"moment"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==1, "Non-minimal representation returned based on the moments!"];
+
+Print["Input:"];
+Print["------"];
+
+b = {0.2, 0.3, 0.5}; Print[b];
+B = {{-1,0,0},{0,-3,1},{0,-1,-3}}; Print[B];
+{a,A} = MonocyclicPHFromME[b,B//N];
+Print[a];
+Print[A];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"cont\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"cont"];
+Print[b];
+Print[B];
+
+Assert[Length[b]==Length[a], "Non-minimal representation returned based on controllability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"obs\"]"];
+{b,B}=MinimalRepFromME[a,A//N,"obs"];
+Print[b];
+Print[B];
+(* check similarity*)
+Cm=SimilarityMatrix[B,A];
+err1 = Norm[B.Cm-Cm.A];
+err2 = Norm[b.Cm-a];
+
+Assert[Length[b]==3 && err1+err2<10^12, "Non-minimal representation returned based on observability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"obscont\")"];
+{b,B}=MinimalRepFromME[a,A//N,"obscont"];
+Print[b];
+Print[B];
+(* check similarity:*)
+Cm=SimilarityMatrix[B,A];
+err1 = Norm[B.Cm-Cm.A];
+err2 = Norm[b.Cm-a];
+
+Assert[Length[b]==3 && err1+err2<10^12, "Non-minimal representation returned based on observability and controllability!"];
+
+Print["{b,B}=MinimalRepFromME[a,A,\"moment\")"];
+{b,B}=MinimalRepFromME[a,A//N,"moment"];
+Print[b];
+Print[B];
+(* check similarity:*)
+Cm=SimilarityMatrix[B,A];
+err1 = Norm[B.Cm-Cm.A];
+err2 = Norm[b.Cm-a];
+
+Assert[Length[b]==3 && err1+err2<10^12, "Non-minimal representation returned based on the moments!"];
+
+Print["----------------------------"];
+?SamplesFromPH;
+
+Print["Input:"];
+Print["------"];
+
+a={0.1, 0.9, 0}; Print[a];
+A={{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}; Print[A];
+
+Print["Test:"];
+Print["-----"];
+
+Print["x=SamplesFromPH[a,A,1000]"];
+x=SamplesFromPH[a,A,1000];
+
+(*Print["Moments from the samples:"];
+mt = MarginalMomentsFromTrace[x,3];
+Print[mt];
+*)
+Print["Moments from the PH:"];
+mp = MomentsFromPH[a,A,3];
+Print[mp];
 ];
-
-a0=\[Lambda][[1]] \[Lambda][[2]] \[Lambda][[3]] ;
-a1=\[Lambda][[1]] \[Lambda][[2]] + \[Lambda][[1]] \[Lambda][[3]] + \[Lambda][[2]] \[Lambda][[3]];
-a2=\[Lambda][[1]] + \[Lambda][[2]] +  \[Lambda][[3]];
-{a0,a1,a2}=Re[{a0,a1,a2}];
-
-f[x_]:= x^3+a2  x^2+a1 x+a0;
-\[Gamma]u=(a2+2 Sqrt[a2^2-3 a1])/3;
-\[Gamma]0=(a2+ Sqrt[a2^2-3 a1])/3;
-If[\[Lambda][[1]]\[Element] Reals,\[Gamma]l=\[Lambda][[1]],\[Gamma]l=\[Gamma]0];
-
-If[Abs[(v.h0.e)[[1]]]<\[Epsilon],\[Gamma]2=0,\[Gamma]2= -(v.h0.h0.e)[[1]]/(v.h0.e)[[1]]];
-
-If[BuToolsVerbose,Print["\[Gamma]u=",\[Gamma]u,", \[Gamma]l=",\[Gamma]l,", \[Gamma]2=",\[Gamma]2]];
-If[Max[\[Gamma]l,\[Gamma]2] > \[Gamma]u, If[BuToolsVerbose,Print["Max(\[Gamma]l,\[Gamma]2) > \[Gamma]u !!!!!!"]]];
-x1=Max[\[Gamma]l,\[Gamma]2];
-If[BuToolsVerbose,Print["Degree of freedom: \[Gamma]u - Max(\[Gamma]l,lower)=",\[Gamma]u - Max[\[Gamma]l,\[Gamma]2]]]; 
-
-If[x1==\[Lambda][[1]],x13=0,x13=-f[-x1]/(a0-f[-x1]) x1];
-x2=(a2-x1+Sqrt[(a2-x1)^2-4(x1^2 - a2 x1 +a1)])/2;
-x3=(a2-x1-Sqrt[(a2-x1)^2-4(x1^2 - a2 x1 +a1)])/2;
-If[BuToolsVerbose,Print["x1=",x1,", x13=",x13,", x2=",x2,", x3=",x3]];
-{x13,x2,x3}=Re[{x13,x2,x3}];
-If[x13>x1+\[Epsilon],Print["x13 > x1 !!!! x1=",x1,", x13=",x13] ];
-If[x13<-\[Epsilon],Print["x13 < 0 !!!! x13=",x13] ];
-p1=- h0.{{1},{1},{1}}/(x1-x13);p1=Transpose[p1][[1]];
-p2=-(x1 ii + h0).h0.{{1},{1},{1}}/(x1-x13)/x2;p2=Transpose[p2][[1]];
-p3=-(x2 ii + h0).(x1 ii + h0).h0.{{1},{1},{1}}/(x1-x13)/x2/x3;p3=Transpose[p3][[1]];
-p=Transpose[{p1,p2,p3}];
-\[Alpha]=v.p;
-If[x1==\[Gamma]2,\[Alpha][[2]]=0];
-Return[{\[Alpha],{{-x1,0,x13},{x2,-x2,0},{0,x3,-x3}}}];
-];
-
-
-Appie[rmom_,print_] :=
-Module[ {rm,m, i,j,f,y,dd,nold,yold,k,q,d,\[Alpha],\[Beta],n,\[Rho],kk,ind,inc},
-     m=Dimensions[rmom][[1]];
-If[Mod[m,2]==0,
-Print["Even number of moments, the last one is dropped !!"];
-rm=Drop[rmom,-1];m=m/2,rm=rmom;m=Ceiling[m/2]
-];
-rm=Prepend[rm,1];
-f=Table[0,{2m},{1}];
-f[[1,1]]=1;
-y=Table[0,{2m},{1}];
-dd=Table[0,{2m},{2m}];
-n=0;
-k=0;
-q=1;
-d=Table[0,{m}];
-\[Alpha]=Table[0,{m},{m}];
-\[Beta]=Table[0,{m}];
-For[i=2,i<=2m,dd[[i,i-1]]=1;i++];
-For[i=1,i<=2m,
-(*THEN*)
-\[Rho]=FullSimplify[q (rm.f)[[1]] ];
-nold=n;
-n=nold+1;
-yold=y;
-If[print,Print["iter ",i," \[Rho]=",\[Rho]," n=",n, " yold=",yold]];
-If[n>0 &&\[Rho]!=0 ,
-(*THEN*)
-If[k>0,\[Beta][[k]]=\[Rho]/(rm[[1+1]])^(d[[k]]+n-1)];
-k=k+1;
-d[[k]]=n;
-n=-n;
-q=q/\[Rho];
-y=dd.f;
-If[print,Print[i," then: \[Beta]=",\[Beta]," k=",k," n=",n," q=",q ]],
-(*ELSE*)
-If[print,Print[i," else: n=",n]];
-If[n<=0,
-j=nold+d[[k]]+1;
-\[Alpha][[k,j]]=\[Rho]/(rm[[1+1]])^(j-1);
-If[print,Print[i ," else if: k+1=",k+1," j+1=",j+1, " \[Alpha]=",\[Alpha]]]
-],
-(*UNDEFINED /in case of symbolic analysis/ *)
-If[n>0 ,
-(*THEN*)
-If[k>0,\[Beta][[k]]=\[Rho]/(rm[[1+1]])^(d[[k]]+n-1)];
-k=k+1;
-d[[k]]=n;
-n=-n;
-q=q/\[Rho];
-y=dd.f;
-If[print,Print[i," undefined then: \[Beta]=",\[Beta]," k=",k," n=",n," q=",q ]],
-(*ELSE*)
-If[print,Print[i," else: n=",n]];
-If[n<=0,
-j=nold+d[[k]]+1;
-\[Alpha][[k,j]]=\[Rho]/(rm[[1+1]])^(j-1);
-If[print,Print[i ," undefined else if: k+1=",k+1," j+1=",j+1, " \[Alpha]=",\[Alpha]]]
-]
-]
-];
-f= dd.f-\[Rho] yold;
-If[print,Print["f=",f]];
-i++];
-
-If[print,Print["m=",m," \[Beta]=",\[Beta]," \[Alpha]=",\[Alpha]," d=",d]];
-If[Sum[d[[i]],{i,1,m}]!=m,Print["Insufficient matrix order !!!!"]];
-
-kk=Table[0,{m},{m}];
-kk[[1,1]]=rm[[2]];
-For[i=1,i<=m-1,kk[[i,i+1]]=rm[[2]];i++];
-
-ind=d[[1]];
-For[i=2,i<=m,
-If[ind<m,
-inc=d[[i]];
-If[(ind=ind+inc)<=m,
-kk[[ind,ind-inc-d[[i-1]]+1]]=\[Beta][[i-1]];
-For[j=1,j<=inc,
-kk[[ind,ind-j+1]]=\[Alpha][[i,j]];
-j++];
-];
-];
-i++];
-Return[{kk,m}];
-]
-
-
-MEOrderFromMoments[moms_,\[Epsilon]_ : N[10^-14] ]:=
-Module[{momsize,size,rmoms,i,j,n,m,hankel},
-momsize= Dimensions[moms][[1]];
-size= Floor[(momsize+1)/2];
-rmoms=ReducedmomsFromMoms[moms];
-rmoms=Prepend[rmoms,1];
-For[n=1,n<=size,n++,
-hankel=Table[rmoms[[i+j-1]],{i,1,n},{j,1,n}];
-Print["n=",n,", det hankel=",Det[hankel], ", precision=",\[Epsilon]//N];
-If[ (* Det[hankel]==0 *) Abs[Det[hankel]] < \[Epsilon] && n==size, Return[n-1]];
-
-If[(* Det[hankel]==0 *) Abs[Det[hankel]] <\[Epsilon],
-For[m=1,m<= momsize- 2n+1,m++,
-hankel=Table[rmoms[[i+j-1+m]],{i,1,n},{j,1,n}];
-If[(* Det[hankel]!=0 *) Abs[Det[hankel]] > \[Epsilon],Print["Hankel matrix of r(0)-r(",2n-1,") is 0, but the Hankel matrix of r(",m,")-r(",2n-1+m,") is not 0 !!"]; Return[n];
-];
-]; (* end For *)
-Return[n-1];
-];
-];
-Return[size];
-];
-
-
-MEContOrder[\[Alpha]_,A_]:=
-Module[{size,h,n,res},
-size=Dimensions[A][[1]];
-h=Table[1,{size}];
-res=MatrixRank[Table[h.MatrixPower[Transpose[A],n-1],{n,size}]];
-Return[res];
-];
-
-
-MEObsOrder[\[Alpha]_,A_]:=
-Module[{size,n,res},
-size=Dimensions[A][[1]];
-res=MatrixRank[Table[\[Alpha].MatrixPower[A,n-1],{n,size}]];
-Return[res];
-];
-
-
-MEContMinimize[\[Alpha]in_,Ain_]:= 
-Module[ {d0,d1,size,vec,B,n,i,rowsum},
-size=Dimensions[Ain][[1]];
-vec= Table[1,{size},{1}];
-d0=Ain; d1=-Ain.vec.{\[Alpha]in};
-
-{n,B}=StairCase[d0,d1,vec];
-d0=Inverse[B].d0.B;
-d1=Inverse[B].d1.B;
-d0=d0[[1;;n,1;;n]];
-d1=d1[[1;;n,1;;n]];
-
-For[i=1,i<=n,i++,
-rowsum=d1[[i]].Table[1,{n}];
-If[rowsum!=0,
-Return[{d1[[i]]/rowsum,d0}]]
-];
-Return[{d1[[1]],d0}];
-]
-
-
-MEObsMinimize[\[Alpha]in_,Ain_]:= 
-Module[ {d0,d1,size,vec,B,n,i,rowsum},
-size=Dimensions[Ain][[1]];
-vec= Table[1,{size},{1}];
-d0=Ain; d1=-Ain.vec.{\[Alpha]in};
-
-vec={\[Alpha]in};
-{n,B}=StairCase[Transpose[d0],Transpose[d1],Transpose[vec]];
-d0=Inverse[B].d0.B;
-d1=Inverse[B].d1.B;
-d0=d0[[1;;n,1;;n]];
-d1=d1[[1;;n,1;;n]];
-
-For[i=1,i<=n,i++,
-rowsum=d1[[i]].Table[1,{n}];
-If[rowsum!=0,
-Return[{d1[[i]]/rowsum,d0}]]
-];
-Return[{d1[[1]],d0}];
-
-]
-
-
-MEMinimize[\[Alpha]in_,Ain_]:= 
-Module[ {\[Alpha], A},
-{\[Alpha], A}=MEContMinimize[\[Alpha]in,Ain]//Chop ;
-{\[Alpha], A}=MEObsMinimize[\[Alpha], A] //Chop ;
-Return[{\[Alpha], A}];
-]
 
 
 End[(* Private *)];

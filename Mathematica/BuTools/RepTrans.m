@@ -106,7 +106,7 @@ Module[{t0,t0upper,t0lower,beta,IniVecWithTail,increment,bestT0,bestLupper,succe
 		Llower=1; Lupper=1;
 		beta = IniVecWithTail[Lupper,Lupper/t0];
 		While[AnyTrue[Map[Reduce[Re[#]<-precision]&,beta],TrueQ] && Lupper<maxSize, Lupper=2*Lupper; beta = IniVecWithTail[Lupper,Lupper/t0];];
-		success=AllTrue[Map[Reduce[Re[#]>=precision]&,beta],TrueQ];
+		success=AllTrue[Map[Reduce[Re[#]>=-precision]&,beta],TrueQ];
 		If[success,
 			While[Lupper-Llower>1,
 				L=Round[(Lupper+Llower)/2];
@@ -243,7 +243,7 @@ Module[{X,Z,msize,m,U,ranksum,crit,r,Ui,S,T,TEMP,Z1,X1,X2,X3,X4,Transf,I,n,x,i,n
 y,\[CapitalGamma],TEMP1,sizeUi,mm,ii},
 
 X=Xin;Z=Zin;
-msize=Dimensions[X][[1]];
+msize=Length[X];
 m=Dimensions[X[[1]]][[1]];
 U=IdentityMatrix[m];
 ranksum=0;
@@ -258,14 +258,12 @@ While[crit,
 	Transf[[-sizeUi ;;-1,-sizeUi ;;-1]]=Transpose[Ui];
 	U=Transpose[Transf.Transpose[U]];
 
-	Z={{}};
-	X={};
+	Z=ConstantArray[0,{Dimensions[Ui][[1]]-r,0}];
 	Do[
 		TEMP=Transpose[Ui].X[[ii]].Ui;
-		AppendTo[X,TEMP[[r+1;;-1,r+1;;-1]]];
+		X[[ii]]=TEMP[[r+1;;-1,r+1;;-1]];
 		Z=Join[Z,TEMP[[r+1;;-1,1;;r]],2];
 	,{ii,msize}];
-
 	If[Norm[Z]<prec || MatrixRank[Z,Tolerance->prec]==m-ranksum, crit=False];
 ];
 
@@ -274,23 +272,21 @@ I=IdentityMatrix[m];
 If[Norm[Z]<prec,
 	n=ranksum;
 	x=Total[Transpose[U],{2}];
-	x=x[[1;;n,All]];
+	x=x[[1;;n]];
 
 	R=IdentityMatrix[n];
-
 	If[Min[Abs[x]]<prec,
 		nonzero=0;
 		zeros=Table[False,{n}];
 		Do[		
-			If[Abs[x[[i,1]]]<prec,zeros[[i]]=True,If[nonzero==0,nonzero=i]];
+			If[Abs[x[[i]]]<prec,zeros[[i]]=True,If[nonzero==0,nonzero=i]];
 		,{i,n}];
 		If[nonzero!=0,
 			Do[If[zeros[[i]],R[[i,nonzero]]=1],{i,n}];
 		]; 
 	];
-
 	y=R.x;
-	\[CapitalGamma]=DiagonalMatrix[Flatten[y]];
+	\[CapitalGamma]=DiagonalMatrix[y];
 	TEMP=I;
 	TEMP[[1;;n,1;;n]]=Inverse[\[CapitalGamma]];
 	TEMP1=I;
