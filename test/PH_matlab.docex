@@ -1,0 +1,643 @@
+=== MomentsFromME ===
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+>>> moms = MomentsFromME(a,A);
+>>> disp(moms);
+      0.35385      0.41893       1.1552       4.6998       23.838
+>>> moms = MomentsFromME(a,A,9);
+>>> disp(moms);
+      0.35385      0.41893       1.1552       4.6998       23.838       143.78       1007.8       8064.3        72578
+=== MomentsFromPH ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> moms = MomentsFromPH(a,A,5);
+>>> disp(moms);
+      0.20939      0.10449     0.089092      0.11027      0.17953
+=== CdfFromME ===
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+>>> x = (0:0.01:5);
+>>> cdf = CdfFromME(a,A,x);
+>>> plot(x,cdf);
+=== CdfFromPH ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> x = (0:0.002:3);
+>>> cdf = CdfFromPH(a,A,x);
+>>> plot(x,cdf);
+=== PdfFromME ===
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+>>> x = (0:0.01:5);
+>>> pdf = PdfFromME(a,A,x);
+>>> plot(x,pdf);
+=== PdfFromPH ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> x = (0:0.002:3);
+>>> pdf = PdfFromPH(a,A,x);
+>>> plot(x,pdf);
+=== IntervalPdfFromPH ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> x = (0:0.002:3);
+>>> [x,y] = IntervalPdfFromPH(a,A,x);
+>>> plot(x,y);
+=== RandomPH ===
+>>> [a,A] = RandomPH(3,8,4);
+>>> disp(a);
+     0     1     0
+>>> disp(A);
+     -0.97262      0.56772      0.14713
+      0.23072     -0.69732      0.46659
+      0.54311            0     -0.71127
+=== CheckMERepresentation ===
+>>> a = [-0.2, 0.2];
+>>> A = [1, -1; 1, -2];
+>>> flag = CheckMERepresentation(a,A);
+CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part (at precision 1e-12)!
+>>> disp(flag);
+     0
+>>> a = [-0.2, 0.4, 0.8];
+>>> A = [-2, 0, 3; 0, -1, 1; 0, -1, -1];
+>>> flag = CheckMERepresentation(a,A);
+CheckMERepresentation: The dominant eigenvalue of the matrix is not real!
+>>> disp(flag);
+     0
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+>>> flag = CheckMERepresentation(a,A);
+>>> disp(flag);
+     1
+=== CheckPHRepresentation ===
+>>> a = [0.2];
+>>> A = [-1, 1; 1, -2];
+>>> flag = CheckPHRepresentation(a,A);
+CheckPHRepresentation:the vector and the matrix have different sizes!
+>>> disp(flag);
+     0
+>>> a = [0.2, 0.7];
+>>> A = [-1, 1; 1, -2];
+>>> flag = CheckPHRepresentation(a,A);
+>>> disp(flag);
+     1
+=== CheckMEPositiveDensity ===
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+>>> flag = CheckMEPositiveDensity(a,A);
+>>> disp(flag);
+     1
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1, 0, 0; 0, -3, 2.9; 0, -2.9, -3];
+>>> flag = CheckMEPositiveDensity(a,A);
+>>> disp(flag);
+     0
+=== APHFrom3Moments ===
+>>> moms = [10.0, 125.0, 8400.0];
+>>> [a,A] = APHFrom3Moments(moms);
+>>> disp(a);
+   1.3212e-05      0.99999            0            0            0            0
+>>> disp(A);
+   -0.0022936    0.0022936            0            0            0            0
+            0     -0.50029      0.50029            0            0            0
+            0            0     -0.50029      0.50029            0            0
+            0            0            0     -0.50029      0.50029            0
+            0            0            0            0     -0.50029      0.50029
+            0            0            0            0            0     -0.50029
+>>> phmoms = MomentsFromPH(a,A,3);
+>>> disp(phmoms);
+           10          125         8400
+>>> moms = [10.0, 525.0, 31400.0];
+>>> [a,A] = APHFrom3Moments(moms);
+>>> disp(a);
+      0.21179            0            0            0            0            0            0      0.78821
+>>> disp(A);
+     -0.15079      0.15079            0            0            0            0            0            0
+            0     -0.15079      0.15079            0            0            0            0            0
+            0            0     -0.15079      0.15079            0            0            0            0
+            0            0            0     -0.15079      0.15079            0            0            0
+            0            0            0            0     -0.15079      0.15079            0            0
+            0            0            0            0            0     -0.15079      0.15079            0
+            0            0            0            0            0            0     -0.15079      0.15079
+            0            0            0            0            0            0            0      -5.9502
+>>> phmoms = MomentsFromPH(a,A,3);
+CheckMERepresentation warning: There are more than one eigenvalue with the same absolute value as the largest eigenvalue!
+>>> disp(phmoms);
+           10          525        31400
+=== PH2From3Moments ===
+>>> moms = [10.0, 160.0, 3500.0];
+>>> [a,A] = PH2From3Moments(moms);
+>>> disp(a);
+       0.8702       0.1298
+>>> disp(A);
+     -0.15576      0.15576
+            0     -0.22659
+>>> phmoms = MomentsFromPH(a,A,3);
+>>> disp(phmoms);
+          10         160        3500
+>>> moms = [10.0, 260.0, 13500.0];
+>>> [a,A] = PH2From3Moments(moms);
+>>> disp(a);
+     0.090975      0.90902
+>>> disp(A);
+    -0.041955     0.041955
+            0     -0.12769
+>>> phmoms = MomentsFromPH(a,A,3);
+>>> disp(phmoms);
+           10          260        13500
+=== PH3From5Moments ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> moms = MomentsFromPH(a,A);
+>>> disp(moms);
+      0.20939      0.10449     0.089092      0.11027      0.17953
+>>> [a,A] = PH3From5Moments(moms);
+>>> disp(a);
+      0.58305      0.32736     0.089589
+>>> disp(A);
+      -9.9819            0            0
+       5.3405      -5.3405            0
+            0       2.8776      -2.8776
+>>> phmoms = MomentsFromME(a,A,5);
+>>> disp(phmoms);
+      0.20939      0.10449     0.089092      0.11027      0.17953
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1, 0, 0; 0, -3, 0.5; 0, -0.5, -3];
+>>> moms = MomentsFromME(a,A);
+>>> disp(moms);
+      0.44865       0.5496       1.3298       4.9428       24.182
+>>> [a,A] = PH3From5Moments(moms);
+>>> disp(a);
+      0.94865     0.036778     0.014574
+>>> disp(A);
+           -3            0      0.15385
+        2.866       -2.866            0
+            0        1.134       -1.134
+>>> phmoms = MomentsFromME(a,A,5);
+>>> disp(phmoms);
+      0.44865       0.5496       1.3298       4.9428       24.182
+=== MEFromMoments ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> moms = MomentsFromPH(a,A,5);
+>>> disp(moms);
+      0.20939      0.10449     0.089092      0.11027      0.17953
+>>> [a,A] = MEFromMoments(moms);
+>>> disp(a);
+      0.33333      0.33333      0.33333
+>>> disp(A);
+       -8.085       10.177      -9.9999
+      -1.2584      -5.1438       1.7873
+      -1.9255       1.9599      -4.9712
+>>> memoms = MomentsFromME(a,A,5);
+>>> disp(memoms);
+      0.20939      0.10449     0.089092      0.11027      0.17953
+=== APH2ndMomentLowerBound ===
+>>> mean = 1.9;
+>>> n = 4;
+>>> mom2 = APH2ndMomentLowerBound(mean,n);
+>>> disp(mom2);
+       4.5125
+>>> cv2 = mom2/mean^2-1;
+>>> disp(1/cv2);
+     4
+=== APH3rdMomentLowerBound ===
+>>> mean = 1.9;
+>>> mom2 = 5;
+>>> n = 3;
+>>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+>>> disp(mom3lower);
+       16.577
+>>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+>>> disp(mom3upper);
+       17.081
+>>> mean = 1.9;
+>>> mom2 = 5;
+>>> n = 4;
+>>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+>>> disp(mom3lower);
+       16.079
+>>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+>>> disp(mom3upper);
+   Inf
+=== APH3rdMomentUpperBound ===
+>>> mean = 1.9;
+>>> mom2 = 5;
+>>> n = 3;
+>>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+>>> disp(mom3lower);
+       16.577
+>>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+>>> disp(mom3upper);
+       17.081
+>>> mean = 1.9;
+>>> mom2 = 5;
+>>> n = 4;
+>>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+>>> disp(mom3lower);
+       16.079
+>>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+>>> disp(mom3upper);
+   Inf
+=== CanonicalFromPH2 ===
+>>> a = [0.12, 0.88];
+>>> A = [-1.28, 0; 3.94, -3.94];
+>>> [b,B] = CanonicalFromPH2(a,A);
+>>> disp(b);
+      0.96102     0.038985
+>>> disp(B);
+        -1.28         1.28
+            0        -3.94
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+    6.669e-15
+=== CanonicalFromPH3 ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> [b,B] = CanonicalFromPH3(a,A);
+>>> disp(b);
+      0.58305      0.32736     0.089589
+>>> disp(B);
+      -9.9819            0            0
+       5.3405      -5.3405            0
+            0       2.8776      -2.8776
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   1.0269e-14
+=== AcyclicPHFromME ===
+>>> a = [-0.4, 1.4, 0.];
+>>> A = [-4., 1., 1.; 0., -2., 1.; 1., 0., -8.];
+>>> [b,B] = AcyclicPHFromME(a,A);
+>>> disp(b);
+      0.55273       0.3741     0.073173
+>>> disp(B);
+      -1.9145       1.9145            0
+            0      -3.8858       3.8858
+            0            0      -8.1997
+>>> ma = MomentsFromME(a,A,5);
+>>> disp(ma);
+      0.64918      0.73131       1.1825       2.5062       6.5898
+>>> mb = MomentsFromME(b,B,5);
+>>> disp(mb);
+      0.64918      0.73131       1.1825       2.5062       6.5898
+=== MonocyclicPHFromME ===
+>>> a = [0.2, 0.3, 0.5];
+>>> A = [-1., 0., 0.; 0., -3., 2.; 0., -2., -3.];
+>>> [b,B] = MonocyclicPHFromME(a,A);
+>>> disp(b);
+  Columns 1 through 12
+  -8.1021e-17     0.010077     0.019799    0.0077544    0.0010922   4.0852e-05   1.3538e-05   0.00011267   0.00039486   0.00093038    0.0018049    0.0031208
+  Columns 13 through 24
+    0.0049985    0.0075762      0.01101     0.015473     0.021149     0.028228     0.036901     0.047341     0.059692     0.074045     0.090409      0.10868
+  Columns 25 through 27
+      0.12858      0.14965      0.17112
+>>> disp(B);
+  Columns 1 through 12
+           -1            1            0            0            0            0            0            0            0            0            0            0
+            0           -3            3            0            0            0            0            0            0            0            0            0
+            0            0           -3            3            0            0            0            0            0            0            0            0
+            0            0            0           -3            3            0            0            0            0            0            0            0
+            0      0.59259            0            0           -3       2.4074            0            0            0            0            0            0
+            0            0            0            0            0      -17.531       17.531            0            0            0            0            0
+            0            0            0            0            0            0      -17.531       17.531            0            0            0            0
+            0            0            0            0            0            0            0      -17.531       17.531            0            0            0
+            0            0            0            0            0            0            0            0      -17.531       17.531            0            0
+            0            0            0            0            0            0            0            0            0      -17.531       17.531            0
+            0            0            0            0            0            0            0            0            0            0      -17.531       17.531
+            0            0            0            0            0            0            0            0            0            0            0      -17.531
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+  Columns 13 through 24
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+       17.531            0            0            0            0            0            0            0            0            0            0            0
+      -17.531       17.531            0            0            0            0            0            0            0            0            0            0
+            0      -17.531       17.531            0            0            0            0            0            0            0            0            0
+            0            0      -17.531       17.531            0            0            0            0            0            0            0            0
+            0            0            0      -17.531       17.531            0            0            0            0            0            0            0
+            0            0            0            0      -17.531       17.531            0            0            0            0            0            0
+            0            0            0            0            0      -17.531       17.531            0            0            0            0            0
+            0            0            0            0            0            0      -17.531       17.531            0            0            0            0
+            0            0            0            0            0            0            0      -17.531       17.531            0            0            0
+            0            0            0            0            0            0            0            0      -17.531       17.531            0            0
+            0            0            0            0            0            0            0            0            0      -17.531       17.531            0
+            0            0            0            0            0            0            0            0            0            0      -17.531       17.531
+            0            0            0            0            0            0            0            0            0            0            0      -17.531
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+            0            0            0            0            0            0            0            0            0            0            0            0
+  Columns 25 through 27
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+            0            0            0
+       17.531            0            0
+      -17.531       17.531            0
+            0      -17.531       17.531
+            0            0      -17.531
+>>> ma = MomentsFromME(a,A,5);
+>>> disp(ma);
+      0.35385      0.41893       1.1552       4.6998       23.838
+>>> mb = MomentsFromME(b,B,5);
+>>> disp(mb);
+      0.35385      0.41893       1.1552       4.6998       23.838
+=== PHFromME ===
+>>> a = [-0.4, 1.4];
+>>> A = [-3.8, 2; 2, -9];
+>>> flag = CheckMERepresentation(a,A);
+>>> disp(flag);
+     1
+>>> flag = CheckPHRepresentation(a,A);
+CheckProbVector: The vector has negative element (precision: 1e-12)!
+>>> disp(flag);
+     0
+>>> [b,B] = PHFromME(a,A);
+>>> disp(b);
+     0.013037      0.98696
+>>> disp(B);
+      -3.2605       2.5924
+      0.34843      -9.5395
+>>> flag = CheckPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   1.0162e-15
+>>> a = [-0.5, 1.5];
+>>> A = [-3.8, 2; 2, -9];
+>>> flag = CheckMERepresentation(a,A);
+>>> disp(flag);
+     1
+>>> flag = CheckPHRepresentation(a,A);
+CheckProbVector: The vector has negative element (precision: 1e-12)!
+>>> disp(flag);
+     0
+>>> [b,B] = PHFromME(a,A);
+>>> disp(b);
+    0.0057038       0.9943
+>>> disp(B);
+      -3.1279       3.0636
+     0.017405      -9.6721
+>>> flag = CheckPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   3.0445e-15
+=== MEOrder ===
+>>> a = [1./6, 1./6, 1./6, 1./6, 1./6, 1./6];
+>>> A = [-1., 0., 0., 0., 0., 0.; 0.5, -2., 1., 0., 0., 0.; 1., 0., -3., 1., 0., 0.; 1., 0., 1., -4., 1., 0.; 4., 0., 0., 0., -5., 0.; 5., 0., 0., 0., 0., -6.];
+>>> co = MEOrder(a,A,'cont');
+>>> disp(co);
+     2
+>>> oo = MEOrder(a,A,'obs');
+>>> disp(oo);
+     6
+>>> coo = MEOrder(a,A,'obscont');
+>>> disp(coo);
+     2
+>>> mo = MEOrder(a,A,'moment');
+>>> disp(mo);
+     2
+>>> a = [2./3, 1./3];
+>>> A = [-1., 1.; 0., -3.];
+>>> co = MEOrder(a,A,'cont');
+>>> disp(co);
+     2
+>>> oo = MEOrder(a,A,'obs');
+>>> disp(oo);
+     1
+>>> coo = MEOrder(a,A,'obscont');
+>>> disp(coo);
+     1
+>>> mo = MEOrder(a,A,'moment');
+>>> disp(mo);
+     1
+>>> b = [0.2, 0.3, 0.5];
+>>> B = [-1., 0., 0.; 0., -3., 1.; 0., -1., -3.];
+>>> [a,A] = MonocyclicPHFromME(b,B);
+>>> disp(a);
+    0.0055089    0.0090301     0.016938     0.015216    0.0053543    0.0087356     0.052486      0.22657      0.66016
+>>> disp(A);
+           -1            1            0            0            0            0            0            0            0
+            0      -2.4226       2.4226            0            0            0            0            0            0
+            0            0      -2.4226       2.4226            0            0            0            0            0
+            0      0.26232            0      -2.4226       2.1603            0            0            0            0
+            0            0            0            0      -4.2414       4.2414            0            0            0
+            0            0            0            0            0      -4.2414       4.2414            0            0
+            0            0            0            0            0            0      -4.2414       4.2414            0
+            0            0            0            0            0            0            0      -4.2414       4.2414
+            0            0            0            0            0            0            0            0      -4.2414
+>>> co = MEOrder(a,A,'cont');
+>>> disp(co);
+     9
+>>> oo = MEOrder(a,A,'obs');
+>>> disp(oo);
+     3
+>>> coo = MEOrder(a,A,'obscont');
+>>> disp(coo);
+     3
+>>> mo = MEOrder(a,A,'moment');
+>>> disp(mo);
+     3
+=== MEOrderFromMoments ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2., 0.; 2., -9., 1.; 1., 0., -3.];
+>>> moms = MomentsFromME(a,A);
+>>> disp(moms);
+      0.20939      0.10449     0.089092      0.11027      0.17953
+>>> mo = MEOrderFromMoments(moms);
+>>> disp(mo);
+     3
+>>> b = [0.2, 0.3, 0.5];
+>>> B = [-1., 0., 0.; 0., -3., 2.; 0., -2., -3.];
+>>> [a,A] = MonocyclicPHFromME(b,B);
+>>> moms = MomentsFromME(a,A);
+>>> disp(moms);
+  Columns 1 through 12
+      0.35385      0.41893       1.1552       4.6998       23.838       143.78       1007.8       8064.3        72578   7.2577e+05   7.9834e+06     9.58e+07
+  Columns 13 through 24
+   1.2454e+09   1.7436e+10   2.6153e+11   4.1846e+12   7.1137e+13   1.2805e+15   2.4329e+16   4.8658e+17   1.0218e+19    2.248e+20   5.1704e+21   1.2409e+23
+  Columns 25 through 36
+   3.1022e+24   8.0658e+25   2.1778e+27   6.0978e+28   1.7684e+30   5.3051e+31   1.6446e+33   5.2626e+34   1.7367e+36   5.9047e+37   2.0666e+39   7.4399e+40
+  Columns 37 through 48
+   2.7528e+42    1.046e+44   4.0796e+45   1.6318e+47   6.6905e+48     2.81e+50   1.2083e+52   5.3165e+53   2.3924e+55   1.1005e+57   5.1725e+58   2.4828e+60
+  Columns 49 through 53
+   1.2166e+62   6.0828e+63   3.1022e+65   1.6132e+67   8.5498e+68
+>>> mo = MEOrderFromMoments(moms);
+>>> disp(mo);
+     3
+=== MinimalRepFromME ===
+>>> a = [1./6, 1./6, 1./6, 1./6, 1./6, 1./6];
+>>> A = [-1., 0., 0., 0., 0., 0.; 0.5, -2., 1., 0., 0., 0.; 1., 0., -3., 1., 0., 0.; 1., 0., 1., -4., 1., 0.; 4., 0., 0., 0., -5., 0.; 5., 0., 0., 0., 0., -6.];
+>>> [b,B] = MinimalRepFromME(a,A,'cont');
+>>> disp(b);
+            1   1.3878e-16
+>>> disp(B);
+      -1.4011      0.48448
+      0.49585      -1.5989
+>>> [b,B] = MinimalRepFromME(a,A,'obs');
+>>> disp(b);
+      0.16667      0.16667      0.16667      0.16667      0.16667      0.16667
+>>> disp(B);
+           -1            0            0            0            0            0
+          0.5           -2            1            0            0            0
+            1            0           -3            1            0            0
+            1            0            1           -4            1            0
+            4            0            0            0           -5            0
+            5            0            0            0            0           -6
+>>> [b,B] = MinimalRepFromME(a,A,'obscont');
+>>> disp(b);
+            1   1.3878e-16
+>>> disp(B);
+      -1.4011      0.48448
+      0.49585      -1.5989
+>>> [b,B] = MinimalRepFromME(a,A,'moment');
+>>> disp(b);
+          0.5          0.5
+>>> disp(B);
+        -2.52       1.6467
+        -0.48        -0.48
+>>> a = [2./3, 1./3];
+>>> A = [-1., 1.; 0., -3.];
+>>> [b,B] = MinimalRepFromME(a,A,'cont');
+>>> disp(b);
+      0.66667      0.33333
+>>> disp(B);
+    -1     1
+     0    -3
+>>> [b,B] = MinimalRepFromME(a,A,'obs');
+>>> disp(b);
+            1
+>>> disp(B);
+    -1
+>>> [b,B] = MinimalRepFromME(a,A,'obscont');
+>>> disp(b);
+            1
+>>> disp(B);
+    -1
+>>> [b,B] = MinimalRepFromME(a,A,'moment');
+>>> disp(b);
+     1
+>>> disp(B);
+    -1
+>>> b = [0.2, 0.3, 0.5];
+>>> B = [-1., 0., 0.; 0., -3., 1.; 0., -1., -3.];
+>>> [a,A] = MonocyclicPHFromME(b,B);
+>>> disp(a);
+    0.0055089    0.0090301     0.016938     0.015216    0.0053543    0.0087356     0.052486      0.22657      0.66016
+>>> disp(A);
+           -1            1            0            0            0            0            0            0            0
+            0      -2.4226       2.4226            0            0            0            0            0            0
+            0            0      -2.4226       2.4226            0            0            0            0            0
+            0      0.26232            0      -2.4226       2.1603            0            0            0            0
+            0            0            0            0      -4.2414       4.2414            0            0            0
+            0            0            0            0            0      -4.2414       4.2414            0            0
+            0            0            0            0            0            0      -4.2414       4.2414            0
+            0            0            0            0            0            0            0      -4.2414       4.2414
+            0            0            0            0            0            0            0            0      -4.2414
+>>> [b,B] = MinimalRepFromME(a,A,'cont');
+>>> disp(b);
+    0.0055089    0.0090301     0.016938     0.015216    0.0053543    0.0087356     0.052486      0.22657      0.66016
+>>> disp(B);
+           -1            1            0            0            0            0            0            0            0
+            0      -2.4226       2.4226            0            0            0            0            0            0
+            0            0      -2.4226       2.4226            0            0            0            0            0
+            0      0.26232            0      -2.4226       2.1603            0            0            0            0
+            0            0            0            0      -4.2414       4.2414            0            0            0
+            0            0            0            0            0      -4.2414       4.2414            0            0
+            0            0            0            0            0            0      -4.2414       4.2414            0
+            0            0            0            0            0            0            0      -4.2414       4.2414
+            0            0            0            0            0            0            0            0      -4.2414
+>>> [b,B] = MinimalRepFromME(a,A,'obs');
+>>> disp(b);
+            1   2.0817e-17  -5.5511e-17
+>>> disp(B);
+      -2.8362     0.036222  -4.4409e-16
+       -16.61      -3.3369       16.042
+       1.1643    -0.051724     -0.82688
+>>> Cm = SimilarityMatrix(B,A);
+>>> err1 = norm(B*Cm-Cm*A);
+>>> err2 = norm(b*Cm-a);
+>>> disp(max(err1,err2));
+    9.334e-15
+>>> [b,B] = MinimalRepFromME(a,A,'obscont');
+>>> disp(b);
+            1   2.0817e-17  -5.5511e-17
+>>> disp(B);
+      -2.8362     0.036222  -4.4409e-16
+       -16.61      -3.3369       16.042
+       1.1643    -0.051724     -0.82688
+>>> Cm = SimilarityMatrix(B,A);
+>>> err1 = norm(B*Cm-Cm*A);
+>>> err2 = norm(b*Cm-a);
+>>> disp(max(err1,err2));
+    9.334e-15
+>>> [b,B] = MinimalRepFromME(a,A,'moment');
+>>> disp(b);
+      0.33333      0.33333      0.33333
+>>> disp(B);
+      -2.1905       1.9222      -3.3698
+      -1.0769      -2.3906      0.83162
+     -0.51037       0.8033      -2.4189
+>>> Cm = SimilarityMatrix(B,A);
+>>> err1 = norm(B*Cm-Cm*A);
+>>> err2 = norm(b*Cm-a);
+>>> disp(max(err1,err2));
+   5.5343e-15
+=== SamplesFromPH ===
+>>> a = [0.1, 0.9, 0];
+>>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+>>> x = SamplesFromPH(a,A,1000);
+>>> mp = MomentsFromPH(a,A,3);
+>>> disp(mp);
+      0.20939      0.10449     0.089092

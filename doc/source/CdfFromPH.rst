@@ -9,11 +9,11 @@ butools.ph.CdfFromPH
         :widths: 25 150
 
         * - Matlab:
-          - :code:`cdf = CdfFromPH(alpha, A, x, prec)`
+          - :code:`cdf = CdfFromPH(alpha, A, x)`
         * - Mathematica:
-          - :code:`cdf = CdfFromPH[alpha, A, x, prec]`
+          - :code:`cdf = CdfFromPH[alpha, A, x]`
         * - Python/Numpy:
-          - :code:`cdf = CdfFromPH(alpha, A, x, prec)`
+          - :code:`cdf = CdfFromPH(alpha, A, x)`
 
     Returns the cummulative distribution function of a
     continuous phase-type distribution.
@@ -28,9 +28,6 @@ butools.ph.CdfFromPH
         distribution.
     x : vector of doubles
         The cdf will be computed at these points
-    prec : double, optional
-        Numerical precision to check if the input PH 
-        distribution is valid. The default value is 1e-14.
 
     Returns
     -------
@@ -46,6 +43,14 @@ butools.ph.CdfFromPH
     >>> x = (0:0.002:1)';
     >>> cdf = CdfFromPH(a, A, x);
     >>> plot(x, cdf)
+    
+    For Mathematica:
+    
+    >>> a = {0.1, 0.9, 0};
+    >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
+    >>> x = Range[0,3,0.002];
+    >>> cdf = CdfFromPH[a,A,x];
+    >>> ListPlot[Table[{x[[i]], cdf[[i]]}, {i, Length[cdf]}]]       
 
     For Python/Numpy:
     

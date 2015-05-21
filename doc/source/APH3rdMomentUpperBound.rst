@@ -59,6 +59,24 @@ butools.ph.APH3rdMomentUpperBound
     >>> APH3rdMomentUpperBound(mean,mom2,n)
         Inf
  
+    For Mathematica:
+    
+    >>> mean = 1.9;
+    >>> mom2 = 5;
+    >>> n = 3;
+    >>> APH3rdMomentLowerBound[mean,mom2,n]
+    16.5775
+    >>> APH3rdMomentUpperBound[mean,mom2,n]
+    17.0814
+
+    >>> mean = 1.9;
+    >>> mom2 = 5;
+    >>> n = 4;
+    >>> APH3rdMomentLowerBound[mean,mom2,n]
+    16.0794
+    >>> APH3rdMomentUpperBound[mean,mom2,n]
+    Infinity    
+ 
     For Python/Numpy:
     
     >>> mean = 1.9

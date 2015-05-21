@@ -87,6 +87,8 @@ Inverse characterization tools
 .. list-table::
     :widths: 25 150
 
+    * - :py:func:`APHFrom2Moments <butools.ph.APHFrom2Moments>`
+      - Returns an acyclic PH which has the same 2 moments as given.
     * - :py:func:`APHFrom3Moments <butools.ph.APHFrom3Moments>`
       - Returns an acyclic PH which has the same 3 moments as given.
     * - :py:func:`PH2From3Moments <butools.ph.PH2From3Moments>`
@@ -148,6 +150,7 @@ Minimal representations
     CheckMEPositiveDensity
     SamplesFromPH
     ImageFromPH
+    APHFrom2Moments
     APHFrom3Moments
     PH2From3Moments
     PH3From5Moments

@@ -4,38 +4,35 @@
    BuTools_PH Package
 *)
 
-(*FONTOS! A RUN PACKAGE CSAK AKKOR FOG JOL MUKODNI, HA ELOTTE*)
-(*A PROBA FAJLBAN A DIR, APPENTO, PATH RESZT LEFUTTATOD!!! *)
-
 BeginPackage["BuTools`PH`"];
-AcyclicPHFromME::usage = "alma";
-APH2ndMomentLowerBound::usage = "alma";
-APH3rdMomentLowerBound::usage = "alma";
-APH3rdMomentUpperBound::usage = "alma";
-APHFrom2Moments::usage = "alma";
-APHFrom3Moments::usage = "alma";
-CanonicalFromPH2::usage = "alma";
-CanonicalFromPH3::usage = "alma";
-CdfFromME::usage = "alma";
-CdfFromPH::usage = "alma";
-CheckMEPositiveDensity::usage = "alma";
-CheckMERepresentation::usage = "alma";
-CheckPHRepresentation::usage = "alma";
-IntervalPdfFromPH::usage = "alma";
-MEFromMoments::usage = "alma";
-MEOrder::usage = "alma";
-MEOrderFromMoments::usage = "alma";
-MinimalRepFromME::usage = "alma";
-MomentsFromME::usage = "alma";
-MomentsFromPH::usage = "alma";
-MonocyclicPHFromME::usage = "alma";
-PdfFromME::usage = "alma";
-PdfFromPH::usage = "alma";
-PH2From3Moments::usage = "alma";
-PH3From5Moments::usage = "alma";
-PHFromME::usage = "alma";
-RandomPH::usage = "alma";
-SamplesFromPH::usage = "alma";
+AcyclicPHFromME::usage = "{beta, B} = AcyclicPHFromME[alpha, A, maxSize, precision]: Transforms an arbitrary matrix-exponential representation to an acyclic phase-type representation.";
+APH2ndMomentLowerBound::usage = "m2 = APH2ndMomentLowerBound[m1, n]: Returns the lower bound of the second moment of acyclic phase-type (APH) distributions of order n.";
+APH3rdMomentLowerBound::usage = "m3 = APH3rdMomentLowerBound[m1, m2, n]: Returns the lower bound of the third moment of acyclic phase-type (APH) distributions of order n.";
+APH3rdMomentUpperBound::usage = "m3 = APH3rdMomentUpperBound[m1, m2, n]: Returns the upper bound of the third moment of acyclic phase-type (APH) distributions of order n.";
+APHFrom2Moments::usage = ": Returns an acyclic PH which has the same 2 moments as given.";
+APHFrom3Moments::usage = "{alpha, A} = APHFrom3Moments[moms, maxSize]: Returns an acyclic PH which has the same 3 moments as given.";
+CanonicalFromPH2::usage = "{beta, B} = CanonicalFromPH2[alpha, A, prec]: Returns the canonical form of an order-2 phase-type distribution.";
+CanonicalFromPH3::usage = "{beta, B} = CanonicalFromPH3[alpha, A, prec]: Returns the canonical form of an order-3 phase-type distribution.";
+CdfFromME::usage = "cdf = CdfFromME[alpha, A, x]: Returns the cummulative distribution function of a matrix-exponential distribution.";
+CdfFromPH::usage = "cdf = CdfFromPH[alpha, A, x]: Returns the cummulative distribution function of a continuous phase-type distribution.";
+CheckMEPositiveDensity::usage = ": Checks if the given matrix-exponential distribution has positive density.";
+CheckMERepresentation::usage = ": Checks if the given vector and matrix define a valid matrix-exponential representation.";
+CheckPHRepresentation::usage = ": Checks if the given vector and matrix define a valid phase-type representation.";
+IntervalPdfFromPH::usage = ": Returns the approximate probability density function of a continuous phase-type distribution, based on the probability of falling into intervals.";
+MEFromMoments::usage = ": Creates a matrix-exponential distribution that has the same moments as given.";
+MEOrder::usage = ": Returns the order of the ME distribution (which is not necessarily equal to the size of the representation).";
+MEOrderFromMoments::usage = ": Returns the order of ME distribution that can realize the given moments.";
+MinimalRepFromME::usage = ": Returns the minimal representation of the given ME distribution.";
+MomentsFromME::usage = ": Returns the moments of a matrix-exponential distribution.";
+MomentsFromPH::usage = ": Returns the moments of a continuous phase-type distribution.";
+MonocyclicPHFromME::usage = ": Transforms an arbitrary matrix-exponential representation to a Markovian monocyclic representation.";
+PdfFromME::usage = ": Returns the probability density function of a matrix-exponential distribution.";
+PdfFromPH::usage = ": Returns the probability density function of a continuous phase-type distribution.";
+PH2From3Moments::usage = ": Returns a PH(2) which has the same 3 moments as given.";
+PH3From5Moments::usage = ": Returns a PH(3) which has the same 5 moments as given.";
+PHFromME::usage = ": Obtains a Markovian representation of a matrix exponential distribution of the same size, if possible.";
+RandomPH::usage = ": Returns a random phase-type distribution with a given order.";
+SamplesFromPH::usage = ": Generates random samples from a phase-type distribution.";
 TestPHPackage::usage = "TestPHPackage[] : Executes various tests to check the functions of the PH package.";
 
 
@@ -98,7 +95,7 @@ Module[{n2},
 
 
 APHFrom2Moments[moms_]:=
-Module[{cv2,lambda,p,n},
+Module[{cv2,lambda,p,n,A,alpha},
     cv2 = moms[[2]]/moms[[1]]^2 - 1;
     lambda = 1 / moms[[1]];
     n = Max[Ceiling[1/cv2], 2];
@@ -1163,7 +1160,7 @@ Print["----------------------------"];
 Print["Input:"];
 Print["------"];
 
-a={0.12, 0.88}; Print[a];
+a={0.12, 0.88}; Print[a];\[AliasDelimiter]
 A={{-1.28, 0},{3.94, -3.94}}; Print[A];
 
 Print["Test:"];
@@ -1209,7 +1206,7 @@ Print["Transformation errors:"];
 Print[err1];
 Print[err2];
 
-Assert[err1<10^12 && err2<10^12, "Transformation to canonical PH(3) failed!"];
+Assert[err1<10^-12 && err2<10^-12, "Transformation to canonical PH(3) failed!"];
 
 Print["----------------------------"];
 ?AcyclicPHFromME;
@@ -1234,7 +1231,7 @@ mb=MomentsFromME[b,B,5];
 Print[ma];
 Print[mb];
 
-Assert[Norm[(ma-mb)/ma]<10^7, "Transformation to acyclic representation failed!"];
+Assert[Norm[(ma-mb)/ma]<10^-7, "Transformation to acyclic representation failed!"];
 
 Print["----------------------------"];
 ?MonocyclicPHFromME;
@@ -1259,7 +1256,7 @@ mb=MomentsFromME[b,B,5];
 Print[ma];
 Print[mb];
 
-Assert[Norm[(ma-mb)/ma]<10^7, "Transformation to monocyclic representation failed!"];
+Assert[Norm[(ma-mb)/ma]<10^-7, "Transformation to monocyclic representation failed!"];
 
 Print["----------------------------"];
 ?PHFromME;
@@ -1294,7 +1291,7 @@ Cm=SimilarityMatrix[A,B];
 err1 = Norm[A.Cm-Cm.B];
 err2 = Norm[a.Cm-b];
 
-Assert[flag && err1<10^12 && err2<10^12, "Transformation to PH failed!"];
+Assert[flag && err1<10^-12 && err2<10^-12, "Transformation to PH failed!"];
 
 Print["Input:"];
 Print["------"];
@@ -1326,7 +1323,7 @@ Cm=SimilarityMatrix[A,B];
 err1 = Norm[A.Cm-Cm.B];
 err2 = Norm[a.Cm-b];
 
-Assert[flag && err1<10^12 && err2<10^12, "Transformation to PH failed!"];
+Assert[flag && err1<10^-12 && err2<10^-12, "Transformation to PH failed!"];
 
 Print["----------------------------"];
 ?MEOrder;
@@ -1557,7 +1554,7 @@ Cm=SimilarityMatrix[B,A];
 err1 = Norm[B.Cm-Cm.A];
 err2 = Norm[b.Cm-a];
 
-Assert[Length[b]==3 && err1+err2<10^12, "Non-minimal representation returned based on observability!"];
+Assert[Length[b]==3 && err1+err2<10^-12, "Non-minimal representation returned based on observability!"];
 
 Print["{b,B}=MinimalRepFromME[a,A,\"obscont\")"];
 {b,B}=MinimalRepFromME[a,A//N,"obscont"];
@@ -1568,7 +1565,7 @@ Cm=SimilarityMatrix[B,A];
 err1 = Norm[B.Cm-Cm.A];
 err2 = Norm[b.Cm-a];
 
-Assert[Length[b]==3 && err1+err2<10^12, "Non-minimal representation returned based on observability and controllability!"];
+Assert[Length[b]==3 && err1+err2<10^-12, "Non-minimal representation returned based on observability and controllability!"];
 
 Print["{b,B}=MinimalRepFromME[a,A,\"moment\")"];
 {b,B}=MinimalRepFromME[a,A//N,"moment"];
@@ -1579,7 +1576,7 @@ Cm=SimilarityMatrix[B,A];
 err1 = Norm[B.Cm-Cm.A];
 err2 = Norm[b.Cm-a];
 
-Assert[Length[b]==3 && err1+err2<10^12, "Non-minimal representation returned based on the moments!"];
+Assert[Length[b]==3 && err1+err2<10^-12, "Non-minimal representation returned based on the moments!"];
 
 Print["----------------------------"];
 ?SamplesFromPH;

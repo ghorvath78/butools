@@ -9,11 +9,11 @@ butools.ph.CdfFromME
         :widths: 25 150
 
         * - Matlab:
-          - :code:`cdf = CdfFromME(alpha, A, x, prec)`
+          - :code:`cdf = CdfFromME(alpha, A, x)`
         * - Mathematica:
-          - :code:`cdf = CdfFromME[alpha, A, x, prec]`
+          - :code:`cdf = CdfFromME[alpha, A, x]`
         * - Python/Numpy:
-          - :code:`cdf = CdfFromME(alpha, A, x, prec)`
+          - :code:`cdf = CdfFromME(alpha, A, x)`
 
     Returns the cummulative distribution function of a
     matrix-exponential distribution.
@@ -28,9 +28,6 @@ butools.ph.CdfFromME
         distribution.
     x : vector of doubles
         The cdf will be computed at these points
-    prec : double, optional
-        Numerical precision to check if the input ME 
-        distribution is valid. The default value is 1e-14.
 
     Returns
     -------
@@ -46,6 +43,14 @@ butools.ph.CdfFromME
     >>> x = (0:0.01:2)';
     >>> cdf = CdfFromME(a, A, x);
     >>> plot(x, cdf)
+
+    For Mathematica:
+    
+    >>> a = {0.2, 0.3, 0.5};
+    >>> A = {{-1,0,0},{0,-3,2},{0,-2,-3}};
+    >>> x = Range[0,5,0.01];
+    >>> cdf = CdfFromME[a,A,x];
+    >>> ListPlot[Table[{x[[i]], cdf[[i]]}, {i, Length[cdf]}]]   
 
     For Python/Numpy:
     

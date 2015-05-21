@@ -58,6 +58,23 @@ butools.ph.CanonicalFromPH3
     >>> norm(a*C-b)
       8.3463e-16
       
+    For Mathematica:
+      
+    >>> a = {0.1, 0.9, 0};
+    >>> A = {{-6.2, 2, 0}, {2, -9, 1}, {1, 0, -3}};
+    >>> {b, B} = CanonicalFromPH3[a, A];
+    >>> Print[b];
+    {0.583054,0.327357,0.0895893}
+    >>> Print[B];
+    {{-9.98192,0.,0.},
+     {5.34047,-5.34047,0.},
+     {0.,2.87761,-2.87761}}
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> Norm[A.Cm - Cm.B]
+    2.7041*10^-13
+    >>> Norm[a.Cm - b]
+    5.10659*10^-15   
+      
     For Python/Numpy:
     
     >>> a=ml.matrix([[0.1, 0.9, 0]])

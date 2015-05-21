@@ -1,0 +1,477 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
+package PH
+
+test MomentsFromME
+
+inputmsg
+defvec@ a # {0.2, 0.3, 0.5}
+defmat@ A # {{-1,0,0},{0,-3,2},{0,-2,-3}}
+testmsg
+code!@ moms = MomentsFromME[a,A]
+assert CheckMoments[moms]==True  # The function returned invalid moments!
+
+code!@ moms = MomentsFromME[a,A,9]
+assert CheckMoments[moms]==True  # The function returned invalid moments!
+
+test MomentsFromPH
+
+inputmsg
+defvec@ a # {0.1, 0.9, 0}
+defmat@ A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+testmsg
+code!@ moms = MomentsFromPH[a,A,5]
+assert CheckMoments[moms]==True # The function returned invalid moments!
+
+test CdfFromME
+
+inputmsg
+defvec@ a # {0.2, 0.3, 0.5}
+defmat@ A # {{-1,0,0},{0,-3,2},{0,-2,-3}}
+defrange x # 0 # 5 # 0.01
+testmsg
+code! cdf = CdfFromME[a,A,x]
+plot x # cdf
+assertW AllTrue[Differences[cdf],Positive] # The cdf is not increasing monotonously!
+assertMP All[Diff[cdf]>0] # The cdf is not increasing monotonously!
+assert Abs[Total[1-cdf]*0.01 - MomentsFromME[a,A,1][[1]]]<0.01 # The mean computed from the cdf does not match the theoretical result!
+
+test CdfFromPH
+
+inputmsg
+defvec@ a # {0.1, 0.9, 0}
+defmat@ A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+defrange x # 0 # 3 # 0.002
+testmsg
+code! cdf = CdfFromPH[a,A,x]
+plot x # cdf
+assertW AllTrue[Differences[cdf],Positive] # The cdf is not increasing monotonously!
+assertMP All[Diff[cdf]>0] # The cdf is not increasing monotonously!
+assert Abs[Total[1-cdf]*0.002 - MomentsFromME[a,A,1][[1]]]<0.002 # The mean computed from the cdf does not match the theoretical result!
+
+test PdfFromME
+
+inputmsg
+defvec@ a # {0.2, 0.3, 0.5}
+defmat@ A # {{-1,0,0},{0,-3,2},{0,-2,-3}}
+defrange x # 0 # 5 # 0.01
+testmsg
+code! pdf = PdfFromME[a,A,x]
+plot x # pdf
+assertW AllTrue[pdf,NonNegative] # The pdf is negative!
+assertMP All[pdf>=0] # The pdf is negative!
+assertW Abs[pdf.x*0.01 - MomentsFromME[a,A,1][[1]]]<0.01 # The mean computed from the pdf does not match the theoretical result!
+assertM Abs[x*pdf*0.01 - MomentsFromME[a,A,1][[1]]]<0.01 # The mean computed from the pdf does not match the theoretical result!
+assertP Abs[Dot[pdf,x]*0.01 - MomentsFromME[a,A,1][[1]]]<0.01 # The mean computed from the pdf does not match the theoretical result!
+
+test PdfFromPH
+
+inputmsg
+defvec@ a # {0.1, 0.9, 0}
+defmat@ A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+defrange x # 0 # 3 # 0.002
+testmsg
+code! pdf = PdfFromPH[a,A,x]
+plot x # pdf
+assertW AllTrue[pdf,NonNegative] # The pdf is negative!
+assertMP All[pdf>=0] # The pdf is negative!
+assertW Abs[pdf.x*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002 # The mean computed from the pdf does not match the theoretical result!
+assertM Abs[x*pdf*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002 # The mean computed from the pdf does not match the theoretical result!
+assertP Abs[Dot[pdf,x]*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002 # The mean computed from the pdf does not match the theoretical result!
+
+test IntervalPdfFromPH
+
+inputmsg
+defvec@ a # {0.1, 0.9, 0}
+defmat@ A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+defrange x # 0 # 3 # 0.002
+testmsg
+code! {x,y} = IntervalPdfFromPH[a,A,x]
+plot x # y
+assertW AllTrue[y,NonNegative] # The interval pdf is negative!
+assertMP All[y>=0] # The interval pdf is negative!
+assertW Abs[y.x*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002 # The mean computed from the interval pdf does not match the theoretical result!
+assertM Abs[x'*y*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002 # The mean computed from the interval pdf does not match the theoretical result!
+assertP Abs[Dot[y,x]*0.002 - MomentsFromPH[a,A,1][[1]]]<0.002 # The mean computed from the interval pdf does not match the theoretical 
+
+test RandomPH
+
+testmsg
+code!@ {a,A} = RandomPH[3,8,4]
+assert CheckPHRepresentation[a,A] # RandomPH failed to return a valid PH representation!
+assert Max[Abs[MomentsFromPH[a,A,1][[1]]-8]]<10^-14 # RandomPH failed to match the given mean value!
+
+test CheckMERepresentation
+
+inputmsg
+defvec@ a # {-0.2, 0.2}
+defmat@ A # {{1, -1},{1, -2}}
+testmsg
+code!@ flag = CheckMERepresentation[a,A]
+assert flag==False # CheckMERepresentation did not detect that the initial vector is invalid!
+
+inputmsg
+defvec@ a # {-0.2, 0.4, 0.8}
+defmat@ A # {{-2, 0, 3},{0, -1, 1},{ 0, -1, -1}}
+testmsg
+code!@ flag = CheckMERepresentation[a,A]
+assert flag==False # CheckMERepresentation did not detect that the dominant eigenvalue is invalid!
+
+inputmsg
+defvec@ a # {0.2, 0.3, 0.5}
+defmat@ A # {{-1,0,0},{0,-3,2},{0,-2,-3}}
+testmsg
+code!@ flag = CheckMERepresentation[a,A]
+assert flag==True # CheckMERepresentation did not recognize that the given ME representation is valid!
+
+test CheckPHRepresentation
+
+inputmsg
+defvec@ a # {0.2}
+defmat@ A # {{-1, 1},{1, -2}}
+testmsg
+code!@ flag = CheckPHRepresentation[a,A]
+assert flag==False # CheckPHRepresentation did not recognize the wrong input dimensions!
+
+inputmsg
+defvec@ a # {0.2, 0.7}
+defmat@ A # {{-1, 1},{1, -2}}
+testmsg
+code!@ flag = CheckPHRepresentation[a,A]
+assert flag==True # CheckPHRepresentation did not recognize that the given PH representation is valid!
+
+test CheckMEPositiveDensity
+
+inputmsg
+defvec@ a # {0.2, 0.3, 0.5}
+defmat@ A # {{-1,0,0},{0,-3,2},{0,-2,-3}}
+testmsg
+code!@ flag = CheckMEPositiveDensity[a,A]
+assert flag==True # CheckMEPositiveDensity did not recognize that the given ME distribution has positive density!
+
+inputmsg
+defvec@ a # {0.2, 0.3, 0.5}
+defmat@ A # {{-1,0,0},{0,-3,2.9},{0,-2.9,-3}}
+testmsg
+code!@ flag = CheckMEPositiveDensity[a,A]
+assert flag==False # CheckMEPositiveDensity did not recognize that the given ME distribution does not have positive density!
+
+test APHFrom3Moments
+
+inputmsg
+deflist@ moms # {10.0,125.0,8400.0}
+//print "Normalized moments:" # NormMomsFromMoms[moms]
+testmsg
+code!@ {a,A} = APHFrom3Moments[moms]
+//print! "Size of the result:" # Length[a]
+code@ phmoms = MomentsFromPH[a,A,3]
+assert Norm[(NPArray[phmoms]-NPArray[moms])./NPArray[moms]]<10^-12 # APHFrom3Moments failed to match the given moments!
+
+inputmsg
+deflist@ moms # 10.0,525.0,31400.0
+//print "Normalized moments:" # NormMomsFromMoms[moms]
+testmsg
+code!@ {a,A} = APHFrom3Moments[moms]
+//print "Size of the result:" # Length[a]
+code@ phmoms = MomentsFromPH[a,A,3]
+assert Norm[(NPArray[phmoms]-NPArray[moms])./NPArray[moms]]<10^-12 # APHFrom3Moments failed to match the given moments!
+
+test PH2From3Moments
+
+inputmsg
+deflist@ moms # {10.0,160.0,3500.0}
+testmsg
+code!@ {a,A} = PH2From3Moments[moms]
+code@ phmoms = MomentsFromPH[a,A,3]
+assert Norm[(NPArray[phmoms]-NPArray[moms])./NPArray[moms]]<10^-12 # PH2From3Moments failed to match the given moments!
+
+inputmsg
+deflist@ moms # {10.0,260.0,13500.0}
+testmsg
+code!@ {a,A} = PH2From3Moments[moms]
+code@ phmoms = MomentsFromPH[a,A,3]
+assert Norm[(NPArray[phmoms]-NPArray[moms])./NPArray[moms]]<10^-12 # PH2From3Moments failed to match the given moments!
+
+test PH3From5Moments
+
+inputmsg
+defvec a # {0.1, 0.9, 0}
+defmat A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+code@ moms = MomentsFromPH[a,A]
+testmsg
+code!@ {a,A} = PH3From5Moments[moms]
+code@ phmoms = MomentsFromME[a,A,5]
+assert Norm[(NPArray[phmoms]-NPArray[moms])./NPArray[moms]]<10^-12 # PH3From5Moments failed to match the given moments!
+
+inputmsg
+defvec a # {0.2, 0.3, 0.5}
+defmat A # {{-1,0,0},{0,-3,0.5},{0,-0.5,-3}}
+code@ moms = MomentsFromME[a,A]
+testmsg
+code!@ {a,A} = PH3From5Moments[moms]
+code@ phmoms = MomentsFromME[a,A,5]
+assert Norm[(NPArray[phmoms]-NPArray[moms])./NPArray[moms]]<10^-12 # PH3From5Moments failed to match the given moments!
+
+test MEFromMoments
+
+inputmsg
+defvec a # {0.1, 0.9, 0}
+defmat A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+code@ moms = MomentsFromPH[a,A,5]
+testmsg
+code!@ {a,A} = MEFromMoments[moms]
+code@ memoms = MomentsFromME[a,A,5]
+assert Norm[(NPArray[memoms]-NPArray[moms])./NPArray[moms]]<10^-12 # MEFromMoments failed to match the given moments!
+
+test APH2ndMomentLowerBound
+
+inputmsg
+defvar@ mean # 1.9
+defvar@ n # 4
+testmsg
+code!@ mom2 = APH2ndMomentLowerBound[mean,n]
+code! cv2 = mom2/mean^2-1
+print! 1/cv2
+assert Abs[cv2-1/n]<10^-14 # APH2ndMomentLowerBound did not give the expected result!
+
+test APH3rdMomentLowerBound
+
+inputmsg
+defvar@ mean # 1.9
+defvar@ mom2 # 5
+defvar@ n # 3
+testmsg
+code!@ mom3lower = APH3rdMomentLowerBound[mean,mom2,n]
+code!@ mom3upper = APH3rdMomentUpperBound[mean,mom2,n]
+assert mom3upper>mom3lower # Lower bound is larger than the upper bound!
+
+inputmsg
+defvar@ mean # 1.9
+defvar@ mom2 # 5
+defvar@ n # 4
+testmsg
+code!@ mom3lower = APH3rdMomentLowerBound[mean,mom2,n]
+code!@ mom3upper = APH3rdMomentUpperBound[mean,mom2,n]
+assert mom3upper>mom3lower # Lower bound is larger than the upper bound!
+assert mom3upper==Infinity # Upper bound must be infinity with 4 phases!
+
+test APH3rdMomentUpperBound
+
+inputmsg
+defvar@ mean # 1.9
+defvar@ mom2 # 5
+defvar@ n # 3
+testmsg
+code!@ mom3lower = APH3rdMomentLowerBound[mean,mom2,n]
+code!@ mom3upper = APH3rdMomentUpperBound[mean,mom2,n]
+assert mom3upper>mom3lower # Lower bound is larger than the upper bound!
+
+inputmsg
+defvar@ mean # 1.9
+defvar@ mom2 # 5
+defvar@ n # 4
+testmsg
+code!@ mom3lower = APH3rdMomentLowerBound[mean,mom2,n]
+code!@ mom3upper = APH3rdMomentUpperBound[mean,mom2,n]
+assert mom3upper>mom3lower # Lower bound is larger than the upper bound!
+assert mom3upper==Infinity # Upper bound must be infinity with 4 phases!
+
+test CanonicalFromPH2
+
+inputmsg
+defvec@ a # {0.12, 0.88}
+defmat@ A # {{-1.28, 0},{3.94, -3.94}}
+testmsg
+code!@ {b,B} = CanonicalFromPH2[a,A]
+code Cm=SimilarityMatrix[A,B]
+code err1 = Norm[A.Cm-Cm.B]
+code err2 = Norm[a.Cm-b]
+print "Transformation errors:" # Max[err1,err2]
+assert err1<10^-12 && err2<10^-12 # Transformation to canonical PH(2) failed!
+
+test CanonicalFromPH3
+
+inputmsg
+defvec@ a # {0.1, 0.9, 0}
+defmat@ A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+testmsg
+code!@ {b,B} = CanonicalFromPH3[a,A]
+code Cm=SimilarityMatrix[A,B]
+code err1 = Norm[A.Cm-Cm.B]
+code err2 = Norm[a.Cm-b]
+print "Transformation errors:" # Max[err1,err2]
+assert err1<10^-12 && err2<10^-12 # Transformation to canonical PH(3) failed!
+
+test AcyclicPHFromME
+
+inputmsg
+defvec@ a # {-0.4, 1.4, 0.}
+defmat@ A # {{-4., 1., 1.},{0., -2., 1.},{1., 0., -8.}}
+testmsg
+code!@ {b,B} = AcyclicPHFromME[a,A]
+code!@ ma=MomentsFromME[a,A,5]
+code!@ mb=MomentsFromME[b,B,5]
+assert Norm[(NPArray[ma]-NPArray[mb])./NPArray[ma]]<10^-7 # Transformation to acyclic representation failed!
+
+test MonocyclicPHFromME
+
+inputmsg
+defvec@ a # {0.2, 0.3, 0.5}
+defmat@ A # {{-1.,0.,0.},{0.,-3.,2.},{0.,-2.,-3.}}
+testmsg
+code!@ {b,B} = MonocyclicPHFromME[a,A]
+code!@ ma=MomentsFromME[a,A,5]
+code!@ mb=MomentsFromME[b,B,5]
+assert Norm[(NPArray[ma]-NPArray[mb])./NPArray[ma]]<10^-7 # Transformation to monocyclic representation failed!
+
+test PHFromME
+
+inputmsg
+defvec@ a # {-0.4, 1.4}
+defmat@ A # {{-3.8, 2},{2, -9}}
+code!@ flag = CheckMERepresentation[a,A]
+code!@ flag = CheckPHRepresentation[a,A]
+testmsg
+code!@ {b,B} = PHFromME[a,A]
+code!@ flag = CheckPHRepresentation[b,B]
+code Cm=SimilarityMatrix[A,B]
+code err1 = Norm[A.Cm-Cm.B]
+code err2 = Norm[a.Cm-b]
+print "Transformation error:" # Max[err1,err2]
+assert flag && err1<10^-12 && err2<10^-12 # Transformation to PH failed!
+inputmsg
+defvec@ a # {-0.5, 1.5}
+defmat@ A # {{-3.8, 2},{2, -9}}
+code!@ flag = CheckMERepresentation[a,A]
+code!@ flag = CheckPHRepresentation[a,A]
+testmsg
+code!@ {b,B} = PHFromME[a,A]
+code!@ flag = CheckPHRepresentation[b,B]
+code Cm=SimilarityMatrix[A,B]
+code err1 = Norm[A.Cm-Cm.B]
+code err2 = Norm[a.Cm-b]
+print "Transformation error:" # Max[err1,err2]
+assert flag && err1<10^-12 && err2<10^-12 # Transformation to PH failed!
+
+test MEOrder
+
+inputmsg
+defvec@ a # {1./6, 1./6, 1./6, 1./6, 1./6, 1./6}
+defmat@ A # {{-1., 0., 0., 0., 0., 0.},{0.5, -2., 1., 0., 0., 0.},{1., 0., -3., 1., 0., 0.},{1., 0., 1., -4., 1., 0.},{4., 0., 0., 0., -5., 0.},{5., 0., 0., 0., 0., -6.}}
+testmsg
+code!@ co = MEOrder[a,A,"cont"]
+code!@ oo = MEOrder[a,A,"obs"]
+code!@ coo = MEOrder[a,A,"obscont"]
+code!@ mo = MEOrder[a,A,"moment"]
+assert co==2 # Wrong controllability order returned!
+assert oo==6 # Wrong observability order returned!
+assert coo==2 # The minimum of the controllability and observability order is wrong!
+assert mo==2 # Wrong moment order returned!
+inputmsg
+defvec@ a # {2./3, 1./3}
+defmat@ A # {{-1., 1.},{0., -3.}}
+testmsg
+code!@ co = MEOrder[a,A,"cont"]
+code!@ oo = MEOrder[a,A,"obs"]
+code!@ coo = MEOrder[a,A,"obscont"]
+code!@ mo = MEOrder[a,A,"moment"]
+assert co==2 # Wrong controllability order returned!
+assert oo==1 # Wrong observability order returned!
+assert coo==1 # The minimum of the controllability and observability order is wrong!
+assert mo==1 # Wrong moment order returned!
+inputmsg
+defvec b # {0.2, 0.3, 0.5}
+defmat B # {{-1.,0.,0.},{0.,-3.,1.},{0.,-1.,-3.}}
+code!@ {a,A} = MonocyclicPHFromME[b,B]
+testmsg
+code!@ co = MEOrder[a,A,"cont"]
+code!@ oo = MEOrder[a,A,"obs"]
+code!@ coo = MEOrder[a,A,"obscont"]
+code!@ mo = MEOrder[a,A,"moment"]
+assert co==9 # Wrong controllability order returned!
+assert oo==3 # Wrong observability order returned!
+assert coo==3 # The minimum of the controllability and observability order is wrong!
+assert mo==3 # Wrong moment order returned!
+
+test MEOrderFromMoments
+inputmsg
+defvec@ a # {0.1, 0.9, 0}
+defmat@ A # {{-6.2, 2., 0.},{2., -9., 1.},{1., 0., -3.}}
+testmsg
+code!@ moms=MomentsFromME[a,A]
+code!@ mo = MEOrderFromMoments[moms]
+assert mo==3 # Wrong moment order returned!
+inputmsg
+defvec@ b # {0.2, 0.3, 0.5}
+defmat@ B # {{-1.,0.,0.},{0.,-3.,2.},{0.,-2.,-3.}}
+code! {a,A} = MonocyclicPHFromME[b,B]
+code!@ moms = MomentsFromME[a,A]
+testmsg
+code!@ mo = MEOrderFromMoments[moms]
+assert mo==3 # Wrong moment order returned!
+
+test MinimalRepFromME
+
+inputmsg
+defvec@ a # {1./6, 1./6, 1./6, 1./6, 1./6, 1./6}
+defmat@ A # {{-1., 0., 0., 0., 0., 0.},{0.5, -2., 1., 0., 0., 0.},{1., 0., -3., 1., 0., 0.},{1., 0., 1., -4., 1., 0.},{4., 0., 0., 0., -5., 0.},{5., 0., 0., 0., 0., -6.}}
+testmsg
+code!@ {b,B} = MinimalRepFromME[a,A,"cont"]
+assert Length[b]==2 # Non-minimal representation returned based on controllability!
+code!@ {b,B} = MinimalRepFromME[a,A,"obs"]
+assert Length[b]==6 # Non-minimal representation returned based on observability!
+code!@ {b,B} = MinimalRepFromME[a,A,"obscont"]
+assert Length[b]==2 # Non-minimal representation returned based on observability and controllability!
+code!@ {b,B} = MinimalRepFromME[a,A,"moment"]
+assert Length[b]==2 # Non-minimal representation returned based on the moments!
+inputmsg
+defvec@ a # {2./3, 1./3}
+defmat@ A # {{-1., 1.},{0., -3.}}
+testmsg
+code!@ {b,B} = MinimalRepFromME[a,A,"cont"]
+assert Length[b]==2 # Non-minimal representation returned based on controllability!
+code!@ {b,B} = MinimalRepFromME[a,A,"obs"]
+assert Length[b]==1 # Non-minimal representation returned based on observability!
+code!@ {b,B} = MinimalRepFromME[a,A,"obscont"]
+assert Length[b]==1 # Non-minimal representation returned based on observability and controllability!
+code!@ {b,B} = MinimalRepFromME[a,A,"moment"]
+assert Length[b]==1 # Non-minimal representation returned based on the moments!
+inputmsg
+defvec b # {0.2, 0.3, 0.5}
+defmat B # {{-1.,0.,0.},{0.,-3.,1.},{0.,-1.,-3.}}
+code!@ {a,A} = MonocyclicPHFromME[b,B]
+testmsg
+code!@ {b,B} = MinimalRepFromME[a,A,"cont"]
+assert Length[b]==Length[a] # Non-minimal representation returned based on controllability!
+code!@ {b,B} = MinimalRepFromME[a,A,"obs"]
+code Cm=SimilarityMatrix[B,A]
+code err1 = Norm[B.Cm-Cm.A]
+code err2 = Norm[b.Cm-a]
+print "Transformation error:" # Max[err1,err2]
+assert Length[b]==3 && err1+err2<10^-12 # Non-minimal representation returned based on observability!
+code!@ {b,B} = MinimalRepFromME[a,A,"obscont"]
+code Cm=SimilarityMatrix[B,A]
+code err1 = Norm[B.Cm-Cm.A]
+code err2 = Norm[b.Cm-a]
+print "Transformation error:" # Max[err1,err2]
+assert Length[b]==3 && err1+err2<10^-12 # Non-minimal representation returned based on observability and controllability!
+code!@ {b,B} = MinimalRepFromME[a,A,"moment"]
+code Cm=SimilarityMatrix[B,A]
+code err1 = Norm[B.Cm-Cm.A]
+code err2 = Norm[b.Cm-a]
+print "Transformation error:" # Max[err1,err2]
+assert Length[b]==3 && err1+err2<10^-12 # Non-minimal representation returned based on the moments!
+
+test SamplesFromPH
+
+inputmsg
+defvec@ a # {0.1, 0.9, 0}
+defmat@ A # {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}}
+testmsg
+code! x = SamplesFromPH[a,A,1000]
+//code!@ mt = MarginalMomentsFromTrace[x,3]
+code!@ mp = MomentsFromPH[a,A,3]
+

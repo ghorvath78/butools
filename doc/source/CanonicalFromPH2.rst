@@ -55,8 +55,24 @@ butools.ph.CanonicalFromPH2
     >>> norm(A*C-C*B)
       3.8374e-15    
     >>> norm(a*C-b)
-      1.8501e-15 
+      1.8501e-15       
       
+    For Mathematica:
+    
+    >>> a={0.12, 0.88};
+    >>> A={{-1.28, 0},{3.94, -3.94}};
+    >>> {b,B}=CanonicalFromPH2[a,A];
+    >>> Print[b];
+    {0.961015,0.0389848}
+    >>> Print[B];
+    {{-1.28,1.28},
+     {0,-3.94}}
+    >>> Cm=SimilarityMatrix[A,B];
+    >>> Norm[A.Cm-Cm.B]
+    1.88119*10^-15
+    >>> Norm[a.Cm-b]
+    1.17109*10^-15
+    
     For Python/Numpy:
     
     >>> a=ml.matrix([[0.12, 0.88]])

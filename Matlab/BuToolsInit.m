@@ -3,7 +3,7 @@ function BuToolsInit (verbose, checkInput, checkPrecision)
     fname = mfilename('fullpath');
     [pathstr, ~, ~] = fileparts(fname);
 
-    disp('Butools V2.0')
+    disp('<strong>Butools V2.0</strong>')
     
     packages = {'utils', 'mc', 'moments', 'reptrans', 'trace', 'ph', 'dph', 'map', 'dmap', 'mam', 'queues', 'fitting'};
     

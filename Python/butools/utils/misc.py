@@ -74,3 +74,12 @@ def SumMatrixList(C):
     for i in range(len(C)):
         sumC += C[i]
     return sumC
+
+def Length(v):
+    if isinstance(v,np.ndarray):
+        if v.shape[0]==1:
+            return v.shape[1]
+        else:
+            return v.shape[0]
+    else:
+        return len(v)
