@@ -5,17 +5,17 @@
 *)
 
 BeginPackage["BuTools`Moments`"];
-NormMomsFromMoms::usage = "nm = NormMomsFromMoms[m]: Returns the normalized moments given the raw moments.";
-MomsFromNormMoms::usage = "m = MomsFromNormMoms[nm]: Returns the raw moments given the normalized moments.";
-ReducedMomsFromMoms::usage = "rm = ReducedMomsFromMoms[m]: Returns the reduced moments given the raw moments.";
-MomsFromReducedMoms::usage = "m = MomsFromReducedMoms[rm]: Returns the raw moments given the reduced moments.";
-FactorialMomsFromMoms::usage = "fm = FactorialMomsFromMoms[m]: Returns the factorial moments given the raw moments.";
-MomsFromFactorialMoms::usage = "m = MomsFromFactorialMoms[fm]: Returns the raw moments given the factorial moments.";
-HankelMomsFromMoms::usage = "hm = HankelMomsFromMoms[m]: Returns the Hankel moments given the raw moments.";
-MomsFromHankelMoms::usage = "m = MomsFromHankelMoms[hm]: Returns the raw moments given the Hankel moments.";
-JFactorialMomsFromJMoms::usage = "jfm = JFactorialMomsFromJMoms[jm]: Returns the joint factorial moments given the joint raw moments.";
-JMomsFromJFactorialMoms::usage = "jm = JMomsFromJFactorialMoms[jfm]: Returns the joint raw moments given the joint factorial moments.";
-CheckMoments::usage="r = CheckMoments[m, prec]: Checks if the given moment sequence belongs to a distribution with support (0,inf).";
+NormMomsFromMoms::usage = "nm = NormMomsFromMoms[m]: Returns the normalized moments given the raw moments";
+MomsFromNormMoms::usage = "m = MomsFromNormMoms[nm]: Returns the raw moments given the normalized moments";
+ReducedMomsFromMoms::usage = "rm = ReducedMomsFromMoms[m]: Returns the reduced moments given the raw moments";
+MomsFromReducedMoms::usage = "m = MomsFromReducedMoms[rm]: Returns the raw moments given the reduced moments";
+FactorialMomsFromMoms::usage = "fm = FactorialMomsFromMoms[m]: Returns the factorial moments given the raw moments";
+MomsFromFactorialMoms::usage = "m = MomsFromFactorialMoms[fm]: Returns the raw moments given the factorial moments";
+HankelMomsFromMoms::usage = "hm = HankelMomsFromMoms[m]: Returns the Hankel moments given the raw moments";
+MomsFromHankelMoms::usage = "m = MomsFromHankelMoms[hm]: Returns the raw moments given the Hankel moments";
+JFactorialMomsFromJMoms::usage = "jfm = JFactorialMomsFromJMoms[jm]: Returns the joint factorial moments given the joint raw moments";
+JMomsFromJFactorialMoms::usage = "jm = JMomsFromJFactorialMoms[jfm]: Returns the joint raw moments given the joint factorial moments";
+CheckMoments::usage = "r = CheckMoments[m, prec]: Checks if the given moment sequence belongs to a distribution with support (0,inf)";
 TestMomentsPackage::usage = "TestMomentsPackage[] : Executes various tests to check the functions of the moments package";
 
 

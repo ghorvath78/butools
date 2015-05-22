@@ -1,4 +1,4 @@
-%  cdf = CdfFromME(alpha, A, x, prec)
+%  cdf = CdfFromME(alpha, A, x)
 %  
 %  Returns the cummulative distribution function of a
 %  matrix-exponential distribution.
@@ -13,9 +13,6 @@
 %      distribution.
 %  x : vector of doubles
 %      The cdf will be computed at these points
-%  prec : double, optional
-%      Numerical precision to check if the input ME 
-%      distribution is valid. The default value is 1e-14.
 %  
 %  Returns
 %  -------

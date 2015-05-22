@@ -82,6 +82,46 @@ def processPythonDoc(fun, btModule, doc):
     if not found:
         print ("  Can not find the start of the function in the python code!")
 
+def processMathematicaDoc(fun, btModule, mathematicaSignature):
+    
+    # opern package file
+    oneLineDescr = None
+    with open("source/"+btModule+".rst", "rt") as f:
+        lines = f.readlines()
+        l = 0
+        while l<len(lines):
+            if re.match(".*:py:func:`"+fun, lines[l]):
+               oneLineDescr = re.match(".*- (.*)",lines[l+1]).groups()[0]
+               break
+            l+=1
+    
+    # find corresponding mathematica file and update the usage string
+    if oneLineDescr!=None:    
+        dir = "../Mathematica/BuTools"
+        if not os.path.exists (dir):
+            print("  Can not find the required mathematica directory!")
+            return
+        mfiles = [name for name in os.listdir(dir) if name.lower()==btModule+".m"]
+        if len(mfiles)==0:
+            print("  Can not find mathematica file for package "+btModule)
+            return
+        fullName = dir+"/"+mfiles[0]
+        found = False    
+        nlines=[]
+        with open(fullName, "rt") as f:
+            lines = f.readlines()
+            for l in lines:
+                if l.lstrip().startswith(fun+"::usage"):
+                    nlines.append(fun+'::usage = "{0}: {1}";\n'.format(mathematicaSignature, oneLineDescr))
+                    found = True
+                else:
+                    nlines.append(l)
+        if not found:
+            print("   Can not file usage line for function "+fun)
+            return
+        else:
+            with open(fullName, "wt") as o:
+                o.writelines(nlines)
 
 rstfiles = [os.path.splitext(name)[0] for name in os.listdir('source') if name.endswith('.rst') and name[0].isupper()]
 
@@ -91,6 +131,7 @@ for fun in rstfiles:
         btModule = None
         hasMatlab = False
         hasPython = False
+        hasMathematica = False
         # parse rst file
         lines = f.readlines()
         l = 0
@@ -100,9 +141,12 @@ for fun in rstfiles:
                 btModule = sLine.split(" ")[2].split(".")[1]
             elif sLine.startswith("* - Matlab:"):
                 hasMatlab = True
-                signature = lines[l+1].split("`")[1]
+                matlabSignature = lines[l+1].split("`")[1]
             elif sLine.startswith("* - Python/Numpy:"):
                 hasPython = True
+            elif sLine.startswith("* - Mathematica:"):
+                hasMathematica = True
+                mathematicaSignature = lines[l+1].split("`")[1]
             elif len(sLine)>0 and sLine[0].isalpha() and l>0:
                 # copy all lines to doc, till the examples
                 doc = []
@@ -112,8 +156,8 @@ for fun in rstfiles:
                     else:
                         doc.append(lines[l][4:])
                     l+=1
-                break;
-            l+=1;
+                break
+            l+=1
         # remove last empty lines
         while len(doc)>0 and doc[-1]=="\n":
             doc.pop()
@@ -121,9 +165,12 @@ for fun in rstfiles:
         doc = [d.replace(":math:","") for d in doc]           
         # write documentation to Matlab files
         if hasMatlab:
-            processMatlabDoc(fun, btModule, signature, doc)
+            processMatlabDoc(fun, btModule, matlabSignature, doc)
         # write documentation to Python files
         if hasPython:
             processPythonDoc(fun, btModule, doc)
+        # write documentation to Mathematica files
+        if hasMathematica:
+            processMathematicaDoc(fun, btModule, mathematicaSignature)
                 
                 

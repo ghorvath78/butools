@@ -196,9 +196,6 @@ def CdfFromME (alpha, A, x):
         distribution.
     x : vector of doubles
         The cdf will be computed at these points
-    prec : double, optional
-        Numerical precision to check if the input ME 
-        distribution is valid. The default value is 1e-14.
     
     Returns
     -------
@@ -226,9 +223,6 @@ def CdfFromPH (alpha, A, x):
         distribution.
     x : vector of doubles
         The cdf will be computed at these points
-    prec : double, optional
-        Numerical precision to check if the input PH 
-        distribution is valid. The default value is 1e-14.
     
     Returns
     -------

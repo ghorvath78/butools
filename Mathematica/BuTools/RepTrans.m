@@ -5,13 +5,13 @@
 *)
 
 BeginPackage["BuTools`RepTrans`"];
-TransformToAcyclic::usage = "B = TransformToAcyclic[A, maxSize, precision]: Transforms an arbitrary matrix to a Markovian bi-diagonal matrix.";
-TransformToMonocyclic::usage = "B = TransformToMonocyclic[A, maxSize, precision]: Transforms an arbitrary matrix to a Markovian monocyclic matrix.";
-ExtendToMarkovian::usage = "{beta, B} = ExtendToMarkovian[alpha, A, maxSize, precision]: Appends an appropriate Erlang tail to the representation that makes the initial vector Markovian.";
-FindMarkovianRepresentation::usage = "mrep = FindMarkovianRepresentation[rep, transfun, evalfunc, precision]: Obtains a Markovian representation from a non-Markovian one, with keeping the size the same.";
-SimilarityMatrix::usage = "B = SimilarityMatrix[A1, A2]: Returns the matrix that transforms A1 to A2.";
-SimilarityMatrixForVectors::usage = "B = SimilarityMatrixForVectors[vecA, vecB]: Returns the similarity transformation matrix that transforms a given column a to a column vector b.";
-MStaircase::usage = "{B, n} = MStaircase[X, Z, precision]: Computes a smaller representation of RAP using staircase algorithm.";
+TransformToAcyclic::usage = "B = TransformToAcyclic[A, maxSize, precision]: Transforms an arbitrary matrix to a Markovian bi-diagonal matrix";
+TransformToMonocyclic::usage = "B = TransformToMonocyclic[A, maxSize, precision]: Transforms an arbitrary matrix to a Markovian monocyclic matrix";
+ExtendToMarkovian::usage = "{beta, B} = ExtendToMarkovian[alpha, A, maxSize, precision]: Appends an appropriate Erlang tail to the representation that makes the initial vector Markovian";
+FindMarkovianRepresentation::usage = "mrep = FindMarkovianRepresentation[rep, transfun, evalfunc, precision]: Obtains a Markovian representation from a non-Markovian one, with keeping the size the same";
+SimilarityMatrix::usage = "B = SimilarityMatrix[A1, A2]: Returns the matrix that transforms A1 to A2";
+SimilarityMatrixForVectors::usage = "B = SimilarityMatrixForVectors[vecA, vecB]: Returns the similarity transformation matrix that transforms a given column a to a column vector b";
+MStaircase::usage = "{B, n} = MStaircase[X, Z, precision]: Computes a smaller representation of RAP using staircase algorithm";
 TestRepTransPackage::usage = "TestRepTransPackage[] : Executes various tests to check the functions of the RepTrans package.";
 
 

@@ -1,4 +1,4 @@
-%  cdf = CdfFromPH(alpha, A, x, prec)
+%  cdf = CdfFromPH(alpha, A, x)
 %  
 %  Returns the cummulative distribution function of a
 %  continuous phase-type distribution.
@@ -13,9 +13,6 @@
 %      distribution.
 %  x : vector of doubles
 %      The cdf will be computed at these points
-%  prec : double, optional
-%      Numerical precision to check if the input PH 
-%      distribution is valid. The default value is 1e-14.
 %  
 %  Returns
 %  -------

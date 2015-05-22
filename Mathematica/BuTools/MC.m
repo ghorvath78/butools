@@ -5,13 +5,13 @@
 *)
 
 BeginPackage["BuTools`MC`"];
-CTMCSolve::usage = "pi = CTMCSolve[Q]: Returns the steady state solution of a continuous time Markov chain.";
-DTMCSolve::usage = "pi = DTMCSolve[Q]: Returns the steady state solution of a discrete time Markov chain.";
-CRPSolve::usage = "pi = CRPSolve[Q]: Returns the steady state solution of a continuous time rational process.";
+CTMCSolve::usage = "pi = CTMCSolve[Q]: Returns the steady state solution of a continuous time Markov chain";
+DTMCSolve::usage = "pi = DTMCSolve[Q]: Returns the steady state solution of a discrete time Markov chain";
+CRPSolve::usage = "pi = CRPSolve[Q]: Returns the steady state solution of a continuous time rational process";
 DRPSolve::usage = "pi = DRPSolve[Q]: Returns the steady state solution of a discrete time rational process.";
-CheckGenerator::usage = "r = CheckGenerator[Q, transient, prec]: Checks if a matrix is a valid generator of a CTMC.";
-CheckProbMatrix::usage = "r = CheckProbMatrix[P, transient, prec]: Checks if a matrix is a valid transition probability matrix of a DTMC.";
-CheckProbVector::usage = "r = CheckProbVector[pi, sub, prec]: Checks if a vector is a valid probability vector.";
+CheckGenerator::usage = "r = CheckGenerator[Q, transient, prec]: Checks if a matrix is a valid generator of a CTMC";
+CheckProbMatrix::usage = "r = CheckProbMatrix[P, transient, prec]: Checks if a matrix is a valid transition probability matrix of a DTMC";
+CheckProbVector::usage = "r = CheckProbVector[pi, sub, prec]: Checks if a vector is a valid probability vector";
 TestMCPackage::usage = "TestMCPackage[] : Executes various tests to check the functions of the MC package";
 
 

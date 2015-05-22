@@ -5,7 +5,7 @@
 *)
 
 BeginPackage["BuTools`PH`"];
-AcyclicPHFromME::usage = "{beta, B} = AcyclicPHFromME[alpha, A, maxSize, precision]: Transforms an arbitrary matrix-exponential representation to an acyclic phase-type representation.";
+AcyclicPHFromME::usage = "{beta, B} = AcyclicPHFromME[alpha, A, maxSize, precision]: Transforms an arbitrary matrix-exponential representation to an acyclic phase-type representation. ";
 APH2ndMomentLowerBound::usage = "m2 = APH2ndMomentLowerBound[m1, n]: Returns the lower bound of the second moment of acyclic phase-type (APH) distributions of order n.";
 APH3rdMomentLowerBound::usage = "m3 = APH3rdMomentLowerBound[m1, m2, n]: Returns the lower bound of the third moment of acyclic phase-type (APH) distributions of order n.";
 APH3rdMomentUpperBound::usage = "m3 = APH3rdMomentUpperBound[m1, m2, n]: Returns the upper bound of the third moment of acyclic phase-type (APH) distributions of order n.";
@@ -15,24 +15,24 @@ CanonicalFromPH2::usage = "{beta, B} = CanonicalFromPH2[alpha, A, prec]: Returns
 CanonicalFromPH3::usage = "{beta, B} = CanonicalFromPH3[alpha, A, prec]: Returns the canonical form of an order-3 phase-type distribution.";
 CdfFromME::usage = "cdf = CdfFromME[alpha, A, x]: Returns the cummulative distribution function of a matrix-exponential distribution.";
 CdfFromPH::usage = "cdf = CdfFromPH[alpha, A, x]: Returns the cummulative distribution function of a continuous phase-type distribution.";
-CheckMEPositiveDensity::usage = ": Checks if the given matrix-exponential distribution has positive density.";
-CheckMERepresentation::usage = ": Checks if the given vector and matrix define a valid matrix-exponential representation.";
-CheckPHRepresentation::usage = ": Checks if the given vector and matrix define a valid phase-type representation.";
-IntervalPdfFromPH::usage = ": Returns the approximate probability density function of a continuous phase-type distribution, based on the probability of falling into intervals.";
-MEFromMoments::usage = ": Creates a matrix-exponential distribution that has the same moments as given.";
-MEOrder::usage = ": Returns the order of the ME distribution (which is not necessarily equal to the size of the representation).";
-MEOrderFromMoments::usage = ": Returns the order of ME distribution that can realize the given moments.";
-MinimalRepFromME::usage = ": Returns the minimal representation of the given ME distribution.";
-MomentsFromME::usage = ": Returns the moments of a matrix-exponential distribution.";
-MomentsFromPH::usage = ": Returns the moments of a continuous phase-type distribution.";
-MonocyclicPHFromME::usage = ": Transforms an arbitrary matrix-exponential representation to a Markovian monocyclic representation.";
-PdfFromME::usage = ": Returns the probability density function of a matrix-exponential distribution.";
-PdfFromPH::usage = ": Returns the probability density function of a continuous phase-type distribution.";
-PH2From3Moments::usage = ": Returns a PH(2) which has the same 3 moments as given.";
-PH3From5Moments::usage = ": Returns a PH(3) which has the same 5 moments as given.";
-PHFromME::usage = ": Obtains a Markovian representation of a matrix exponential distribution of the same size, if possible.";
-RandomPH::usage = ": Returns a random phase-type distribution with a given order.";
-SamplesFromPH::usage = ": Generates random samples from a phase-type distribution.";
+CheckMEPositiveDensity::usage = "r = CheckMEPositiveDensity[alpha, A, maxSize, prec]: Checks if the given matrix-exponential distribution has positive density.";
+CheckMERepresentation::usage = "r = CheckMERepresentation[alpha, A, prec]: Checks if the given vector and matrix define a valid matrix-exponential representation.";
+CheckPHRepresentation::usage = "r = CheckPHRepresentation[alpha, A, prec]: Checks if the given vector and matrix define a valid phase-type representation.";
+IntervalPdfFromPH::usage = "{x,y} = IntervalPdfFromPH[alpha, A, intBounds, prec]: Returns the approximate probability density function of a continuous phase-type distribution, based on the probability of falling into intervals.";
+MEFromMoments::usage = "{alpha, A} = MEFromMoments[moms]: Creates a matrix-exponential distribution that has the same moments as given.     ";
+MEOrder::usage = "order = MEOrder[alpha, A, kind, prec]: Returns the order of the ME distribution (which is not necessarily equal to the size of the representation).";
+MEOrderFromMoments::usage = "order = MEOrderFromMoments[moms, prec]: Returns the order of ME distribution that can realize the given moments.";
+MinimalRepFromME::usage = "{beta, B} = MinimalRepFromME[alpha, A, how, precision]: Returns the minimal representation of the given ME distribution.";
+MomentsFromME::usage = "moms = MomentsFromME[alpha, A, K, prec]: Returns the moments of a matrix-exponential distribution.";
+MomentsFromPH::usage = "moms = MomentsFromPH[alpha, A, K, prec]: Returns the moments of a continuous phase-type distribution.";
+MonocyclicPHFromME::usage = "{beta, B} = MonocyclicPHFromME[alpha, A, maxSize, precision]: Transforms an arbitrary matrix-exponential representation to a Markovian monocyclic representation.";
+PdfFromME::usage = "pdf = PdfFromME[alpha, A, x, prec]: Returns the probability density function of a matrix-exponential distribution.";
+PdfFromPH::usage = "pdf = PdfFromPH[alpha, A, x, prec]: Returns the probability density function of a continuous phase-type distribution.";
+PH2From3Moments::usage = "{alpha, A} = PH2From3Moments[moms, prec]: Returns a PH(2) which has the same 3 moments as given.";
+PH3From5Moments::usage = "{alpha, A} = PH3From5Moments[moms]: Returns a PH(3) which has the same 5 moments as given.";
+PHFromME::usage = "{beta, B} = PHFromME[alpha, A, precision]: Obtains a Markovian representation of a matrix exponential distribution of the same size, if possible.";
+RandomPH::usage = "{alpha, A} = RandomPH[order, mean, zeroEntries, maxTrials, prec]: Returns a random phase-type distribution with a given order.";
+SamplesFromPH::usage = "x = SamplesFromPH[alpha, A, K, prec]: Generates random samples from a phase-type distribution.";
 TestPHPackage::usage = "TestPHPackage[] : Executes various tests to check the functions of the PH package.";
 
 

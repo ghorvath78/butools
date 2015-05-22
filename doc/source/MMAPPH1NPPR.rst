@@ -84,7 +84,7 @@ butools.queues.MMAPPH1NPPR
            priority queue", European Journal of Operational 
            Research, 2015, to appear.
            doi:10.1016/j.ejor.2015.03.004
-   
+
     Examples
     ========    
     For MATLAB:
@@ -116,9 +116,9 @@ butools.queues.MMAPPH1NPPR
              1022       7.9555       8.1379
             95668       82.606       68.996
     >>> plot(qld)
-  
+
     For Python/Numpy:
-    
+
     >>> D0=ml.matrix([[-5.49, 0, 1.15, 0], [ 0, -2.29, 0, 0], [ 0, 0.08, -1.32, 0], [ 0.72, 1.17, 0.7, -7.07]])
     >>> D1=ml.matrix([[0.25, 0.38, 0.64, 0], [ 0, 0, 0, 1.09], [ 0, 1.24, 0, 0], [ 0.37, 0, 0, 0]])
     >>> D2=ml.matrix([[0.3, 1.0, 0, 0.48], [ 0, 0.2, 0, 0], [ 0, 0, 0, 0], [ 0.61, 0, 0, 0.2]])
