@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="next" title="butools.fitting.PHFromTrace" href="PHFromTrace.html" >
@@ -78,7 +78,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Tools for fitting measurement traces (<tt class="docutils literal"><span class="pre">butools.fitting</span></tt>)</a><ul>
+<li><a class="reference internal" href="#">Tools for fitting measurement traces (<code class="docutils literal"><span class="pre">butools.fitting</span></code>)</a><ul>
 <li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#functions-for-fitting">Functions for fitting</a></li>
 <li><a class="reference internal" href="#functions-for-evaluating-the-results-of-fitting">Functions for evaluating the results of fitting</a></li>
@@ -101,8 +101,8 @@
           <div class="body" id="spc-section-body">
             
   <div class="section" id="tools-for-fitting-measurement-traces-butools-fitting">
-<h1>Tools for fitting measurement traces (<tt class="xref py py-mod docutils literal"><span class="pre">butools.fitting</span></tt>)<a class="headerlink" href="#tools-for-fitting-measurement-traces-butools-fitting" title="Permalink to this headline">¶</a></h1>
-<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+<h1>Tools for fitting measurement traces (<code class="xref py py-mod docutils literal"><span class="pre">butools.fitting</span></code>)<a class="headerlink" href="#tools-for-fitting-measurement-traces-butools-fitting" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <code class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></code>
 script, or execute</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -110,13 +110,13 @@ script, or execute</p>
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/fitting')</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">addpath('butools/fitting')</span></code></td>
 <td>in Matlab,</td>
 </tr>
-<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`Fitting&quot;</span></tt></td>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`Fitting&quot;</span></code></td>
 <td>in Mathematica,</td>
 </tr>
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.fitting</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.fitting</span> <span class="pre">import</span> <span class="pre">*</span></code></td>
 <td>in Python/Numpy.</td>
 </tr>
 </tbody>
@@ -140,10 +140,10 @@ The efficient calculation of the log-likelihood is also supported.</p>
 <col width="86%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="PHFromTrace.html#butools.fitting.PHFromTrace" title="butools.fitting.PHFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">PHFromTrace</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="PHFromTrace.html#butools.fitting.PHFromTrace" title="butools.fitting.PHFromTrace"><code class="xref py py-func docutils literal"><span class="pre">PHFromTrace</span></code></a></td>
 <td>Performs PH distribution fitting using the EM algorithm</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="MAPFromTrace.html#butools.fitting.MAPFromTrace" title="butools.fitting.MAPFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">MAPFromTrace</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="MAPFromTrace.html#butools.fitting.MAPFromTrace" title="butools.fitting.MAPFromTrace"><code class="xref py py-func docutils literal"><span class="pre">MAPFromTrace</span></code></a></td>
 <td>Performs MAP fitting using the EM algorithm</td>
 </tr>
 </tbody>
@@ -157,19 +157,19 @@ The efficient calculation of the log-likelihood is also supported.</p>
 <col width="86%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="SquaredDifference.html#butools.fitting.SquaredDifference" title="butools.fitting.SquaredDifference"><tt class="xref py py-func docutils literal"><span class="pre">SquaredDifference</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="SquaredDifference.html#butools.fitting.SquaredDifference" title="butools.fitting.SquaredDifference"><code class="xref py py-func docutils literal"><span class="pre">SquaredDifference</span></code></a></td>
 <td>Returns the squared difference between two vectors</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="RelativeEntropy.html#butools.fitting.RelativeEntropy" title="butools.fitting.RelativeEntropy"><tt class="xref py py-func docutils literal"><span class="pre">RelativeEntropy</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="RelativeEntropy.html#butools.fitting.RelativeEntropy" title="butools.fitting.RelativeEntropy"><code class="xref py py-func docutils literal"><span class="pre">RelativeEntropy</span></code></a></td>
 <td>Returns the relative entropy (aka Kullback–Leibler divergence) of two vectors</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="EmpiricalSquaredDifference.html#butools.fitting.EmpiricalSquaredDifference" title="butools.fitting.EmpiricalSquaredDifference"><tt class="xref py py-func docutils literal"><span class="pre">EmpiricalSquaredDifference</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="EmpiricalSquaredDifference.html#butools.fitting.EmpiricalSquaredDifference" title="butools.fitting.EmpiricalSquaredDifference"><code class="xref py py-func docutils literal"><span class="pre">EmpiricalSquaredDifference</span></code></a></td>
 <td>Returns the squared difference of two continuous functions given by samples and the bounds of the corresponding intervalls</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="EmpiricalRelativeEntropy.html#butools.fitting.EmpiricalRelativeEntropy" title="butools.fitting.EmpiricalRelativeEntropy"><tt class="xref py py-func docutils literal"><span class="pre">EmpiricalRelativeEntropy</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="EmpiricalRelativeEntropy.html#butools.fitting.EmpiricalRelativeEntropy" title="butools.fitting.EmpiricalRelativeEntropy"><code class="xref py py-func docutils literal"><span class="pre">EmpiricalRelativeEntropy</span></code></a></td>
 <td>Returns the relative entropy (aka Kullback–Leibler divergence) of two continuous functions given by samples and the bounds of the corresponding intervalls</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="LikelihoodFromTrace.html#butools.fitting.LikelihoodFromTrace" title="butools.fitting.LikelihoodFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">LikelihoodFromTrace</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="LikelihoodFromTrace.html#butools.fitting.LikelihoodFromTrace" title="butools.fitting.LikelihoodFromTrace"><code class="xref py py-func docutils literal"><span class="pre">LikelihoodFromTrace</span></code></a></td>
 <td>Evaluates the log-likelihood of a trace with the given PH distribution or MAP</td>
 </tr>
 </tbody>
@@ -200,10 +200,10 @@ The efficient calculation of the log-likelihood is also supported.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

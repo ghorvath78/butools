@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="next" title="butools.reptrans.SimilarityMatrix" href="SimilarityMatrix.html" >
@@ -78,7 +78,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Representation Transformation Tools (<tt class="docutils literal"><span class="pre">butools.reptrans</span></tt>)</a><ul>
+<li><a class="reference internal" href="#">Representation Transformation Tools (<code class="docutils literal"><span class="pre">butools.reptrans</span></code>)</a><ul>
 <li><a class="reference internal" href="#tools-for-representation-transformation">Tools for representation transformation</a></li>
 </ul>
 </li>
@@ -99,8 +99,8 @@
           <div class="body" id="spc-section-body">
             
   <div class="section" id="representation-transformation-tools-butools-reptrans">
-<h1>Representation Transformation Tools (<tt class="xref py py-mod docutils literal"><span class="pre">butools.reptrans</span></tt>)<a class="headerlink" href="#representation-transformation-tools-butools-reptrans" title="Permalink to this headline">¶</a></h1>
-<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+<h1>Representation Transformation Tools (<code class="xref py py-mod docutils literal"><span class="pre">butools.reptrans</span></code>)<a class="headerlink" href="#representation-transformation-tools-butools-reptrans" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <code class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></code>
 script, or execute</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -108,13 +108,13 @@ script, or execute</p>
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/reptrans')</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">addpath('butools/reptrans')</span></code></td>
 <td>in Matlab,</td>
 </tr>
-<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`RepTrans&quot;</span></tt></td>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`RepTrans&quot;</span></code></td>
 <td>in Mathematica,</td>
 </tr>
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.reptrans</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.reptrans</span> <span class="pre">import</span> <span class="pre">*</span></code></td>
 <td>in Python/Numpy.</td>
 </tr>
 </tbody>
@@ -127,25 +127,25 @@ script, or execute</p>
 <col width="86%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="SimilarityMatrix.html#butools.reptrans.SimilarityMatrix" title="butools.reptrans.SimilarityMatrix"><tt class="xref py py-func docutils literal"><span class="pre">SimilarityMatrix</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="SimilarityMatrix.html#butools.reptrans.SimilarityMatrix" title="butools.reptrans.SimilarityMatrix"><code class="xref py py-func docutils literal"><span class="pre">SimilarityMatrix</span></code></a></td>
 <td>Returns the matrix that transforms A1 to A2</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="SimilarityMatrixForVectors.html#butools.reptrans.SimilarityMatrixForVectors" title="butools.reptrans.SimilarityMatrixForVectors"><tt class="xref py py-func docutils literal"><span class="pre">SimilarityMatrixForVectors</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="SimilarityMatrixForVectors.html#butools.reptrans.SimilarityMatrixForVectors" title="butools.reptrans.SimilarityMatrixForVectors"><code class="xref py py-func docutils literal"><span class="pre">SimilarityMatrixForVectors</span></code></a></td>
 <td>Returns the similarity transformation matrix that transforms a given column a to a column vector b</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="TransformToMonocyclic.html#butools.reptrans.TransformToMonocyclic" title="butools.reptrans.TransformToMonocyclic"><tt class="xref py py-func docutils literal"><span class="pre">TransformToMonocyclic</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="TransformToMonocyclic.html#butools.reptrans.TransformToMonocyclic" title="butools.reptrans.TransformToMonocyclic"><code class="xref py py-func docutils literal"><span class="pre">TransformToMonocyclic</span></code></a></td>
 <td>Transforms an arbitrary matrix to a Markovian monocyclic matrix</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="TransformToAcyclic.html#butools.reptrans.TransformToAcyclic" title="butools.reptrans.TransformToAcyclic"><tt class="xref py py-func docutils literal"><span class="pre">TransformToAcyclic</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="TransformToAcyclic.html#butools.reptrans.TransformToAcyclic" title="butools.reptrans.TransformToAcyclic"><code class="xref py py-func docutils literal"><span class="pre">TransformToAcyclic</span></code></a></td>
 <td>Transforms an arbitrary matrix to a Markovian bi-diagonal matrix</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="ExtendToMarkovian.html#butools.reptrans.ExtendToMarkovian" title="butools.reptrans.ExtendToMarkovian"><tt class="xref py py-func docutils literal"><span class="pre">ExtendToMarkovian</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="ExtendToMarkovian.html#butools.reptrans.ExtendToMarkovian" title="butools.reptrans.ExtendToMarkovian"><code class="xref py py-func docutils literal"><span class="pre">ExtendToMarkovian</span></code></a></td>
 <td>Appends an appropriate Erlang tail to the representation that makes the initial vector Markovian</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="FindMarkovianRepresentation.html#butools.reptrans.FindMarkovianRepresentation" title="butools.reptrans.FindMarkovianRepresentation"><tt class="xref py py-func docutils literal"><span class="pre">FindMarkovianRepresentation</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="FindMarkovianRepresentation.html#butools.reptrans.FindMarkovianRepresentation" title="butools.reptrans.FindMarkovianRepresentation"><code class="xref py py-func docutils literal"><span class="pre">FindMarkovianRepresentation</span></code></a></td>
 <td>Obtains a Markovian representation from a non-Markovian one, with keeping the size the same</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="MStaircase.html#butools.reptrans.MStaircase" title="butools.reptrans.MStaircase"><tt class="xref py py-func docutils literal"><span class="pre">MStaircase</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="MStaircase.html#butools.reptrans.MStaircase" title="butools.reptrans.MStaircase"><code class="xref py py-func docutils literal"><span class="pre">MStaircase</span></code></a></td>
 <td>Computes a smaller representation of RAP using staircase algorithm</td>
 </tr>
 </tbody>
@@ -176,10 +176,10 @@ script, or execute</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

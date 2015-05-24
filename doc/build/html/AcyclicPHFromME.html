@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
@@ -51,7 +51,7 @@
 	
         <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
 	
-          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.ph</span></code>)</a></li> 
     </ul>
               
               
@@ -96,7 +96,7 @@
 <h1>butools.ph.AcyclicPHFromME<a class="headerlink" href="#butools-ph-acyclicphfromme" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="butools.ph.AcyclicPHFromME">
-<tt class="descclassname">butools.ph.</tt><tt class="descname">AcyclicPHFromME</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.AcyclicPHFromME" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">butools.ph.</code><code class="descname">AcyclicPHFromME</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#butools.ph.AcyclicPHFromME" title="Permalink to this definition">¶</a></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">AcyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">AcyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></code></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">AcyclicPHFromME[alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision]</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">AcyclicPHFromME[alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision]</span></code></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">AcyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">AcyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -168,34 +168,56 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.4</span> <span class="mf">1.4</span> <span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">8</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">AcyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
-<span class="go">  0.55273       0.3741     0.073173</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
-<span class="go">  -1.9145       1.9145            0</span>
-<span class="go">        0      -3.8858       3.8858</span>
-<span class="go">        0            0      -8.1997</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span><span class="o">=</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">  0.64918      0.73131       1.1825       2.5062       6.5898</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span><span class="o">=</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="go">  0.64918      0.73131       1.1825       2.5062       6.5898</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">AcyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="go">      0.55273       0.3741     0.073173</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="go">      -1.9145       1.9145            0</span>
+<span class="go">            0      -3.8858       3.8858</span>
+<span class="go">            0            0      -8.1997</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ma</span><span class="p">);</span>
+<span class="go">      0.64918      0.73131       1.1825       2.5062       6.5898</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mb</span><span class="p">);</span>
+<span class="go">      0.64918      0.73131       1.1825       2.5062       6.5898</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">AcyclicPHFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="go">{0.5527262576934738, 0.3741003779708655, 0.07317336433566028}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-1.914468283493477, 1.914468283493477, 0},</span>
+<span class="go"> {0, -3.8858267357749496, 3.8858267357749496},</span>
+<span class="go"> {0, 0, -8.199704980731571}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ma</span><span class="p">];</span>
+<span class="go">{0.6491803278688524, 0.7313087879602256, 1.1825377454500594, 2.50620910640242, 6.589761685446926}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mb</span><span class="p">];</span>
+<span class="go">{0.6491803278688524, 0.7313087879602258, 1.18253774545006, 2.506209106402422, 6.5897616854469305}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">AcyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">AcyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="go">[[ 0.55272626  0.37410038  0.07317336]]</span>
+<span class="go">[[ 0.55273  0.3741   0.07317]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
-<span class="go">[[-1.91446829  1.91446829  0.        ]</span>
-<span class="go"> [ 0.         -3.88582674  3.88582674]</span>
-<span class="go"> [ 0.          0.         -8.19970497]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[[-1.91447  1.91447  0.     ]</span>
+<span class="go"> [ 0.      -3.88583  3.88583]</span>
+<span class="go"> [ 0.       0.      -8.1997 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ma</span><span class="p">)</span>
 <span class="go">[0.64918032786885238, 0.73130878796022558, 1.1825377454500594, 2.5062091064024199, 6.5897616854469261]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mb</span><span class="p">)</span>
 <span class="go">[0.64918032649380331, 0.73130878479925954, 1.182537737569604, 2.5062090835980859, 6.5897616090589066]</span>
 </pre></div>
 </div>
@@ -224,10 +246,10 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

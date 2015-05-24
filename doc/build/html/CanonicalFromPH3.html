@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
@@ -51,7 +51,7 @@
 	
         <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
 	
-          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.ph</span></code>)</a></li> 
     </ul>
               
               
@@ -96,7 +96,7 @@
 <h1>butools.ph.CanonicalFromPH3<a class="headerlink" href="#butools-ph-canonicalfromph3" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="butools.ph.CanonicalFromPH3">
-<tt class="descclassname">butools.ph.</tt><tt class="descname">CanonicalFromPH3</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.CanonicalFromPH3" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">butools.ph.</code><code class="descname">CanonicalFromPH3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#butools.ph.CanonicalFromPH3" title="Permalink to this definition">¶</a></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">CanonicalFromPH3(alpha,</span> <span class="pre">A,</span> <span class="pre">prec)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">CanonicalFromPH3(alpha,</span> <span class="pre">A,</span> <span class="pre">prec)</span></code></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">CanonicalFromPH3[alpha,</span> <span class="pre">A,</span> <span class="pre">prec]</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">CanonicalFromPH3[alpha,</span> <span class="pre">A,</span> <span class="pre">prec]</span></code></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">CanonicalFromPH3(alpha,</span> <span class="pre">A,</span> <span class="pre">prec)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">CanonicalFromPH3(alpha,</span> <span class="pre">A,</span> <span class="pre">prec)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -151,37 +151,54 @@ distribution.</p>
 calls &#8216;PH3From5Moments&#8217;.</p>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span> <span class="mf">0.9</span> <span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">6.2</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">9</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">CanonicalFromPH3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
-<span class="go">  0.58305      0.32736     0.089589</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
-<span class="go">  -9.9819            0            0</span>
-<span class="go">   5.3405      -5.3405            0</span>
-<span class="go">        0       2.8776      -2.8776</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
-<span class="go">  8.4853e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
-<span class="go">  8.3463e-16</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">CanonicalFromPH3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="go">      0.58305      0.32736     0.089589</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="go">      -9.9819            0            0</span>
+<span class="go">       5.3405      -5.3405            0</span>
+<span class="go">            0       2.8776      -2.8776</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">));</span>
+<span class="go">   1.0269e-14</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">CanonicalFromPH3</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="go">{0.5830541253440302, 0.3273566132692404, 0.08958926138672949}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-9.981920626264277, 0., 0.},</span>
+<span class="go"> {5.340471031780809, -5.340471031780809, 0.},</span>
+<span class="go"> {0., 2.8776083419564285, -2.8776083419564285}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">A</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Max</span><span class="p">[</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">]];</span>
+<span class="go">2.7041031044230435*^-13</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">CanonicalFromPH3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">CanonicalFromPH3</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="go">[[ 0.58305413  0.32735661  0.08958926]]</span>
+<span class="go">[[ 0.58305  0.32736  0.08959]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
-<span class="go">[[-9.98192063  0.          0.        ]</span>
-<span class="go"> [ 5.34047103 -5.34047103  0.        ]</span>
-<span class="go"> [ 0.          2.87760834 -2.87760834]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">))</span>
+<span class="go">[[-9.98192  0.       0.     ]</span>
+<span class="go"> [ 5.34047 -5.34047  0.     ]</span>
+<span class="go"> [ 0.       2.87761 -2.87761]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">))</span>
 <span class="go">8.94161968959e-14</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">b</span><span class="p">))</span>
-<span class="go">3.02144014162e-15</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -209,10 +226,10 @@ calls &#8216;PH3From5Moments&#8217;.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

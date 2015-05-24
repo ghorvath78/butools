@@ -45,30 +45,43 @@ butools.ph.CheckMEPositiveDensity
     consuming. 
 
     Examples
-    --------
+    ========
     For Matlab:
-    
+
     >>> a = [0.2, 0.3, 0.5];
-    >>> A = [-1,0,0;0,-3,2;0,-2,-3];
-    >>> CheckMEPositiveDensity(a,A)
-     1
+    >>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+    >>> flag = CheckMEPositiveDensity(a,A);
+    >>> disp(flag);
+         1
     >>> a = [0.2, 0.3, 0.5];
-    >>> A = [-1,0,0;0,-3,2.9;0,-2.9,-3];
-    >>> CheckMEPositiveDensity(a,A)
-     0
-    >>> PdfFromME(a,A,1.0)
-     -0.049993
-     
+    >>> A = [-1, 0, 0; 0, -3, 2.9; 0, -2.9, -3];
+    >>> flag = CheckMEPositiveDensity(a,A);
+    >>> disp(flag);
+         0
+
+    For Mathematica:
+
+    >>> a = {0.2, 0.3, 0.5};
+    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
+    >>> flag = CheckMEPositiveDensity[a,A];
+    >>> Print[flag];
+    True
+    >>> a = {0.2, 0.3, 0.5};
+    >>> A = {{-1, 0, 0},{0, -3, 2.9},{0, -2.9, -3}};
+    >>> flag = CheckMEPositiveDensity[a,A];
+    >>> Print[flag];
+    False
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.2, 0.3, 0.5]])
-    >>> A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
-    >>> print(CheckMEPositiveDensity(a,A))
+    >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
+    >>> flag = CheckMEPositiveDensity(a,A)
+    >>> print(flag)
     True
     >>> a = ml.matrix([[0.2, 0.3, 0.5]])
-    >>> A = ml.matrix([[-1,0,0],[0,-3,2.9],[0,-2.9,-3]])
-    >>> print(CheckMEPositiveDensity(a,A))
+    >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2.9],[0, -2.9, -3]])
+    >>> flag = CheckMEPositiveDensity(a,A)
+    >>> print(flag)
     False
-    >>> print(PdfFromME(a,A,[1.0]))
-    [-0.04999295]
 

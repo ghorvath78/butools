@@ -39,24 +39,28 @@ butools.ph.MomentsFromPH
         The vector of moments.
 
     Examples
-    --------    
+    ========
     For Matlab:
-    
-    >>> a = [0.1 0.9 0];
-    >>> A = [-6.2 2 0; 2 -9 1; 1 0 -3];
-    >>> moms = MomentsFromPH(a,A)
+
+    >>> a = [0.1, 0.9, 0];
+    >>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
+    >>> moms = MomentsFromPH(a,A,5);
+    >>> disp(moms);
           0.20939      0.10449     0.089092      0.11027      0.17953
-    >>> mean = MomentsFromPH(a,A,1)
-          0.20939
+
+    For Mathematica:
+
+    >>> a = {0.1, 0.9, 0};
+    >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
+    >>> moms = MomentsFromPH[a,A,5];
+    >>> Print[moms];
+    {0.20938722294654497, 0.10448912014333092, 0.08909150039190732, 0.11026674096545433, 0.179530273247209}
 
     For Python/Numpy:
-    
+
     >>> a = ml.matrix([[0.1, 0.9, 0]])
     >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
-    >>> moms=MomentsFromPH(a,A,5)
+    >>> moms = MomentsFromPH(a,A,5)
     >>> print(moms)
     [0.20938722294654497, 0.10448912014333091, 0.089091500391907288, 0.11026674096545433, 0.17953027324720897]
-    >>> mean = MomentsFromPH(a,A,1)
-    [0.20938722294654497]
-
 

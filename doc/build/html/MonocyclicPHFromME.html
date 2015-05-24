@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
@@ -51,7 +51,7 @@
 	
         <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
 	
-          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.ph</span></code>)</a></li> 
     </ul>
               
               
@@ -96,7 +96,7 @@
 <h1>butools.ph.MonocyclicPHFromME<a class="headerlink" href="#butools-ph-monocyclicphfromme" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="butools.ph.MonocyclicPHFromME">
-<tt class="descclassname">butools.ph.</tt><tt class="descname">MonocyclicPHFromME</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.MonocyclicPHFromME" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">butools.ph.</code><code class="descname">MonocyclicPHFromME</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#butools.ph.MonocyclicPHFromME" title="Permalink to this definition">¶</a></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">MonocyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">MonocyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></code></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">MonocyclicPHFromME[alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision]</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">MonocyclicPHFromME[alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision]</span></code></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">MonocyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">MonocyclicPHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">maxSize,</span> <span class="pre">precision)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -169,25 +169,189 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="go">  27</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span><span class="o">=</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">  0.35385      0.41893       1.1552       4.6998       23.838</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="go">  0.35385      0.41893       1.1552       4.6998       23.838</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="go">  Columns 1 through 12</span>
+<span class="go">  -8.1021e-17     0.010077     0.019799    0.0077544    0.0010922   4.0852e-05   1.3538e-05   0.00011267   0.00039486   0.00093038    0.0018049    0.0031208</span>
+<span class="go">  Columns 13 through 24</span>
+<span class="go">    0.0049985    0.0075762      0.01101     0.015473     0.021149     0.028228     0.036901     0.047341     0.059692     0.074045     0.090409      0.10868</span>
+<span class="go">  Columns 25 through 27</span>
+<span class="go">      0.12858      0.14965      0.17112</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="go">  Columns 1 through 12</span>
+<span class="go">           -1            1            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0           -3            3            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0           -3            3            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0           -3            3            0            0            0            0            0            0            0</span>
+<span class="go">            0      0.59259            0            0           -3       2.4074            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0      -17.531       17.531            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0      -17.531       17.531            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0      -17.531       17.531            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0      -17.531       17.531            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0      -17.531       17.531            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0      -17.531       17.531</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0      -17.531</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">  Columns 13 through 24</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">       17.531            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">      -17.531       17.531            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0      -17.531       17.531            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0      -17.531       17.531            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0      -17.531       17.531            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0      -17.531       17.531            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0      -17.531       17.531            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0      -17.531       17.531            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0      -17.531       17.531            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0      -17.531       17.531            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0      -17.531       17.531            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0      -17.531       17.531</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0      -17.531</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0            0            0            0            0            0            0</span>
+<span class="go">  Columns 25 through 27</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">       17.531            0            0</span>
+<span class="go">      -17.531       17.531            0</span>
+<span class="go">            0      -17.531       17.531</span>
+<span class="go">            0            0      -17.531</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ma</span><span class="p">);</span>
+<span class="go">      0.35385      0.41893       1.1552       4.6998       23.838</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mb</span><span class="p">);</span>
+<span class="go">      0.35385      0.41893       1.1552       4.6998       23.838</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="go">{-2.5397600778722706*^-17, 0.010076564579360592, 0.019799026572787613, 0.007754395700638792, 0.0010921892175280797, 0.00004085157730567139, 0.000013537575173626456, 0.00011267376891308164, 0.0003948571244651649, 0.0009303831689188193, 0.001804898763447438, 0.003120837336642398, 0.004998456760755956, 0.007576247022797484, 0.01101041315944734, 0.01547306860911693, 0.02114869573602008, 0.028228345073631006, 0.036900955049397284, 0.04734108305260393, 0.059692251707772884, 0.07404503804493777, 0.09040897715773615, 0.10867732789998653, 0.1285837713807389, 0.1496502023195005, 0.1711249516403759}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., -3., 3., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., -3., 3., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., -3., 3., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0.5925925925925928, 0., 0., -3., 2.4074074074074074, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ma</span><span class="p">];</span>
+<span class="go">{0.3538461538461538, 0.41893491124260357, 1.1552116522530724, 4.699835439935577, 23.837756165615836}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mb</span><span class="p">];</span>
+<span class="go">{0.3538461538461526, 0.4189349112425999, 1.1552116522530596, 4.69983543993552, 23.83775616561553}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="go">(1, 27)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">[[ -4.29548e-17   1.00766e-02   1.97990e-02   7.75440e-03   1.09219e-03   4.08516e-05   1.35376e-05   1.12674e-04   3.94857e-04   9.30383e-04   1.80490e-03   3.12084e-03   4.99846e-03   7.57625e-03   1.10104e-02   1.54731e-02   2.11487e-02   2.82283e-02   3.69010e-02   4.73411e-02   5.96923e-02   7.40450e-02   9.04090e-02   1.08677e-01   1.28584e-01   1.49650e-01   1.71125e-01]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[ -1.        1.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.       -3.        3.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.       -3.        3.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.       -3.        3.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.59259   0.        0.       -3.        2.40741   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.        0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.     ]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105]</span>
+<span class="go"> [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ma</span><span class="p">)</span>
 <span class="go">[0.35384615384615381, 0.41893491124260357, 1.1552116522530724, 4.6998354399355771, 23.837756165615836]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mb</span><span class="p">)</span>
 <span class="go">[0.35384615384615531, 0.41893491124260573, 1.155211652253076, 4.699835439935578, 23.83775616561579]</span>
 </pre></div>
 </div>
@@ -216,10 +380,10 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
@@ -51,7 +51,7 @@
 	
         <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
 	
-          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.ph</span></code>)</a></li> 
     </ul>
               
               
@@ -96,7 +96,7 @@
 <h1>butools.ph.APHFrom3Moments<a class="headerlink" href="#butools-ph-aphfrom3moments" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="butools.ph.APHFrom3Moments">
-<tt class="descclassname">butools.ph.</tt><tt class="descname">APHFrom3Moments</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.APHFrom3Moments" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">butools.ph.</code><code class="descname">APHFrom3Moments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#butools.ph.APHFrom3Moments" title="Permalink to this definition">¶</a></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">[alpha,</span> <span class="pre">A]</span> <span class="pre">=</span> <span class="pre">APHFrom3Moments(moms,</span> <span class="pre">maxSize)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">[alpha,</span> <span class="pre">A]</span> <span class="pre">=</span> <span class="pre">APHFrom3Moments(moms,</span> <span class="pre">maxSize)</span></code></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">{alpha,</span> <span class="pre">A}</span> <span class="pre">=</span> <span class="pre">APHFrom3Moments[moms,</span> <span class="pre">maxSize]</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">{alpha,</span> <span class="pre">A}</span> <span class="pre">=</span> <span class="pre">APHFrom3Moments[moms,</span> <span class="pre">maxSize]</span></code></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">alpha,</span> <span class="pre">A</span> <span class="pre">=</span> <span class="pre">APHFrom3Moments(moms,</span> <span class="pre">maxSize)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">alpha,</span> <span class="pre">A</span> <span class="pre">=</span> <span class="pre">APHFrom3Moments(moms,</span> <span class="pre">maxSize)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -157,68 +157,103 @@ distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">8400</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span><span class="o">=</span><span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">125.0</span><span class="p">,</span> <span class="mf">8400.0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
 <span class="go">   1.3212e-05      0.99999            0            0            0            0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <span class="go">   -0.0022936    0.0022936            0            0            0            0</span>
 <span class="go">            0     -0.50029      0.50029            0            0            0</span>
 <span class="go">            0            0     -0.50029      0.50029            0            0</span>
 <span class="go">            0            0            0     -0.50029      0.50029            0</span>
 <span class="go">            0            0            0            0     -0.50029      0.50029</span>
 <span class="go">            0            0            0            0            0     -0.50029</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="go">       10          125         8400</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phmoms</span> <span class="o">=</span> <span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">phmoms</span><span class="p">);</span>
+<span class="go">           10          125         8400</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">525.0</span><span class="p">,</span> <span class="mf">31400.0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="go">      0.21179            0            0            0            0            0            0      0.78821</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="go">     -0.15079      0.15079            0            0            0            0            0            0</span>
+<span class="go">            0     -0.15079      0.15079            0            0            0            0            0</span>
+<span class="go">            0            0     -0.15079      0.15079            0            0            0            0</span>
+<span class="go">            0            0            0     -0.15079      0.15079            0            0            0</span>
+<span class="go">            0            0            0            0     -0.15079      0.15079            0            0</span>
+<span class="go">            0            0            0            0            0     -0.15079      0.15079            0</span>
+<span class="go">            0            0            0            0            0            0     -0.15079      0.15079</span>
+<span class="go">            0            0            0            0            0            0            0      -5.9502</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phmoms</span> <span class="o">=</span> <span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="go">CheckMERepresentation warning: There are more than one eigenvalue with the same absolute value as the largest eigenvalue!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">phmoms</span><span class="p">);</span>
+<span class="go">           10          525        31400</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">525</span><span class="p">,</span><span class="mi">31400</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span><span class="o">=</span><span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
-<span class="go">  0.21179            0            0            0            0            0            0      0.78821</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
-<span class="go"> -0.15079      0.15079            0            0            0            0            0            0</span>
-<span class="go">        0     -0.15079      0.15079            0            0            0            0            0</span>
-<span class="go">        0            0     -0.15079      0.15079            0            0            0            0</span>
-<span class="go">        0            0            0     -0.15079      0.15079            0            0            0</span>
-<span class="go">        0            0            0            0     -0.15079      0.15079            0            0</span>
-<span class="go">        0            0            0            0            0     -0.15079      0.15079            0</span>
-<span class="go">        0            0            0            0            0            0     -0.15079      0.15079</span>
-<span class="go">        0            0            0            0            0            0            0      -5.9502</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="go">       10          525        31400</span>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">{</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">125.0</span><span class="p">,</span> <span class="mf">8400.0</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">[</span><span class="n">moms</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+<span class="go">{0.000013211714931595383, 0.9999867882850684, 0, 0, 0, 0}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="go">{{-0.002293559800424418, 0.002293559800424418, 0, 0, 0, 0},</span>
+<span class="go"> {0, -0.5002881836726082, 0.5002881836726082, 0, 0, 0},</span>
+<span class="go"> {0, 0, -0.5002881836726082, 0.5002881836726082, 0, 0},</span>
+<span class="go"> {0, 0, 0, -0.5002881836726082, 0.5002881836726082, 0},</span>
+<span class="go"> {0, 0, 0, 0, -0.5002881836726082, 0.5002881836726082},</span>
+<span class="go"> {0, 0, 0, 0, 0, -0.5002881836726082}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phmoms</span> <span class="o">=</span> <span class="n">MomentsFromPH</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">phmoms</span><span class="p">];</span>
+<span class="go">{10., 125.00000000000003, 8400.000000000162}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">{</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">525.0</span><span class="p">,</span> <span class="mf">31400.0</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">[</span><span class="n">moms</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+<span class="go">{0.21178752772283896, 0, 0, 0, 0, 0, 0, 0.7882124722771611}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="go">{{-0.15078539360511473, 0.15078539360511473, 0, 0, 0, 0, 0, 0},</span>
+<span class="go"> {0, -0.15078539360511473, 0.15078539360511473, 0, 0, 0, 0, 0},</span>
+<span class="go"> {0, 0, -0.15078539360511473, 0.15078539360511473, 0, 0, 0, 0},</span>
+<span class="go"> {0, 0, 0, -0.15078539360511473, 0.15078539360511473, 0, 0, 0},</span>
+<span class="go"> {0, 0, 0, 0, -0.15078539360511473, 0.15078539360511473, 0, 0},</span>
+<span class="go"> {0, 0, 0, 0, 0, -0.15078539360511473, 0.15078539360511473, 0},</span>
+<span class="go"> {0, 0, 0, 0, 0, 0, -0.15078539360511473, 0.15078539360511473},</span>
+<span class="go"> {0, 0, 0, 0, 0, 0, 0, -5.950197455082666}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phmoms</span> <span class="o">=</span> <span class="n">MomentsFromPH</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">phmoms</span><span class="p">];</span>
+<span class="go">{9.999999999999998, 524.9999999999998, 31399.99999999998}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">8400</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">125.0</span><span class="p">,</span> <span class="mf">8400.0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">[[  1.32117149e-05   9.99986788e-01   0.00000000e+00   0.00000000e+00    0.00000000e+00   0.00000000e+00]]</span>
+<span class="go">[[  1.32117e-05   9.99987e-01   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">[[-0.00229356  0.00229356  0.          0.          0.          0.        ]</span>
-<span class="go"> [ 0.         -0.50028818  0.50028818  0.          0.          0.        ]</span>
-<span class="go"> [ 0.          0.         -0.50028818  0.50028818  0.          0.        ]</span>
-<span class="go"> [ 0.          0.          0.         -0.50028818  0.50028818  0.        ]</span>
-<span class="go"> [ 0.          0.          0.          0.         -0.50028818  0.50028818]</span>
-<span class="go"> [ 0.          0.          0.          0.          0.         -0.50028818]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[[-0.00229  0.00229  0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.      -0.50029  0.50029  0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.      -0.50029  0.50029  0.       0.     ]</span>
+<span class="go"> [ 0.       0.       0.      -0.50029  0.50029  0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.      -0.50029  0.50029]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.      -0.50029]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phmoms</span> <span class="o">=</span> <span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">phmoms</span><span class="p">)</span>
 <span class="go">[9.9999999999999964, 124.99999999999994, 8400.0000000001164]</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">525</span><span class="p">,</span><span class="mi">31400</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">525.0</span><span class="p">,</span> <span class="mf">31400.0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">APHFrom3Moments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">[[ 0.21178753  0.          0.          0.          0.          0.          0.   0.78821247]]</span>
+<span class="go">[[ 0.21179  0.       0.       0.       0.       0.       0.       0.78821]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">[[-0.15078539  0.15078539  0.          0.          0.          0.          0.   0.        ]</span>
-<span class="go"> [ 0.         -0.15078539  0.15078539  0.          0.          0.          0.   0.        ]</span>
-<span class="go"> [ 0.          0.         -0.15078539  0.15078539  0.          0.          0.   0.        ]</span>
-<span class="go"> [ 0.          0.          0.         -0.15078539  0.15078539  0.          0.   0.        ]</span>
-<span class="go"> [ 0.          0.          0.          0.         -0.15078539  0.15078539   0.          0.        ]</span>
-<span class="go"> [ 0.          0.          0.          0.          0.         -0.15078539   0.15078539  0.        ]</span>
-<span class="go"> [ 0.          0.          0.          0.          0.          0.  -0.15078539  0.15078539]</span>
-<span class="go"> [ 0.          0.          0.          0.          0.          0.          0.  -5.95019746]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[[-0.15079  0.15079  0.       0.       0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.      -0.15079  0.15079  0.       0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.      -0.15079  0.15079  0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.       0.      -0.15079  0.15079  0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.      -0.15079  0.15079  0.       0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.      -0.15079  0.15079  0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.       0.      -0.15079  0.15079]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.       0.       0.      -5.9502 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phmoms</span> <span class="o">=</span> <span class="n">MomentsFromPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">CheckMERepresentation warning: There are more than one eigenvalue with the same absolute value as the largest eigenvalue!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">phmoms</span><span class="p">)</span>
 <span class="go">[10.0, 525.0, 31399.999999999993]</span>
 </pre></div>
 </div>
@@ -247,10 +282,10 @@ distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

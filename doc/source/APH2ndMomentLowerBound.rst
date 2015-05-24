@@ -39,33 +39,37 @@ butools.ph.APH2ndMomentLowerBound
             Evaluation Workshop, UKPEW, 2002"
 
     Examples
-    --------
+    ========
     For Matlab:
-    
+
     >>> mean = 1.9;
     >>> n = 4;
-    >>> mom2 = APH2ndMomentLowerBound(mean,n)
-       4.5125
-    >>> cv2 = mom2/mean^2-1
-         0.25
+    >>> mom2 = APH2ndMomentLowerBound(mean,n);
+    >>> disp(mom2);
+           4.5125
+    >>> cv2 = mom2/mean^2-1;
+    >>> disp(1/cv2);
+         4
 
     For Mathematica:
-    
+
     >>> mean = 1.9;
     >>> n = 4;
-    >>> mom2 = APH2ndMomentLowerBound[mean,n]
+    >>> mom2 = APH2ndMomentLowerBound[mean,n];
+    >>> Print[mom2];
     4.5125
-    >>> cv2 = mom2/mean^2-1
-    0.25    
+    >>> cv2 = mom2/mean^2-1;
+    >>> Print[1/cv2];
+    3.9999999999999964
 
     For Python/Numpy:
-    
+
     >>> mean = 1.9
     >>> n = 4
     >>> mom2 = APH2ndMomentLowerBound(mean,n)
     >>> print(mom2)
     4.5125
     >>> cv2 = mom2/mean**2-1
-    >>> print(cv2)
-    0.25
+    >>> print(1/cv2)
+    4.0
 

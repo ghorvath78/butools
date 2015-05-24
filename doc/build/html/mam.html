@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="next" title="butools.mam.QBDFundamentalMatrices" href="QBDFundamentalMatrices.html" >
@@ -78,7 +78,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Matrix-Analytic Methods (<tt class="docutils literal"><span class="pre">butools.mam</span></tt>)</a><ul>
+<li><a class="reference internal" href="#">Matrix-Analytic Methods (<code class="docutils literal"><span class="pre">butools.mam</span></code>)</a><ul>
 <li><a class="reference internal" href="#quasi-birth-death-processes">Quasi Birth-Death Processes</a></li>
 <li><a class="reference internal" href="#m-g-1-and-g-m-1-type-markov-chains">M/G/1 and G/M/1 Type Markov Chains</a></li>
 <li><a class="reference internal" href="#markovian-fluid-models">Markovian Fluid Models</a></li>
@@ -105,8 +105,8 @@
           <div class="body" id="spc-section-body">
             
   <div class="section" id="module-butools.mam">
-<span id="matrix-analytic-methods-butools-mam"></span><h1>Matrix-Analytic Methods (<a class="reference internal" href="#module-butools.mam" title="butools.mam"><tt class="xref py py-mod docutils literal"><span class="pre">butools.mam</span></tt></a>)<a class="headerlink" href="#module-butools.mam" title="Permalink to this headline">¶</a></h1>
-<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+<span id="matrix-analytic-methods-butools-mam"></span><h1>Matrix-Analytic Methods (<a class="reference internal" href="#module-butools.mam" title="butools.mam"><code class="xref py py-mod docutils literal"><span class="pre">butools.mam</span></code></a>)<a class="headerlink" href="#module-butools.mam" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <code class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></code>
 script, or execute</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -114,13 +114,13 @@ script, or execute</p>
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/mam')</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">addpath('butools/mam')</span></code></td>
 <td>in Matlab,</td>
 </tr>
-<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`MAM&quot;</span></tt></td>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`MAM&quot;</span></code></td>
 <td>in Mathematica,</td>
 </tr>
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.mam</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.mam</span> <span class="pre">import</span> <span class="pre">*</span></code></td>
 <td>in Python/Numpy.</td>
 </tr>
 </tbody>
@@ -188,13 +188,13 @@ closing matrix <span class="math">\(C\)</span> both for canonical and general fl
 <col width="86%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="QBDFundamentalMatrices.html#butools.mam.QBDFundamentalMatrices" title="butools.mam.QBDFundamentalMatrices"><tt class="xref py py-func docutils literal"><span class="pre">QBDFundamentalMatrices</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="QBDFundamentalMatrices.html#butools.mam.QBDFundamentalMatrices" title="butools.mam.QBDFundamentalMatrices"><code class="xref py py-func docutils literal"><span class="pre">QBDFundamentalMatrices</span></code></a></td>
 <td>Returns any combination of the R, G, and U matrices of a discrete or continuous time QBD</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="QBDSolve.html#butools.mam.QBDSolve" title="butools.mam.QBDSolve"><tt class="xref py py-func docutils literal"><span class="pre">QBDSolve</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="QBDSolve.html#butools.mam.QBDSolve" title="butools.mam.QBDSolve"><code class="xref py py-func docutils literal"><span class="pre">QBDSolve</span></code></a></td>
 <td>Returns the parameters of the matrix-geometrically distributed stationary distribution of a QBD</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="QBDStationaryDistr.html#butools.mam.QBDStationaryDistr" title="butools.mam.QBDStationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">QBDStationaryDistr</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="QBDStationaryDistr.html#butools.mam.QBDStationaryDistr" title="butools.mam.QBDStationaryDistr"><code class="xref py py-func docutils literal"><span class="pre">QBDStationaryDistr</span></code></a></td>
 <td>Returns the stationary distribution of a QBD up to a given level</td>
 </tr>
 </tbody>
@@ -208,16 +208,16 @@ closing matrix <span class="math">\(C\)</span> both for canonical and general fl
 <col width="86%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="MG1FundamentalMatrix.html#butools.mam.MG1FundamentalMatrix" title="butools.mam.MG1FundamentalMatrix"><tt class="xref py py-func docutils literal"><span class="pre">MG1FundamentalMatrix</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="MG1FundamentalMatrix.html#butools.mam.MG1FundamentalMatrix" title="butools.mam.MG1FundamentalMatrix"><code class="xref py py-func docutils literal"><span class="pre">MG1FundamentalMatrix</span></code></a></td>
 <td>Returns matrix G, the fundamental matrix of an M/G/1 type Markov chain</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="MG1StationaryDistr.html#butools.mam.MG1StationaryDistr" title="butools.mam.MG1StationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">MG1StationaryDistr</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="MG1StationaryDistr.html#butools.mam.MG1StationaryDistr" title="butools.mam.MG1StationaryDistr"><code class="xref py py-func docutils literal"><span class="pre">MG1StationaryDistr</span></code></a></td>
 <td>Returns the stationary distribution of an M/G/1 type Markov chain up to a given level</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="GM1FundamentalMatrix.html#butools.mam.GM1FundamentalMatrix" title="butools.mam.GM1FundamentalMatrix"><tt class="xref py py-func docutils literal"><span class="pre">GM1FundamentalMatrix</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="GM1FundamentalMatrix.html#butools.mam.GM1FundamentalMatrix" title="butools.mam.GM1FundamentalMatrix"><code class="xref py py-func docutils literal"><span class="pre">GM1FundamentalMatrix</span></code></a></td>
 <td>Returns matrix R, the fundamental matrix of a G/M/1 type Markov chain</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="GM1StationaryDistr.html#butools.mam.GM1StationaryDistr" title="butools.mam.GM1StationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">GM1StationaryDistr</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="GM1StationaryDistr.html#butools.mam.GM1StationaryDistr" title="butools.mam.GM1StationaryDistr"><code class="xref py py-func docutils literal"><span class="pre">GM1StationaryDistr</span></code></a></td>
 <td>Returns the stationary distribution of a G/M/1 type Markov chain up to a given level</td>
 </tr>
 </tbody>
@@ -231,16 +231,16 @@ closing matrix <span class="math">\(C\)</span> both for canonical and general fl
 <col width="86%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="FluidFundamentalMatrices.html#butools.mam.FluidFundamentalMatrices" title="butools.mam.FluidFundamentalMatrices"><tt class="xref py py-func docutils literal"><span class="pre">FluidFundamentalMatrices</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="FluidFundamentalMatrices.html#butools.mam.FluidFundamentalMatrices" title="butools.mam.FluidFundamentalMatrices"><code class="xref py py-func docutils literal"><span class="pre">FluidFundamentalMatrices</span></code></a></td>
 <td>Returns any combination of the Psi, K, and U matrices of a canonical Markovian fluid model</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="FluidSolve.html#butools.mam.FluidSolve" title="butools.mam.FluidSolve"><tt class="xref py py-func docutils literal"><span class="pre">FluidSolve</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="FluidSolve.html#butools.mam.FluidSolve" title="butools.mam.FluidSolve"><code class="xref py py-func docutils literal"><span class="pre">FluidSolve</span></code></a></td>
 <td>Returns the parameters of the matrix-exponentially distributed stationary distribution of a canonical Markovian fluid model</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="GeneralFluidSolve.html#butools.mam.GeneralFluidSolve" title="butools.mam.GeneralFluidSolve"><tt class="xref py py-func docutils literal"><span class="pre">GeneralFluidSolve</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="GeneralFluidSolve.html#butools.mam.GeneralFluidSolve" title="butools.mam.GeneralFluidSolve"><code class="xref py py-func docutils literal"><span class="pre">GeneralFluidSolve</span></code></a></td>
 <td>Returns the parameters of the matrix-exponentially distributed stationary distribution of a general Markovian fluid model</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="FluidStationaryDistr.html#butools.mam.FluidStationaryDistr" title="butools.mam.FluidStationaryDistr"><tt class="xref py py-func docutils literal"><span class="pre">FluidStationaryDistr</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="FluidStationaryDistr.html#butools.mam.FluidStationaryDistr" title="butools.mam.FluidStationaryDistr"><code class="xref py py-func docutils literal"><span class="pre">FluidStationaryDistr</span></code></a></td>
 <td>Returns the cummulative distribution of the stationary fluid level of a Markovian fluid model</td>
 </tr>
 </tbody>
@@ -294,10 +294,10 @@ Series on Statistics and Applied Probability. SIAM, Philadelphia PA (1999).</td>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

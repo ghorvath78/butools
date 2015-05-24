@@ -40,58 +40,67 @@ butools.ph.APH3rdMomentLowerBound
            distributions," Stochastic models, pp. 303-326, 2005.
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> mean = 1.9;
-    >>> mom2 = 5;
-    >>> n = 3;
-    >>> APH3rdMomentLowerBound(mean,mom2,n)
-       16.577
-    >>> APH3rdMomentUpperBound(mean,mom2,n)
-       17.081
 
     >>> mean = 1.9;
     >>> mom2 = 5;
+    >>> n = 3;
+    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+    >>> disp(mom3lower);
+           16.577
+    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+    >>> disp(mom3upper);
+           17.081
+    >>> mean = 1.9;
+    >>> mom2 = 5;
     >>> n = 4;
-    >>> APH3rdMomentLowerBound(mean,mom2,n)
-       16.079
-    >>> APH3rdMomentUpperBound(mean,mom2,n)
-        Inf
-  
+    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+    >>> disp(mom3lower);
+           16.079
+    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+    >>> disp(mom3upper);
+       Inf
+
     For Mathematica:
-    
-    >>> mean = 1.9;
-    >>> mom2 = 5;
-    >>> n = 3;
-    >>> APH3rdMomentLowerBound[mean,mom2,n]
-    16.5775
-    >>> APH3rdMomentUpperBound[mean,mom2,n]
-    17.0814
 
     >>> mean = 1.9;
     >>> mom2 = 5;
+    >>> n = 3;
+    >>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+    >>> Print[mom3lower];
+    16.577458090899114
+    >>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+    >>> Print[mom3upper];
+    17.081405365964272
+    >>> mean = 1.9;
+    >>> mom2 = 5;
     >>> n = 4;
-    >>> APH3rdMomentLowerBound[mean,mom2,n]
-    16.0794
-    >>> APH3rdMomentUpperBound[mean,mom2,n]
-    Infinity    
+    >>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+    >>> Print[mom3lower];
+    16.079377140256383
+    >>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+    >>> Print[mom3upper];
+    Infinity
 
     For Python/Numpy:
-    
+
     >>> mean = 1.9
     >>> mom2 = 5
     >>> n = 3
-    >>> print(APH3rdMomentLowerBound(mean,mom2,n))
+    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+    >>> print(mom3lower)
     16.577458090899107
-    >>> print(APH3rdMomentUpperBound(mean,mom2,n))
+    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+    >>> print(mom3upper)
     17.081405365964276
-
     >>> mean = 1.9
     >>> mom2 = 5
     >>> n = 4
-    >>> print(APH3rdMomentLowerBound(mean,mom2,n))
+    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+    >>> print(mom3lower)
     16.079377140256387
-    >>> print(APH3rdMomentUpperBound(mean,mom2,n))
+    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+    >>> print(mom3upper)
     inf
- 
+

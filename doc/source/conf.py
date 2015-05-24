@@ -161,6 +161,7 @@ if not os.path.isdir(themedir):
                        "via git submodule init && git submodule update")
 
 html_theme = 'scipy'
+
 html_theme_path = [themedir]
 
 html_title = "%s v%s Manual" % (project, version)

@@ -35,28 +35,28 @@ butools.ph.CdfFromME
         The values of the cdf at the corresponding "x" values
 
     Examples
-    --------    
+    ========
     For Matlab:
-    
+
     >>> a = [0.2, 0.3, 0.5];
-    >>> A = [-1,0,0;0,-3,2;0,-2,-3];
-    >>> x = (0:0.01:2)';
-    >>> cdf = CdfFromME(a, A, x);
-    >>> plot(x, cdf)
+    >>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+    >>> x = (0:0.01:5);
+    >>> cdf = CdfFromME(a,A,x);
+    >>> plot(x,cdf);
 
     For Mathematica:
-    
+
     >>> a = {0.2, 0.3, 0.5};
-    >>> A = {{-1,0,0},{0,-3,2},{0,-2,-3}};
+    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
     >>> x = Range[0,5,0.01];
     >>> cdf = CdfFromME[a,A,x];
-    >>> ListPlot[Table[{x[[i]], cdf[[i]]}, {i, Length[cdf]}]]   
+    >>> ListLinePlot[Transpose[{x, cdf}]]
 
     For Python/Numpy:
-    
+
     >>> a = ml.matrix([[0.2, 0.3, 0.5]])
-    >>> A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
-    >>> x = np.linspace(0,2,201)
+    >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
+    >>> x = np.arange(0,5.01,0.01)
     >>> cdf = CdfFromME(a,A,x)
     >>> plt.plot(x,cdf)
 

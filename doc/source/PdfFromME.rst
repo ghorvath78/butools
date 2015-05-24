@@ -39,20 +39,28 @@ butools.ph.PdfFromME
         corresponding "x" values
 
     Examples
-    --------    
+    ========
     For Matlab:
-    
+
     >>> a = [0.2, 0.3, 0.5];
-    >>> A = [-1,0,0;0,-3,2;0,-2,-3];
-    >>> x = (0:0.01:2)';
-    >>> pdf = PdfFromME(a, A, x);
-    >>> plot(x, pdf)
+    >>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
+    >>> x = (0:0.01:5);
+    >>> pdf = PdfFromME(a,A,x);
+    >>> plot(x,pdf);
+
+    For Mathematica:
+
+    >>> a = {0.2, 0.3, 0.5};
+    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
+    >>> x = Range[0,5,0.01];
+    >>> pdf = PdfFromME[a,A,x];
+    >>> ListLinePlot[Transpose[{x, pdf}]]
 
     For Python/Numpy:
-    
+
     >>> a = ml.matrix([[0.2, 0.3, 0.5]])
-    >>> A = ml.matrix([[-1,0,0],[0,-3,2],[0,-2,-3]])
-    >>> x = np.linspace(0,2,201)
+    >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
+    >>> x = np.arange(0,5.01,0.01)
     >>> pdf = PdfFromME(a,A,x)
     >>> plt.plot(x,pdf)
 

@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
@@ -51,7 +51,7 @@
 	
         <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
 	
-          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.ph</span></code>)</a></li> 
     </ul>
               
               
@@ -96,7 +96,7 @@
 <h1>butools.ph.MEOrder<a class="headerlink" href="#butools-ph-meorder" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="butools.ph.MEOrder">
-<tt class="descclassname">butools.ph.</tt><tt class="descname">MEOrder</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.MEOrder" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">butools.ph.</code><code class="descname">MEOrder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#butools.ph.MEOrder" title="Permalink to this definition">¶</a></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">order</span> <span class="pre">=</span> <span class="pre">MEOrder(alpha,</span> <span class="pre">A,</span> <span class="pre">kind,</span> <span class="pre">prec)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">order</span> <span class="pre">=</span> <span class="pre">MEOrder(alpha,</span> <span class="pre">A,</span> <span class="pre">kind,</span> <span class="pre">prec)</span></code></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">order</span> <span class="pre">=</span> <span class="pre">MEOrder[alpha,</span> <span class="pre">A,</span> <span class="pre">kind,</span> <span class="pre">prec]</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">order</span> <span class="pre">=</span> <span class="pre">MEOrder[alpha,</span> <span class="pre">A,</span> <span class="pre">kind,</span> <span class="pre">prec]</span></code></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">order</span> <span class="pre">=</span> <span class="pre">MEOrder(alpha,</span> <span class="pre">A,</span> <span class="pre">kind,</span> <span class="pre">prec)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">order</span> <span class="pre">=</span> <span class="pre">MEOrder(alpha,</span> <span class="pre">A,</span> <span class="pre">kind,</span> <span class="pre">prec)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -167,86 +167,176 @@ Qeueuing theory (MCQT), June 2010.</td></tr>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">6</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.5</span> <span class="o">-</span><span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">3</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">4</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">5</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">6</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">co</span><span class="p">);</span>
 <span class="go">     2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">oo</span><span class="p">);</span>
 <span class="go">     6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">coo</span><span class="p">);</span>
 <span class="go">     2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;moment&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;moment&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mo</span><span class="p">);</span>
 <span class="go">     2</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">co</span><span class="p">);</span>
 <span class="go">     2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">oo</span><span class="p">);</span>
 <span class="go">     1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">coo</span><span class="p">);</span>
 <span class="go">     1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;moment&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;moment&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mo</span><span class="p">);</span>
 <span class="go">     1</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="go">    0.0055089    0.0090301     0.016938     0.015216    0.0053543    0.0087356     0.052486      0.22657      0.66016</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="go">           -1            1            0            0            0            0            0            0            0</span>
+<span class="go">            0      -2.4226       2.4226            0            0            0            0            0            0</span>
+<span class="go">            0            0      -2.4226       2.4226            0            0            0            0            0</span>
+<span class="go">            0      0.26232            0      -2.4226       2.1603            0            0            0            0</span>
+<span class="go">            0            0            0            0      -4.2414       4.2414            0            0            0</span>
+<span class="go">            0            0            0            0            0      -4.2414       4.2414            0            0</span>
+<span class="go">            0            0            0            0            0            0      -4.2414       4.2414            0</span>
+<span class="go">            0            0            0            0            0            0            0      -4.2414       4.2414</span>
+<span class="go">            0            0            0            0            0            0            0            0      -4.2414</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">co</span><span class="p">);</span>
 <span class="go">     9</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">     9     9</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">)</span>
-<span class="go">     9</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">oo</span><span class="p">);</span>
 <span class="go">     3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">coo</span><span class="p">);</span>
 <span class="go">     3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span><span class="o">=</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;moment&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;moment&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mo</span><span class="p">);</span>
 <span class="go">     3</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">co</span><span class="p">];</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">oo</span><span class="p">];</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">coo</span><span class="p">];</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mo</span><span class="p">];</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">co</span><span class="p">];</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">oo</span><span class="p">];</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">coo</span><span class="p">];</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mo</span><span class="p">];</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+<span class="go">{0.00550893408977846, 0.00903007832853331, 0.016937512518639578, 0.015215980106503445, 0.005354337535618665, 0.008735592607040744, 0.05248568615571608, 0.22657249403204927, 0.6601593846261203}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="go">{{-1., 1., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., -2.4226497308103743, 2.4226497308103743, 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., -2.4226497308103743, 2.4226497308103743, 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0.2623172489622428, 0., -2.4226497308103743, 2.1603324818481315, 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., -4.241399978863847, 4.241399978863847, 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847, 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847, 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., -4.241399978863847}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">co</span><span class="p">];</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">oo</span><span class="p">];</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">coo</span><span class="p">];</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mo</span><span class="p">];</span>
+<span class="go">3</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span><span class="o">/</span><span class="mf">6.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">co</span><span class="p">)</span>
 <span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">oo</span><span class="p">)</span>
 <span class="go">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">coo</span><span class="p">)</span>
 <span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mo</span><span class="p">)</span>
 <span class="go">2</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">/</span><span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">co</span><span class="p">)</span>
 <span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">oo</span><span class="p">)</span>
 <span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">coo</span><span class="p">)</span>
 <span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mo</span><span class="p">)</span>
 <span class="go">1</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="go">(1, 9)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="go">(9, 9)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[ 0.00551  0.00903  0.01694  0.01522  0.00535  0.00874  0.05249  0.22657  0.66016]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="go">[[-1.       1.       0.       0.       0.       0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.      -2.42265  2.42265  0.       0.       0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.      -2.42265  2.42265  0.       0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.26232  0.      -2.42265  2.16033  0.       0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.      -4.2414   4.2414   0.       0.       0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.      -4.2414   4.2414   0.       0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.       0.      -4.2414   4.2414   0.     ]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.       0.       0.      -4.2414   4.2414 ]</span>
+<span class="go"> [ 0.       0.       0.       0.       0.       0.       0.       0.      -4.2414 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">co</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">co</span><span class="p">)</span>
 <span class="go">9</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">oo</span><span class="p">)</span>
 <span class="go">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">coo</span><span class="p">)</span>
 <span class="go">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mo</span> <span class="o">=</span> <span class="n">MEOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s">&quot;moment&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mo</span><span class="p">)</span>
 <span class="go">3</span>
 </pre></div>
 </div>
@@ -275,10 +365,10 @@ Qeueuing theory (MCQT), June 2010.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

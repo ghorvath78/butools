@@ -90,7 +90,7 @@ def processMathematicaDoc(fun, btModule, mathematicaSignature):
         lines = f.readlines()
         l = 0
         while l<len(lines):
-            if re.match(".*:py:func:`"+fun, lines[l]):
+            if re.match(".*:py:func:`{0} ".format(fun), lines[l]):
                oneLineDescr = re.match(".*- (.*)",lines[l+1]).groups()[0]
                break
             l+=1
@@ -123,11 +123,29 @@ def processMathematicaDoc(fun, btModule, mathematicaSignature):
             with open(fullName, "wt") as o:
                 o.writelines(nlines)
 
-rstfiles = [os.path.splitext(name)[0] for name in os.listdir('source') if name.endswith('.rst') and name[0].isupper()]
+def exampleForFunction(funName, output):
+    docExFiles = [name for name in os.listdir('../test') if name.endswith('_{0}.docex'.format(output))]
+    strex = []    
+    for fil in docExFiles:
+        with open("../test/"+fil, "rt") as f:
+            lines = f.readlines()
+            capture = False
+            for l in lines:
+                if capture and l.startswith("=== "):
+                    capture = False
+                elif capture:
+                    strex.append(l)
+                if l.startswith("=== {0} ===".format(funName)):
+                    capture = True
+    return "".join(strex)     
+
+rstfiles = [os.path.splitext(name)[0] for name in os.listdir('rawsource') if name.endswith('.rst') and name[0].isupper()]
+exStringHeader = [("matlab","For Matlab:"), ("mathematica","For Mathematica:"), ("python","For Python/Numpy:")]
 
 for fun in rstfiles:
     print("processing ",fun+".rst", "...")
-    with open("source/"+fun+".rst", "rt") as f:
+    newLines = []
+    with open("rawsource/"+fun+".rst", "rt") as f:
         btModule = None
         hasMatlab = False
         hasPython = False
@@ -155,8 +173,10 @@ for fun in rstfiles:
                         doc.append("\n")
                     else:
                         doc.append(lines[l][4:])
+                    newLines.append(lines[l])
                     l+=1
                 break
+            newLines.append(lines[l])
             l+=1
         # remove last empty lines
         while len(doc)>0 and doc[-1]=="\n":
@@ -173,4 +193,18 @@ for fun in rstfiles:
         if hasMathematica:
             processMathematicaDoc(fun, btModule, mathematicaSignature)
                 
-                
+        # append examples
+        exString = [exampleForFunction(fun, es[0]) for es in exStringHeader]
+        if any(map(len,exString)):
+            newLines.append("    Examples\n")
+            newLines.append("    ========\n")
+            for i in range(len(exString)):
+                newLines.append("    "+exStringHeader[i][1]+"\n")
+                newLines.append("\n")
+                newLines.append("    "+"    ".join(exString[i].splitlines(True)))
+                newLines.append("\n")
+        else:
+            newLines = lines
+        with open("source/"+fun+".rst", "wt") as o:
+            o.writelines(newLines)
+        

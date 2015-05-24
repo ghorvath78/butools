@@ -40,52 +40,52 @@ butools.ph.CanonicalFromPH2
     calls 'PH2From3Moments'.
 
     Examples
-    --------
+    ========
     For Matlab:
 
-    >>> a=[0.12 0.88];
-    >>> A=[-1.28 0; 3.94 -3.94];
-    >>> [b,B]=CanonicalFromPH2(a,A);
-    >>> b
-      0.96102     0.038985
-    >>> B
-        -1.28         1.28
-            0        -3.94   
-    >>> C=SimilarityMatrix(A,B);    
-    >>> norm(A*C-C*B)
-      3.8374e-15    
-    >>> norm(a*C-b)
-      1.8501e-15       
-      
+    >>> a = [0.12, 0.88];
+    >>> A = [-1.28, 0; 3.94, -3.94];
+    >>> [b,B] = CanonicalFromPH2(a,A);
+    >>> disp(b);
+          0.96102     0.038985
+    >>> disp(B);
+            -1.28         1.28
+                0        -3.94
+    >>> Cm = SimilarityMatrix(A,B);
+    >>> err1 = norm(A*Cm-Cm*B);
+    >>> err2 = norm(a*Cm-b);
+    >>> disp(max(err1,err2));
+        6.669e-15
+
     For Mathematica:
-    
-    >>> a={0.12, 0.88};
-    >>> A={{-1.28, 0},{3.94, -3.94}};
-    >>> {b,B}=CanonicalFromPH2[a,A];
+
+    >>> a = {0.12, 0.88};
+    >>> A = {{-1.28, 0},{3.94, -3.94}};
+    >>> {b,B} = CanonicalFromPH2[a,A];
     >>> Print[b];
-    {0.961015,0.0389848}
+    {0.9610152284263966, 0.03898477157360336}
     >>> Print[B];
-    {{-1.28,1.28},
-     {0,-3.94}}
-    >>> Cm=SimilarityMatrix[A,B];
-    >>> Norm[A.Cm-Cm.B]
-    1.88119*10^-15
-    >>> Norm[a.Cm-b]
-    1.17109*10^-15
-    
+    {{-1.2800000000000014, 1.2800000000000014},
+     {0, -3.9399999999999946}}
+    >>> Cm = SimilarityMatrix[A,B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1,err2]];
+    1.881192080999035*^-15
+
     For Python/Numpy:
-    
-    >>> a=ml.matrix([[0.12, 0.88]])
-    >>> A=ml.matrix([[-1.28, 0],[3.94, -3.94]])
-    >>> b,B=CanonicalFromPH2(a,A)
+
+    >>> a = ml.matrix([[0.12, 0.88]])
+    >>> A = ml.matrix([[-1.28, 0],[3.94, -3.94]])
+    >>> b,B = CanonicalFromPH2(a,A)
     >>> print(b)
-    [[ 0.96101523  0.03898477]]
+    [[ 0.96102  0.03898]]
     >>> print(B)
     [[-1.28  1.28]
      [ 0.   -3.94]]
-    >>> C=SimilarityMatrix(A,B)
-    >>> print(la.norm(A*C-C*B))
+    >>> Cm = SimilarityMatrix(A,B)
+    >>> err1 = la.norm(A*Cm-Cm*B)
+    >>> err2 = la.norm(a*Cm-b)
+    >>> print(np.max(err1,err2))
     4.86095148111e-15
-    >>> print(la.norm(a*C-b))
-    2.06083980779e-15
 

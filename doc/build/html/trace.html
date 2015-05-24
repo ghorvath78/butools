@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="next" title="butools.trace.CdfFromTrace" href="CdfFromTrace.html" >
@@ -78,7 +78,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Tools for the Analysis of Measurement Traces (<tt class="docutils literal"><span class="pre">butools.trace</span></tt>)</a><ul>
+<li><a class="reference internal" href="#">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
 <li><a class="reference internal" href="#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a></li>
 </ul>
 </li>
@@ -99,8 +99,8 @@
           <div class="body" id="spc-section-body">
             
   <div class="section" id="tools-for-the-analysis-of-measurement-traces-butools-trace">
-<h1>Tools for the Analysis of Measurement Traces (<tt class="xref py py-mod docutils literal"><span class="pre">butools.trace</span></tt>)<a class="headerlink" href="#tools-for-the-analysis-of-measurement-traces-butools-trace" title="Permalink to this headline">¶</a></h1>
-<p>To load this package, either start the <tt class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></tt>
+<h1>Tools for the Analysis of Measurement Traces (<code class="xref py py-mod docutils literal"><span class="pre">butools.trace</span></code>)<a class="headerlink" href="#tools-for-the-analysis-of-measurement-traces-butools-trace" title="Permalink to this headline">¶</a></h1>
+<p>To load this package, either start the <code class="xref py py-func docutils literal"><span class="pre">BuToolsInit()</span></code>
 script, or execute</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -108,13 +108,13 @@ script, or execute</p>
 <col width="50%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">addpath('butools/trace')</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">addpath('butools/trace')</span></code></td>
 <td>in Matlab,</td>
 </tr>
-<tr class="row-even"><td><tt class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`Trace&quot;</span></tt></td>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`Trace&quot;</span></code></td>
 <td>in Mathematica,</td>
 </tr>
-<tr class="row-odd"><td><tt class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.trace</span> <span class="pre">import</span> <span class="pre">*</span></tt></td>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.trace</span> <span class="pre">import</span> <span class="pre">*</span></code></td>
 <td>in Python/Numpy.</td>
 </tr>
 </tbody>
@@ -127,31 +127,31 @@ script, or execute</p>
 <col width="86%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="CdfFromTrace.html#butools.trace.CdfFromTrace" title="butools.trace.CdfFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">CdfFromTrace</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="CdfFromTrace.html#butools.trace.CdfFromTrace" title="butools.trace.CdfFromTrace"><code class="xref py py-func docutils literal"><span class="pre">CdfFromTrace</span></code></a></td>
 <td>Returns the empirical distribution function of the trace</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="CdfFromWeightedTrace.html#butools.trace.CdfFromWeightedTrace" title="butools.trace.CdfFromWeightedTrace"><tt class="xref py py-func docutils literal"><span class="pre">CdfFromWeightedTrace</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="CdfFromWeightedTrace.html#butools.trace.CdfFromWeightedTrace" title="butools.trace.CdfFromWeightedTrace"><code class="xref py py-func docutils literal"><span class="pre">CdfFromWeightedTrace</span></code></a></td>
 <td>Returns the empirical distribution function of a trace consisting of weighted data</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="PdfFromTrace.html#butools.trace.PdfFromTrace" title="butools.trace.PdfFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">PdfFromTrace</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="PdfFromTrace.html#butools.trace.PdfFromTrace" title="butools.trace.PdfFromTrace"><code class="xref py py-func docutils literal"><span class="pre">PdfFromTrace</span></code></a></td>
 <td>Returns the empirical density function of a trace</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="PdfFromWeightedTrace.html#butools.trace.PdfFromWeightedTrace" title="butools.trace.PdfFromWeightedTrace"><tt class="xref py py-func docutils literal"><span class="pre">PdfFromWeightedTrace</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="PdfFromWeightedTrace.html#butools.trace.PdfFromWeightedTrace" title="butools.trace.PdfFromWeightedTrace"><code class="xref py py-func docutils literal"><span class="pre">PdfFromWeightedTrace</span></code></a></td>
 <td>Returns the empirical density function of a trace consisting of weighted data</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="MarginalMomentsFromTrace.html#butools.trace.MarginalMomentsFromTrace" title="butools.trace.MarginalMomentsFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromTrace</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="MarginalMomentsFromTrace.html#butools.trace.MarginalMomentsFromTrace" title="butools.trace.MarginalMomentsFromTrace"><code class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromTrace</span></code></a></td>
 <td>Returns the marginal moments of a trace</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="MarginalMomentsFromWeightedTrace.html#butools.trace.MarginalMomentsFromWeightedTrace" title="butools.trace.MarginalMomentsFromWeightedTrace"><tt class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromWeightedTrace</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="MarginalMomentsFromWeightedTrace.html#butools.trace.MarginalMomentsFromWeightedTrace" title="butools.trace.MarginalMomentsFromWeightedTrace"><code class="xref py py-func docutils literal"><span class="pre">MarginalMomentsFromWeightedTrace</span></code></a></td>
 <td>Returns the marginal moments of a trace consisting of weighted data</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="LagCorrelationsFromTrace.html#butools.trace.LagCorrelationsFromTrace" title="butools.trace.LagCorrelationsFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">LagCorrelationsFromTrace</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="LagCorrelationsFromTrace.html#butools.trace.LagCorrelationsFromTrace" title="butools.trace.LagCorrelationsFromTrace"><code class="xref py py-func docutils literal"><span class="pre">LagCorrelationsFromTrace</span></code></a></td>
 <td>Returns the lag-k autocorrelation of a trace</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="LagkJointMomentsFromTrace.html#butools.trace.LagkJointMomentsFromTrace" title="butools.trace.LagkJointMomentsFromTrace"><tt class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromTrace</span></tt></a></td>
+<tr class="row-even"><td><a class="reference internal" href="LagkJointMomentsFromTrace.html#butools.trace.LagkJointMomentsFromTrace" title="butools.trace.LagkJointMomentsFromTrace"><code class="xref py py-func docutils literal"><span class="pre">LagkJointMomentsFromTrace</span></code></a></td>
 <td>Returns the lag-k joint moments of a trace</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="IATimesFromCummulative.html#butools.trace.IATimesFromCummulative" title="butools.trace.IATimesFromCummulative"><tt class="xref py py-func docutils literal"><span class="pre">IATimesFromCummulative</span></tt></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="IATimesFromCummulative.html#butools.trace.IATimesFromCummulative" title="butools.trace.IATimesFromCummulative"><code class="xref py py-func docutils literal"><span class="pre">IATimesFromCummulative</span></code></a></td>
 <td>Returns inter-arrival times from cummulative a trace.</td>
 </tr>
 </tbody>
@@ -182,10 +182,10 @@ script, or execute</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="top" title="butools v2.0 Manual" href="index.html" >
     <link rel="up" title="Tools for Phase-Type Distributions (butools.ph)" href="ph.html" >
@@ -51,7 +51,7 @@
 	
         <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
 	
-          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<tt class="docutils literal"><span class="pre">butools.ph</span></tt>)</a></li> 
+          <li class="active"><a href="ph.html" accesskey="U">Tools for Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.ph</span></code>)</a></li> 
     </ul>
               
               
@@ -96,7 +96,7 @@
 <h1>butools.ph.PHFromME<a class="headerlink" href="#butools-ph-phfromme" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="butools.ph.PHFromME">
-<tt class="descclassname">butools.ph.</tt><tt class="descname">PHFromME</tt><big>(</big><big>)</big><a class="headerlink" href="#butools.ph.PHFromME" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">butools.ph.</code><code class="descname">PHFromME</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#butools.ph.PHFromME" title="Permalink to this definition">¶</a></dt>
 <dd><table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -104,13 +104,13 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Matlab:</td>
-<td><tt class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">PHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">precision)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">[beta,</span> <span class="pre">B]</span> <span class="pre">=</span> <span class="pre">PHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">precision)</span></code></td>
 </tr>
 <tr class="row-even"><td>Mathematica:</td>
-<td><tt class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">PHFromME[alpha,</span> <span class="pre">A,</span> <span class="pre">precision]</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">{beta,</span> <span class="pre">B}</span> <span class="pre">=</span> <span class="pre">PHFromME[alpha,</span> <span class="pre">A,</span> <span class="pre">precision]</span></code></td>
 </tr>
 <tr class="row-odd"><td>Python/Numpy:</td>
-<td><tt class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">PHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">precision)</span></tt></td>
+<td><code class="code docutils literal"><span class="pre">beta,</span> <span class="pre">B</span> <span class="pre">=</span> <span class="pre">PHFromME(alpha,</span> <span class="pre">A,</span> <span class="pre">precision)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -164,35 +164,154 @@ method,&#8221; Performance Evaluation 64:(9-12) pp.
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.4</span> <span class="mf">1.4</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">3.8</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">9</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span><span class="o">=</span><span class="n">PHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
-<span class="go"> 0.013037      0.98696</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
-<span class="go">  -3.2605       2.5924</span>
-<span class="go">  0.34843      -9.5395</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
-<span class="go">  1.2949e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
-<span class="go">  6.1455e-16</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckMERepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">PHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="go">     0.013037      0.98696</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="go">      -3.2605       2.5924</span>
+<span class="go">      0.34843      -9.5395</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">));</span>
+<span class="go">   1.0162e-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckMERepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">PHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="go">    0.0057038       0.9943</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="go">      -3.1279       3.0636</span>
+<span class="go">     0.017405      -9.6721</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">));</span>
+<span class="go">   3.0445e-15</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">},{</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckMERepresentation</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="go">&quot;CheckProbVector: The vector has negative element!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">PHFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="go">{0.013037109374999953, 0.9869628906249999}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-3.2604571906887756, 2.5924299798044217},</span>
+<span class="go"> {0.3484263627325931, -9.539542809311223}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">A</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Max</span><span class="p">[</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">]];</span>
+<span class="go">1.1393205654608455*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">},{</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckMERepresentation</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="go">&quot;CheckProbVector: The vector has negative element!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">PHFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="go">{0.0057037812657654285, 0.9942962187342346}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-3.1278937744575632, 3.0635853844348873},</span>
+<span class="go"> {0.017404720964309853, -9.672106225542432}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">A</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Max</span><span class="p">[</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">]];</span>
+<span class="go">2.30940485129664*^-15</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">PHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckMERepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">PHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="go">[[ 0.01303711  0.98696289]]</span>
+<span class="go">[[ 0.01304  0.98696]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
-<span class="go">[[-3.26045719  2.59242998]</span>
-<span class="go"> [ 0.34842636 -9.53954281]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">))</span>
+<span class="go">[[-3.26046  2.59243]</span>
+<span class="go"> [ 0.34843 -9.53954]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">))</span>
 <span class="go">1.18018326364e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">b</span><span class="p">))</span>
-<span class="go">2.35922392733e-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">3.8</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckMERepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">PHFromME</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">[[ 0.0057  0.9943]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">[[-3.12789  3.06359]</span>
+<span class="go"> [ 0.0174  -9.67211]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckPHRepresentation</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">))</span>
+<span class="go">2.23152066184e-15</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -220,10 +339,10 @@ method,&#8221; Performance Evaluation 64:(9-12) pp.
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 13, 2015.
+      Last updated on May 24, 2015.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
       </li>
     </ul>
     </div>

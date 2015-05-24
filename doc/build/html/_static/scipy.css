@@ -32,7 +32,7 @@ div.spc-navbar {
     margin: 0;
 }
 
-tt {
+code, tt {
     color: inherit;
     font: inherit;
 }
