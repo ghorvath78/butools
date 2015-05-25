@@ -43,7 +43,7 @@ butools.map.CanonicalFromMAP2
     Examples
     --------
     For Matlab:
-
+    
     >>> D0=[-14 1; 1 -25];
     >>> D1=[6 7; 3 21];
     >>> [H0,H1]=CanonicalFromMAP2(D0,D1);
@@ -56,7 +56,7 @@ butools.map.CanonicalFromMAP2
     >>> C=SimilarityMatrix(H0,D0);
     >>> dissimilarity = norm(H0*C-C*D0) + norm(H1*C-C*D1)
           5.3e-13
-
+  
     For Python/Numpy:
     >>> D0=ml.matrix([[-14, 1],[1, -25]])   
     >>> D1=ml.matrix([[6, 7],[3, 21]])
@@ -70,3 +70,5 @@ butools.map.CanonicalFromMAP2
     >>> C=SimilarityMatrix(H0,D0)
     >>> print(la.norm(H0*C-C*D0) + la.norm(H1*C-C*D1))
     4.67918996173e-13
+
+    

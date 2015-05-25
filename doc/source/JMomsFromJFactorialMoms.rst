@@ -41,31 +41,55 @@ butools.moments.JMomsFromJFactorialMoms
     http://en.wikipedia.org/wiki/Factorial_moment    
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> jfm=JFactorialMomsFromJMoms([0.7 2 3 4; 5 6 7 8; 9 10 11 12])
-    [0.7 1.3 -1.6 3.8; 4.3 -0.3 0.6 -1.8; -4.6 0.6 -1.2 3.6]
-    >>> jm=JMomsFromJFactorialMoms(jfm)
-    [0.7 2 3 4; 5 6 7 8; 9 10 11 12]
-    
+
+    >>> MM = [0.7, 2, 3, 4; 5, 6, 7, 8; 9, 10, 11, 12];
+    >>> JFmoms = JFactorialMomsFromJMoms(MM);
+    >>> disp(JFmoms);
+              0.7          1.3         -1.6          3.8
+              4.3         -0.3          0.6         -1.8
+             -4.6          0.6         -1.2          3.6
+    >>> Jmoms = JMomsFromJFactorialMoms(JFmoms);
+    >>> disp(Jmoms);
+              0.7            2            3            4
+                5            6            7            8
+                9           10           11           12
+    >>> err = norm(Jmoms-MM);
+    >>> disp(err);
+         0
+
     For Mathematica:
-    
-    >>> jfm=JFactorialMomsFromJMoms[{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}}]
-    {{1, 1, -1, 2}, {4, 0, 0, 0}, {-4, 0, 0, 0}}
-    >>> jm=JMomsFromJFactorialMoms[jfm]
-    {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}}
-    
+
+    >>> MM = {{0.7, 2, 3, 4},{5, 6, 7, 8},{9, 10, 11, 12}};
+    >>> JFmoms = JFactorialMomsFromJMoms[MM];
+    >>> Print[JFmoms];
+    {{0.7, 1.3, -1.5999999999999996, 3.8000000000000007},
+     {4.3, -0.30000000000000004, 0.5999999999999996, -1.8000000000000007},
+     {-4.6, 0.6000000000000001, -1.1999999999999993, 3.6000000000000014}}
+    >>> Jmoms = JMomsFromJFactorialMoms[JFmoms];
+    >>> Print[Jmoms];
+    {{0.7, 2., 3., 4.},
+     {5., 6., 7., 8.},
+     {9., 10., 11., 12.}}
+    >>> err = Norm[Jmoms-MM];
+    >>> Print[err];
+    0.
+
     For Python/Numpy:
 
-    >>> jfm=JFactorialMomsFromJMoms([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
-    >>> print(jfm)
-    [[ 1.  1. -1.  2.]
-     [ 4.  0.  0.  0.]
-     [-4.  0.  0.  0.]]
-    >>> jm=JMomsFromJFactorialMoms(jfm)
-    >>> print(jm)
-    [[  1.   2.   3.   4.]
-     [  5.   6.   7.   8.]
-     [  9.  10.  11.  12.]]
-         
+    >>> MM = ml.matrix([[0.7, 2, 3, 4],[5, 6, 7, 8],[9, 10, 11, 12]])
+    >>> JFmoms = JFactorialMomsFromJMoms(MM)
+    >>> print(JFmoms)
+    [[ 0.7  1.3 -1.6  3.8]
+     [ 4.3 -0.3  0.6 -1.8]
+     [-4.6  0.6 -1.2  3.6]]
+    >>> Jmoms = JMomsFromJFactorialMoms(JFmoms)
+    >>> print(Jmoms)
+    [[  0.7   2.    3.    4. ]
+     [  5.    6.    7.    8. ]
+     [  9.   10.   11.   12. ]]
+    >>> err = la.norm(np.array(Jmoms)-MM)
+    >>> print(err)
+    0.0
+

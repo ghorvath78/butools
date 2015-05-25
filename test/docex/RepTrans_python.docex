@@ -1,0 +1,74 @@
+=== SimilarityMatrix ===
+>>> A1m = ml.matrix([[0.2, 0.8, 0],[1.2, -0.4, 0.1],[-0.2, 0.7, 0.5]])
+>>> T = ml.matrix([[1, 2, -4, 6],[0, 8, -9, 7],[-3, 7, 8, -2]])
+>>> A2m = la.pinv(T)*A1m*T
+>>> B = SimilarityMatrix(A1m,A2m)
+>>> err = la.norm(A1m*B-B*A2m)
+>>> print(err)
+1.794800943e-15
+=== TransformToAcyclic ===
+>>> A = ml.matrix([[-0.8, 0.8, 0],[0.1, -0.3, 0.1],[0.2, 0, -0.5]])
+>>> B = TransformToAcyclic(A)
+>>> print(B)
+[[-0.1203  0.1203  0.    ]
+ [ 0.     -0.6158  0.6158]
+ [ 0.      0.     -0.8639]]
+>>> Cm = SimilarityMatrix(A,B)
+>>> err = la.norm(A*Cm-Cm*B)
+>>> print(err)
+8.75449540243e-09
+=== TransformToMonocyclic ===
+>>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
+>>> B = TransformToMonocyclic(A)
+>>> print(B)
+[[-1.       1.       0.       0.       0.     ]
+ [ 0.      -3.       3.       0.       0.     ]
+ [ 0.       0.      -3.       3.       0.     ]
+ [ 0.       0.       0.      -3.       3.     ]
+ [ 0.       0.59259  0.       0.      -3.     ]]
+>>> Cm = SimilarityMatrix(A,B)
+>>> err = la.norm(A*Cm-Cm*B)
+>>> print(err)
+1.29225863835e-14
+=== ExtendToMarkovian ===
+>>> alpha = ml.matrix([[0.2, 0.3, 0.5]])
+>>> A = ml.matrix([[-1, 0, 0],[0, -3, 0.6],[0, -0.6, -3]])
+>>> B = TransformToMonocyclic(A)
+>>> print(B)
+[[-1.       1.       0.       0.     ]
+ [ 0.      -2.65359  2.65359  0.     ]
+ [ 0.       0.      -2.65359  2.65359]
+ [ 0.       0.04723  0.      -2.65359]]
+>>> Cm = SimilarityMatrix(A,B)
+>>> beta = alpha*Cm
+>>> print(beta)
+[[  4.56492e-02  -4.38356e-04  -8.88109e-02   1.04360e+00]]
+>>> m,M = ExtendToMarkovian(beta,B)
+>>> print(m)
+[[ 0.0154   0.01019  0.01762  0.01811  0.0088   0.10333  0.82655]]
+>>> print(M)
+[[-1.       1.       0.       0.       0.       0.       0.     ]
+ [ 0.      -2.65359  2.65359  0.       0.       0.       0.     ]
+ [ 0.       0.      -2.65359  2.65359  0.       0.       0.     ]
+ [ 0.       0.04723  0.      -2.65359  2.60636  0.       0.     ]
+ [ 0.       0.       0.       0.      -3.2908   3.2908   0.     ]
+ [ 0.       0.       0.       0.       0.      -3.2908   3.2908 ]
+ [ 0.       0.       0.       0.       0.       0.      -3.2908 ]]
+>>> Cm = SimilarityMatrix(B,M)
+>>> err = la.norm(B*Cm-Cm*M)
+>>> print(err)
+4.28823049948e-15
+=== SimilarityMatrixForVectors ===
+>>> vecA = ml.matrix([[0.0, 0.3, -1.5, 0.0]])
+>>> vecB = ml.matrix([[1.0, 0.2, 0.0, 1.0]])
+>>> vecA = vecA.T
+>>> vecB = vecB.T
+>>> B = SimilarityMatrixForVectors (vecA, vecB)
+>>> print(B)
+[[ 0.       3.33333  0.       0.     ]
+ [ 0.66667  0.66667  0.       0.     ]
+ [ 0.       0.       0.       0.     ]
+ [-0.83333 -0.83333 -0.83333 -0.83333]]
+>>> err = la.norm(B*vecA-vecB)
+>>> print(err)
+0.0

@@ -41,25 +41,37 @@ butools.moments.CheckMoments
     .. [1] http://en.wikipedia.org/wiki/Stieltjes_moment_problem
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> CheckMoments([1.2 5 8 29 3412])
-    0
-    >>> CheckMoments([1.3 2.4 6.03 20.5 89.5])
-    1
+
+    >>> M = [1.2, 5, 8, 29, 3412];
+    >>> flag = CheckMoments(M);
+    >>> disp(flag);
+         0
+    >>> M = [1.3, 2.4, 6.03, 20.5, 89.5];
+    >>> flag = CheckMoments(M);
+    >>> disp(flag);
+         1
 
     For Mathematica:
-    
-    >>> CheckMoments[{1.2, 5, 8, 29, 3412}]
+
+    >>> M = {1.2, 5, 8, 29, 3412};
+    >>> flag = CheckMoments[M];
+    >>> Print[flag];
     False
-    >>> CheckMoments[{1.3, 2.4, 6.03, 20.5, 89.5}]
+    >>> M = {1.3, 2.4, 6.03, 20.5, 89.5};
+    >>> flag = CheckMoments[M];
+    >>> Print[flag];
     True
-    
+
     For Python/Numpy:
-    
-    >>> CheckMoments([1.2, 5, 8, 29, 3412])
+
+    >>> M = [1.2, 5, 8, 29, 3412]
+    >>> flag = CheckMoments(M)
+    >>> print(flag)
     False
-    >>> CheckMoments([1.3, 2.4, 6.03, 20.5, 89.5])
+    >>> M = [1.3, 2.4, 6.03, 20.5, 89.5]
+    >>> flag = CheckMoments(M)
+    >>> print(flag)
     True
 

@@ -163,55 +163,42 @@ of phase-type distributions,&#8221; Stoch. Models 15,
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.8</span> <span class="mf">0.8</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.1</span> <span class="o">-</span><span class="mf">0.3</span> <span class="mf">0.1</span><span class="p">;</span> <span class="mf">0.2</span> <span class="mi">0</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">TransformToAcyclic</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="go"> -0.1203       0.1203            0</span>
-<span class="go">       0      -0.6158       0.6158</span>
-<span class="go">       0            0      -0.8639</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">*</span><span class="n">C</span>
-<span class="go">  -0.10221    0.0096089     0.092604</span>
-<span class="go"> -0.086842    -0.013158  -2.0936e-09</span>
-<span class="go"> -0.053839    -0.072529     -0.17363</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">*</span><span class="n">B</span>
-<span class="go">  -0.10221    0.0096089     0.092604</span>
-<span class="go"> -0.086842    -0.013158  -1.9665e-09</span>
-<span class="go"> -0.053839    -0.072529     -0.17363</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">;</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">TransformToAcyclic</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="go">      -0.1203       0.1203            0</span>
+<span class="go">            0      -0.6158       0.6158</span>
+<span class="go">            0            0      -0.8639</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+<span class="go">   7.0942e-09</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">},{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">}};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">TransformToAcyclic</span><span class="p">[</span><span class="n">A</span><span class="p">]</span>
-<span class="go">{{-0.120304, 0.120304, 0},</span>
-<span class="go"> {0, -0.615799, 0.615799},</span>
-<span class="go"> {0, 0, -0.863897}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">Cm</span>
-<span class="go">{{-0.102212, 0.00960886, 0.0926036},</span>
-<span class="go">{-0.0868418, -0.0131582, -6.93889*10^-18},</span>
-<span class="go">{-0.0538391, -0.0725292, -0.173632}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span><span class="o">.</span><span class="n">B</span>
-<span class="go">{{-0.102212, 0.00960886, 0.0926036},</span>
-<span class="go">{-0.0868418, -0.0131582, -8.32667*10^-17},</span>
-<span class="go">{-0.0538391, -0.0725292, -0.173632}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">TransformToAcyclic</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-0.12030366824989391, 0.12030366824989391, 0},</span>
+<span class="go"> {0, -0.6157989613063427, 0.6157989613063427},</span>
+<span class="go"> {0, 0, -0.8638973704437634}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">A</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">B</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">err</span><span class="p">];</span>
+<span class="go">3.2936898311300537*^-16</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="o">=</span><span class="n">TransformToAcyclic</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">TransformToAcyclic</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
-<span class="go">[[-0.12030368  0.12030368  0.        ]</span>
-<span class="go"> [ 0.         -0.61579897  0.61579897]</span>
-<span class="go"> [ 0.          0.         -0.86389737]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="p">)</span>
-<span class="go">[[ -1.02212451e-01   9.60885889e-03   9.26035918e-02]</span>
-<span class="go"> [ -8.68417847e-02  -1.31582146e-02  -6.95794991e-10]</span>
-<span class="go"> [ -5.38390510e-02  -7.25292122e-02  -1.73631737e-01]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
-<span class="go">[[ -1.02212457e-01   9.60885905e-03   9.26035917e-02]</span>
-<span class="go"> [ -8.68417900e-02  -1.31582145e-02  -6.50973442e-10]</span>
-<span class="go"> [ -5.38390542e-02  -7.25292125e-02  -1.73631737e-01]]</span>
+<span class="go">[[-0.1203  0.1203  0.    ]</span>
+<span class="go"> [ 0.     -0.6158  0.6158]</span>
+<span class="go"> [ 0.      0.     -0.8639]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="go">8.75449540243e-09</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -239,7 +226,7 @@ of phase-type distributions,&#8221; Stoch. Models 15,
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 24, 2015.
+      Last updated on May 25, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

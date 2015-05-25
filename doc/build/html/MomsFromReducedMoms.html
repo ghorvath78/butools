@@ -138,26 +138,42 @@ moment)</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="o">=</span><span class="n">ReducedMomsFromMoms</span><span class="p">([</span><span class="mf">1.2</span> <span class="mi">5</span> <span class="mi">38</span> <span class="mi">495</span> <span class="mi">9215</span><span class="p">])</span>
-<span class="go">[1.2 2.5 6.3333 20.625 76.792]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">=</span><span class="n">MomsFromReducedMoms</span><span class="p">(</span><span class="n">rm</span><span class="p">)</span>
-<span class="go">[1.2 5 38 495 9215]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">495</span><span class="p">,</span> <span class="mi">9215</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">ReducedMomsFromMoms</span><span class="p">(</span><span class="n">M</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rmoms</span><span class="p">);</span>
+<span class="go">          1.2          2.5       6.3333       20.625       76.792</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MomsFromReducedMoms</span><span class="p">(</span><span class="n">rmoms</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
+<span class="go">          1.2            5           38          495         9215</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">moms</span><span class="o">-</span><span class="n">M</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+<span class="go">     0</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="o">=</span><span class="n">ReducedMomsFromMoms</span><span class="p">[{</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">495</span><span class="p">,</span> <span class="mi">9215</span><span class="p">}];</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">495</span><span class="p">,</span> <span class="mi">9215</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">ReducedMomsFromMoms</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">rmoms</span><span class="p">];</span>
 <span class="go">{1.2, 5/2, 19/3, 165/8, 1843/24}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">=</span><span class="n">MomsFromReducedMoms</span><span class="p">[</span><span class="n">rm</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MomsFromReducedMoms</span><span class="p">[</span><span class="n">rmoms</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">moms</span><span class="p">];</span>
 <span class="go">{1.2, 5, 38, 495, 9215}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">moms</span><span class="o">-</span><span class="n">M</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">err</span><span class="p">];</span>
+<span class="go">0.</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="o">=</span><span class="n">ReducedMomsFromMoms</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">495</span><span class="p">,</span> <span class="mi">9215</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rm</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">495</span><span class="p">,</span> <span class="mi">9215</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">ReducedMomsFromMoms</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rmoms</span><span class="p">)</span>
 <span class="go">[1.2, 2.5, 6.333333333333333, 20.625, 76.79166666666667]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">=</span><span class="n">MomsFromReducedMoms</span><span class="p">(</span><span class="n">rm</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MomsFromReducedMoms</span><span class="p">(</span><span class="n">rmoms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
 <span class="go">[1.2, 5.0, 38.0, 495.0, 9215.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="go">0.0</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -185,7 +201,7 @@ moment)</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 24, 2015.
+      Last updated on May 25, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

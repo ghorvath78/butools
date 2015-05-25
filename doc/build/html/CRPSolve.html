@@ -142,25 +142,30 @@ pass the <a class="reference internal" href="CheckGenerator.html#butools.mc.Chec
 still have to be zeros).</p>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">4.3</span> <span class="mf">3.5</span> <span class="mf">0.8</span><span class="p">;</span> <span class="o">-</span><span class="mf">8.4</span> <span class="mf">6.5</span> <span class="mf">1.9</span><span class="p">;</span> <span class="mf">17.3</span> <span class="o">-</span><span class="mf">12.7</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="n">CRPSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
-<span class="go">[-3.5617 3.6667 0.89506]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
-<span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">*</span><span class="n">Q</span>
-<span class="go">[3.5527e-15 -1.7764e-15 0]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">;</span> <span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">;</span> <span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ret</span> <span class="o">=</span> <span class="n">CRPSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ret</span><span class="p">);</span>
+<span class="go">      -3.5617       3.6667      0.89506</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ret</span><span class="o">*</span><span class="n">Q</span><span class="p">);</span>
+<span class="go">   3.5527e-15  -1.7764e-15            0</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">},</span> <span class="p">{</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">},</span> <span class="p">{</span><span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">}};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="n">CRPSolve</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
-<span class="go">{-3.56173, 3.66667, 0.895062}</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">},{</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">},{</span><span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ret</span> <span class="o">=</span> <span class="n">CRPSolve</span><span class="p">[</span><span class="n">Q</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ret</span><span class="p">];</span>
+<span class="go">{-3.5617283950617336, 3.66666666666667, 0.8950617283950623}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ret</span><span class="o">.</span><span class="n">Q</span><span class="p">];</span>
+<span class="go">{1.7763568394002505*^-15, 0., 0.}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],[</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],[</span><span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">CRPSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
-<span class="go">matrix([[-3.5617284 ,  3.66666667,  0.89506173]])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],[</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],[</span><span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ret</span> <span class="o">=</span> <span class="n">CRPSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+<span class="go">[[-3.56173  3.66667  0.89506]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="o">*</span><span class="n">Q</span><span class="p">)</span>
+<span class="go">[[  1.77636e-15   0.00000e+00   0.00000e+00]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -188,7 +193,7 @@ still have to be zeros).</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 24, 2015.
+      Last updated on May 25, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

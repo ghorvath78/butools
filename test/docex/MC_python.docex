@@ -1,0 +1,103 @@
+=== CRPSolve ===
+>>> Q = ml.matrix([[-4.3, 3.5, 0.8],[-8.4, 6.5, 1.9],[17.3, -12.7, -4.6]])
+>>> ret = CRPSolve(Q)
+>>> print(ret)
+[[-3.56173  3.66667  0.89506]]
+>>> print(ret*Q)
+[[  1.77636e-15   0.00000e+00   0.00000e+00]]
+=== DRPSolve ===
+>>> Q = ml.matrix([[-0.9, 0.5, 1.4],[0.9, -0.9, 1],[0.3, 1.3, -0.6]])
+>>> ret = DRPSolve(Q)
+>>> print(ret)
+[[ 0.23138  0.3484   0.42021]]
+>>> print(ret*Q - ret)
+[[ -1.38778e-16   5.55112e-17   5.55112e-17]]
+=== CTMCSolve ===
+>>> Q = ml.matrix([[-0.9, 0.5, 0.4],[0.9, -0.9, 0],[0.3, 0.3, -0.6]])
+>>> ret = CTMCSolve(Q)
+>>> print(ret)
+[[ 0.40909  0.31818  0.27273]]
+>>> print(ret*Q)
+[[ -4.16334e-17  -1.38778e-17   5.55112e-17]]
+=== DTMCSolve ===
+>>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.3, 0.4]])
+>>> ret = DTMCSolve(Q)
+>>> print(ret)
+[[ 0.40909  0.31818  0.27273]]
+>>> print(ret*Q - ret)
+[[ -5.55112e-17   0.00000e+00   5.55112e-17]]
+=== CheckGenerator ===
+>>> Q = ml.matrix([[-0.9, 0.2, 0.4],[0, 0.9, 0.9],[0, 0.6, -0.6]])
+>>> flag = CheckGenerator(Q,True)
+CheckGenerator: The diagonal of the generator is not negative (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[-0.9, 0.5, 0.4],[0.9, -0.9, 0],[0.3, 0.3, -0.6]])
+>>> flag = CheckGenerator(Q,True)
+>>> print(flag)
+True
+>>> Q = ml.matrix([[-0.9, 0.2, 0.4],[0.9, -0.9, 0],[0.3, 0.3, -0.6]])
+>>> flag = CheckGenerator(Q,True)
+>>> print(flag)
+True
+>>> Q = ml.matrix([[-0.9, 0.5, 0.4],[0.9, -1.1, 0],[0.3, 0.3, -0.6]])
+>>> flag = CheckGenerator(Q)
+CheckGenerator: The rowsum of the generator is not 0 (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[-0.9, 0.5, 0.4],[0.9, -0.9, 0],[0.3, 0.3, -0.6]])
+>>> flag = CheckGenerator(Q)
+>>> print(flag)
+True
+=== CheckProbMatrix ===
+>>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, -0.1, 0.4]])
+>>> flag = CheckProbMatrix(Q)
+CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.1, 0.4]])
+>>> flag = CheckProbMatrix(Q)
+CheckProbMatrix: The rowsum of the matrix is not 1 (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.3, 0.4]])
+>>> flag = CheckProbMatrix(Q)
+>>> print(flag)
+True
+>>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.3, 0.4]])
+>>> flag = CheckProbMatrix(Q,True)
+CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.1, 0.4]])
+>>> flag = CheckProbMatrix(Q,True)
+>>> print(flag)
+True
+=== CheckProbVector ===
+>>> Q = ml.matrix([[1.1, -0.1]])
+>>> flag = CheckProbVector(Q)
+CheckProbVector: The vector has negative element (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[1.1, 0.1]])
+>>> flag = CheckProbVector(Q)
+CheckProbVector: The sum of the vector is not 1 (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[1, 0]])
+>>> flag = CheckProbVector(Q)
+>>> print(flag)
+True
+>>> Q = ml.matrix([[0.9, -0.1]])
+>>> flag = CheckProbVector(Q,True)
+CheckProbVector: The vector has negative element (precision: 1e-12)!
+>>> print(flag)
+False
+>>> Q = ml.matrix([[0.9, 0.1]])
+>>> flag = CheckProbVector(Q,True)
+>>> print(flag)
+True
+>>> Q = ml.matrix([[0.8, 0.1]])
+>>> flag = CheckProbVector(Q,True)
+>>> print(flag)
+True

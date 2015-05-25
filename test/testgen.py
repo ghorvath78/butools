@@ -126,8 +126,9 @@ def convertCode(code):
         code = re.compile('NPArray\[([^\]]+)\]').sub('\\1', code)
         code = re.compile('True').sub('true', code)
         code = re.compile('False').sub('false', code)
-        code = re.compile('([a-zA-Z])([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('([a-zA-Z\]])([.])([a-zA-Z])').sub('\\1*\\3', code)
         code = re.compile('Norm\[').sub('norm(', code)
+        code = re.compile('PseudoInverse\[').sub('pinv(', code)
         code = re.compile('Abs\[').sub('abs(', code)
         code = re.compile('Max\[').sub('max(', code)
         code = re.compile('Min\[').sub('min(', code)
@@ -136,6 +137,7 @@ def convertCode(code):
         code = re.compile('Total\[').sub('sum(', code)
         code = re.compile('Length\[').sub('length(', code)
         code = re.compile('Infinity').sub('inf', code)
+        code = re.compile('Transpose\[(\w+)\]').sub("\\1'", code)
         # fix array indices
         code = re.compile('\[\[1\]\]').sub('', code)
         code = re.compile('\[\[([\w-]+)\]\]').sub('(\\1)', code)
@@ -147,9 +149,10 @@ def convertCode(code):
     elif output=="Python":
         # replace few function names
         code = re.compile('\./').sub('/', code)
-        code = re.compile('([a-zA-Z])([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('([a-zA-Z\]])([.])([a-zA-Z])').sub('\\1*\\3', code)
         code = re.compile('NPArray\[([^\]]+)\]').sub('np.array(\\1)', code)
         code = re.compile('Norm\[').sub('la.norm(', code)
+        code = re.compile('PseudoInverse\[').sub('la.pinv(', code)
         code = re.compile('Abs\[').sub('np.abs(', code)
         code = re.compile('Max\[').sub('np.max(', code)
         code = re.compile('Min\[').sub('np.min(', code)
@@ -159,6 +162,7 @@ def convertCode(code):
         code = re.compile('Total\[').sub('np.sum(', code)
         code = re.compile('Length\[').sub('Length(', code)
         code = re.compile('Infinity').sub('np.inf', code)
+        code = re.compile('Transpose\[(\w+)\]').sub("\\1.T", code)
         code = re.compile('&&').sub(' and ', code)
         code = re.compile('\|\|').sub(' or ', code)
         code = re.compile('\^').sub('**', code)
@@ -292,33 +296,50 @@ with redirect_stdout(fio):
                 x, y = re.match(r'plot\s+([\w\.\-]+)\s*#\s*([\w\.\-]+)\s*',line).groups()
                 line = formatPlot(x,y)
                 printQuotedMsg(">>> " + line)
-            elif line.startswith("code"):                           
-                echo = (line[4]=="@" or line[5]=="@")
-                intro = (line[4]=="!" or line[5]=="!")
-                firstnonws = 0
-                while not line[firstnonws].isspace():
-                    firstnonws+=1                    
-                code = line[firstnonws:-1].strip()
-                ccode = convertCode(code)
-                outV = re.match(r'\{?([^\}=]+)\}?\s*=\s*(.*)',ccode)
-                varLst = []
-                if outV!=None:
-                    varLst = re.findall(r'[\s,]*([\w\.\-]+)[\s,]*', outV.groups()[0])
-                    usedVars += varLst
-                    if len(varLst)==1:
-                        ccode = "{0} = {1}".format(varLst[0], outV.groups()[1])
-                    else:
-                        ccode = "{0}{1}{2} = {3}".format(funRetLeft, outV.groups()[0], funRetRight, outV.groups()[1])
-                if intro and not forDocEx:
-                    printQuotedMsg(ccode+":")
-                if output!="Python":
-                    ccode += ";"
-                if forDocEx:                
-                    printQuotedMsg(">>> " + ccode)
-                print(ccode)
-                if echo:
-                    for oa in varLst:
-                        printVar(oa, echo)        
+            elif line.startswith("code"):  
+                forMathematica, forMatlab, forPython = False, False, False                
+                ix = 3
+                for i in range(4,7):
+                    if line[i]==' ':
+                        break
+                    elif line[i]=='W':
+                        forMathematica = True
+                        ix+=1
+                    elif line[i]=='M':
+                        forMatlab = True
+                        ix+=1                       
+                    elif line[i]=='P':
+                        forPython = True
+                        ix+=1                  
+                if forMathematica==False and  forMatlab==False and forPython==False:
+                    forMathematica, forMatlab, forPython = True, True, True
+                if (output=="Mathematica" and forMathematica) or (output=="MATLAB" and forMatlab) or (output=="Python" and forPython):
+                    echo = (line[ix+1]=="@" or line[ix+2]=="@")
+                    intro = (line[ix+1]=="!" or line[ix+2]=="!")
+                    firstnonws = 0
+                    while not line[firstnonws].isspace():
+                        firstnonws+=1                    
+                    code = line[firstnonws:-1].strip()
+                    ccode = convertCode(code)
+                    outV = re.match(r'\{?([^\}=]+)\}?\s*=\s*(.*)',ccode)
+                    varLst = []
+                    if outV!=None:
+                        varLst = re.findall(r'[\s,]*([\w\.\-]+)[\s,]*', outV.groups()[0])
+                        usedVars += varLst
+                        if len(varLst)==1:
+                            ccode = "{0} = {1}".format(varLst[0], outV.groups()[1])
+                        else:
+                            ccode = "{0}{1}{2} = {3}".format(funRetLeft, outV.groups()[0], funRetRight, outV.groups()[1])
+                    if intro and not forDocEx:
+                        printQuotedMsg(ccode+":")
+                    if output!="Python":
+                        ccode += ";"
+                    if forDocEx:                
+                        printQuotedMsg(">>> " + ccode)
+                    print(ccode)
+                    if echo:
+                        for oa in varLst:
+                            printVar(oa, echo)        
             elif line.startswith("print"):
                 intro = False
                 rest = line[6:-1]
@@ -390,7 +411,7 @@ if output=="Mathematica":
 elif output=="MATLAB":
     print("function {0} ()\n\t{1}end".format(funName, '\t'.join(srcFile.splitlines(True))))
 elif output=="Python":
-    print('import numpy as np\nimport numpy.matlib as ml\nimport matplotlib.pyplot as plt\nimport butools\nfrom butools.utils import *\nfrom butools.ph import *\nfrom butools.moments import *\nfrom butools.mc import *\nfrom contextlib import redirect_stdout\n')
+    print('import numpy as np\nimport numpy.matlib as ml\nimport matplotlib.pyplot as plt\nimport butools\nfrom butools.utils import *\nfrom butools.ph import *\nfrom butools.moments import *\nfrom butools.reptrans import*\nfrom butools.mc import *\nfrom contextlib import redirect_stdout\n')
     print("def {0}():\n\t{1}".format(funName, '\t'.join(srcFile.splitlines(True))))
     print('if __name__ == "__main__":\n\t{0}()'.format(funName))
     

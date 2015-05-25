@@ -124,10 +124,10 @@ def processMathematicaDoc(fun, btModule, mathematicaSignature):
                 o.writelines(nlines)
 
 def exampleForFunction(funName, output):
-    docExFiles = [name for name in os.listdir('../test') if name.endswith('_{0}.docex'.format(output))]
+    docExFiles = [name for name in os.listdir('../test/docex') if name.endswith('_{0}.docex'.format(output))]
     strex = []    
     for fil in docExFiles:
-        with open("../test/"+fil, "rt") as f:
+        with open("../test/docex/"+fil, "rt") as f:
             lines = f.readlines()
             capture = False
             for l in lines:

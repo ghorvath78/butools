@@ -153,27 +153,93 @@ default value is 1e-14.</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span> <span class="mf">0.1</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">CheckProbVector</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
-<span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">CheckProbVector</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
-<span class="go">0</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<span class="go">CheckProbVector: The sum of the vector is not 1 (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">true</span><span class="p">);</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">true</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">true</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="go">     1</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span><span class="p">{</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">CheckProbVector</span><span class="p">[</span><span class="n">pi</span><span class="p">,</span> <span class="bp">True</span><span class="p">]</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">CheckProbVector</span><span class="p">[</span><span class="n">pi</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">[</span><span class="n">Q</span><span class="p">];</span>
+<span class="go">&quot;CheckProbVector: The vector has negative element!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
 <span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">[</span><span class="n">Q</span><span class="p">];</span>
+<span class="go">&quot;CheckProbVector: The sum of the vector is not 1 (precision:&quot;1.*^-12&quot;)!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">[</span><span class="n">Q</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">[</span><span class="n">Q</span><span class="p">,</span><span class="bp">True</span><span class="p">];</span>
+<span class="go">&quot;CheckProbVector: The vector has negative element!&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">[</span><span class="n">Q</span><span class="p">,</span><span class="bp">True</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">[</span><span class="n">Q</span><span class="p">,</span><span class="bp">True</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flag</span><span class="p">];</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span><span class="o">=</span> <span class="p">[[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">CheckProbVector</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">CheckProbVector</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
 <span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="go">CheckProbVector: The sum of the vector is not 1 (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">CheckProbVector: The vector has negative element (precision: 1e-12)!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flag</span> <span class="o">=</span> <span class="n">CheckProbVector</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -201,7 +267,7 @@ default value is 1e-14.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 24, 2015.
+      Last updated on May 25, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

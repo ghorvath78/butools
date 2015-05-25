@@ -186,7 +186,7 @@ div#spc-section-body .align-center{
 }
 
 /* Styling for <tt></tt> elements */
-code, tt {
+tt {
 	background-color:#EEE;
 	color:#000;
 	font: 16px/1.0 'Inconsolata', Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;

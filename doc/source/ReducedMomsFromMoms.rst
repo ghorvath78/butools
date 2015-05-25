@@ -33,27 +33,43 @@ butools.moments.ReducedMomsFromMoms
         The list of reduced moments
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> rm=ReducedMomsFromMoms([1.2 5 38 495 9215])
-    [1.2 2.5 6.3333 20.625 76.792]
-    >>> m=MomsFromReducedMoms(rm)
-    [1.2 5 38 495 9215]
-    
+
+    >>> M = [1.2, 5, 38, 495, 9215];
+    >>> rmoms = ReducedMomsFromMoms(M);
+    >>> disp(rmoms);
+              1.2          2.5       6.3333       20.625       76.792
+    >>> moms = MomsFromReducedMoms(rmoms);
+    >>> disp(moms);
+              1.2            5           38          495         9215
+    >>> err = norm(moms-M);
+    >>> disp(err);
+         0
+
     For Mathematica:
-    
-    >>> rm=ReducedMomsFromMoms[{1.2, 5, 38, 495, 9215}]
+
+    >>> M = {1.2, 5, 38, 495, 9215};
+    >>> rmoms = ReducedMomsFromMoms[M];
+    >>> Print[rmoms];
     {1.2, 5/2, 19/3, 165/8, 1843/24}
-    >>> m=MomsFromReducedMoms[rm]
+    >>> moms = MomsFromReducedMoms[rmoms];
+    >>> Print[moms];
     {1.2, 5, 38, 495, 9215}
-    
+    >>> err = Norm[moms-M];
+    >>> Print[err];
+    0.
+
     For Python/Numpy:
 
-    >>> rm=ReducedMomsFromMoms([1.2, 5, 38, 495, 9215])
-    >>> print(rm)
+    >>> M = [1.2, 5, 38, 495, 9215]
+    >>> rmoms = ReducedMomsFromMoms(M)
+    >>> print(rmoms)
     [1.2, 2.5, 6.333333333333333, 20.625, 76.79166666666667]
-    >>> m=MomsFromReducedMoms(rm)
-    >>> print(m)
+    >>> moms = MomsFromReducedMoms(rmoms)
+    >>> print(moms)
     [1.2, 5.0, 38.0, 495.0, 9215.0]
+    >>> err = la.norm(np.array(moms)-np.array(M))
+    >>> print(err)
+    0.0
 

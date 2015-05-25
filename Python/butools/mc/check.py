@@ -46,12 +46,12 @@ def CheckGenerator (Q, transient=False, prec=None):
         
     if Q.shape[0]!=Q.shape[1]:
         if butools.verbose:
-            print ("CheckGenerator: Generator is not a square matrix!\n")
+            print ("CheckGenerator: Generator is not a square matrix!")
         return False
 
     if np.any(np.diag(Q)>=prec):
         if butools.verbose:
-            print ("CheckGenerator: The diagonal of the generator is not negative (precision: {0})!\n".format(prec))
+            print ("CheckGenerator: The diagonal of the generator is not negative (precision: {0})!".format(prec))
         return False
 
     N = Q.shape[0]
@@ -61,23 +61,23 @@ def CheckGenerator (Q, transient=False, prec=None):
 
     if np.sum(np.any(odQ))>0:
         if butools.verbose:
-            print ("CheckGenerator: The generator has negative off-diagonal element (precision: {0})!\n".format(prec))
+            print ("CheckGenerator: The generator has negative off-diagonal element (precision: {0})!".format(prec))
         return False
 
     if transient:
         if np.max(np.sum(Q,1))>prec:
             if butools.verbose:
-                print ("CheckGenerator: The rowsum of the transient generator is greater than 0 (precision: {0})!\n".format(prec))
+                print ("CheckGenerator: The rowsum of the transient generator is greater than 0 (precision: {0})!".format(prec))
             return False
 
         if np.max(np.real(la.eigvals(Q)))>=prec:
             if butools.verbose:
-                print ("CheckGenerator: The transient generator has non-negative eigenvalue (precision: {0})!\n".format(prec))
+                print ("CheckGenerator: The transient generator has non-negative eigenvalue (precision: {0})!".format(prec))
             return False
     else:
         if np.any(np.abs(np.sum(Q,1))>prec):
             if butools.verbose:
-                print ("CheckGenerator: The rowsum of the generator is not 0 (precision: {0})!\n".format(prec))
+                print ("CheckGenerator: The rowsum of the generator is not 0 (precision: {0})!".format(prec))
             return False
     return True
 
@@ -120,28 +120,28 @@ def CheckProbMatrix (P, transient=False, prec=None):
 
     if P.shape[0]!= P.shape[1]:
         if butools.verbose:
-            print ("CheckProbMatrix: the matrix is not a square matrix!\n")
+            print ("CheckProbMatrix: the matrix is not a square matrix!")
         return False
 
     if np.min(np.min(P))<-prec:
         if butools.verbose:
-            print ("CheckProbMatrix: the matrix has negative element (precision: {0})!\n".format(prec))
+            print ("CheckProbMatrix: the matrix has negative element (precision: {0})!".format(prec))
         return False
 
     if transient:
         if np.any(np.sum(P,1)-1.0>prec*P.shape[1]):
             if butools.verbose:
-                print ("CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: {0})!\n", prec)
+                print ("CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: {0})!", prec)
             return False
 
         if np.max(np.real(la.eigvals(P)))>=1.0-prec:
             if butools.verbose:
-                print ("CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: {0})!\n".format(prec))
+                print ("CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: {0})!".format(prec))
             return False
     else:
         if np.any(np.abs(np.sum(P,1)-1.0)>prec*P.shape[1]):
             if butools.verbose:
-                print ("CheckProbMatrix: The rowsum of the matrix is not 1 (precision: {0})!\n".format(prec))
+                print ("CheckProbMatrix: The rowsum of the matrix is not 1 (precision: {0})!".format(prec))
             return False
     return True
 
@@ -180,7 +180,7 @@ def CheckProbVector (pi, sub=False, prec=None):
 
     if np.min(pi)<-prec:
         if butools.verbose:
-            print ("CheckProbVector: The vector has negative element (precision: {0})!\n".format(prec))
+            print ("CheckProbVector: The vector has negative element (precision: {0})!".format(prec))
         return False
 
     if sub:
@@ -191,7 +191,7 @@ def CheckProbVector (pi, sub=False, prec=None):
     else:
         if np.abs(np.sum(pi)-1.0)>prec*pi.size:
             if butools.verbose:
-                print ("CheckProbVector: The sum of the vector is not 1 (precision: {0})!\n".format(prec))
+                print ("CheckProbVector: The sum of the vector is not 1 (precision: {0})!".format(prec))
             return False
     
     return True
