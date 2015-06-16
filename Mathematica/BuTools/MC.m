@@ -104,7 +104,7 @@ Return[False]
 h=Table[1,{size1}];
 
 If[transient,
-If[ Not[Q.h-1<=size2 prec],
+If[ Max[Q.h-h]>size2 prec,
 If[BuTools`Verbose==True,
 Print["CheckProbMatrix: A rowsum of the transient matrix is not less or equal than 1!"]];
 Return[False]

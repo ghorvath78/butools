@@ -1,0 +1,298 @@
+=== MomentsFromMG ===
+>>> a = [-0.6, 0.3, 1.3];
+>>> A = [0.25, 0.2, -0.15; 0.3, 0.1, 0.25; 0, 0.2, 0.47];
+>>> moms = MomentsFromMG(a,A);
+>>> disp(moms);
+       3.4675       16.203       97.729       731.45       6576.8
+>>> moms = MomentsFromMG(a,A,3);
+>>> disp(moms);
+       3.4675       16.203       97.729
+=== MomentsFromDPH ===
+>>> a = [0.76, 0, 0.24];
+>>> A = [0.34, 0.66, 0; 0.79, 0.05, 0.07; 0.26, 0.73, 0.01];
+>>> moms = MomentsFromDPH(a,A,5);
+>>> disp(moms);
+       26.995         1398   1.0853e+05   1.1233e+07   1.4533e+09
+=== PmfFromMG ===
+>>> a = [-0.6, 0.3, 1.3];
+>>> A = [0.25, 0.2, -0.15; 0.3, 0.1, 0.25; 0, 0.2, 0.47];
+>>> x = (0:1:100);
+>>> pmf = PmfFromMG(a,A,x);
+>>> plot(x,pmf);
+=== PmfFromDPH ===
+>>> a = [0.76, 0, 0.24];
+>>> A = [0.34, 0.66, 0; 0.79, 0.05, 0.07; 0.26, 0.73, 0.01];
+>>> x = (0:1:1000);
+>>> pmf = PmfFromDPH(a,A,x);
+>>> plot(x,pmf);
+=== CdfFromMG ===
+>>> a = [-0.6, 0.3, 1.3];
+>>> A = [0.25, 0.2, -0.15; 0.3, 0.1, 0.25; 0, 0.2, 0.47];
+>>> x = (0:1:100);
+>>> cdf = CdfFromMG(a,A,x);
+>>> plot(x,cdf);
+=== CdfFromDPH ===
+>>> a = [0.76, 0, 0.24];
+>>> A = [0.34, 0.66, 0; 0.79, 0.05, 0.07; 0.26, 0.73, 0.01];
+>>> x = (0:1:1000);
+>>> cdf = CdfFromDPH(a,A,x);
+>>> plot(x,cdf);
+=== RandomDPH ===
+>>> [a,A] = RandomDPH(3,10,5);
+>>> disp(a);
+     1     0     0
+>>> disp(A);
+      0.33352      0.29938      0.11926
+            0      0.93251     0.042746
+            0            0      0.74869
+=== CheckMGRepresentation ===
+>>> a = [-0.6, 0.3, 1.3];
+>>> A = [0.25, 0.2, -0.15; 0.3, 0.1, 0.25; 0, 0.2, 0.47];
+>>> flag = CheckMGRepresentation(a,A);
+>>> disp(flag);
+     1
+>>> a = [-0.6, 0.3, 1.3];
+>>> A = [0.35, 0.2, -0.25; 0.3, 0.1, 0.25; 0, 0.2, 0.47];
+>>> flag = CheckMGRepresentation(a,A);
+CheckMGRepresentation: The largest eigenvalue of the matrix is complex!
+>>> disp(flag);
+     0
+=== CheckDPHRepresentation ===
+>>> a = [0.48, 0.08, 0.26, 0.18];
+>>> A = [0, 0.08, 0.08, 0.8; 0.55, 0, 0.24, 0.19; 0.06, 0.03, 0, 0.001; 0.23, 0.005, 0.2, 0.53];
+>>> flag = CheckDPHRepresentation(a,A);
+>>> disp(flag);
+     1
+>>> a = [0.48, 0.08];
+>>> A = [0, 0.08; 0.55, 0.5];
+>>> flag = CheckDPHRepresentation(a,A);
+CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: 1e-12)!
+>>> disp(flag);
+     0
+=== MGFromMoments ===
+>>> moms = [4.08, 20.41, 130.45, 1054.41, 10463.73];
+>>> [a,A] = MGFromMoments(moms);
+>>> disp(a);
+      0.33333      0.33333      0.33333
+>>> disp(A);
+      0.15523       1.7289      0.10482
+    -0.013774       0.6823    -0.023472
+    -0.013847     -0.16787      0.82688
+>>> memoms = MomentsFromMG(a,A,5);
+>>> disp(memoms);
+         4.08        20.41       130.45       1054.4        10464
+=== DPHFromMG ===
+>>> a = [-0.6, 0.3, 1.3];
+>>> A = [0.1, 0.2, 0; 0.3, 0.1, 0.25; -0.3, 0.2, 0.77];
+>>> flag = CheckMGRepresentation(a,A);
+>>> disp(flag);
+     1
+>>> flag = CheckDPHRepresentation(a,A);
+CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+>>> disp(flag);
+     0
+>>> [b,B] = DPHFromMG(a,A);
+>>> disp(b);
+         0.05       0.1375       0.8125
+>>> disp(B);
+          0.1          0.2            0
+        0.425      0.06875      0.15625
+        0.141      0.01975      0.80125
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   4.0704e-16
+=== CanonicalFromDPH2 ===
+>>> a = [0, 1.0];
+>>> A = [0.23, 0.22; 0.41, 0.48];
+>>> [b,B] = CanonicalFromDPH2(a,A);
+>>> disp(b);
+      0.88663      0.11337
+>>> disp(B);
+      0.68031      0.31969
+            0     0.029692
+>>> ev = eig(A);
+>>> disp(ev);
+     0.029692
+      0.68031
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> a = [1.0, 0];
+>>> A = [0, 0.61; 0.56, 0.44];
+>>> [b,B] = CanonicalFromDPH2(a,A);
+>>> disp(b);
+  -5.0834e-16            1
+>>> disp(B);
+         0.44         0.56
+         0.61            0
+>>> ev = eig(A);
+>>> disp(ev);
+      -0.4045
+       0.8445
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   4.4871e-16
+=== CanonicalFromDPH3 ===
+>>> a = [0.46, 0.22, 0.32];
+>>> A = [0.67, 0.01, 0.12; 0.06, 0.45, 0.15; 0.18, 0.43, 0.32];
+>>> [b,B] = CanonicalFromDPH3(a,A);
+>>> disp(b);
+      0.21239      0.37004      0.41757
+>>> disp(B);
+      0.10918            0            0
+      0.45654      0.54346            0
+            0      0.21265      0.78735
+>>> ev = eig(A);
+>>> disp(ev);
+      0.78735
+      0.54346
+      0.10918
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   2.3226e-13
+>>> a = [0.76, 0.12, 0.12];
+>>> A = [0.31, 0., 0.; 0.98, 0., 0.02; 0.88, 0.04, 0.08];
+>>> [b,B] = CanonicalFromDPH3(a,A);
+>>> disp(b);
+      0.13074       0.3444      0.52486
+>>> disp(B);
+         0.31         0.69            0
+            0         0.08         0.92
+            0   0.00086957            0
+>>> ev = eig(A);
+>>> disp(ev);
+      0.08899
+   -0.0089898
+         0.31
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+    4.371e-16
+>>> a = [0.67, 0.07, 0.26];
+>>> A = [0.31, 0., 0.; 0.98, 0., 0.02; 0.88, 0.04, 0.08];
+>>> [b,B] = CanonicalFromDPH3(a,A);
+>>> disp(b);
+      0.15814      0.37915       0.4627
+>>> disp(B);
+         0.31         0.69            0
+            0         0.08         0.92
+            0   0.00086957            0
+>>> ev = eig(A);
+>>> disp(ev);
+      0.08899
+   -0.0089898
+         0.31
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   4.2151e-16
+>>> a = [0.78, 0.04, 0.18];
+>>> A = [0.06, 0.25, 0.31; 0.45, 0.18, 0.33; 0.98, 0, 0.01];
+>>> [b,B] = CanonicalFromDPH3(a,A);
+>>> disp(b);
+      0.43828      0.23849      0.32323
+>>> disp(B);
+         0.25         0.75            0
+      0.53747            0      0.46253
+     0.072496            0            0
+>>> ev = eig(A);
+>>> disp(ev);
+      0.79606
+     -0.48028
+    -0.065779
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+   1.4697e-15
+=== AcyclicDPHFromMG ===
+>>> a = [0, 0, 1.0];
+>>> A = [0.22, 0, 0; 0.3, 0.1, 0.55; 0.26, 0, 0.73];
+>>> [b,B] = AcyclicDPHFromMG(a,A);
+>>> disp(b);
+      0.69103      0.29786     0.011111
+>>> disp(B);
+         0.73         0.27            0
+            0         0.22         0.78
+            0            0          0.1
+>>> ma = MomentsFromMG(a,A,5);
+>>> disp(ma);
+       4.9383       34.807       339.49       4335.8        68954
+>>> mb = MomentsFromMG(b,B,5);
+>>> disp(mb);
+       4.9383       34.807       339.49       4335.8        68954
+>>> flag = CheckDPHRepresentation(b,B);
+>>> disp(flag);
+     1
+>>> Cm = SimilarityMatrix(A,B);
+>>> err1 = norm(A*Cm-Cm*B);
+>>> err2 = norm(a*Cm-b);
+>>> disp(max(err1,err2));
+    2.999e-16
+=== DPH2From3Moments ===
+>>> a = [0.9, 0.1];
+>>> A = [0.2, 0.61; 0.58, 0.41];
+>>> moms = MomentsFromDPH(a,A);
+>>> disp(moms);
+       10.305       215.13       6764.2
+>>> [b,B] = DPH2From3Moments(moms);
+>>> disp(b);
+      0.43249      0.56751
+>>> disp(B);
+         0.61         0.39
+      0.69692            0
+>>> phmoms = MomentsFromDPH(b,B,3);
+>>> disp(phmoms);
+       10.305       215.13       6764.2
+=== DPH3From5Moments ===
+>>> a = [0.7, 0.1, 0.2];
+>>> A = [0.2, 0.51, 0.1; 0.58, 0.41, 0; 0.1, 0.4, 0.3];
+>>> moms = MomentsFromDPH(a,A);
+>>> disp(moms);
+       9.3096        175.1       4968.7   1.8805e+05   8.8966e+06
+>>> [b,B] = DPH3From5Moments(moms);
+>>> disp(b);
+      0.73989     0.076837      0.18327
+>>> disp(B);
+      0.89971      0.10029            0
+            0     0.010293      0.98971
+            0     0.050581            0
+>>> phmoms = MomentsFromMG(b,B,5);
+>>> disp(phmoms);
+       9.3096        175.1       4968.7   1.8805e+05   8.8966e+06
+=== SamplesFromDPH ===
+>>> a = [0.76, 0, 0.24];
+>>> A = [0.34, 0.66, 0; 0.79, 0.05, 0.07; 0.26, 0.73, 0.01];
+>>> x = SamplesFromDPH(a,A,1000);
+>>> mp = MomentsFromDPH(a,A,3);
+>>> disp(mp);
+       26.995         1398   1.0853e+05

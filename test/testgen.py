@@ -119,16 +119,29 @@ def convertCode(code):
     if output=="Mathematica":
         # fix parenthesis
         code = re.compile('NPArray\[([^\]]+)\]').sub('\\1', code)
+        code = re.compile('Dim1\[([^\]]+)\]').sub('Dimensions[\\1][[1]]', code)
+        code = re.compile('AllPositive\[([^\]]+)\]').sub('AllTrue[\\1,Positive]', code)
+        code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('AllTrue[\\1,Positive]', code)
+        code = re.compile('AllLessThan1\[([^\]]+)\]').sub('AllTrue[\\1,#<1 &]', code)
+        code = re.compile('AllGreaterThanm1\[([^\]]+)\]').sub('AllTrue[\\1,#>-1 &]', code)
         code = re.compile('\./').sub('/', code)
+        code = re.compile('<-').sub('{', code)
+        code = re.compile('->').sub('}', code)
         return code
     elif output=="MATLAB":
-        # replace few function names
+        # replace few function names      
+        code = re.compile('BuTools`CheckPrecision').sub('BuToolsCheckPrecision', code)
         code = re.compile('NPArray\[([^\]]+)\]').sub('\\1', code)
         code = re.compile('True').sub('true', code)
         code = re.compile('False').sub('false', code)
         code = re.compile('([a-zA-Z\]])([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('AllPositive\[([^\]]+)\]').sub('all(\\1>0)', code)
+        code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('all(all(\\1>0))', code)
+        code = re.compile('AllLessThan1\[([^\]]+)\]').sub('all(\\1<1)', code)
+        code = re.compile('AllGreaterThanm1\[([^\]]+)\]').sub('all(\\1>-1)', code)
         code = re.compile('Norm\[').sub('norm(', code)
         code = re.compile('PseudoInverse\[').sub('pinv(', code)
+        code = re.compile('Eigenvalues\[').sub('eig(', code)
         code = re.compile('Abs\[').sub('abs(', code)
         code = re.compile('Max\[').sub('max(', code)
         code = re.compile('Min\[').sub('min(', code)
@@ -139,20 +152,31 @@ def convertCode(code):
         code = re.compile('Infinity').sub('inf', code)
         code = re.compile('Transpose\[(\w+)\]').sub("\\1'", code)
         # fix array indices
+        code = re.compile('\[\[1,2;;\]\]').sub('(1,2:end)', code)
+        code = re.compile('\[\[2;;,1\]\]').sub("(2:end,1)'", code)
         code = re.compile('\[\[1\]\]').sub('', code)
         code = re.compile('\[\[([\w-]+)\]\]').sub('(\\1)', code)
+        code = re.compile('Dim1\[([^\]]+)\]').sub('size(\\1,1)', code)
         # fix parenthesis
         code = re.compile('\[').sub('(', code)
-        code = re.compile('\]').sub(')', code)       
+        code = re.compile('\]').sub(')', code)
+        code = re.compile('<-').sub('{', code)
+        code = re.compile('->').sub('}', code)
         code = re.compile('"').sub("'", code)
         return code
     elif output=="Python":
         # replace few function names
+        code = re.compile('BuTools`CheckPrecision').sub('butools.checkPrecision', code)
         code = re.compile('\./').sub('/', code)
         code = re.compile('([a-zA-Z\]])([.])([a-zA-Z])').sub('\\1*\\3', code)
         code = re.compile('NPArray\[([^\]]+)\]').sub('np.array(\\1)', code)
+        code = re.compile('AllPositive\[([^\]]+)\]').sub('np.all(\\1>0)', code)
+        code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('np.all(\\1>0)', code)
+        code = re.compile('AllLessThan1\[([^\]]+)\]').sub('np.all(\\1<1)', code)
+        code = re.compile('AllGreaterThanm1\[([^\]]+)\]').sub('np.all(\\1>-1)', code)
         code = re.compile('Norm\[').sub('la.norm(', code)
         code = re.compile('PseudoInverse\[').sub('la.pinv(', code)
+        code = re.compile('Eigenvalues\[').sub('la.eigvals(', code)
         code = re.compile('Abs\[').sub('np.abs(', code)
         code = re.compile('Max\[').sub('np.max(', code)
         code = re.compile('Min\[').sub('np.min(', code)
@@ -169,9 +193,18 @@ def convertCode(code):
         # fix parenthesis
         code = re.compile('\[').sub('(', code)
         code = re.compile('\]').sub(')', code)
+        code = re.compile('<-').sub('[', code)
+        code = re.compile('->').sub(']', code)
         # fix array indices
+        code = re.compile('\(\(1,2;;\)\)').sub('[0,1:]', code)
+        code = re.compile('\(\(2;;,1\)\)').sub('[1:,0]', code)
         code = re.compile('\(\(1\)\)').sub('[0]', code)
         code = re.compile('\(\(2\)\)').sub('[1]', code)
+        code = re.compile('\(\(3\)\)').sub('[2]', code)
+        code = re.compile('\(\(4\)\)').sub('[3]', code)
+        code = re.compile('\(\(5\)\)').sub('[4]', code)
+        code = re.compile('\(\(6\)\)').sub('[5]', code)
+        code = re.compile('Dim1\(([^\]]+)\)').sub('\\1.shape[0]', code)
         return code
     
 
@@ -210,6 +243,7 @@ with redirect_stdout(fio):
                 if output=="MATLAB":
                     print("global BuToolsCheckInput;")
                     print("BuToolsCheckInput = true;")
+                    print("global BuToolsCheckPrecision;")
                     if forDocEx:
                         print("format compact")
                         print("diary('{0}_matlab.docex');".format(packName))
@@ -265,7 +299,7 @@ with redirect_stdout(fio):
                 echo = line[6]=="@"
                 varName, rowsString = re.match(r'\w+@?\s+(\w+)\s+#\s+\{(.*)\}',line).groups()
                 rowsList = re.findall(r'\{([^\}]*)\}', rowsString)
-                entries = [re.findall(r'[\s,]*([\w\.\-]+)[\s,]*', x) for x in rowsList]
+                entries = [re.findall(r'[\s,]*([\w\.\-\+]+)[\s,]*', x) for x in rowsList]
                 line = formatMat(varName, entries)
                 if forDocEx:                
                     printQuotedMsg(">>> " + line)
@@ -340,6 +374,11 @@ with redirect_stdout(fio):
                     if echo:
                         for oa in varLst:
                             printVar(oa, echo)        
+            elif line.startswith("CODE"):
+                if (line[4]=='P' and output=='Python') or (line[4]=='M' and output=='MATLAB') or (line[4]=='W' and output=='Mathematica'):
+                    if forDocEx:                
+                        printQuotedMsg(">>> " + line[6:-1])
+                    print(line[6:-1])                    
             elif line.startswith("print"):
                 intro = False
                 rest = line[6:-1]
@@ -411,7 +450,7 @@ if output=="Mathematica":
 elif output=="MATLAB":
     print("function {0} ()\n\t{1}end".format(funName, '\t'.join(srcFile.splitlines(True))))
 elif output=="Python":
-    print('import numpy as np\nimport numpy.matlib as ml\nimport matplotlib.pyplot as plt\nimport butools\nfrom butools.utils import *\nfrom butools.ph import *\nfrom butools.moments import *\nfrom butools.reptrans import*\nfrom butools.mc import *\nfrom contextlib import redirect_stdout\n')
+    print('import numpy as np\nimport numpy.matlib as ml\nimport matplotlib.pyplot as plt\nimport butools\nfrom butools.utils import *\nfrom butools.ph import *\nfrom butools.dph import *\nfrom butools.map import *\nfrom butools.moments import *\nfrom butools.reptrans import*\nfrom butools.mc import *\nfrom contextlib import redirect_stdout\n')
     print("def {0}():\n\t{1}".format(funName, '\t'.join(srcFile.splitlines(True))))
     print('if __name__ == "__main__":\n\t{0}()'.format(funName))
     
