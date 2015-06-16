@@ -156,29 +156,45 @@ University of Missouri, WP-CM-1990-02, Kansas City,
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.4675</span><span class="p">,</span> <span class="mf">16.203</span><span class="p">,</span> <span class="mf">97.729</span><span class="p">,</span> <span class="mf">731.45</span><span class="p">,</span> <span class="mf">6576.8</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span><span class="o">=</span><span class="n">MGFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.08</span><span class="p">,</span> <span class="mf">20.41</span><span class="p">,</span> <span class="mf">130.45</span><span class="p">,</span> <span class="mf">1054.41</span><span class="p">,</span> <span class="mf">10463.73</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">MGFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
 <span class="go">      0.33333      0.33333      0.33333</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
-<span class="go">      0.26191       3.6937      -2.5821</span>
-<span class="go">    -0.025302   -0.0056997      0.66959</span>
-<span class="go">    -0.030408    0.0073107      0.66695</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">       3.4675       16.203       97.729       731.45       6576.8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+<span class="go">      0.15523       1.7289      0.10482</span>
+<span class="go">    -0.013774       0.6823    -0.023472</span>
+<span class="go">    -0.013847     -0.16787      0.82688</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">memoms</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">memoms</span><span class="p">);</span>
+<span class="go">         4.08        20.41       130.45       1054.4        10464</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">{</span><span class="mf">4.08</span><span class="p">,</span> <span class="mf">20.41</span><span class="p">,</span> <span class="mf">130.45</span><span class="p">,</span> <span class="mf">1054.41</span><span class="p">,</span> <span class="mf">10463.73</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">MGFromMoments</span><span class="p">[</span><span class="n">moms</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+<span class="go">{1/3, 1/3, 1/3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="go">{{0.15522721633282086, 1.7288735256877237, 0.10482133882430097},</span>
+<span class="go"> {-0.013773788451490479, 0.6823009288291466, -0.02347241196722473},</span>
+<span class="go"> {-0.013846712675345957, -0.1678656131152182, 0.8268849851301606}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">memoms</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">memoms</span><span class="p">];</span>
+<span class="go">{4.080000000000002, 20.41000000000002, 130.4500000000002, 1054.4100000000037, 10463.730000000038}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.4675</span><span class="p">,</span> <span class="mf">16.203</span><span class="p">,</span> <span class="mf">97.729</span><span class="p">,</span> <span class="mf">731.45</span><span class="p">,</span> <span class="mf">6576.8</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="n">MGFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.08</span><span class="p">,</span> <span class="mf">20.41</span><span class="p">,</span> <span class="mf">130.45</span><span class="p">,</span> <span class="mf">1054.41</span><span class="p">,</span> <span class="mf">10463.73</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">MGFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">[[ 0.33333333  0.33333333  0.33333333]]</span>
+<span class="go">[[ 0.33333  0.33333  0.33333]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">[[ 0.26190621  3.69367602 -2.58213389]</span>
-<span class="go"> [-0.02530173 -0.00569967  0.66958705]</span>
-<span class="go"> [-0.03040818  0.00731073  0.66694767]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="go">[3.4674999999999931, 16.203000000000046, 97.729000000001236, 731.45000000001903, 6576.8000000002794]</span>
+<span class="go">[[ 0.15523  1.72887  0.10482]</span>
+<span class="go"> [-0.01377  0.6823  -0.02347]</span>
+<span class="go"> [-0.01385 -0.16787  0.82688]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">memoms</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">memoms</span><span class="p">)</span>
+<span class="go">[4.080000000000001, 20.410000000000029, 130.45000000000047, 1054.4100000000135, 10463.730000000427]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -206,7 +222,7 @@ University of Missouri, WP-CM-1990-02, Kansas City,
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 25, 2015.
+      Last updated on Jun 17, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

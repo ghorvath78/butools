@@ -5,24 +5,24 @@
 *)
 
 BeginPackage["BuTools`DPH`"];
-AcyclicDPHFromMG::usage = "alma";
-CanonicalFromDPH2::usage = "alma";
-CanonicalFromDPH3::usage = "alma";
-CdfFromMG::usage = "alma";
-CdfFromDPH::usage = "alma";
-CheckMGRepresentation::usage = "alma";
-CheckDPHRepresentation::usage = "alma";
-DPH2From3Moments::usage = "alma";
-DPH3From5Moments::usage = "alma";
-DPHFromMG::usage = "alma";
-MGFromMoments::usage = "alma";
+AcyclicDPHFromMG::usage = "{beta, B} = AcyclicDPHFromMG[alpha, A, precision]: Transforms a matrix-geometric representation to an acyclic DPH representation of the same size, if possible.";
+CanonicalFromDPH2::usage = "{beta, B} = CanonicalFromDPH2[alpha, A, prec]: Returns the canonical form of an order-2 discrete phase-type distribution.";
+CanonicalFromDPH3::usage = "{beta, B} = CanonicalFromDPH3[alpha, A, prec]: Returns the canonical form of an order-3 discrete phase-type distribution.";
+CdfFromMG::usage = "cdf = CdfFromMG[alpha, A, x, prec]: Returns the cummulative distribution function of a matrix-geometric distribution.";
+CdfFromDPH::usage = "cdf = CdfFromDPH[alpha, A, x, prec]: Returns the cummulative distribution function of a discrete phase-type distribution.";
+CheckMGRepresentation::usage = "r = CheckMGRepresentation[alpha, A, prec]: Checks if the given vector and matrix define a valid matrix-geometric representation.";
+CheckDPHRepresentation::usage = "r = CheckDPHRepresentation[alpha, A, prec]: Checks if the given vector and matrix define a valid discrete phase-type representation.";
+DPH2From3Moments::usage = "{alpha, A} = DPH2From3Moments[moms, prec]: Returns an order-2 discrete phase-type distribution which has the same 3 moments as given.";
+DPH3From5Moments::usage = "{alpha, A} = DPH3From5Moments[moms, prec]: Returns an order-3 discrete phase-type distribution which has the same 5 moments as given.";
+DPHFromMG::usage = "{beta, B} = DPHFromMG[alpha, A, precision]: Obtains a Markovian representation of a matrix geometric distribution of the same size, if possible.";
+MGFromMoments::usage = "{alpha, A} = MGFromMoments[moms]: Creates a matrix-geometric distribution that has the same moments as given.";
 MGOrderFromMoments::usage = "alma";
-MomentsFromMG::usage = "alma";
-MomentsFromDPH::usage = "alma";
-PmfFromMG::usage = "alma";
-PmfFromDPH::usage = "alma";
-RandomDPH::usage = "alma";
-SamplesFromDPH::usage = "alma";
+MomentsFromMG::usage = "moms = MomentsFromMG[alpha, A, K, prec]: Returns the moments of a matrix geometric distribution.";
+MomentsFromDPH::usage = "moms = MomentsFromDPH[alpha, A, K, prec]: Returns the moments of a discrete phase-type distribution.";
+PmfFromMG::usage = "pmf = PmfFromMG[alpha, A, x, prec]: Returns the probability mass function of a matrix-geometric distribution.";
+PmfFromDPH::usage = "pmf = PmfFromDPH[alpha, A, x, prec]: Returns the probability mass function of a discrete phase-type distribution.";
+RandomDPH::usage = "{alpha, A} = RandomDPH[order, mean, zeroEntries, maxTrials, prec]: Returns a random discrete phase-type distribution with a given mean value.";
+SamplesFromDPH::usage = "x = SamplesFromDPH[alpha, A, K, prec]: Generates random samples from a discrete phase-type distribution.";
 TestDPHPackage::usage = "alma";
 
 

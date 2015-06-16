@@ -41,29 +41,55 @@ butools.dph.DPH2From3Moments
     it to DPH(2) by 'CanonicalFromDPH2'.
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> moms = [10.305, 215.13, 6764.2];
-    >>> [a,A]=DPH2From3Moments(moms)
-    >>> a
-      0.43249      0.56751
-    >>> A
-         0.61         0.39
-      0.69692            0
-    >>> MomentsFromDPH(a,A)
-       10.305       215.13       6764.2
+
+    >>> a = [0.9, 0.1];
+    >>> A = [0.2, 0.61; 0.58, 0.41];
+    >>> moms = MomentsFromDPH(a,A);
+    >>> disp(moms);
+           10.305       215.13       6764.2
+    >>> [b,B] = DPH2From3Moments(moms);
+    >>> disp(b);
+          0.43249      0.56751
+    >>> disp(B);
+             0.61         0.39
+          0.69692            0
+    >>> phmoms = MomentsFromDPH(b,B,3);
+    >>> disp(phmoms);
+           10.305       215.13       6764.2
+
+    For Mathematica:
+
+    >>> a = {0.9, 0.1};
+    >>> A = {{0.2, 0.61},{0.58, 0.41}};
+    >>> moms = MomentsFromDPH[a,A];
+    >>> Print[moms];
+    {10.304568527918775, 215.1328300136563, 6764.166152521255}
+    >>> {b,B} = DPH2From3Moments[moms];
+    >>> Print[b];
+    {0.43248730964467125, 0.5675126903553286}
+    >>> Print[B];
+    {{0.6100000000000014, 0.38999999999999857},
+     {0.6969230769230763, 0}}
+    >>> phmoms = MomentsFromDPH[b,B,3];
+    >>> Print[phmoms];
+    {10.304568527918788, 215.13283001365693, 6764.166152521286}
 
     For Python/Numpy:
-    
-    >>> moms = [10.305, 215.13, 6764.2]
-    
-    >>> a,A=DPH2From3Moments(moms)
-    >>> print(a)
-    [[ 0.45919188  0.54080812]]
-    >>> print(A)
-    [[ 0.63160922  0.36839078]
-     [ 0.68448995  0.        ]]
-    >>> print(MomentsFromDPH(a,A))
-    [10.305000000000007, 215.13000000000028, 6764.2000000000135]
+
+    >>> a = ml.matrix([[0.9, 0.1]])
+    >>> A = ml.matrix([[0.2, 0.61],[0.58, 0.41]])
+    >>> moms = MomentsFromDPH(a,A)
+    >>> print(moms)
+    [10.304568527918775, 215.1328300136563, 6764.1661525212548]
+    >>> b,B = DPH2From3Moments(moms)
+    >>> print(b)
+    [[ 0.43249  0.56751]]
+    >>> print(B)
+    [[ 0.61     0.39   ]
+     [ 0.69692  0.     ]]
+    >>> phmoms = MomentsFromDPH(b,B,3)
+    >>> print(phmoms)
+    [10.304568527918779, 215.1328300136565, 6764.1661525212639]
 

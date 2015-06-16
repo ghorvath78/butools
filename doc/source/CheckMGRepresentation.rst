@@ -43,28 +43,46 @@ butools.dph.CheckMGRepresentation
     not exist yet (research is needed).
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> a=[-0.6 0.3 1.3];
-    >>> A=[0.25 0.2 -0.15; 0.3 0.1 0.25; 0 0.2 0.47];
-    >>> CheckMGRepresentation(a,A)
+
+    >>> a = [-0.6, 0.3, 1.3];
+    >>> A = [0.25, 0.2, -0.15; 0.3, 0.1, 0.25; 0, 0.2, 0.47];
+    >>> flag = CheckMGRepresentation(a,A);
+    >>> disp(flag);
          1
-    >>> a=[-0.6 0.3 1.3];
-    >>> A=[0.35 0.2 -0.25; 0.3 0.1 0.25; 0 0.2 0.47];
-    >>> CheckMGRepresentation(a,A)
+    >>> a = [-0.6, 0.3, 1.3];
+    >>> A = [0.35, 0.2, -0.25; 0.3, 0.1, 0.25; 0, 0.2, 0.47];
+    >>> flag = CheckMGRepresentation(a,A);
     CheckMGRepresentation: The largest eigenvalue of the matrix is complex!
+    >>> disp(flag);
          0
 
+    For Mathematica:
+
+    >>> a = {-0.6, 0.3, 1.3};
+    >>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
+    >>> flag = CheckMGRepresentation[a,A];
+    >>> Print[flag];
+    True
+    >>> a = {-0.6, 0.3, 1.3};
+    >>> A = {{0.35, 0.2, -0.25},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
+    >>> flag = CheckMGRepresentation[a,A];
+    "CheckMGRepresentation: The largest eigenvalue of the matrix is complex!"
+    >>> Print[flag];
+    False
+
     For Python/Numpy:
-    
+
     >>> a = ml.matrix([[-0.6, 0.3, 1.3]])
     >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
-    >>> print(CheckMGRepresentation(a,A))
+    >>> flag = CheckMGRepresentation(a,A)
+    >>> print(flag)
     True
     >>> a = ml.matrix([[-0.6, 0.3, 1.3]])
     >>> A = ml.matrix([[0.35, 0.2, -0.25],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
-    >>> print(CheckMGRepresentation(a,A))
+    >>> flag = CheckMGRepresentation(a,A)
     CheckMGRepresentation: The largest eigenvalue of the matrix is complex!
+    >>> print(flag)
     False
-    
+

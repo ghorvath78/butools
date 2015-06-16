@@ -47,46 +47,85 @@ butools.dph.DPHFromMG
            1153-1168. (2007)
 
     Examples
-    --------
+    ========
     For Matlab:
 
-    >>> a=[-0.6 0.3 1.3];
-    >>> A=[0.1 0.2 0; 0.3 0.1 0.25; -0.3 0.2 0.77];
-    >>> CheckDPHRepresentation(a,A)
-         0
-    >>> [b,B]=DPHFromMG(a,A);
-    >>> CheckDPHRepresentation(b,B)
+    >>> a = [-0.6, 0.3, 1.3];
+    >>> A = [0.1, 0.2, 0; 0.3, 0.1, 0.25; -0.3, 0.2, 0.77];
+    >>> flag = CheckMGRepresentation(a,A);
+    >>> disp(flag);
          1
-    >>> b
+    >>> flag = CheckDPHRepresentation(a,A);
+    CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+    >>> disp(flag);
+         0
+    >>> [b,B] = DPHFromMG(a,A);
+    >>> disp(b);
              0.05       0.1375       0.8125
-    >>> B
+    >>> disp(B);
               0.1          0.2            0
             0.425      0.06875      0.15625
             0.141      0.01975      0.80125
-    >>> C=SimilarityMatrix(A,B);    
-    >>> norm(A*C-C*B)
-       2.0713e-16
-    >>> norm(a*C-b)
-       6.8807e-16
-      
+    >>> flag = CheckDPHRepresentation(b,B);
+    >>> disp(flag);
+         1
+    >>> Cm = SimilarityMatrix(A,B);
+    >>> err1 = norm(A*Cm-Cm*B);
+    >>> err2 = norm(a*Cm-b);
+    >>> disp(max(err1,err2));
+       4.0704e-16
+
+    For Mathematica:
+
+    >>> a = {-0.6, 0.3, 1.3};
+    >>> A = {{0.1, 0.2, 0},{0.3, 0.1, 0.25},{-0.3, 0.2, 0.77}};
+    >>> flag = CheckMGRepresentation[a,A];
+    >>> Print[flag];
+    True
+    >>> flag = CheckDPHRepresentation[a,A];
+    "CheckProbVector: The vector has negative element!"
+    >>> Print[flag];
+    False
+    >>> {b,B} = DPHFromMG[a,A];
+    >>> Print[b];
+    {0.050000000000000044, 0.13749999999999998, 0.8125}
+    >>> Print[B];
+    {{0.1, 0.2, 0.},
+     {0.425, 0.06875, 0.15625},
+     {0.14100000000000007, 0.019750000000000018, 0.8012500000000001}}
+    >>> flag = CheckDPHRepresentation[b,B];
+    >>> Print[flag];
+    True
+    >>> Cm = SimilarityMatrix[A,B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1,err2]];
+    4.783309287441108*^-16
+
     For Python/Numpy:
-    
-    >>> a=ml.matrix([[-0.6, 0.3, 1.3]])
-    >>> A=ml.matrix([[0.1, 0.2, 0],[0.3, 0.1, 0.25],[-0.3, 0.2, 0.77]])
-    >>> print(CheckMGRepresentation(a,A))
-    False    
-    >>> b,B=DPHFromMG(a,A)
+
+    >>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+    >>> A = ml.matrix([[0.1, 0.2, 0],[0.3, 0.1, 0.25],[-0.3, 0.2, 0.77]])
+    >>> flag = CheckMGRepresentation(a,A)
+    >>> print(flag)
+    True
+    >>> flag = CheckDPHRepresentation(a,A)
+    CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+    >>> print(flag)
+    False
+    >>> b,B = DPHFromMG(a,A)
     >>> print(b)
-    [[ 0.05    0.1375  0.8125]]   
+    [[ 0.05    0.1375  0.8125]]
     >>> print(B)
     [[ 0.1      0.2      0.     ]
      [ 0.425    0.06875  0.15625]
      [ 0.141    0.01975  0.80125]]
-    >>> print(CheckDPHRepresentation(b,B))
+    >>> flag = CheckDPHRepresentation(b,B)
+    >>> print(flag)
     True
-    >>> C=SimilarityMatrix(A,B)
-    >>> la.norm(A*C-C*B)
-    3.3442694215099699e-16
-    >>> la.norm(a*C-b)
-    7.1143122604013212e-16
-    
+    >>> Cm = SimilarityMatrix(A,B)
+    >>> err1 = la.norm(A*Cm-Cm*B)
+    >>> err2 = la.norm(a*Cm-b)
+    >>> print(np.max(err1,err2))
+    3.34426942151e-16
+

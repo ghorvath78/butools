@@ -153,23 +153,27 @@ The default value is 1e-14.</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mf">0.76</span> <span class="mi">0</span> <span class="mf">0.24</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="mf">0.34</span> <span class="mf">0.66</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.79</span> <span class="mf">0.05</span> <span class="mf">0.07</span><span class="p">;</span> <span class="mf">0.26</span> <span class="mf">0.73</span> <span class="mf">0.01</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.76</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">;</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MomentsFromDPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
 <span class="go">       26.995         1398   1.0853e+05   1.1233e+07   1.4533e+09</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="go">       26.995</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.76</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">},{</span><span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MomentsFromDPH</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">moms</span><span class="p">];</span>
+<span class="go">{26.995340611502304, 1397.9993695881547, 108525.47866809377, 1.1232963460675944*^7, 1.4533393399621515*^9}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.76</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">],[</span><span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span><span class="o">=</span><span class="n">MomentsFromDPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.76</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">],[</span><span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MomentsFromDPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
 <span class="go">[26.995340611502307, 1397.9993695881547, 108525.47866809377, 11232963.460675946, 1453339339.9621518]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span><span class="o">=</span><span class="n">MomentsFromDPH</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
-<span class="go">[26.995340611502307]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -197,7 +201,7 @@ The default value is 1e-14.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on May 25, 2015.
+      Last updated on Jun 17, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
