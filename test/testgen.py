@@ -127,6 +127,9 @@ def convertCode(code):
         code = re.compile('\./').sub('/', code)
         code = re.compile('<-').sub('{', code)
         code = re.compile('->').sub('}', code)
+        code = re.compile('<<>>').sub('', code)
+        code = re.compile('<<').sub('[[', code)
+        code = re.compile('>>').sub(']]', code)
         return code
     elif output=="MATLAB":
         # replace few function names      
@@ -134,7 +137,7 @@ def convertCode(code):
         code = re.compile('NPArray\[([^\]]+)\]').sub('\\1', code)
         code = re.compile('True').sub('true', code)
         code = re.compile('False').sub('false', code)
-        code = re.compile('([a-zA-Z\]])([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('([a-zA-Z\]][0-9]?)([.])([a-zA-Z])').sub('\\1*\\3', code)
         code = re.compile('AllPositive\[([^\]]+)\]').sub('all(\\1>0)', code)
         code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('all(all(\\1>0))', code)
         code = re.compile('AllLessThan1\[([^\]]+)\]').sub('all(\\1<1)', code)
@@ -162,13 +165,16 @@ def convertCode(code):
         code = re.compile('\]').sub(')', code)
         code = re.compile('<-').sub('{', code)
         code = re.compile('->').sub('}', code)
+        code = re.compile('<<>>').sub('{:}', code)
+        code = re.compile('<<').sub('{', code)
+        code = re.compile('>>').sub('}', code)
         code = re.compile('"').sub("'", code)
         return code
     elif output=="Python":
         # replace few function names
-        code = re.compile('BuTools`CheckPrecision').sub('butools.checkPrecision', code)
         code = re.compile('\./').sub('/', code)
-        code = re.compile('([a-zA-Z\]])([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('([a-zA-Z\]][0-9]?)([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('BuTools`CheckPrecision').sub('butools.checkPrecision', code)
         code = re.compile('NPArray\[([^\]]+)\]').sub('np.array(\\1)', code)
         code = re.compile('AllPositive\[([^\]]+)\]').sub('np.all(\\1>0)', code)
         code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('np.all(\\1>0)', code)
@@ -193,6 +199,13 @@ def convertCode(code):
         # fix parenthesis
         code = re.compile('\[').sub('(', code)
         code = re.compile('\]').sub(')', code)
+        code = re.compile('<<>>').sub('', code)
+        code = re.compile('<<1>>').sub('[0]', code)
+        code = re.compile('<<2>>').sub('[1]', code)
+        code = re.compile('<<3>>').sub('[2]', code)
+        code = re.compile('<<4>>').sub('[3]', code)
+        code = re.compile('<<5>>').sub('[4]', code)
+        code = re.compile('<<6>>').sub('[5]', code)
         code = re.compile('<-').sub('[', code)
         code = re.compile('->').sub(']', code)
         # fix array indices
@@ -204,19 +217,22 @@ def convertCode(code):
         code = re.compile('\(\(4\)\)').sub('[3]', code)
         code = re.compile('\(\(5\)\)').sub('[4]', code)
         code = re.compile('\(\(6\)\)').sub('[5]', code)
-        code = re.compile('Dim1\(([^\]]+)\)').sub('\\1.shape[0]', code)
+        code = re.compile('Dim1\(([^\)]+)\)').sub('\\1.shape[0]', code)
         return code
     
 
 if sys.argv[1].startswith("MATLAB"):
     output = "MATLAB"
     funRetLeft, funRetRight = "[", "]"
+    listRetLeft, listRetRight = "{", "}"
 elif sys.argv[1].startswith("Mathematica"):
     output = "Mathematica"
     funRetLeft, funRetRight = "{", "}"
+    listRetLeft, listRetRight = "{", "}"
 elif sys.argv[1].startswith("Python"):
     output = "Python"
     funRetLeft, funRetRight = "", ""
+    listRetLeft, listRetRight = "", ""
 
 forDocEx = sys.argv[1].endswith("DocEx")
 
@@ -354,16 +370,24 @@ with redirect_stdout(fio):
                     while not line[firstnonws].isspace():
                         firstnonws+=1                    
                     code = line[firstnonws:-1].strip()
-                    ccode = convertCode(code)
-                    outV = re.match(r'\{?([^\}=]+)\}?\s*=\s*(.*)',ccode)
-                    varLst = []
-                    if outV!=None:
-                        varLst = re.findall(r'[\s,]*([\w\.\-]+)[\s,]*', outV.groups()[0])
+                    listOut = re.match(r'<-([^->=]+)->\s*=\s*(.*)',code)
+                    if listOut!=None:
+                        varLst = re.findall(r'[\s,]*([\w\.]+)[\s,]*', listOut.groups()[0])
                         usedVars += varLst
+                    else:
+                        vecOut = re.match(r'\{?([^\}=]+)\}?\s*=\s*(.*)',code)
+                        if vecOut!=None:
+                            varLst = re.findall(r'[\s,]*([\w\.\-`]+)[\s,]*', vecOut.groups()[0])
+                            usedVars += varLst
+                    ccode = convertCode(code)
+                    outV = re.match(r'([^=]*)\s*=\s*(.*)',ccode)
+                    if listOut!=None:
+                        ccode = "{0}{1}{2} = {3}".format(listRetLeft, convertCode(listOut.groups()[0]), listRetRight, outV.groups()[1])
+                    elif vecOut!=None:
                         if len(varLst)==1:
-                            ccode = "{0} = {1}".format(varLst[0], outV.groups()[1])
+                            ccode = "{0} = {1}".format(convertCode(varLst[0]), outV.groups()[1])
                         else:
-                            ccode = "{0}{1}{2} = {3}".format(funRetLeft, outV.groups()[0], funRetRight, outV.groups()[1])
+                            ccode = "{0}{1}{2} = {3}".format(funRetLeft, convertCode(vecOut.groups()[0]), funRetRight, outV.groups()[1])
                     if intro and not forDocEx:
                         printQuotedMsg(ccode+":")
                     if output!="Python":
