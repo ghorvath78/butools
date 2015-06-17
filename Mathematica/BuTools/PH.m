@@ -644,7 +644,7 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate},
         state = 1;
         While[cummInitial[[state]]<=r, state++];
         (* play state transitions *)
-        While[state<=N,
+        While[state<=NN,
             time -= Log[RandomReal[]] sojourn[[state]];
             r = RandomReal[];
             nstate = 1;

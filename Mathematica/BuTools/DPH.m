@@ -1,7 +1,7 @@
 (* ::Package:: *)
 
 (*
-   BuTools_DPH Package
+   BuTools DPH Package
 *)
 
 BeginPackage["BuTools`DPH`"];
@@ -406,7 +406,7 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,logp},
         state = 1;
         While[cummInitial[[state]]<=r, state++];
         (* play state transitions *)
-        While[state<=N,
+        While[state<=NN,
             time += 1 + Floor[Log[RandomReal[]]] / logp[[state]];
             r = RandomReal[];
             nstate = 1;
