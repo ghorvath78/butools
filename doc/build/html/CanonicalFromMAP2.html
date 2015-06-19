@@ -152,34 +152,55 @@ value is 1e-14</p>
 autocorrelation of the input and calls &#8216;MAP2FromMoments&#8217;.</p>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">14</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">25</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">21</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">CanonicalFromMAP2</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">;</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">21.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span> <span class="o">=</span> <span class="n">CanonicalFromMAP2</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H0</span><span class="p">);</span>
 <span class="go">       -13.91        9.199</span>
 <span class="go">            0       -25.09</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H1</span><span class="p">);</span>
 <span class="go">       4.7108            0</span>
 <span class="go">        2.801       22.289</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dissimilarity</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span> <span class="o">+</span> <span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D1</span><span class="p">)</span>
-<span class="go">      5.3e-13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">));</span>
+<span class="go">   2.4485e-13</span>
 </pre></div>
 </div>
-<p>For Python/Numpy:
-&gt;&gt;&gt; D0=ml.matrix([[-14, 1],[1, -25]])
-&gt;&gt;&gt; D1=ml.matrix([[6, 7],[3, 21]])
-&gt;&gt;&gt; [H0,H1]=CanonicalFromMAP2(D0,D1)
-&gt;&gt;&gt; print(H0)
-[[-13.90983006   9.19902797]</p>
-<blockquote>
-<div>[  0.         -25.09016994]]</div></blockquote>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H1</span><span class="p">)</span>
-<span class="go">[[  4.71080208   0.        ]</span>
-<span class="go"> [  2.80097203  22.28919792]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">=</span><span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span> <span class="o">+</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D1</span><span class="p">))</span>
-<span class="go">4.67918996173e-13</span>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">},{</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">21.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">}</span> <span class="o">=</span> <span class="n">CanonicalFromMAP2</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">];</span>
+<span class="go">0.3008595988538654</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H0</span><span class="p">];</span>
+<span class="go">{{-13.909830056250456, 9.199027971874015},</span>
+<span class="go"> {0, -25.090169943749302}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H1</span><span class="p">];</span>
+<span class="go">{{4.710802084376442, 0},</span>
+<span class="go"> {2.8009720281259014, 22.2891979156234}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H0</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H1</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Max</span><span class="p">[</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">]];</span>
+<span class="go">2.39754619495158*^-13</span>
+</pre></div>
+</div>
+<p>For Python/Numpy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">],[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">21.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span> <span class="o">=</span> <span class="n">CanonicalFromMAP2</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H0</span><span class="p">)</span>
+<span class="go">[[-13.90983   9.19903]</span>
+<span class="go"> [  0.      -25.09017]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H1</span><span class="p">)</span>
+<span class="go">[[  4.7108    0.     ]</span>
+<span class="go"> [  2.80097  22.2892 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">))</span>
+<span class="go">2.21090873503e-13</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -207,7 +228,7 @@ autocorrelation of the input and calls &#8216;MAP2FromMoments&#8217;.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 17, 2015.
+      Last updated on Jun 19, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

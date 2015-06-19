@@ -159,49 +159,84 @@ The default value is 1e-14.</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">=</span><span class="n">RandomMMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
-<span class="go">      -1.0886      0.12136      0.22192      0.16842</span>
-<span class="go">     0.014734     -0.95569      0.12078       0.1985</span>
-<span class="go">      0.04786            0     -0.81391      0.03485</span>
-<span class="go">            0            0      0.19784     -0.62705</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
-<span class="go">            0      0.21883      0.11589    0.0065551</span>
-<span class="go">      0.10771     0.046281            0     0.026041</span>
-<span class="go">     0.018566     0.077934      0.11477     0.055241</span>
-<span class="go">     0.021011     0.023357      0.13133            0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
-<span class="go">            0      0.14526     0.090391            0</span>
-<span class="go">            0       0.1356       0.2126     0.093445</span>
-<span class="go">     0.013967      0.23254      0.15518     0.063006</span>
-<span class="go">            0     0.077494      0.16397     0.012044</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">RandomMMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D</span><span class="p">{</span><span class="mi">1</span><span class="p">});</span>
+<span class="go">     -0.87817     0.062823     0.084736     0.065897</span>
+<span class="go">     0.091703     -0.76824     0.084088    0.0043968</span>
+<span class="go">     0.046976     0.011212     -0.73518            0</span>
+<span class="go">    0.0044747      0.10301      0.10419      -0.7776</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D</span><span class="p">{</span><span class="mi">2</span><span class="p">});</span>
+<span class="go">      0.06974      0.10197     0.014163      0.06567</span>
+<span class="go">      0.10359     0.072645     0.060672     0.046658</span>
+<span class="go">            0     0.092982            0     0.078496</span>
+<span class="go">     0.098123     0.064798            0      0.10907</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D</span><span class="p">{</span><span class="mi">3</span><span class="p">});</span>
+<span class="go">      0.11055     0.013521      0.11244     0.005053</span>
+<span class="go">     0.082897            0      0.01118     0.072551</span>
+<span class="go">     0.025674      0.11295      0.09019      0.10119</span>
+<span class="go">            0     0.039442            0     0.083118</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D</span><span class="p">{</span><span class="mi">4</span><span class="p">});</span>
+<span class="go">     0.080088     0.026043     0.045229     0.020247</span>
+<span class="go">     0.032178     0.041563     0.008544     0.055573</span>
+<span class="go">     0.019302     0.050709            0       0.1055</span>
+<span class="go">            0      0.10065            0     0.070722</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 <span class="go">         1.62</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">((</span><span class="n">D</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">D</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">D</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="o">==</span><span class="mi">0</span><span class="p">)))</span>
-<span class="go">    10</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">RandomMMAP</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]];</span>
+<span class="go">{{-0.437295799139103, 0.003338754417580839, 0.1415641573902845, 0.},</span>
+<span class="go"> {0.13874453128014122, -1.453383261788896, 0.08830566821786341, 0.13347200470769885},</span>
+<span class="go"> {0.026397550108518308, 0.08259215414065181, -1.1530486916510667, 0.16563511334375444},</span>
+<span class="go"> {0.05009359207333795, 0.04454176637731126, 0.023976446303573703, -0.9949578628373476}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D</span><span class="p">[[</span><span class="mi">2</span><span class="p">]]];</span>
+<span class="go">{{0.09187225694748774, 0., 0., 0.06295420798668812},</span>
+<span class="go"> {0.04755452259888749, 0.07476640128155324, 0.09049254879350689, 0.08310311437882813},</span>
+<span class="go"> {0.06563139099076135, 0.02305879569093747, 0.07732944512589102, 0.07528493298707305},</span>
+<span class="go"> {0.11017315736807261, 0.07649114218185626, 0., 0.1429046091024359}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D</span><span class="p">[[</span><span class="mi">3</span><span class="p">]]];</span>
+<span class="go">{{0., 0., 0., 0.},</span>
+<span class="go"> {0.13525793934490532, 0.1259888621470111, 0.11826980705600605, 0.031435769196259566},</span>
+<span class="go"> {0.06747058296246983, 0.07639101462714645, 0.04384916379081349, 0.09912670110087209},</span>
+<span class="go"> {0.08550816142494111, 0.09644949690992638, 0.1500251788792094, 0.11127398134328904}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D</span><span class="p">[[</span><span class="mi">4</span><span class="p">]]];</span>
+<span class="go">{{0.0812019035015118, 0.049057297741971276, 0.007307221153578756, 0.},</span>
+<span class="go"> {0.019872717487239785, 0.15959567298258204, 0.04706438838285499, 0.1594593139335582},</span>
+<span class="go"> {0.01343680664045834, 0.15483013690779301, 0.1316494518826231, 0.05036545135130296},</span>
+<span class="go"> {0.02436029981931885, 0.04889497431103888, 0., 0.030265056743036027}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMMAP</span><span class="p">[</span><span class="n">D</span><span class="p">,</span><span class="mi">1</span><span class="p">][[</span><span class="mi">1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
+<span class="go">1.62</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">=</span><span class="n">RandomMMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">RandomMMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">[[-1.20043764  0.05686545  0.17894297  0.03642876]</span>
-<span class="go"> [ 0.0746768  -1.042511    0.05897844  0.03616775]</span>
-<span class="go"> [ 0.10703581  0.15982011 -0.78408293  0.        ]</span>
-<span class="go"> [ 0.          0.          0.         -0.40896525]]</span>
+<span class="go">[[-1.43065  0.0365   0.0986   0.07204]</span>
+<span class="go"> [ 0.05873 -1.05339  0.04712  0.15256]</span>
+<span class="go"> [ 0.13173  0.06613 -1.06262  0.08123]</span>
+<span class="go"> [ 0.       0.       0.15889 -0.49418]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="go">[[ 0.06671026  0.09825053  0.20481737  0.18312201]</span>
-<span class="go"> [ 0.00370989  0.12024972  0.20318316  0.09044313]</span>
-<span class="go"> [ 0.08165806  0.05115381  0.1339248   0.        ]</span>
-<span class="go"> [ 0.07774122  0.09463614  0.          0.        ]]</span>
+<span class="go">[[ 0.10965  0.0871   0.07968  0.09757]</span>
+<span class="go"> [ 0.0422   0.07341  0.14393  0.04916]</span>
+<span class="go"> [ 0.06419  0.04432  0.04832  0.04497]</span>
+<span class="go"> [ 0.       0.       0.05647  0.     ]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="go">[[ 0.11557699  0.06062982  0.14678981  0.05230366]</span>
-<span class="go"> [ 0.06895695  0.06299849  0.15758806  0.16555862]</span>
-<span class="go"> [ 0.14566491  0.02460299  0.          0.08022243]</span>
-<span class="go"> [ 0.          0.0533731   0.18321478  0.        ]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="go">[1.6200000000000001]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span>
-<span class="go">10</span>
+<span class="go">[[ 0.08451  0.10921  0.00595  0.13313]</span>
+<span class="go"> [ 0.01176  0.01499  0.02215  0.15746]</span>
+<span class="go"> [ 0.09727  0.10813  0.03394  0.01303]</span>
+<span class="go"> [ 0.       0.       0.12291  0.04148]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[[ 0.07496  0.15214  0.14958  0.14002]</span>
+<span class="go"> [ 0.00067  0.03011  0.15207  0.09708]</span>
+<span class="go"> [ 0.15404  0.03823  0.06455  0.07252]</span>
+<span class="go"> [ 0.       0.       0.       0.11443]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMMAP</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">1.62</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -229,7 +264,7 @@ The default value is 1e-14.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 17, 2015.
+      Last updated on Jun 19, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

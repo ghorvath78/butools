@@ -159,77 +159,183 @@ networks with priority service,&#8221; Computer Networks
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.99805</span><span class="p">,</span> <span class="mf">2.0262</span><span class="p">,</span> <span class="mf">6.2348</span><span class="p">,</span> <span class="mf">25.738</span><span class="p">,</span> <span class="mf">133.3</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.34055</span><span class="p">,</span> <span class="mf">0.69322</span><span class="p">;</span> <span class="mf">0.34966</span><span class="p">,</span> <span class="mf">0.35186</span><span class="p">,</span> <span class="mf">0.71829</span><span class="p">;</span> <span class="mf">0.72396</span><span class="p">,</span> <span class="mf">0.73079</span><span class="p">,</span> <span class="mf">1.4947</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.29553</span><span class="p">,</span> <span class="mf">0.27734</span><span class="p">,</span> <span class="mf">0.54078</span><span class="p">;</span> <span class="mf">0.29028</span><span class="p">,</span> <span class="mf">0.27211</span><span class="p">,</span> <span class="mf">0.53013</span><span class="p">;</span> <span class="mf">0.58391</span><span class="p">,</span> <span class="mf">0.54682</span><span class="p">,</span> <span class="mf">1.0646</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.36447</span><span class="p">,</span> <span class="mf">0.38016</span><span class="p">,</span> <span class="mf">0.79224</span><span class="p">;</span> <span class="mf">0.35811</span><span class="p">,</span> <span class="mf">0.37446</span><span class="p">,</span> <span class="mf">0.78148</span><span class="p">;</span> <span class="mf">0.71836</span><span class="p">,</span> <span class="mf">0.75239</span><span class="p">,</span> <span class="mf">1.5716</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">MRAPFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,{</span><span class="n">jmoms1</span><span class="p">,</span><span class="n">jmoms2</span><span class="p">,</span><span class="n">jmoms3</span><span class="p">});</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
-<span class="go">      -1.9473       3.0344      -2.1704</span>
-<span class="go">     -0.33434     -0.88118      0.21355</span>
-<span class="go">     -0.33363      0.21321     -0.88152</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
-<span class="go">      0.22304       7.4962      -7.3973</span>
-<span class="go">     0.092805       7.9131      -7.6658</span>
-<span class="go">     0.086985       7.8804      -7.6261</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
-<span class="go">      0.49395      0.92951      -1.0798</span>
-<span class="go">       0.4418      -2.4454       2.2995</span>
-<span class="go">      0.44568      -2.3908       2.2415</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span>
-<span class="go">     -0.14271      -5.4356       5.9959</span>
-<span class="go">     -0.19985      -5.1102       5.6761</span>
-<span class="go">     -0.19945      -5.1791       5.7429</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">1e-11</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">G0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">;</span> <span class="mf">0.19</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.63</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.03</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">;</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.19</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">;</span> <span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="p">{</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">,</span><span class="n">G2</span><span class="p">,</span><span class="n">G3</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
 <span class="go">      0.99805       2.0262       6.2348       25.738        133.3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e-11</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">Nm1</span><span class="p">,</span> <span class="n">Nm2</span><span class="p">,</span> <span class="n">Nm3</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nm</span><span class="p">{:};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm1</span><span class="p">);</span>
 <span class="go">         0.34      0.34055      0.69322</span>
 <span class="go">      0.34966      0.35186      0.71829</span>
 <span class="go">      0.72396      0.73079       1.4947</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm2</span><span class="p">);</span>
 <span class="go">      0.29553      0.27734      0.54078</span>
 <span class="go">      0.29028      0.27211      0.53013</span>
 <span class="go">      0.58391      0.54682       1.0646</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm3</span><span class="p">);</span>
+<span class="go">      0.36447      0.38016      0.79224</span>
+<span class="go">      0.35811      0.37446      0.78148</span>
+<span class="go">      0.71836      0.75239       1.5716</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">MRAPFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">Nm</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H</span><span class="p">{</span><span class="mi">1</span><span class="p">});</span>
+<span class="go">      -1.9473       3.0344      -2.1704</span>
+<span class="go">     -0.33434     -0.88118      0.21355</span>
+<span class="go">     -0.33363      0.21321     -0.88152</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H</span><span class="p">{</span><span class="mi">2</span><span class="p">});</span>
+<span class="go">      0.22304       7.4962      -7.3973</span>
+<span class="go">     0.092805       7.9131      -7.6658</span>
+<span class="go">     0.086985       7.8804      -7.6261</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H</span><span class="p">{</span><span class="mi">3</span><span class="p">});</span>
+<span class="go">      0.49395      0.92951      -1.0798</span>
+<span class="go">       0.4418      -2.4454       2.2995</span>
+<span class="go">      0.44568      -2.3908       2.2415</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H</span><span class="p">{</span><span class="mi">4</span><span class="p">});</span>
+<span class="go">     -0.14271      -5.4356       5.9959</span>
+<span class="go">     -0.19985      -5.1102       5.6761</span>
+<span class="go">     -0.19945      -5.1791       5.7429</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BuToolsCheckPrecision</span> <span class="o">=</span> <span class="mf">10.</span><span class="o">^-</span><span class="mi">10</span><span class="p">;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rmoms</span><span class="p">);</span>
+<span class="go">      0.99805       2.0262       6.2348       25.738        133.3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rNm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">rNm1</span><span class="p">,</span> <span class="n">rNm2</span><span class="p">,</span> <span class="n">rNm3</span><span class="p">]</span> <span class="o">=</span> <span class="n">rNm</span><span class="p">{:};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rNm1</span><span class="p">);</span>
+<span class="go">         0.34      0.34055      0.69322</span>
+<span class="go">      0.34966      0.35186      0.71829</span>
+<span class="go">      0.72396      0.73079       1.4947</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rNm2</span><span class="p">);</span>
+<span class="go">      0.29553      0.27734      0.54078</span>
+<span class="go">      0.29028      0.27211      0.53013</span>
+<span class="go">      0.58391      0.54682       1.0646</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rNm3</span><span class="p">);</span>
 <span class="go">      0.36447      0.38016      0.79224</span>
 <span class="go">      0.35811      0.37446      0.78148</span>
 <span class="go">      0.71836      0.75239       1.5716</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; G0 = {{-1.05, 0.03, 0.07},{0.19, -1.63, 0.06},{0, 0.2, -1.03}};
+&gt;&gt;&gt; G1 = {{0.16, 0.11, 0},{0.1, 0.16, 0},{0.27, 0, 0.19}};
+&gt;&gt;&gt; G2 = {{0.01, 0.09, 0.13},{0.26, 0.21, 0.05},{0, 0.16, 0.07}};
+&gt;&gt;&gt; G3 = {{0.19, 0.06, 0.2},{0.17, 0.16, 0.27},{0, 0, 0.14}};
+&gt;&gt;&gt; G = {G0,G1,G2,G3};
+&gt;&gt;&gt; moms = MarginalMomentsFromMRAP[G,5];
+&gt;&gt;&gt; Print[moms];
+{0.998048613345479, 2.0262345014785748, 6.2347773609141575, 25.738432370871866, 133.30214790750443}
+&gt;&gt;&gt; Nm = LagkJointMomentsFromMRAP[G,2,1];
+&gt;&gt;&gt; {Nm1, Nm2, Nm3} = Nm;
+&gt;&gt;&gt; Print[Nm1];
+{{0.3400009192827923, 0.3405452798817129, 0.6932173701035182},
+ {0.3496600253904083, 0.3518559816976867, 0.7182912226288702},
+ {0.7239624620818725, 0.7307864272366612, 1.494690822742042}}
+&gt;&gt;&gt; Print[Nm2];
+{{0.29553270348533534, 0.27734235602329654, 0.5407773515893262},
+ {0.29028125712379704, 0.27210886385024, 0.5301325803470373},
+ {0.5839079003431904, 0.5468180031775005, 1.064574978879992}}
+&gt;&gt;&gt; Print[Nm3];
+{{0.36446637723187236, 0.3801609774404695, 0.7922397797857303},
+ {0.35810733083127366, 0.37445996131218023, 0.7814764837751109},
+ {0.7183641390535117, 0.752387606929777, 1.5716457698900985}}
+&gt;&gt;&gt; H = MRAPFromMoments[moms,Nm];
+&gt;&gt;&gt; Print[H[[1]]];
+{{-1.9473051937398436, 3.0344139261695524, -2.1703554254825432},
+ {-0.3343442044701893, -0.8811768825595621, 0.2135477889258592},
+ {-0.33362593020289716, 0.2132067478864758, -0.8815179235989457}}
+&gt;&gt;&gt; Print[H[[2]]];
+{{0.22303732415660393, 7.496153934451286, -7.397276128273006},
+ {0.09280493616992504, 7.913084312262072, -7.665823186685884},
+ {0.0869846290873446, 7.880402325125033, -7.626121636429161}}
+&gt;&gt;&gt; Print[H[[3]]];
+{{0.4939487332101481, 0.9295081378932082, -1.079810419889327},
+ {0.4418009261624444, -2.4454040931686905, 2.2994668648207153},
+ {0.44567916840142563, -2.3907771669346403, 2.241455359959218}}
+&gt;&gt;&gt; Print[H[[4]]];
+{{-0.1427050168593569, -5.435557714889001, 5.995947843257454},
+ {-0.19984735284082544, -5.110198412374302, 5.6760893037571805},
+ {-0.19945217229000395, -5.17913683023653, 5.742903429225407}}
+&gt;&gt;&gt; BuTools`CheckPrecision = 10.^-10;
+&gt;&gt;&gt; rmoms = MarginalMomentsFromMRAP[H,5];
+&gt;&gt;&gt; Print[rmoms];
+{0.9980486133447148, 2.026234501476063, 6.23477736090465, 25.738432370828296, 133.30214790726575}
+&gt;&gt;&gt; rNm = LagkJointMomentsFromMRAP[H,2,1];
+&gt;&gt;&gt; {rNm1, rNm2, rNm3} = rNm;
+&gt;&gt;&gt; Print[rNm1];
+{{0.3400009192835025, 0.3405452798822086, 0.6932173701042554},
+ {0.3496600253876201, 0.3518559816946487, 0.7182912226223763},
+ {0.7239624620661935, 0.7307864272203464, 1.4946908227080655}}
+&gt;&gt;&gt; Print[rNm2];
+{{0.29553270348466576, 0.27734235602249724, 0.5407773515875407},
+ {0.2902812571227895, 0.2721088638491218, 0.5301325803446262},
+ {0.5839079003408321, 0.5468180031749403, 1.0645749788745391}}
+&gt;&gt;&gt; Print[rNm3];
+{{0.3644663772275738, 0.3801609774359047, 0.7922397797761231},
+ {0.35810733082500956, 0.374459961305627, 0.7814764837614341},
+ {0.7183641390383446, 0.752387606913997, 1.5716457698572626}}
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.99804861334547901</span><span class="p">,</span> <span class="mf">2.0262345014785748</span><span class="p">,</span> <span class="mf">6.2347773609141584</span><span class="p">,</span> <span class="mf">25.738432370871866</span><span class="p">,</span> <span class="mf">133.30214790750446</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span> <span class="mf">0.34000092</span><span class="p">,</span>  <span class="mf">0.34054528</span><span class="p">,</span>  <span class="mf">0.69321737</span><span class="p">],[</span> <span class="mf">0.34966003</span><span class="p">,</span>  <span class="mf">0.35185598</span><span class="p">,</span>  <span class="mf">0.71829122</span><span class="p">],[</span> <span class="mf">0.72396246</span><span class="p">,</span>  <span class="mf">0.73078643</span><span class="p">,</span>  <span class="mf">1.49469082</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span> <span class="mf">0.2955327</span> <span class="p">,</span>  <span class="mf">0.27734236</span><span class="p">,</span>  <span class="mf">0.54077735</span><span class="p">],[</span> <span class="mf">0.29028126</span><span class="p">,</span>  <span class="mf">0.27210886</span><span class="p">,</span>  <span class="mf">0.53013258</span><span class="p">],[</span> <span class="mf">0.5839079</span> <span class="p">,</span>  <span class="mf">0.546818</span>  <span class="p">,</span>  <span class="mf">1.06457498</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jmoms3</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span> <span class="mf">0.36446638</span><span class="p">,</span>  <span class="mf">0.38016098</span><span class="p">,</span>  <span class="mf">0.79223978</span><span class="p">],[</span> <span class="mf">0.35810733</span><span class="p">,</span>  <span class="mf">0.37445996</span><span class="p">,</span>  <span class="mf">0.78147648</span><span class="p">],[</span> <span class="mf">0.71836414</span><span class="p">,</span>  <span class="mf">0.75238761</span><span class="p">,</span>  <span class="mf">1.57164577</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">MRAPFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,(</span><span class="n">jmoms1</span><span class="p">,</span><span class="n">jmoms2</span><span class="p">,</span><span class="n">jmoms3</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">G0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">],[</span><span class="mf">0.19</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.63</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.03</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.27</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">],[</span><span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G3</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.19</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.17</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="p">[</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">,</span><span class="n">G2</span><span class="p">,</span><span class="n">G3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="go">[0.99804861334547901, 2.0262345014785748, 6.2347773609141584, 25.738432370871866, 133.30214790750446]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm1</span><span class="p">,</span> <span class="n">Nm2</span><span class="p">,</span> <span class="n">Nm3</span> <span class="o">=</span> <span class="n">Nm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm1</span><span class="p">)</span>
+<span class="go">[[ 0.34     0.34055  0.69322]</span>
+<span class="go"> [ 0.34966  0.35186  0.71829]</span>
+<span class="go"> [ 0.72396  0.73079  1.49469]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm2</span><span class="p">)</span>
+<span class="go">[[ 0.29553  0.27734  0.54078]</span>
+<span class="go"> [ 0.29028  0.27211  0.53013]</span>
+<span class="go"> [ 0.58391  0.54682  1.06457]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm3</span><span class="p">)</span>
+<span class="go">[[ 0.36447  0.38016  0.79224]</span>
+<span class="go"> [ 0.35811  0.37446  0.78148]</span>
+<span class="go"> [ 0.71836  0.75239  1.57165]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">MRAPFromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">Nm</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">[[-1.94730519  3.03441393 -2.17035543]</span>
-<span class="go"> [-0.3343442  -0.88117688  0.21354779]</span>
-<span class="go"> [-0.33362593  0.21320675 -0.88151792]]</span>
+<span class="go">[[-1.94731  3.03441 -2.17036]</span>
+<span class="go"> [-0.33434 -0.88118  0.21355]</span>
+<span class="go"> [-0.33363  0.21321 -0.88152]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="go">[[ 0.22303552  7.49252265 -7.3936431 ]</span>
-<span class="go"> [ 0.09280522  7.91365871 -7.66639786]</span>
-<span class="go"> [ 0.08698437  7.87984763 -7.6255667 ]]</span>
+<span class="go">[[ 0.22304  7.49615 -7.39728]</span>
+<span class="go"> [ 0.0928   7.91308 -7.66582]</span>
+<span class="go"> [ 0.08698  7.8804  -7.62612]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="go">[[ 0.49394577  0.92090262 -1.071202  ]</span>
-<span class="go"> [ 0.44180109 -2.44500194  2.29906455]</span>
-<span class="go"> [ 0.44567871 -2.39209787  2.24277651]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">1e-7</span><span class="p">))</span>
-<span class="go">[0.99804866709421602, 2.0262346537338147, 6.2347778420947577, 25.738434141923204, 133.30215529953227]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rjmoms</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e-7</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span> <span class="k">print</span><span class="p">(</span><span class="n">rjmoms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">[[ 0.34000159  0.34054613  0.69321931]</span>
-<span class="go"> [ 0.34966065  0.35185676  0.71829299]</span>
-<span class="go"> [ 0.72396359  0.73078784  1.49469405]]</span>
-<span class="go"> &gt;&gt;&gt; print(rjmoms[1])</span>
-<span class="go">[[ 0.29553296  0.27734252  0.54077755]</span>
-<span class="go"> [ 0.29028152  0.27210903  0.5301328 ]</span>
-<span class="go"> [ 0.58390841  0.54681833  1.06457543]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rjmoms</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="go">[[ 0.36446544  0.38016002  0.7922378 ]</span>
-<span class="go"> [ 0.3581065   0.37445911  0.78147472]</span>
-<span class="go"> [ 0.71836265  0.75238608  1.57164262]]</span>
+<span class="go">[[ 0.49395  0.92951 -1.07981]</span>
+<span class="go"> [ 0.4418  -2.4454   2.29947]</span>
+<span class="go"> [ 0.44568 -2.39078  2.24146]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[[-0.14271 -5.43556  5.99595]</span>
+<span class="go"> [-0.19985 -5.1102   5.67609]</span>
+<span class="go"> [-0.19945 -5.17914  5.7429 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">butools</span><span class="o">.</span><span class="n">checkPrecision</span> <span class="o">=</span> <span class="mf">10.</span><span class="o">**-</span><span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rmoms</span><span class="p">)</span>
+<span class="go">[0.9980486133458466, 2.026234501479784, 6.2347773609187414, 25.738432370892887, 133.30214790761983]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rNm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMRAP</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rNm1</span><span class="p">,</span> <span class="n">rNm2</span><span class="p">,</span> <span class="n">rNm3</span> <span class="o">=</span> <span class="n">rNm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rNm1</span><span class="p">)</span>
+<span class="go">[[ 0.34     0.34055  0.69322]</span>
+<span class="go"> [ 0.34966  0.35186  0.71829]</span>
+<span class="go"> [ 0.72396  0.73079  1.49469]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rNm2</span><span class="p">)</span>
+<span class="go">[[ 0.29553  0.27734  0.54078]</span>
+<span class="go"> [ 0.29028  0.27211  0.53013]</span>
+<span class="go"> [ 0.58391  0.54682  1.06457]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rNm3</span><span class="p">)</span>
+<span class="go">[[ 0.36447  0.38016  0.79224]</span>
+<span class="go"> [ 0.35811  0.37446  0.78148]</span>
+<span class="go"> [ 0.71836  0.75239  1.57165]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -257,7 +363,7 @@ networks with priority service,&#8221; Computer Networks
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 17, 2015.
+      Last updated on Jun 19, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

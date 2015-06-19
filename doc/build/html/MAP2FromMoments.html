@@ -164,34 +164,75 @@ Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.04918</span><span class="p">,</span> <span class="mf">0.0052609</span><span class="p">,</span> <span class="mf">0.00091819</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="mf">0.022416</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span><span class="o">=</span><span class="n">MAP2FromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">corr</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">;</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">21.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">moms</span><span class="p">);</span>
+<span class="go">      0.04918    0.0052609   0.00091819</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">corr</span><span class="p">);</span>
+<span class="go">     0.022416</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAP2FromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">corr</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D0</span><span class="p">);</span>
 <span class="go">       -13.91        9.199</span>
 <span class="go">            0       -25.09</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D1</span><span class="p">);</span>
 <span class="go">       4.7108            0</span>
 <span class="go">        2.801       22.289</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rmoms</span><span class="p">);</span>
 <span class="go">      0.04918    0.0052609   0.00091819</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rcorr</span><span class="p">);</span>
 <span class="go">     0.022416</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">},{</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">21.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">moms</span><span class="p">];</span>
+<span class="go">{0.04918032786885247, 0.005260932876133214, 0.0009181867601560783}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">][[</span><span class="mi">1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">corr</span><span class="p">];</span>
+<span class="go">0.02241571110398602</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">}</span> <span class="o">=</span> <span class="n">MAP2FromMoments</span><span class="p">[</span><span class="n">moms</span><span class="p">,</span><span class="n">corr</span><span class="p">];</span>
+<span class="go">0.3008595988538654</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D0</span><span class="p">];</span>
+<span class="go">{{-13.909830056250456, 9.199027971874015},</span>
+<span class="go"> {0, -25.090169943749302}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D1</span><span class="p">];</span>
+<span class="go">{{4.710802084376442, 0},</span>
+<span class="go"> {2.8009720281259014, 22.2891979156234}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">rmoms</span><span class="p">];</span>
+<span class="go">{0.04918032786885251, 0.005260932876133218, 0.0009181867601560789}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">][[</span><span class="mi">1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">rcorr</span><span class="p">];</span>
+<span class="go">0.022415711103985703</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.049180327868852472</span><span class="p">,</span> <span class="mf">0.005260932876133214</span><span class="p">,</span> <span class="mf">0.00091818676015607825</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="mf">0.022415711104</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span><span class="o">=</span><span class="n">MAP2FromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">corr</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">],[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">21.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">moms</span><span class="p">)</span>
+<span class="go">[0.049180327868852472, 0.005260932876133214, 0.00091818676015607825]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span>
+<span class="go">0.022415711104</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">MAP2FromMoments</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span><span class="n">corr</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
-<span class="go">[[-13.90983006   9.19902797]</span>
-<span class="go"> [  0.         -25.09016994]]</span>
+<span class="go">[[-13.90983   9.19903]</span>
+<span class="go"> [  0.      -25.09017]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
-<span class="go">[[  4.71080208   0.        ]</span>
-<span class="go"> [  2.80097203  22.28919792]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">[[  4.7108    0.     ]</span>
+<span class="go"> [  2.80097  22.2892 ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rmoms</span><span class="p">)</span>
 <span class="go">[0.049180327868852479, 0.0052609328761332123, 0.00091818676015607728]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rcorr</span><span class="p">)</span>
 <span class="go">0.022415711104</span>
 </pre></div>
 </div>
@@ -220,7 +261,7 @@ Processes,&#8221; EUROPEAN JOURNAL OF OPERATIONAL RESEARCH
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 17, 2015.
+      Last updated on Jun 19, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

@@ -166,50 +166,95 @@ Qeueuing theory (MCQT), June 2010.</td></tr>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">3</span> <span class="o">-</span><span class="mi">3</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">5</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span>
-<span class="go">      -4.4074       1.6931</span>
-<span class="go">      0.84259      -2.5926</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span>
-<span class="go">        2.037      0.67725</span>
-<span class="go">        2.787       -1.037</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dissimilarity</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span> <span class="o">+</span> <span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D1</span><span class="p">)</span>
-<span class="go">   3.0836e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">4.</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&#39;cont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H0</span><span class="p">);</span>
 <span class="go">    -5     1     0</span>
 <span class="go">     3    -3     0</span>
 <span class="go">     1     1    -5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H1</span><span class="p">);</span>
 <span class="go">     0     0     4</span>
 <span class="go">     0     0     0</span>
 <span class="go">     1     1     1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">));</span>
+<span class="go">   3.4773e-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&#39;obs&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H0</span><span class="p">);</span>
 <span class="go">      -4.4074       1.6931</span>
 <span class="go">      0.84259      -2.5926</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H1</span><span class="p">);</span>
 <span class="go">        2.037      0.67725</span>
 <span class="go">        2.787       -1.037</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">));</span>
+<span class="go">    8.806e-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&#39;obscont&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H0</span><span class="p">);</span>
+<span class="go">      -4.4074       1.6931</span>
+<span class="go">      0.84259      -2.5926</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">H1</span><span class="p">);</span>
+<span class="go">        2.037      0.67725</span>
+<span class="go">        2.787       -1.037</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">));</span>
+<span class="go">    8.806e-15</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">4.</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">}</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H0</span><span class="p">];</span>
+<span class="go">{{-5., 1., 0.},</span>
+<span class="go"> {3., -3., 0.},</span>
+<span class="go"> {1., 1., -5.}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H1</span><span class="p">];</span>
+<span class="go">{{0., 0., 4.},</span>
+<span class="go"> {0., 0., 0.},</span>
+<span class="go"> {1., 1., 1.}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H0</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H1</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Max</span><span class="p">[</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">]];</span>
+<span class="go">4.286666800451802*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">}</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H0</span><span class="p">];</span>
+<span class="go">{{-4.407407407407407, 1.6931216931216935},</span>
+<span class="go"> {0.8425925925925922, -2.592592592592593}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H1</span><span class="p">];</span>
+<span class="go">{{2.0370370370370363, 0.6772486772486779},</span>
+<span class="go"> {2.7870370370370363, -1.0370370370370368}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H0</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H1</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Max</span><span class="p">[</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">]];</span>
+<span class="go">8.396702586553632*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">}</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H0</span><span class="p">];</span>
+<span class="go">{{-4.407407407407407, 1.6931216931216935},</span>
+<span class="go"> {0.8425925925925922, -2.592592592592593}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">H1</span><span class="p">];</span>
+<span class="go">{{2.0370370370370363, 0.6772486772486779},</span>
+<span class="go"> {2.7870370370370363, -1.0370370370370368}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H0</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">H1</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">D1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Max</span><span class="p">[</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">]];</span>
+<span class="go">8.396702586553632*^-15</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H0</span><span class="p">)</span>
-<span class="go">[[-4.40740741  1.69312169]</span>
-<span class="go"> [ 0.84259259 -2.59259259]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H1</span><span class="p">)</span>
-<span class="go">[[ 2.03703704  0.67724868]</span>
-<span class="go"> [ 2.78703704 -1.03703704]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span> <span class="o">+</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">C</span><span class="o">*</span><span class="n">D1</span><span class="p">))</span>
-<span class="go">3.36530444882e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">4.</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;cont&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H0</span><span class="p">)</span>
 <span class="go">[[-5.  1.  0.]</span>
 <span class="go"> [ 3. -3.  0.]</span>
@@ -218,13 +263,35 @@ Qeueuing theory (MCQT), June 2010.</td></tr>
 <span class="go">[[ 0.  0.  4.]</span>
 <span class="go"> [ 0.  0.  0.]</span>
 <span class="go"> [ 1.  1.  1.]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">]</span><span class="o">=</span><span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">))</span>
+<span class="go">1.82603380554e-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;obs&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H0</span><span class="p">)</span>
-<span class="go">[[-4.40740741  1.69312169]</span>
-<span class="go"> [ 0.84259259 -2.59259259]]</span>
+<span class="go">[[-4.40741  1.69312]</span>
+<span class="go"> [ 0.84259 -2.59259]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H1</span><span class="p">)</span>
-<span class="go">[[ 2.03703704  0.67724868]</span>
-<span class="go"> [ 2.78703704 -1.03703704]]</span>
+<span class="go">[[ 2.03704  0.67725]</span>
+<span class="go"> [ 2.78704 -1.03704]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">))</span>
+<span class="go">7.63152157294e-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span> <span class="o">=</span> <span class="n">MinimalRepFromRAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="s">&quot;obscont&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H0</span><span class="p">)</span>
+<span class="go">[[-4.40741  1.69312]</span>
+<span class="go"> [ 0.84259 -2.59259]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">H1</span><span class="p">)</span>
+<span class="go">[[ 2.03704  0.67725]</span>
+<span class="go"> [ 2.78704 -1.03704]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H0</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">err2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">H1</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">D1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">err1</span><span class="p">,</span><span class="n">err2</span><span class="p">))</span>
+<span class="go">7.63152157294e-16</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -252,7 +319,7 @@ Qeueuing theory (MCQT), June 2010.</td></tr>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 17, 2015.
+      Last updated on Jun 19, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
