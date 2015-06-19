@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 import butools
 from butools.utils import *
 from butools.ph import *
+from butools.dph import *
+from butools.map import *
 from butools.moments import *
+from butools.reptrans import*
 from butools.mc import *
 from contextlib import redirect_stdout
 

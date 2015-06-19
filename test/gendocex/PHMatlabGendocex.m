@@ -6,6 +6,7 @@ function PHMatlabGendocex ()
 	disp('Enable input parameter checking with the BuToolsCheckInput flag');
 	global BuToolsCheckInput;
 	BuToolsCheckInput = true;
+	global BuToolsCheckPrecision;
 	format compact
 	diary('PH_matlab.docex');
 	disp('=== MomentsFromME ===');

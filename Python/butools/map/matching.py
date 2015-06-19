@@ -268,7 +268,7 @@ def CanonicalFromMAP2 (D0, D1):
 	        raise Exception("CanonicalFromMAP2: Input is not a valid MAP representation!")
 
     moms = MarginalMomentsFromMAP (D0, D1, 3)
-    corr1 = LagCorrelationsFromMAP (D0, D1, 1)
+    corr1 = LagCorrelationsFromMAP (D0, D1, 1)[0]
     return MAP2FromMoments (moms, corr1)
 
 

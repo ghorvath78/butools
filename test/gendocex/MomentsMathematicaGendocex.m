@@ -1,5 +1,5 @@
 MomentsMathematicaGendocex[]:=
-Module[{Jmoms, flag, err, nmoms, M, JFmoms, MM, tmpOut, moms, fmoms, hmoms, rmoms, stream},
+Module[{stream, err, tmpOut, nmoms, Jmoms, rmoms, moms, M, flag, fmoms, MM, JFmoms, hmoms},
 	Unprotect[Print];
 	Print[args___] := Block[{$inMsg = True, result, str},
 	   If[MatrixQ[args],

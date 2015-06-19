@@ -6,6 +6,7 @@ function TestMCPackage ()
 	disp('Enable input parameter checking with the BuToolsCheckInput flag');
 	global BuToolsCheckInput;
 	BuToolsCheckInput = true;
+	global BuToolsCheckPrecision;
 	disp('========================================')
 	help CRPSolve
 	disp('Input:');

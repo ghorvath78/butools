@@ -56,7 +56,7 @@ butools.dph.DPHFromMG
     >>> disp(flag);
          1
     >>> flag = CheckDPHRepresentation(a,A);
-    CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+    CheckProbMatrix: the matrix has negative element (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> [b,B] = DPHFromMG(a,A);

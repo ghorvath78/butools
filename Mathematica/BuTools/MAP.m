@@ -6,39 +6,39 @@
 
 
 BeginPackage["BuTools`MAP`"];
-CanonicalFromMAP2::usage = "alma";
-CheckMAPRepresentation::usage = "alma";
-CheckMMAPRepresentation::usage = "alma";
-CheckRAPRepresentation::usage = "alma";
-CheckMRAPRepresentation::usage = "alma";
-LagCorrelationsFromRAP::usage = "alma";
-LagCorrelationsFromMAP::usage = "alma";
-LagkJointMomentsFromRAP::usage = "alma";
-LagkJointMomentsFromMRAP::usage = "alma";
-LagkJointMomentsFromMAP::usage = "alma";
-LagkJointMomentsFromMMAP::usage = "alma";
-MAP2CorrelationBounds::usage = "alma";
-MAP2FromMoments::usage = "alma";
-MAPFromFewMomentsAndCorrelations::usage = "alma";
-MAPFromRAP::usage = "alma";
-MMAPFromMRAP::usage = "alma";
-MarginalDistributionFromRAP::usage = "alma";
-MarginalDistributionFromMRAP::usage = "alma";
-MarginalDistributionFromMAP::usage = "alma";
-MarginalDistributionFromMMAP::usage = "alma";
-MarginalMomentsFromRAP::usage = "alma";
-MarginalMomentsFromMRAP::usage = "alma";
-MarginalMomentsFromMAP::usage = "alma";
-MarginalMomentsFromMMAP::usage = "alma";
-MinimalRepFromRAP::usage = "alma";
-MinimalRepFromMRAP::usage = "alma";
-RAPFromMoments::usage = "alma";
-MRAPFromMoments::usage = "alma";
-RandomMAP::usage = "alma";
-RandomMMAP::usage = "alma";
-RAPFromMomentsAndCorrelations::usage = "alma";
-SamplesFromMAP::usage = "alma";
-SamplesFromMMAP::usage = "alma";
+CanonicalFromMAP2::usage = "{G0, G1} = CanonicalFromMAP2[D0, D1, prec]: Returns the canonical form of an order-2 Markovian arrival process.";
+CheckMAPRepresentation::usage = "r = CheckMAPRepresentation[D0, D1, prec]: Checks if the input matrixes define a continuous time MAP.";
+CheckMMAPRepresentation::usage = "r = CheckMMAPRepresentation[D, prec]: Checks if the input matrixes define a continuous time MMAP.";
+CheckRAPRepresentation::usage = "r = CheckRAPRepresentation[H0, H1, prec]: Checks if the input matrixes define a continuous time RAP.";
+CheckMRAPRepresentation::usage = "r = CheckMRAPRepresentation[H, prec]: Checks if the input matrixes define a continuous time MRAP.";
+LagCorrelationsFromRAP::usage = "acf = LagCorrelationsFromRAP[H0, H1, L, prec]: Returns the lag autocorrelations of a rational arrival process.";
+LagCorrelationsFromMAP::usage = "acf = LagCorrelationsFromMAP[D0, D1, L, prec]: Returns the lag autocorrelations of a Markovian arrival process.";
+LagkJointMomentsFromRAP::usage = "Nm = LagkJointMomentsFromRAP[H0, H1, K, L, prec]: Returns the lag-k joint moments of a rational arrival process.";
+LagkJointMomentsFromMRAP::usage = "Nm = LagkJointMomentsFromMRAP[H, K, L, prec]: Returns the lag-k joint moments of a marked rational arrival process.";
+LagkJointMomentsFromMAP::usage = "Nm = LagkJointMomentsFromMAP[D0, D1, K, L, prec]: Returns the lag-k joint moments of a Markovian arrival process.";
+LagkJointMomentsFromMMAP::usage = "Nm = LagkJointMomentsFromMMAP[D, K, L, prec]: Returns the lag-k joint moments of a marked Markovian arrival process.";
+MAP2CorrelationBounds::usage = "{lb, ub} = MAP2CorrelationBounds[moms]: Returns the upper and lower correlation bounds for a MAP(2) given the three marginal moments.";
+MAP2FromMoments::usage = "{D0, D1} = MAP2FromMoments[moms, corr1]: Returns a MAP(2) which has the same 3 marginal moments and lag-1 autocorrelation as given.";
+MAPFromFewMomentsAndCorrelations::usage = "{D0, D1} = MAPFromFewMomentsAndCorrelations[moms, corr1, r]: Returns a MAP that matches the given 2 or 3 moments and the lag-1 autocorrelation.";
+MAPFromRAP::usage = "{D0, D1} = MAPFromRAP[H0, H1, precision]: Obtains a Markovian representation of a rational arrival process of the same size, if possible.";
+MMAPFromMRAP::usage = "D = MMAPFromMRAP[H, precision]: Obtains a Markovian representation of a marked rational arrival process of the same size, if possible.";
+MarginalDistributionFromRAP::usage = "{alpha, A} = MarginalDistributionFromRAP[H0, H1, precision]: Returns the matrix-exponential marginal distribution of a rational arrival process.";
+MarginalDistributionFromMRAP::usage = "{alpha, A} = MarginalDistributionFromMRAP[H, precision]: Returns the matrix-exponential marginal distribution of a marked rational arrival process.";
+MarginalDistributionFromMAP::usage = "{alpha, A} = MarginalDistributionFromMAP[D0, D1, precision]: Returns the phase type marginal distribution of a Markovian arrival process.";
+MarginalDistributionFromMMAP::usage = "{alpha, A} = MarginalDistributionFromMMAP[D, precision]: Returns the phase type marginal distribution of a marked Markovian arrival process.     ";
+MarginalMomentsFromRAP::usage = "moms = MarginalMomentsFromRAP[H0, H1, K, precision]: Returns the moments of the marginal distribution of a rational arrival process.";
+MarginalMomentsFromMRAP::usage = "moms = MarginalMomentsFromMRAP[H, K, precision]: Returns the moments of the marginal distribution of a marked rational arrival process.";
+MarginalMomentsFromMAP::usage = "moms = MarginalMomentsFromMAP[D0, D1, K, precision]: Returns the moments of the marginal distribution of a Markovian arrival process.";
+MarginalMomentsFromMMAP::usage = "moms = MarginalMomentsFromMMAP[D, K, precision]: Returns the moments of the marginal distribution of a marked Markovian arrival process.     ";
+MinimalRepFromRAP::usage = "{D0, D1} = MinimalRepFromRAP[H0, H1, how, precision]: Returns the minimal representation of a rational arrival process.";
+MinimalRepFromMRAP::usage = "H = MinimalRepFromMRAP[H, how, precision]: Returns the minimal representation of a marked rational arrival process.";
+RAPFromMoments::usage = "{H0, H1} = RAPFromMoments[moms, Nm]: Creates a rational arrival process that has the same marginal and lag-1 joint moments as given.";
+MRAPFromMoments::usage = "H = MRAPFromMoments[moms, Nm]: Creates a marked rational arrival process that has the same marginal and lag-1 joint moments as given.";
+RandomMAP::usage = "{D0, D1} = RandomMAP[order, mean, zeroEntries, maxTrials, prec]: Returns a random Markovian arrival process with given mean value.";
+RandomMMAP::usage = "D = RandomMMAP[order, types, mean, zeroEntries, maxTrials, prec]: Returns a random marked Markovian arrival process with given mean value.";
+RAPFromMomentsAndCorrelations::usage = "{H0, H1} = RAPFromMomentsAndCorrelations[moms, corr]: Returns a rational arrival process that has the same moments and lag autocorrelation coefficients as given.";
+SamplesFromMAP::usage = "x = SamplesFromMAP[D0, D1, K, prec]: Generates random samples from a Markovian arrival process.";
+SamplesFromMMAP::usage = "x = SamplesFromMMAP[D, K, prec]: Generates random samples from a marked Markovian arrival process.";
 
 
 Begin["`Private`"];
@@ -58,7 +58,7 @@ Module[{moms,corr1},
 	If[BuTools`CheckInput && Dimensions[D0][[1]]!=2, Throw["CanonicalFromMAP2: Size is not 2!"]];
 	If[BuTools`CheckInput && Not[CheckMAPRepresentation[D0, D1]],Throw["CanonicalFromMAP2: Input is not a valid MAP representation!"]];
     moms = MarginalMomentsFromMAP[D0, D1, 3];
-    corr1 = LagCorrelationsFromMAP[D0, D1, 1];
+    corr1 = LagCorrelationsFromMAP[D0, D1, 1][[1]];
     Return[MAP2FromMoments[moms, corr1]];
 ];
 
@@ -119,8 +119,8 @@ Module[ {h,size1,size2,size,eig,ceig,reig,prec},
 		Return[False]
 	];
 	size=Dimensions[D0][[1]];
-	ceig=Table[Switch[Element[eig[[i]],Reals],True,-Infinity,False,Re[eig[[i]]]],{i,size}];
-	reig=Table[Switch[Element[eig[[i]],Reals],True,Re[eig[[i]]],False,-Infinity],{i,size}];
+	ceig=Table[Switch[Abs[Im[eig[[i]]]]<prec,True,-Infinity,False,Re[eig[[i]]]],{i,size}];
+	reig=Table[Switch[Abs[Im[eig[[i]]]]<prec,True,Re[eig[[i]]],False,-Infinity],{i,size}];
 
 	If[Max[reig]<Max[ceig],
 		If[BuTools`Verbose,Print["CheckRAPRepresentation: The dominant eigenvalue of D0 is not real!"]];
@@ -144,7 +144,7 @@ Module[{H0i,P,pi,moms,acf},
 	P = H0i.H1;
 	pi = DRPSolve[P];
 	moms = MomentsFromME[pi,H0];
-	pi = pi.H0i.P.
+	pi = pi.H0i.P;
 	acf = {};
 	Do[
 		AppendTo[acf,(Total[pi.H0i]-moms[[1]]^2) / (moms[[2]]-moms[[1]]^2)];
@@ -218,6 +218,7 @@ Module[ {m1,m2,m3,\[Lambda]1,\[Lambda]2,p,\[Gamma],tau,T,\[Alpha],corrl,corru,a,
     If[corr1>corru,Throw["The correlation parameter is too large!"]];
     \[Gamma] = corr1 (m2-m1 m1) / (m2/2 - m1 m1);
 	(* Perform matching *)
+	Print[\[Gamma]];
 	If[\[Gamma]>= 0,
 		a=1/(2 \[Alpha]) (1+\[Alpha] \[Gamma] -p (1-\[Gamma])-Sqrt[(1+\[Alpha] \[Gamma] -p (1-\[Gamma]))^2-4 \[Alpha] \[Gamma]]);
 		b=1/2  (1+\[Alpha] \[Gamma] -p (1-\[Gamma])+Sqrt[(1+\[Alpha] \[Gamma] -p (1-\[Gamma]))^2-4 \[Alpha] \[Gamma]]);
@@ -350,7 +351,7 @@ Module[{Transfun,Evalfun,nrep},
         If[Mod[k,2] == 0,
             Return[-Min[oH0,orep[[2;;]]]];
         ,
-            Return[-Total[Map[Total[Select[#,Negative]]&,orep[[2;;]]]]-Total[Select[oH0,Negative]]];
+            Return[-Total[Map[Total[Select[Flatten[#],Negative]]&,orep[[2;;]]]]-Total[Select[Flatten[oH0],Negative]]];
         ];
 	];
    
@@ -408,7 +409,7 @@ If[BuTools`CheckInput && !CheckMMAPRepresentation[D],Throw["MarginalMomentsFromM
 Return[MarginalMomentsFromRAP[D[[1]],Sum[D[[i]],{i,2,Length[D]}],K]];)
 
 
-MinimalRepFromMRAP[H_,how_:"obscont",precision:N[10^-12]]:= 
+MinimalRepFromMRAP[H_,how_:"obscont",precision_:N[10^-12]]:= 
 Module[{B,n,alpha,A,T,R},
 If[BuTools`CheckInput && !CheckMRAPRepresentation[H],Throw["MinimalRepFromMRAP: Input is not a valid MRAP representation!"]];
 Which[
@@ -427,7 +428,7 @@ Return[R];
 ];
 
 
-MinimalRepFromRAP[H0_,H1_,how_:"obscont",precision:N[10^-12]]:= 
+MinimalRepFromRAP[H0_,H1_,how_:"obscont",precision_:N[10^-12]]:= 
 MinimalRepFromMRAP[{H0,H1},how,precision];
 
 

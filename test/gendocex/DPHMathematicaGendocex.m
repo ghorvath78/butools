@@ -1,7 +1,5 @@
-(* ::Package:: *)
-
 DPHMathematicaGendocex[]:=
-Module[{err1, err2, moms, pmf, cdf, Cm, tmpOut, x, ma, mb, mp, phmoms, A, memoms, stream, B, flag, b, a, ev},
+Module[{b, x, pmf, mp, ev, cdf, ma, flag, phmoms, err1, tmpOut, moms, stream, mb, err2, B, Cm, memoms, a, A},
 	Unprotect[Print];
 	Print[args___] := Block[{$inMsg = True, result, str},
 	   If[MatrixQ[args],
@@ -63,7 +61,7 @@ Module[{err1, err2, moms, pmf, cdf, Cm, tmpOut, x, ma, mb, mp, phmoms, A, memoms
 	Print[">>> pmf = PmfFromDPH[a,A,x];"//OutputForm];
 	pmf = PmfFromDPH[a,A,x];
 	Print[">>> ListLinePlot[Transpose[{x, pmf}]]"//OutputForm];
-Print["=== CdfFromMG ==="//OutputForm];
+	Print["=== CdfFromMG ==="//OutputForm];
 	Print[">>> a = {-0.6, 0.3, 1.3};"//OutputForm];
 	a = {-0.6, 0.3, 1.3};
 	Print[">>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};"//OutputForm];
@@ -90,7 +88,7 @@ Print["=== CdfFromMG ==="//OutputForm];
 	Print[a];
 	Print[">>> Print[A];"//OutputForm];
 	Print[A];
-Print["=== CheckMGRepresentation ==="//OutputForm];
+	Print["=== CheckMGRepresentation ==="//OutputForm];
 	Print[">>> a = {-0.6, 0.3, 1.3};"//OutputForm];
 	a = {-0.6, 0.3, 1.3};
 	Print[">>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};"//OutputForm];
@@ -107,7 +105,6 @@ Print["=== CheckMGRepresentation ==="//OutputForm];
 	flag = CheckMGRepresentation[a,A];
 	Print[">>> Print[flag];"//OutputForm];
 	Print[flag];
-	
 	Print["=== CheckDPHRepresentation ==="//OutputForm];
 	Print[">>> a = {0.48, 0.08, 0.26, 0.18};"//OutputForm];
 	a = {0.48, 0.08, 0.26, 0.18};
@@ -138,7 +135,6 @@ Print["=== CheckMGRepresentation ==="//OutputForm];
 	memoms = MomentsFromMG[a,A,5];
 	Print[">>> Print[memoms];"//OutputForm];
 	Print[memoms];
-
 	Print["=== DPHFromMG ==="//OutputForm];
 	Print[">>> a = {-0.6, 0.3, 1.3};"//OutputForm];
 	a = {-0.6, 0.3, 1.3};
@@ -162,20 +158,14 @@ Print["=== CheckMGRepresentation ==="//OutputForm];
 	flag = CheckDPHRepresentation[b,B];
 	Print[">>> Print[flag];"//OutputForm];
 	Print[flag];
-
 	Print[">>> Cm = SimilarityMatrix[A,B];"//OutputForm];
-
-
 	Cm = SimilarityMatrix[A,B];
-
 	Print[">>> err1 = Norm[A.Cm-Cm.B];"//OutputForm];
 	err1 = Norm[A.Cm-Cm.B];
 	Print[">>> err2 = Norm[a.Cm-b];"//OutputForm];
 	err2 = Norm[a.Cm-b];
 	Print[">>> Print[Max[err1,err2]];"//OutputForm];
-
-Print[Max[err1,err2]];
-
+	Print[Max[err1,err2]];
 	Print["=== CanonicalFromDPH2 ==="//OutputForm];
 	Print[">>> a = {0, 1.0};"//OutputForm];
 	a = {0, 1.0};

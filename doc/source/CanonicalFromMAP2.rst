@@ -41,34 +41,56 @@ butools.map.CanonicalFromMAP2
     autocorrelation of the input and calls 'MAP2FromMoments'.
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> D0=[-14 1; 1 -25];
-    >>> D1=[6 7; 3 21];
-    >>> [H0,H1]=CanonicalFromMAP2(D0,D1);
-    >>> H0
+
+    >>> D0 = [-14., 1.; 1., -25.];
+    >>> D1 = [6., 7.; 3., 21.];
+    >>> [H0,H1] = CanonicalFromMAP2(D0,D1);
+    >>> disp(H0);
            -13.91        9.199
                 0       -25.09
-    >>> H1
+    >>> disp(H1);
            4.7108            0
             2.801       22.289
-    >>> C=SimilarityMatrix(H0,D0);
-    >>> dissimilarity = norm(H0*C-C*D0) + norm(H1*C-C*D1)
-          5.3e-13
-  
-    For Python/Numpy:
-    >>> D0=ml.matrix([[-14, 1],[1, -25]])   
-    >>> D1=ml.matrix([[6, 7],[3, 21]])
-    >>> [H0,H1]=CanonicalFromMAP2(D0,D1)
-    >>> print(H0)
-    [[-13.90983006   9.19902797]
-     [  0.         -25.09016994]]
-    >>> print(H1)
-    [[  4.71080208   0.        ]
-     [  2.80097203  22.28919792]]
-    >>> C=SimilarityMatrix(H0,D0)
-    >>> print(la.norm(H0*C-C*D0) + la.norm(H1*C-C*D1))
-    4.67918996173e-13
+    >>> Cm = SimilarityMatrix(H0,D0);
+    >>> err1 = norm(H0*Cm-Cm*D0);
+    >>> err2 = norm(H1*Cm-Cm*D1);
+    >>> disp(max(err1,err2));
+       2.4485e-13
 
-    
+    For Mathematica:
+
+    >>> D0 = {{-14., 1.},{1., -25.}};
+    >>> D1 = {{6., 7.},{3., 21.}};
+    >>> {H0,H1} = CanonicalFromMAP2[D0,D1];
+    0.3008595988538654
+    >>> Print[H0];
+    {{-13.909830056250456, 9.199027971874015},
+     {0, -25.090169943749302}}
+    >>> Print[H1];
+    {{4.710802084376442, 0},
+     {2.8009720281259014, 22.2891979156234}}
+    >>> Cm = SimilarityMatrix[H0,D0];
+    >>> err1 = Norm[H0.Cm-Cm.D0];
+    >>> err2 = Norm[H1.Cm-Cm.D1];
+    >>> Print[Max[err1,err2]];
+    2.39754619495158*^-13
+
+    For Python/Numpy:
+
+    >>> D0 = ml.matrix([[-14., 1.],[1., -25.]])
+    >>> D1 = ml.matrix([[6., 7.],[3., 21.]])
+    >>> H0,H1 = CanonicalFromMAP2(D0,D1)
+    >>> print(H0)
+    [[-13.90983   9.19903]
+     [  0.      -25.09017]]
+    >>> print(H1)
+    [[  4.7108    0.     ]
+     [  2.80097  22.2892 ]]
+    >>> Cm = SimilarityMatrix(H0,D0)
+    >>> err1 = la.norm(H0*Cm-Cm*D0)
+    >>> err2 = la.norm(H1*Cm-Cm*D1)
+    >>> print(np.max(err1,err2))
+    2.21090873503e-13
+

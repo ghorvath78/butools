@@ -6,6 +6,7 @@ function RepTransMatlabGendocex ()
 	disp('Enable input parameter checking with the BuToolsCheckInput flag');
 	global BuToolsCheckInput;
 	BuToolsCheckInput = true;
+	global BuToolsCheckPrecision;
 	format compact
 	diary('RepTrans_matlab.docex');
 	disp('=== SimilarityMatrix ===');

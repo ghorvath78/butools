@@ -36,22 +36,30 @@ butools.map.LagCorrelationsFromRAP
         The lag autocorrelation function up to lag L
         
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> H0=[-2 0 0; 0 -3 1; 0 -1 -2];
-    >>> H1=[1.8 0.2 0; 0.2 1.8 0; 0.2 1.8 1];
-    >>> LagCorrelationsFromRAP(H0,H1,3)
+
+    >>> H0 = [-2., 0, 0; 0, -3., 1.; 0, -1., -2.];
+    >>> H1 = [1.8, 0.2, 0; 0.2, 1.8, 0; 0.2, 1.8, 1.];
+    >>> corr = LagCorrelationsFromRAP(H0,H1,3);
+    >>> disp(corr);
        -0.0038462
         0.0045604
         0.0058956
-    >>> plot(LagCorrelationsFromRAP(H0,H1,20));
+
+    For Mathematica:
+
+    >>> H0 = {{-2., 0, 0},{0, -3., 1.},{0, -1., -2.}};
+    >>> H1 = {{1.8, 0.2, 0},{0.2, 1.8, 0},{0.2, 1.8, 1.}};
+    >>> corr = LagCorrelationsFromRAP[H0,H1,3];
+    >>> Print[corr];
+    {-0.0038461538461536634, 0.0045604395604397245, 0.005895604395604545}
 
     For Python/Numpy:
-    
-    >>> H0=ml.matrix([[-2, 0, 0],[0, -3, 1],[0, -1, -2]])
-    >>> H1=ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1]])
-    >>> print(LagCorrelationsFromRAP(H0,H1,3))
+
+    >>> H0 = ml.matrix([[-2., 0, 0],[0, -3., 1.],[0, -1., -2.]])
+    >>> H1 = ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1.]])
+    >>> corr = LagCorrelationsFromRAP(H0,H1,3)
+    >>> print(corr)
     [-0.0038461538461539674, 0.0045604395604395744, 0.005895604395604547]
-    >>> plt.plot(LagCorrelationsFromRAP(H0,H1,20))
-    
+

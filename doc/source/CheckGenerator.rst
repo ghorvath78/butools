@@ -47,7 +47,7 @@ butools.mc.CheckGenerator
 
     >>> Q = [-0.9, 0.2, 0.4; 0, 0.9, 0.9; 0, 0.6, -0.6];
     >>> flag = CheckGenerator(Q,true);
-    CheckGenerator: The diagonal of the generator is not negative (precision: 1e-12)!
+    CheckGenerator: The diagonal of the generator is not negative (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [-0.9, 0.5, 0.4; 0.9, -0.9, 0; 0.3, 0.3, -0.6];
@@ -60,7 +60,7 @@ butools.mc.CheckGenerator
          1
     >>> Q = [-0.9, 0.5, 0.4; 0.9, -1.1, 0; 0.3, 0.3, -0.6];
     >>> flag = CheckGenerator(Q);
-    CheckGenerator: The rowsum of the generator is not 0 (precision: 1e-12)!
+    CheckGenerator: The rowsum of the generator is not 0 (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [-0.9, 0.5, 0.4; 0.9, -0.9, 0; 0.3, 0.3, -0.6];

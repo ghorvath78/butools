@@ -46,11 +46,11 @@
 === RandomPH ===
 >>> a,A = RandomPH(3,8,4)
 >>> print(a)
-[[ 0.51378  0.48622  0.     ]]
+[[ 0.53323  0.36287  0.10391]]
 >>> print(A)
-[[-0.68768  0.14149  0.29254]
- [ 0.06547 -0.21547  0.     ]
- [ 0.       0.16149 -0.16149]]
+[[-1.79031  0.85925  0.34048]
+ [ 0.1859  -0.1859   0.     ]
+ [ 0.       0.      -0.67749]]
 === CheckMERepresentation ===
 >>> a = ml.matrix([[-0.2, 0.2]])
 >>> A = ml.matrix([[1, -1],[1, -2]])
@@ -332,7 +332,6 @@ inf
 True
 >>> flag = CheckPHRepresentation(a,A)
 CheckProbVector: The vector has negative element (precision: 1e-12)!
-
 >>> print(flag)
 False
 >>> b,B = PHFromME(a,A)
@@ -356,7 +355,6 @@ True
 True
 >>> flag = CheckPHRepresentation(a,A)
 CheckProbVector: The vector has negative element (precision: 1e-12)!
-
 >>> print(flag)
 False
 >>> b,B = PHFromME(a,A)

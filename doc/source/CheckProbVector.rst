@@ -48,12 +48,12 @@ butools.mc.CheckProbVector
 
     >>> Q = [1.1, -0.1];
     >>> flag = CheckProbVector(Q);
-    CheckProbVector: The vector has negative element (precision: 1e-12)!
+    CheckProbVector: The vector has negative element (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [1.1, 0.1];
     >>> flag = CheckProbVector(Q);
-    CheckProbVector: The sum of the vector is not 1 (precision: 1e-12)!
+    CheckProbVector: The sum of the vector is not 1 (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [1, 0];
@@ -62,7 +62,7 @@ butools.mc.CheckProbVector
          1
     >>> Q = [0.9, -0.1];
     >>> flag = CheckProbVector(Q,true);
-    CheckProbVector: The vector has negative element (precision: 1e-12)!
+    CheckProbVector: The vector has negative element (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [0.9, 0.1];

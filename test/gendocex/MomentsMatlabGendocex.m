@@ -6,6 +6,7 @@ function MomentsMatlabGendocex ()
 	disp('Enable input parameter checking with the BuToolsCheckInput flag');
 	global BuToolsCheckInput;
 	BuToolsCheckInput = true;
+	global BuToolsCheckPrecision;
 	format compact
 	diary('Moments_matlab.docex');
 	disp('=== NormMomsFromMoms ===');

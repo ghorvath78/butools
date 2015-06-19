@@ -1,5 +1,5 @@
 MCMathematicaGendocex[]:=
-Module[{Q, flag, tmpOut, ret, stream},
+Module[{ret, Q, tmpOut, stream, flag},
 	Unprotect[Print];
 	Print[args___] := Block[{$inMsg = True, result, str},
 	   If[MatrixQ[args],

@@ -23,7 +23,6 @@ PmfFromMG::usage = "pmf = PmfFromMG[alpha, A, x, prec]: Returns the probability 
 PmfFromDPH::usage = "pmf = PmfFromDPH[alpha, A, x, prec]: Returns the probability mass function of a discrete phase-type distribution.";
 RandomDPH::usage = "{alpha, A} = RandomDPH[order, mean, zeroEntries, maxTrials, prec]: Returns a random discrete phase-type distribution with a given mean value.";
 SamplesFromDPH::usage = "x = SamplesFromDPH[alpha, A, K, prec]: Generates random samples from a discrete phase-type distribution.";
-TestDPHPackage::usage = "alma";
 
 
 Begin["`Private`"];

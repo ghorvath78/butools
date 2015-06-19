@@ -49,7 +49,7 @@ butools.moments.FactorialMomsFromMoms
               1.3          2.4         6.03         20.5         89.5        474.9
     >>> err = norm(moms-M);
     >>> disp(err);
-       1.1374e-13
+       3.5527e-15
 
     For Mathematica:
 

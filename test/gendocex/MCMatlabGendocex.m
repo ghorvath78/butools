@@ -6,6 +6,7 @@ function MCMatlabGendocex ()
 	disp('Enable input parameter checking with the BuToolsCheckInput flag');
 	global BuToolsCheckInput;
 	BuToolsCheckInput = true;
+	global BuToolsCheckPrecision;
 	format compact
 	diary('MC_matlab.docex');
 	disp('=== CRPSolve ===');

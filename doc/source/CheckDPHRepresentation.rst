@@ -46,7 +46,7 @@ butools.dph.CheckDPHRepresentation
     >>> a = [0.48, 0.08];
     >>> A = [0, 0.08; 0.55, 0.5];
     >>> flag = CheckDPHRepresentation(a,A);
-    CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: 1e-12)!
+    CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: 1e-11)!
     >>> disp(flag);
          0
 

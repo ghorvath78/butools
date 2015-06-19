@@ -120,10 +120,10 @@ def convertCode(code):
         # fix parenthesis
         code = re.compile('NPArray\[([^\]]+)\]').sub('\\1', code)
         code = re.compile('Dim1\[([^\]]+)\]').sub('Dimensions[\\1][[1]]', code)
-        code = re.compile('AllPositive\[([^\]]+)\]').sub('AllTrue[\\1,Positive]', code)
-        code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('AllTrue[\\1,Positive]', code)
-        code = re.compile('AllLessThan1\[([^\]]+)\]').sub('AllTrue[\\1,#<1 &]', code)
-        code = re.compile('AllGreaterThanm1\[([^\]]+)\]').sub('AllTrue[\\1,#>-1 &]', code)
+        code = re.compile('AllPositive\[([^\]]+)\]').sub('AllTrue[Flatten[\\1],Positive]', code)
+        code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('AllTrue[Flatten[\\1],Positive]', code)
+        code = re.compile('AllLessThan1\[([^\]]+)\]').sub('AllTrue[Flatten[\\1],#<1 &]', code)
+        code = re.compile('AllGreaterThanm1\[([^\]]+)\]').sub('AllTrue[Flatten[\\1],#>-1 &]', code)
         code = re.compile('\./').sub('/', code)
         code = re.compile('<-').sub('{', code)
         code = re.compile('->').sub('}', code)
@@ -137,7 +137,7 @@ def convertCode(code):
         code = re.compile('NPArray\[([^\]]+)\]').sub('\\1', code)
         code = re.compile('True').sub('true', code)
         code = re.compile('False').sub('false', code)
-        code = re.compile('([a-zA-Z\]][0-9]?)([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('([a-zA-Z\]>][0-9]?)([.])([a-zA-Z])').sub('\\1*\\3', code)
         code = re.compile('AllPositive\[([^\]]+)\]').sub('all(\\1>0)', code)
         code = re.compile('AllPositiveMatrix\[([^\]]+)\]').sub('all(all(\\1>0))', code)
         code = re.compile('AllLessThan1\[([^\]]+)\]').sub('all(\\1<1)', code)
@@ -173,7 +173,7 @@ def convertCode(code):
     elif output=="Python":
         # replace few function names
         code = re.compile('\./').sub('/', code)
-        code = re.compile('([a-zA-Z\]][0-9]?)([.])([a-zA-Z])').sub('\\1*\\3', code)
+        code = re.compile('([a-zA-Z\]>][0-9]?)([.])([a-zA-Z])').sub('\\1*\\3', code)
         code = re.compile('BuTools`CheckPrecision').sub('butools.checkPrecision', code)
         code = re.compile('NPArray\[([^\]]+)\]').sub('np.array(\\1)', code)
         code = re.compile('AllPositive\[([^\]]+)\]').sub('np.all(\\1>0)', code)
@@ -398,6 +398,9 @@ with redirect_stdout(fio):
                     if echo:
                         for oa in varLst:
                             printVar(oa, echo)        
+            elif line.startswith("CODE$"):
+                if (line[5]=='P' and output=='Python') or (line[5]=='M' and output=='MATLAB') or (line[5]=='W' and output=='Mathematica'):
+                    print(line[7:-1])                    
             elif line.startswith("CODE"):
                 if (line[4]=='P' and output=='Python') or (line[4]=='M' and output=='MATLAB') or (line[4]=='W' and output=='Mathematica'):
                     if forDocEx:                
@@ -470,7 +473,8 @@ else:
 
 
 if output=="Mathematica":
-    print("{0}[]:=\nModule[{{{1}}},\n\t{2}\n];".format(funName, ", ".join(set(usedVars)), '\t'.join(srcFile.splitlines(True))))
+    varSet = set(usedVars).difference(["BuTools`CheckInput","BuTools`CheckPrecision","BuTools`Verbose"]);
+    print("{0}[]:=\nModule[{{{1}}},\n\t{2}\n];".format(funName, ", ".join(varSet), '\t'.join(srcFile.splitlines(True))))
 elif output=="MATLAB":
     print("function {0} ()\n\t{1}end".format(funName, '\t'.join(srcFile.splitlines(True))))
 elif output=="Python":

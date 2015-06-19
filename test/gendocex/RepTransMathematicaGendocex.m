@@ -1,5 +1,5 @@
 RepTransMathematicaGendocex[]:=
-Module[{B, A, tmpOut, Cm, alpha, beta, A1m, vecB, stream, err, M, vecA, A2m, m, T},
+Module[{A1m, vecA, stream, T, A2m, Cm, M, tmpOut, B, alpha, beta, vecB, A, err, m},
 	Unprotect[Print];
 	Print[args___] := Block[{$inMsg = True, result, str},
 	   If[MatrixQ[args],

@@ -57,7 +57,7 @@ butools.ph.PHFromME
     >>> disp(flag);
          1
     >>> flag = CheckPHRepresentation(a,A);
-    CheckProbVector: The vector has negative element (precision: 1e-12)!
+    CheckProbVector: The vector has negative element (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> [b,B] = PHFromME(a,A);
@@ -80,7 +80,7 @@ butools.ph.PHFromME
     >>> disp(flag);
          1
     >>> flag = CheckPHRepresentation(a,A);
-    CheckProbVector: The vector has negative element (precision: 1e-12)!
+    CheckProbVector: The vector has negative element (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> [b,B] = PHFromME(a,A);
@@ -156,7 +156,6 @@ butools.ph.PHFromME
     True
     >>> flag = CheckPHRepresentation(a,A)
     CheckProbVector: The vector has negative element (precision: 1e-12)!
-    
     >>> print(flag)
     False
     >>> b,B = PHFromME(a,A)
@@ -180,7 +179,6 @@ butools.ph.PHFromME
     True
     >>> flag = CheckPHRepresentation(a,A)
     CheckProbVector: The vector has negative element (precision: 1e-12)!
-    
     >>> print(flag)
     False
     >>> b,B = PHFromME(a,A)

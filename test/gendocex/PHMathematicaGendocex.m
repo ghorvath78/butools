@@ -1,5 +1,5 @@
 PHMathematicaGendocex[]:=
-Module[{phmoms, mp, cdf, mean, mom3upper, a, b, memoms, flag, oo, err1, moms, co, B, x, mom3lower, tmpOut, ma, coo, mo, mb, pdf, A, y, n, cv2, stream, Cm, mom2, err2},
+Module[{B, pdf, memoms, err2, stream, co, x, a, oo, flag, n, tmpOut, cdf, mom3lower, Cm, mb, mom3upper, mean, b, A, moms, cv2, coo, phmoms, mp, mom2, mo, ma, y, err1},
 	Unprotect[Print];
 	Print[args___] := Block[{$inMsg = True, result, str},
 	   If[MatrixQ[args],

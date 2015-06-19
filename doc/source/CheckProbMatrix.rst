@@ -49,12 +49,12 @@ butools.mc.CheckProbMatrix
 
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, -0.1, 0.4];
     >>> flag = CheckProbMatrix(Q);
-    CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+    CheckProbMatrix: the matrix has negative element (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.1, 0.4];
     >>> flag = CheckProbMatrix(Q);
-    CheckProbMatrix: The rowsum of the matrix is not 1 (precision: 1e-12)!
+    CheckProbMatrix: The rowsum of the matrix is not 1 (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.3, 0.4];
@@ -63,7 +63,7 @@ butools.mc.CheckProbMatrix
          1
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.3, 0.4];
     >>> flag = CheckProbMatrix(Q,true);
-    CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: 1e-12)!
+    CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: 1e-11)!
     >>> disp(flag);
          0
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.1, 0.4];

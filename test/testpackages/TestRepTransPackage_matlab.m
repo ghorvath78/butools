@@ -6,6 +6,7 @@ function TestRepTransPackage ()
 	disp('Enable input parameter checking with the BuToolsCheckInput flag');
 	global BuToolsCheckInput;
 	BuToolsCheckInput = true;
+	global BuToolsCheckPrecision;
 	disp('========================================')
 	help SimilarityMatrix
 	A1m = [0.2, 0.8, 0; 1.2, -0.4, 0.1; -0.2, 0.7, 0.5];

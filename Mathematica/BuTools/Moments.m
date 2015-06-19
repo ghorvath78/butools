@@ -16,7 +16,6 @@ MomsFromHankelMoms::usage = "m = MomsFromHankelMoms[hm]: Returns the raw moments
 JFactorialMomsFromJMoms::usage = "jfm = JFactorialMomsFromJMoms[jm]: Returns the joint factorial moments given the joint raw moments";
 JMomsFromJFactorialMoms::usage = "jm = JMomsFromJFactorialMoms[jfm]: Returns the joint raw moments given the joint factorial moments";
 CheckMoments::usage = "r = CheckMoments[m, prec]: Checks if the given moment sequence belongs to a distribution with support (0,inf)";
-TestMomentsPackage::usage = "TestMomentsPackage[] : Executes various tests to check the functions of the moments package";
 
 
 Begin["`Private`"];
@@ -152,117 +151,6 @@ Do[
 	If[Det[H]<-prec || Det[H0]<-prec, res=False];
 ,{n,0,NN}];
 Return[res];
-];
-
-
-TestMomentsPackage[]:=Module[{M,nmoms,moms,rmoms,fmoms,hmoms,MM,Jmoms,JFmoms},
-Print["---BuTools: Moments package test file---"];
-Print["Enable the verbose messages with the BuToolsVerbose flag"];
-BuTools`Verbose = True;
-Print["Enable input parameter checking with the BuToolsCheckInput flag"];
-BuTools`CheckInput = True;
-On[Assert];
-Print["----------------------------"];
-?NormMomsFromMoms
-?MomsFromNormMoms
-
-Print["Test:"];
-Print["-----"];
-
-M = {1.2, 5, 38, 495, 9215};
-Print["M=",M];
-Print["nmoms=NormMomsFromMoms[M]"];
-nmoms=NormMomsFromMoms[M];
-Print[nmoms];
-Print["moms=MomsFromNormMoms[nmoms]"];
-moms=MomsFromNormMoms[nmoms];
-Print[moms];
-Assert[Norm[moms-M]<10^-10, "Calling the moment conversion and its inverse did not give back the original moments!"];
-
-Print["----------------------------"];
-?ReducedMomsFromMoms
-?MomsFromReducedMoms
-
-Print["Test:"];
-Print["-----"];
-
-Print["rmoms=ReducedMomsFromMoms[M]"];
-rmoms=ReducedMomsFromMoms[M];
-Print[rmoms];
-Print["moms=MomsFromReducedMoms[rmoms]"];
-moms=MomsFromReducedMoms[rmoms];
-Print[moms]
-Assert[Norm[moms-M]<10^-10, "Calling the moment conversion and its inverse did not give back the original moments!"];
-
-Print["----------------------------"];
-?FactorialMomsFromMoms
-?MomsFromFactorialMoms
-
-Print["Test:"];
-Print["-----"];
-
-M = {1.3, 2.4, 6.03, 20.5, 89.5, 474.9};
-Print["M=",M];
-Print["fmoms=FactorialMomsFromMoms[M]"];
-fmoms=FactorialMomsFromMoms[M];
-Print[fmoms];
-Print["moms=MomsFromFactorialmoms[fmoms]"];
-moms=MomsFromFactorialMoms[fmoms];
-Print[moms];
-Assert[Norm[moms-M]<10^-10, "Calling the moment conversion and its inverse did not give back the original moments!"];
-
-Print["----------------------------"];
-?JFactorialMomsFromJMoms
-?JMomsFromJFactorialMoms
-
-Print["Test:"];
-Print["-----"];
-
-MM = {{0.7, 2, 3, 4},{5, 6, 7, 8},{9, 10, 11, 12}};
-Print["MM=",MM];
-Print["JFmoms=JFactorialMomsFromJMoms[MM]"];
-JFmoms=JFactorialMomsFromJMoms[MM];
-Print[JFmoms];
-Print["Jmoms=JMomsFromJFactorialMoms[JFmoms]"];
-Jmoms=JMomsFromJFactorialMoms[JFmoms];
-Print[Jmoms];
-Assert[Norm[moms-M]<10^-10, "Calling the moment conversion and its inverse did not give back the original moments!"];
-
-Print["----------------------------"];
-?HankelMomsFromMoms
-?MomsFromHankelMoms
-
-Print["Test:"];
-Print["-----"];
-
-Print["M=",M];
-Print["hmoms=HankelMomsFromMoms[M]"];
-hmoms=HankelMomsFromMoms[M];
-Print[hmoms];
-Print["moms=MomsFromHankelMoms[hmoms]"];
-moms=MomsFromHankelMoms[hmoms];
-Print[moms];
-Assert[Norm[moms-M]<10^-10, "Calling the moment conversion and its inverse did not give back the original moments!"];
-
-Print["----------------------------"];
-?CheckMoments
-
-Print["Test:"];
-Print["-----"];
-
-M = {1.2, 5, 8, 29, 3412};
-Print["M=",M];
-Print["flag=CheckMoments[M]"];
-flag=CheckMoments[M];
-Print[flag];
-Assert[flag==False, "CheckMoments did not recognize a valid moment sequence!"];
-
-M = {1.3, 2.4, 6.03, 20.5, 89.5};
-Print["M=",M];
-Print["flag=CheckMoments[M]"];
-flag=CheckMoments[M];
-Print[flag];
-Assert[flag==True, "CheckMoments did not recognize an invalid moment sequence!"];
 ];
 
 
