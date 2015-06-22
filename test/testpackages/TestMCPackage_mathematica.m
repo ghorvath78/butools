@@ -1,5 +1,5 @@
 TestMCPackage[]:=
-Module[{ret, Q, flag},
+Module[{Q, ret, flag},
 	Print["---BuTools: MC package test file---"//OutputForm];
 	Print["Enable the verbose messages with the BuToolsVerbose flag"//OutputForm];
 	BuTools`Verbose = True;

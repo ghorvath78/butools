@@ -46,3 +46,11 @@ python testgen.py PythonDocEx map.test >gendocex/MAPPythonGendocex.py
 python testgen.py MATLABDocEx map.test >gendocex/MAPMatlabGendocex.m
 python testgen.py MathematicaDocEx map.test >gendocex/MAPMathematicaGendocex.m
 
+python testgen.py Python dmap.test >testpackages/TestDMAPPackage_python.py
+python testgen.py MATLAB dmap.test >testpackages/TestDMAPPackage_matlab.m
+python testgen.py Mathematica dmap.test >testpackages/TestDMAPPackage_mathematica.m
+
+python testgen.py PythonDocEx dmap.test >gendocex/DMAPPythonGendocex.py
+python testgen.py MATLABDocEx dmap.test >gendocex/DMAPMatlabGendocex.m
+python testgen.py MathematicaDocEx dmap.test >gendocex/DMAPMathematicaGendocex.m
+

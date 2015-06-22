@@ -143,7 +143,7 @@ Module[{H0i,P,pi,moms,acf},
 	H0i = Inverse[-H0];
 	P = H0i.H1;
 	pi = DRPSolve[P];
-	moms = MomentsFromME[pi,H0];
+	moms = MomentsFromME[pi,H0,2];
 	pi = pi.H0i.P;
 	acf = {};
 	Do[
@@ -218,7 +218,6 @@ Module[ {m1,m2,m3,\[Lambda]1,\[Lambda]2,p,\[Gamma],tau,T,\[Alpha],corrl,corru,a,
     If[corr1>corru,Throw["The correlation parameter is too large!"]];
     \[Gamma] = corr1 (m2-m1 m1) / (m2/2 - m1 m1);
 	(* Perform matching *)
-	Print[\[Gamma]];
 	If[\[Gamma]>= 0,
 		a=1/(2 \[Alpha]) (1+\[Alpha] \[Gamma] -p (1-\[Gamma])-Sqrt[(1+\[Alpha] \[Gamma] -p (1-\[Gamma]))^2-4 \[Alpha] \[Gamma]]);
 		b=1/2  (1+\[Alpha] \[Gamma] -p (1-\[Gamma])+Sqrt[(1+\[Alpha] \[Gamma] -p (1-\[Gamma]))^2-4 \[Alpha] \[Gamma]]);
@@ -544,7 +543,7 @@ SamplesFromMAP[D0_,D1_,k_,initial_:Null]:=(
 
 
 SamplesFromMMAP[D_,k_,initial_:Null]:=
-Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate},
+Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst},
 	If[BuTools`CheckInput && Not[CheckMMAPRepresentation[D]],Throw["SamplesFromMMAP: input is not a valid MMAP representation!"]];
     
     NN = Dimensions[D[[1]]][[1]];

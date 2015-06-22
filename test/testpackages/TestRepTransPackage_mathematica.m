@@ -1,5 +1,5 @@
 TestRepTransPackage[]:=
-Module[{A, beta, m, T, A1m, err, Cm, M, vecB, alpha, A2m, B, vecA},
+Module[{Cm, A2m, alpha, m, M, vecA, beta, B, A, T, err, A1m, vecB},
 	Print["---BuTools: RepTrans package test file---"//OutputForm];
 	Print["Enable the verbose messages with the BuToolsVerbose flag"//OutputForm];
 	BuTools`Verbose = True;

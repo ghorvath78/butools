@@ -46,16 +46,16 @@
 === RandomPH ===
 >>> [a,A] = RandomPH(3,8,4);
 >>> disp(a);
-      0.28793      0.34404      0.36802
+     1     0     0
 >>> disp(A);
-       -2.115      0.40925       1.1338
-       1.9391      -1.9391            0
-            0      0.52322     -0.52322
+     -0.28487      0.11715    0.0062532
+     0.031733     -0.16649     0.017921
+     0.076758            0    -0.076758
 === CheckMERepresentation ===
 >>> a = [-0.2, 0.2];
 >>> A = [1, -1; 1, -2];
 >>> flag = CheckMERepresentation(a,A);
-CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part (at precision 1e-11)!
+CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part (at precision 1e-12)!
 >>> disp(flag);
      0
 >>> a = [-0.2, 0.4, 0.8];
@@ -393,7 +393,7 @@ CheckMERepresentation warning: There are more than one eigenvalue with the same 
 >>> disp(flag);
      1
 >>> flag = CheckPHRepresentation(a,A);
-CheckProbVector: The vector has negative element (precision: 1e-11)!
+CheckProbVector: The vector has negative element (precision: 1e-12)!
 >>> disp(flag);
      0
 >>> [b,B] = PHFromME(a,A);
@@ -416,7 +416,7 @@ CheckProbVector: The vector has negative element (precision: 1e-11)!
 >>> disp(flag);
      1
 >>> flag = CheckPHRepresentation(a,A);
-CheckProbVector: The vector has negative element (precision: 1e-11)!
+CheckProbVector: The vector has negative element (precision: 1e-12)!
 >>> disp(flag);
      0
 >>> [b,B] = PHFromME(a,A);

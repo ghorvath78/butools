@@ -78,7 +78,7 @@ defmat@ H0 # {{0.15, 0.2, 0.18},{-0.23, 0.17, 0.22},{0.19, 0.15, 0.16}}
 defmat@ H1 # {{0.01, 0.08, 0.16},{0.02, 0.2, 0.07},{0.02, 0.15, 0.17}}
 defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.34},{0.06, 0.1, 0}}
 testmsg
-code!@ moms=MarginalMomentsFromMRAP[<-H0,H1,H2->]
+code!@ moms=MarginalMomentsFromDMRAP[<-H0,H1,H2->]
 assert Length[moms]==2*Dim1[H0]-1 && CheckMoments[moms] # MarginalMomentsFromDMRAP returned wrong moments!
 
 test LagCorrelationsFromDMAP
@@ -121,7 +121,7 @@ code!@ corr = LagCorrelationsFromDMAP[D0,D1,3]
 CODE$P mNm1, mNm2 = Nm[0,1:].A.flatten(), Nm[1:,0].A.flatten()
 CODE$M mNm1 = Nm(1,2:end); mNm2 = Nm(2:end,1)';
 CODE$W mNm1 = Nm[[1,2;;]]; mNm2 = Nm[[2;;,1]];
-assert AllPositiveMatrix[Nm] && Norm[NPArray[moms]-mNm1]<10^-14 && Norm[NPArray[moms]-mNm2]<10^-14 && Norm[corr-cjm]<10^-14 # Joint moment matrix is invalid!
+assert AllPositiveMatrix[Nm] && Norm[NPArray[moms]-mNm1]<10^-12 && Norm[NPArray[moms]-mNm2]<10^-12 && Norm[corr-cjm]<10^-12 # Joint moment matrix is invalid!
 
 test LagkJointMomentsFromDRAP
 
@@ -148,7 +148,7 @@ code!@ corr = LagCorrelationsFromDRAP[H0,H1,3]
 CODE$P mNm1, mNm2 = Nm[0,1:].A.flatten(), Nm[1:,0].A.flatten()
 CODE$M mNm1 = Nm(1,2:end); mNm2 = Nm(2:end,1)';
 CODE$W mNm1 = Nm[[1,2;;]]; mNm2 = Nm[[2;;,1]];
-assert AllPositiveMatrix[Nm] && Norm[NPArray[moms]-mNm1]<10^-14 && Norm[NPArray[moms]-mNm2]<10^-14 && Norm[corr-cjm]<10^-14 # Joint moment matrix is invalid!
+assert AllPositiveMatrix[Nm] && Norm[NPArray[moms]-mNm1]<10^-12 && Norm[NPArray[moms]-mNm2]<10^-12 && Norm[corr-cjm]<10^-12 # Joint moment matrix is invalid!
 
 test LagkJointMomentsFromDMMAP
 inputmsg
@@ -161,7 +161,7 @@ code! Nm=LagkJointMomentsFromDMMAP[<-D0,D1,D2,D3->,3,1]
 print Nm<<1>>
 print Nm<<2>>
 print Nm<<3>>
-assert Length[Nm]==3 && Norm[Nm<<1>>+Nm<<2>>+Nm<<3>>-LagkJointMomentsFromDMAP[D0,D1+D2+D3,3,1]]<10^-14 # Joint moment matrix is invalid!
+assert Length[Nm]==3 && Norm[Nm<<1>>+Nm<<2>>+Nm<<3>>-LagkJointMomentsFromDMAP[D0,D1+D2+D3,3,1]]<10^-12 # Joint moment matrix is invalid!
 
 test LagkJointMomentsFromDMRAP
 
@@ -173,7 +173,7 @@ testmsg
 code! Nm=LagkJointMomentsFromDMRAP[<-H0,H1,H2->,3,2]
 print Nm<<1>>
 print Nm<<2>>
-assert Length[Nm]==2 && Norm[Nm<<1>>+Nm<<2>>-LagkJointMomentsFromDRAP[H0,H1+H2,3,2]]<10^-14 # Joint moment matrix is invalid!
+assert Length[Nm]==2 && Norm[Nm<<1>>+Nm<<2>>-LagkJointMomentsFromDRAP[H0,H1+H2,3,2]]<10^-12 # Joint moment matrix is invalid!
 
 test RandomDMAP
 
@@ -310,14 +310,14 @@ code BuTools`CheckPrecision=10.^-10
 code!@ rmoms=MarginalMomentsFromDMRAP[H,5]
 code! rNm = LagkJointMomentsFromDMRAP[H,2,1]
 code!@ {rNm1, rNm2, rNm3} = rNm<<>>
-assert Norm[NPArray[moms]-NPArray[rmoms]]<10^-9 && Norm[Nm1-rNm1]<10^-10 && Norm[Nm2-rNm2]<10^-10 && Norm[Nm3-rNm3]<10^-10 # The moments and joint moments returned by DMRAPFromMoments are not the same as given!
+assert Norm[NPArray[moms]-NPArray[rmoms]]<10^-9 && Norm[Nm1-rNm1]<10^-9 && Norm[Nm2-rNm2]<10^-9 && Norm[Nm3-rNm3]<10^-9 # The moments and joint moments returned by DMRAPFromMoments are not the same as given!
 
 
 test DMAPFromDRAP
 
 inputmsg
-defmat@ H0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
-defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
+defmat@ D0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
+defmat@ D1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
 code!@ {H0,H1}=DMAPFromDRAP[D0,D1]
 code!@ err = Norm[LagkJointMomentsFromDRAP[D0,D1,3,1]-LagkJointMomentsFromDRAP[H0,H1,3,1]]
@@ -327,9 +327,9 @@ assert CheckDMAPRepresentation[H0,H1] # The result of DMAPFromDRAP is not a DMAP
 test DMMAPFromDMRAP
 
 inputmsg
-defmat@ H0 # {{0.15, 0.2, 0.18},{-0.23, 0.17, 0.22},{0.19, 0.15, 0.16}}
+defmat@ H0 # {{0.15, 0.2, 0.18},{-0.20, 0.17, 0.22},{0.19, 0.15, 0.16}}
 defmat@ H1 # {{0.01, 0.08, 0.16},{0.02, 0.2, 0.07},{0.02, 0.15, 0.17}}
-defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.34},{0.06, 0.1, 0}}
+defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.31},{0.06, 0.1, 0}}
 code H=<-H0,H1,H2->
 code!@ moms=MarginalMomentsFromDMRAP[H]
 code! jmom=LagkJointMomentsFromDMRAP[H,3,1]
@@ -392,7 +392,7 @@ code!@ {D0,D1}=DMAP2FromMoments[moms,corr]
 code!@ rmoms=MarginalMomentsFromDMAP[D0, D1, 3]
 code!@ rcorr=LagCorrelationsFromDMAP[D0, D1, 1][[1]]
 assert CheckDMAPRepresentation[D0,D1] # DMAP2FromMoments returned an invalid DMAP representation!
-assert Norm[NPArray[moms]-NPArray[rmoms]]<10^-12 && Abs[corr-rcorr]<10^-12 # The moments and the correlation returned by DMAP2FromMoments are not the same as given!
+assert Norm[NPArray[moms]-NPArray[rmoms]]<10^-11 && Abs[corr-rcorr]<10^-12 # The moments and the correlation returned by DMAP2FromMoments are not the same as given!
 
 test SamplesFromDMAP
 

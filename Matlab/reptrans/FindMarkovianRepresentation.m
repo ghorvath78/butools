@@ -103,7 +103,7 @@ function nrep = FindMarkovianRepresentation (rep, transfun, evalfun, precision)
     nrep = rep;
     M = size(nrep{1},2);
     b = 0.5;
-    odist = -1;
+    odist = inf;
     while b>precision/2
         for m=1:M*M
             for k=1:4

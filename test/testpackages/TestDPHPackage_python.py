@@ -9,6 +9,7 @@ from butools.map import *
 from butools.moments import *
 from butools.reptrans import*
 from butools.mc import *
+from butools.dmap import *
 from contextlib import redirect_stdout
 
 def TestDPHPackage():

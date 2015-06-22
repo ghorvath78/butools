@@ -478,7 +478,7 @@ if output=="Mathematica":
 elif output=="MATLAB":
     print("function {0} ()\n\t{1}end".format(funName, '\t'.join(srcFile.splitlines(True))))
 elif output=="Python":
-    print('import numpy as np\nimport numpy.matlib as ml\nimport matplotlib.pyplot as plt\nimport butools\nfrom butools.utils import *\nfrom butools.ph import *\nfrom butools.dph import *\nfrom butools.map import *\nfrom butools.moments import *\nfrom butools.reptrans import*\nfrom butools.mc import *\nfrom contextlib import redirect_stdout\n')
+    print('import numpy as np\nimport numpy.matlib as ml\nimport matplotlib.pyplot as plt\nimport butools\nfrom butools.utils import *\nfrom butools.ph import *\nfrom butools.dph import *\nfrom butools.map import *\nfrom butools.moments import *\nfrom butools.reptrans import*\nfrom butools.mc import *\nfrom butools.dmap import *\nfrom contextlib import redirect_stdout\n')
     print("def {0}():\n\t{1}".format(funName, '\t'.join(srcFile.splitlines(True))))
     print('if __name__ == "__main__":\n\t{0}()'.format(funName))
     

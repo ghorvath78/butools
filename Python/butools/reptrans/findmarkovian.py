@@ -5,6 +5,7 @@ Created on Wed Mar 20 08:24:03 2013
 @author: gabor
 """
 import copy
+import numpy as np
 import numpy.matlib as ml
 
 def FindMarkovianRepresentation (rep, transfun, evalfun, precision=1e-7):
@@ -98,7 +99,7 @@ def FindMarkovianRepresentation (rep, transfun, evalfun, precision=1e-7):
     nrep = copy.deepcopy(rep)
     M = nrep[0].shape[1]
     b = 0.5
-    odist = -1
+    odist = np.inf
     while b>precision/2:
         for j in range(1,M*M):
             for k in range(4):

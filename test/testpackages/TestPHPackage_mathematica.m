@@ -1,5 +1,5 @@
 TestPHPackage[]:=
-Module[{mom3lower, flag, err1, memoms, mean, mb, mp, cdf, co, phmoms, moms, cv2, ma, B, coo, A, oo, a, y, mo, pdf, err2, x, n, Cm, b, mom3upper, mom2},
+Module[{Cm, mom3upper, coo, err2, mp, a, n, phmoms, flag, co, x, mom2, y, B, pdf, ma, b, A, oo, mb, mo, mean, cdf, moms, err1, cv2, memoms, mom3lower},
 	Print["---BuTools: PH package test file---"//OutputForm];
 	Print["Enable the verbose messages with the BuToolsVerbose flag"//OutputForm];
 	BuTools`Verbose = True;

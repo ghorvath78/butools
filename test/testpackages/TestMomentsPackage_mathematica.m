@@ -1,5 +1,5 @@
 TestMomentsPackage[]:=
-Module[{MM, fmoms, Jmoms, nmoms, moms, hmoms, M, rmoms, flag, JFmoms, err},
+Module[{rmoms, JFmoms, MM, nmoms, hmoms, moms, fmoms, flag, err, M, Jmoms},
 	Print["---BuTools: Moments package test file---"//OutputForm];
 	Print["Enable the verbose messages with the BuToolsVerbose flag"//OutputForm];
 	BuTools`Verbose = True;

@@ -1,5 +1,5 @@
 MAPMathematicaGendocex[]:=
-Module[{rNm1, D, D1, Nm1, err2, mm, moms, G3, Cm, rcorr1, Nm, corr1, G0, H0, Nm2, jmom, D0, G2, rmom, rNm3, tmpOut, lb, H, stream, D3, err1, a, H2, rmoms, A, x, corr, rjmom, ub, H1, D2, Nm3, G, G1, mom, rcorr, rNm2, m, flag, err, rNm},
+Module[{flag, A, Cm, a, H0, corr1, rNm1, moms, rmom, G3, mm, rNm2, jmom, rcorr, rmoms, D, err1, ub, rNm, Nm3, m, D3, H2, corr, H, lb, x, mom, Nm2, D1, G2, H1, D0, D2, tmpOut, Nm, G0, rcorr1, err, G1, G, rjmom, Nm1, err2, stream, rNm3},
 	Unprotect[Print];
 	Print[args___] := Block[{$inMsg = True, result, str},
 	   If[MatrixQ[args],

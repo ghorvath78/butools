@@ -1,5 +1,5 @@
 TestDPHPackage[]:=
-Module[{cdf, moms, A, pmf, err2, ev, ma, err1, a, mp, flag, phmoms, B, Cm, mb, x, memoms, b},
+Module[{B, phmoms, memoms, moms, flag, x, Cm, a, pmf, A, mb, err1, err2, b, ma, ev, cdf, mp},
 	Print["---BuTools: DPH package test file---"//OutputForm];
 	Print["Enable the verbose messages with the BuToolsVerbose flag"//OutputForm];
 	BuTools`Verbose = True;

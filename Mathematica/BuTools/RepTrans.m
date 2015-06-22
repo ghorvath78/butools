@@ -223,6 +223,7 @@ Module[{NRep, M, k, b, ddist, odist, ErrorMinimize, Elementary},
 	NRep=Rep;
 	M=Dimensions[Rep[[2]]][[1]];
 	b=N[1/2,Precision[Rep]];
+	odist=Infinity;
 	While[b>Prec/2,
 		Do[
 			Do[

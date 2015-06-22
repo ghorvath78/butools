@@ -1,5 +1,5 @@
 TestMAPPackage[]:=
-Module[{H, Nm1, rNm, rNm2, mom, err1, Nm3, flag, rcorr, corr, G3, corr1, rmom, rNm3, rmoms, G0, rNm1, jmom, err, Cm, D3, ub, A, Nm, err2, lb, rjmom, H2, D2, G2, D1, moms, x, a, mm, D, G1, H1, H0, m, G, rcorr1, D0, Nm2},
+Module[{A, rNm2, rcorr1, H1, jmom, a, rjmom, D, m, flag, Nm1, H, D2, Cm, rmoms, mom, Nm2, Nm3, H0, H2, rmom, D1, corr1, D0, rNm, G3, x, moms, err, ub, rNm3, rcorr, mm, rNm1, lb, Nm, err1, G2, corr, G, D3, err2, G1, G0},
 	Print["---BuTools: MAP package test file---"//OutputForm];
 	Print["Enable the verbose messages with the BuToolsVerbose flag"//OutputForm];
 	BuTools`Verbose = True;
