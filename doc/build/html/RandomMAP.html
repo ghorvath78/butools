@@ -161,15 +161,15 @@ The default value is 1e-14.</p>
 <p>For Matlab:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D0</span><span class="p">);</span>
-<span class="go">      -2.9064            0      0.42583      0.51808</span>
-<span class="go">            0      -2.6084            0      0.43424</span>
-<span class="go">      0.10604      0.58736      -1.0914            0</span>
-<span class="go">      0.28667            0      0.32664     -0.61331</span>
+<span class="go">      -2.1564      0.52751      0.23666      0.48227</span>
+<span class="go">      0.12958      -1.2882            0      0.40782</span>
+<span class="go">     0.095441            0     -0.84224      0.16816</span>
+<span class="go">      0.23854            0      0.11448     -0.75312</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D1</span><span class="p">);</span>
-<span class="go">      0.64541       0.0731      0.51853      0.72543</span>
-<span class="go">      0.63998      0.55402      0.27188      0.70824</span>
-<span class="go">      0.10328      0.28404     0.010665            0</span>
-<span class="go">            0            0            0            0</span>
+<span class="go">     0.011037      0.54473            0      0.35416</span>
+<span class="go">      0.52113      0.22971            0            0</span>
+<span class="go">      0.30136            0      0.27727            0</span>
+<span class="go">      0.28047      0.11964            0            0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 <span class="go">         1.62</span>
@@ -178,15 +178,15 @@ The default value is 1e-14.</p>
 <p>For Mathematica:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">}</span> <span class="o">=</span> <span class="n">RandomMAP</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D0</span><span class="p">];</span>
-<span class="go">{{-2.0923812019623003, 0.13304510567104486, 0.31829701350927053, 0.1521668074411143},</span>
-<span class="go"> {0., -0.5741730780189052, 0., 0.},</span>
-<span class="go"> {0., 0.34151979439016145, -1.1427165394526269, 0.13142372139224592},</span>
-<span class="go"> {0.40438386153011857, 0.07922513291605328, 0., -1.6331535398111858}}</span>
+<span class="go">{{-4.951856393334554, 1.4808270612099914, 0.9854373237264185, 0.9601506507976104},</span>
+<span class="go"> {0., -0.4862087833155877, 0.4862087833155877, 0.},</span>
+<span class="go"> {0., 1.0390511244021063, -3.077603878261726, 0.3851280623523275},</span>
+<span class="go"> {1.1400193009034087, 0.9000197303479476, 0.7569716886183007, -7.238543772427738}}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D1</span><span class="p">];</span>
-<span class="go">{{0.2271800914455872, 0.29319862534449953, 0.4661257840587526, 0.5023677744920312},</span>
-<span class="go"> {0., 0.5373250633033104, 0., 0.03684801471559468},</span>
-<span class="go"> {0., 0., 0.20387931620380573, 0.46589370746641395},</span>
-<span class="go"> {0.3566073647001836, 0.40462364617714686, 0., 0.38831353448768324}}</span>
+<span class="go">{{1.4661157972439278, 0.023084808049765464, 0., 0.03624075230684058},</span>
+<span class="go"> {0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 1.0289936500890735, 0.6244310414182185},</span>
+<span class="go"> {1.670741603151747, 0.29891729751978063, 1.3687129632452288, 1.1031611886413246}}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">][[</span><span class="mi">1</span><span class="p">]];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
 <span class="go">1.6199999999999999</span>
@@ -195,15 +195,15 @@ The default value is 1e-14.</p>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">RandomMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.62</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
-<span class="go">[[-2.43095  0.19245  0.48386  0.2269 ]</span>
-<span class="go"> [ 0.18365 -2.37753  0.52155  0.41858]</span>
-<span class="go"> [ 0.       0.54859 -1.52778  0.58001]</span>
-<span class="go"> [ 0.       0.19143  0.      -0.69681]]</span>
+<span class="go">[[-2.12527  0.56416  0.28339  0.13343]</span>
+<span class="go"> [ 0.05238 -1.08818  0.       0.45737]</span>
+<span class="go"> [ 0.06387  0.      -1.23231  0.     ]</span>
+<span class="go"> [ 0.32275  0.       0.58952 -0.91227]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
-<span class="go">[[ 0.47978  0.63877  0.22953  0.17967]</span>
-<span class="go"> [ 0.44676  0.40001  0.       0.40698]</span>
-<span class="go"> [ 0.       0.       0.39918  0.     ]</span>
-<span class="go"> [ 0.       0.       0.       0.50538]]</span>
+<span class="go">[[ 0.49226  0.30347  0.22972  0.11884]</span>
+<span class="go"> [ 0.02567  0.       0.39505  0.15771]</span>
+<span class="go"> [ 0.261    0.25525  0.       0.6522 ]</span>
+<span class="go"> [ 0.       0.       0.       0.     ]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="go">1.62</span>
@@ -234,7 +234,7 @@ The default value is 1e-14.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 19, 2015.
+      Last updated on Jun 22, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

@@ -153,52 +153,72 @@ starting from moment 0.</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="p">[</span><span class="mf">0.34</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.06</span> <span class="mf">0.05</span> <span class="mf">0.03</span><span class="p">;</span> <span class="mf">0.11</span> <span class="mf">0.13</span> <span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.16</span> <span class="mf">0.18</span> <span class="mf">0.05</span><span class="p">;</span> <span class="mf">0.15</span> <span class="mf">0.04</span> <span class="mf">0.09</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="mf">0.01</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.1</span> <span class="mf">0.07</span> <span class="mf">0.08</span><span class="p">;</span> <span class="mf">0.13</span> <span class="mf">0.12</span> <span class="mf">0.13</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="mf">0.18</span> <span class="mf">0.04</span><span class="p">;</span> <span class="mf">0.06</span> <span class="mf">0.03</span> <span class="mf">0.01</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromDMMAP</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">},</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
-<span class="go">      0.45395      0.68525       1.3856       3.8671       14.298</span>
-<span class="go">      0.68283       1.0318       2.0887       5.8339       21.579</span>
-<span class="go">       1.3755       2.0807       4.2171       11.789       43.629</span>
-<span class="go">        3.828       5.7954       11.756       32.887       121.75</span>
-<span class="go">       14.133       21.406       43.444       121.57       450.16</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
-<span class="go">     0.026281      0.03323     0.053055      0.11925      0.38427</span>
-<span class="go">     0.035051     0.043866     0.068917      0.15222      0.48448</span>
-<span class="go">     0.060653      0.07477      0.11464      0.24631      0.76824</span>
-<span class="go">       0.1482      0.17996      0.26901      0.56074       1.7085</span>
-<span class="go">      0.50589       0.6081      0.89307       1.8207       5.4486</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span>
-<span class="go">      0.51977      0.78522       1.5891        4.438       16.415</span>
-<span class="go">      0.78582       1.1881       2.4067       6.7254       24.884</span>
-<span class="go">       1.5917       2.4087       4.8838       13.657       50.551</span>
-<span class="go">       4.4481       6.7354       13.666       38.235       141.56</span>
-<span class="go">       16.458        24.93       50.601       141.61       524.37</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">;</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">;</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">;</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">;</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromDMMAP</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">},</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm</span><span class="p">{</span><span class="mi">1</span><span class="p">});</span>
+<span class="go">      0.45395      0.68525       1.3856       3.8671</span>
+<span class="go">      0.68283       1.0318       2.0887       5.8339</span>
+<span class="go">       1.3755       2.0807       4.2171       11.789</span>
+<span class="go">        3.828       5.7954       11.756       32.887</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm</span><span class="p">{</span><span class="mi">2</span><span class="p">});</span>
+<span class="go">     0.026281      0.03323     0.053055      0.11925</span>
+<span class="go">     0.035051     0.043866     0.068917      0.15222</span>
+<span class="go">     0.060653      0.07477      0.11464      0.24631</span>
+<span class="go">       0.1482      0.17996      0.26901      0.56074</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm</span><span class="p">{</span><span class="mi">3</span><span class="p">});</span>
+<span class="go">      0.51977      0.78522       1.5891        4.438</span>
+<span class="go">      0.78582       1.1881       2.4067       6.7254</span>
+<span class="go">       1.5917       2.4087       4.8838       13.657</span>
+<span class="go">       4.4481       6.7354       13.666       38.235</span>
+</pre></div>
+</div>
+<p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.34</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">},{</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mi">0</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">},{</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">},{</span><span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">},{</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromDMMAP</span><span class="p">[{</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">},</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Nm</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]];</span>
+<span class="go">{{0.4539462822484643, 0.6852510653292481, 1.3856372122857255, 3.867050666477712},</span>
+<span class="go"> {0.6828250179169082, 1.0317922106199087, 2.088678354109492, 5.833872336896188},</span>
+<span class="go"> {1.3754547360883858, 2.08069063568443, 4.2170625241275665, 11.789140254269103},</span>
+<span class="go"> {3.8280196252781336, 5.795448856171304, 11.75638029642303, 32.88737375149565}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Nm</span><span class="p">[[</span><span class="mi">2</span><span class="p">]]];</span>
+<span class="go">{{0.02628103195085287, 0.03323044515488185, 0.05305519981654366, 0.11925159337093362},</span>
+<span class="go"> {0.0350514750959702, 0.04386614712772344, 0.06891661923475792, 0.15221701375061739},</span>
+<span class="go"> {0.06065278939554716, 0.07477024474361887, 0.11464021882832742, 0.24630981535186194},</span>
+<span class="go"> {0.1481969521134317, 0.17996016640440504, 0.269014437752629, 0.5607367898805973}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Nm</span><span class="p">[[</span><span class="mi">3</span><span class="p">]]];</span>
+<span class="go">{{0.5197726858006831, 0.7852158210070554, 1.5891494452486254, 4.438003130983554},</span>
+<span class="go"> {0.7858208384783067, 1.1881008368374677, 2.4066502002309207, 6.725367887552774},</span>
+<span class="go"> {1.5917343318669612, 2.4086996142807697, 4.883779522055594, 13.657165850576511},</span>
+<span class="go"> {4.448088813440633, 6.7353937552523435, 13.665836661211316, 38.234808402167886}}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">],[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">],[</span><span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span><span class="o">=</span><span class="n">LagkJointMomentsFromDMMAP</span><span class="p">((</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">),</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.34</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">],[</span><span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">],[</span><span class="mf">0.13</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromDMMAP</span><span class="p">([</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="n">D2</span><span class="p">,</span><span class="n">D3</span><span class="p">],</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">[[  0.45394628   0.68525107   1.38563721   3.86705067]</span>
-<span class="go"> [  0.68282502   1.03179221   2.08867835   5.83387234]</span>
-<span class="go"> [  1.37545474   2.08069064   4.21706252  11.78914025]</span>
-<span class="go"> [  3.82801963   5.79544886  11.7563803   32.88737375]]</span>
+<span class="go">[[  0.45395   0.68525   1.38564   3.86705]</span>
+<span class="go"> [  0.68283   1.03179   2.08868   5.83387]</span>
+<span class="go"> [  1.37545   2.08069   4.21706  11.78914]</span>
+<span class="go"> [  3.82802   5.79545  11.75638  32.88737]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="go">[[ 0.02628103  0.03323045  0.0530552   0.11925159]</span>
-<span class="go"> [ 0.03505148  0.04386615  0.06891662  0.15221701]</span>
-<span class="go"> [ 0.06065279  0.07477024  0.11464022  0.24630982]</span>
-<span class="go"> [ 0.14819695  0.17996017  0.26901444  0.56073679]]</span>
+<span class="go">[[ 0.02628  0.03323  0.05306  0.11925]</span>
+<span class="go"> [ 0.03505  0.04387  0.06892  0.15222]</span>
+<span class="go"> [ 0.06065  0.07477  0.11464  0.24631]</span>
+<span class="go"> [ 0.1482   0.17996  0.26901  0.56074]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="go">[[  0.51977269   0.78521582   1.58914945   4.43800313]</span>
-<span class="go"> [  0.78582084   1.18810084   2.4066502    6.72536789]</span>
-<span class="go"> [  1.59173433   2.40869961   4.88377952  13.65716585]</span>
-<span class="go"> [  4.44808881   6.73539376  13.66583666  38.2348084 ]]</span>
+<span class="go">[[  0.51977   0.78522   1.58915   4.438  ]</span>
+<span class="go"> [  0.78582   1.1881    2.40665   6.72537]</span>
+<span class="go"> [  1.59173   2.4087    4.88378  13.65717]</span>
+<span class="go"> [  4.44809   6.73539  13.66584  38.23481]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -226,7 +246,7 @@ starting from moment 0.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 19, 2015.
+      Last updated on Jun 22, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

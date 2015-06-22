@@ -49,7 +49,7 @@ butools.map.CheckMAPRepresentation
     >>> D0 = [-1., 0, 1.; 0, -2., 0; 1., 0, -3.];
     >>> D1 = [1., 0, 1.; 0, 2., 0; 1., 0, 3.];
     >>> flag = CheckMAPRepresentation(D0,D1);
-    CheckMAPRepresentation: The rowsum of D0+D1 is not 0 (precision: 1e-11)!
+    CheckMAPRepresentation: The rowsum of D0+D1 is not 0 (precision: 1e-10)!
     >>> disp(flag);
          0
     >>> D0 = [-3., 0, 1.; 0, -2., 0; 1., 0, -5.];

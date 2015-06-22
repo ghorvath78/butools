@@ -169,32 +169,37 @@ parameter, or increase the mean value.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
 <span class="go">CheckProbMatrix: the matrix has negative element (precision: 1e-07)!</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-<span class="go">      0.35022      0.64978            0</span>
+<span class="go">      0.58888      0.41112            0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="go">      0.59299            0      0.14264</span>
-<span class="go">      0.31704      0.45572      0.22724</span>
-<span class="go">            0      0.56445      0.43555</span>
+<span class="go">       0.9048      0.04125     0.031817</span>
+<span class="go">            0       0.6822       0.3178</span>
+<span class="go">            0            0      0.49751</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
 <span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
+<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
+<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
+<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
+<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
-<span class="go">{1, 0, 0}</span>
+<span class="go">{0, 1, 0}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
-<span class="go">{{0.6747139991829699, 0., 0.06813341255217867},</span>
-<span class="go"> {0.31858283653858926, 0.42042758912527506, 0.03433200607772197},</span>
-<span class="go"> {0.021164290306528725, 0.021429694043095273, 0.957406015650376}}</span>
+<span class="go">{{0.9978146840537366, 0., 0.0018115430265152948},</span>
+<span class="go"> {0.0002596368902400116, 0.8783862382976336, 0.005417700244985481},</span>
+<span class="go"> {0., 0.07246410696945481, 0.9001849760112214}}</span>
 </pre></div>
 </div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">CheckProbMatrix: the matrix has negative element (precision: 1e-07)!</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">[[ 1.  0.  0.]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">[[ 0.84936  0.07094  0.00315]</span>
-<span class="go"> [ 0.0107   0.82367  0.     ]</span>
-<span class="go"> [ 0.10697  0.       0.89303]]</span>
+<span class="go">[[ 0.85043  0.00248  0.13613]</span>
+<span class="go"> [ 0.01293  0.87899  0.     ]</span>
+<span class="go"> [ 0.       0.       0.71197]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -222,7 +227,7 @@ parameter, or increase the mean value.</p>
         &copy; Copyright 2013-2014, The BuTools Team.
       </li>
       <li>
-      Last updated on Jun 19, 2015.
+      Last updated on Jun 22, 2015.
       </li>
       <li>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.

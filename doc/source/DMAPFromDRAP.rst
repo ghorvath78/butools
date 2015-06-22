@@ -44,46 +44,55 @@ butools.dmap.DMAPFromDRAP
            1153-1168. (2007)       
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> H0=[0 0 0.13; 0 0.6 0.18; 0.31 0.26 0.02];
-    >>> H1=[0 1 -0.13; 0 0.18 0.04; 0.03 0.09 0.29];
-    >>> CheckDMAPRepresentation(H0,H1)
-    CheckDMAPRepresentation: One of the matrices has negative element!
-         0
-    >>> [D0,D1]=DMAPFromDRAP(H0,H1);
-    >>> D0
+
+    >>> D0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
+    >>> D1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
+    >>> [H0,H1] = DMAPFromDRAP(D0,D1);
+    >>> disp(H0);
          0.051945     0.066321      0.12704
          0.011717      0.56745      0.29444
           0.41438      0.17501   0.00060547
-    >>> D1
+    >>> disp(H1);
          0.085648      0.64664       0.0224
         0.0054434     0.089137     0.031816
           0.04656     0.068225      0.29521
-    >>> CheckDMAPRepresentation(D0,D1)
-         1
-    >>> error = norm(LagkJointMomentsFromDRAP(H0,H1,4,1)-LagkJointMomentsFromDMAP(D0,D1,4,1))
-       1.1971e-08
-    
+    >>> err = norm(LagkJointMomentsFromDRAP(D0,D1,3,1)-LagkJointMomentsFromDRAP(H0,H1,3,1));
+    >>> disp(err);
+       8.8285e-11
+
+    For Mathematica:
+
+    >>> D0 = {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}};
+    >>> D1 = {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}};
+    >>> {H0,H1} = DMAPFromDRAP[D0,D1];
+    >>> Print[H0];
+    {{0.051945258246527765, 0.0663208007812501, 0.1270425829475309},
+     {0.011716991785622438, 0.5674492730034719, 0.294436844493027},
+     {0.41438232421874993, 0.17501220703124998, 0.0006054687500000044}}
+    >>> Print[H1];
+    {{0.08564787688078702, 0.6466430664062499, 0.022400414737654306},
+     {0.005443444439086077, 0.08913727936921295, 0.031816166909579335},
+     {0.046560058593749995, 0.06822509765625, 0.29521484375}}
+    >>> err = Norm[LagkJointMomentsFromDRAP[D0,D1,3,1]-LagkJointMomentsFromDRAP[H0,H1,3,1]];
+    >>> Print[err];
+    9.562315040162238*^-11
+
     For Python/Numpy:
-    
-    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
-    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
-    >>> print(CheckDMAPRepresentation(H0,H1))
-    >>> [D0,D1]=DMAPFromDRAP(H0,H1)
-    CheckDMAPRepresentation: One of the matrices has negative element!
-    False
-    >>> print(D0)
-    [[ 0.13782182  0.05941882  0.11896676]
-     [ 0.01119302  0.45679107  0.39466723]
-     [ 0.35307609  0.2799368   0.02538711]]
-    >>> print(D1)  
-    [[ 0.09145377  0.53680894  0.05552988]
-     [ 0.00597601  0.07746849  0.05390418]
-     [ 0.03150948  0.00901278  0.30107773]]
-    >>> print(CheckDMAPRepresentation(D0,D1))
-    True
-    >>> print(la.norm(LagkJointMomentsFromDRAP(D0,D1,4,1)-LagkJointMomentsFromDRAP(H0,H1,4,1)))
-    8.68475473209e-09
-    
+
+    >>> D0 = ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> D1 = ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> H0,H1 = DMAPFromDRAP(D0,D1)
+    >>> print(H0)
+    [[ 0.13782  0.05942  0.11897]
+     [ 0.01119  0.45679  0.39467]
+     [ 0.35308  0.27994  0.02539]]
+    >>> print(H1)
+    [[ 0.09145  0.53681  0.05553]
+     [ 0.00598  0.07747  0.0539 ]
+     [ 0.03151  0.00901  0.30108]]
+    >>> err = la.norm(LagkJointMomentsFromDRAP(D0,D1,3,1)-LagkJointMomentsFromDRAP(H0,H1,3,1))
+    >>> print(err)
+    7.00079825521e-11
+

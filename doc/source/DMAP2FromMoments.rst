@@ -39,36 +39,76 @@ butools.dmap.DMAP2FromMoments
     followed by :func:`butools.dmap.CanonicalFromDMAP2`.
        
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> moms = [5.1536, 46.587, 626.45];
-    >>> corr = -0.00080286;
-    >>> [D0,D1]=DMAP2FromMoments(moms,corr);
-    >>> D0
+
+    >>> D0 = [0.2, 0.7; 0.6, 0.1];
+    >>> D1 = [0.09, 0.01; 0.2, 0.1];
+    >>> moms = MarginalMomentsFromDMAP(D0, D1, 3);
+    >>> disp(moms);
+           5.1536       46.587       626.45
+    >>> corr = LagCorrelationsFromDMAP(D0, D1, 1);
+    >>> disp(corr);
+      -0.00080286
+    >>> [D0,D1] = DMAP2FromMoments(moms,corr);
+    >>> disp(D0);
               0.3         0.65
           0.61538            0
-    >>> D1
+    >>> disp(D1);
              0.05            0
           0.24462         0.14
-    >>> MarginalMomentsFromDMAP(D0, D1, 3)
+    >>> rmoms = MarginalMomentsFromDMAP(D0, D1, 3);
+    >>> disp(rmoms);
            5.1536       46.587       626.45
-    >>> LagCorrelationsFromDMAP(D0, D1, 1)
+    >>> rcorr = LagCorrelationsFromDMAP(D0, D1, 1);
+    >>> disp(rcorr);
       -0.00080286
 
+    For Mathematica:
+
+    >>> D0 = {{0.2, 0.7},{0.6, 0.1}};
+    >>> D1 = {{0.09, 0.01},{0.2, 0.1}};
+    >>> moms = MarginalMomentsFromDMAP[D0, D1, 3];
+    >>> Print[moms];
+    {5.15358361774744, 46.58703071672353, 626.4505119453922}
+    >>> corr = LagCorrelationsFromDMAP[D0, D1, 1][[1]];
+    >>> Print[corr];
+    -0.0008028615465149905
+    >>> {D0,D1} = DMAP2FromMoments[moms,corr];
+    >>> Print[D0];
+    {{0.29999999999984595, 0.6500000000001445},
+     {0.6153846153846679, 0}}
+    >>> Print[D1];
+    {{0.050000000000009585, 0},
+     {0.24461538461532123, 0.14000000000001087}}
+    >>> rmoms = MarginalMomentsFromDMAP[D0, D1, 3];
+    >>> Print[rmoms];
+    {5.153583617747385, 46.58703071672293, 626.4505119453836}
+    >>> rcorr = LagCorrelationsFromDMAP[D0, D1, 1][[1]];
+    >>> Print[rcorr];
+    -0.0008028615465146371
+
     For Python/Numpy:
-    
-    >>> moms = [5.1536, 46.587, 626.45]
-    >>> corr = -0.00080286
-    >>> D0,D1=DMAP2FromMoments(moms,corr)
+
+    >>> D0 = ml.matrix([[0.2, 0.7],[0.6, 0.1]])
+    >>> D1 = ml.matrix([[0.09, 0.01],[0.2, 0.1]])
+    >>> moms = MarginalMomentsFromDMAP(D0, D1, 3)
+    >>> print(moms)
+    [5.1535836177474383, 46.587030716723511, 626.4505119453919]
+    >>> corr = LagCorrelationsFromDMAP(D0, D1, 1)[0]
+    >>> print(corr)
+    -0.000802861546515
+    >>> D0,D1 = DMAP2FromMoments(moms,corr)
     >>> print(D0)
-    [[ 0.29830828  0.65161096]
-     [ 0.61594046  0.        ]]
+    [[ 0.3      0.65   ]
+     [ 0.61538  0.     ]]
     >>> print(D1)
-    [[ 0.05008076  0.        ]
-     [ 0.24416514  0.13989441]]
-    >>> print(MarginalMomentsFromDMAP(D0, D1, 3))
-    [5.1536000000000604, 46.587000000000629, 626.45000000000846]
-    >>> print(LagCorrelationsFromDMAP(D0, D1, 1))
-    -0.00080286
-    
+    [[ 0.05     0.     ]
+     [ 0.24462  0.14   ]]
+    >>> rmoms = MarginalMomentsFromDMAP(D0, D1, 3)
+    >>> print(rmoms)
+    [5.1535836177474366, 46.587030716723469, 626.45051194539042]
+    >>> rcorr = LagCorrelationsFromDMAP(D0, D1, 1)[0]
+    >>> print(rcorr)
+    -0.000802861546514
+

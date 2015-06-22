@@ -42,33 +42,77 @@ butools.dmap.LagkJointMomentsFromDRAP
         starting from moment 0.
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> H0=[0 0 0.13; 0 0.6 0.18; 0.31 0.26 0.02];
-    >>> H1=[0 1 -0.13; 0 0.18 0.04; 0.03 0.09 0.29];
-    >>> LagkJointMomentsFromDRAP(H0,H1,4,1)
-                1        3.207       16.898       130.77       1347.1
-            3.207        10.38       54.965       426.11       4391.3
-           16.898       54.843       290.86       2256.1        23253
-           130.77        424.6       2252.4        17472   1.8009e+05
-           1347.1       4373.9        23203   1.7998e+05   1.8552e+06
-    >>> MarginalMomentsFromDRAP(H0,H1,4)
+
+    >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
+    >>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
+    >>> Nm = LagkJointMomentsFromDRAP(H0,H1,4,1);
+    >>> disp(length(Nm));
+         5
+    >>> moms = MarginalMomentsFromDRAP(H0,H1,4);
+    >>> disp(moms);
             3.207       16.898       130.77       1347.1
+    >>> cjm=zeros(3,1);
+    >>> for i=1:3
+    >>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i);
+    >>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
+    >>> end
+    >>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i);
+    >>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
+    >>> end
+    >>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i);
+    >>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
+    >>> end
+    >>> disp(cjm);
+         0.014303
+        0.0012424
+       7.5868e-06
+    >>> corr = LagCorrelationsFromDRAP(H0,H1,3);
+    >>> disp(corr);
+         0.014303
+        0.0012424
+       7.5868e-06
+
+    For Mathematica:
+
+    >>> H0 = {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}};
+    >>> H1 = {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}};
+    >>> Nm = LagkJointMomentsFromDRAP[H0,H1,4,1];
+    >>> Print[Length[Nm]];
+    5
+    >>> moms = MarginalMomentsFromDRAP[H0,H1,4];
+    >>> Print[moms];
+    {3.20702366840782, 16.897636691953394, 130.7705457435602, 1347.0743893905096}
+    >>> cjm={};
+    >>> cjm=Table[(LagkJointMomentsFromDRAP[H0,H1,1,i][[2,2]]-moms[[1]]^2) / (moms[[2]]-moms[[1]]^2),{i,1,3}];
+    >>> Print[cjm];
+    {0.01430295723332723, 0.0012424024982963658, 7.5867553989928*^-6}
+    >>> corr = LagCorrelationsFromDRAP[H0,H1,3];
+    >>> Print[corr];
+    {0.01430295723332723, 0.0012424024982963658, 7.586755398724169*^-6}
 
     For Python/Numpy:
-    
-    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
-    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
-    >>> Nm=LagkJointMomentsFromDRAP(H0,H1,4,1)
-    >>> print(Nm)
-    [[  1.00000000e+00   3.20702367e+00   1.68976367e+01   1.30770546e+02    1.34707439e+03]
-     [  3.20702367e+00   1.03795811e+01   5.49648649e+01   4.26107199e+02    4.39132149e+03]
-     [  1.68976367e+01   5.48429776e+01   2.90863052e+02   2.25605103e+03    2.32532721e+04]
-     [  1.30770546e+02   4.24600661e+02   2.25239031e+03   1.74717611e+04    1.80086149e+05]
-     [  1.34707439e+03   4.37393687e+03   2.32028367e+04   1.79984886e+05    1.85515486e+06]]
-    >>> moms=MarginalMomentsFromDRAP(H0,H1,4)
+
+    >>> H0 = ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1 = ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> Nm = LagkJointMomentsFromDRAP(H0,H1,4,1)
+    >>> print(Length(Nm))
+    5
+    >>> moms = MarginalMomentsFromDRAP(H0,H1,4)
     >>> print(moms)
     [3.2070236684078202, 16.897636691953394, 130.77054574356021, 1347.0743893905096]
-    
-    
+    >>> cjm=np.empty(3)
+    >>> for i in range(3):
+    >>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i+1)
+    >>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
+    >>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i+1)
+    >>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
+    >>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i+1)
+    >>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
+    >>> print(cjm)
+    [  1.43030e-02   1.24240e-03   7.58676e-06]
+    >>> corr = LagCorrelationsFromDRAP(H0,H1,3)
+    >>> print(corr)
+    [0.014302957233327229, 0.0012424024982963656, 7.5867553987241684e-06]
+

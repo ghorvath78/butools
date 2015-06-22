@@ -36,21 +36,29 @@ butools.dmap.LagCorrelationsFromDRAP
         The lag autocorrelation function up to lag L
         
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> H0=[0 0 0.13; 0 0.6 0.18; 0.31 0.26 0.02];
-    >>> H1=[0 1 -0.13; 0 0.18 0.04; 0.03 0.09 0.29];
-    >>> LagCorrelationsFromDRAP(H0,H1,3)
+
+    >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
+    >>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
+    >>> corr = LagCorrelationsFromDRAP(H0,H1,3);
+    >>> disp(corr);
          0.014303
         0.0012424
        7.5868e-06
-    >>> plot(LagCorrelationsFromDRAP(H0,H1,10));
+
+    For Mathematica:
+
+    >>> H0 = {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}};
+    >>> H1 = {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}};
+    >>> corr = LagCorrelationsFromDRAP[H0,H1,3];
+    >>> Print[corr];
+    {0.01430295723332723, 0.0012424024982963658, 7.586755398724169*^-6}
 
     For Python/Numpy:
 
-    >>> H0=ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
-    >>> H1=ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
+    >>> H0 = ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])
+    >>> H1 = ml.matrix([[0, 1, -0.13],[0, 0.18, 0.04],[0.03, 0.09, 0.29]])
     >>> corr = LagCorrelationsFromDRAP(H0,H1,3)
     >>> print(corr)
     [0.014302957233327229, 0.0012424024982963656, 7.5867553987241684e-06]

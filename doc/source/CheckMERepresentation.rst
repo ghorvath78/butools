@@ -50,7 +50,7 @@ butools.ph.CheckMERepresentation
     >>> a = [-0.2, 0.2];
     >>> A = [1, -1; 1, -2];
     >>> flag = CheckMERepresentation(a,A);
-    CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part (at precision 1e-11)!
+    CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part (at precision 1e-12)!
     >>> disp(flag);
          0
     >>> a = [-0.2, 0.4, 0.8];
