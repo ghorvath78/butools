@@ -567,7 +567,7 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst},
     If[Length[D]>2, x = ConstantArray[0,{k,2}], x = ConstantArray[0,{k}]];
 	Do[
 		time = 0;
-	    (* play state transitions *)
+		(* play state transitions *)
         While[state<=NN,
             time -= Log[RandomReal[]] sojourn[[state]];
             r = RandomReal[];
@@ -581,6 +581,7 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst},
 		,
 			x[[n]] = time;
 		];
+		state=Mod[state-1,NN]+1;
 	,{n,k}];
 	Return[x];
 ];

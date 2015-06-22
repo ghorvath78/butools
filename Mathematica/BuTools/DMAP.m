@@ -539,6 +539,7 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst,logp},
 		,
 			x[[n]] = time;
 		];
+		state=Mod[state-1,NN]+1;
 	,{n,k}];
 	Return[x];
 ];

@@ -1,7 +1,7 @@
 (* ::Package:: *)
 
 Print["Butools V2.0"]
-BuTools`Packages={"Moments","MC","RepTrans","PH","DPH","MAP","DMAP"};
+BuTools`Packages={"Moments","MC","RepTrans","PH","DPH","MAP","DMAP","Trace"};
 WriteString["stdout","Packages loaded: "];
 Do[
 	Get[StringJoin["BuTools`",p,"`"]];
