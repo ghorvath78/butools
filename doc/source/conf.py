@@ -13,10 +13,11 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
+#extensions = ['sphinx.ext.autodoc', 'numpydoc', 'sphinx.ext.mathjax', 'sphinx.ext.autosummary']
 extensions = ['sphinx.ext.autodoc', 'numpydoc', 'sphinx.ext.mathjax', 'sphinx.ext.autosummary']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+#templates_path = ['_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -29,7 +30,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'butools'
-copyright = u'2013-2014, The BuTools Team'
+copyright = u'2013-2015, The BuTools Team'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -58,11 +59,11 @@ exclude_patterns = []
 #default_role = None
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
-#add_function_parentheses = True
+add_function_parentheses = False
 
 # If true, the current module name will be prepended to all description
 # unit titles (such as .. function::).
-#add_module_names = True
+add_module_names = True
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
@@ -108,6 +109,7 @@ html_theme = 'default'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
+
 html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
@@ -155,24 +157,31 @@ html_static_path = ['_static']
 htmlhelp_basename = 'butoolsdoc'
 
 
-themedir = os.path.join(os.pardir, 'scipy-sphinx-theme', '_theme')
-if not os.path.isdir(themedir):
-    raise RuntimeError("Get the scipy-sphinx-theme first, "
-                       "via git submodule init && git submodule update")
+#themedir = os.path.join(os.pardir, 'scipy-sphinx-theme', '_theme')
+#if not os.path.isdir(themedir):
+#    raise RuntimeError("Get the scipy-sphinx-theme first, "
+#                       "via git submodule init && git submodule update")
+#
+#html_theme = 'scipy'
+#
+#html_theme_path = [themedir]
+#
+#html_title = "%s v%s Manual" % (project, version)
+#html_static_path = ['_static']
+#html_last_updated_fmt = '%b %d, %Y'
+#html_use_modindex = True
+#html_copy_source = False
+#html_domain_indices = False
+#html_file_suffix = '.html'
+#htmlhelp_basename = 'butools'
 
-html_theme = 'scipy'
+import sphinx_rtd_theme
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-html_theme_path = [themedir]
-
-html_title = "%s v%s Manual" % (project, version)
-html_static_path = ['_static']
-html_last_updated_fmt = '%b %d, %Y'
-html_use_modindex = True
-html_copy_source = False
-html_domain_indices = False
-html_file_suffix = '.html'
-htmlhelp_basename = 'butools'
-
+#import sphinx_bootstrap_theme
+#html_theme = 'bootstrap'
+#html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # -- Options for LaTeX output --------------------------------------------------
 
@@ -269,3 +278,7 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #texinfo_show_urls = 'footnote'
+
+def setup(app):
+    app.add_javascript('copybutton.js')
+    app.add_javascript('jquery.func_toggle.js')

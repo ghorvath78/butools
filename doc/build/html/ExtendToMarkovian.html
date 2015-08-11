@@ -1,96 +1,382 @@
+
+
 <!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>butools.reptrans.ExtendToMarkovian &mdash; butools 2.0 documentation</title>
+  
 
-<html>
-  <head>
-    <meta charset="utf-8">
+  
+  
+
+  
+
+  
+  
     
-    <title>butools.reptrans.ExtendToMarkovian &mdash; butools v2.0 Manual</title>
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="butools 2.0 documentation" href="index.html"/>
+        <link rel="up" title="Representation Transformation Tools (butools.reptrans)" href="reptrans.html"/>
+        <link rel="next" title="butools.reptrans.FindMarkovianRepresentation" href="FindMarkovianRepresentation.html"/>
+        <link rel="prev" title="butools.reptrans.TransformToAcyclic" href="TransformToAcyclic.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
     
-    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
-    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/js/copybutton.js"></script>
-    <link rel="top" title="butools v2.0 Manual" href="index.html" >
-    <link rel="up" title="Representation Transformation Tools (butools.reptrans)" href="reptrans.html" >
-    <link rel="next" title="butools.reptrans.FindMarkovianRepresentation" href="FindMarkovianRepresentation.html" >
-    <link rel="prev" title="butools.reptrans.TransformToAcyclic" href="TransformToAcyclic.html" > 
-  </head>
-  <body>
-
-  <div class="container">
-    <div class="header">
-    </div>
-  </div>
-
-
-    <div class="container">
-      <div class="main">
-        
-	<div class="row-fluid">
-	  <div class="span12">
-	    <div class="spc-navbar">
-              
-    <ul class="nav nav-pills pull-left">
-        <li class="active"><a href="["></a></li>
-        <li class="active"><a href="]"></a></li>
-	
-        <li class="active"><a href="index.html">butools v2.0 Manual</a></li>
-	
-          <li class="active"><a href="reptrans.html" accesskey="U">Representation Transformation Tools (<code class="docutils literal"><span class="pre">butools.reptrans</span></code>)</a></li> 
-    </ul>
-              
-              
-    <ul class="nav nav-pills pull-right">
-      <li class="active">
-        <a href="genindex.html" title="General Index"
-           accesskey="I">index</a>
-      </li>
-      <li class="active">
-        <a href="FindMarkovianRepresentation.html" title="butools.reptrans.FindMarkovianRepresentation"
-           accesskey="N">next</a>
-      </li>
-      <li class="active">
-        <a href="TransformToAcyclic.html" title="butools.reptrans.TransformToAcyclic"
-           accesskey="P">previous</a>
-      </li>
-    </ul>
-              
-	    </div>
-	  </div>
-	</div>
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
         
 
-	<div class="row-fluid">
-      <div class="spc-rightsidebar span3">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="TransformToAcyclic.html"
-                        title="previous chapter">butools.reptrans.TransformToAcyclic</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="FindMarkovianRepresentation.html"
-                        title="next chapter">butools.reptrans.FindMarkovianRepresentation</a></p>
+        
+          <a href="index.html" class="icon icon-home"> butools
+        
 
-        </div>
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
       </div>
-          <div class="span9">
-            
-        <div class="bodywrapper">
-          <div class="body" id="spc-section-body">
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities (<code class="docutils literal"><span class="pre">butools.utils</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#solution-of-markov-chains-and-rational-processes">Solution of Markov chains and rational processes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CRPSolve.html">butools.mc.CRPSolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DRPSolve.html">butools.mc.DRPSolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckGenerator.html">butools.mc.CheckGenerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckProbMatrix.html">butools.mc.CheckProbMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckProbVector.html">butools.mc.CheckProbVector</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ReducedMomsFromMoms.html">butools.moments.ReducedMomsFromMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MomsFromReducedMoms.html">butools.moments.MomsFromReducedMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="HankelMomsFromMoms.html">butools.moments.HankelMomsFromMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MomsFromHankelMoms.html">butools.moments.MomsFromHankelMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FactorialMomsFromMoms.html">butools.moments.FactorialMomsFromMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MomsFromFactorialMoms.html">butools.moments.MomsFromFactorialMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JFactorialMomsFromJMoms.html">butools.moments.JFactorialMomsFromJMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JMomsFromJFactorialMoms.html">butools.moments.JMomsFromJFactorialMoms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckMoments.html">butools.moments.CheckMoments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="reptrans.html">Representation Transformation Tools (<code class="docutils literal"><span class="pre">butools.reptrans</span></code>)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="reptrans.html#tools-for-representation-transformation">Tools for representation transformation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SimilarityMatrix.html">butools.reptrans.SimilarityMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimilarityMatrixForVectors.html">butools.reptrans.SimilarityMatrixForVectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TransformToMonocyclic.html">butools.reptrans.TransformToMonocyclic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TransformToAcyclic.html">butools.reptrans.TransformToAcyclic</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">butools.reptrans.ExtendToMarkovian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FindMarkovianRepresentation.html">butools.reptrans.FindMarkovianRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MStaircase.html">butools.reptrans.MStaircase</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ph.html">Tools for Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.ph</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ph.html#phase-type-and-matrix-exponential-distributions">Phase-type and matrix-exponential distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ph.html#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ph.html#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ph.html#representation-transformation-methods">Representation transformation methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ph.html#minimal-representations">Minimal representations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MomentsFromME.html">butools.ph.MomentsFromME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MomentsFromPH.html">butools.ph.MomentsFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CdfFromME.html">butools.ph.CdfFromME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CdfFromPH.html">butools.ph.CdfFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PdfFromME.html">butools.ph.PdfFromME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PdfFromPH.html">butools.ph.PdfFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IntervalPdfFromPH.html">butools.ph.IntervalPdfFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RandomPH.html">butools.ph.RandomPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckPHRepresentation.html">butools.ph.CheckPHRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckMERepresentation.html">butools.ph.CheckMERepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MEFromMoments.html">butools.ph.MEFromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APH2ndMomentLowerBound.html">butools.ph.APH2ndMomentLowerBound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APH3rdMomentLowerBound.html">butools.ph.APH3rdMomentLowerBound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APH3rdMomentUpperBound.html">butools.ph.APH3rdMomentUpperBound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AcyclicPHFromME.html">butools.ph.AcyclicPHFromME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CanonicalFromPH2.html">butools.ph.CanonicalFromPH2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CanonicalFromPH3.html">butools.ph.CanonicalFromPH3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MonocyclicPHFromME.html">butools.ph.MonocyclicPHFromME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PHFromME.html">butools.ph.PHFromME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MEOrder.html">butools.ph.MEOrder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MEOrderFromMoments.html">butools.ph.MEOrderFromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MinimalRepFromME.html">butools.ph.MinimalRepFromME</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ph.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dph.html">Tools for Discrete Phase-Type Distributions (<code class="docutils literal"><span class="pre">butools.dph</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dph.html#discrete-phase-type-and-matrix-geometric-distributions">Discrete phase-type and matrix-geometric distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dph.html#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dph.html#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dph.html#representation-transformation-methods">Representation transformation methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MomentsFromMG.html">butools.dph.MomentsFromMG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MomentsFromDPH.html">butools.dph.MomentsFromDPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CdfFromMG.html">butools.dph.CdfFromMG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CdfFromDPH.html">butools.dph.CdfFromDPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PmfFromMG.html">butools.dph.PmfFromMG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PmfFromDPH.html">butools.dph.PmfFromDPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RandomDPH.html">butools.dph.RandomDPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckDPHRepresentation.html">butools.dph.CheckDPHRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckMGRepresentation.html">butools.dph.CheckMGRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SamplesFromDPH.html">butools.dph.SamplesFromDPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImageFromDPH.html">butools.dph.ImageFromDPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPH2From3Moments.html">butools.dph.DPH2From3Moments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPH3From5Moments.html">butools.dph.DPH3From5Moments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MGFromMoments.html">butools.dph.MGFromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AcyclicDPHFromMG.html">butools.dph.AcyclicDPHFromMG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CanonicalFromDPH2.html">butools.dph.CanonicalFromDPH2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CanonicalFromDPH3.html">butools.dph.CanonicalFromDPH3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPHFromMG.html">butools.dph.DPHFromMG</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">Tools for Markovian Arrival Processes (<code class="docutils literal"><span class="pre">butools.map</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="map.html#markovian-arrival-processes-and-rational-arrival-processes">Markovian arrival processes and rational arrival processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map.html#representation-transformation-methods">Representation transformation methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromMAP.html">butools.map.MarginalDistributionFromMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromRAP.html">butools.map.MarginalDistributionFromRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromMMAP.html">butools.map.MarginalDistributionFromMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromMRAP.html">butools.map.MarginalDistributionFromMRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromMAP.html">butools.map.MarginalMomentsFromMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromRAP.html">butools.map.MarginalMomentsFromRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromMMAP.html">butools.map.MarginalMomentsFromMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromMRAP.html">butools.map.MarginalMomentsFromMRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagCorrelationsFromMAP.html">butools.map.LagCorrelationsFromMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagCorrelationsFromRAP.html">butools.map.LagCorrelationsFromRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromMAP.html">butools.map.LagkJointMomentsFromMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromRAP.html">butools.map.LagkJointMomentsFromRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromMMAP.html">butools.map.LagkJointMomentsFromMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromMRAP.html">butools.map.LagkJointMomentsFromMRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RandomMAP.html">butools.map.RandomMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RandomMMAP.html">butools.map.RandomMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckMAPRepresentation.html">butools.map.CheckMAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckRAPRepresentation.html">butools.map.CheckRAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckMMAPRepresentation.html">butools.map.CheckMMAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckMRAPRepresentation.html">butools.map.CheckMRAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SamplesFromMAP.html">butools.map.SamplesFromMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SamplesFromMMAP.html">butools.map.SamplesFromMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImageFromMAP.html">butools.map.ImageFromMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImageFromMMAP.html">butools.map.ImageFromMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RAPFromMoments.html">butools.map.RAPFromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MRAPFromMoments.html">butools.map.MRAPFromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RAPFromMomentsAndCorrelations.html">butools.map.RAPFromMomentsAndCorrelations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MAP2FromMoments.html">butools.map.MAP2FromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MAP2CorrelationBounds.html">butools.map.MAP2CorrelationBounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MAPFromFewMomentsAndCorrelations.html">butools.map.MAPFromFewMomentsAndCorrelations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CanonicalFromMAP2.html">butools.map.CanonicalFromMAP2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MAPFromRAP.html">butools.map.MAPFromRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPFromMRAP.html">butools.map.MMAPFromMRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MinimalRepFromRAP.html">butools.map.MinimalRepFromRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MinimalRepFromMRAP.html">butools.map.MinimalRepFromMRAP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dmap.html">Tools for Discrete Markovian Arrival Processes (<code class="docutils literal"><span class="pre">butools.dmap</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dmap.html#discrete-markovian-arrival-processes-and-rational-arrival-processes">Discrete Markovian arrival processes and rational arrival processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmap.html#simple-statistical-properties-and-tools">Simple statistical properties and tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmap.html#inverse-characterization-tools">Inverse characterization tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dmap.html#representation-transformation-methods">Representation transformation methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromDMAP.html">butools.dmap.MarginalDistributionFromDMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromDRAP.html">butools.dmap.MarginalDistributionFromDRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromDMMAP.html">butools.dmap.MarginalDistributionFromDMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalDistributionFromDMRAP.html">butools.dmap.MarginalDistributionFromDMRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromDMAP.html">butools.dmap.MarginalMomentsFromDMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromDRAP.html">butools.dmap.MarginalMomentsFromDRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromDMMAP.html">butools.dmap.MarginalMomentsFromDMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromDMRAP.html">butools.dmap.MarginalMomentsFromDMRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagCorrelationsFromDMAP.html">butools.dmap.LagCorrelationsFromDMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagCorrelationsFromDRAP.html">butools.dmap.LagCorrelationsFromDRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromDMAP.html">butools.dmap.LagkJointMomentsFromDMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromDRAP.html">butools.dmap.LagkJointMomentsFromDRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromDMMAP.html">butools.dmap.LagkJointMomentsFromDMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromDMRAP.html">butools.dmap.LagkJointMomentsFromDMRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RandomDMAP.html">butools.dmap.RandomDMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RandomDMMAP.html">butools.dmap.RandomDMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckDMAPRepresentation.html">butools.dmap.CheckDMAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckDRAPRepresentation.html">butools.dmap.CheckDRAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckDMMAPRepresentation.html">butools.dmap.CheckDMMAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CheckDMRAPRepresentation.html">butools.dmap.CheckDMRAPRepresentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SamplesFromDMAP.html">butools.dmap.SamplesFromDMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SamplesFromDMMAP.html">butools.dmap.SamplesFromDMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImageFromDMAP.html">butools.dmap.ImageFromDMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImageFromDMMAP.html">butools.dmap.ImageFromDMMAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DRAPFromMoments.html">butools.dmap.DRAPFromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DMRAPFromMoments.html">butools.dmap.DMRAPFromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DMAP2FromMoments.html">butools.dmap.DMAP2FromMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CanonicalFromDMAP2.html">butools.dmap.CanonicalFromDMAP2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DMAPFromDRAP.html">butools.dmap.DMAPFromDRAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DMMAPFromDMRAP.html">butools.dmap.DMMAPFromDMRAP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PdfFromTrace.html">butools.trace.PdfFromTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PdfFromWeightedTrace.html">butools.trace.PdfFromWeightedTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromTrace.html">butools.trace.MarginalMomentsFromTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MarginalMomentsFromWeightedTrace.html">butools.trace.MarginalMomentsFromWeightedTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagCorrelationsFromTrace.html">butools.trace.LagCorrelationsFromTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LagkJointMomentsFromTrace.html">butools.trace.LagCorrelationsFromTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IATimesFromCummulative.html">butools.trace.IATimesFromCummulative</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html">Tools for fitting measurement traces (<code class="docutils literal"><span class="pre">butools.fitting</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fitting.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fitting.html#functions-for-fitting">Functions for fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fitting.html#functions-for-evaluating-the-results-of-fitting">Functions for evaluating the results of fitting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PHFromTrace.html">butools.fitting.PHFromTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MAPFromTrace.html">butools.fitting.MAPFromTrace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SquaredDifference.html">butools.fitting.SquaredDifference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RelativeEntropy.html">butools.fitting.RelativeEntropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EmpiricalSquaredDifference.html">butools.fitting.EmpiricalSquaredDifference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EmpiricalRelativeEntropy.html">butools.fitting.EmpiricalRelativeEntropy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LikelihoodFromTrace.html">butools.fitting.LikelihoodFromTrace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mam.html">Matrix-Analytic Methods (<code class="docutils literal"><span class="pre">butools.mam</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mam.html#quasi-birth-death-processes">Quasi Birth-Death Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mam.html#m-g-1-and-g-m-1-type-markov-chains">M/G/1 and G/M/1 Type Markov Chains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mam.html#markovian-fluid-models">Markovian Fluid Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mam.html#functions-to-solve-qbds">Functions to solve QBDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mam.html#functions-to-solve-m-g-1-and-g-m-1-type-markov-chains">Functions to solve M/G/1 and G/M/1 type Markov chains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mam.html#functions-to-solve-markovian-fluid-models">Functions to solve Markovian fluid models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mam.html#refereces">Refereces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QBDFundamentalMatrices.html">butools.mam.QBDFundamentalMatrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QBDSolve.html">butools.mam.QBDSolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QBDStationaryDistr.html">butools.mam.QBDStationaryDistr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MG1FundamentalMatrix.html">butools.mam.MG1FundamentalMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MG1StationaryDistr.html">butools.mam.MG1StationaryDistr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GM1FundamentalMatrix.html">butools.mam.GM1FundamentalMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GM1StationaryDistr.html">butools.mam.GM1StationaryDistr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FluidFundamentalMatrices.html">butools.mam.FluidFundamentalMatrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FluidSolve.html">butools.mam.FluidSolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GeneralFluidSolve.html">butools.mam.GeneralFluidSolve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FluidStationaryDistr.html">butools.mam.FluidStationaryDistr</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="queues.html">Tools for the Analysis of Queues (<code class="docutils literal"><span class="pre">butools.queues</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="queues.html#type-of-queues-supported-by-butools">Type of queues supported by BuTools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queues.html#performance-measures">Performance measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-discrete-queues">Functions for discrete queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FluFluQueue.html">butools.queues.FluFluQueue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FluFluQueue.html">butools.queues.FluFluQueue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">butools</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="reptrans.html">Representation Transformation Tools (<code class="docutils literal"><span class="pre">butools.reptrans</span></code>)</a> &raquo;</li>
+      
+    <li>butools.reptrans.ExtendToMarkovian</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ExtendToMarkovian.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
             
   <div class="section" id="butools-reptrans-extendtomarkovian">
 <h1>butools.reptrans.ExtendToMarkovian<a class="headerlink" href="#butools-reptrans-extendtomarkovian" title="Permalink to this headline">¶</a></h1>
@@ -267,33 +553,71 @@ of phase-type distributions,&#8221; Stoch. Models 15,
 
 
           </div>
-        </div>
-          </div>
-        </div>
-      </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FindMarkovianRepresentation.html" class="btn btn-neutral float-right" title="butools.reptrans.FindMarkovianRepresentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="TransformToAcyclic.html" class="btn btn-neutral" title="butools.reptrans.TransformToAcyclic" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
-    <div class="container container-navbar-bottom">
-      <div class="spc-navbar">
-        
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, The BuTools Team.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
       </div>
-    </div>
-    <div class="container">
-    <div class="footer">
-    <div class="row-fluid">
-    <ul class="inline pull-left">
-      <li>
-        &copy; Copyright 2013-2014, The BuTools Team.
-      </li>
-      <li>
-      Last updated on Jun 22, 2015.
-      </li>
-      <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.
-      </li>
-    </ul>
-    </div>
-    </div>
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/copybutton.js"></script>
+      <script type="text/javascript" src="_static/jquery.func_toggle.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
