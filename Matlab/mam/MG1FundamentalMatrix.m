@@ -72,5 +72,11 @@ function G = MG1FundamentalMatrix (A, precision, maxNumIt, method)
     
     global BuToolsVerbose;
     
-    G = feval (fun, A, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
+    N = size(A{1},2);
+    Am = zeros(N, N*length(A));
+    for i=1:length(A)
+        Am(:,(i-1)*N+1:i*N) = A{i};
+    end
+    
+    G = feval (fun, Am, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
 end

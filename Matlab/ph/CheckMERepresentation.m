@@ -80,7 +80,7 @@ function r = CheckMERepresentation (alpha, A, prec)
         if BuToolsVerbose
             fprintf ('CheckMERepresentation: The dominant eigenvalue of the matrix is not real!\n');
         end
-        r = 0;
+        r = false;
         return;
     end
 

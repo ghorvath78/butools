@@ -433,11 +433,11 @@ Module[ {H0,v,H0i,size,gammav,gamma1,gammavi,gamma1i,Nmi,H,H0ip},
 ];
 
 
-RandomDMAP[order_, mean_: 1.,zeroEntries_: 0, maxTrials_: 1000, prec_: N[10^-7]]:=
+RandomDMAP[order_, mean_: 10.,zeroEntries_: 0, maxTrials_: 1000, prec_: N[10^-7]]:=
 Return[RandomDMMAP[order,1,mean,zeroEntries,maxTrials,prec]];
 
 
-RandomDMMAP[order_,types_,mean_:1.,zeroEntries_:0,maxTrials_:1000, prec_: N[10^-7]]:=
+RandomDMMAP[order_,types_,mean_:10.,zeroEntries_:0,maxTrials_:1000, prec_: N[10^-7]]:=
 Module[{trials,zeros,B,numZeros,zeroInRow,idx,a,aRowSize,d,\[Pi],fullZero,actualZeros,dd,dx,Dx,Dv,m},
 If[zeroEntries>(order+1)(order-1)+types(order^2-1),Throw["RandomDMAP/DMMAP: You have given too many zeros! Try to decrease the zero entries number!"]];
 actualZeros=zeroEntries;
@@ -500,7 +500,7 @@ SamplesFromDMAP[D0_,D1_,k_,initial_:Null]:=(
 
 
 SamplesFromDMMAP[D_,k_,initial_:Null]:=
-Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst,logp},
+Module[{NN,cummInitial,sojourn, nextpr,r,state,stst,logp,genSamples},
 	If[BuTools`CheckInput && Not[CheckDMMAPRepresentation[D]],Throw["SamplesFromDMMAP: input is not a valid DMMAP representation!"]];
     
     NN = Dimensions[D[[1]]][[1]];
@@ -522,26 +522,31 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst,logp},
     Do[nextpr = Join[nextpr, DiagonalMatrix[sojourn].D[[i]], 2],{i,2,Length[D]}];
     nextpr = Transpose[Accumulate[Transpose[nextpr]]];
     
-    If[Length[D]>2, x = ConstantArray[0,{k,2}], x = ConstantArray[0,{k}]];
-	Do[
-		time = 0;
-	    (* play state transitions *)
-        While[state<=NN,
-            time += 1 + Floor[Log[RandomReal[]]] / logp[[state]];
-            r = RandomReal[];
-            nstate = 1;
-            While[nextpr[[state,nstate]]<=r, nstate++];
-            state = nstate;
-        ];
-		If[Length[D]>2, 
+    genSamples=Compile[{{NN,_Integer},{logp,_Real,1},{sojourn,_Real,1},{nextpr,_Real,2}},
+	Module[{time,rr,cstate,nstate,x},
+		x = Table[0.,{k},{2}];
+		cstate = state;
+		Do[
+			time = 0.;
+			(* play state transitions *)
+			While[cstate<=NN,
+				time += 1 + Floor[Log[RandomReal[]] / logp[[cstate]]];
+				rr = RandomReal[];
+				nstate = 1;
+				While[nextpr[[cstate,nstate]]<=rr, nstate++];
+				cstate = nstate;
+			];
 			x[[n,1]]=time; 
-			x[[n,2]]=Ceiling[state/NN]-1;
-		,
-			x[[n]] = time;
-		];
-		state=Mod[state-1,NN]+1;
-	,{n,k}];
-	Return[x];
+			x[[n,2]]=Ceiling[cstate/NN]-1;
+			cstate=Mod[cstate-1,NN]+1;
+		,{n,k}];
+		Return[x]
+	]];
+	If[Length[D]>2,
+		Return[genSamples[NN,logp,sojourn,nextpr]]
+	, 
+		Return[genSamples[NN,logp,sojourn,nextpr][[;;,1]]]
+	];
 ];
 
 

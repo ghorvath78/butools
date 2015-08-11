@@ -43,7 +43,7 @@ function acf = LagCorrelationsFromDRAP (H0, H1, L)
     
     pi = pi * H0i * P;
 
-    acf = zeros(L,1);
+    acf = zeros(1,L);
     for i=1:L
         acf(i) = (sum(pi*H0i) - moms(1)^2) / (moms(2) - moms(1)^2);
         pi = pi * P;

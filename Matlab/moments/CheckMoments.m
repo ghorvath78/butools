@@ -52,10 +52,10 @@ function r = CheckMoments (m, prec)
         H = hankel(m(1:n+1), m(n+1:2*n+1));
         H0 = hankel(m(2:n+2), m(n+2:2*n+2));
         if det(H)<-prec || det(H0)<-prec
-            r = 0;
+            r = false;
             return;
         end
     end
-    r = 1;
+    r = true;
 end
 

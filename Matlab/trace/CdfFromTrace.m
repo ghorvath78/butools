@@ -16,7 +16,7 @@
 
 function [x, y] = CdfFromTrace (trace)
 
-    x = reshape(sort(trace), length(trace),1);
-    y = linspace(0, 1, length(trace))';
+    x = reshape(sort(trace), 1, length(trace));
+    y = linspace(0, 1, length(trace));
 end
 

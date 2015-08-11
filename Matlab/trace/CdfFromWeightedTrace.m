@@ -21,4 +21,6 @@ function [x, y] = CdfFromWeightedTrace (trace, weights)
 
     [x,ix] = sort (trace);
     y = cumsum(weights(ix))/sum(weights);
+    x = reshape(x, 1, length(x));
+    y = reshape(y, 1, length(y));
 end

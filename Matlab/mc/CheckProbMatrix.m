@@ -48,11 +48,12 @@ function r = CheckProbMatrix (P,transient,prec)
         transient = 0;
     end
 
+    r = false;
+    
     if size(P,1)~=size(P,2)
         if BuToolsVerbose
             fprintf ('CheckProbMatrix: the matrix is not a square matrix!\n');
         end
-        r = 0;
         return;
     end
 
@@ -60,7 +61,6 @@ function r = CheckProbMatrix (P,transient,prec)
         if BuToolsVerbose
             fprintf ('CheckProbMatrix: the matrix has negative element (precision: %g)!\n', prec);
         end
-        r = 0;
         return;
     end
 
@@ -69,7 +69,6 @@ function r = CheckProbMatrix (P,transient,prec)
             if BuToolsVerbose
                 fprintf ('CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
 
@@ -77,7 +76,6 @@ function r = CheckProbMatrix (P,transient,prec)
             if BuToolsVerbose
                 fprintf ('CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
     else
@@ -85,9 +83,8 @@ function r = CheckProbMatrix (P,transient,prec)
             if BuToolsVerbose
                 fprintf ('CheckProbMatrix: The rowsum of the matrix is not 1 (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
     end
-    r = 1;
+    r = true;
 end

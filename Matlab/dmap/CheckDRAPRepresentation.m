@@ -32,11 +32,11 @@ function r=CheckDRAPRepresentation(d0, d1, prec)
         prec = BuToolsCheckPrecision;
     end
 
+    r = false;
     if size(d0,1) ~= size(d1,1) || size(d0,2) ~= size(d1,2) || size(d0,1) ~= size(d0,2)
         if BuToolsVerbose
             fprintf('CheckDRAPRepresentation: D0 and D1 have different sizes!\n');
         end
-        r=0;
         return
     end
 
@@ -44,7 +44,6 @@ function r=CheckDRAPRepresentation(d0, d1, prec)
         if BuToolsVerbose
             fprintf('CheckDRAPRepresentation: A rowsum of D0+D1 is not 1 (at precision %g)!\n',prec);
         end
-        r=0;
         return
     end
 
@@ -55,7 +54,6 @@ function r=CheckDRAPRepresentation(d0, d1, prec)
         if BuToolsVerbose
             fprintf('CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!\n');
         end
-        r=0;
         return
     end
 
@@ -63,7 +61,6 @@ function r=CheckDRAPRepresentation(d0, d1, prec)
         if BuToolsVerbose
             fprintf('CheckDRAPRepresentation: The dominant eigenvalue of D0 is greater than 1!\n');
         end
-        r=0;
         return
     end
 
@@ -73,5 +70,5 @@ function r=CheckDRAPRepresentation(d0, d1, prec)
          end
     end
 
-    r=1;
+    r=true;
 end

@@ -48,7 +48,7 @@ function [d0,d1] = RandomDMAP(order, mean, zeroEntries, maxTrials, prec)
     end
 
     if ~exist('mean','var')
-        mean = 1;
+        mean = 10;
     end
     
     if ~exist('maxTrials','var')

@@ -46,7 +46,7 @@ function [alpha, A] = RandomDPH(order, mean, zeroEntries, maxTrials, prec)
     end
 
     if ~exist('mean','var')
-        mean = 1;
+        mean = 10;
     end
 
     if ~exist('maxTrials','var')

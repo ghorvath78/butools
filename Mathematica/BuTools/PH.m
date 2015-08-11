@@ -624,7 +624,7 @@ Return[{vector,B}];
 
 
 SamplesFromPH[a_,A_,k_]:=
-Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate},
+Module[{NN,cummInitial,sojourn, nextpr,genSamples},
 	If[BuTools`CheckInput && Not[CheckPHRepresentation[a,A]],Throw["SamplesFromPH: input is not a valid PH representation!"]];
     (* auxilary variables*)
     NN = Length[a];
@@ -635,24 +635,28 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate},
     nextpr = Join[nextpr, Transpose[{1-Total[nextpr,{2}]}],2];
     nextpr = Transpose[Accumulate[Transpose[nextpr]]];
     
-    x = ConstantArray[0,{k}];
-	Do[
-		time = 0;
-	    (* draw initial distribution *)
-        r = RandomReal[];
-        state = 1;
-        While[cummInitial[[state]]<=r, state++];
-        (* play state transitions *)
-        While[state<=NN,
-            time -= Log[RandomReal[]] sojourn[[state]];
-            r = RandomReal[];
-            nstate = 1;
-            While[nextpr[[state,nstate]]<=r, nstate++];
-            state = nstate;
-        ];
-        x[[n]] = time;
-	,{n,k}];
-	Return[x];
+    genSamples=Compile[{{NN,_Integer},{cummInitial,_Real,1},{sojourn,_Real,1},{nextpr,_Real,2}},
+	Module[{time,r,state,nstate,x},
+		x = Table[0.,{k}];
+		Do[
+			time = 0.;
+			(* draw initial distribution *)
+			r = RandomReal[];
+			state = 1;
+			While[cummInitial[[state]]<=r, state++];
+			(* play state transitions *)
+			While[state<=NN,
+				time -= Log[RandomReal[]] sojourn[[state]];
+				r = RandomReal[];
+				nstate = 1;
+				While[nextpr[[state,nstate]]<=r, nstate++];
+				state = nstate;
+			];
+			x[[n]] = time;
+		,{n,k}];
+		Return[x]
+	]];
+	Return[genSamples[NN,cummInitial,sojourn,nextpr]]
 ];
 
 

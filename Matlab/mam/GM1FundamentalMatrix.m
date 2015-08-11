@@ -58,6 +58,12 @@ function R = GM1FundamentalMatrix (A, precision, maxNumIt, method)
     end   
     
     global BuToolsVerbose;
-    
-    R = GIM1_R (A, 'R', method, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
+
+    N = size(A{1},2);
+    Am = zeros(N, N*length(A));
+    for i=1:length(A)
+        Am(:,(i-1)*N+1:i*N) = A{i};
+    end
+
+    R = GIM1_R (Am, 'R', method, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
 end

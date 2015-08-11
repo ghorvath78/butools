@@ -47,7 +47,7 @@ function [x, y] = IntervalPdfFromPH (alpha, A, intBounds)
     
     K = length(intBounds);
     x = reshape ((intBounds(2:end) + intBounds(1:end-1)) / 2, K-1,1);
-    y = zeros(K-1,1);
+    y = zeros(1,K-1);
     for i=1:K-1
         y(i) = (sum(alpha*expm(A*intBounds(i))) - sum(alpha*expm(A*intBounds(i+1))))/(intBounds(i+1)-intBounds(i));
     end   

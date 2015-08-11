@@ -167,14 +167,16 @@ Module[{N1,N2,Q1,R1,Q2,R2,Q,R,c1,c2,X,M,x,h,Prec,m,sol},
 
 
 SimilarityMatrixForVectors[vecA_,vecB_]:=
-Module[{m,ix,P,cpA,B},
-	m = Length[vecA];
-	ix=Ordering[-vecA];
+Module[{m,ix,P,cpA,B,fVecA,fVecB},
+	fVecA=Flatten[vecA];
+	fVecB=Flatten[vecB];
+	m = Length[fVecA];
+	ix=Ordering[-fVecA];
 	P=ConstantArray[0,{m,m}];
 	Do[P[[i,ix[[i]]]]=1,{i,m}];
-	cpA=P.vecA;
+	cpA=P.fVecA;
 	B=ConstantArray[0,{m,m}];
-	Do[B[[i,1;;i]]=vecB[[i]]/Total[cpA[[1;;i]]],{i,m}];
+	Do[B[[i,1;;i]]=fVecB[[i]]/Total[cpA[[1;;i]]],{i,m}];
 	Return[B.P];
 ];
 

@@ -46,11 +46,12 @@ function r = CheckGenerator (Q,transient,prec)
         transient = false;
     end
 
+    r = false;
+
     if size(Q,1)~=size(Q,2)
         if BuToolsVerbose
             fprintf ('CheckGenerator: Generator is not a square matrix!\n');
         end
-        r = 0;
         return;
     end
 
@@ -58,7 +59,6 @@ function r = CheckGenerator (Q,transient,prec)
         if BuToolsVerbose
             fprintf ('CheckGenerator: The diagonal of the generator is not negative (precision: %g)!\n', prec);
         end
-        r = 0;
         return;
     end
 
@@ -72,7 +72,6 @@ function r = CheckGenerator (Q,transient,prec)
         if BuToolsVerbose
             fprintf ('CheckGenerator: The generator has negative off-diagonal element (precision: %g)!\n', prec);
         end
-        r = 0;
         return;
     end
 
@@ -81,7 +80,6 @@ function r = CheckGenerator (Q,transient,prec)
             if BuToolsVerbose
                 fprintf ('CheckGenerator: The rowsum of the transient generator is greater than 0 (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
 
@@ -89,7 +87,6 @@ function r = CheckGenerator (Q,transient,prec)
             if BuToolsVerbose
                 fprintf ('CheckGenerator: The transient generator has non-negative eigenvalue (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
     else
@@ -97,9 +94,8 @@ function r = CheckGenerator (Q,transient,prec)
             if BuToolsVerbose
                 fprintf ('CheckGenerator: The rowsum of the generator is not 0 (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
     end
-    r = 1;
+    r = true;
 end

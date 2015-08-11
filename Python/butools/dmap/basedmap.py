@@ -289,7 +289,7 @@ def LagCorrelationsFromDRAP (H0, H1, L=1):
         corr.append((np.sum(pi*H0i) - m1*m1) / (m2 - m1*m1))
         pi = pi * P
 #    if L>1:
-    return corr
+    return np.array(corr)
 #    else:
 #        return corr[0]
 
@@ -485,7 +485,7 @@ def LagkJointMomentsFromDMAP (D0, D1, K=0, L=1):
 
     return LagkJointMomentsFromDRAP(D0, D1, K, L)
     
-def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
+def RandomDMMAP (order, types, mean=10.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
     """
     Returns a random discrete Markovian arrival process.
     
@@ -603,7 +603,7 @@ def RandomDMMAP (order, types, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-
             trials += 1
     raise Exception("No feasible random DMAP/DMMAP found with such many zero entries! Try to increase the maxTrials parameter!")
 
-def RandomDMAP (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
+def RandomDMAP (order, mean=10.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
     """
     Returns a random disctere Markovian arrival process.
     

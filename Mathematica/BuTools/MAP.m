@@ -543,7 +543,7 @@ SamplesFromMAP[D0_,D1_,k_,initial_:Null]:=(
 
 
 SamplesFromMMAP[D_,k_,initial_:Null]:=
-Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst},
+Module[{NN,cummInitial,sojourn, nextpr,r,state,stst,genSamples},
 	If[BuTools`CheckInput && Not[CheckMMAPRepresentation[D]],Throw["SamplesFromMMAP: input is not a valid MMAP representation!"]];
     
     NN = Dimensions[D[[1]]][[1]];
@@ -564,26 +564,31 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,stst},
     Do[nextpr = Join[nextpr, DiagonalMatrix[sojourn].D[[i]], 2],{i,2,Length[D]}];
     nextpr = Transpose[Accumulate[Transpose[nextpr]]];
     
-    If[Length[D]>2, x = ConstantArray[0,{k,2}], x = ConstantArray[0,{k}]];
-	Do[
-		time = 0;
-		(* play state transitions *)
-        While[state<=NN,
-            time -= Log[RandomReal[]] sojourn[[state]];
-            r = RandomReal[];
-            nstate = 1;
-            While[nextpr[[state,nstate]]<=r, nstate++];
-            state = nstate;
-        ];
-		If[Length[D]>2, 
+    genSamples=Compile[{{NN,_Integer},{sojourn,_Real,1},{nextpr,_Real,2}},
+	Module[{time,rr,cstate,nstate,x},
+		x = Table[0.,{k},{2}];
+		cstate = state;
+		Do[
+			time = 0.;
+			(* play state transitions *)
+			While[cstate<=NN,
+				time -= Log[RandomReal[]] sojourn[[cstate]];
+				rr = RandomReal[];
+				nstate = 1;
+				While[nextpr[[cstate,nstate]]<=rr, nstate++];
+				cstate = nstate;
+			];
 			x[[n,1]]=time; 
-			x[[n,2]]=Ceiling[state/NN]-1;
-		,
-			x[[n]] = time;
-		];
-		state=Mod[state-1,NN]+1;
-	,{n,k}];
-	Return[x];
+			x[[n,2]]=Ceiling[cstate/NN]-1;
+			cstate=Mod[cstate-1,NN]+1;
+		,{n,k}];
+		Return[x]
+	]];
+	If[Length[D]>2,
+		Return[genSamples[NN,sojourn,nextpr]]
+	, 
+		Return[genSamples[NN,sojourn,nextpr][[;;,1]]]
+	];
 ];
 
 

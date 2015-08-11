@@ -180,7 +180,7 @@ def LikelihoodFromTrace (trace, A, B, prec=1e-14):
             if len(nfirst)==0:
                 break
             first += nfirst[0]
-        alpha = DTMCSolve ((-D0).I*D1, prec)
+        alpha = DTMCSolve ((-D0).I*D1)
         l = np.array(alpha)
         sc = 0
         ixrev = np.argsort(ix)

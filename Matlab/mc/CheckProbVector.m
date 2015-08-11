@@ -47,11 +47,12 @@ function r = CheckProbVector (pi,sub,prec)
         sub = 0;
     end
 
+    r = false;
+    
     if min(pi)<-prec
         if BuToolsVerbose
             fprintf ('CheckProbVector: The vector has negative element (precision: %g)!\n', prec);
         end
-        r = 0;
         return;
     end
 
@@ -60,7 +61,6 @@ function r = CheckProbVector (pi,sub,prec)
             if BuToolsVerbose
                 fprintf ('CheckProbVector: The sum of the substochastic vector is not less than 1 (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
     else
@@ -68,10 +68,9 @@ function r = CheckProbVector (pi,sub,prec)
             if BuToolsVerbose
                 fprintf ('CheckProbVector: The sum of the vector is not 1 (precision: %g)!\n', prec);
             end
-            r = 0;
             return;
         end
     end
     
-    r = 1;
+    r = true;
 end

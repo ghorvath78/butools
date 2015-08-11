@@ -30,7 +30,7 @@ function cdf = CdfFromME (alpha, A, x)
         error('CdfFromME: Input isn''t a valid ME distribution!');
     end
     
-    cdf = zeros(length(x),1);
+    cdf = zeros(1,length(x));
     for i=1:length(x)
         cdf(i) = 1.0 - sum(alpha*expm(A*x(i)));
     end

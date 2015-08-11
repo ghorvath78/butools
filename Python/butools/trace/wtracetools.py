@@ -29,7 +29,7 @@ def PdfFromWeightedTrace (trace, weights, intBounds):
     y = np.empty (len(x))
    
     for i in range(len(x)):
-        y[i] = np.sum(weights[np.logical_and(trace>=intBounds[i], trace<intBounds[i+1])])
+        y[i] = np.sum(np.array(weights)[np.logical_and(np.array(trace)>=intBounds[i], np.array(trace)<intBounds[i+1])])
     
     return (x,y/intlens/np.sum(weights))
   
@@ -53,7 +53,7 @@ def CdfFromWeightedTrace (trace, weights):
         The values of the empirical cdf at the given points
     """
     ix = np.argsort(trace)
-    return (trace[ix], np.cumsum(weights[ix])/np.sum(weights)) 
+    return (np.array(trace)[ix], np.cumsum(np.array(weights)[ix])/np.sum(weights)) 
   
 def MarginalMomentsFromWeightedTrace (trace, weights, K=5):
     """

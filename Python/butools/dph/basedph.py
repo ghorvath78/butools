@@ -221,7 +221,7 @@ def CdfFromDPH (alpha, A, x):
 
     return CdfFromMG (alpha, A, x)
 
-def RandomDPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
+def RandomDPH (order, mean=10.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
     """
     Returns a random discrete phase-type distribution with a 
     given mean value.
@@ -309,10 +309,8 @@ def RandomDPH (order, mean=1.0, zeroEntries=0, maxTrials=1000, prec=1e-7):
             if np.all(A==0.0) or np.all(alpha==0.0) or np.all(a==0.0):
                 continue
             alpha = alpha / np.sum(alpha)
-            D = A + a*alpha
-            if la.matrix_rank(D) == order-1:
-                pi = DTMCSolve(D)
-                if np.min(np.abs(pi)) > prec:
+            if la.matrix_rank(ml.eye(order)-A) == order:
+                if np.min(np.abs(alpha*la.inv(ml.eye(order)-A))) > prec:
                     # diagonals of matrix A:
                     d = np.random.rand(order)
                     # scale to the mean value

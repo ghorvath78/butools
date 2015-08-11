@@ -289,7 +289,7 @@ def LagCorrelationsFromRAP (H0, H1, L=1):
         corr.append((np.sum(pi*H0i) - m1*m1) / (m2 - m1*m1))
         pi = pi * P
 #    if L>1:
-    return corr
+    return np.array(corr)
 #    else:
 #        return corr[0]
 

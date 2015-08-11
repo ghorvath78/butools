@@ -157,7 +157,7 @@ def QBDQueue(B, L, F, L0, *argv):
             argIx += 1
             values = np.empty(points.shape)
             for p in range(len(points.flat)):
-                values.flat[p] = np.sum(pi0*R**points.flat[p])
+                values.flat[p] = np.sum(pi0*R**int(points.flat[p]))
             Ret.append(values)
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrPH":
             # transform to ph distribution
@@ -351,7 +351,7 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
             argIx += 1
             values = np.empty(points.shape)
             for p in range(len(points.flat)):
-                values.flat[p] = np.sum(pi0*R**points.flat[p])
+                values.flat[p] = np.sum(pi0*R**int(points.flat[p]))
             Ret.append(values)
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrPH":
             # transform it to PH representation

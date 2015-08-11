@@ -27,5 +27,16 @@ function pi = MG1StationaryDistr (A, B, G, K)
 
     global BuToolsVerbose;
 
-    pi = MG1_pi(B,A,G,'MaxNumComp', K+1, 'Verbose', BuToolsVerbose);
+    N = size(A{1},2);
+    Am = zeros(N, N*length(A));
+    for i=1:length(A)
+        Am(:,(i-1)*N+1:i*N) = A{i};
+    end
+
+    Bm = zeros(N, N*length(B));
+    for i=1:length(B)
+        Bm(:,(i-1)*N+1:i*N) = B{i};
+    end
+
+    pi = MG1_pi(Bm,Am,G,'MaxNumComp', K+1, 'Verbose', BuToolsVerbose);
 end

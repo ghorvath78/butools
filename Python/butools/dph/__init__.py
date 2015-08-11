@@ -6,4 +6,3 @@ from .canonical import *
 from .acyclic import *
 from .dphfrommg import *
 from .misc import *
-from .test import *

@@ -26,4 +26,6 @@ function [x, y] = PdfFromTrace (trace, intBounds)
     intlens = intBounds(2:end) - intBounds(1:end-1);
     y = hist(1:end-1) ./ intlens / length(trace);
     x = (intBounds(2:end) + intBounds(1:end-1)) / 2.0;
+    y = reshape(y, 1, length(y));
+    x = reshape(x, 1, length(x));   
 end

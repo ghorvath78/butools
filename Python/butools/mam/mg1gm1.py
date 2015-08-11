@@ -493,7 +493,7 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
         beta = beta + np.sum(sumA,1)
 
     sumA = sumA+A[:,0:m]
-    theta = DTMCSolve(sumA, prec)
+    theta = DTMCSolve(sumA)
     drift = (theta * beta)[0,0]
     
     if drift >= 1:
@@ -503,7 +503,7 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     if G is None:
         G = MG1FundamentalMatrix (A, prec)
     
-    g = DTMCSolve(G, prec)
+    g = DTMCSolve(G)
     
     if B is None:
         # Compute pi_0
@@ -520,7 +520,7 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
         
         # Compute K, kappa
         Km = B[:,0:mb] + B[:,mb:mb+m] * G
-        kappa = DTMCSolve(Km, prec)
+        kappa = DTMCSolve(Km)
 
         # Compute psi1, psi2
         temp = np.sum(la.inv(I-sumA-(ml.ones((m,1))-beta)*g),1)
@@ -625,7 +625,7 @@ def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", d
         beta = beta + np.sum(sumA,1)
 
     sumA = sumA + A[:,:m]
-    theta = DTMCSolve(sumA, precision)
+    theta = DTMCSolve(sumA)
     drift = theta * beta
     
     if dual=="R" or (dual=="A" and drift <=1 ): # RAM dual
@@ -642,7 +642,7 @@ def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", d
         sumAeta = eta**dega * A[:,dega*m:]
         for i in range(dega-1,-1,-1):
             sumAeta = sumAeta + eta**i * A[:,i*m:(i+1)*m]
-        theta = DRPSolve(sumAeta+(1.0-eta)*I, precision)
+        theta = DRPSolve(sumAeta+(1.0-eta)*I)
         # compute the Bright Dual process
         for i in range(dega+1):
             A[:,i*m:(i+1)*m] = eta**(i-1) * Diag(1.0/theta) * A[:,i*m:(i+1)*m].T * Diag(theta)
@@ -695,7 +695,7 @@ def GM1StationaryDistr (B, R, K, prec=1e-14):
     for i in range(maxb-1,0,-1):
         BR = R * BR + B[(i-1)*m:i*m,:]
 
-    pix = DTMCSolve(BR, prec)
+    pix = DTMCSolve(BR)
     pix = pix / np.sum(pix*temp)
     
     pi = [pix]    

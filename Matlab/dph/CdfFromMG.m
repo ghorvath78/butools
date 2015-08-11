@@ -35,7 +35,7 @@ function cdf = CdfFromMG (alpha, A, x)
         error('CdfFromMG: Input isn''t a valid MG distribution!');
     end
 
-    cdf = zeros(length(x),1);
+    cdf = zeros(1,length(x));
     for i=1:length(x)
         cdf(i) = 1.0 - sum (alpha*(A^x(i)));
     end    

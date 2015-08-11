@@ -25,11 +25,10 @@
 function [x, y] = PdfFromWeightedTrace (trace, weights, intBounds)
 
     intlens = intBounds(2:end) - intBounds(1:end-1);
-    x = reshape((intBounds(2:end) + intBounds(1:end-1)) / 2.0, length(intlens), 1);
-    y = zeros (length(intlens), 1);
-   
+    x = reshape((intBounds(2:end) + intBounds(1:end-1)) / 2.0, 1, length(intlens));
+    y = zeros (1, length(intlens));  
     for i=1:length(x)
         y(i) = sum(weights(and(trace>=intBounds(i),trace<intBounds(i+1))));
     end
-    y = y ./ reshape(intlens,length(intlens),1) / sum(weights);
+    y = y ./ reshape(intlens,1,length(intlens)) / sum(weights);
 end

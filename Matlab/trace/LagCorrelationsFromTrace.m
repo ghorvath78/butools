@@ -24,7 +24,7 @@ function acf = LagCorrelationsFromTrace (trace, K)
     m = mean(trace);
     v = var(trace);
     
-    acf = zeros(K,1);
+    acf = zeros(1,K);
     for i=1:K
         acf(i) = (dot(trace(1:end-i),trace(i+1:end)) / (length(trace)-i) - m^2) / v;
     end

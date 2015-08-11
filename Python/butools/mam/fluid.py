@@ -198,9 +198,9 @@ def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
         The closing matrix of the stationary density
     """
     
-    Psi, K, U = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, "PKU", prec/100)
+    Psi, K, U = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, "PKU", prec)
     
-    mass0 = CTMCSolve(U, prec*10)
+    mass0 = CTMCSolve(U)
     nr = np.sum(mass0) + 2.0*np.sum(mass0*Fmp*-K.I)
     
     return mass0/nr, mass0*Fmp/nr, K, ml.hstack((ml.eye(Fpp.shape[0]), Psi))
@@ -280,7 +280,7 @@ def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
     absRi = Diag(np.abs(1./np.diag(Rv[Nz:,Nz:])))
     Qz = absRi * Qbar
 
-    Psi, K, U = FluidFundamentalMatrices (Qz[:Np,:Np], Qz[:Np,Np:], Qz[Np:,:Np], Qz[Np:,Np:], "PKU")
+    Psi, K, U = FluidFundamentalMatrices (Qz[:Np,:Np], Qz[:Np,Np:], Qz[Np:,:Np], Qz[Np:,Np:], "PKU", prec)
 
     # closing matrix
     Pm = np.hstack((ml.eye(Np), Psi)) * absRi

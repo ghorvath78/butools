@@ -34,7 +34,7 @@ function pdf = PdfFromME (alpha, A, x)
         error('PdfFromME: Input isn''t a valid ME distribution!');
     end
 
-    pdf = zeros(length(x),1);
+    pdf = zeros(1,length(x));
     for i=1:length(x)
        pdf(i) = sum(alpha*expm(A*x(i))*(-A));
     end

@@ -335,7 +335,7 @@ PmfFromDPH[alpha_, A_, x_]:=(
 	Return[PmfFromMG[alpha,A,x]]);
 
 
-RandomDPH[order_,mean_:1,zeroEntries_:0,maxTrials_:1000,prec_: N[10^-7]]:=
+RandomDPH[order_,mean_:10,zeroEntries_:0,maxTrials_:1000,prec_: N[10^-7]]:=
 Module[{trials,zeros,numZeros,idx,zeroInRow,Row,B,sumRow,elem,vector,actualZeros,d,m},
 If[zeroEntries>(order+1)(order-1),Throw["RandomDPH: You have given too many zeros! Try to decrease the zero entries number!"]];
 actualZeros=zeroEntries;
@@ -385,7 +385,7 @@ Return[{vector,B}];
 
 
 SamplesFromDPH[a_,A_,k_]:=
-Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,logp},
+Module[{NN,cummInitial,sojourn, nextpr,logp,genSamples},
 	If[BuTools`CheckInput && Not[CheckDPHRepresentation[a,A]],Throw["SamplesFromDPH: input is not a valid DPH representation!"]];
     (* auxilary variables*)
     NN = Length[a];
@@ -397,24 +397,28 @@ Module[{NN,cummInitial,sojourn, nextpr,x,time,r,state,nstate,logp},
     nextpr = Join[nextpr, Transpose[{1-Total[nextpr,{2}]}],2];
     nextpr = Transpose[Accumulate[Transpose[nextpr]]];
     
-    x = ConstantArray[0,{k}];
-	Do[
-		time = 0;
-	    (* draw initial distribution *)
-        r = RandomReal[];
-        state = 1;
-        While[cummInitial[[state]]<=r, state++];
-        (* play state transitions *)
-        While[state<=NN,
-            time += 1 + Floor[Log[RandomReal[]]] / logp[[state]];
-            r = RandomReal[];
-            nstate = 1;
-            While[nextpr[[state,nstate]]<=r, nstate++];
-            state = nstate;
-        ];
-        x[[n]] = time;
-	,{n,k}];
-	Return[x];
+    genSamples=Compile[{{NN,_Integer},{logp,_Real,1},{cummInitial,_Real,1},{sojourn,_Real,1},{nextpr,_Real,2}},
+	Module[{time,rr,state,nstate,x},
+		x = Table[0,{k}];
+		Do[
+			time = 0;
+			(* draw initial distribution *)
+			rr = RandomReal[];
+			state = 1;
+			While[cummInitial[[state]]<=rr, state++];
+			(* play state transitions *)
+			While[state<=NN,
+				time = time + 1 + Floor[Log[RandomReal[]] / logp[[state]]];
+				rr = RandomReal[];
+				nstate = 1;
+				While[nextpr[[state,nstate]]<=rr, nstate++];
+				state = nstate;
+			];
+			x[[n]] = time;
+		,{n,k}];
+		Return[x]
+	]];
+	Return[genSamples[NN,logp,cummInitial,sojourn,nextpr]]
 ];
 
 

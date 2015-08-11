@@ -53,15 +53,22 @@ Table[Total[trace^i],{i,1,K}]/Length[trace];
 
 
 MarginalMomentsFromWeightedTrace[trace_,weights_,K_:5]:=
-Table[Total[(trace^i).weights],{i,1,K}]/Total[weights];    
+Table[(trace^i).weights,{i,1,K}]/Total[weights];    
 
 
 PdfFromTrace[trace_, intBounds_]:=
-Module[{intlens,x,y,ix},
+Module[{intlens,x,y,ix,str,l},
     intlens = intBounds[[2;;]] - intBounds[[1;;-2]];
     x = (intBounds[[2;;]] + intBounds[[1;;-2]]) / 2;
-	ix = Range[Length[trace]];
-    y = Table[Length[Select[trace,And[#>=intBounds[[i]],#<intBounds[[i+1]]]&]],{i,Length[x]}];
+    str =Sort[trace]; 
+	l=LengthWhile[str,#<intBounds[[1]]&];
+	str=Drop[str,l];
+	y={};
+	Do[
+		l=LengthWhile[str,#<intBounds[[i]]&];
+		AppendTo[y,l];
+		str=Drop[str,l];
+	,{i,2,Length[intBounds]}];
     y = y / intlens / Length[trace];
 	Return[{x,y}];
 ];

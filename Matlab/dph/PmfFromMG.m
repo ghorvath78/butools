@@ -38,7 +38,7 @@ function pmf = PmfFromMG (alpha, A, x)
     end
 
     a = 1.0 - sum(A,2);
-    pmf = zeros(length(x),1);
+    pmf = zeros(1,length(x));
     for i=1:length(x)
         if x(i)==0
             pmf(i) = 1.0 - sum(alpha);
