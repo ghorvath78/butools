@@ -1,0 +1,111 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
+package Fitting
+
+test EmpiricalSquaredDifference
+
+inputmsg
+code! tr = LoadTrace["bctrace.iat"]   
+code! intBounds = Linspace[0, MarginalMomentsFromTrace[tr,1][[1]]*4, 50]
+code! {pdfTrX, pdfTrY} = PdfFromTrace[tr,intBounds]
+code! {cdfTrX, cdfTrY} = CdfFromTrace[tr]
+code! step = Ceil[Length[tr] / 2000]
+code! cdfTrX = cdfTrX[[1;step;Length[tr]]]
+code! cdfTrY = cdfTrY[[1;step;Length[tr]]]
+code! {alpha,A} = APHFrom3Moments[MarginalMomentsFromTrace[tr,3]]
+code! {pdfPHX, pdfPHY} = IntervalPdfFromPH[alpha, A, intBounds]
+code! cdfPHY = CdfFromPH[alpha, A, cdfTrX]
+testmsg
+code!@ sqPdf = EmpiricalSquaredDifference[pdfTrY, pdfPHY, intBounds]
+code!@ sqCdf = EmpiricalSquaredDifference[cdfTrY[[1;;-1]], cdfPHY[[1;;-1]], cdfTrX]
+assert sqPdf>=0 # "Empirical squared difference is negative!"
+assert sqCdf>=0 # "Empirical squared difference is negative!"
+
+test EmpiricalRelativeEntropy
+
+inputmsg
+code! tr = LoadTrace["bctrace.iat"]   
+code! intBounds = Linspace[0, MarginalMomentsFromTrace[tr,1][[1]]*4, 50]
+code! {pdfTrX, pdfTrY} = PdfFromTrace[tr,intBounds]
+code! {cdfTrX, cdfTrY} = CdfFromTrace[tr]
+code! step = Ceil[Length[tr] / 2000]
+code! cdfTrX = cdfTrX[[1;step;Length[tr]]]
+code! cdfTrY = cdfTrY[[1;step;Length[tr]]]
+code! {alpha,A} = APHFrom3Moments[MarginalMomentsFromTrace[tr,3]]
+code! {pdfPHX, pdfPHY} = IntervalPdfFromPH[alpha, A, intBounds]
+code! cdfPHY = CdfFromPH[alpha, A, cdfTrX]
+testmsg
+code!@ rePdf = EmpiricalRelativeEntropy[pdfTrY, pdfPHY, intBounds]
+code!@ reCdf = EmpiricalRelativeEntropy[cdfTrY[[1;;-1]], cdfPHY[[1;;-1]], cdfTrX]
+assert rePdf>=0 # "Empirical relative entropy is negative!"
+assert reCdf>=0 # "Empirical relative entropy is negative!"
+
+test LikelihoodFromTrace
+
+inputmsg
+code! tr = LoadTrace["bctrace.iat"]   
+code! {alpha,A} = APHFrom3Moments[MarginalMomentsFromTrace[tr,3]]
+code! {D0,D1}=MAPFromFewMomentsAndCorrelations[MarginalMomentsFromTrace[tr,3],LagCorrelationsFromTrace[tr,1][[1]]]
+testmsg
+code!@ logliPH = LikelihoodFromTrace[tr,alpha,A]
+code!@ logliMAP = LikelihoodFromTrace[tr,D0,D1]
+
+
+test SquaredDifference
+
+inputmsg
+code! tr = LoadTrace["bctrace.iat"]   
+code!@ trAcf = LagCorrelationsFromTrace[tr, 10]
+code! {D0,D1}=MAPFromFewMomentsAndCorrelations[MarginalMomentsFromTrace[tr,3],trAcf[[1]]]
+code!@ mapAcf = LagCorrelationsFromMAP[D0, D1, 10]
+testmsg
+code!@ sqAcf = SquaredDifference[mapAcf, trAcf]
+assert sqAcf>=0 # "Squared difference is negative!"
+
+test RelativeEntropy
+
+inputmsg
+code! tr = LoadTrace["bctrace.iat"]   
+code!@ trAcf = LagCorrelationsFromTrace[tr, 10]
+code! {D0,D1}=MAPFromFewMomentsAndCorrelations[MarginalMomentsFromTrace[tr,3],trAcf[[1]]]
+code!@ mapAcf = LagCorrelationsFromMAP[D0, D1, 10]
+testmsg
+code!@ reAcf = RelativeEntropy[mapAcf, trAcf]
+assert reAcf>=0 # "Relative entropy is negative!"
+
+test PHFromTrace
+
+inputmsg
+code! tr = LoadTrace["bctrace.iat"]   
+testmsg
+code!@ {alpha,A}=PHFromTrace[tr,5]
+code!@ logli = LikelihoodFromTrace[tr,alpha,A]
+code! intBounds = Linspace[0, MarginalMomentsFromTrace[tr,1][[1]]*4, 50]
+code! {pdfTrX, pdfTrY} = PdfFromTrace[tr,intBounds]
+code! {pdfPHX, pdfPHY} = IntervalPdfFromPH[alpha, A, intBounds]
+code!@ sqPdf = EmpiricalSquaredDifference[pdfTrY, pdfPHY, intBounds]
+code!@ rePdf = EmpiricalRelativeEntropy[pdfTrY, pdfPHY, intBounds]
+code! {cdfTrX, cdfTrY} = CdfFromTrace[tr]
+code! step = Ceil[Length[tr] / 2000]
+code! cdfTrX = cdfTrX[[1;step;Length[tr]]]
+code! cdfTrY = cdfTrY[[1;step;Length[tr]]]
+code! cdfPHY = CdfFromPH[alpha, A, cdfTrX]
+code!@ sqCdf = EmpiricalSquaredDifference[cdfTrY[[1;;-1]], cdfPHY[[1;;-1]], cdfTrX]
+code!@ reCdf = EmpiricalRelativeEntropy[cdfTrY[[1;;-1]], cdfPHY[[1;;-1]], cdfTrX]
+
+test MAPFromTrace
+
+inputmsg
+code! tr = LoadTrace["bctrace.iat"]   
+code! tr = tr[[1;;10000]]
+testmsg
+code!@ {D0,D1}=MAPFromTrace[tr,5]
+code!@ logli = LikelihoodFromTrace[tr,D0,D1]
+code!@ trAcf = LagCorrelationsFromTrace[tr, 10]
+code!@ mapAcf = LagCorrelationsFromMAP[D0, D1, 10]
+code!@ sqAcf = SquaredDifference[mapAcf, trAcf]
+code!@ reAcf = RelativeEntropy[mapAcf, trAcf]
+

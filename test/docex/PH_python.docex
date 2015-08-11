@@ -1,100 +1,100 @@
 === MomentsFromME ===
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
->>> moms = MomentsFromME(a,A)
+>>> moms = MomentsFromME(a, A)
 >>> print(moms)
 [0.35384615384615381, 0.41893491124260357, 1.1552116522530724, 4.6998354399355771, 23.837756165615836]
->>> moms = MomentsFromME(a,A,9)
+>>> moms = MomentsFromME(a, A, 9)
 >>> print(moms)
 [0.35384615384615381, 0.41893491124260357, 1.1552116522530724, 4.6998354399355771, 23.837756165615836, 143.78185836646944, 1007.8194071104502, 8064.2728825214863, 72578.133718785219]
 === MomentsFromPH ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> moms = MomentsFromPH(a,A,5)
+>>> moms = MomentsFromPH(a, A, 5)
 >>> print(moms)
 [0.20938722294654497, 0.10448912014333091, 0.089091500391907288, 0.11026674096545433, 0.17953027324720897]
 === CdfFromME ===
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
->>> x = np.arange(0,5.01,0.01)
->>> cdf = CdfFromME(a,A,x)
->>> plt.plot(x,cdf)
+>>> x = np.arange(0.0,5.01,0.01)
+>>> cdf = CdfFromME(a, A, x)
+>>> plt.plot(x, cdf)
 === CdfFromPH ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> x = np.arange(0,3.002,0.002)
->>> cdf = CdfFromPH(a,A,x)
->>> plt.plot(x,cdf)
+>>> x = np.arange(0.0,3.002,0.002)
+>>> cdf = CdfFromPH(a, A, x)
+>>> plt.plot(x, cdf)
 === PdfFromME ===
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
->>> x = np.arange(0,5.01,0.01)
->>> pdf = PdfFromME(a,A,x)
->>> plt.plot(x,pdf)
+>>> x = np.arange(0.0,5.01,0.01)
+>>> pdf = PdfFromME(a, A, x)
+>>> plt.plot(x, pdf)
 === PdfFromPH ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> x = np.arange(0,3.002,0.002)
->>> pdf = PdfFromPH(a,A,x)
->>> plt.plot(x,pdf)
+>>> x = np.arange(0.0,3.002,0.002)
+>>> pdf = PdfFromPH(a, A, x)
+>>> plt.plot(x, pdf)
 === IntervalPdfFromPH ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> x = np.arange(0,3.002,0.002)
->>> x,y = IntervalPdfFromPH(a,A,x)
->>> plt.plot(x,y)
+>>> x = np.arange(0.0,3.002,0.002)
+>>> x, y = IntervalPdfFromPH(a, A, x)
+>>> plt.plot(x, y)
 === RandomPH ===
->>> a,A = RandomPH(3,8,4)
+>>> a, A = RandomPH(3, 8, 4)
 >>> print(a)
-[[ 0.       0.47702  0.52298]]
+[[ 0.50551  0.       0.49449]]
 >>> print(A)
-[[-4.64155  1.23652  2.35056]
- [ 2.35868 -3.01819  0.6595 ]
- [ 0.47849  0.      -0.47849]]
+[[-2.40914  0.91736  0.74455]
+ [ 1.33012 -2.52955  1.19943]
+ [ 0.       0.85372 -0.85372]]
 === CheckMERepresentation ===
->>> a = ml.matrix([[-0.2, 0.2]])
+>>> a = ml.matrix([[-0.2,0.2]])
 >>> A = ml.matrix([[1, -1],[1, -2]])
->>> flag = CheckMERepresentation(a,A)
+>>> flag = CheckMERepresentation(a, A)
 CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part!
 >>> print(flag)
 False
->>> a = ml.matrix([[-0.2, 0.4, 0.8]])
+>>> a = ml.matrix([[-0.2,0.4,0.8]])
 >>> A = ml.matrix([[-2, 0, 3],[0, -1, 1],[0, -1, -1]])
->>> flag = CheckMERepresentation(a,A)
+>>> flag = CheckMERepresentation(a, A)
 CheckMERepresentation: The dominant eigenvalue of the matrix is not real!
 >>> print(flag)
 False
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
->>> flag = CheckMERepresentation(a,A)
+>>> flag = CheckMERepresentation(a, A)
 >>> print(flag)
 True
 === CheckPHRepresentation ===
 >>> a = ml.matrix([[0.2]])
 >>> A = ml.matrix([[-1, 1],[1, -2]])
->>> flag = CheckPHRepresentation(a,A)
+>>> flag = CheckPHRepresentation(a, A)
 CheckPHRepresentation: The vector and the matrix have different sizes!
 >>> print(flag)
 False
->>> a = ml.matrix([[0.2, 0.7]])
+>>> a = ml.matrix([[0.2,0.7]])
 >>> A = ml.matrix([[-1, 1],[1, -2]])
->>> flag = CheckPHRepresentation(a,A)
+>>> flag = CheckPHRepresentation(a, A)
 >>> print(flag)
 True
 === CheckMEPositiveDensity ===
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
->>> flag = CheckMEPositiveDensity(a,A)
+>>> flag = CheckMEPositiveDensity(a, A)
 >>> print(flag)
 True
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2.9],[0, -2.9, -3]])
->>> flag = CheckMEPositiveDensity(a,A)
+>>> flag = CheckMEPositiveDensity(a, A)
 >>> print(flag)
 False
 === APHFrom3Moments ===
 >>> moms = [10.0, 125.0, 8400.0]
->>> a,A = APHFrom3Moments(moms)
+>>> a, A = APHFrom3Moments(moms)
 >>> print(a)
 [[  1.32117e-05   9.99987e-01   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]]
 >>> print(A)
@@ -104,11 +104,11 @@ False
  [ 0.       0.       0.      -0.50029  0.50029  0.     ]
  [ 0.       0.       0.       0.      -0.50029  0.50029]
  [ 0.       0.       0.       0.       0.      -0.50029]]
->>> phmoms = MomentsFromPH(a,A,3)
+>>> phmoms = MomentsFromPH(a, A, 3)
 >>> print(phmoms)
 [9.9999999999999964, 124.99999999999994, 8400.0000000001164]
 >>> moms = [10.0, 525.0, 31400.0]
->>> a,A = APHFrom3Moments(moms)
+>>> a, A = APHFrom3Moments(moms)
 >>> print(a)
 [[ 0.21179  0.       0.       0.       0.       0.       0.       0.78821]]
 >>> print(A)
@@ -120,82 +120,82 @@ False
  [ 0.       0.       0.       0.       0.      -0.15079  0.15079  0.     ]
  [ 0.       0.       0.       0.       0.       0.      -0.15079  0.15079]
  [ 0.       0.       0.       0.       0.       0.       0.      -5.9502 ]]
->>> phmoms = MomentsFromPH(a,A,3)
+>>> phmoms = MomentsFromPH(a, A, 3)
 CheckMERepresentation warning: There are more than one eigenvalue with the same absolute value as the largest eigenvalue!
 >>> print(phmoms)
 [10.0, 525.0, 31399.999999999993]
 === PH2From3Moments ===
 >>> moms = [10.0, 160.0, 3500.0]
->>> a,A = PH2From3Moments(moms)
+>>> a, A = PH2From3Moments(moms)
 >>> print(a)
 [[ 0.8702  0.1298]]
 >>> print(A)
 [[-0.15576  0.15576]
  [ 0.      -0.22659]]
->>> phmoms = MomentsFromPH(a,A,3)
+>>> phmoms = MomentsFromPH(a, A, 3)
 >>> print(phmoms)
 [10.0, 160.0, 3500.0]
 >>> moms = [10.0, 260.0, 13500.0]
->>> a,A = PH2From3Moments(moms)
+>>> a, A = PH2From3Moments(moms)
 >>> print(a)
 [[ 0.09098  0.90902]]
 >>> print(A)
 [[-0.04195  0.04195]
  [ 0.      -0.12769]]
->>> phmoms = MomentsFromPH(a,A,3)
+>>> phmoms = MomentsFromPH(a, A, 3)
 >>> print(phmoms)
 [10.0, 260.00000000000006, 13500.000000000005]
 === PH3From5Moments ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> moms = MomentsFromPH(a,A)
+>>> moms = MomentsFromPH(a, A)
 >>> print(moms)
 [0.20938722294654497, 0.10448912014333091, 0.089091500391907288, 0.11026674096545433, 0.17953027324720897]
->>> a,A = PH3From5Moments(moms)
+>>> a, A = PH3From5Moments(moms)
 >>> print(a)
 [[ 0.58305  0.32736  0.08959]]
 >>> print(A)
 [[-9.98192  0.       0.     ]
  [ 5.34047 -5.34047  0.     ]
  [ 0.       2.87761 -2.87761]]
->>> phmoms = MomentsFromME(a,A,5)
+>>> phmoms = MomentsFromME(a, A, 5)
 >>> print(phmoms)
 [0.20938722294654719, 0.10448912014333331, 0.089091500391910647, 0.11026674096546003, 0.17953027324722048]
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1, 0, 0],[0, -3, 0.5],[0, -0.5, -3]])
->>> moms = MomentsFromME(a,A)
+>>> moms = MomentsFromME(a, A)
 >>> print(moms)
 [0.44864864864864862, 0.54959824689554426, 1.3298244921327464, 4.9427685241556087, 24.182331446704147]
->>> a,A = PH3From5Moments(moms)
+>>> a, A = PH3From5Moments(moms)
 >>> print(a)
 [[ 0.94865  0.03678  0.01457]]
 >>> print(A)
 [[-3.       0.       0.15385]
  [ 2.86603 -2.86603  0.     ]
  [ 0.       1.13397 -1.13397]]
->>> phmoms = MomentsFromME(a,A,5)
+>>> phmoms = MomentsFromME(a, A, 5)
 >>> print(phmoms)
 [0.44864864864864928, 0.54959824689554582, 1.3298244921327509, 4.9427685241556283, 24.18233144670425]
 === MEFromMoments ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> moms = MomentsFromPH(a,A,5)
+>>> moms = MomentsFromPH(a, A, 5)
 >>> print(moms)
 [0.20938722294654497, 0.10448912014333091, 0.089091500391907288, 0.11026674096545433, 0.17953027324720897]
->>> a,A = MEFromMoments(moms)
+>>> a, A = MEFromMoments(moms)
 >>> print(a)
 [[ 0.33333  0.33333  0.33333]]
 >>> print(A)
 [[ -8.08499  10.17661  -9.99994]
  [ -1.25844  -5.14381   1.78731]
  [ -1.92545   1.95991  -4.9712 ]]
->>> memoms = MomentsFromME(a,A,5)
+>>> memoms = MomentsFromME(a, A, 5)
 >>> print(memoms)
 [0.20938722294654494, 0.10448912014333089, 0.089091500391907275, 0.11026674096545437, 0.1795302732472091]
 === APH2ndMomentLowerBound ===
 >>> mean = 1.9
 >>> n = 4
->>> mom2 = APH2ndMomentLowerBound(mean,n)
+>>> mom2 = APH2ndMomentLowerBound(mean, n)
 >>> print(mom2)
 4.5125
 >>> cv2 = mom2/mean**2-1
@@ -205,89 +205,89 @@ CheckMERepresentation warning: There are more than one eigenvalue with the same 
 >>> mean = 1.9
 >>> mom2 = 5
 >>> n = 3
->>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+>>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n)
 >>> print(mom3lower)
 16.577458090899107
->>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+>>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n)
 >>> print(mom3upper)
 17.081405365964276
 >>> mean = 1.9
 >>> mom2 = 5
 >>> n = 4
->>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+>>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n)
 >>> print(mom3lower)
 16.079377140256387
->>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+>>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n)
 >>> print(mom3upper)
 inf
 === APH3rdMomentUpperBound ===
 >>> mean = 1.9
 >>> mom2 = 5
 >>> n = 3
->>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+>>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n)
 >>> print(mom3lower)
 16.577458090899107
->>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+>>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n)
 >>> print(mom3upper)
 17.081405365964276
 >>> mean = 1.9
 >>> mom2 = 5
 >>> n = 4
->>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+>>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n)
 >>> print(mom3lower)
 16.079377140256387
->>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+>>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n)
 >>> print(mom3upper)
 inf
 === CanonicalFromPH2 ===
->>> a = ml.matrix([[0.12, 0.88]])
+>>> a = ml.matrix([[0.12,0.88]])
 >>> A = ml.matrix([[-1.28, 0],[3.94, -3.94]])
->>> b,B = CanonicalFromPH2(a,A)
+>>> b, B = CanonicalFromPH2(a, A)
 >>> print(b)
 [[ 0.96102  0.03898]]
 >>> print(B)
 [[-1.28  1.28]
  [ 0.   -3.94]]
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 4.86095148111e-15
 === CanonicalFromPH3 ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> b,B = CanonicalFromPH3(a,A)
+>>> b, B = CanonicalFromPH3(a, A)
 >>> print(b)
 [[ 0.58305  0.32736  0.08959]]
 >>> print(B)
 [[-9.98192  0.       0.     ]
  [ 5.34047 -5.34047  0.     ]
  [ 0.       2.87761 -2.87761]]
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 8.94161968959e-14
 === AcyclicPHFromME ===
->>> a = ml.matrix([[-0.4, 1.4, 0.]])
+>>> a = ml.matrix([[-0.4,1.4,0.]])
 >>> A = ml.matrix([[-4., 1., 1.],[0., -2., 1.],[1., 0., -8.]])
->>> b,B = AcyclicPHFromME(a,A)
+>>> b, B = AcyclicPHFromME(a, A)
 >>> print(b)
 [[ 0.55273  0.3741   0.07317]]
 >>> print(B)
 [[-1.91447  1.91447  0.     ]
  [ 0.      -3.88583  3.88583]
  [ 0.       0.      -8.1997 ]]
->>> ma = MomentsFromME(a,A,5)
+>>> ma = MomentsFromME(a, A, 5)
 >>> print(ma)
 [0.64918032786885238, 0.73130878796022558, 1.1825377454500594, 2.5062091064024199, 6.5897616854469261]
->>> mb = MomentsFromME(b,B,5)
+>>> mb = MomentsFromME(b, B, 5)
 >>> print(mb)
 [0.64918032649380331, 0.73130878479925954, 1.182537737569604, 2.5062090835980859, 6.5897616090589066]
 === MonocyclicPHFromME ===
->>> a = ml.matrix([[0.2, 0.3, 0.5]])
+>>> a = ml.matrix([[0.2,0.3,0.5]])
 >>> A = ml.matrix([[-1., 0., 0.],[0., -3., 2.],[0., -2., -3.]])
->>> b,B = MonocyclicPHFromME(a,A)
+>>> b, B = MonocyclicPHFromME(a, A)
 >>> print(b)
 [[ -4.29548e-17   1.00766e-02   1.97990e-02   7.75440e-03   1.09219e-03   4.08516e-05   1.35376e-05   1.12674e-04   3.94857e-04   9.30383e-04   1.80490e-03   3.12084e-03   4.99846e-03   7.57625e-03   1.10104e-02   1.54731e-02   2.11487e-02   2.82283e-02   3.69010e-02   4.73411e-02   5.96923e-02   7.40450e-02   9.04090e-02   1.08677e-01   1.28584e-01   1.49650e-01   1.71125e-01]]
 >>> print(B)
@@ -318,91 +318,91 @@ inf
  [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105   0.     ]
  [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105  17.53105]
  [  0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.        0.      -17.53105]]
->>> ma = MomentsFromME(a,A,5)
+>>> ma = MomentsFromME(a, A, 5)
 >>> print(ma)
 [0.35384615384615381, 0.41893491124260357, 1.1552116522530724, 4.6998354399355771, 23.837756165615836]
->>> mb = MomentsFromME(b,B,5)
+>>> mb = MomentsFromME(b, B, 5)
 >>> print(mb)
 [0.35384615384615531, 0.41893491124260573, 1.155211652253076, 4.699835439935578, 23.83775616561579]
 === PHFromME ===
->>> a = ml.matrix([[-0.4, 1.4]])
+>>> a = ml.matrix([[-0.4,1.4]])
 >>> A = ml.matrix([[-3.8, 2],[2, -9]])
->>> flag = CheckMERepresentation(a,A)
+>>> flag = CheckMERepresentation(a, A)
 >>> print(flag)
 True
->>> flag = CheckPHRepresentation(a,A)
+>>> flag = CheckPHRepresentation(a, A)
 CheckProbVector: The vector has negative element (precision: 1e-12)!
 >>> print(flag)
 False
->>> b,B = PHFromME(a,A)
+>>> b, B = PHFromME(a, A)
 >>> print(b)
 [[ 0.01304  0.98696]]
 >>> print(B)
 [[-3.26046  2.59243]
  [ 0.34843 -9.53954]]
->>> flag = CheckPHRepresentation(b,B)
+>>> flag = CheckPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 1.18018326364e-15
->>> a = ml.matrix([[-0.5, 1.5]])
+>>> a = ml.matrix([[-0.5,1.5]])
 >>> A = ml.matrix([[-3.8, 2],[2, -9]])
->>> flag = CheckMERepresentation(a,A)
+>>> flag = CheckMERepresentation(a, A)
 >>> print(flag)
 True
->>> flag = CheckPHRepresentation(a,A)
+>>> flag = CheckPHRepresentation(a, A)
 CheckProbVector: The vector has negative element (precision: 1e-12)!
 >>> print(flag)
 False
->>> b,B = PHFromME(a,A)
+>>> b, B = PHFromME(a, A)
 >>> print(b)
 [[ 0.0057  0.9943]]
 >>> print(B)
 [[-3.12789  3.06359]
  [ 0.0174  -9.67211]]
->>> flag = CheckPHRepresentation(b,B)
+>>> flag = CheckPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 2.23152066184e-15
 === MEOrder ===
->>> a = ml.matrix([[1./6, 1./6, 1./6, 1./6, 1./6, 1./6]])
+>>> a = ml.matrix([[1.0/6,1.0/6,1.0/6,1.0/6,1.0/6,1.0/6]])
 >>> A = ml.matrix([[-1., 0., 0., 0., 0., 0.],[0.5, -2., 1., 0., 0., 0.],[1., 0., -3., 1., 0., 0.],[1., 0., 1., -4., 1., 0.],[4., 0., 0., 0., -5., 0.],[5., 0., 0., 0., 0., -6.]])
->>> co = MEOrder(a,A,"cont")
+>>> co = MEOrder(a, A, "cont")
 >>> print(co)
 2
->>> oo = MEOrder(a,A,"obs")
+>>> oo = MEOrder(a, A, "obs")
 >>> print(oo)
 6
->>> coo = MEOrder(a,A,"obscont")
+>>> coo = MEOrder(a, A, "obscont")
 >>> print(coo)
 2
->>> mo = MEOrder(a,A,"moment")
+>>> mo = MEOrder(a, A, "moment")
 >>> print(mo)
 2
->>> a = ml.matrix([[2./3, 1./3]])
+>>> a = ml.matrix([[2.0/3,1.0/3]])
 >>> A = ml.matrix([[-1., 1.],[0., -3.]])
->>> co = MEOrder(a,A,"cont")
+>>> co = MEOrder(a, A, "cont")
 >>> print(co)
 2
->>> oo = MEOrder(a,A,"obs")
+>>> oo = MEOrder(a, A, "obs")
 >>> print(oo)
 1
->>> coo = MEOrder(a,A,"obscont")
+>>> coo = MEOrder(a, A, "obscont")
 >>> print(coo)
 1
->>> mo = MEOrder(a,A,"moment")
+>>> mo = MEOrder(a, A, "moment")
 >>> print(mo)
 1
->>> b = ml.matrix([[0.2, 0.3, 0.5]])
+>>> b = ml.matrix([[0.2,0.3,0.5]])
 >>> B = ml.matrix([[-1., 0., 0.],[0., -3., 1.],[0., -1., -3.]])
->>> a,A = MonocyclicPHFromME(b,B)
+>>> a, A = MonocyclicPHFromME(b, B)
 >>> print(a)
 [[ 0.00551  0.00903  0.01694  0.01522  0.00535  0.00874  0.05249  0.22657  0.66016]]
 >>> print(A)
@@ -415,46 +415,46 @@ True
  [ 0.       0.       0.       0.       0.       0.      -4.2414   4.2414   0.     ]
  [ 0.       0.       0.       0.       0.       0.       0.      -4.2414   4.2414 ]
  [ 0.       0.       0.       0.       0.       0.       0.       0.      -4.2414 ]]
->>> co = MEOrder(a,A,"cont")
+>>> co = MEOrder(a, A, "cont")
 >>> print(co)
 9
->>> oo = MEOrder(a,A,"obs")
+>>> oo = MEOrder(a, A, "obs")
 >>> print(oo)
 3
->>> coo = MEOrder(a,A,"obscont")
+>>> coo = MEOrder(a, A, "obscont")
 >>> print(coo)
 3
->>> mo = MEOrder(a,A,"moment")
+>>> mo = MEOrder(a, A, "moment")
 >>> print(mo)
 3
 === MEOrderFromMoments ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2., 0.],[2., -9., 1.],[1., 0., -3.]])
->>> moms = MomentsFromME(a,A)
+>>> moms = MomentsFromME(a, A)
 >>> print(moms)
 [0.20938722294654497, 0.10448912014333091, 0.089091500391907288, 0.11026674096545433, 0.17953027324720897]
 >>> mo = MEOrderFromMoments(moms)
 >>> print(mo)
 3
->>> b = ml.matrix([[0.2, 0.3, 0.5]])
+>>> b = ml.matrix([[0.2,0.3,0.5]])
 >>> B = ml.matrix([[-1., 0., 0.],[0., -3., 2.],[0., -2., -3.]])
->>> a,A = MonocyclicPHFromME(b,B)
->>> moms = MomentsFromME(a,A)
+>>> a, A = MonocyclicPHFromME(b, B)
+>>> moms = MomentsFromME(a, A)
 >>> print(moms)
 [0.35384615384615531, 0.41893491124260573, 1.155211652253076, 4.699835439935578, 23.83775616561579, 143.78185836646887, 1007.8194071104439, 8064.272882521419, 72578.133718784462, 725767.95874615829, 7983382.3513983944, 95800362.980475202, 1245404149.6660547, 17435657571.499924, 261534869138.85153, 4184557956997.604, 71137485550890.109, 1280474741063026.2, 24329020082838864.0, 4.8658040164763066e+17, 1.021818843442624e+19, 2.248001455559353e+20, 5.17040334777797e+21, 1.2408968034663769e+23, 3.1022420086659455e+24, 8.065829222531619e+25, 2.1777738900835537e+27, 6.0977668922339555e+28, 1.7683523987478442e+30, 5.305057196243521e+31, 1.6445677308354878e+33, 5.262616738673549e+34, 1.7366635237622677e+36, 5.904655980791697e+37, 2.066629593277089e+39, 7.439866535797508e+40, 2.752750618245071e+42, 1.0460452349331244e+44, 4.0795764162391765e+45, 1.6318305664956671e+47, 6.690505322632222e+48, 2.810012235505527e+50, 1.2083052612673737e+52, 5.316543149576433e+53, 2.392444417309389e+55, 1.1005244319623167e+57, 5.172464830222877e+58, 2.4827831185069758e+60, 1.2165637280684155e+62, 6.082818640342062e+63, 3.1022375065744455e+65, 1.613163503418708e+67, 8.549766568119135e+68]
 >>> mo = MEOrderFromMoments(moms)
 >>> print(mo)
 3
 === MinimalRepFromME ===
->>> a = ml.matrix([[1./6, 1./6, 1./6, 1./6, 1./6, 1./6]])
+>>> a = ml.matrix([[1.0/6,1.0/6,1.0/6,1.0/6,1.0/6,1.0/6]])
 >>> A = ml.matrix([[-1., 0., 0., 0., 0., 0.],[0.5, -2., 1., 0., 0., 0.],[1., 0., -3., 1., 0., 0.],[1., 0., 1., -4., 1., 0.],[4., 0., 0., 0., -5., 0.],[5., 0., 0., 0., 0., -6.]])
->>> b,B = MinimalRepFromME(a,A,"cont")
+>>> b, B = MinimalRepFromME(a, A, "cont")
 >>> print(b)
 [[  1.00000e+00   2.08167e-16]]
 >>> print(B)
 [[-1.40115  0.48448]
  [ 0.49585 -1.59885]]
->>> b,B = MinimalRepFromME(a,A,"obs")
+>>> b, B = MinimalRepFromME(a, A, "obs")
 >>> print(b)
 [[ 0.16667  0.16667  0.16667  0.16667  0.16667  0.16667]]
 >>> print(B)
@@ -464,44 +464,44 @@ True
  [ 1.   0.   1.  -4.   1.   0. ]
  [ 4.   0.   0.   0.  -5.   0. ]
  [ 5.   0.   0.   0.   0.  -6. ]]
->>> b,B = MinimalRepFromME(a,A,"obscont")
+>>> b, B = MinimalRepFromME(a, A, "obscont")
 >>> print(b)
 [[  1.00000e+00   2.08167e-16]]
 >>> print(B)
 [[-1.40115  0.48448]
  [ 0.49585 -1.59885]]
->>> b,B = MinimalRepFromME(a,A,"moment")
+>>> b, B = MinimalRepFromME(a, A, "moment")
 >>> print(b)
 [[ 0.5  0.5]]
 >>> print(B)
 [[-2.52     1.64667]
  [-0.48    -0.48   ]]
->>> a = ml.matrix([[2./3, 1./3]])
+>>> a = ml.matrix([[2.0/3,1.0/3]])
 >>> A = ml.matrix([[-1., 1.],[0., -3.]])
->>> b,B = MinimalRepFromME(a,A,"cont")
+>>> b, B = MinimalRepFromME(a, A, "cont")
 >>> print(b)
 [[ 0.66667  0.33333]]
 >>> print(B)
 [[-1.  1.]
  [ 0. -3.]]
->>> b,B = MinimalRepFromME(a,A,"obs")
+>>> b, B = MinimalRepFromME(a, A, "obs")
 >>> print(b)
 [[ 1.]]
 >>> print(B)
 [[-1.]]
->>> b,B = MinimalRepFromME(a,A,"obscont")
+>>> b, B = MinimalRepFromME(a, A, "obscont")
 >>> print(b)
 [[ 1.]]
 >>> print(B)
 [[-1.]]
->>> b,B = MinimalRepFromME(a,A,"moment")
+>>> b, B = MinimalRepFromME(a, A, "moment")
 >>> print(b)
 [[ 1.]]
 >>> print(B)
 [[-1.]]
->>> b = ml.matrix([[0.2, 0.3, 0.5]])
+>>> b = ml.matrix([[0.2,0.3,0.5]])
 >>> B = ml.matrix([[-1., 0., 0.],[0., -3., 1.],[0., -1., -3.]])
->>> a,A = MonocyclicPHFromME(b,B)
+>>> a, A = MonocyclicPHFromME(b, B)
 >>> print(a)
 [[ 0.00551  0.00903  0.01694  0.01522  0.00535  0.00874  0.05249  0.22657  0.66016]]
 >>> print(A)
@@ -514,7 +514,7 @@ True
  [ 0.       0.       0.       0.       0.       0.      -4.2414   4.2414   0.     ]
  [ 0.       0.       0.       0.       0.       0.       0.      -4.2414   4.2414 ]
  [ 0.       0.       0.       0.       0.       0.       0.       0.      -4.2414 ]]
->>> b,B = MinimalRepFromME(a,A,"cont")
+>>> b, B = MinimalRepFromME(a, A, "cont")
 >>> print(b)
 [[ 0.00551  0.00903  0.01694  0.01522  0.00535  0.00874  0.05249  0.22657  0.66016]]
 >>> print(B)
@@ -527,46 +527,49 @@ True
  [ 0.       0.       0.       0.       0.       0.      -4.2414   4.2414   0.     ]
  [ 0.       0.       0.       0.       0.       0.       0.      -4.2414   4.2414 ]
  [ 0.       0.       0.       0.       0.       0.       0.       0.      -4.2414 ]]
->>> b,B = MinimalRepFromME(a,A,"obs")
+>>> b, B = MinimalRepFromME(a, A, "obs")
 >>> print(b)
 [[  1.00000e+00   6.93889e-18   5.55112e-17]]
 >>> print(B)
 [[ -2.83622e+00   3.62221e-02  -2.22045e-16]
  [ -1.66096e+01  -3.33690e+00   1.60422e+01]
  [  1.16435e+00  -5.17236e-02  -8.26876e-01]]
->>> Cm = SimilarityMatrix(B,A)
+>>> Cm = SimilarityMatrix(B, A)
 >>> err1 = la.norm(B*Cm-Cm*A)
 >>> err2 = la.norm(b*Cm-a)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 7.41724165831e-15
->>> b,B = MinimalRepFromME(a,A,"obscont")
+>>> b, B = MinimalRepFromME(a, A, "obscont")
 >>> print(b)
 [[  1.00000e+00   6.93889e-18   5.55112e-17]]
 >>> print(B)
 [[ -2.83622e+00   3.62221e-02  -2.22045e-16]
  [ -1.66096e+01  -3.33690e+00   1.60422e+01]
  [  1.16435e+00  -5.17236e-02  -8.26876e-01]]
->>> Cm = SimilarityMatrix(B,A)
+>>> Cm = SimilarityMatrix(B, A)
 >>> err1 = la.norm(B*Cm-Cm*A)
 >>> err2 = la.norm(b*Cm-a)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 7.41724165831e-15
->>> b,B = MinimalRepFromME(a,A,"moment")
+>>> b, B = MinimalRepFromME(a, A, "moment")
 >>> print(b)
 [[ 0.33333  0.33333  0.33333]]
 >>> print(B)
 [[-2.19048  1.92219 -3.36981]
  [-1.07693 -2.3906   0.83162]
  [-0.51037  0.8033  -2.41893]]
->>> Cm = SimilarityMatrix(B,A)
+>>> Cm = SimilarityMatrix(B, A)
 >>> err1 = la.norm(B*Cm-Cm*A)
 >>> err2 = la.norm(b*Cm-a)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 2.3964518895e-15
 === SamplesFromPH ===
->>> a = ml.matrix([[0.1, 0.9, 0]])
+>>> a = ml.matrix([[0.1,0.9,0]])
 >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
->>> x = SamplesFromPH(a,A,1000)
->>> mp = MomentsFromPH(a,A,3)
+>>> x = SamplesFromPH(a, A, 1000)
+>>> mt = MarginalMomentsFromTrace(x, 3)
+>>> print(mt)
+[0.21509604778795494, 0.11170343335004232, 0.099402940114649896]
+>>> mp = MomentsFromPH(a, A, 3)
 >>> print(mp)
 [0.20938722294654497, 0.10448912014333091, 0.089091500391907288]

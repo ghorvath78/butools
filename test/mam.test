@@ -1,0 +1,160 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
+package MAM
+
+test QBDFundamentalMatrices
+
+inputmsg
+defmat@ B # {{0., 0.},{3., 4.}}
+defmat@ L # {{-6.,5.},{3.,-12.}} 
+defmat@ F # {{1.,0.},{2.,0.}} 
+defmat@ L0 # {{-6.,5.},{6.,-8.}} 
+testmsg
+code!@ {R, G, U} = QBDFundamentalMatrices[B,L,F,"RGU"]
+assert CheckGenerator[U,True] # "QBDFundamentalMatrices: matrix U is not a transient generator!"
+assert AllLessThan1[Abs[Eigenvalues[R]]] # "QBDFundamentalMatrices: the eigenvalues of matrix R are not inside the unit disc!"
+assert CheckProbMatrix[G] # "QBDFundamentalMatrices: matrix G is not a transition prob. matrix!"
+
+test QBDSolve
+
+inputmsg
+defmat@ B # {{0., 0.},{3., 4.}}
+defmat@ L # {{-6.,5.},{3.,-12.}} 
+defmat@ F # {{1.,0.},{2.,0.}} 
+defmat@ L0 # {{-6.,5.},{6.,-8.}} 
+testmsg
+code!@ {pi0, R} = QBDSolve[B, L, F, L0]
+assert CheckGenerator[U,True] # "QBDFundamentalMatrices: matrix U is not a transient generator!"
+assert Sum[pi0]>0 && Sum[pi0]<=1 && AllNonNegative[pi0] # "QBDSolve: wrong pi0 vector!"
+assert AllLessThan1[Abs[Eigenvalues[R]]] # "QBDSolve: the eigenvalues of matrix R are not inside the unit disc!"
+
+test QBDStationaryDistr
+
+inputmsg
+defmat@ B # {{0., 0.},{3., 4.}}
+defmat@ L # {{-6.,5.},{3.,-12.}} 
+defmat@ F # {{1.,0.},{2.,0.}} 
+defmat@ L0 # {{-6.,5.},{6.,-8.}} 
+testmsg
+code!@ pi = QBDStationaryDistr[pi0, R, 5]
+assert CheckGenerator[U,True] # "QBDFundamentalMatrices: matrix U is not a transient generator!"
+assert Sum[pi]>0 && Sum[pi]<=1 && AllNonNegative[pi0] # "QBDStationaryDistr: wrong pi vector!"
+
+test MG1FundamentalMatrix
+
+inputmsg
+defmat@ A0 # {{0.4, 0.2},{0.3, 0.4}}
+defmat@ A1 # {{0., 0.1},{0., 0.}} 
+defmat@ A2 # {{0., 0.2},{0., 0.2}} 
+defmat@ A3 # {{0.1, 0.},{0.1, 0.}} 
+code! A = <-A0,A1,A2,A3->
+testmsg
+code!@ G = MG1FundamentalMatrix[A]
+assert CheckProbMatrix[G] # "MG1FundamentalMatrix: matrix G is not a transition prob. matrix!"
+
+test MG1StationaryDistr
+
+inputmsg
+defmat@ B0 # {{0.1, 0.5},{0.3, 0.4}}
+defmat@ B1 # {{0., 0.1},{0., 0.}} 
+defmat@ B2 # {{0.2, 0.},{0., 0.2}} 
+defmat@ B3 # {{0., 0.1},{0.1, 0.}} 
+defmat@ A0 # {{0.4, 0.2},{0.3, 0.4}}
+defmat@ A1 # {{0., 0.1},{0., 0.}} 
+defmat@ A2 # {{0., 0.2},{0., 0.2}} 
+defmat@ A3 # {{0.1, 0.},{0.1, 0.}} 
+code! B = <-B0,B1,B2,B3->
+code! A = <-A0,A1,A2,A3->
+testmsg
+code!@ G = MG1FundamentalMatrix[A]
+code! pi = MG1StationaryDistr[A,B,G,300]
+assert CheckProbMatrix[G] # "MG1StationaryDistr: matrix G is not a transition prob. matrix!"
+assert Sum[pi]>0 && Sum[pi]<=1 && AllNonNegative[pi] # "MG1StationaryDistr: wrong pi vector!"
+
+test GM1FundamentalMatrix
+
+inputmsg
+defmat@ A0 # {{0.1, 0.},{0., 0.1}}
+defmat@ A1 # {{0., 0.2},{0., 0.2}} 
+defmat@ A2 # {{0., 0.1},{0., 0.}} 
+defmat@ A3 # {{0.3, 0.2},{0.3, 0.2}} 
+defmat@ A4 # {{0., 0.1},{0.2, 0.}} 
+code! A = <-A0,A1,A2,A3,A4->
+testmsg
+code!@ R = GM1FundamentalMatrix[A]
+assert AllLessThan1[Abs[Eigenvalues[R]]] # "GM1FundamentalMatrix: the eigenvalues of matrix R are not inside the unit disc!"
+
+test GM1StationaryDistr
+
+inputmsg
+defmat@ B0 # {{0.7, 0.2},{0.3, 0.6}}
+defmat@ B1 # {{0.3, 0.4},{0.5, 0.2}} 
+defmat@ B2 # {{0.2, 0.4},{0.1, 0.6}} 
+defmat@ B3 # {{0., 0.1},{0.2, 0.}} 
+defmat@ A0 # {{0.1, 0.},{0., 0.1}}
+defmat@ A1 # {{0., 0.2},{0., 0.2}} 
+defmat@ A2 # {{0., 0.1},{0., 0.}} 
+defmat@ A3 # {{0.3, 0.2},{0.3, 0.2}} 
+defmat@ A4 # {{0., 0.1},{0.2, 0.}} 
+code! B = <-B0,B1,B2,B3->
+code! A = <-A0,A1,A2,A3,A4->
+testmsg
+code!@ R = GM1FundamentalMatrix[A]
+code! pi = GM1StationaryDistr[B,R,300]
+assert AllLessThan1[Abs[Eigenvalues[R]]] # "GM1StationaryDistr: the eigenvalues of matrix R are not inside the unit disc!"
+assert Sum[pi]>0 && Sum[pi]<=1 && AllNonNegative[pi] # "GM1StationaryDistr: wrong pi vector!"
+
+test FluidFundamentalMatrices
+
+inputmsg
+defmat@ Fpp # {{-5., 1.},{2., -3.}}
+defmat@ Fpm # {{2., 1., 1.},{1., 0., 0.}}
+defmat@ Fmm # {{-8., 4., 1.},{2., -12., 3.},{2., 0., -2.}}
+defmat@ Fmp # {{3., 0.},{2., 5.},{0., 0.}}
+testmsg
+code!@ {Psi, K, U} = FluidFundamentalMatrices [Fpp, Fpm, Fmp, Fmm, "PKU"]
+assert CheckGenerator[U] # "FluidFundamentalMatrices: matrix U is not a generator!"
+assert AllNegative[Eigenvalues[K]] # "FluidFundamentalMatrices: the eigenvalues of matrix K are not negative!"
+assert AllNonNegativeMatrix[Psi] && AllNotGreaterThan1Matrix[Psi] && Norm[RowSum[Psi]-1]<10^-14 # "FluidFundamentalMatrices: matrix Psi is not a transition prob. matrix!"
+
+test FluidSolve
+
+inputmsg
+defmat@ Fpp # {{-5., 1.},{2., -3.}}
+defmat@ Fpm # {{2., 1., 1.},{1., 0., 0.}}
+defmat@ Fmm # {{-8., 4., 1.},{2., -12., 3.},{2., 0., -2.}}
+defmat@ Fmp # {{3., 0.},{2., 5.},{0., 0.}}
+defvar@ x # 0.7
+testmsg
+code!@ {mass0, ini, K, clo} = FluidSolve [Fpp, Fpm, Fmp, Fmm]
+code!@ pdfAtX = ini.ExpMat[K*x].clo
+assert AllNegative[Eigenvalues[K]] # "FluidSolve: the eigenvalues of matrix K are not negative!"
+assert Abs[1.-Sum[mass0]-Sum[ini.Inv[-K].clo]]<10^-14 # "FluidSolve: the integral of the fluid density in not one!"
+
+test GeneralFluidSolve
+
+inputmsg
+defmat@ Q # {{-6., 1., 3., 2., 0., 0.},{6.,-10., 2., 0., 2., 0.},{3., 7.,-12., 0., 0., 2.},{5., 0., 0.,-9., 1., 3.},{0., 5., 0., 6.,-13., 2.},{0., 0., 5., 3., 7.,-15.}}
+defmat@ R # {{2.,0.,0.,0.,0.,0.},{0.,-4.,0.,0.,0.,0.},{0.,0.,-12.,0.,0.,0.},{0.,0.,0.,6.,0.,0.},{0.,0.,0.,0.,0.,0.},{0.,0.,0.,0.,0.,-8.}}
+defvar@ x # 0.7
+testmsg
+code!@ {mass0, ini, K, clo} = GeneralFluidSolve [Q, R]
+code!@ pdfAtX = ini.ExpMat[K*x].clo
+assert AllNegative[Eigenvalues[K]] # "GeneralFluidSolve: the eigenvalues of matrix K are not negative!"
+assert Abs[1.-Sum[mass0]-Sum[ini.Inv[-K].clo]]<10^-14 # "GeneralFluidSolve: the integral of the fluid density in not one!"
+
+test FluidStationaryDistr
+
+inputmsg
+defmat@ Q # {{-6., 1., 3., 2., 0., 0.},{6.,-10., 2., 0., 2., 0.},{3., 7.,-12., 0., 0., 2.},{5., 0., 0.,-9., 1., 3.},{0., 5., 0., 6.,-13., 2.},{0., 0., 5., 3., 7.,-15.}}
+defmat@ R # {{2.,0.,0.,0.,0.,0.},{0.,-4.,0.,0.,0.,0.},{0.,0.,-12.,0.,0.,0.},{0.,0.,0.,6.,0.,0.},{0.,0.,0.,0.,0.,0.},{0.,0.,0.,0.,0.,-8.}}
+defrange@ x # 0. # 30. # 1.
+testmsg
+code!@ {mass0, ini, K, clo} = GeneralFluidSolve [Q, R]
+code!@ y = FluidStationaryDistr [mass0, ini, K, clo, x]
+code$ pi = CTMCSolve[Q]
+assert Norm[y[[-0,;;]]-pi]<1e-5 # "FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!"
+

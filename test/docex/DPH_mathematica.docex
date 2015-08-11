@@ -1,120 +1,116 @@
-=== MomentsFromMG ===
->>> a = {-0.6, 0.3, 1.3};
+"=== MomentsFromMG ==="
+>>> a = {-0.6,0.3,1.3};
 >>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
->>> moms = MomentsFromMG[a,A];
+>>> moms = MomentsFromMG[a, A];
 >>> Print[moms];
 {3.467473524962178, 16.2025761585682, 97.7286502495287, 731.4453438525275, 6576.785916679157}
->>> moms = MomentsFromMG[a,A,3];
+>>> moms = MomentsFromMG[a, A, 3];
 >>> Print[moms];
 {3.467473524962178, 16.2025761585682, 97.7286502495287}
-=== MomentsFromDPH ===
->>> a = {0.76, 0, 0.24};
+"=== MomentsFromDPH ==="
+>>> a = {0.76,0,0.24};
 >>> A = {{0.34, 0.66, 0},{0.79, 0.05, 0.07},{0.26, 0.73, 0.01}};
->>> moms = MomentsFromDPH[a,A,5];
+>>> moms = MomentsFromDPH[a, A, 5];
 >>> Print[moms];
 {26.995340611502304, 1397.9993695881547, 108525.47866809377, 1.1232963460675944*^7, 1.4533393399621515*^9}
-=== PmfFromMG ===
->>> a = {-0.6, 0.3, 1.3};
+"=== PmfFromMG ==="
+>>> a = {-0.6,0.3,1.3};
 >>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
->>> x = Range[0,100,1];
->>> pmf = PmfFromMG[a,A,x];
->>> ListLinePlot[Transpose[{x, pmf}]]
-=== PmfFromDPH ===
->>> a = {0.76, 0, 0.24};
+>>> x = Range[0.0,100.0,1.0];
+>>> pmf = PmfFromMG[a, A, x];
+>>> ListLinePlot[{Transpose[{x, pmf}]}]
+"=== PmfFromDPH ==="
+>>> a = {0.76,0,0.24};
 >>> A = {{0.34, 0.66, 0},{0.79, 0.05, 0.07},{0.26, 0.73, 0.01}};
->>> x = Range[0,1000,1];
->>> pmf = PmfFromDPH[a,A,x];
->>> ListLinePlot[Transpose[{x, pmf}]]
-=== CdfFromMG ===
->>> a = {-0.6, 0.3, 1.3};
+>>> x = Range[0.0,1000.0,1.0];
+>>> pmf = PmfFromDPH[a, A, x];
+>>> ListLinePlot[{Transpose[{x, pmf}]}]
+"=== CdfFromMG ==="
+>>> a = {-0.6,0.3,1.3};
 >>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
->>> x = Range[0,100,1];
->>> cdf = CdfFromMG[a,A,x];
->>> ListLinePlot[Transpose[{x, cdf}]]
-=== CdfFromDPH ===
->>> a = {0.76, 0, 0.24};
+>>> x = Range[0.0,100.0,1.0];
+>>> cdf = CdfFromMG[a, A, x];
+>>> ListLinePlot[{Transpose[{x, cdf}]}]
+"=== CdfFromDPH ==="
+>>> a = {0.76,0,0.24};
 >>> A = {{0.34, 0.66, 0},{0.79, 0.05, 0.07},{0.26, 0.73, 0.01}};
->>> x = Range[0,1000,1];
->>> cdf = CdfFromDPH[a,A,x];
->>> ListLinePlot[Transpose[{x, cdf}]]
-=== RandomDPH ===
->>> {a,A} = RandomDPH[3,10,5];
-"CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-"CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-"CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-"CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
+>>> x = Range[0.0,1000.0,1.0];
+>>> cdf = CdfFromDPH[a, A, x];
+>>> ListLinePlot[{Transpose[{x, cdf}]}]
+"=== RandomDPH ==="
+>>> {a, A} = RandomDPH[3, 10, 5];
 "CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
 >>> Print[a];
-{0, 1, 0}
+{0, 0, 1}
 >>> Print[A];
-{{0.9978146840537366, 0., 0.0018115430265152948},
- {0.0002596368902400116, 0.8783862382976336, 0.005417700244985481},
- {0., 0.07246410696945481, 0.9001849760112214}}
-=== CheckMGRepresentation ===
->>> a = {-0.6, 0.3, 1.3};
+{{0.8271227985086882, 0.06664258193377719, 0.},
+ {0., 0.9130962745792692, 0.},
+ {0.05885243293901752, 0.02706649617956366, 0.8087057205828357}}
+"=== CheckMGRepresentation ==="
+>>> a = {-0.6,0.3,1.3};
 >>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
->>> flag = CheckMGRepresentation[a,A];
+>>> flag = CheckMGRepresentation[a, A];
 >>> Print[flag];
 True
->>> a = {-0.6, 0.3, 1.3};
+>>> a = {-0.6,0.3,1.3};
 >>> A = {{0.35, 0.2, -0.25},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
->>> flag = CheckMGRepresentation[a,A];
+>>> flag = CheckMGRepresentation[a, A];
 "CheckMGRepresentation: The largest eigenvalue of the matrix is complex!"
 >>> Print[flag];
 False
-=== CheckDPHRepresentation ===
->>> a = {0.48, 0.08, 0.26, 0.18};
+"=== CheckDPHRepresentation ==="
+>>> a = {0.48,0.08,0.26,0.18};
 >>> A = {{0, 0.08, 0.08, 0.8},{0.55, 0, 0.24, 0.19},{0.06, 0.03, 0, 0.001},{0.23, 0.005, 0.2, 0.53}};
->>> flag = CheckDPHRepresentation[a,A];
+>>> flag = CheckDPHRepresentation[a, A];
 >>> Print[flag];
 True
->>> a = {0.48, 0.08};
+>>> a = {0.48,0.08};
 >>> A = {{0, 0.08},{0.55, 0.5}};
->>> flag = CheckDPHRepresentation[a,A];
+>>> flag = CheckDPHRepresentation[a, A];
 "CheckProbMatrix: A rowsum of the transient matrix is not less or equal than 1!"
 >>> Print[flag];
 False
-=== MGFromMoments ===
+"=== MGFromMoments ==="
 >>> moms = {4.08, 20.41, 130.45, 1054.41, 10463.73};
->>> {a,A} = MGFromMoments[moms];
+>>> {a, A} = MGFromMoments[moms];
 >>> Print[a];
 {1/3, 1/3, 1/3}
 >>> Print[A];
 {{0.15522721633282086, 1.7288735256877237, 0.10482133882430097},
  {-0.013773788451490479, 0.6823009288291466, -0.02347241196722473},
  {-0.013846712675345957, -0.1678656131152182, 0.8268849851301606}}
->>> memoms = MomentsFromMG[a,A,5];
+>>> memoms = MomentsFromMG[a, A, 5];
 >>> Print[memoms];
 {4.080000000000002, 20.41000000000002, 130.4500000000002, 1054.4100000000037, 10463.730000000038}
-=== DPHFromMG ===
->>> a = {-0.6, 0.3, 1.3};
+"=== DPHFromMG ==="
+>>> a = {-0.6,0.3,1.3};
 >>> A = {{0.1, 0.2, 0},{0.3, 0.1, 0.25},{-0.3, 0.2, 0.77}};
->>> flag = CheckMGRepresentation[a,A];
+>>> flag = CheckMGRepresentation[a, A];
 >>> Print[flag];
 True
->>> flag = CheckDPHRepresentation[a,A];
+>>> flag = CheckDPHRepresentation[a, A];
 "CheckProbVector: The vector has negative element!"
 >>> Print[flag];
 False
->>> {b,B} = DPHFromMG[a,A];
+>>> {b, B} = DPHFromMG[a, A];
 >>> Print[b];
 {0.050000000000000044, 0.13749999999999998, 0.8125}
 >>> Print[B];
 {{0.1, 0.2, 0.},
  {0.425, 0.06875, 0.15625},
  {0.14100000000000007, 0.019750000000000018, 0.8012500000000001}}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 4.783309287441108*^-16
-=== CanonicalFromDPH2 ===
->>> a = {0, 1.0};
+"=== CanonicalFromDPH2 ==="
+>>> a = {0,1.0};
 >>> A = {{0.23, 0.22},{0.41, 0.48}};
->>> {b,B} = CanonicalFromDPH2[a,A];
+>>> {b, B} = CanonicalFromDPH2[a, A];
 >>> Print[b];
 {0.8866338818412278, 0.1133661181587723}
 >>> Print[B];
@@ -123,15 +119,15 @@ True
 >>> ev = Eigenvalues[A];
 >>> Print[ev];
 {0.6803075467922624, 0.029692453207737557}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> a = {1.0, 0};
+>>> a = {1.0,0};
 >>> A = {{0, 0.61},{0.56, 0.44}};
->>> {b,B} = CanonicalFromDPH2[a,A];
+>>> {b, B} = CanonicalFromDPH2[a, A];
 >>> Print[b];
 {-5.083438757441196*^-16, 1.0000000000000002}
 >>> Print[B];
@@ -140,18 +136,18 @@ True
 >>> ev = Eigenvalues[A];
 >>> Print[ev];
 {0.8444997998398399, -0.4044997998398398}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 1.059520934796808*^-15
-=== CanonicalFromDPH3 ===
->>> a = {0.46, 0.22, 0.32};
+"=== CanonicalFromDPH3 ==="
+>>> a = {0.46,0.22,0.32};
 >>> A = {{0.67, 0.01, 0.12},{0.06, 0.45, 0.15},{0.18, 0.43, 0.32}};
->>> {b,B} = CanonicalFromDPH3[a,A];
+>>> {b, B} = CanonicalFromDPH3[a, A];
 "Ordered eigenvalues:"{0.7873547321736094, 0.5434626842444661, 0.10918258358192479}
 >>> Print[b];
 {0.21238920177384485, 0.370041407573567, 0.4175693906525873}
@@ -162,17 +158,17 @@ True
 >>> ev = Eigenvalues[A];
 >>> Print[ev];
 {0.7873547321736094, 0.5434626842444661, 0.10918258358192479}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 7.120207898733961*^-13
->>> a = {0.76, 0.12, 0.12};
+>>> a = {0.76,0.12,0.12};
 >>> A = {{0.31, 0., 0.},{0.98, 0., 0.02},{0.88, 0.04, 0.08}};
->>> {b,B} = CanonicalFromDPH3[a,A];
+>>> {b, B} = CanonicalFromDPH3[a, A];
 "Ordered eigenvalues:"{0.31, 0.08898979485566356, -0.008989794855663561}
 >>> Print[b];
 {0.1307441253263709, 0.3443994778067885, 0.5248563968668407}
@@ -183,17 +179,17 @@ True
 >>> ev = Eigenvalues[A];
 >>> Print[ev];
 {0.31, 0.08898979485566356, -0.008989794855663561}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 3.1947282120298554*^-16
->>> a = {0.67, 0.07, 0.26};
+>>> a = {0.67,0.07,0.26};
 >>> A = {{0.31, 0., 0.},{0.98, 0., 0.02},{0.88, 0.04, 0.08}};
->>> {b,B} = CanonicalFromDPH3[a,A];
+>>> {b, B} = CanonicalFromDPH3[a, A];
 "Ordered eigenvalues:"{0.31, 0.08898979485566356, -0.008989794855663561}
 >>> Print[b];
 {0.15814295039164505, 0.37915469973890337, 0.4627023498694517}
@@ -204,17 +200,17 @@ True
 >>> ev = Eigenvalues[A];
 >>> Print[ev];
 {0.31, 0.08898979485566356, -0.008989794855663561}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 3.1947282120298554*^-16
->>> a = {0.78, 0.04, 0.18};
+>>> a = {0.78,0.04,0.18};
 >>> A = {{0.06, 0.25, 0.31},{0.45, 0.18, 0.33},{0.98, 0, 0.01}};
->>> {b,B} = CanonicalFromDPH3[a,A];
+>>> {b, B} = CanonicalFromDPH3[a, A];
 "Ordered eigenvalues:"{0.796056610376283, -0.4802781088170063, -0.06577850155927611}
 >>> Print[b];
 {0.43827798515000665, 0.23848876926567492, 0.32323324558431843}
@@ -225,60 +221,60 @@ True
 >>> ev = Eigenvalues[A];
 >>> Print[ev];
 {0.796056610376283, -0.4802781088170063, -0.06577850155927611}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 1.7503626354362157*^-15
-=== AcyclicDPHFromMG ===
->>> a = {0, 0, 1.0};
+"=== AcyclicDPHFromMG ==="
+>>> a = {0,0,1.0};
 >>> A = {{0.22, 0, 0},{0.3, 0.1, 0.55},{0.26, 0, 0.73}};
->>> {b,B} = AcyclicDPHFromMG[a,A];
+>>> {b, B} = AcyclicDPHFromMG[a, A];
 >>> Print[b];
 {0.691025641025641, 0.2978632478632479, 0.011111111111111127}
 >>> Print[B];
 {{0.73, 0.27, 0.},
  {0., 0.22, 0.78},
  {0., 0., 0.1}}
->>> ma = MomentsFromMG[a,A,5];
+>>> ma = MomentsFromMG[a, A, 5];
 >>> Print[ma];
 {4.93827160493827, 34.80707678238542, 339.49243437478106, 4335.792870444855, 68954.07073262692}
->>> mb = MomentsFromMG[b,B,5];
+>>> mb = MomentsFromMG[b, B, 5];
 >>> Print[mb];
 {4.93827160493827, 34.807076782385415, 339.492434374781, 4335.792870444855, 68954.07073262692}
->>> flag = CheckDPHRepresentation[b,B];
+>>> flag = CheckDPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 3.723687702222371*^-16
-=== DPH2From3Moments ===
->>> a = {0.9, 0.1};
+"=== DPH2From3Moments ==="
+>>> a = {0.9,0.1};
 >>> A = {{0.2, 0.61},{0.58, 0.41}};
->>> moms = MomentsFromDPH[a,A];
+>>> moms = MomentsFromDPH[a, A];
 >>> Print[moms];
 {10.304568527918775, 215.1328300136563, 6764.166152521255}
->>> {b,B} = DPH2From3Moments[moms];
+>>> {b, B} = DPH2From3Moments[moms];
 >>> Print[b];
 {0.43248730964467125, 0.5675126903553286}
 >>> Print[B];
 {{0.6100000000000014, 0.38999999999999857},
  {0.6969230769230763, 0}}
->>> phmoms = MomentsFromDPH[b,B,3];
+>>> phmoms = MomentsFromDPH[b, B, 3];
 >>> Print[phmoms];
 {10.304568527918788, 215.13283001365693, 6764.166152521286}
-=== DPH3From5Moments ===
->>> a = {0.7, 0.1, 0.2};
+"=== DPH3From5Moments ==="
+>>> a = {0.7,0.1,0.2};
 >>> A = {{0.2, 0.51, 0.1},{0.58, 0.41, 0},{0.1, 0.4, 0.3}};
->>> moms = MomentsFromDPH[a,A];
+>>> moms = MomentsFromDPH[a, A];
 >>> Print[moms];
 {9.3096349745331, 175.10327171027384, 4968.663522150066, 188050.43861214988, 8.896632715174045*^6}
->>> {b,B} = DPH3From5Moments[moms];
+>>> {b, B} = DPH3From5Moments[moms];
 "Ordered eigenvalues:"{0.8997069306212445, 0.22894830561223567, -0.21865523626858424}
 >>> Print[b];
 {0.7398925149830309, 0.07683743218204545, 0.18327005283492365}
@@ -286,13 +282,16 @@ True
 {{0.8997069306212445, 0.10029306937875548, 0},
  {0, 0.010293069343651429, 0.9897069306563486},
  {0, 0.05058138354526465, 0}}
->>> phmoms = MomentsFromMG[b,B,5];
+>>> phmoms = MomentsFromMG[b, B, 5];
 >>> Print[phmoms];
 {9.309634974533111, 175.10327171027419, 4968.66352215008, 188050.43861215067, 8.89663271517409*^6}
-=== SamplesFromDPH ===
->>> a = {0.76, 0, 0.24};
+"=== SamplesFromDPH ==="
+>>> a = {0.76,0,0.24};
 >>> A = {{0.34, 0.66, 0},{0.79, 0.05, 0.07},{0.26, 0.73, 0.01}};
->>> x = SamplesFromDPH[a,A,1000];
->>> mp = MomentsFromDPH[a,A,3];
+>>> x = SamplesFromDPH[a, A, 1000];
+>>> mt = MarginalMomentsFromTrace[x, 3];
+>>> Print[mt];
+{27427/1000, 1418939/1000, 111151657/1000}
+>>> mp = MomentsFromDPH[a, A, 3];
 >>> Print[mp];
 {26.995340611502304, 1397.9993695881547, 108525.47866809377}

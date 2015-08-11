@@ -1,0 +1,86 @@
+=== CdfFromTrace ===
+>>> D0 = [-18., 1., 4.; 2., -18., 7.; 1., 3., -32.];
+>>> D1 = [12., 1., 0.; 1., 8., 0.; 2., 1., 25.];
+>>> tr = SamplesFromMAP(D0, D1, 1000000);
+>>> [x, y] = CdfFromTrace(tr);
+>>> plot(x, y)
+=== PdfFromTrace ===
+>>> D0 = [-18., 1., 4.; 2., -18., 7.; 1., 3., -32.];
+>>> D1 = [12., 1., 0.; 1., 8., 0.; 2., 1., 25.];
+>>> x = (0.0:0.01:0.5);
+>>> tr = SamplesFromMAP(D0, D1, 1000000);
+>>> [x, y] = PdfFromTrace(tr, x);
+>>> [a, A] = MarginalDistributionFromMAP(D0, D1);
+>>> [xm, ym] = IntervalPdfFromPH(a, A, x);
+>>> plot(x, y, xm, ym)
+=== MarginalMomentsFromTrace ===
+>>> D0 = [-18., 1., 4.; 2., -18., 7.; 1., 3., -32.];
+>>> D1 = [12., 1., 0.; 1., 8., 0.; 2., 1., 25.];
+>>> tr = SamplesFromMAP(D0, D1, 1000000);
+>>> moms = MarginalMomentsFromTrace(tr, 3);
+>>> disp(moms);
+     0.054215    0.0064528    0.0012149
+>>> mmoms = MarginalMomentsFromMAP(D0, D1, 3);
+>>> disp(mmoms);
+     0.054124     0.006423    0.0012051
+=== LagCorrelationsFromTrace ===
+>>> D0 = [-18., 1., 4.; 2., -18., 7.; 1., 3., -32.];
+>>> D1 = [12., 1., 0.; 1., 8., 0.; 2., 1., 25.];
+>>> tr = SamplesFromMAP(D0, D1, 1000000);
+>>> acf = LagCorrelationsFromTrace(tr, 10);
+>>> disp(acf);
+  Columns 1 through 6
+     0.043246     0.020421     0.012588    0.0071917    0.0033881    0.0013752
+  Columns 7 through 10
+    0.0015924  -0.00037795    0.0011809   -0.0002111
+>>> macf = LagCorrelationsFromMAP(D0, D1, 10);
+>>> disp(macf);
+  Columns 1 through 6
+     0.041288     0.021962     0.012085    0.0068325    0.0039434    0.0023103
+  Columns 7 through 10
+    0.0013679   0.00081587   0.00048904   0.00029412
+=== LagkJointMomentsFromTrace ===
+>>> D0 = [-18., 1., 4.; 2., -18., 7.; 1., 3., -32.];
+>>> D1 = [12., 1., 0.; 1., 8., 0.; 2., 1., 25.];
+>>> tr = SamplesFromMAP(D0, D1, 1000000);
+>>> Nm1 = LagkJointMomentsFromTrace(tr, 3, 1);
+>>> disp(Nm1);
+            1     0.054231    0.0064413    0.0012077
+     0.054231    0.0030911    0.0003777   7.1599e-05
+    0.0064413   0.00037728   4.6603e-05   8.8002e-06
+    0.0012077   7.1519e-05   8.8317e-06   1.6498e-06
+>>> mNm1 = LagkJointMomentsFromMAP(D0, D1, 3, 1);
+>>> disp(mNm1);
+            1     0.054124     0.006423    0.0012051
+     0.054124    0.0030736   0.00037516   7.1415e-05
+     0.006423   0.00037515   4.6507e-05   8.9222e-06
+    0.0012051    7.141e-05   8.9217e-06   1.7182e-06
+>>> Nm2 = LagkJointMomentsFromTrace(tr, 3, 2);
+>>> disp(Nm2);
+            1     0.054231    0.0064413    0.0012077
+     0.054231    0.0030213   0.00036415   6.8624e-05
+    0.0064414   0.00036417   4.4121e-05   8.2941e-06
+    0.0012077   6.8666e-05   8.2925e-06   1.5427e-06
+>>> mNm2 = LagkJointMomentsFromMAP(D0, D1, 3, 2);
+>>> disp(mNm2);
+            1     0.054124     0.006423    0.0012051
+     0.054124    0.0030061   0.00036221   6.8492e-05
+     0.006423    0.0003622   4.4024e-05    8.361e-06
+    0.0012051   6.8486e-05   8.3605e-06   1.5913e-06
+=== CdfFromWeightedTrace ===
+>>> wtrace = [0.12, 1.23, 0.546, 0.6765, 1.34, 2.34];
+>>> weights = [12., 1., 34., 23., 8., 2.];
+>>> [x, y] = CdfFromWeightedTrace(wtrace, weights);
+>>> plot(x, y)
+=== PdfFromWeightedTrace ===
+>>> wtrace = [0.12, 1.23, 0.546, 0.6765, 1.34, 2.34];
+>>> weights = [12., 1., 34., 23., 8., 2.];
+>>> x = (0.0:0.1:3.0);
+>>> [x, y] = PdfFromWeightedTrace(wtrace, weights, x);
+>>> plot(x, y)
+=== MarginalMomentsFromWeightedTrace ===
+>>> wtrace = [0.12, 1.23, 0.546, 0.6765, 1.34, 2.34];
+>>> weights = [12., 1., 34., 23., 8., 2.];
+>>> moms = MarginalMomentsFromWeightedTrace(wtrace, weights, 3);
+>>> disp(moms);
+      0.65242       0.5958      0.74264

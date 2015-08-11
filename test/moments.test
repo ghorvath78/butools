@@ -1,44 +1,49 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
 package Moments
 
 test NormMomsFromMoms
 
 inputmsg
-deflist@ M # {1.2, 5, 38, 495, 9215}
+deflist@ M # {1.2, 5., 38., 495., 9215.}
 testmsg
 code!@ nmoms=NormMomsFromMoms[M]
 code!@ moms=MomsFromNormMoms[nmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test MomsFromNormMoms
 
 inputmsg
-deflist@ M # {1.2, 5, 38, 495, 9215}
+deflist@ M # {1.2, 5., 38., 495., 9215.}
 testmsg
 code!@ nmoms=NormMomsFromMoms[M]
 code!@ moms=MomsFromNormMoms[nmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test ReducedMomsFromMoms
 
 inputmsg
-deflist@ M # {1.2, 5, 38, 495, 9215}
+deflist@ M # {1.2, 5., 38., 495., 9215.}
 testmsg
 code!@ rmoms=ReducedMomsFromMoms[M]
 code!@ moms=MomsFromReducedMoms[rmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test MomsFromReducedMoms
 
 inputmsg
-deflist@ M # {1.2, 5, 38, 495, 9215}
+deflist@ M # {1.2, 5., 38., 495., 9215.}
 testmsg
 code!@ rmoms=ReducedMomsFromMoms[M]
 code!@ moms=MomsFromReducedMoms[rmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test FactorialMomsFromMoms
 
@@ -47,8 +52,8 @@ deflist@ M # {1.3, 2.4, 6.03, 20.5, 89.5, 474.9}
 testmsg
 code!@ fmoms=FactorialMomsFromMoms[M]
 code!@ moms=MomsFromFactorialMoms[fmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test MomsFromFactorialMoms
 
@@ -57,28 +62,28 @@ deflist@ M # {1.3, 2.4, 6.03, 20.5, 89.5, 474.9}
 testmsg
 code!@ fmoms=FactorialMomsFromMoms[M]
 code!@ moms=MomsFromFactorialMoms[fmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test JFactorialMomsFromJMoms
 
 inputmsg
-defmat@ MM # {{0.7, 2, 3, 4},{5, 6, 7, 8},{9, 10, 11, 12}}
+defmat@ MM # {{0.7, 2., 3., 4.},{5., 6., 7., 8.},{9., 10., 11., 12.}}
 testmsg
 code!@ JFmoms=JFactorialMomsFromJMoms[MM]
 code!@ Jmoms=JMomsFromJFactorialMoms[JFmoms]
-code!@ err = Norm[NPArray[Jmoms]-MM]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[Jmoms]-MM]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test JMomsFromJFactorialMoms
 
 inputmsg
-defmat@ MM # {{0.7, 2, 3, 4},{5, 6, 7, 8},{9, 10, 11, 12}}
+defmat@ MM # {{0.7, 2., 3., 4.},{5., 6., 7., 8.},{9., 10., 11., 12.}}
 testmsg
 code!@ JFmoms=JFactorialMomsFromJMoms[MM]
 code!@ Jmoms=JMomsFromJFactorialMoms[JFmoms]
-code!@ err = Norm[NPArray[Jmoms]-MM]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[Jmoms]-MM]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test HankelMomsFromMoms
 
@@ -87,8 +92,8 @@ deflist@ M # {1.3, 2.4, 6.03, 20.5, 89.5, 474.9}
 testmsg
 code!@ hmoms=HankelMomsFromMoms[M]
 code!@ moms=MomsFromHankelMoms[hmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test MomsFromHankelMoms
 
@@ -97,20 +102,20 @@ deflist@ M # {1.3, 2.4, 6.03, 20.5, 89.5, 474.9}
 testmsg
 code!@ hmoms=HankelMomsFromMoms[M]
 code!@ moms=MomsFromHankelMoms[hmoms]
-code!@ err = Norm[NPArray[moms]-NPArray[M]]
-assert err<10^-10 # Calling the moment conversion and its inverse did not give back the original moments!
+code!@ err = Norm[ToArray[moms]-ToArray[M]]
+assert err<10^-10 # "Calling the moment conversion and its inverse did not give back the original moments!"
 
 test CheckMoments
 
 inputmsg
-deflist@ M # {1.2, 5, 8, 29, 3412}
+deflist@ M # {1.2, 5., 8., 29., 3412.}
 testmsg
 code!@ flag=CheckMoments[M]
-assert flag==False # CheckMoments did not recognize a valid moment sequence!
+assert flag==False # "CheckMoments did not recognize a valid moment sequence!"
 
 inputmsg
 deflist@ M # {1.3, 2.4, 6.03, 20.5, 89.5}
 testmsg
 code!@ flag=CheckMoments[M]
-assert flag==True # CheckMoments did not recognize an invalid moment sequence!
+assert flag==True # "CheckMoments did not recognize an invalid moment sequence!"
 

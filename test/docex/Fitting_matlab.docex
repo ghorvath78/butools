@@ -1,0 +1,255 @@
+=== EmpiricalSquaredDifference ===
+>>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+>>> intBounds = linspace(0, MarginalMomentsFromTrace(tr, 1)*4, 50);
+>>> [pdfTrX, pdfTrY] = PdfFromTrace(tr, intBounds);
+>>> [cdfTrX, cdfTrY] = CdfFromTrace(tr);
+>>> step = ceil(length(tr)/2000);
+>>> cdfTrX = cdfTrX(1:step:length(tr));
+>>> cdfTrY = cdfTrY(1:step:length(tr));
+>>> [alpha, A] = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3));
+>>> [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
+>>> cdfPHY = CdfFromPH(alpha, A, cdfTrX);
+>>> sqPdf = EmpiricalSquaredDifference(pdfTrY, pdfPHY, intBounds);
+>>> disp(sqPdf);
+     0.011854
+>>> sqCdf = EmpiricalSquaredDifference(cdfTrY(1:end-1), cdfPHY(1:end-1), cdfTrX);
+>>> disp(sqCdf);
+   3.8247e-10
+=== EmpiricalRelativeEntropy ===
+>>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+>>> intBounds = linspace(0, MarginalMomentsFromTrace(tr, 1)*4, 50);
+>>> [pdfTrX, pdfTrY] = PdfFromTrace(tr, intBounds);
+>>> [cdfTrX, cdfTrY] = CdfFromTrace(tr);
+>>> step = ceil(length(tr)/2000);
+>>> cdfTrX = cdfTrX(1:step:length(tr));
+>>> cdfTrY = cdfTrY(1:step:length(tr));
+>>> [alpha, A] = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3));
+>>> [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
+>>> cdfPHY = CdfFromPH(alpha, A, cdfTrX);
+>>> rePdf = EmpiricalRelativeEntropy(pdfTrY, pdfPHY, intBounds);
+>>> disp(rePdf);
+      0.43241
+>>> reCdf = EmpiricalRelativeEntropy(cdfTrY(1:end-1), cdfPHY(1:end-1), cdfTrX);
+>>> disp(reCdf);
+   0.00040609
+=== LikelihoodFromTrace ===
+>>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+>>> [alpha, A] = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3));
+>>> [D0, D1] = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), LagCorrelationsFromTrace(tr, 1));
+>>> logliPH = LikelihoodFromTrace(tr, alpha, A);
+>>> disp(logliPH);
+       4.8496
+>>> logliMAP = LikelihoodFromTrace(tr, D0, D1);
+>>> disp(logliMAP);
+       4.6523
+=== SquaredDifference ===
+>>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+>>> trAcf = LagCorrelationsFromTrace(tr, 10);
+>>> disp(trAcf);
+  Columns 1 through 6
+      0.20005      0.18927      0.13895      0.14213      0.11713      0.12368
+  Columns 7 through 10
+      0.11212      0.10051      0.10019     0.098797
+>>> [D0, D1] = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), trAcf(1));
+>>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10);
+>>> disp(mapAcf);
+  Columns 1 through 6
+      0.20005      0.12003     0.072023     0.043216     0.025931     0.015559
+  Columns 7 through 10
+    0.0093357    0.0056017    0.0033611    0.0020168
+>>> sqAcf = SquaredDifference(mapAcf, trAcf);
+>>> disp(sqAcf);
+      0.07738
+=== RelativeEntropy ===
+>>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+>>> trAcf = LagCorrelationsFromTrace(tr, 10);
+>>> disp(trAcf);
+  Columns 1 through 6
+      0.20005      0.18927      0.13895      0.14213      0.11713      0.12368
+  Columns 7 through 10
+      0.11212      0.10051      0.10019     0.098797
+>>> [D0, D1] = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), trAcf(1));
+>>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10);
+>>> disp(mapAcf);
+  Columns 1 through 6
+      0.20005      0.12003     0.072023     0.043216     0.025931     0.015559
+  Columns 7 through 10
+    0.0093357    0.0056017    0.0033611    0.0020168
+>>> reAcf = RelativeEntropy(mapAcf, trAcf);
+>>> disp(reAcf);
+      0.28344
+=== PHFromTrace ===
+>>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+>>> [alpha, A] = PHFromTrace(tr, 5);
+Num of iterations: 26, logli: 4.80924
+Num of iterations: 26, logli: 4.80924
+EM algorithm terminated. (orders=1,4)
+Num of iterations: 38, logli: 4.70421
+EM algorithm terminated. (orders=2,3)
+Num of iterations: 30, logli: 4.89844
+Num of iterations: 60, logli: 4.8989
+Num of iterations: 91, logli: 4.89925
+Num of iterations: 121, logli: 4.8996
+Num of iterations: 150, logli: 4.9
+Num of iterations: 179, logli: 4.90046
+Num of iterations: 201, logli: 4.90074
+EM algorithm terminated. (orders=1,1,3)
+Num of iterations: 30, logli: 4.85155
+Num of iterations: 58, logli: 4.85184
+Num of iterations: 87, logli: 4.85214
+Num of iterations: 119, logli: 4.85259
+Num of iterations: 150, logli: 4.85461
+Num of iterations: 179, logli: 4.88627
+Num of iterations: 192, logli: 4.91508
+EM algorithm terminated. (orders=1,2,2)
+Num of iterations: 22, logli: 4.88641
+Num of iterations: 43, logli: 4.88777
+Num of iterations: 64, logli: 4.88814
+Num of iterations: 84, logli: 4.88827
+Num of iterations: 104, logli: 4.88833
+Num of iterations: 124, logli: 4.88836
+Num of iterations: 145, logli: 4.88837
+Num of iterations: 153, logli: 4.88838
+EM algorithm terminated. (orders=1,1,1,2)
+Num of iterations: 17, logli: 4.85091
+Num of iterations: 27, logli: 4.85108
+EM algorithm terminated. (orders=1,1,1,1,1)
+Best solution: logli=4.91508, orders=1,2,2
+>>> disp(alpha);
+     0.065027      0.85788            0     0.077088            0
+>>> disp(A);
+      -63.308            0            0            0            0
+            0      -815.72       815.72            0            0
+            0            0      -815.72            0            0
+            0            0            0       -12563        12563
+            0            0            0            0       -12563
+>>> logli = LikelihoodFromTrace(tr, alpha, A);
+>>> disp(logli);
+       4.9151
+>>> intBounds = linspace(0, MarginalMomentsFromTrace(tr, 1)*4, 50);
+>>> [pdfTrX, pdfTrY] = PdfFromTrace(tr, intBounds);
+>>> [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
+>>> sqPdf = EmpiricalSquaredDifference(pdfTrY, pdfPHY, intBounds);
+>>> disp(sqPdf);
+    0.0079115
+>>> rePdf = EmpiricalRelativeEntropy(pdfTrY, pdfPHY, intBounds);
+>>> disp(rePdf);
+      0.35834
+>>> [cdfTrX, cdfTrY] = CdfFromTrace(tr);
+>>> step = ceil(length(tr)/2000);
+>>> cdfTrX = cdfTrX(1:step:length(tr));
+>>> cdfTrY = cdfTrY(1:step:length(tr));
+>>> cdfPHY = CdfFromPH(alpha, A, cdfTrX);
+>>> sqCdf = EmpiricalSquaredDifference(cdfTrY(1:end-1), cdfPHY(1:end-1), cdfTrX);
+>>> disp(sqCdf);
+   9.9902e-11
+>>> reCdf = EmpiricalRelativeEntropy(cdfTrY(1:end-1), cdfPHY(1:end-1), cdfTrX);
+>>> disp(reCdf);
+   0.00018583
+=== MAPFromTrace ===
+>>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+>>> tr = tr(1:10000);
+>>> [D0, D1] = MAPFromTrace(tr, 5);
+Trying orders 1,4...
+Num of iterations: 8, logli: 4.99752
+Num of iterations: 15, logli: 4.99807
+Num of iterations: 22, logli: 4.9981
+Num of iterations: 26, logli: 4.99811
+EM algorithm terminated. (orders=1,4)
+Trying orders 2,3...
+Num of iterations: 8, logli: 4.93956
+Num of iterations: 14, logli: 4.95626
+Num of iterations: 21, logli: 4.95641
+Num of iterations: 21, logli: 4.95641
+EM algorithm terminated. (orders=2,3)
+Trying orders 1,1,3...
+Num of iterations: 8, logli: 5.04759
+Num of iterations: 14, logli: 5.09151
+Num of iterations: 21, logli: 5.09701
+Num of iterations: 27, logli: 5.09814
+Num of iterations: 34, logli: 5.09943
+Num of iterations: 41, logli: 5.10101
+Num of iterations: 48, logli: 5.10369
+Num of iterations: 55, logli: 5.11054
+Num of iterations: 62, logli: 5.12063
+Num of iterations: 69, logli: 5.12327
+Num of iterations: 76, logli: 5.12353
+Num of iterations: 83, logli: 5.12366
+Num of iterations: 90, logli: 5.12379
+Num of iterations: 97, logli: 5.1239
+Num of iterations: 104, logli: 5.12394
+Num of iterations: 111, logli: 5.12396
+Num of iterations: 115, logli: 5.12396
+EM algorithm terminated. (orders=1,1,3)
+Trying orders 1,2,2...
+Num of iterations: 7, logli: 5.01977
+Num of iterations: 13, logli: 5.04362
+Num of iterations: 19, logli: 5.07693
+Num of iterations: 26, logli: 5.11112
+Num of iterations: 32, logli: 5.11443
+Num of iterations: 39, logli: 5.11519
+Num of iterations: 46, logli: 5.11543
+Num of iterations: 53, logli: 5.11548
+Num of iterations: 59, logli: 5.11549
+Num of iterations: 60, logli: 5.11549
+EM algorithm terminated. (orders=1,2,2)
+Trying orders 1,1,1,2...
+Num of iterations: 7, logli: 5.04003
+Num of iterations: 13, logli: 5.07886
+Num of iterations: 19, logli: 5.08357
+Num of iterations: 25, logli: 5.08526
+Num of iterations: 31, logli: 5.08631
+Num of iterations: 37, logli: 5.08695
+Num of iterations: 43, logli: 5.08738
+Num of iterations: 49, logli: 5.08772
+Num of iterations: 55, logli: 5.08807
+Num of iterations: 61, logli: 5.08853
+Num of iterations: 67, logli: 5.08926
+Num of iterations: 73, logli: 5.09065
+Num of iterations: 79, logli: 5.09386
+Num of iterations: 85, logli: 5.10165
+Num of iterations: 91, logli: 5.11062
+Num of iterations: 97, logli: 5.11257
+Num of iterations: 103, logli: 5.11268
+Num of iterations: 107, logli: 5.11268
+EM algorithm terminated. (orders=1,1,1,2)
+Trying orders 1,1,1,1,1...
+Num of iterations: 7, logli: 5.016
+Num of iterations: 13, logli: 5.04173
+Num of iterations: 19, logli: 5.04393
+Num of iterations: 23, logli: 5.04394
+EM algorithm terminated. (orders=1,1,1,1,1)
+Best solution: logli=5.12396, orders=1,1,3
+>>> disp(D0);
+      -83.429            0            0            0            0
+            0      -718.68            0            0            0
+            0            0      -1026.2       1026.2            0
+            0            0            0      -1026.2       1026.2
+            0            0            0            0      -1026.2
+>>> disp(D1);
+       54.149       4.9019       24.379            0            0
+       3.3915       665.85       49.439            0            0
+            0            0            0            0            0
+            0            0            0            0            0
+       42.647       96.944       886.57            0            0
+>>> logli = LikelihoodFromTrace(tr, D0, D1);
+>>> disp(logli);
+        5.124
+>>> trAcf = LagCorrelationsFromTrace(tr, 10);
+>>> disp(trAcf);
+  Columns 1 through 6
+      0.18412      0.18159      0.17544      0.19965     0.083228      0.08634
+  Columns 7 through 10
+        0.095     0.062854      0.06232     0.065922
+>>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10);
+>>> disp(mapAcf);
+  Columns 1 through 6
+      0.24889      0.17665      0.12882     0.096383     0.073802      0.05765
+  Columns 7 through 10
+     0.045782      0.03684     0.029952     0.024544
+>>> sqAcf = SquaredDifference(mapAcf, trAcf);
+>>> disp(sqAcf);
+     0.023828
+>>> reAcf = RelativeEntropy(mapAcf, trAcf);
+>>> disp(reAcf);
+      0.32132

@@ -1,100 +1,100 @@
-=== MomentsFromME ===
->>> a = {0.2, 0.3, 0.5};
+"=== MomentsFromME ==="
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
->>> moms = MomentsFromME[a,A];
+>>> moms = MomentsFromME[a, A];
 >>> Print[moms];
 {0.35384615384615387, 0.41893491124260357, 1.1552116522530724, 4.699835439935577, 23.837756165615836}
->>> moms = MomentsFromME[a,A,9];
+>>> moms = MomentsFromME[a, A, 9];
 >>> Print[moms];
 {0.35384615384615387, 0.41893491124260357, 1.1552116522530724, 4.699835439935577, 23.837756165615836, 143.78185836646944, 1007.8194071104502, 8064.272882521486, 72578.13371878522}
-=== MomentsFromPH ===
->>> a = {0.1, 0.9, 0};
+"=== MomentsFromPH ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> moms = MomentsFromPH[a,A,5];
+>>> moms = MomentsFromPH[a, A, 5];
 >>> Print[moms];
 {0.20938722294654497, 0.10448912014333092, 0.08909150039190732, 0.11026674096545433, 0.179530273247209}
-=== CdfFromME ===
->>> a = {0.2, 0.3, 0.5};
+"=== CdfFromME ==="
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
->>> x = Range[0,5,0.01];
->>> cdf = CdfFromME[a,A,x];
->>> ListLinePlot[Transpose[{x, cdf}]]
-=== CdfFromPH ===
->>> a = {0.1, 0.9, 0};
+>>> x = Range[0.0,5.0,0.01];
+>>> cdf = CdfFromME[a, A, x];
+>>> ListLinePlot[{Transpose[{x, cdf}]}]
+"=== CdfFromPH ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> x = Range[0,3,0.002];
->>> cdf = CdfFromPH[a,A,x];
->>> ListLinePlot[Transpose[{x, cdf}]]
-=== PdfFromME ===
->>> a = {0.2, 0.3, 0.5};
+>>> x = Range[0.0,3.0,0.002];
+>>> cdf = CdfFromPH[a, A, x];
+>>> ListLinePlot[{Transpose[{x, cdf}]}]
+"=== PdfFromME ==="
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
->>> x = Range[0,5,0.01];
->>> pdf = PdfFromME[a,A,x];
->>> ListLinePlot[Transpose[{x, pdf}]]
-=== PdfFromPH ===
->>> a = {0.1, 0.9, 0};
+>>> x = Range[0.0,5.0,0.01];
+>>> pdf = PdfFromME[a, A, x];
+>>> ListLinePlot[{Transpose[{x, pdf}]}]
+"=== PdfFromPH ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> x = Range[0,3,0.002];
->>> pdf = PdfFromPH[a,A,x];
->>> ListLinePlot[Transpose[{x, pdf}]]
-=== IntervalPdfFromPH ===
->>> a = {0.1, 0.9, 0};
+>>> x = Range[0.0,3.0,0.002];
+>>> pdf = PdfFromPH[a, A, x];
+>>> ListLinePlot[{Transpose[{x, pdf}]}]
+"=== IntervalPdfFromPH ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> x = Range[0,3,0.002];
->>> {x,y} = IntervalPdfFromPH[a,A,x];
->>> ListLinePlot[Transpose[{x, y}]]
-=== RandomPH ===
->>> {a,A} = RandomPH[3,8,4];
+>>> x = Range[0.0,3.0,0.002];
+>>> {x, y} = IntervalPdfFromPH[a, A, x];
+>>> ListLinePlot[{Transpose[{x, y}]}]
+"=== RandomPH ==="
+>>> {a, A} = RandomPH[3, 8, 4];
 >>> Print[a];
-{0, 0, 1}
+{0.31004439863858146, 0.047613750639457386, 0.6423418507219611}
 >>> Print[A];
-{{-0.6999227429898282, 0.3967535668149389, 0.028566129628349583},
- {0.446826923286755, -0.9416070080107307, 0.38815288975615425},
- {0.45083462621244397, 0., -0.45083462621244397}}
-=== CheckMERepresentation ===
->>> a = {-0.2, 0.2};
+{{-1.0149650831869401, 1.0149650831869401, 0.},
+ {0., -0.09544592783001707, 0.},
+ {1.2508164096106962, 0.3338069521032678, -3.0649628355988305}}
+"=== CheckMERepresentation ==="
+>>> a = {-0.2,0.2};
 >>> A = {{1, -1},{1, -2}};
->>> flag = CheckMERepresentation[a,A];
+>>> flag = CheckMERepresentation[a, A];
 "CheckMERepresentation: There is an eigenvalue of the matrix with not negative real part at precision "1.*^-12")!"
 >>> Print[flag];
 False
->>> a = {-0.2, 0.4, 0.8};
+>>> a = {-0.2,0.4,0.8};
 >>> A = {{-2, 0, 3},{0, -1, 1},{0, -1, -1}};
->>> flag = CheckMERepresentation[a,A];
+>>> flag = CheckMERepresentation[a, A];
 "CheckMERepresentation: The dominant eigenvalue of the matrix is not real at precision "1.*^-12")!"
 >>> Print[flag];
 False
->>> a = {0.2, 0.3, 0.5};
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
->>> flag = CheckMERepresentation[a,A];
+>>> flag = CheckMERepresentation[a, A];
 >>> Print[flag];
 True
-=== CheckPHRepresentation ===
+"=== CheckPHRepresentation ==="
 >>> a = {0.2};
 >>> A = {{-1, 1},{1, -2}};
->>> flag = CheckPHRepresentation[a,A];
+>>> flag = CheckPHRepresentation[a, A];
 "CheckPHRepresentation: the vector and the matrix have different sizes!"
 >>> Print[flag];
 False
->>> a = {0.2, 0.7};
+>>> a = {0.2,0.7};
 >>> A = {{-1, 1},{1, -2}};
->>> flag = CheckPHRepresentation[a,A];
+>>> flag = CheckPHRepresentation[a, A];
 >>> Print[flag];
 True
-=== CheckMEPositiveDensity ===
->>> a = {0.2, 0.3, 0.5};
+"=== CheckMEPositiveDensity ==="
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
->>> flag = CheckMEPositiveDensity[a,A];
+>>> flag = CheckMEPositiveDensity[a, A];
 >>> Print[flag];
 True
->>> a = {0.2, 0.3, 0.5};
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1, 0, 0},{0, -3, 2.9},{0, -2.9, -3}};
->>> flag = CheckMEPositiveDensity[a,A];
+>>> flag = CheckMEPositiveDensity[a, A];
 >>> Print[flag];
 False
-=== APHFrom3Moments ===
+"=== APHFrom3Moments ==="
 >>> moms = {10.0, 125.0, 8400.0};
->>> {a,A} = APHFrom3Moments[moms];
+>>> {a, A} = APHFrom3Moments[moms];
 >>> Print[a];
 {0.000013211714931595383, 0.9999867882850684, 0, 0, 0, 0}
 >>> Print[A];
@@ -104,11 +104,11 @@ False
  {0, 0, 0, -0.5002881836726082, 0.5002881836726082, 0},
  {0, 0, 0, 0, -0.5002881836726082, 0.5002881836726082},
  {0, 0, 0, 0, 0, -0.5002881836726082}}
->>> phmoms = MomentsFromPH[a,A,3];
+>>> phmoms = MomentsFromPH[a, A, 3];
 >>> Print[phmoms];
 {10., 125.00000000000003, 8400.000000000162}
 >>> moms = {10.0, 525.0, 31400.0};
->>> {a,A} = APHFrom3Moments[moms];
+>>> {a, A} = APHFrom3Moments[moms];
 >>> Print[a];
 {0.21178752772283896, 0, 0, 0, 0, 0, 0, 0.7882124722771611}
 >>> Print[A];
@@ -120,173 +120,173 @@ False
  {0, 0, 0, 0, 0, -0.15078539360511473, 0.15078539360511473, 0},
  {0, 0, 0, 0, 0, 0, -0.15078539360511473, 0.15078539360511473},
  {0, 0, 0, 0, 0, 0, 0, -5.950197455082666}}
->>> phmoms = MomentsFromPH[a,A,3];
+>>> phmoms = MomentsFromPH[a, A, 3];
 >>> Print[phmoms];
 {9.999999999999998, 524.9999999999998, 31399.99999999998}
-=== PH2From3Moments ===
+"=== PH2From3Moments ==="
 >>> moms = {10.0, 160.0, 3500.0};
->>> {a,A} = PH2From3Moments[moms];
+>>> {a, A} = PH2From3Moments[moms];
 >>> Print[a];
 {0.8701999867127262, 0.12980001328727375}
 >>> Print[A];
 {{-0.15576001594472852, 0.15576001594472852},
  {0, -0.22659292523174202}}
->>> phmoms = MomentsFromPH[a,A,3];
+>>> phmoms = MomentsFromPH[a, A, 3];
 >>> Print[phmoms];
 {10.000000000000002, 160.00000000000006, 3500.0000000000023}
 >>> moms = {10.0, 260.0, 13500.0};
->>> {a,A} = PH2From3Moments[moms];
+>>> {a, A} = PH2From3Moments[moms];
 >>> Print[a];
 {0.09097530055983008, 0.90902469944017}
 >>> Print[A];
 {{-0.04195498612800784, 0.04195498612800784},
  {0, -0.1276878710148493}}
->>> phmoms = MomentsFromPH[a,A,3];
+>>> phmoms = MomentsFromPH[a, A, 3];
 >>> Print[phmoms];
 {10., 260.00000000000006, 13500.000000000005}
-=== PH3From5Moments ===
->>> a = {0.1, 0.9, 0};
+"=== PH3From5Moments ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> moms = MomentsFromPH[a,A];
+>>> moms = MomentsFromPH[a, A];
 >>> Print[moms];
 {0.20938722294654497, 0.10448912014333092, 0.08909150039190732, 0.11026674096545433, 0.179530273247209}
->>> {a,A} = PH3From5Moments[moms];
+>>> {a, A} = PH3From5Moments[moms];
 >>> Print[a];
 {0.5830541253440302, 0.3273566132692404, 0.08958926138672949}
 >>> Print[A];
 {{-9.981920626264277, 0., 0.},
  {5.340471031780809, -5.340471031780809, 0.},
  {0., 2.8776083419564285, -2.8776083419564285}}
->>> phmoms = MomentsFromME[a,A,5];
+>>> phmoms = MomentsFromME[a, A, 5];
 >>> Print[phmoms];
 {0.2093872229465451, 0.10448912014333109, 0.08909150039190755, 0.11026674096545479, 0.17953027324721005}
->>> a = {0.2, 0.3, 0.5};
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1, 0, 0},{0, -3, 0.5},{0, -0.5, -3}};
->>> moms = MomentsFromME[a,A];
+>>> moms = MomentsFromME[a, A];
 >>> Print[moms];
 {0.4486486486486486, 0.5495982468955442, 1.3298244921327464, 4.942768524155609, 24.182331446704147}
->>> {a,A} = PH3From5Moments[moms];
+>>> {a, A} = PH3From5Moments[moms];
 >>> Print[a];
 {0.9690995849472338, 0.014984267780593008, 0.015916147272173234}
 >>> Print[A];
 {{-2.9342585459110544, 0., 0.1481671658935929},
  {2.9342585459110566, -2.9342585459110566, 0.},
  {0., 1.1314829081787512, -1.1314829081787512}}
->>> phmoms = MomentsFromME[a,A,5];
+>>> phmoms = MomentsFromME[a, A, 5];
 >>> Print[phmoms];
 {0.4486486486486484, 0.5495982468955433, 1.329824492132743, 4.942768524155592, 24.182331446704055}
-=== MEFromMoments ===
->>> a = {0.1, 0.9, 0};
+"=== MEFromMoments ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> moms = MomentsFromPH[a,A,5];
+>>> moms = MomentsFromPH[a, A, 5];
 >>> Print[moms];
 {0.20938722294654497, 0.10448912014333092, 0.08909150039190732, 0.11026674096545433, 0.179530273247209}
->>> {a,A} = MEFromMoments[moms];
+>>> {a, A} = MEFromMoments[moms];
 >>> Print[a];
 {1/3, 1/3, 1/3}
 >>> Print[A];
 {{-8.084991901863543, 10.176612950254244, -9.999939852873878},
  {-1.2584436954049303, -5.143808678565172, 1.7873056877319793},
  {-1.925450036434008, 1.959914946726235, -4.971199419570917}}
->>> memoms = MomentsFromME[a,A,5];
+>>> memoms = MomentsFromME[a, A, 5];
 >>> Print[memoms];
 {0.209387222946545, 0.10448912014333095, 0.08909150039190736, 0.11026674096545445, 0.17953027324720922}
-=== APH2ndMomentLowerBound ===
+"=== APH2ndMomentLowerBound ==="
 >>> mean = 1.9;
 >>> n = 4;
->>> mom2 = APH2ndMomentLowerBound[mean,n];
+>>> mom2 = APH2ndMomentLowerBound[mean, n];
 >>> Print[mom2];
 4.5125
 >>> cv2 = mom2/mean^2-1;
 >>> Print[1/cv2];
 3.9999999999999964
-=== APH3rdMomentLowerBound ===
+"=== APH3rdMomentLowerBound ==="
 >>> mean = 1.9;
 >>> mom2 = 5;
 >>> n = 3;
->>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+>>> mom3lower = APH3rdMomentLowerBound[mean, mom2, n];
 >>> Print[mom3lower];
 16.577458090899114
->>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+>>> mom3upper = APH3rdMomentUpperBound[mean, mom2, n];
 >>> Print[mom3upper];
 17.081405365964272
 >>> mean = 1.9;
 >>> mom2 = 5;
 >>> n = 4;
->>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+>>> mom3lower = APH3rdMomentLowerBound[mean, mom2, n];
 >>> Print[mom3lower];
 16.079377140256383
->>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+>>> mom3upper = APH3rdMomentUpperBound[mean, mom2, n];
 >>> Print[mom3upper];
 Infinity
-=== APH3rdMomentUpperBound ===
+"=== APH3rdMomentUpperBound ==="
 >>> mean = 1.9;
 >>> mom2 = 5;
 >>> n = 3;
->>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+>>> mom3lower = APH3rdMomentLowerBound[mean, mom2, n];
 >>> Print[mom3lower];
 16.577458090899114
->>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+>>> mom3upper = APH3rdMomentUpperBound[mean, mom2, n];
 >>> Print[mom3upper];
 17.081405365964272
 >>> mean = 1.9;
 >>> mom2 = 5;
 >>> n = 4;
->>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
+>>> mom3lower = APH3rdMomentLowerBound[mean, mom2, n];
 >>> Print[mom3lower];
 16.079377140256383
->>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
+>>> mom3upper = APH3rdMomentUpperBound[mean, mom2, n];
 >>> Print[mom3upper];
 Infinity
-=== CanonicalFromPH2 ===
->>> a = {0.12, 0.88};
+"=== CanonicalFromPH2 ==="
+>>> a = {0.12,0.88};
 >>> A = {{-1.28, 0},{3.94, -3.94}};
->>> {b,B} = CanonicalFromPH2[a,A];
+>>> {b, B} = CanonicalFromPH2[a, A];
 >>> Print[b];
 {0.9610152284263966, 0.03898477157360336}
 >>> Print[B];
 {{-1.2800000000000014, 1.2800000000000014},
  {0, -3.9399999999999946}}
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 1.881192080999035*^-15
-=== CanonicalFromPH3 ===
->>> a = {0.1, 0.9, 0};
+"=== CanonicalFromPH3 ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> {b,B} = CanonicalFromPH3[a,A];
+>>> {b, B} = CanonicalFromPH3[a, A];
 >>> Print[b];
 {0.5830541253440302, 0.3273566132692404, 0.08958926138672949}
 >>> Print[B];
 {{-9.981920626264277, 0., 0.},
  {5.340471031780809, -5.340471031780809, 0.},
  {0., 2.8776083419564285, -2.8776083419564285}}
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 2.7041031044230435*^-13
-=== AcyclicPHFromME ===
->>> a = {-0.4, 1.4, 0.};
+"=== AcyclicPHFromME ==="
+>>> a = {-0.4,1.4,0.};
 >>> A = {{-4., 1., 1.},{0., -2., 1.},{1., 0., -8.}};
->>> {b,B} = AcyclicPHFromME[a,A];
+>>> {b, B} = AcyclicPHFromME[a, A];
 >>> Print[b];
 {0.5527262576934738, 0.3741003779708655, 0.07317336433566028}
 >>> Print[B];
 {{-1.914468283493477, 1.914468283493477, 0},
  {0, -3.8858267357749496, 3.8858267357749496},
  {0, 0, -8.199704980731571}}
->>> ma = MomentsFromME[a,A,5];
+>>> ma = MomentsFromME[a, A, 5];
 >>> Print[ma];
 {0.6491803278688524, 0.7313087879602256, 1.1825377454500594, 2.50620910640242, 6.589761685446926}
->>> mb = MomentsFromME[b,B,5];
+>>> mb = MomentsFromME[b, B, 5];
 >>> Print[mb];
 {0.6491803278688524, 0.7313087879602258, 1.18253774545006, 2.506209106402422, 6.5897616854469305}
-=== MonocyclicPHFromME ===
->>> a = {0.2, 0.3, 0.5};
+"=== MonocyclicPHFromME ==="
+>>> a = {0.2,0.3,0.5};
 >>> A = {{-1., 0., 0.},{0., -3., 2.},{0., -2., -3.}};
->>> {b,B} = MonocyclicPHFromME[a,A];
+>>> {b, B} = MonocyclicPHFromME[a, A];
 >>> Print[b];
 {-2.5397600778722706*^-17, 0.010076564579360592, 0.019799026572787613, 0.007754395700638792, 0.0010921892175280797, 0.00004085157730567139, 0.000013537575173626456, 0.00011267376891308164, 0.0003948571244651649, 0.0009303831689188193, 0.001804898763447438, 0.003120837336642398, 0.004998456760755956, 0.007576247022797484, 0.01101041315944734, 0.01547306860911693, 0.02114869573602008, 0.028228345073631006, 0.036900955049397284, 0.04734108305260393, 0.059692251707772884, 0.07404503804493777, 0.09040897715773615, 0.10867732789998653, 0.1285837713807389, 0.1496502023195005, 0.1711249516403759}
 >>> Print[B];
@@ -317,91 +317,91 @@ Infinity
  {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0.},
  {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363},
  {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363}}
->>> ma = MomentsFromME[a,A,5];
+>>> ma = MomentsFromME[a, A, 5];
 >>> Print[ma];
 {0.3538461538461538, 0.41893491124260357, 1.1552116522530724, 4.699835439935577, 23.837756165615836}
->>> mb = MomentsFromME[b,B,5];
+>>> mb = MomentsFromME[b, B, 5];
 >>> Print[mb];
 {0.3538461538461526, 0.4189349112425999, 1.1552116522530596, 4.69983543993552, 23.83775616561553}
-=== PHFromME ===
->>> a = {-0.4, 1.4};
+"=== PHFromME ==="
+>>> a = {-0.4,1.4};
 >>> A = {{-3.8, 2},{2, -9}};
->>> flag = CheckMERepresentation[a,A];
+>>> flag = CheckMERepresentation[a, A];
 >>> Print[flag];
 True
->>> flag = CheckPHRepresentation[a,A];
+>>> flag = CheckPHRepresentation[a, A];
 "CheckProbVector: The vector has negative element!"
 >>> Print[flag];
 False
->>> {b,B} = PHFromME[a,A];
+>>> {b, B} = PHFromME[a, A];
 >>> Print[b];
 {0.013037109374999953, 0.9869628906249999}
 >>> Print[B];
 {{-3.2604571906887756, 2.5924299798044217},
  {0.3484263627325931, -9.539542809311223}}
->>> flag = CheckPHRepresentation[b,B];
+>>> flag = CheckPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 1.1393205654608455*^-15
->>> a = {-0.5, 1.5};
+>>> a = {-0.5,1.5};
 >>> A = {{-3.8, 2},{2, -9}};
->>> flag = CheckMERepresentation[a,A];
+>>> flag = CheckMERepresentation[a, A];
 >>> Print[flag];
 True
->>> flag = CheckPHRepresentation[a,A];
+>>> flag = CheckPHRepresentation[a, A];
 "CheckProbVector: The vector has negative element!"
 >>> Print[flag];
 False
->>> {b,B} = PHFromME[a,A];
+>>> {b, B} = PHFromME[a, A];
 >>> Print[b];
 {0.0057037812657654285, 0.9942962187342346}
 >>> Print[B];
 {{-3.1278937744575632, 3.0635853844348873},
  {0.017404720964309853, -9.672106225542432}}
->>> flag = CheckPHRepresentation[b,B];
+>>> flag = CheckPHRepresentation[b, B];
 >>> Print[flag];
 True
->>> Cm = SimilarityMatrix[A,B];
+>>> Cm = SimilarityMatrix[A, B];
 >>> err1 = Norm[A.Cm-Cm.B];
 >>> err2 = Norm[a.Cm-b];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 2.30940485129664*^-15
-=== MEOrder ===
->>> a = {1./6, 1./6, 1./6, 1./6, 1./6, 1./6};
+"=== MEOrder ==="
+>>> a = {1.0/6,1.0/6,1.0/6,1.0/6,1.0/6,1.0/6};
 >>> A = {{-1., 0., 0., 0., 0., 0.},{0.5, -2., 1., 0., 0., 0.},{1., 0., -3., 1., 0., 0.},{1., 0., 1., -4., 1., 0.},{4., 0., 0., 0., -5., 0.},{5., 0., 0., 0., 0., -6.}};
->>> co = MEOrder[a,A,"cont"];
+>>> co = MEOrder[a, A, "cont"];
 >>> Print[co];
 2
->>> oo = MEOrder[a,A,"obs"];
+>>> oo = MEOrder[a, A, "obs"];
 >>> Print[oo];
 6
->>> coo = MEOrder[a,A,"obscont"];
+>>> coo = MEOrder[a, A, "obscont"];
 >>> Print[coo];
 2
->>> mo = MEOrder[a,A,"moment"];
+>>> mo = MEOrder[a, A, "moment"];
 >>> Print[mo];
 2
->>> a = {2./3, 1./3};
+>>> a = {2.0/3,1.0/3};
 >>> A = {{-1., 1.},{0., -3.}};
->>> co = MEOrder[a,A,"cont"];
+>>> co = MEOrder[a, A, "cont"];
 >>> Print[co];
 2
->>> oo = MEOrder[a,A,"obs"];
+>>> oo = MEOrder[a, A, "obs"];
 >>> Print[oo];
 1
->>> coo = MEOrder[a,A,"obscont"];
+>>> coo = MEOrder[a, A, "obscont"];
 >>> Print[coo];
 1
->>> mo = MEOrder[a,A,"moment"];
+>>> mo = MEOrder[a, A, "moment"];
 >>> Print[mo];
 1
->>> b = {0.2, 0.3, 0.5};
+>>> b = {0.2,0.3,0.5};
 >>> B = {{-1., 0., 0.},{0., -3., 1.},{0., -1., -3.}};
->>> {a,A} = MonocyclicPHFromME[b,B];
+>>> {a, A} = MonocyclicPHFromME[b, B];
 >>> Print[a];
 {0.00550893408977846, 0.00903007832853331, 0.016937512518639578, 0.015215980106503445, 0.005354337535618665, 0.008735592607040744, 0.05248568615571608, 0.22657249403204927, 0.6601593846261203}
 >>> Print[A];
@@ -414,46 +414,46 @@ True
  {0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847, 0.},
  {0., 0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847},
  {0., 0., 0., 0., 0., 0., 0., 0., -4.241399978863847}}
->>> co = MEOrder[a,A,"cont"];
+>>> co = MEOrder[a, A, "cont"];
 >>> Print[co];
 9
->>> oo = MEOrder[a,A,"obs"];
+>>> oo = MEOrder[a, A, "obs"];
 >>> Print[oo];
 3
->>> coo = MEOrder[a,A,"obscont"];
+>>> coo = MEOrder[a, A, "obscont"];
 >>> Print[coo];
 3
->>> mo = MEOrder[a,A,"moment"];
+>>> mo = MEOrder[a, A, "moment"];
 >>> Print[mo];
 3
-=== MEOrderFromMoments ===
->>> a = {0.1, 0.9, 0};
+"=== MEOrderFromMoments ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2., 0.},{2., -9., 1.},{1., 0., -3.}};
->>> moms = MomentsFromME[a,A];
+>>> moms = MomentsFromME[a, A];
 >>> Print[moms];
 {0.20938722294654497, 0.10448912014333092, 0.08909150039190732, 0.11026674096545433, 0.179530273247209}
 >>> mo = MEOrderFromMoments[moms];
 >>> Print[mo];
 3
->>> b = {0.2, 0.3, 0.5};
+>>> b = {0.2,0.3,0.5};
 >>> B = {{-1., 0., 0.},{0., -3., 2.},{0., -2., -3.}};
->>> {a,A} = MonocyclicPHFromME[b,B];
->>> moms = MomentsFromME[a,A];
+>>> {a, A} = MonocyclicPHFromME[b, B];
+>>> moms = MomentsFromME[a, A];
 >>> Print[moms];
 {0.3538461538461526, 0.4189349112425999, 1.1552116522530596, 4.69983543993552, 23.83775616561553, 143.78185836646747, 1007.8194071104357, 8064.27288252136, 72578.13371878403, 725767.9587461551, 7.983382351398367*^6, 9.5800362980475*^7, 1.2454041496660538*^9, 1.7435657571499924*^10, 2.6153486913885196*^11, 4.184557956997617*^12, 7.113748555089039*^13, 1.2804747410630338*^15, 2.4329020082839036*^16, 4.8658040164763456*^17, 1.0218188434426337*^19, 2.248001455559376*^20, 5.17040334777803*^21, 1.2408968034663935*^23, 3.10224200866599*^24, 8.065829222531742*^25, 2.17777389008359*^27, 6.0977668922340655*^28, 1.7683523987478783*^30, 5.305057196243631*^31, 1.644567730835523*^33, 5.262616738673672*^34, 1.7366635237623102*^36, 5.904655980791849*^37, 2.066629593277145*^39, 7.4398665357977185*^40, 2.7527506182451524*^42, 1.046045234933157*^44, 4.079576416239309*^45, 1.6318305664957217*^47, 6.690505322632454*^48, 2.8100122355056267*^50, 1.2083052612674186*^52, 5.316543149576638*^53, 2.392444417309483*^55, 1.1005244319623617*^57, 5.172464830223095*^58, 2.4827831185070832*^60, 1.2165637280684694*^62, 6.082818640342342*^63, 3.1022375065745914*^65, 1.613163503418786*^67, 8.549766568119559*^68}
 >>> mo = MEOrderFromMoments[moms];
 >>> Print[mo];
 3
-=== MinimalRepFromME ===
->>> a = {1./6, 1./6, 1./6, 1./6, 1./6, 1./6};
+"=== MinimalRepFromME ==="
+>>> a = {1.0/6,1.0/6,1.0/6,1.0/6,1.0/6,1.0/6};
 >>> A = {{-1., 0., 0., 0., 0., 0.},{0.5, -2., 1., 0., 0., 0.},{1., 0., -3., 1., 0., 0.},{1., 0., 1., -4., 1., 0.},{4., 0., 0., 0., -5., 0.},{5., 0., 0., 0., 0., -6.}};
->>> {b,B} = MinimalRepFromME[a,A,"cont"];
+>>> {b, B} = MinimalRepFromME[a, A, "cont"];
 >>> Print[b];
 {0.9999999999999999, -1.6653345369377348*^-16}
 >>> Print[B];
 {{-1.4011480617916212, 0.48448139512495414},
  {0.49584627341672904, -1.5988519382083795}}
->>> {b,B} = MinimalRepFromME[a,A,"obs"];
+>>> {b, B} = MinimalRepFromME[a, A, "obs"];
 >>> Print[b];
 {0.16666666666666666, 0.16666666666666666, 0.16666666666666666, 0.16666666666666666, 0.16666666666666666, 0.16666666666666666}
 >>> Print[B];
@@ -463,44 +463,44 @@ True
  {1., 0., 1., -4., 1., 0.},
  {4., 0., 0., 0., -5., 0.},
  {5., 0., 0., 0., 0., -6.}}
->>> {b,B} = MinimalRepFromME[a,A,"obscont"];
+>>> {b, B} = MinimalRepFromME[a, A, "obscont"];
 >>> Print[b];
 {0.9999999999999999, -1.6653345369377348*^-16}
 >>> Print[B];
 {{-1.4011480617916212, 0.48448139512495414},
  {0.49584627341672904, -1.5988519382083795}}
->>> {b,B} = MinimalRepFromME[a,A,"moment"];
+>>> {b, B} = MinimalRepFromME[a, A, "moment"];
 >>> Print[b];
 {1/2, 1/2}
 >>> Print[B];
 {{-2.5200000000000364, 1.6466666666667047},
  {-0.48, -0.48000000000000015}}
->>> a = {2./3, 1./3};
+>>> a = {2.0/3,1.0/3};
 >>> A = {{-1., 1.},{0., -3.}};
->>> {b,B} = MinimalRepFromME[a,A,"cont"];
+>>> {b, B} = MinimalRepFromME[a, A, "cont"];
 >>> Print[b];
 {0.6666666666666666, 0.3333333333333333}
 >>> Print[B];
 {{-1., 1.},
  {0., -3.}}
->>> {b,B} = MinimalRepFromME[a,A,"obs"];
+>>> {b, B} = MinimalRepFromME[a, A, "obs"];
 >>> Print[b];
 {0.9999999999999999}
 >>> Print[B];
 {{-1.}}
->>> {b,B} = MinimalRepFromME[a,A,"obscont"];
+>>> {b, B} = MinimalRepFromME[a, A, "obscont"];
 >>> Print[b];
 {0.9999999999999999}
 >>> Print[B];
 {{-1.}}
->>> {b,B} = MinimalRepFromME[a,A,"moment"];
+>>> {b, B} = MinimalRepFromME[a, A, "moment"];
 >>> Print[b];
 {1}
 >>> Print[B];
 {{-1.}}
->>> b = {0.2, 0.3, 0.5};
+>>> b = {0.2,0.3,0.5};
 >>> B = {{-1., 0., 0.},{0., -3., 1.},{0., -1., -3.}};
->>> {a,A} = MonocyclicPHFromME[b,B];
+>>> {a, A} = MonocyclicPHFromME[b, B];
 >>> Print[a];
 {0.00550893408977846, 0.00903007832853331, 0.016937512518639578, 0.015215980106503445, 0.005354337535618665, 0.008735592607040744, 0.05248568615571608, 0.22657249403204927, 0.6601593846261203}
 >>> Print[A];
@@ -513,7 +513,7 @@ True
  {0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847, 0.},
  {0., 0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847},
  {0., 0., 0., 0., 0., 0., 0., 0., -4.241399978863847}}
->>> {b,B} = MinimalRepFromME[a,A,"cont"];
+>>> {b, B} = MinimalRepFromME[a, A, "cont"];
 >>> Print[b];
 {0.00550893408977846, 0.00903007832853331, 0.016937512518639578, 0.015215980106503445, 0.005354337535618665, 0.008735592607040744, 0.05248568615571608, 0.22657249403204927, 0.6601593846261203}
 >>> Print[B];
@@ -526,46 +526,49 @@ True
  {0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847, 0.},
  {0., 0., 0., 0., 0., 0., 0., -4.241399978863847, 4.241399978863847},
  {0., 0., 0., 0., 0., 0., 0., 0., -4.241399978863847}}
->>> {b,B} = MinimalRepFromME[a,A,"obs"];
+>>> {b, B} = MinimalRepFromME[a, A, "obs"];
 >>> Print[b];
 {0.9999999999999998, -6.938893903907228*^-18, 5.551115123125783*^-17}
 >>> Print[B];
 {{-2.8362221259944986, 0.03622212599450128, 3.3306690738754696*^-16},
  {-16.609614674774082, -3.3369017729049943, 16.04221903548223},
  {1.1643450726193003, -0.05172359141706952, -0.8268761011005079}}
->>> Cm = SimilarityMatrix[B,A];
+>>> Cm = SimilarityMatrix[B, A];
 >>> err1 = Norm[B.Cm-Cm.A];
 >>> err2 = Norm[b.Cm-a];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 1.805924023501617*^-14
->>> {b,B} = MinimalRepFromME[a,A,"obscont"];
+>>> {b, B} = MinimalRepFromME[a, A, "obscont"];
 >>> Print[b];
 {0.9999999999999998, -6.938893903907228*^-18, 5.551115123125783*^-17}
 >>> Print[B];
 {{-2.8362221259944986, 0.03622212599450128, 3.3306690738754696*^-16},
  {-16.609614674774082, -3.3369017729049943, 16.04221903548223},
  {1.1643450726193003, -0.05172359141706952, -0.8268761011005079}}
->>> Cm = SimilarityMatrix[B,A];
+>>> Cm = SimilarityMatrix[B, A];
 >>> err1 = Norm[B.Cm-Cm.A];
 >>> err2 = Norm[b.Cm-a];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 1.805924023501617*^-14
->>> {b,B} = MinimalRepFromME[a,A,"moment"];
+>>> {b, B} = MinimalRepFromME[a, A, "moment"];
 >>> Print[b];
 {1/3, 1/3, 1/3}
 >>> Print[B];
 {{-2.1904761904762835, 1.9221904761901123, -3.369809523809149},
  {-1.0769308703296558, -2.390597900927728, 0.8316243212940291},
  {-0.5103707169719298, 0.8032963136261424, -2.418925908595615}}
->>> Cm = SimilarityMatrix[B,A];
+>>> Cm = SimilarityMatrix[B, A];
 >>> err1 = Norm[B.Cm-Cm.A];
 >>> err2 = Norm[b.Cm-a];
->>> Print[Max[err1,err2]];
+>>> Print[Max[err1, err2]];
 1.6327303174900902*^-14
-=== SamplesFromPH ===
->>> a = {0.1, 0.9, 0};
+"=== SamplesFromPH ==="
+>>> a = {0.1,0.9,0};
 >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
->>> x = SamplesFromPH[a,A,1000];
->>> mp = MomentsFromPH[a,A,3];
+>>> x = SamplesFromPH[a, A, 1000];
+>>> mt = MarginalMomentsFromTrace[x, 3];
+>>> Print[mt];
+{0.20740615925124653, 0.10656742833921845, 0.10221807499522584}
+>>> mp = MomentsFromPH[a, A, 3];
 >>> Print[mp];
 {0.20938722294654497, 0.10448912014333092, 0.08909150039190732}

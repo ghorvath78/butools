@@ -12,7 +12,7 @@ defmat@ D0 # {{0, 0.02, 0, 0},{0, 0.17, 0.2, 0.14},{0.16, 0.17, 0.02, 0.18},{0, 
 defmat@ D1 # {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}}
 testmsg
 code!@ {a,A}=MarginalDistributionFromDMAP[D0,D1]
-assert Length[a]==Dim1[D0] && CheckDPHRepresentation[a,A] # MarginalDistributionFromDMAP returned a wrong DPH representation!
+assert Length[a]==Dim1[D0] && CheckDPHRepresentation[a,A] # "MarginalDistributionFromDMAP returned a wrong DPH representation!"
 
 test MarginalMomentsFromDMAP
 
@@ -21,7 +21,7 @@ defmat@ D0 # {{0, 0.02, 0, 0},{0, 0.17, 0.2, 0.14},{0.16, 0.17, 0.02, 0.18},{0, 
 defmat@ D1 # {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}}
 testmsg
 code!@ moms=MarginalMomentsFromDMAP[D0,D1]
-assert Length[moms]==2*Dim1[D0]-1 && CheckMoments[moms] # MarginalMomentsFromDMAP returned wrong moments!
+assert Length[moms]==2*Dim1[D0]-1 && CheckMoments[moms] # "MarginalMomentsFromDMAP returned wrong moments!"
 
 test MarginalDistributionFromDRAP
 
@@ -30,7 +30,7 @@ defmat@ H0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
 defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
 code!@ {a,A}=MarginalDistributionFromDRAP[H0,H1]
-assert Length[a]==Dim1[H0] && CheckMGRepresentation[a,A] # MarginalDistributionFromDRAP returned a wrong MG representation!
+assert Length[a]==Dim1[H0] && CheckMGRepresentation[a,A] # "MarginalDistributionFromDRAP returned a wrong MG representation!"
 
 test MarginalMomentsFromDRAP
 
@@ -39,7 +39,7 @@ defmat@ H0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
 defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
 code!@ moms=MarginalMomentsFromDRAP[H0,H1]
-assert Length[moms]==2*Dim1[H0]-1 && CheckMoments[moms] # MarginalMomentsFromDRAP returned wrong moments!
+assert Length[moms]==2*Dim1[H0]-1 && CheckMoments[moms] # "MarginalMomentsFromDRAP returned wrong moments!"
 
 test MarginalDistributionFromDMMAP
 defmat@ D0 # {{0.34, 0, 0},{0.06, 0.05, 0.03},{0.11, 0.13, 0}}
@@ -48,7 +48,7 @@ defmat@ D2 # {{0, 0.01, 0},{0.1, 0.07, 0.08},{0.13, 0.12, 0.13}}
 defmat@ D3 # {{0.35, 0, 0},{0, 0.18, 0.04},{0.06, 0.03, 0.01}}
 testmsg
 code!@ {a,A}=MarginalDistributionFromDMMAP[<-D0,D1,D2,D3->]
-assert Length[a]==Dim1[D0] && CheckDPHRepresentation[a,A] # MarginalDistributionFromDMMAP returned a wrong DPH representation!
+assert Length[a]==Dim1[D0] && CheckDPHRepresentation[a,A] # "MarginalDistributionFromDMMAP returned a wrong DPH representation!"
 
 test MarginalMomentsFromDMMAP
 
@@ -59,7 +59,7 @@ defmat@ D2 # {{0, 0.01, 0},{0.1, 0.07, 0.08},{0.13, 0.12, 0.13}}
 defmat@ D3 # {{0.35, 0, 0},{0, 0.18, 0.04},{0.06, 0.03, 0.01}}
 testmsg
 code!@ moms=MarginalMomentsFromDMMAP[<-D0,D1,D2,D3->]
-assert Length[moms]==2*Dim1[D0]-1 && CheckMoments[moms] # MarginalMomentsFromDMMAP returned wrong moments!
+assert Length[moms]==2*Dim1[D0]-1 && CheckMoments[moms] # "MarginalMomentsFromDMMAP returned wrong moments!"
 
 test MarginalDistributionFromDMRAP
 
@@ -69,7 +69,7 @@ defmat@ H1 # {{0.01, 0.08, 0.16},{0.02, 0.2, 0.07},{0.02, 0.15, 0.17}}
 defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.34},{0.06, 0.1, 0}}
 testmsg
 code!@ {a,A}=MarginalDistributionFromDMRAP[<-H0,H1,H2->]
-assert Length[a]==Dim1[H0] && CheckMGRepresentation[a,A] # MarginalDistributionFromDMRAP returned a wrong MG representation!
+assert Length[a]==Dim1[H0] && CheckMGRepresentation[a,A] # "MarginalDistributionFromDMRAP returned a wrong MG representation!"
 
 test MarginalMomentsFromDMRAP
 
@@ -79,7 +79,7 @@ defmat@ H1 # {{0.01, 0.08, 0.16},{0.02, 0.2, 0.07},{0.02, 0.15, 0.17}}
 defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.34},{0.06, 0.1, 0}}
 testmsg
 code!@ moms=MarginalMomentsFromDMRAP[<-H0,H1,H2->]
-assert Length[moms]==2*Dim1[H0]-1 && CheckMoments[moms] # MarginalMomentsFromDMRAP returned wrong moments!
+assert Length[moms]==2*Dim1[H0]-1 && CheckMoments[moms] # "MarginalMomentsFromDMRAP returned wrong moments!"
 
 test LagCorrelationsFromDMAP
 
@@ -88,7 +88,7 @@ defmat@ D0 # {{0, 0.02, 0, 0},{0, 0.17, 0.2, 0.14},{0.16, 0.17, 0.02, 0.18},{0, 
 defmat@ D1 # {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}}
 testmsg
 code!@ corr = LagCorrelationsFromDMAP[D0,D1,3]
-assert Length[corr]==3 && AllLessThan1[NPArray[corr]] && AllGreaterThanm1[NPArray[corr]] # LagCorrelationsFromDMAP returned wrong autocorrelation coefficients!
+assert Length[corr]==3 && AllLessThan1[corr] && AllGreaterThanm1[corr] # "LagCorrelationsFromDMAP returned wrong autocorrelation coefficients!"
 
 test LagCorrelationsFromDRAP
 
@@ -97,7 +97,7 @@ defmat@ H0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
 defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
 code!@ corr = LagCorrelationsFromDRAP[H0,H1,3]
-assert Length[corr]==3 && AllLessThan1[NPArray[corr]] && AllGreaterThanm1[NPArray[corr]] # LagCorrelationsFromDRAP returned wrong autocorrelation coefficients!
+assert Length[corr]==3 && AllLessThan1[corr] && AllGreaterThanm1[corr] # "LagCorrelationsFromDRAP returned wrong autocorrelation coefficients!"
 
 test LagkJointMomentsFromDMAP
 inputmsg
@@ -106,22 +106,16 @@ defmat@ D1 # {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04}
 testmsg
 code!@ Nm=LagkJointMomentsFromDMAP[D0,D1,4,1]
 code!@ moms=MarginalMomentsFromDMAP[D0,D1,4]
-CODEP cjm=np.empty(3)
-CODEP for i in range(3):
-CODEP     Nx=LagkJointMomentsFromDMAP(D0,D1,1,i+1)
-CODEP     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
-CODEM cjm=zeros(3,1);
-CODEM for i=1:3
-CODEM     Nx=LagkJointMomentsFromDMAP(D0,D1,1,i);
-CODEM     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
-CODEM end
-CODEW cjm=Table[(LagkJointMomentsFromDMAP[D0,D1,1,i][[2,2]]-moms[[1]]^2) / (moms[[2]]-moms[[1]]^2),{i,1,3}];
+code cjm=Zeros[3]
+code For[i,1,3,1]
+code Nx=LagkJointMomentsFromDMAP[D0,D1,1,i]
+code cjm[[i]] = (Nx[[2,2]]-moms[[1]]^2) / (moms[[2]]-moms[[1]]^2)
+code EndFor[]
 print "Correlation from joint moments:" # cjm
 code!@ corr = LagCorrelationsFromDMAP[D0,D1,3]
-CODE$P mNm1, mNm2 = Nm[0,1:].A.flatten(), Nm[1:,0].A.flatten()
-CODE$M mNm1 = Nm(1,2:end); mNm2 = Nm(2:end,1)';
-CODE$W mNm1 = Nm[[1,2;;]]; mNm2 = Nm[[2;;,1]];
-assert AllPositiveMatrix[Nm] && Norm[NPArray[moms]-mNm1]<10^-12 && Norm[NPArray[moms]-mNm2]<10^-12 && Norm[corr-cjm]<10^-12 # Joint moment matrix is invalid!
+code$ mNm1 = Flatten[Nm[[1,2;;]]]
+code$ mNm2 = Flatten[Nm[[2;;,1]]]
+assert AllPositiveMatrix[Nm] && Norm[ToArray[moms]-mNm1]<10^-12 && Norm[ToArray[moms]-mNm2]<10^-12 && Norm[corr-cjm]<10^-12 # "Joint moment matrix is invalid!"
 
 test LagkJointMomentsFromDRAP
 
@@ -132,23 +126,16 @@ testmsg
 code! Nm=LagkJointMomentsFromDRAP[H0,H1,4,1]
 print Length[Nm]
 code!@ moms=MarginalMomentsFromDRAP[H0,H1,4]
-CODEP cjm=np.empty(3)
-CODEP for i in range(3):
-CODEP     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i+1)
-CODEP     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
-CODEM cjm=zeros(3,1);
-CODEM for i=1:3
-CODEM     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i);
-CODEM     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
-CODEM end
-CODEW cjm={};
-CODEW cjm=Table[(LagkJointMomentsFromDRAP[H0,H1,1,i][[2,2]]-moms[[1]]^2) / (moms[[2]]-moms[[1]]^2),{i,1,3}];
+code cjm=Zeros[3]
+code For[i,1,3,1]
+code Nx=LagkJointMomentsFromDRAP[H0,H1,1,i]
+code cjm[[i]] = (Nx[[2,2]]-moms[[1]]^2) / (moms[[2]]-moms[[1]]^2)
+code EndFor[]
 print "Correlation from joint moments:" # cjm
 code!@ corr = LagCorrelationsFromDRAP[H0,H1,3]
-CODE$P mNm1, mNm2 = Nm[0,1:].A.flatten(), Nm[1:,0].A.flatten()
-CODE$M mNm1 = Nm(1,2:end); mNm2 = Nm(2:end,1)';
-CODE$W mNm1 = Nm[[1,2;;]]; mNm2 = Nm[[2;;,1]];
-assert AllPositiveMatrix[Nm] && Norm[NPArray[moms]-mNm1]<10^-12 && Norm[NPArray[moms]-mNm2]<10^-12 && Norm[corr-cjm]<10^-12 # Joint moment matrix is invalid!
+code$ mNm1 = Flatten[Nm[[1,2;;]]]
+code$ mNm2 = Flatten[Nm[[2;;,1]]]
+assert AllPositiveMatrix[Nm] && Norm[ToArray[moms]-mNm1]<10^-12 && Norm[ToArray[moms]-mNm2]<10^-12 && Norm[corr-cjm]<10^-12 # "Joint moment matrix is invalid!"
 
 test LagkJointMomentsFromDMMAP
 inputmsg
@@ -161,7 +148,7 @@ code! Nm=LagkJointMomentsFromDMMAP[<-D0,D1,D2,D3->,3,1]
 print Nm<<1>>
 print Nm<<2>>
 print Nm<<3>>
-assert Length[Nm]==3 && Norm[Nm<<1>>+Nm<<2>>+Nm<<3>>-LagkJointMomentsFromDMAP[D0,D1+D2+D3,3,1]]<10^-12 # Joint moment matrix is invalid!
+assert Length[Nm]==3 && Norm[Nm<<1>>+Nm<<2>>+Nm<<3>>-LagkJointMomentsFromDMAP[D0,D1+D2+D3,3,1]]<10^-12 # "Joint moment matrix is invalid!"
 
 test LagkJointMomentsFromDMRAP
 
@@ -173,27 +160,27 @@ testmsg
 code! Nm=LagkJointMomentsFromDMRAP[<-H0,H1,H2->,3,2]
 print Nm<<1>>
 print Nm<<2>>
-assert Length[Nm]==2 && Norm[Nm<<1>>+Nm<<2>>-LagkJointMomentsFromDRAP[H0,H1+H2,3,2]]<10^-12 # Joint moment matrix is invalid!
+assert Length[Nm]==2 && Norm[Nm<<1>>+Nm<<2>>-LagkJointMomentsFromDRAP[H0,H1+H2,3,2]]<10^-12 # "Joint moment matrix is invalid!"
 
 test RandomDMAP
 
 testmsg
 code!@ {D0,D1}=RandomDMAP[4,5.62,10]
 code!@ m = MarginalMomentsFromDMAP[D0,D1,1][[1]]
-assert CheckDMAPRepresentation[D0,D1] # RandomDMAP failed to return a valid DMAP representation!
-assert Abs[m-5.62]<10^-14 # RandomDMAP failed to match the given mean value!
+assert CheckDMAPRepresentation[D0,D1] # "RandomDMAP failed to return a valid DMAP representation!"
+assert Abs[m-5.62]<10^-14 # "RandomDMAP failed to match the given mean value!"
 
 test RandomDMMAP
 
 testmsg
-code! D=RandomDMMAP[4,3,5.62,10]
-print D<<1>>
-print D<<2>>
-print D<<3>>
-print D<<4>>
-code!@ m = MarginalMomentsFromDMMAP[D,1][[1]]
-assert CheckDMMAPRepresentation[D] # RandomDMMAP failed to return a valid MMAP representation!
-assert Abs[m-5.62]<10^-14 # RandomDMMAP failed to match the given mean value!
+code! Dm=RandomDMMAP[4,3,5.62,10]
+print Dm<<1>>
+print Dm<<2>>
+print Dm<<3>>
+print Dm<<4>>
+code!@ m = MarginalMomentsFromDMMAP[Dm,1][[1]]
+assert CheckDMMAPRepresentation[Dm] # "RandomDMMAP failed to return a valid MMAP representation!"
+assert Abs[m-5.62]<10^-14 # "RandomDMMAP failed to match the given mean value!"
 
 test CheckDMAPRepresentation
 
@@ -202,58 +189,58 @@ defmat@ D0 # {{0, 0.02, 0},{0, 0.17, 0.2},{0.16, 0.17, 0.02}}
 defmat@ D1 # {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}}
 testmsg
 code!@ flag=CheckDMAPRepresentation[D0,D1]
-assert flag==False # CheckDMAPRepresentation failed to detect the incompatible shapes of D0 and D1!
+assert flag==False # "CheckDMAPRepresentation failed to detect the incompatible shapes of D0 and D1!"
 inputmsg
 defmat@ D0 # {{0, 0.02, 0},{0, 0.17, 0.2},{0.16, 0.17, 0.02}}
 defmat@ D1 # {{0, 0.88, 0.1},{0.18, 0.07, 0.14},{0.13, 0.15, 0.15}}
 testmsg
 code!@ flag=CheckDMAPRepresentation[D0,D1]
-assert flag==False # CheckDMAPRepresentation failed to detect invalid rowsums!
+assert flag==False # "CheckDMAPRepresentation failed to detect invalid rowsums!"
 inputmsg
 defmat@ D0 # {{0, 0.02, 0, 0},{0, 0.17, 0.2, 0.14},{0.16, 0.17, 0.02, 0.18},{0, 0, 0, 0.12}}
 defmat@ D1 # {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}}
 testmsg
 code!@ flag=CheckDMAPRepresentation[D0,D1]
-assert flag==True # CheckDMAPRepresentation failed to recognize a valid DMAP representation!
+assert flag==True # "CheckDMAPRepresentation failed to recognize a valid DMAP representation!"
 
 test CheckDRAPRepresentation
 
 inputmsg
 defmat@ H0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02},{0.2, 0, 0}}
-defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29},{0, 0.8, 0}}
+defmat@ H1 # {{0, 1., -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29},{0, 0.8, 0}}
 testmsg
 code!@ flag=CheckDRAPRepresentation[H0,H1]
-assert flag==False # CheckDRAPRepresentation failed to detect the incompatible shapes of D0 and D1!
+assert flag==False # "CheckDRAPRepresentation failed to detect the incompatible shapes of D0 and D1!"
 inputmsg
 defmat@ H0 # {{0.2, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
-defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
+defmat@ H1 # {{0, 1., -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
 code!@ flag=CheckDRAPRepresentation[H0,H1]
-assert flag==False # CheckDRAPRepresentation failed to detect invalid rowsums!
+assert flag==False # "CheckDRAPRepresentation failed to detect invalid rowsums!"
 inputmsg
 defmat@ H0 # {{-1., 0, 0},{0, -2., 2.},{0, 3., -3.}}
 defmat@ H1 # {{0, 0, 1.},{0, -1., 1.},{1., 0, -1.}}
 testmsg
 code!@ flag=CheckDRAPRepresentation[H0,H1]
-assert flag==False # CheckDRAPRepresentation failed to detect invalid eigenvalues!
+assert flag==False # "CheckDRAPRepresentation failed to detect invalid eigenvalues!"
 inputmsg
 defmat@ H0 # {{0, 0, 15.},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
-defmat@ H1 # {{0, 1, -15.},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
+defmat@ H1 # {{0, 1., -15.},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
 code!@ flag=CheckDRAPRepresentation[H0,H1]
-assert flag==False # CheckDRAPRepresentation failed to detect invalid eigenvalues!
+assert flag==False # "CheckDRAPRepresentation failed to detect invalid eigenvalues!"
 inputmsg
 defmat@ H0 # {{0, 0.5, 0.1},{0, -1.4, 3.1},{0.67, 0, 0.4}}
 defmat@ H1 # {{0, 0.4, 0},{0, -0.2, -0.5},{0.3, -0.7, 0.33}}
 testmsg
 code!@ flag=CheckDRAPRepresentation[H0,H1]
-assert flag==False # CheckDRAPRepresentation failed to detect invalid eigenvalues!
+assert flag==False # "CheckDRAPRepresentation failed to detect invalid eigenvalues!"
 inputmsg
 defmat@ H0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
-defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
+defmat@ H1 # {{0, 1., -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
 code!@ flag=CheckDRAPRepresentation[H0,H1]
-assert flag==True # CheckDRAPRepresentation failed to recognize a valid RAP representation!
+assert flag==True # "CheckDRAPRepresentation failed to recognize a valid RAP representation!"
 
 test CheckDMMAPRepresentation
 
@@ -264,7 +251,7 @@ defmat@ D2 # {{0, 0.01, 0},{0.1, 0.07, 0.08},{0.13, 0.12, 0.13}}
 defmat@ D3 # {{0.35, 0, 0},{0, 0.18, 0.04},{0.06, 0.03, 0.01}}
 testmsg
 code!@ flag=CheckDMMAPRepresentation[<-D0,D1,D2,D3->]
-assert flag==True # CheckDMMAPRepresentation failed to recognize a valid DMMAP representation!
+assert flag==True # "CheckDMMAPRepresentation failed to recognize a valid DMMAP representation!"
 
 test CheckDMRAPRepresentation
 
@@ -274,7 +261,7 @@ defmat@ H1 # {{0.01, 0.08, 0.16},{0.02, 0.2, 0.07},{0.02, 0.15, 0.17}}
 defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.34},{0.06, 0.1, 0}}
 testmsg
 code!@ flag=CheckDMRAPRepresentation[<-H0,H1,H2->]
-assert flag==True # CheckDMRAPRepresentation failed to recognize a valid DMRAP representation!
+assert flag==True # "CheckDMRAPRepresentation failed to recognize a valid DMRAP representation!"
 
 test DRAPFromMoments
 
@@ -287,7 +274,7 @@ testmsg
 code!@ {H0,H1}=DRAPFromMoments[moms,Nm]
 code!@ rmoms=MarginalMomentsFromDRAP[H0,H1,5]
 code!@ rNm=LagkJointMomentsFromDRAP[H0,H1,2,1]
-assert Norm[NPArray[moms]-NPArray[rmoms]]<10^-11 && Norm[Nm-rNm]<10^-12 # The moments and joint moments returned by RAPFromMoments are not the same as given!
+assert Norm[ToArray[moms]-ToArray[rmoms]]<10^-11 && Norm[Nm-rNm]<10^-12 # "The moments and joint moments returned by RAPFromMoments are not the same as given!"
 
 test DMRAPFromMoments
 
@@ -299,7 +286,7 @@ defmat@ G3 # {{0.35, 0, 0},{0, 0.18, 0.04},{0.06, 0.03, 0.01}}
 code! G=<-G0,G1,G2,G3->
 code!@ moms=MarginalMomentsFromDMRAP[G,5]
 code! Nm=LagkJointMomentsFromDMRAP[G,2,1]
-code!@ {Nm1, Nm2, Nm3} = Nm<<>>
+code!@ <-Nm1, Nm2, Nm3-> = Nm
 testmsg
 code! H=DMRAPFromMoments[moms,Nm]
 print! H<<1>>
@@ -309,27 +296,28 @@ print! H<<4>>
 code BuTools`CheckPrecision=10.^-10
 code!@ rmoms=MarginalMomentsFromDMRAP[H,5]
 code! rNm = LagkJointMomentsFromDMRAP[H,2,1]
-code!@ {rNm1, rNm2, rNm3} = rNm<<>>
-assert Norm[NPArray[moms]-NPArray[rmoms]]<10^-9 && Norm[Nm1-rNm1]<10^-9 && Norm[Nm2-rNm2]<10^-9 && Norm[Nm3-rNm3]<10^-9 # The moments and joint moments returned by DMRAPFromMoments are not the same as given!
+code!@ <-rNm1, rNm2, rNm3-> = rNm
+print! Norm[ToArray[moms]-ToArray[rmoms]]
+assert Norm[ToArray[moms]-ToArray[rmoms]]<10^-9 && Norm[Nm1-rNm1]<10^-9 && Norm[Nm2-rNm2]<10^-9 && Norm[Nm3-rNm3]<10^-9 # "The moments and joint moments returned by DMRAPFromMoments are not the same as given!"
 
 
 test DMAPFromDRAP
 
 inputmsg
-defmat@ D0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
-defmat@ D1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
+defmat@ H0 # {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}}
+defmat@ H1 # {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}}
 testmsg
-code!@ {H0,H1}=DMAPFromDRAP[D0,D1]
+code!@ {D0,D1}=DMAPFromDRAP[H0,H1]
 code!@ err = Norm[LagkJointMomentsFromDRAP[D0,D1,3,1]-LagkJointMomentsFromDRAP[H0,H1,3,1]]
-assert err<10^-10 # The DMAP returned by DMAPFromDRAP is not similar to the input!
-assert CheckDMAPRepresentation[H0,H1] # The result of DMAPFromDRAP is not a DMAP, as it should be!
+assert err<10^-10 # "The DMAP returned by DMAPFromDRAP is not similar to the input!"
+assert CheckDMAPRepresentation[D0,D1] # "The result of DMAPFromDRAP is not a DMAP, as it should be!"
 
 test DMMAPFromDMRAP
 
 inputmsg
 defmat@ H0 # {{0.15, 0.2, 0.18},{-0.20, 0.17, 0.22},{0.19, 0.15, 0.16}}
 defmat@ H1 # {{0.01, 0.08, 0.16},{0.02, 0.2, 0.07},{0.02, 0.15, 0.17}}
-defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.31},{0.06, 0.1, 0}}
+defmat@ H2 # {{0.14, 0.07, 0.01},{0.19, 0.02, 0.31},{0.06, 0.1, 0.}}
 code H=<-H0,H1,H2->
 code!@ moms=MarginalMomentsFromDMRAP[H]
 code! jmom=LagkJointMomentsFromDMRAP[H,3,1]
@@ -341,10 +329,10 @@ print G<<3>>
 code!@ rmoms=MarginalMomentsFromDMMAP[G]
 code! rjmom=LagkJointMomentsFromDMMAP[G,3,1]
 code!@ err = Norm[rjmom<<1>>-jmom<<1>>] + Norm[rjmom<<2>>-jmom<<2>>]
-assert err<10^-12 # The DMMAP returned by DMMAPFromDMRAP is not similar to the input!
-assert CheckDMMAPRepresentation[G] # The result of DMMAPFromDMRAP is not a DMMAP, as it should be!
+assert err<10^-12 # "The DMMAP returned by DMMAPFromDMRAP is not similar to the input!"
+assert CheckDMMAPRepresentation[G] # "The result of DMMAPFromDMRAP is not a DMMAP, as it should be!"
 
-test CanonicalFromMAP2
+test CanonicalFromDMAP2
 
 inputmsg
 defmat@ D0 # {{0.46, 0.28},{0.35, 0.23}}
@@ -355,8 +343,8 @@ code Cm=SimilarityMatrix[H0,D0]
 code err1 = Norm[H0.Cm-Cm.D0]
 code err2 = Norm[H1.Cm-Cm.D1]
 print "Transformation errors:" # Max[err1,err2]
-assert CheckDMAPRepresentation[H0,H1] # The result of CanonicalFromDMAP2 is not a valid DMAP representation!
-assert Max[err1,err2]<10^-12 # The DMAP returned by CanonicalFromDMAP2 is not similar to the input!
+assert CheckDMAPRepresentation[H0,H1] # "The result of CanonicalFromDMAP2 is not a valid DMAP representation!"
+assert Max[err1,err2]<10^-12 # "The DMAP returned by CanonicalFromDMAP2 is not similar to the input!"
 inputmsg
 defmat@ D0 # {{0.26, 0.28},{0.35, 0.23}}
 defmat@ D1 # {{0.28, 0.18},{0.14, 0.28}}
@@ -366,8 +354,8 @@ code Cm=SimilarityMatrix[H0,D0]
 code err1 = Norm[H0.Cm-Cm.D0]
 code err2 = Norm[H1.Cm-Cm.D1]
 print "Transformation errors:" # Max[err1,err2]
-assert CheckDMAPRepresentation[H0,H1] # The result of CanonicalFromDMAP2 is not a valid DMAP representation!
-assert Max[err1,err2]<10^-12 # The DMAP returned by CanonicalFromDMAP2 is not similar to the input!
+assert CheckDMAPRepresentation[H0,H1] # "The result of CanonicalFromDMAP2 is not a valid DMAP representation!"
+assert Max[err1,err2]<10^-12 # "The DMAP returned by CanonicalFromDMAP2 is not similar to the input!"
 inputmsg
 defmat@ D0 # {{0.14, 0.34},{0.35, 0.23}}
 defmat@ D1 # {{0.22, 0.3},{0.28, 0.14}}
@@ -377,8 +365,8 @@ code Cm=SimilarityMatrix[H0,D0]
 code err1 = Norm[H0.Cm-Cm.D0]
 code err2 = Norm[H1.Cm-Cm.D1]
 print "Transformation errors:" # Max[err1,err2]
-assert CheckDMAPRepresentation[H0,H1] # The result of CanonicalFromDMAP2 is not a valid DMAP representation!
-assert Max[err1,err2]<10^-12 # The DMAP returned by CanonicalFromDMAP2 is not similar to the input!
+assert CheckDMAPRepresentation[H0,H1] # "The result of CanonicalFromDMAP2 is not a valid DMAP representation!"
+assert Max[err1,err2]<10^-12 # "The DMAP returned by CanonicalFromDMAP2 is not similar to the input!"
 
 test DMAP2FromMoments
 
@@ -391,8 +379,8 @@ testmsg
 code!@ {D0,D1}=DMAP2FromMoments[moms,corr]
 code!@ rmoms=MarginalMomentsFromDMAP[D0, D1, 3]
 code!@ rcorr=LagCorrelationsFromDMAP[D0, D1, 1][[1]]
-assert CheckDMAPRepresentation[D0,D1] # DMAP2FromMoments returned an invalid DMAP representation!
-assert Norm[NPArray[moms]-NPArray[rmoms]]<10^-11 && Abs[corr-rcorr]<10^-12 # The moments and the correlation returned by DMAP2FromMoments are not the same as given!
+assert CheckDMAPRepresentation[D0,D1] # "DMAP2FromMoments returned an invalid DMAP representation!"
+assert Norm[ToArray[moms]-ToArray[rmoms]]<10^-11 && Abs[corr-rcorr]<10^-11 # "The moments and the correlation returned by DMAP2FromMoments are not the same as given!"
 
 test SamplesFromDMAP
 
@@ -401,7 +389,7 @@ defmat@ D0 # {{0, 0.02, 0, 0},{0, 0.17, 0.2, 0.14},{0.16, 0.17, 0.02, 0.18},{0, 
 defmat@ D1 # {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}}
 testmsg
 code! x=SamplesFromDMAP[D0,D1,10000]
-//code!@ mt = MarginalMomentsFromTrace(x,3)
+code!@ mt = MarginalMomentsFromTrace[x,3]
 code!@ mm = MarginalMomentsFromDMAP[D0,D1,3]
 
 test SamplesFromDMMAP
@@ -411,10 +399,10 @@ defmat@ D0 # {{0.34, 0, 0},{0.06, 0.05, 0.03},{0.11, 0.13, 0}}
 defmat@ D1 # {{0.3, 0, 0},{0.16, 0.18, 0.05},{0.15, 0.04, 0.09}}
 defmat@ D2 # {{0, 0.01, 0},{0.1, 0.07, 0.08},{0.13, 0.12, 0.13}}
 defmat@ D3 # {{0.35, 0, 0},{0, 0.18, 0.04},{0.06, 0.03, 0.01}}
-code D = <-D0,D1,D2,D3->
+code Dm = <-D0,D1,D2,D3->
 testmsg
-code! x=SamplesFromDMMAP[D,10000]
-//code!@ mt=MarginalMomentsFromTrace[x[[;;,1]],3]
-code!@ mm=MarginalMomentsFromDMMAP[D,3]
+code! x=SamplesFromDMMAP[Dm,10000]
+code!@ mt=MarginalMomentsFromTrace[x[[;;,1]],3]
+code!@ mm=MarginalMomentsFromDMMAP[Dm,3]
 
 

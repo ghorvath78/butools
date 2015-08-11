@@ -1,0 +1,598 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
+package Queues
+
+test QBDQueue
+
+inputmsg
+defmat@ B # {{6., 1., 0.},{0., 4., 1.},{2., 0., 0.}}
+defmat@ F # {{0., 1., 1.},{5., 0., 0.},{1., 3., 0.}} 
+defmat@ L # {{-14., 3., 2.},{0., -14., 4.},{3., 1., -10.}} 
+code@ L0 = L+B
+code$ BuTools`Verbose = False
+code$ {pi0, R} = QBDSolve [B, L, F, L0]
+code$ lambd = Sum[pi0.Inv[Eye[Dim1[R]]-R]*F]
+code$ BuTools`Verbose = True
+testmsg
+code!@ {qld,qlm} = QBDQueue[B, L, F, L0, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = QBDQueue[B, L, F, L0, "qlDistrDPH"]
+code!@ {alpha,A} = QBDQueue[B, L, F, L0, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = QBDQueue[B, L, F, L0, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = QBDQueue[B, L, F, L0, "stDistrPH"]
+code!@ {beta, B} = QBDQueue[B, L, F, L0, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "QBDQueue: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "QBDQueue: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "QBDQueue: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "QBDQueue: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "QBDQueue: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "QBDQueue: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "QBDQueue: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "QBDQueue: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "QBDQueue: stMoms returns wrong sojourn time moments!"
+
+enddocex
+
+inputmsg
+defmat@ B # {{6., 1., 0.},{0., 4., 1.},{2., 0., 0.}}
+defmat@ F # {{0., 0., 0.},{5., 0., 0.},{1., 3., 0.}} 
+defmat@ L # {{-12., 3., 2.},{0., -14., 4.},{3., 1., -10.}} 
+code@ L0 = L+B
+code$ BuTools`Verbose = False
+code$ {pi0, R} = QBDSolve [B, L, F, L0]
+code$ lambd = Sum[pi0.Inv[Eye[Dim1[R]]-R]*F]
+code$ BuTools`Verbose = True
+testmsg
+code!@ {qld,qlm} = QBDQueue[B, L, F, L0, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = QBDQueue[B, L, F, L0, "qlDistrDPH"]
+code!@ {alpha,A} = QBDQueue[B, L, F, L0, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = QBDQueue[B, L, F, L0, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = QBDQueue[B, L, F, L0, "stDistrPH"]
+code!@ {beta, B} = QBDQueue[B, L, F, L0, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "QBDQueue: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "QBDQueue: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "QBDQueue: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "QBDQueue: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "QBDQueue: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "QBDQueue: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "QBDQueue: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "QBDQueue: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "QBDQueue: stMoms returns wrong sojourn time moments!"
+
+inputmsg
+defmat@ B # {{6., 1., 0.},{0., 5., 0.},{0., 0., 0.}}
+defmat@ F # {{0., 3., 1.},{0., 5., 0.},{0., 0., 0.}} 
+defmat@ L # {{-16., 3., 2.},{0., -14., 4.},{3., 1., -4.}} 
+defmat@ L0 # {{-14., 10., 0.},{5., -10., 0.},{3., 1., -4.}}
+code$ BuTools`Verbose = False
+code$ {pi0, R} = QBDSolve [B, L, F, L0]
+code$ lambd = Sum[pi0.Inv[Eye[Dim1[R]]-R]*F]
+code$ BuTools`Verbose = True
+testmsg
+code!@ {qld,qlm} = QBDQueue[B, L, F, L0, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = QBDQueue[B, L, F, L0, "qlDistrDPH"]
+code!@ {alpha,A} = QBDQueue[B, L, F, L0, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = QBDQueue[B, L, F, L0, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = QBDQueue[B, L, F, L0, "stDistrPH"]
+code!@ {beta, B} = QBDQueue[B, L, F, L0, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "QBDQueue: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "QBDQueue: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "QBDQueue: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "QBDQueue: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "QBDQueue: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "QBDQueue: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "QBDQueue: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "QBDQueue: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "QBDQueue: stMoms returns wrong sojourn time moments!"
+
+inputmsg
+defmat@ B # {{0., 0.},{3., 4.}}
+defmat@ F # {{1., 0.},{2., 0.}} 
+defmat@ L # {{-6., 5.},{3., -12.}} 
+defmat@ L0 # {{-6., 5.},{6., -8.}}
+code$ BuTools`Verbose = False
+code$ {pi0, R} = QBDSolve [B, L, F, L0]
+code$ lambd = Sum[pi0.Inv[Eye[Dim1[R]]-R]*F]
+code$ BuTools`Verbose = True
+testmsg
+code!@ {qld,qlm} = QBDQueue[B, L, F, L0, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = QBDQueue[B, L, F, L0, "qlDistrDPH"]
+code!@ {alpha,A} = QBDQueue[B, L, F, L0, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = QBDQueue[B, L, F, L0, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = QBDQueue[B, L, F, L0, "stDistrPH"]
+code!@ {beta, B} = QBDQueue[B, L, F, L0, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "QBDQueue: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "QBDQueue: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "QBDQueue: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "QBDQueue: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "QBDQueue: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "QBDQueue: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "QBDQueue: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "QBDQueue: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "QBDQueue: stMoms returns wrong sojourn time moments!"
+
+
+test MAPMAP1
+
+inputmsg
+defmat@ D0 # {{-8., 1., 2.},{0., -6., 4.},{3., 0., -3.}}
+defmat@ D1 # {{4., 1., 0.},{0., 2., 0.},{0., 0., 0.}}
+defmat@ S0 # {{-10., 4.},{0., -7.}}
+defmat@ S1 # {{5., 1.},{4., 3.}}
+code$ lambd = 1./MarginalMomentsFromMAP[D0,D1,1][[1]]
+testmsg
+code!@ {qld,qlm} = MAPMAP1[D0,D1,S0,S1, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = MAPMAP1[D0,D1,S0,S1, "qlDistrDPH"]
+code!@ {alpha,A} = MAPMAP1[D0,D1,S0,S1, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = MAPMAP1[D0,D1,S0,S1, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = MAPMAP1[D0,D1,S0,S1, "stDistrPH"]
+code!@ {beta, B} = MAPMAP1[D0,D1,S0,S1, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "MAPMAP1: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "MAPMAP1: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "MAPMAP1: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "MAPMAP1: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "MAPMAP1: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "MAPMAP1: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "MAPMAP1: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "MAPMAP1: stMoms returns wrong sojourn time moments!"
+// cross-check
+code$ IA = Eye[Dim1[D0]]
+code$ IS = Eye[Dim1[S0]]
+code$ BuTools`Verbose = False
+code$ {gamma, G} = QBDQueue [Kron[IA,S1], Kron[D0,IS]+Kron[IA,S0], Kron[D1,IS], Kron[D0,IS], "stDistrME"]
+code$ BuTools`Verbose = True
+code$ msmall = MomentsFromME[beta,B,5]
+code$ mlarge = MomentsFromME[gamma,G,5]
+assert Norm[(ToArray[msmall]-ToArray[mlarge])./ToArray[msmall]]<1e-12 # "MAPMAP1: Large and small model does not give the same results!"
+
+inputmsg
+defvec@ delta # {0.5, 0.1, 0.4}
+defmat@ D # {{-8., 1., 2.},{0., -6., 4.},{3., 0., -3.}}
+defvec@ sigma # {0.2, 0.7, 0.1}
+defmat@ S # {{-10., 4., 0.},{5., -7., 2.},{1., 2., -8.}}
+code! D0 = D
+code! D1 = RowSum[-D].delta
+code! S0 = S
+code! S1 = RowSum[-S].sigma
+code$ lambd = 1./MarginalMomentsFromMAP[D0,D1,1][[1]]
+testmsg
+code!@ {qld,qlm} = MAPMAP1[D0,D1,S0,S1, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = MAPMAP1[D0,D1,S0,S1, "qlDistrDPH"]
+code!@ {alpha,A} = MAPMAP1[D0,D1,S0,S1, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = MAPMAP1[D0,D1,S0,S1, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = MAPMAP1[D0,D1,S0,S1, "stDistrPH"]
+code!@ {beta, B} = MAPMAP1[D0,D1,S0,S1, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "MAPMAP1: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "MAPMAP1: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "MAPMAP1: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "MAPMAP1: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "MAPMAP1: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "MAPMAP1: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "MAPMAP1: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "MAPMAP1: stMoms returns wrong sojourn time moments!"
+// cross-check
+code$ IA = Eye[Dim1[D0]]
+code$ IS = Eye[Dim1[S0]]
+code$ BuTools`Verbose = False
+code$ {gamma, G} = QBDQueue [Kron[IA,S1], Kron[D0,IS]+Kron[IA,S0], Kron[D1,IS], Kron[D0,IS], "stDistrME"]
+code$ BuTools`Verbose = True
+code$ msmall = MomentsFromME[beta,B,5]
+code$ mlarge = MomentsFromME[gamma,G,5]
+assert Norm[(ToArray[msmall]-ToArray[mlarge])./ToArray[msmall]]<1e-12 # "MAPMAP1: Large and small model does not give the same results!"
+
+enddocex
+
+inputmsg
+defmat@ D0 # {{-8., 2.},{1., -3.}}
+defmat@ D1 # {{1., 5.},{0., 2.}}
+defmat@ S0 # {{-10., 4.},{0., -7.}}
+defmat@ S1 # {{5., 1.},{4., 3.}}
+code$ lambd = 1./MarginalMomentsFromMAP[D0,D1,1][[1]]
+testmsg
+code!@ {qld,qlm} = MAPMAP1[D0,D1,S0,S1, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = MAPMAP1[D0,D1,S0,S1, "qlDistrDPH"]
+code!@ {alpha,A} = MAPMAP1[D0,D1,S0,S1, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = MAPMAP1[D0,D1,S0,S1, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = MAPMAP1[D0,D1,S0,S1, "stDistrPH"]
+code!@ {beta, B} = MAPMAP1[D0,D1,S0,S1, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "MAPMAP1: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "MAPMAP1: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "MAPMAP1: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "MAPMAP1: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "MAPMAP1: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "MAPMAP1: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "MAPMAP1: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "MAPMAP1: stMoms returns wrong sojourn time moments!"
+// cross-check
+code$ IA = Eye[Dim1[D0]]
+code$ IS = Eye[Dim1[S0]]
+code$ BuTools`Verbose = False
+code$ {gamma, G} = QBDQueue [Kron[IA,S1], Kron[D0,IS]+Kron[IA,S0], Kron[D1,IS], Kron[D0,IS], "stDistrME"]
+code$ BuTools`Verbose = True
+code$ msmall = MomentsFromME[beta,B,5]
+code$ mlarge = MomentsFromME[gamma,G,5]
+assert Norm[(ToArray[msmall]-ToArray[mlarge])./ToArray[msmall]]<1e-12 # "MAPMAP1: Large and small model does not give the same results!"
+
+inputmsg
+defmat@ S0 # {{-10., 4., 0.},{5., -7., 2.},{1., 2., -8.}}
+defmat@ S1 # {{0., 0., 6.},{0., 0., 0.},{0., 3., 2.}}
+defmat@ D0 # {{-8., 1., 2.},{0., -6., 4.},{3., 0., -3.}}
+defmat@ D1 # {{4., 1., 0.},{0., 0., 2.},{0., 0., 0.}}
+code$ lambd = 1./MarginalMomentsFromMAP[D0,D1,1][[1]]
+testmsg
+code!@ {qld,qlm} = MAPMAP1[D0,D1,S0,S1, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = MAPMAP1[D0,D1,S0,S1, "qlDistrDPH"]
+code!@ {alpha,A} = MAPMAP1[D0,D1,S0,S1, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = MAPMAP1[D0,D1,S0,S1, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = MAPMAP1[D0,D1,S0,S1, "stDistrPH"]
+code!@ {beta, B} = MAPMAP1[D0,D1,S0,S1, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "MAPMAP1: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "MAPMAP1: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "MAPMAP1: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "MAPMAP1: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "MAPMAP1: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "MAPMAP1: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "MAPMAP1: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "MAPMAP1: stMoms returns wrong sojourn time moments!"
+// cross-check
+code$ IA = Eye[Dim1[D0]]
+code$ IS = Eye[Dim1[S0]]
+code$ BuTools`Verbose = False
+code$ {gamma, G} = QBDQueue [Kron[IA,S1], Kron[D0,IS]+Kron[IA,S0], Kron[D1,IS], Kron[D0,IS], "stDistrME"]
+code$ BuTools`Verbose = True
+code$ msmall = MomentsFromME[beta,B,5]
+code$ mlarge = MomentsFromME[gamma,G,5]
+assert Norm[(ToArray[msmall]-ToArray[mlarge])./ToArray[msmall]]<1e-12 # "MAPMAP1: Large and small model does not give the same results!"
+
+inputmsg
+defmat@ D0 # {{-8., 1., 2.},{0., -6., 4.},{3., 0., -3.}}
+defmat@ D1 # {{4., 1., 0.},{0., 0., 2.},{0., 0., 0.}}
+defvec@ sigma # {0.2, 0.7, 0.1}
+defmat@ S # {{-10., 4., 0.},{5., -7., 2.},{1., 2., -8.}}
+code! S0 = S
+code! S1 = RowSum[-S].sigma
+code$ lambd = 1./MarginalMomentsFromMAP[D0,D1,1][[1]]
+testmsg
+code!@ {qld,qlm} = MAPMAP1[D0,D1,S0,S1, "qlDistr", Range[0,10,1], "qlMoms", 5]
+code!@ {alphap,Ap} = MAPMAP1[D0,D1,S0,S1, "qlDistrDPH"]
+code!@ {alpha,A} = MAPMAP1[D0,D1,S0,S1, "qlDistrMG"]
+code!@ qldFromDPH = PmfFromDPH[alphap,Ap,Range[0,10,1]]
+code!@ qlmFromMG = MomentsFromMG[alpha,A,5]
+code!@ {std, stm} = MAPMAP1[D0,D1,S0,S1, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = MAPMAP1[D0,D1,S0,S1, "stDistrPH"]
+code!@ {beta, B} = MAPMAP1[D0,D1,S0,S1, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMGRepresentation[alpha,A] # "MAPMAP1: invalid MG representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "MAPMAP1: invalid ME representation of the sojourn time!"
+assert CheckDPHRepresentation[alphap,Ap] # "MAPMAP1: invalid DPH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "MAPMAP1: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "MAPMAP1: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromDPH[alphap,Ap,5]]-ToArray[qlmFromMG])./ToArray[qlmFromMG]]<1e-12 # "MAPMAP1: the MG and DPH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "MAPMAP1: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-PmfFromMG[alpha,A,Range[0,10,1]]]<1e-12 # "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromMG])./ToArray[qlm]]<1e-12 # "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "MAPMAP1: stMoms returns wrong sojourn time moments!"
+// cross-check
+code$ IA = Eye[Dim1[D0]]
+code$ IS = Eye[Dim1[S0]]
+code$ BuTools`Verbose = False
+code$ {gamma, G} = QBDQueue [Kron[IA,S1], Kron[D0,IS]+Kron[IA,S0], Kron[D1,IS], Kron[D0,IS], "stDistrME"]
+code$ BuTools`Verbose = True
+code$ msmall = MomentsFromME[beta,B,5]
+code$ mlarge = MomentsFromME[gamma,G,5]
+assert Norm[(ToArray[msmall]-ToArray[mlarge])./ToArray[msmall]]<1e-12 # "MAPMAP1: Large and small model do not give the same results!"
+
+
+test MMAPPH1PRPR
+
+inputmsg
+defmat@ D0 # {{-5.49, 0., 1.15, 0.},{0., -2.29, 0., 0.},{0., 0.08, -1.32, 0.},{0.72, 1.17, 0.7, -7.07}}
+defmat@ D1 # {{0.25, 0.38, 0.64, 0.},{0., 0., 0., 1.09},{0., 1.24, 0., 0.},{0.37, 0., 0., 0.}}
+defmat@ D2 # {{0.3, 1.0, 0., 0.48},{0., 0.2, 0., 0.},{0., 0., 0., 0.},{0.61, 0., 0., 0.2}}
+defmat@ D3 # {{0., 0.98, 0., 0.31},{0., 0., 1.0, 0.},{0., 0., 0., 0.},{1.1, 0.84, 0.33, 1.03}}
+defvec@ sigma3 # {0.83333, 0.11404, 0.05263}
+defmat@ S3 # {{-3., 0., 0.},{0.73077, -0.73077, 0.},{0., 0.5, -0.5}}
+defvec@ sigma2 # {1.}
+defmat@ S2 # {{-2.}}
+defvec@ sigma1 # {0.25, 0.75}
+defmat@ S1 # {{-2.5, 2.5},{0., -10.}}
+testmsg
+code! {qlm, qld} = MMAPPH1PRPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "qlMoms", 3, "qlDistr", 500]
+code$ momFromDistr = VCat[Range[0,499,1], Range[0,499,1].^2, Range[0,499,1].^3].qld
+assert Norm[(momFromDistr-qlm)./qlm]<0.001 # "MMAPPH1PRPR: queue length moments and queue length distribution are not consistent!"
+deflist distrPoints # {1.,5.,10.}
+code!@ {stm, std} = MMAPPH1PRPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "stMoms", 3, "stDistr", distrPoints]
+assert MatrixMin[std]>=0 && MatrixMax[std]<=1 && AllNonNegativeMatrix[Diff[std]] # "MMAPPH1PRPR: invalid sojourn time distribution!"
+// check Little formula for every traffic class
+code$ lambda1 = 1./MarginalMomentsFromMAP[D0+D2+D3,D1,1][[1]]
+code$ lambda2 = 1./MarginalMomentsFromMAP[D0+D1+D3,D2,1][[1]]
+code$ lambda3 = 1./MarginalMomentsFromMAP[D0+D1+D2,D3,1][[1]]
+assert Abs[qlm[[1,1]]-stm[[1,1]]*lambda1]<1e-12 # "MMAPPH1PRPR: Little formula does not hold for class 1!"
+assert Abs[qlm[[1,2]]-stm[[1,2]]*lambda2]<1e-12 # "MMAPPH1PRPR: Little formula does not hold for class 2!"
+assert Abs[qlm[[1,3]]-stm[[1,3]]*lambda3]<1e-12 # "MMAPPH1PRPR: Little formula does not hold for class 3!"
+
+enddocex
+
+inputmsg
+defmat@ D0 # {{-5.49, 0., 1.15, 0.},{0., -2.29, 0., 0.},{0., 0.08, -1.32, 0.},{0.72, 1.17, 0.7, -7.07}}
+defmat@ D1 # {{0.25, 0.38, 0.64, 0.},{0., 0., 0., 1.09},{0., 1.24, 0., 0.},{0.37, 0., 0., 0.}}
+defmat@ D2 # {{0.3, 1.0, 0., 0.48},{0., 0.2, 0., 0.},{0., 0., 0., 0.},{0.61, 0., 0., 0.2}}
+defmat@ D3 # {{0., 0.98, 0., 0.31},{0., 0., 1.0, 0.},{0., 0., 0., 0.},{1.1, 0.84, 0.33, 1.03}}
+defvec@ sigma3 # {0.16667, 0.83333}
+defmat@ S3 # {{-0.5, 0.5},{0., -3.}}
+defvec@ sigma2 # {0.58824, 0.41176}
+defmat@ S2 # {{-2.3529, 2.3529},{0., -4.}}
+defvec@ sigma1 # {0.25, 0.75}
+defmat@ S1 # {{-2.5, 2.5},{0., -10.}}
+testmsg
+code! {qlm, qld} = MMAPPH1PRPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "qlMoms", 3, "qlDistr", 500]
+code$ momFromDistr = VCat[Range[0,499,1], Range[0,499,1].^2, Range[0,499,1].^3].qld
+assert Norm[(momFromDistr-qlm)./qlm]<0.001 # "MMAPPH1PRPR: queue length moments and queue length distribution are not consistent!"
+deflist distrPoints # {1.,5.,10.}
+code!@ {stm, std} = MMAPPH1PRPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "stMoms", 3, "stDistr", distrPoints]
+assert MatrixMin[std]>=0 && MatrixMax[std]<=1 && AllNonNegativeMatrix[Diff[std]] # "MMAPPH1PRPR: invalid sojourn time distribution!"
+// check Little formula for every traffic class
+code$ lambda1 = 1./MarginalMomentsFromMAP[D0+D2+D3,D1,1][[1]]
+code$ lambda2 = 1./MarginalMomentsFromMAP[D0+D1+D3,D2,1][[1]]
+code$ lambda3 = 1./MarginalMomentsFromMAP[D0+D1+D2,D3,1][[1]]
+assert Abs[qlm[[1,1]]-stm[[1,1]]*lambda1]<1e-12 # "MMAPPH1PRPR: Little formula does not hold for class 1!"
+assert Abs[qlm[[1,2]]-stm[[1,2]]*lambda2]<1e-12 # "MMAPPH1PRPR: Little formula does not hold for class 2!"
+assert Abs[qlm[[1,3]]-stm[[1,3]]*lambda3]<1e-12 # "MMAPPH1PRPR: Little formula does not hold for class 3!"
+
+test MMAPPH1NPPR
+
+inputmsg
+defmat@ D0 # {{-5.49, 0., 1.15, 0.},{0., -2.29, 0., 0.},{0., 0.08, -1.32, 0.},{0.72, 1.17, 0.7, -7.07}}
+defmat@ D1 # {{0.25, 0.38, 0.64, 0.},{0., 0., 0., 1.09},{0., 1.24, 0., 0.},{0.37, 0., 0., 0.}}
+defmat@ D2 # {{0.3, 1.0, 0., 0.48},{0., 0.2, 0., 0.},{0., 0., 0., 0.},{0.61, 0., 0., 0.2}}
+defmat@ D3 # {{0., 0.98, 0., 0.31},{0., 0., 1.0, 0.},{0., 0., 0., 0.},{1.1, 0.84, 0.33, 1.03}}
+defvec@ sigma3 # {0.83333, 0.11404, 0.05263}
+defmat@ S3 # {{-3., 0., 0.},{0.73077, -0.73077, 0.},{0., 0.5, -0.5}}
+defvec@ sigma2 # {1.}
+defmat@ S2 # {{-2.}}
+defvec@ sigma1 # {0.25, 0.75}
+defmat@ S1 # {{-2.5, 2.5},{0., -10.}}
+testmsg
+code! {qlm, qld} = MMAPPH1NPPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "qlMoms", 3, "qlDistr", 500]
+code$ momFromDistr = VCat[Range[0,499,1], Range[0,499,1].^2, Range[0,499,1].^3].qld
+assert Norm[(momFromDistr-qlm)./qlm]<0.001 # "MMAPPH1NPPR: queue length moments and queue length distribution are not consistent!"
+deflist distrPoints # {1.,5.,10.}
+code!@ {stm, std} = MMAPPH1NPPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "stMoms", 3, "stDistr", distrPoints]
+assert MatrixMin[std]>=0 && MatrixMax[std]<=1 && AllNonNegativeMatrix[Diff[std]] # "MMAPPH1NPPR: invalid sojourn time distribution!"
+// check Little formula for every traffic class
+code$ lambda1 = 1./MarginalMomentsFromMAP[D0+D2+D3,D1,1][[1]]
+code$ lambda2 = 1./MarginalMomentsFromMAP[D0+D1+D3,D2,1][[1]]
+code$ lambda3 = 1./MarginalMomentsFromMAP[D0+D1+D2,D3,1][[1]]
+assert Abs[qlm[[1,1]]-stm[[1,1]]*lambda1]<1e-12 # "MMAPPH1NPPR: Little formula does not hold for class 1!"
+assert Abs[qlm[[1,2]]-stm[[1,2]]*lambda2]<1e-12 # "MMAPPH1NPPR: Little formula does not hold for class 2!"
+assert Abs[qlm[[1,3]]-stm[[1,3]]*lambda3]<1e-12 # "MMAPPH1NPPR: Little formula does not hold for class 3!"
+
+enddocex
+
+inputmsg
+defmat@ D0 # {{-5.49, 0., 1.15, 0.},{0., -2.29, 0., 0.},{0., 0.08, -1.32, 0.},{0.72, 1.17, 0.7, -7.07}}
+defmat@ D1 # {{0.25, 0.38, 0.64, 0.},{0., 0., 0., 1.09},{0., 1.24, 0., 0.},{0.37, 0., 0., 0.}}
+defmat@ D2 # {{0.3, 1.0, 0., 0.48},{0., 0.2, 0., 0.},{0., 0., 0., 0.},{0.61, 0., 0., 0.2}}
+defmat@ D3 # {{0., 0.98, 0., 0.31},{0., 0., 1.0, 0.},{0., 0., 0., 0.},{1.1, 0.84, 0.33, 1.03}}
+defvec@ sigma3 # {0.16667, 0.83333}
+defmat@ S3 # {{-0.5, 0.5},{0., -3.}}
+defvec@ sigma2 # {0.58824, 0.41176}
+defmat@ S2 # {{-2.3529, 2.3529},{0., -4.}}
+defvec@ sigma1 # {0.25, 0.75}
+defmat@ S1 # {{-2.5, 2.5},{0., -10.}}
+testmsg
+code! {qlm, qld} = MMAPPH1NPPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "qlMoms", 3, "qlDistr", 500]
+code$ momFromDistr = VCat[Range[0,499,1], Range[0,499,1].^2, Range[0,499,1].^3].qld
+assert Norm[(momFromDistr-qlm)./qlm]<0.001 # "MMAPPH1NPPR: queue length moments and queue length distribution are not consistent!"
+deflist distrPoints # {1.,5.,10.}
+code!@ {stm, std} = MMAPPH1NPPR[<-D0,D1,D2,D3->, <-sigma1,sigma2,sigma3->,<-S1,S2,S3->, "stMoms", 3, "stDistr", distrPoints]
+assert MatrixMin[std]>=0 && MatrixMax[std]<=1 && AllNonNegativeMatrix[Diff[std]] # "MMAPPH1NPPR: invalid sojourn time distribution!"
+// check Little formula for every traffic class
+code$ lambda1 = 1./MarginalMomentsFromMAP[D0+D2+D3,D1,1][[1]]
+code$ lambda2 = 1./MarginalMomentsFromMAP[D0+D1+D3,D2,1][[1]]
+code$ lambda3 = 1./MarginalMomentsFromMAP[D0+D1+D2,D3,1][[1]]
+assert Abs[qlm[[1,1]]-stm[[1,1]]*lambda1]<1e-12 # "MMAPPH1NPPR: Little formula does not hold for class 1!"
+assert Abs[qlm[[1,2]]-stm[[1,2]]*lambda2]<1e-12 # "MMAPPH1NPPR: Little formula does not hold for class 2!"
+assert Abs[qlm[[1,3]]-stm[[1,3]]*lambda3]<1e-12 # "MMAPPH1NPPR: Little formula does not hold for class 3!"
+
+
+
+test FluidQueue
+
+inputmsg
+defmat@ Q # {{-9., 2., 4., 0., 1., 2.},{6., -25., 5., 3., 7., 4.},{1., 3., -4., 0., 0., 0.},{0., 0., 0., -8., 3., 5.},{7., 3., 0., 2., -13., 1.},{7., 8., 0., 3., 8., -26.}}
+defvec@ vRin # {4., 2., 1., 0., 0., 3.}
+defvec@ vRout # {6., 2., 0., 0., 3., 2.}
+code! Rin = Diag[vRin]
+code! Rout = Diag[vRout]
+code$ lambd = Sum[CTMCSolve[Q].Rin]
+testmsg
+code!@ {qld,qlm} = FluidQueue[Q, Rin, Rout, "qlDistr", Range[0.,1.,0.1], "qlMoms", 5]
+code!@ {alphap,Ap} = FluidQueue[Q, Rin, Rout, "qlDistrPH"]
+code!@ {alpha,A} = FluidQueue[Q, Rin, Rout, "qlDistrME"]
+code!@ qldFromPH = CdfFromPH[alphap,Ap,Range[0.,1.,0.1]]
+code!@ qlmFromME = MomentsFromME[alpha,A,5]
+code!@ {std, stm} = FluidQueue[Q, Rin, Rout, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = FluidQueue[Q, Rin, Rout, "stDistrPH"]
+code!@ {beta, B} = FluidQueue[Q, Rin, Rout, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMERepresentation[alpha,A] # "FluidQueue: invalid ME representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "FluidQueue: invalid ME representation of the sojourn time!"
+assert CheckPHRepresentation[alphap,Ap] # "FluidQueue: invalid PH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "FluidQueue: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "FluidQueue: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromPH[alphap,Ap,5]]-ToArray[qlmFromME])./ToArray[qlmFromME]]<1e-12 # "FluidQueue: the ME and PH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "FluidQueue: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-CdfFromME[alpha,A,Range[0.,1.,0.1]]]<1e-12 # "FluidQueue: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "FluidQueue: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromME])./ToArray[qlm]]<1e-12 # "FluidQueue: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "FluidQueue: stMoms returns wrong sojourn time moments!"
+
+test FluFluQueue
+
+inputmsg
+defmat@ Qin # {{-2., 1., 1.},{2., -5., 3.},{4., 0., -4.}}
+defvec@ vRin # {3., 7., 0.}
+code! Rin = Diag[vRin]
+defmat@ Qout # {{-4., 1., 3.},{6., -8., 2.},{3., 7., -10.}}
+defvec@ vRout # {1., 7., 15.}
+code! Rout = Diag[vRout]
+code$ lambd = Sum[CTMCSolve[Qin].Rin]
+testmsg
+code!@ {qld,qlm} = FluFluQueue[Qin, Rin, Qout, Rout, False, "qlDistr", Range[0.,1.,0.1], "qlMoms", 5]
+code!@ {alphap,Ap} = FluFluQueue[Qin, Rin, Qout, Rout, False, "qlDistrPH"]
+code!@ {alpha,A} = FluFluQueue[Qin, Rin, Qout, Rout, False, "qlDistrME"]
+code!@ qldFromPH = CdfFromPH[alphap,Ap,Range[0.,1.,0.1]]
+code!@ qlmFromME = MomentsFromME[alpha,A,5]
+code!@ {std, stm} = FluFluQueue[Qin, Rin, Qout, Rout, False, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = FluFluQueue[Qin, Rin, Qout, Rout, False, "stDistrPH"]
+code!@ {beta, B} = FluFluQueue[Qin, Rin, Qout, Rout, False, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMERepresentation[alpha,A] # "FluFluQueue: invalid ME representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "FluFluQueue: invalid ME representation of the sojourn time!"
+assert CheckPHRepresentation[alphap,Ap] # "FluFluQueue: invalid PH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "FluFluQueue: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "FluFluQueue: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromPH[alphap,Ap,5]]-ToArray[qlmFromME])./ToArray[qlmFromME]]<1e-12 # "FluFluQueue: the ME and PH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "FluFluQueue: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-CdfFromME[alpha,A,Range[0.,1.,0.1]]]<1e-12 # "FluFluQueue: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "FluFluQueue: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromME])./ToArray[qlm]]<1e-12 # "FluFluQueue: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "FluFluQueue: stMoms returns wrong sojourn time moments!"
+// cross-check
+code$ Iin = Eye[Dim1[Qin]]
+code$ Iout = Eye[Dim1[Qout]]
+code$ BuTools`Verbose = False
+code$ {gamma, G} = FluidQueue [Kron[Qin,Iout]+Kron[Iin,Qout], Kron[Rin,Iout], Kron[Iin,Rout], "stDistrME"]
+code$ BuTools`Verbose = True
+code$ msmall = MomentsFromME[beta,B,5]
+code$ mlarge = MomentsFromME[gamma,G,5]
+assert Norm[(ToArray[msmall]-ToArray[mlarge])./ToArray[msmall]]<1e-12 # "FluFluQueue: Large and small model do not give the same results!"
+
+testmsg
+code!@ {qld,qlm} = FluFluQueue[Qin, Rin, Qout, Rout, True, "qlDistr", Range[0.,1.,0.1], "qlMoms", 5]
+code!@ {alphap,Ap} = FluFluQueue[Qin, Rin, Qout, Rout, True, "qlDistrPH"]
+code!@ {alpha,A} = FluFluQueue[Qin, Rin, Qout, Rout, True, "qlDistrME"]
+code!@ qldFromPH = CdfFromPH[alphap,Ap,Range[0.,1.,0.1]]
+code!@ qlmFromME = MomentsFromME[alpha,A,5]
+code!@ {std, stm} = FluFluQueue[Qin, Rin, Qout, Rout, True, "stDistr", Range[0.,1.,0.1], "stMoms", 5]
+code!@ {betap,Bp} = FluFluQueue[Qin, Rin, Qout, Rout, True, "stDistrPH"]
+code!@ {beta, B} = FluFluQueue[Qin, Rin, Qout, Rout, True, "stDistrME"]
+code!@ stdFromPH = CdfFromPH[betap,Bp,Range[0.,1.,0.1]]
+code!@ stmFromME = MomentsFromME[beta,B,5]
+assert CheckMERepresentation[alpha,A] # "FluFluQueue: invalid ME representation of the queue length!"
+assert CheckMERepresentation[beta,B] # "FluFluQueue: invalid ME representation of the sojourn time!"
+assert CheckPHRepresentation[alphap,Ap] # "FluFluQueue: invalid PH representation of the queue length!"
+assert CheckPHRepresentation[betap,Bp] # "FluFluQueue: invalid PH representation of the sojourn time!"
+// check Little formula
+assert Abs[qlm[[1]]-stm[[1]]*lambd]<1e-12 # "FluFluQueue: Little formula does not hold!"
+// check PH representations
+assert Norm[(ToArray[MomentsFromPH[alphap,Ap,5]]-ToArray[qlmFromME])./ToArray[qlmFromME]]<1e-12 # "FluFluQueue: the ME and PH representations are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap,Bp,5]]-ToArray[stmFromME])./ToArray[stmFromME]]<1e-12 # "FluFluQueue: the ME and PH representations are not equal!"
+// check moment and distribution calculation
+assert Norm[qld-CdfFromME[alpha,A,Range[0.,1.,0.1]]]<1e-12 # "FluFluQueue: qlDistr returns wrong queue length distribution!"
+assert Norm[std-CdfFromME[beta,B,Range[0.,1.,0.1]]]<1e-12 # "FluFluQueue: stDistr returns wrong sojourn time distribution!"
+assert Norm[(ToArray[qlm]-ToArray[qlmFromME])./ToArray[qlm]]<1e-12 # "FluFluQueue: qlMoms returns wrong queue length moments!"
+assert Norm[(ToArray[stm]-ToArray[stmFromME])./ToArray[stm]]<1e-12 # "FluFluQueue: stMoms returns wrong sojourn time moments!"
+// cross-check
+code$ Iin = Eye[Dim1[Qin]]
+code$ Iout = Eye[Dim1[Qout]]
+code$ BuTools`Verbose = False
+code$ {gamma, G} = FluidQueue [Kron[Qin,Iout]+Kron[Iin,Qout], Kron[Rin,Iout], Kron[Iin,Rout], "Q0", Kron[Qin,Iout]+Kron[Rin,Pinv[Rout].Qout], "stDistrME"]
+code$ BuTools`Verbose = True
+code$ msmall = MomentsFromME[beta,B,5]
+code$ mlarge = MomentsFromME[gamma,G,5]
+assert Norm[(ToArray[msmall]-ToArray[mlarge])./ToArray[msmall]]<1e-12 # "FluFluQueue: Large and small model do not give the same results!"
+
+

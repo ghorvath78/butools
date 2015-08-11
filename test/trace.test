@@ -1,0 +1,103 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
+package Trace
+
+test CdfFromTrace
+
+inputmsg
+defmat@ D0 # {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}}
+defmat@ D1 # {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}} 
+code! tr = SamplesFromMAP[D0,D1,1000000]
+testmsg
+code! {x,y}=CdfFromTrace[tr]
+plot x # y
+code$ meandiff = Abs[Dot[Diff[x],1.-y[[1;;-1]]] - Mean[tr]]/Mean[tr]
+assert AllNonNegative[Diff[y]] && y[[-0]]<=1 && y[[1]]>=0 # "CdfFromTrace returned a wrong cdf!"
+assert meandiff<10^-2 # "The mean obtained from the cdf returned by CdfFromTrace does not match the trace mean!"
+
+test PdfFromTrace
+
+inputmsg
+defmat@ D0 # {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}}
+defmat@ D1 # {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}} 
+defrange x # 0. # 0.5 # 0.01
+code! tr = SamplesFromMAP[D0,D1,1000000]
+testmsg
+code! {x,y}=PdfFromTrace[tr,x]
+code! {a,A}=MarginalDistributionFromMAP[D0,D1]
+code! {xm,ym}=IntervalPdfFromPH[a, A, x]
+plot x # y # xm # ym
+code$ meandiff = Abs[Dot[x[[1;;-1]],(Diff[x].*y[[1;;-1]])] - Mean[tr]]/Mean[tr]
+assert AllNonNegative[y] # "PdfFromTrace returned a wrong pdf!"
+assert meandiff<10^-2 # "The mean obtained from the pdf returned by PdfFromTrace does not match the trace mean!"
+
+test MarginalMomentsFromTrace
+
+inputmsg
+defmat@ D0 # {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}}
+defmat@ D1 # {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}} 
+code! tr = SamplesFromMAP[D0,D1,1000000]
+testmsg
+code!@ moms=MarginalMomentsFromTrace[tr, 3]
+code!@ mmoms = MarginalMomentsFromMAP[D0,D1,3]
+assert Norm[(ToArray[moms]-ToArray[mmoms])./ToArray[mmoms]]<10^-1 # "Moments from MarginalMomentsFromTrace are far from the theoretical moments of the trace!"
+
+test LagCorrelationsFromTrace
+
+inputmsg
+defmat@ D0 # {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}}
+defmat@ D1 # {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}} 
+code! tr = SamplesFromMAP[D0,D1,1000000]
+testmsg
+code!@ acf=LagCorrelationsFromTrace[tr, 10]
+code!@ macf = LagCorrelationsFromMAP[D0,D1,10]
+assert Norm[ToArray[acf]-ToArray[macf]]<10^-1 # "Autocorrelations from LagCorrelationsFromTrace are far from the theoretical autocorrelations of the trace!"
+
+test LagkJointMomentsFromTrace
+
+inputmsg
+defmat@ D0 # {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}}
+defmat@ D1 # {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}} 
+code! tr = SamplesFromMAP[D0,D1,1000000]
+testmsg
+code!@ Nm1=LagkJointMomentsFromTrace[tr,3,1]
+code!@ mNm1 = LagkJointMomentsFromMAP[D0,D1,3,1]
+assert Norm[(Nm1-mNm1)./mNm1]<10^-1 # "Moments from LagkJointMomentsFromTrace are far from the theoretical moments of the trace!"
+testmsg
+code!@ Nm2=LagkJointMomentsFromTrace[tr,3,2]
+code!@ mNm2 = LagkJointMomentsFromMAP[D0,D1,3,2]
+assert Norm[(Nm2-mNm2)./mNm2]<10^-1 # "Moments from LagkJointMomentsFromTrace are far from the theoretical moments of the trace!"
+
+
+test CdfFromWeightedTrace
+
+inputmsg
+deflist@ wtrace # {0.12, 1.23, 0.546, 0.6765, 1.34, 2.34}
+deflist@ weights # {12., 1., 34., 23., 8., 2.}
+testmsg
+code! {x,y}=CdfFromWeightedTrace[wtrace,weights]
+plot x # y
+assert AllNonNegative[Diff[y]] && y[[-0]]<=1 && y[[1]]>=0 # "CdfFromWeightedTrace returned a wrong cdf!"
+
+test PdfFromWeightedTrace
+
+inputmsg
+deflist@ wtrace # {0.12, 1.23, 0.546, 0.6765, 1.34, 2.34}
+deflist@ weights # {12., 1., 34., 23., 8., 2.}
+defrange x # 0. # 3. # 0.1
+testmsg
+code! {x,y}=PdfFromWeightedTrace[wtrace,weights,x]
+plot x # y
+assert AllNonNegative[y] # "PdfFromWeightedTrace returned a wrong pdf!"
+
+test MarginalMomentsFromWeightedTrace
+
+inputmsg
+deflist@ wtrace # {0.12, 1.23, 0.546, 0.6765, 1.34, 2.34}
+deflist@ weights # {12., 1., 34., 23., 8., 2.}
+testmsg
+code!@ moms=MarginalMomentsFromWeightedTrace[wtrace,weights,3]
+

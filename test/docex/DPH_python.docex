@@ -1,116 +1,115 @@
 === MomentsFromMG ===
->>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+>>> a = ml.matrix([[-0.6,0.3,1.3]])
 >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
->>> moms = MomentsFromMG(a,A)
+>>> moms = MomentsFromMG(a, A)
 >>> print(moms)
 [3.4674735249621778, 16.202576158568199, 97.728650249528698, 731.44534385252746, 6576.7859166791568]
->>> moms = MomentsFromMG(a,A,3)
+>>> moms = MomentsFromMG(a, A, 3)
 >>> print(moms)
 [3.4674735249621778, 16.202576158568199, 97.728650249528698]
 === MomentsFromDPH ===
->>> a = ml.matrix([[0.76, 0, 0.24]])
+>>> a = ml.matrix([[0.76,0,0.24]])
 >>> A = ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
->>> moms = MomentsFromDPH(a,A,5)
+>>> moms = MomentsFromDPH(a, A, 5)
 >>> print(moms)
 [26.995340611502307, 1397.9993695881547, 108525.47866809377, 11232963.460675946, 1453339339.9621518]
 === PmfFromMG ===
->>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+>>> a = ml.matrix([[-0.6,0.3,1.3]])
 >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
->>> x = np.arange(0,101.0,1)
->>> pmf = PmfFromMG(a,A,x)
->>> plt.plot(x,pmf)
+>>> x = np.arange(0.0,101.0,1.0)
+>>> pmf = PmfFromMG(a, A, x)
+>>> plt.plot(x, pmf)
 === PmfFromDPH ===
->>> a = ml.matrix([[0.76, 0, 0.24]])
+>>> a = ml.matrix([[0.76,0,0.24]])
 >>> A = ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
->>> x = np.arange(0,1001.0,1)
->>> pmf = PmfFromDPH(a,A,x)
->>> plt.plot(x,pmf)
+>>> x = np.arange(0.0,1001.0,1.0)
+>>> pmf = PmfFromDPH(a, A, x)
+>>> plt.plot(x, pmf)
 === CdfFromMG ===
->>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+>>> a = ml.matrix([[-0.6,0.3,1.3]])
 >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
->>> x = np.arange(0,101.0,1)
->>> cdf = CdfFromMG(a,A,x)
->>> plt.plot(x,cdf)
+>>> x = np.arange(0.0,101.0,1.0)
+>>> cdf = CdfFromMG(a, A, x)
+>>> plt.plot(x, cdf)
 === CdfFromDPH ===
->>> a = ml.matrix([[0.76, 0, 0.24]])
+>>> a = ml.matrix([[0.76,0,0.24]])
 >>> A = ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
->>> x = np.arange(0,1001.0,1)
->>> cdf = CdfFromDPH(a,A,x)
->>> plt.plot(x,cdf)
+>>> x = np.arange(0.0,1001.0,1.0)
+>>> cdf = CdfFromDPH(a, A, x)
+>>> plt.plot(x, cdf)
 === RandomDPH ===
->>> a,A = RandomDPH(3,10,5)
-CheckProbMatrix: the matrix has negative element (precision: 1e-07)!
+>>> a, A = RandomDPH(3, 10, 5)
 >>> print(a)
 [[ 1.  0.  0.]]
 >>> print(A)
-[[ 0.85043  0.00248  0.13613]
- [ 0.01293  0.87899  0.     ]
- [ 0.       0.       0.71197]]
+[[ 0.67742  0.09221  0.07805]
+ [ 0.08848  0.83115  0.     ]
+ [ 0.1876   0.       0.8124 ]]
 === CheckMGRepresentation ===
->>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+>>> a = ml.matrix([[-0.6,0.3,1.3]])
 >>> A = ml.matrix([[0.25, 0.2, -0.15],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
->>> flag = CheckMGRepresentation(a,A)
+>>> flag = CheckMGRepresentation(a, A)
 >>> print(flag)
 True
->>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+>>> a = ml.matrix([[-0.6,0.3,1.3]])
 >>> A = ml.matrix([[0.35, 0.2, -0.25],[0.3, 0.1, 0.25],[0, 0.2, 0.47]])
->>> flag = CheckMGRepresentation(a,A)
+>>> flag = CheckMGRepresentation(a, A)
 CheckMGRepresentation: The largest eigenvalue of the matrix is complex!
 >>> print(flag)
 False
 === CheckDPHRepresentation ===
->>> a = ml.matrix([[0.48, 0.08, 0.26, 0.18]])
+>>> a = ml.matrix([[0.48,0.08,0.26,0.18]])
 >>> A = ml.matrix([[0, 0.08, 0.08, 0.8],[0.55, 0, 0.24, 0.19],[0.06, 0.03, 0, 0.001],[0.23, 0.005, 0.2, 0.53]])
->>> flag = CheckDPHRepresentation(a,A)
+>>> flag = CheckDPHRepresentation(a, A)
 >>> print(flag)
 True
->>> a = ml.matrix([[0.48, 0.08]])
+>>> a = ml.matrix([[0.48,0.08]])
 >>> A = ml.matrix([[0, 0.08],[0.55, 0.5]])
->>> flag = CheckDPHRepresentation(a,A)
+>>> flag = CheckDPHRepresentation(a, A)
 CheckProbMatrix: The rowsum of the matrix (transient) is not less or equal than 1 (precision: {0})! 1e-12
 >>> print(flag)
 False
 === MGFromMoments ===
 >>> moms = [4.08, 20.41, 130.45, 1054.41, 10463.73]
->>> a,A = MGFromMoments(moms)
+>>> a, A = MGFromMoments(moms)
 >>> print(a)
 [[ 0.33333  0.33333  0.33333]]
 >>> print(A)
 [[ 0.15523  1.72887  0.10482]
  [-0.01377  0.6823  -0.02347]
  [-0.01385 -0.16787  0.82688]]
->>> memoms = MomentsFromMG(a,A,5)
+>>> memoms = MomentsFromMG(a, A, 5)
 >>> print(memoms)
 [4.080000000000001, 20.410000000000029, 130.45000000000047, 1054.4100000000135, 10463.730000000427]
 === DPHFromMG ===
->>> a = ml.matrix([[-0.6, 0.3, 1.3]])
+>>> a = ml.matrix([[-0.6,0.3,1.3]])
 >>> A = ml.matrix([[0.1, 0.2, 0],[0.3, 0.1, 0.25],[-0.3, 0.2, 0.77]])
->>> flag = CheckMGRepresentation(a,A)
+>>> flag = CheckMGRepresentation(a, A)
 >>> print(flag)
 True
->>> flag = CheckDPHRepresentation(a,A)
+>>> flag = CheckDPHRepresentation(a, A)
 CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
 >>> print(flag)
 False
->>> b,B = DPHFromMG(a,A)
+>>> b, B = DPHFromMG(a, A)
 >>> print(b)
 [[ 0.05    0.1375  0.8125]]
 >>> print(B)
 [[ 0.1      0.2      0.     ]
  [ 0.425    0.06875  0.15625]
  [ 0.141    0.01975  0.80125]]
->>> flag = CheckDPHRepresentation(b,B)
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 3.34426942151e-16
 === CanonicalFromDPH2 ===
->>> a = ml.matrix([[0, 1.0]])
+>>> a = ml.matrix([[0,1.0]])
 >>> A = ml.matrix([[0.23, 0.22],[0.41, 0.48]])
->>> b,B = CanonicalFromDPH2(a,A)
+>>> b, B = CanonicalFromDPH2(a, A)
 >>> print(b)
 [[ 0.88663  0.11337]]
 >>> print(B)
@@ -118,16 +117,16 @@ True
  [ 0.       0.02969]]
 >>> ev = la.eigvals(A)
 >>> print(ev)
-[ 0.02969  0.68031]
->>> flag = CheckDPHRepresentation(b,B)
+[ 0.02969+0.j  0.68031+0.j]
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> a = ml.matrix([[1.0, 0]])
+>>> a = ml.matrix([[1.0,0]])
 >>> A = ml.matrix([[0, 0.61],[0.56, 0.44]])
->>> b,B = CanonicalFromDPH2(a,A)
+>>> b, B = CanonicalFromDPH2(a, A)
 >>> print(b)
 [[ -5.08344e-16   1.00000e+00]]
 >>> print(B)
@@ -135,19 +134,19 @@ True
  [ 0.61  0.  ]]
 >>> ev = la.eigvals(A)
 >>> print(ev)
-[-0.4045  0.8445]
->>> flag = CheckDPHRepresentation(b,B)
+[-0.4045+0.j  0.8445+0.j]
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 3.90921887111e-16
 === CanonicalFromDPH3 ===
->>> a = ml.matrix([[0.46, 0.22, 0.32]])
+>>> a = ml.matrix([[0.46,0.22,0.32]])
 >>> A = ml.matrix([[0.67, 0.01, 0.12],[0.06, 0.45, 0.15],[0.18, 0.43, 0.32]])
->>> b,B = CanonicalFromDPH3(a,A)
+>>> b, B = CanonicalFromDPH3(a, A)
 >>> print(b)
 [[ 0.21239  0.37004  0.41757]]
 >>> print(B)
@@ -156,18 +155,18 @@ True
  [ 0.       0.21265  0.78735]]
 >>> ev = la.eigvals(A)
 >>> print(ev)
-[ 0.78735  0.54346  0.10918]
->>> flag = CheckDPHRepresentation(b,B)
+[ 0.78735+0.j  0.54346+0.j  0.10918+0.j]
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 6.85597820868e-13
->>> a = ml.matrix([[0.76, 0.12, 0.12]])
+>>> a = ml.matrix([[0.76,0.12,0.12]])
 >>> A = ml.matrix([[0.31, 0., 0.],[0.98, 0., 0.02],[0.88, 0.04, 0.08]])
->>> b,B = CanonicalFromDPH3(a,A)
+>>> b, B = CanonicalFromDPH3(a, A)
 >>> print(b)
 [[ 0.13074  0.3444   0.52486]]
 >>> print(B)
@@ -176,18 +175,18 @@ True
  [  0.00000e+00   8.69565e-04   0.00000e+00]]
 >>> ev = la.eigvals(A)
 >>> print(ev)
-[ 0.08899 -0.00899  0.31   ]
->>> flag = CheckDPHRepresentation(b,B)
+[ 0.08899+0.j -0.00899+0.j  0.31000+0.j]
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 3.70825293136e-16
->>> a = ml.matrix([[0.67, 0.07, 0.26]])
+>>> a = ml.matrix([[0.67,0.07,0.26]])
 >>> A = ml.matrix([[0.31, 0., 0.],[0.98, 0., 0.02],[0.88, 0.04, 0.08]])
->>> b,B = CanonicalFromDPH3(a,A)
+>>> b, B = CanonicalFromDPH3(a, A)
 >>> print(b)
 [[ 0.15814  0.37915  0.4627 ]]
 >>> print(B)
@@ -196,18 +195,18 @@ True
  [  0.00000e+00   8.69565e-04   0.00000e+00]]
 >>> ev = la.eigvals(A)
 >>> print(ev)
-[ 0.08899 -0.00899  0.31   ]
->>> flag = CheckDPHRepresentation(b,B)
+[ 0.08899+0.j -0.00899+0.j  0.31000+0.j]
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 3.70825293136e-16
->>> a = ml.matrix([[0.78, 0.04, 0.18]])
+>>> a = ml.matrix([[0.78,0.04,0.18]])
 >>> A = ml.matrix([[0.06, 0.25, 0.31],[0.45, 0.18, 0.33],[0.98, 0, 0.01]])
->>> b,B = CanonicalFromDPH3(a,A)
+>>> b, B = CanonicalFromDPH3(a, A)
 >>> print(b)
 [[ 0.43828  0.23849  0.32323]]
 >>> print(B)
@@ -216,74 +215,77 @@ True
  [ 0.0725   0.       0.     ]]
 >>> ev = la.eigvals(A)
 >>> print(ev)
-[ 0.79606 -0.48028 -0.06578]
->>> flag = CheckDPHRepresentation(b,B)
+[ 0.79606+0.j -0.48028+0.j -0.06578+0.j]
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 8.57844876274e-16
 === AcyclicDPHFromMG ===
->>> a = ml.matrix([[0, 0, 1.0]])
+>>> a = ml.matrix([[0,0,1.0]])
 >>> A = ml.matrix([[0.22, 0, 0],[0.3, 0.1, 0.55],[0.26, 0, 0.73]])
->>> b,B = AcyclicDPHFromMG(a,A)
+>>> b, B = AcyclicDPHFromMG(a, A)
 >>> print(b)
 [[  1.12101e-16   9.62963e-01   3.70370e-02]]
 >>> print(B)
 [[ 0.10+0.j  0.90+0.j  0.00+0.j]
  [ 0.00+0.j  0.22+0.j  0.78+0.j]
  [ 0.00+0.j  0.00+0.j  0.73+0.j]]
->>> ma = MomentsFromMG(a,A,5)
+>>> ma = MomentsFromMG(a, A, 5)
 >>> print(ma)
 [4.9382716049382713, 34.807076782385423, 339.49243437478106, 4335.792870444855, 68954.070732626918]
->>> mb = MomentsFromMG(b,B,5)
+>>> mb = MomentsFromMG(b, B, 5)
 >>> print(mb)
 [(4.938271604938274+0j), (34.807076782385444+0j), (339.49243437478117+0j), (4335.7928704448568+0j), (68954.070732626948+0j)]
->>> flag = CheckDPHRepresentation(b,B)
+>>> flag = CheckDPHRepresentation(b, B)
 >>> print(flag)
 True
->>> Cm = SimilarityMatrix(A,B)
+>>> Cm = SimilarityMatrix(A, B)
 >>> err1 = la.norm(A*Cm-Cm*B)
 >>> err2 = la.norm(a*Cm-b)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 8.23408130779e-16
 === DPH2From3Moments ===
->>> a = ml.matrix([[0.9, 0.1]])
+>>> a = ml.matrix([[0.9,0.1]])
 >>> A = ml.matrix([[0.2, 0.61],[0.58, 0.41]])
->>> moms = MomentsFromDPH(a,A)
+>>> moms = MomentsFromDPH(a, A)
 >>> print(moms)
 [10.304568527918775, 215.1328300136563, 6764.1661525212548]
->>> b,B = DPH2From3Moments(moms)
+>>> b, B = DPH2From3Moments(moms)
 >>> print(b)
 [[ 0.43249  0.56751]]
 >>> print(B)
 [[ 0.61     0.39   ]
  [ 0.69692  0.     ]]
->>> phmoms = MomentsFromDPH(b,B,3)
+>>> phmoms = MomentsFromDPH(b, B, 3)
 >>> print(phmoms)
 [10.304568527918779, 215.1328300136565, 6764.1661525212639]
 === DPH3From5Moments ===
->>> a = ml.matrix([[0.7, 0.1, 0.2]])
+>>> a = ml.matrix([[0.7,0.1,0.2]])
 >>> A = ml.matrix([[0.2, 0.51, 0.1],[0.58, 0.41, 0],[0.1, 0.4, 0.3]])
->>> moms = MomentsFromDPH(a,A)
+>>> moms = MomentsFromDPH(a, A)
 >>> print(moms)
 [9.3096349745331022, 175.10327171027393, 4968.6635221500701, 188050.43861215009, 8896632.7151740566]
->>> b,B = DPH3From5Moments(moms)
+>>> b, B = DPH3From5Moments(moms)
 >>> print(b)
 [[ 0.73989  0.07684  0.18327]]
 >>> print(B)
 [[ 0.89971  0.10029  0.     ]
  [ 0.       0.01029  0.98971]
  [ 0.       0.05058  0.     ]]
->>> phmoms = MomentsFromMG(b,B,5)
+>>> phmoms = MomentsFromMG(b, B, 5)
 >>> print(phmoms)
 [9.3096349745330773, 175.10327171027262, 4968.6635221500082, 188050.4386121468, 8896632.7151738554]
 === SamplesFromDPH ===
->>> a = ml.matrix([[0.76, 0, 0.24]])
+>>> a = ml.matrix([[0.76,0,0.24]])
 >>> A = ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
->>> x = SamplesFromDPH(a,A,1000)
->>> mp = MomentsFromDPH(a,A,3)
+>>> x = SamplesFromDPH(a, A, 1000)
+>>> mt = MarginalMomentsFromTrace(x, 3)
+>>> print(mt)
+[26.765999999999998, 1331.058, 93128.106]
+>>> mp = MomentsFromDPH(a, A, 3)
 >>> print(mp)
 [26.995340611502307, 1397.9993695881547, 108525.47866809377]

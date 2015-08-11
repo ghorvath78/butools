@@ -1,3 +1,8 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
 package MC
 
 test CRPSolve
@@ -7,7 +12,7 @@ defmat@ Q # {{-4.3, 3.5, 0.8},{-8.4, 6.5, 1.9},{17.3, -12.7, -4.6}}
 testmsg
 code!@ ret = CRPSolve[Q]
 print! ret.Q
-assert Norm[ret.Q]<10^-12 # The solution does not satisfy ret*Q=0!
+assert Norm[ret.Q]<10^-12 # "The solution does not satisfy ret*Q=0!"
 
 test DRPSolve
 
@@ -16,7 +21,7 @@ defmat@ Q # {{-0.9, 0.5, 1.4},{0.9, -0.9, 1},{0.3, 1.3, -0.6}}
 testmsg
 code!@ ret = DRPSolve[Q]
 print! ret.Q - ret
-assert Norm[ret.Q-ret]<10^-12 # The solution does not satisfy ret*Q=ret!
+assert Norm[ret.Q-ret]<10^-12 # "The solution does not satisfy ret*Q=ret!"
 
 test CTMCSolve
 
@@ -25,7 +30,7 @@ defmat@ Q # {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}}
 testmsg
 code!@ ret = CTMCSolve[Q]
 print! ret.Q
-assert Norm[ret.Q]<10^-12 # The solution does not satisfy ret*Q=0!
+assert Norm[ret.Q]<10^-12 # "The solution does not satisfy ret*Q=0!"
 
 test DTMCSolve
 
@@ -33,7 +38,7 @@ defmat@ Q # {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}}
 testmsg
 code!@ ret = DTMCSolve[Q]
 print! ret.Q - ret
-assert Norm[ret.Q-ret]<10^-12 # The solution does not satisfy ret*Q=ret!
+assert Norm[ret.Q-ret]<10^-12 # "The solution does not satisfy ret*Q=ret!"
 
 test CheckGenerator
 
@@ -41,31 +46,31 @@ inputmsg
 defmat@ Q # {{-0.9, 0.2, 0.4},{0, 0.9, 0.9},{0, 0.6, -0.6}}
 testmsg
 code!@ flag=CheckGenerator[Q,True]
-assert flag==False # CheckGenerator did not detect bad row sum!
+assert flag==False # "CheckGenerator did not detect bad row sum!"
 
 inputmsg
 defmat@ Q # {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}}
 testmsg
 code!@ flag=CheckGenerator[Q,True]
-assert flag==True # CheckGenerator did not recognize a valid input!
+assert flag==True # "CheckGenerator did not recognize a valid input!"
 
 inputmsg
 defmat@ Q # {{-0.9, 0.2, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}}
 testmsg
 code!@ flag=CheckGenerator[Q,True]
-assert flag==True # CheckGenerator did not recognize a valid input!
+assert flag==True # "CheckGenerator did not recognize a valid input!"
 
 inputmsg
 defmat@ Q # {{-0.9, 0.5, 0.4},{0.9, -1.1, 0},{0.3, 0.3, -0.6}}
 testmsg
 code!@ flag=CheckGenerator[Q]
-assert flag==False # CheckGenerator did not recognize the non-zero row sum!
+assert flag==False # "CheckGenerator did not recognize the non-zero row sum!"
 
 inputmsg
 defmat@ Q # {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}}
 testmsg
 code!@ flag=CheckGenerator[Q]
-assert flag==True # CheckGenerator did not recognize a valid input!
+assert flag==True # "CheckGenerator did not recognize a valid input!"
 
 test CheckProbMatrix
 
@@ -73,31 +78,31 @@ inputmsg
 defmat@ Q # {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, -0.1, 0.4}}
 testmsg
 code!@ flag=CheckProbMatrix[Q]
-assert flag==False # CheckProbMatrix did not recognize the negative entry!
+assert flag==False # "CheckProbMatrix did not recognize the negative entry!"
 
 inputmsg
 defmat@ Q # {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}}
 testmsg
 code!@ flag=CheckProbMatrix[Q]
-assert flag==False # CheckProbMatrix did not recognize the invalid row sum!
+assert flag==False # "CheckProbMatrix did not recognize the invalid row sum!"
 
 inputmsg
 defmat@ Q # {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}}
 testmsg
 code!@ flag=CheckProbMatrix[Q]
-assert flag==True # CheckProbMatrix did not recognize that the input is valid!
+assert flag==True # "CheckProbMatrix did not recognize that the input is valid!"
 
 inputmsg
 defmat Q # {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}}
 testmsg
 code!@ flag=CheckProbMatrix[Q,True]
-assert flag==False # CheckProbMatrix did not recognize wrong transient matrix!
+assert flag==False # "CheckProbMatrix did not recognize wrong transient matrix!"
 
 inputmsg
 defmat@ Q # {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}}
 testmsg
 code!@ flag=CheckProbMatrix[Q,True]
-assert flag==True # CheckProbMatrix did not recognize that the input is valid!
+assert flag==True # "CheckProbMatrix did not recognize that the input is valid!"
 
 test CheckProbVector
 
@@ -105,35 +110,35 @@ inputmsg
 defvec Q # {1.1, -0.1}
 testmsg
 code!@ flag=CheckProbVector[Q]
-assert flag==False # CheckProbVector did not recognize the negative entry!
+assert flag==False # "CheckProbVector did not recognize the negative entry!"
 
 inputmsg
 defvec@ Q # {1.1, 0.1}
 testmsg
 code!@ flag=CheckProbVector[Q]
-assert flag==False # CheckProbVector did not recognize invalid sum!
+assert flag==False # "CheckProbVector did not recognize invalid sum!"
 
 inputmsg
 defvec@ Q # {1, 0}
 testmsg
 code!@ flag=CheckProbVector[Q]
-assert flag==True # CheckProbVector did not recognize that the input is valid!
+assert flag==True # "CheckProbVector did not recognize that the input is valid!"
 
 inputmsg
 defvec@ Q # {0.9, -0.1}
 testmsg
 code!@ flag=CheckProbVector[Q,True]
-assert flag==False # CheckProbVector did not recognize the negative entry!
+assert flag==False # "CheckProbVector did not recognize the negative entry!"
 
 inputmsg
 defvec@ Q # {0.9, 0.1}
 testmsg
 code!@ flag=CheckProbVector[Q,True]
-assert flag==True # CheckProbVector did not recognize that the prob. vector is not transient!
+assert flag==True # "CheckProbVector did not recognize that the prob. vector is not transient!"
 
 inputmsg
 defvec@ Q # {0.8, 0.1}
 testmsg
 code!@ flag=CheckProbVector[Q,True]
-assert flag==True # CheckProbVector did not recognize that the input is valid!
+assert flag==True # "CheckProbVector did not recognize that the input is valid!"
 

@@ -1,0 +1,258 @@
+=== EmpiricalSquaredDifference ===
+>>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+>>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr, 1)[0]*4, 50)
+>>> pdfTrX, pdfTrY = PdfFromTrace(tr, intBounds)
+>>> cdfTrX, cdfTrY = CdfFromTrace(tr)
+>>> step = math.ceil(Length(tr)/2000)
+>>> cdfTrX = cdfTrX[0:Length(tr):step]
+>>> cdfTrY = cdfTrY[0:Length(tr):step]
+>>> alpha, A = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3))
+>>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
+>>> cdfPHY = CdfFromPH(alpha, A, cdfTrX)
+>>> sqPdf = EmpiricalSquaredDifference(pdfTrY, pdfPHY, intBounds)
+>>> print(sqPdf)
+0.0118541986064
+>>> sqCdf = EmpiricalSquaredDifference(cdfTrY[0:-1], cdfPHY[0:-1], cdfTrX)
+>>> print(sqCdf)
+3.8246917213e-10
+=== EmpiricalRelativeEntropy ===
+>>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+>>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr, 1)[0]*4, 50)
+>>> pdfTrX, pdfTrY = PdfFromTrace(tr, intBounds)
+>>> cdfTrX, cdfTrY = CdfFromTrace(tr)
+>>> step = math.ceil(Length(tr)/2000)
+>>> cdfTrX = cdfTrX[0:Length(tr):step]
+>>> cdfTrY = cdfTrY[0:Length(tr):step]
+>>> alpha, A = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3))
+>>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
+>>> cdfPHY = CdfFromPH(alpha, A, cdfTrX)
+>>> rePdf = EmpiricalRelativeEntropy(pdfTrY, pdfPHY, intBounds)
+>>> print(rePdf)
+0.432414379777
+>>> reCdf = EmpiricalRelativeEntropy(cdfTrY[0:-1], cdfPHY[0:-1], cdfTrX)
+>>> print(reCdf)
+0.000406094874315
+=== LikelihoodFromTrace ===
+>>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+>>> alpha, A = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3))
+>>> D0, D1 = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), LagCorrelationsFromTrace(tr, 1)[0])
+>>> logliPH = LikelihoodFromTrace(tr, alpha, A)
+>>> print(logliPH)
+4.84963530196
+>>> logliMAP = LikelihoodFromTrace(tr, D0, D1)
+>>> print(logliMAP)
+4.652346100436191
+=== SquaredDifference ===
+>>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+>>> trAcf = LagCorrelationsFromTrace(tr, 10)
+>>> print(trAcf)
+[0.20004885484210852, 0.18927480124417365, 0.13895117398714094, 0.14213400151438738, 0.11712720506721902, 0.12367824446146115, 0.1121211150989561, 0.10051068930807179, 0.10019070967277495, 0.098797210298893726]
+>>> D0, D1 = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), trAcf[0])
+>>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10)
+>>> print(mapAcf)
+[ 0.20005  0.12003  0.07202  0.04322  0.02593  0.01556  0.00934  0.0056   0.00336  0.00202]
+>>> sqAcf = SquaredDifference(mapAcf, trAcf)
+>>> print(sqAcf)
+0.0773799594638
+=== RelativeEntropy ===
+>>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+>>> trAcf = LagCorrelationsFromTrace(tr, 10)
+>>> print(trAcf)
+[0.20004885484210852, 0.18927480124417365, 0.13895117398714094, 0.14213400151438738, 0.11712720506721902, 0.12367824446146115, 0.1121211150989561, 0.10051068930807179, 0.10019070967277495, 0.098797210298893726]
+>>> D0, D1 = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), trAcf[0])
+>>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10)
+>>> print(mapAcf)
+[ 0.20005  0.12003  0.07202  0.04322  0.02593  0.01556  0.00934  0.0056   0.00336  0.00202]
+>>> reAcf = RelativeEntropy(mapAcf, trAcf)
+>>> print(reAcf)
+0.283438051725
+=== PHFromTrace ===
+>>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+>>> alpha, A = PHFromTrace(tr, 5)
+iteration:  10 , logli:  4.8091271432
+iteration:  20 , logli:  4.80923172357
+EM algorithm terminated. [1, 4]
+Num of iterations:  26 , logli:  4.80923543503
+iteration:  10 , logli:  4.65521504335
+iteration:  20 , logli:  4.68768389352
+iteration:  30 , logli:  4.70415249872
+EM algorithm terminated. [2, 3]
+Num of iterations:  38 , logli:  4.70421427167
+iteration:  10 , logli:  4.88937597779
+iteration:  20 , logli:  4.89819514171
+iteration:  30 , logli:  4.89845514506
+iteration:  40 , logli:  4.89863272893
+iteration:  50 , logli:  4.89878133343
+iteration:  60 , logli:  4.89891146874
+iteration:  70 , logli:  4.89903002265
+iteration:  80 , logli:  4.89914197577
+iteration:  90 , logli:  4.89925126394
+iteration:  100 , logli:  4.89936125929
+iteration:  110 , logli:  4.89947502785
+iteration:  120 , logli:  4.89959540205
+iteration:  130 , logli:  4.89972483134
+iteration:  140 , logli:  4.89986492887
+iteration:  150 , logli:  4.90001566233
+iteration:  160 , logli:  4.90017434189
+iteration:  170 , logli:  4.90033497306
+iteration:  180 , logli:  4.90048885472
+iteration:  190 , logli:  4.9006268209
+iteration:  200 , logli:  4.90074215709
+EM algorithm terminated. [1, 1, 3]
+Num of iterations:  201 , logli:  4.90074215709
+iteration:  10 , logli:  4.8428939533
+iteration:  20 , logli:  4.85044993659
+iteration:  30 , logli:  4.85156877825
+iteration:  40 , logli:  4.85167161239
+iteration:  50 , logli:  4.85176192227
+iteration:  60 , logli:  4.8518686018
+iteration:  70 , logli:  4.85197855253
+iteration:  80 , logli:  4.85208231474
+iteration:  90 , logli:  4.8521831464
+iteration:  100 , logli:  4.85229494225
+iteration:  110 , logli:  4.85243806034
+iteration:  120 , logli:  4.85264283694
+iteration:  130 , logli:  4.85296689978
+iteration:  140 , logli:  4.85354745937
+iteration:  150 , logli:  4.85478414915
+iteration:  160 , logli:  4.85802067972
+iteration:  170 , logli:  4.86675737206
+iteration:  180 , logli:  4.89912069533
+iteration:  190 , logli:  4.91508202604
+EM algorithm terminated. [1, 2, 2]
+Num of iterations:  192 , logli:  4.9150822899
+iteration:  10 , logli:  4.87985526515
+iteration:  20 , logli:  4.88627091507
+iteration:  30 , logli:  4.88723479659
+iteration:  40 , logli:  4.88770291202
+iteration:  50 , logli:  4.88795746078
+iteration:  60 , logli:  4.88810565844
+iteration:  70 , logli:  4.88819663412
+iteration:  80 , logli:  4.8882549448
+iteration:  90 , logli:  4.88829369783
+iteration:  100 , logli:  4.88832026537
+iteration:  110 , logli:  4.88833897739
+iteration:  120 , logli:  4.88835247272
+iteration:  130 , logli:  4.8883624119
+iteration:  140 , logli:  4.88836986989
+iteration:  150 , logli:  4.88837556031
+EM algorithm terminated. [1, 1, 1, 2]
+Num of iterations:  153 , logli:  4.88837653192
+iteration:  10 , logli:  4.84789680934
+iteration:  20 , logli:  4.85106678625
+EM algorithm terminated. [1, 1, 1, 1, 1]
+Num of iterations:  27 , logli:  4.85108360418
+>>> print(alpha)
+[[ 0.06503  0.85788  0.       0.07709  0.     ]]
+>>> print(A)
+[[   -63.30763      0.           0.           0.           0.     ]
+ [     0.        -815.71807    815.71807      0.           0.     ]
+ [     0.           0.        -815.71807      0.           0.     ]
+ [     0.           0.           0.      -12563.08792  12563.08792]
+ [     0.           0.           0.           0.      -12563.08792]]
+>>> logli = LikelihoodFromTrace(tr, alpha, A)
+>>> print(logli)
+4.91508239686
+>>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr, 1)[0]*4, 50)
+>>> pdfTrX, pdfTrY = PdfFromTrace(tr, intBounds)
+>>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
+>>> sqPdf = EmpiricalSquaredDifference(pdfTrY, pdfPHY, intBounds)
+>>> print(sqPdf)
+0.00791151022468
+>>> rePdf = EmpiricalRelativeEntropy(pdfTrY, pdfPHY, intBounds)
+>>> print(rePdf)
+0.358335256398
+>>> cdfTrX, cdfTrY = CdfFromTrace(tr)
+>>> step = math.ceil(Length(tr)/2000)
+>>> cdfTrX = cdfTrX[0:Length(tr):step]
+>>> cdfTrY = cdfTrY[0:Length(tr):step]
+>>> cdfPHY = CdfFromPH(alpha, A, cdfTrX)
+>>> sqCdf = EmpiricalSquaredDifference(cdfTrY[0:-1], cdfPHY[0:-1], cdfTrX)
+>>> print(sqCdf)
+9.99019928404e-11
+>>> reCdf = EmpiricalRelativeEntropy(cdfTrY[0:-1], cdfPHY[0:-1], cdfTrX)
+>>> print(reCdf)
+0.000185826390424
+=== MAPFromTrace ===
+>>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+>>> tr = tr[0:10000]
+>>> D0, D1 = MAPFromTrace(tr, 5)
+Trying orders  [1, 4]
+iteration:  10 , logli:  4.99786255106
+iteration:  20 , logli:  4.99810160119
+Num of iterations:  26 , logli:  4.99810745011
+EM algorithm terminated. [1, 4]
+Trying orders  [2, 3]
+iteration:  10 , logli:  4.95191957405
+iteration:  20 , logli:  4.95640838807
+Num of iterations:  21 , logli:  4.95640884081
+EM algorithm terminated. [2, 3]
+Trying orders  [1, 1, 3]
+iteration:  10 , logli:  5.06511510986
+iteration:  20 , logli:  5.09678944434
+iteration:  30 , logli:  5.0986736619
+iteration:  40 , logli:  5.1007468728
+iteration:  50 , logli:  5.10501858379
+iteration:  60 , logli:  5.11829491111
+iteration:  70 , logli:  5.12333850702
+iteration:  80 , logli:  5.12360318453
+iteration:  90 , logli:  5.12379237877
+iteration:  100 , logli:  5.12392240593
+iteration:  110 , logli:  5.123954181
+Num of iterations:  115 , logli:  5.12395778503
+EM algorithm terminated. [1, 1, 3]
+Trying orders  [1, 2, 2]
+iteration:  10 , logli:  5.0297658746
+iteration:  20 , logli:  5.0838748508
+iteration:  30 , logli:  5.11393811996
+iteration:  40 , logli:  5.11524759694
+iteration:  50 , logli:  5.11547207462
+iteration:  60 , logli:  5.11549258289
+Num of iterations:  60 , logli:  5.11549258289
+EM algorithm terminated. [1, 2, 2]
+Trying orders  [1, 1, 1, 2]
+iteration:  10 , logli:  5.06417186232
+iteration:  20 , logli:  5.08390784667
+iteration:  30 , logli:  5.08617133009
+iteration:  40 , logli:  5.08718039702
+iteration:  50 , logli:  5.08777167875
+iteration:  60 , logli:  5.08843863999
+iteration:  70 , logli:  5.0898301248
+iteration:  80 , logli:  5.09475385589
+iteration:  90 , logli:  5.10964563819
+iteration:  100 , logli:  5.11265838512
+Num of iterations:  107 , logli:  5.1126810697
+EM algorithm terminated. [1, 1, 1, 2]
+Trying orders  [1, 1, 1, 1, 1]
+iteration:  10 , logli:  5.03154595258
+iteration:  20 , logli:  5.04393763194
+Num of iterations:  23 , logli:  5.04394031758
+EM algorithm terminated. [1, 1, 1, 1, 1]
+Best solution: logli = 5.12395778503 orders = [1, 1, 3]
+>>> print(D0)
+[[  -83.42943     0.          0.          0.          0.     ]
+ [    0.       -718.67799     0.          0.          0.     ]
+ [    0.          0.      -1026.16063  1026.16063     0.     ]
+ [    0.          0.          0.      -1026.16063  1026.16063]
+ [    0.          0.          0.          0.      -1026.16063]]
+>>> print(D1)
+[[  54.14857    4.90186   24.379      0.         0.     ]
+ [   3.39152  665.84735   49.43912    0.         0.     ]
+ [   0.         0.         0.         0.         0.     ]
+ [   0.         0.         0.         0.         0.     ]
+ [  42.6473    96.94396  886.56937    0.         0.     ]]
+>>> logli = LikelihoodFromTrace(tr, D0, D1)
+>>> print(logli)
+5.123958173279035
+>>> trAcf = LagCorrelationsFromTrace(tr, 10)
+>>> print(trAcf)
+[0.18413533155701942, 0.18160338347883728, 0.17545482361568204, 0.19966682687727969, 0.083236073275010994, 0.086348372442235991, 0.095009981958434644, 0.062859937512461148, 0.062326277833923117, 0.065928707515509583]
+>>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10)
+>>> print(mapAcf)
+[ 0.24889  0.17665  0.12882  0.09638  0.0738   0.05765  0.04578  0.03684  0.02995  0.02454]
+>>> sqAcf = SquaredDifference(mapAcf, trAcf)
+>>> print(sqAcf)
+0.0238340444119
+>>> reAcf = RelativeEntropy(mapAcf, trAcf)
+>>> print(reAcf)
+0.321362238531

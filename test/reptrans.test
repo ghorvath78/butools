@@ -1,23 +1,28 @@
+// inputmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// testmsg: indicates the beginning of input parameters. Just prints a message, nothing else. For doc examples it is ignored.
+// defvec/defmat/defrange/defvar: define a parameter. If it is followed by @, it is printed to the screen, except for doc examples
+// code: some source code. !: announce execution of code (except for doc examples), @: print output after executing the code
+
 package RepTrans
 
 test SimilarityMatrix
-defmat@ A1m # {{0.2, 0.8, 0},{ 1.2, -0.4, 0.1},{-0.2, 0.7, 0.5}}
-defmat@ T # {{1, 2, -4, 6},{0, 8, -9, 7},{-3, 7, 8, -2}}
-code! A2m = PseudoInverse[T].A1m.T
+defmat@ A1m # {{0.2, 0.8, 0.},{ 1.2, -0.4, 0.1},{-0.2, 0.7, 0.5}}
+defmat@ T # {{1., 2., -4., 6.},{0., 8., -9., 7.},{-3., 7., 8., -2.}}
+code! A2m = Pinv[T].A1m.T
 testmsg
 code! B=SimilarityMatrix[A1m,A2m]
 code!@ err = Norm[A1m.B-B.A2m]
-assert err<10^-7 # The resulting matrix T does not satisfy A1m*T = T*A2m!
+assert err<10^-7 # "The resulting matrix T does not satisfy A1m*T = T*A2m!"
 
 test TransformToAcyclic
 
 inputmsg
-defmat@ A # {{-0.8, 0.8, 0},{0.1, -0.3, 0.1},{0.2, 0, -0.5}}
+defmat@ A # {{-0.8, 0.8, 0.},{0.1, -0.3, 0.1},{0.2, 0., -0.5}}
 testmsg
 code!@ B=TransformToAcyclic[A]
 code! Cm=SimilarityMatrix[A,B]
 code!@ err = Norm[A.Cm-Cm.B]
-assert err<10^-7 # The original and the transformed matrix are not similar!
+assert err<10^-7 # "The original and the transformed matrix are not similar!"
 
 test TransformToMonocyclic
 
@@ -26,13 +31,13 @@ testmsg
 code!@ B=TransformToMonocyclic[A]
 code! Cm=SimilarityMatrix[A,B]
 code!@ err = Norm[A.Cm-Cm.B]
-assert err<10^-7 # The original and the transformed matrix are not similar!
+assert err<10^-7 # "The original and the transformed matrix are not similar!"
 
 test ExtendToMarkovian
 
 inputmsg
 defvec alpha # {0.2, 0.3, 0.5}
-defmat A # {{-1,0,0},{0,-3,0.6},{0,-0.6,-3}}
+defmat A # {{-1.,0.,0.},{0.,-3.,0.6},{0.,-0.6,-3.}}
 code@ B=TransformToMonocyclic[A]
 code Cm=SimilarityMatrix[A,B]
 code@ beta = alpha.Cm
@@ -40,18 +45,16 @@ testmsg
 code!@ {m,M}=ExtendToMarkovian[beta,B]
 code! Cm=SimilarityMatrix[B,M]
 code!@ err = Norm[B.Cm-Cm.M]
-assert err<10^-7 # The original and the transformed matrix are not similar!
-assert Min[m]>-10^-14 # The initial vector is still not Markovian!
+assert err<10^-7 # "The original and the transformed matrix are not similar!"
+assert Min[m]>-10^-14 # "The initial vector is still not Markovian!"
 
 test SimilarityMatrixForVectors
 
 inputmsg
-defvec@ vecA # {0.0, 0.3, -1.5, 0.0}
-defvec@ vecB # {1.0, 0.2, 0.0, 1.0}
+defmat@ vecA # {{0.0}, {0.3}, {-1.5}, {0.0}}
+defmat@ vecB # {{1.0}, {0.2}, {0.0}, {1.0}}
 testmsg
-codeMP! vecA = Transpose[vecA]
-codeMP! vecB = Transpose[vecB]
 code!@ B = SimilarityMatrixForVectors [vecA, vecB]
 code!@ err = Norm[B.vecA-vecB]
-assert Norm[B.vecA-vecB]<10^-14 # The resulting matrix T does not satisfy T*vecA = vecB!
+assert Norm[B.vecA-vecB]<10^-14 # "The resulting matrix T does not satisfy T*vecA = vecB!"
 

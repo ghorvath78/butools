@@ -1,7 +1,7 @@
 === MarginalDistributionFromMAP ===
 >>> D0 = ml.matrix([[-0.17, 0, 0, 0.07],[0.01, -0.78, 0.03, 0.08],[0.22, 0.17, -1.1, 0.02],[0.04, 0.12, 0, -0.42]])
 >>> D1 = ml.matrix([[0, 0.06, 0, 0.04],[0.04, 0.19, 0.21, 0.22],[0.22, 0.13, 0.15, 0.19],[0.05, 0, 0.17, 0.04]])
->>> a,A = MarginalDistributionFromMAP(D0,D1)
+>>> a, A = MarginalDistributionFromMAP(D0, D1)
 >>> print(a)
 [[ 0.14438  0.23571  0.33794  0.28196]]
 >>> print(A)
@@ -12,13 +12,13 @@
 === MarginalMomentsFromMAP ===
 >>> D0 = ml.matrix([[-0.17, 0, 0, 0.07],[0.01, -0.78, 0.03, 0.08],[0.22, 0.17, -1.1, 0.02],[0.04, 0.12, 0, -0.42]])
 >>> D1 = ml.matrix([[0, 0.06, 0, 0.04],[0.04, 0.19, 0.21, 0.22],[0.22, 0.13, 0.15, 0.19],[0.05, 0, 0.17, 0.04]])
->>> moms = MarginalMomentsFromMAP(D0,D1)
+>>> moms = MarginalMomentsFromMAP(D0, D1)
 >>> print(moms)
 [3.4433473754205295, 34.030353434960716, 592.07698593172893, 14547.729458258538, 455900.27697389701, 17269527.005202383, 765259717.27887475]
 === MarginalDistributionFromRAP ===
 >>> H0 = ml.matrix([[-2, 0, 0],[0, -3, 1],[0, -1, -2]])
 >>> H1 = ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1]])
->>> a,A = MarginalDistributionFromRAP(H0,H1)
+>>> a, A = MarginalDistributionFromRAP(H0, H1)
 >>> print(a)
 [[ 0.44444  0.44444  0.11111]]
 >>> print(A)
@@ -28,7 +28,7 @@
 === MarginalMomentsFromRAP ===
 >>> H0 = ml.matrix([[-2., 0, 0],[0, -3., 1.],[0, -1., -2.]])
 >>> H1 = ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1.]])
->>> moms = MarginalMomentsFromRAP(H0,H1)
+>>> moms = MarginalMomentsFromRAP(H0, H1)
 >>> print(moms)
 [0.44444444444444442, 0.38095238095238093, 0.48299319727891149, 0.82215743440233213, 1.7943912258781058]
 === MarginalDistributionFromMMAP ===
@@ -36,7 +36,7 @@
 >>> D1 = ml.matrix([[0.15, 0.49],[0.23, 0.36]])
 >>> D2 = ml.matrix([[0.11, 0.2],[0.01, 0]])
 >>> D3 = ml.matrix([[0.14, 0.4],[0.11, 0.14]])
->>> a,A = MarginalDistributionFromMMAP([D0,D1,D2,D3])
+>>> a, A = MarginalDistributionFromMMAP([D0, D1, D2, D3])
 >>> print(a)
 [[ 0.36191  0.63809]]
 >>> print(A)
@@ -47,7 +47,7 @@
 >>> D1 = ml.matrix([[0.15, 0.49],[0.23, 0.36]])
 >>> D2 = ml.matrix([[0.11, 0.2],[0.01, 0]])
 >>> D3 = ml.matrix([[0.14, 0.4],[0.11, 0.14]])
->>> moms = MarginalMomentsFromMMAP([D0,D1,D2,D3])
+>>> moms = MarginalMomentsFromMMAP([D0, D1, D2, D3])
 >>> print(moms)
 [1.0006671114076049, 2.1044966311760755, 6.8276881494346]
 === MarginalDistributionFromMRAP ===
@@ -55,7 +55,7 @@
 >>> H0 = ml.matrix([[-5., 0.1+x, 0.9, 1.],[1., -8., 0.9, 0.1],[0.9, 0.1, -4., 1.],[1., 2., 3., -9.]])
 >>> H1 = ml.matrix([[0.1-x, 0.7, 0.1, 0.1],[0.1, 1., 1.8, 0.1],[0.1, 0.1, 0.1, 0.7],[0.7, 0.1, 0.1, 0.1]])
 >>> H2 = ml.matrix([[0.1, 0.1, 0.1, 1.7],[1.8, 0.1, 1., 0.1],[0.1, 0.1, 0.7, 0.1],[0.1, 1., 0.1, 0.8]])
->>> a,A = MarginalDistributionFromMRAP([H0,H1,H2])
+>>> a, A = MarginalDistributionFromMRAP([H0, H1, H2])
 >>> print(a)
 [[ 0.17159  0.21695  0.27936  0.3321 ]]
 >>> print(A)
@@ -68,75 +68,67 @@
 >>> H0 = ml.matrix([[-5., 0.1+x, 0.9, 1.],[1., -8., 0.9, 0.1],[0.9, 0.1, -4., 1.],[1., 2., 3., -9.]])
 >>> H1 = ml.matrix([[0.1-x, 0.7, 0.1, 0.1],[0.1, 1., 1.8, 0.1],[0.1, 0.1, 0.1, 0.7],[0.7, 0.1, 0.1, 0.1]])
 >>> H2 = ml.matrix([[0.1, 0.1, 0.1, 1.7],[1.8, 0.1, 1., 0.1],[0.1, 0.1, 0.7, 0.1],[0.1, 1., 0.1, 0.8]])
->>> moms = MarginalMomentsFromMRAP([H0,H1,H2])
+>>> moms = MarginalMomentsFromMRAP([H0, H1, H2])
 >>> print(moms)
 [0.33950747762450084, 0.24582557198236554, 0.27423742766051129, 0.41206018133500932, 0.7767718404933559, 1.7594286078546524, 4.6515347631617807]
 === LagCorrelationsFromMAP ===
 >>> D0 = ml.matrix([[-5., 0, 1., 1.],[1., -8., 1., 0],[1., 0, -4., 1.],[1., 2., 3., -9.]])
 >>> D1 = ml.matrix([[0, 1., 0, 2.],[2., 1., 3., 0],[0, 0, 1., 1.],[1., 1., 0, 1.]])
->>> corr = LagCorrelationsFromMAP(D0,D1,3)
+>>> corr = LagCorrelationsFromMAP(D0, D1, 3)
 >>> print(corr)
-[0.00012012478025432307, 0.00086176493661020996, -0.00022001393374405749]
+[ 0.00012  0.00086 -0.00022]
 === LagCorrelationsFromRAP ===
 >>> H0 = ml.matrix([[-2., 0, 0],[0, -3., 1.],[0, -1., -2.]])
 >>> H1 = ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1.]])
->>> corr = LagCorrelationsFromRAP(H0,H1,3)
+>>> corr = LagCorrelationsFromRAP(H0, H1, 3)
 >>> print(corr)
-[-0.0038461538461539674, 0.0045604395604395744, 0.005895604395604547]
+[-0.00385  0.00456  0.0059 ]
 === LagkJointMomentsFromMAP ===
 >>> D0 = ml.matrix([[-5., 0, 1., 1.],[1., -8., 1., 0],[1., 0, -4., 1.],[1., 2., 3., -9.]])
 >>> D1 = ml.matrix([[0, 1., 0, 2.],[2., 1., 3., 0],[0, 0, 1., 1.],[1., 1., 0, 1.]])
->>> Nm = LagkJointMomentsFromMAP(D0,D1,4,1)
+>>> Nm = LagkJointMomentsFromMAP(D0, D1, 4, 1)
 >>> print(Nm)
 [[ 1.       0.34247  0.25054  0.28271  0.42984]
  [ 0.34247  0.1173   0.08579  0.09681  0.14721]
  [ 0.25054  0.0857   0.06263  0.07066  0.10744]
  [ 0.28271  0.09663  0.07059  0.07962  0.12107]
  [ 0.42984  0.14686  0.10727  0.12099  0.18396]]
->>> moms = MarginalMomentsFromMAP(D0,D1,4)
+>>> moms = MarginalMomentsFromMAP(D0, D1, 4)
 >>> print(moms)
 [0.34246575342465752, 0.25053639214391815, 0.28270969431684256, 0.42984404959582057]
->>> cjm=np.empty(3)
->>> for i in range(3):
->>>     Nx=LagkJointMomentsFromMAP(D0,D1,1,i+1)
->>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
->>>     Nx=LagkJointMomentsFromMAP(D0,D1,1,i+1)
->>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
->>>     Nx=LagkJointMomentsFromMAP(D0,D1,1,i+1)
->>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
+>>> cjm = np.zeros(3)
+>>> for i in range(1,4,1):
+>>>     Nx = LagkJointMomentsFromMAP(D0, D1, 1, i)
+>>>     cjm[i-1] = (Nx[1, 1]-moms[0]**2)/(moms[1]-moms[0]**2)
 >>> print(cjm)
 [ 0.00012  0.00086 -0.00022]
->>> corr = LagCorrelationsFromMAP(D0,D1,3)
+>>> corr = LagCorrelationsFromMAP(D0, D1, 3)
 >>> print(corr)
-[0.00012012478025432307, 0.00086176493661020996, -0.00022001393374405749]
+[ 0.00012  0.00086 -0.00022]
 === LagkJointMomentsFromRAP ===
 >>> H0 = ml.matrix([[-2., 0, 0],[0, -3., 1.],[0, -1., -2.]])
 >>> H1 = ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1.]])
->>> Nm = LagkJointMomentsFromRAP(H0,H1,4,1)
+>>> Nm = LagkJointMomentsFromRAP(H0, H1, 4, 1)
 >>> print(Length(Nm))
 5
->>> moms = MarginalMomentsFromRAP(H0,H1,4)
+>>> moms = MarginalMomentsFromRAP(H0, H1, 4)
 >>> print(moms)
 [0.44444444444444442, 0.38095238095238093, 0.48299319727891149, 0.82215743440233213]
->>> cjm=np.empty(3)
->>> for i in range(3):
->>>     Nx=LagkJointMomentsFromRAP(H0,H1,1,i+1)
->>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
->>>     Nx=LagkJointMomentsFromRAP(H0,H1,1,i+1)
->>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
->>>     Nx=LagkJointMomentsFromRAP(H0,H1,1,i+1)
->>>     cjm[i] = (Nx[1,1]-moms[0]**2) / (moms[1]-moms[0]**2)
+>>> cjm = np.zeros(3)
+>>> for i in range(1,4,1):
+>>>     Nx = LagkJointMomentsFromRAP(H0, H1, 1, i)
+>>>     cjm[i-1] = (Nx[1, 1]-moms[0]**2)/(moms[1]-moms[0]**2)
 >>> print(cjm)
 [-0.00385  0.00456  0.0059 ]
->>> corr = LagCorrelationsFromRAP(H0,H1,3)
+>>> corr = LagCorrelationsFromRAP(H0, H1, 3)
 >>> print(corr)
-[-0.0038461538461539674, 0.0045604395604395744, 0.005895604395604547]
+[-0.00385  0.00456  0.0059 ]
 === LagkJointMomentsFromMMAP ===
 >>> D0 = ml.matrix([[-1.78, 0.29],[0.07, -0.92]])
 >>> D1 = ml.matrix([[0.15, 0.49],[0.23, 0.36]])
 >>> D2 = ml.matrix([[0.11, 0.2],[0.01, 0]])
 >>> D3 = ml.matrix([[0.14, 0.4],[0.11, 0.14]])
->>> Nm = LagkJointMomentsFromMMAP([D0,D1,D2,D3],3,1)
+>>> Nm = LagkJointMomentsFromMMAP([D0, D1, D2, D3], 3, 1)
 >>> print(Nm[0])
 [[  0.60207   0.60501   1.27553   4.14379]
  [  0.62913   0.62913   1.32261   4.29009]
@@ -157,7 +149,7 @@
 >>> H0 = ml.matrix([[-5., 0.1+x, 0.9, 1.],[1., -8., 0.9, 0.1],[0.9, 0.1, -4., 1.],[1., 2., 3., -9.]])
 >>> H1 = ml.matrix([[0.1-x, 0.7, 0.1, 0.1],[0.1, 1., 1.8, 0.1],[0.1, 0.1, 0.1, 0.7],[0.7, 0.1, 0.1, 0.1]])
 >>> H2 = ml.matrix([[0.1, 0.1, 0.1, 1.7],[1.8, 0.1, 1., 0.1],[0.1, 0.1, 0.7, 0.1],[0.1, 1., 0.1, 0.8]])
->>> Nm = LagkJointMomentsFromMRAP([H0,H1,H2],3,2)
+>>> Nm = LagkJointMomentsFromMRAP([H0, H1, H2], 3, 2)
 >>> print(Nm[0])
 [[ 0.41974  0.14337  0.1041   0.11625]
  [ 0.14138  0.04825  0.03502  0.0391 ]
@@ -169,91 +161,91 @@
  [ 0.14397  0.0487   0.0352   0.03924]
  [ 0.16086  0.05442  0.03934  0.04386]]
 === RandomMAP ===
->>> D0,D1 = RandomMAP(4,1.62,10)
+>>> D0, D1 = RandomMAP(4, 1.62, 10)
 >>> print(D0)
-[[-2.12527  0.56416  0.28339  0.13343]
- [ 0.05238 -1.08818  0.       0.45737]
- [ 0.06387  0.      -1.23231  0.     ]
- [ 0.32275  0.       0.58952 -0.91227]]
+[[-2.72432  0.64111  0.42238  0.     ]
+ [ 0.      -1.75493  0.18555  0.48421]
+ [ 0.62751  0.      -2.14775  0.48912]
+ [ 0.       0.       0.01388 -0.3889 ]]
 >>> print(D1)
-[[ 0.49226  0.30347  0.22972  0.11884]
- [ 0.02567  0.       0.39505  0.15771]
- [ 0.261    0.25525  0.       0.6522 ]
- [ 0.       0.       0.       0.     ]]
->>> m = MarginalMomentsFromMAP(D0,D1,1)[0]
+[[ 0.19832  0.41384  0.46643  0.58223]
+ [ 0.45159  0.15916  0.       0.47442]
+ [ 0.43032  0.02302  0.       0.57777]
+ [ 0.       0.37502  0.       0.     ]]
+>>> m = MarginalMomentsFromMAP(D0, D1, 1)[0]
 >>> print(m)
 1.62
 === RandomMMAP ===
->>> D = RandomMMAP(4,3,1.62,10)
->>> print(D[0])
-[[-0.84703  0.11642  0.00111  0.0145 ]
- [ 0.08776 -1.07891  0.10942  0.08784]
- [ 0.04016  0.11208 -0.66365  0.07847]
- [ 0.01966  0.       0.09274 -0.70475]]
->>> print(D[1])
-[[ 0.08954  0.09996  0.07414  0.02508]
- [ 0.11029  0.0571   0.07134  0.     ]
- [ 0.05339  0.11256  0.02107  0.07767]
- [ 0.10814  0.       0.0074   0.10089]]
->>> print(D[2])
-[[ 0.       0.       0.09729  0.03095]
- [ 0.08346  0.01083  0.11066  0.10311]
- [ 0.01576  0.       0.       0.03774]
- [ 0.08113  0.05506  0.       0.11874]]
->>> print(D[3])
-[[ 0.11136  0.0423   0.09672  0.04766]
- [ 0.1102   0.05931  0.       0.07758]
- [ 0.01232  0.02012  0.04428  0.03803]
- [ 0.0594   0.0318   0.02979  0.     ]]
->>> m = MarginalMomentsFromMMAP(D,1)[0]
+>>> Dm = RandomMMAP(4, 3, 1.62, 10)
+>>> print(Dm[0])
+[[-0.77004  0.07746  0.00752  0.12555]
+ [ 0.00951 -0.96329  0.11107  0.04652]
+ [ 0.       0.07548 -0.66821  0.03229]
+ [ 0.12584  0.       0.03691 -0.77768]]
+>>> print(Dm[1])
+[[ 0.05194  0.03399  0.00531  0.04182]
+ [ 0.02984  0.07001  0.1335   0.06569]
+ [ 0.03889  0.04339  0.       0.     ]
+ [ 0.06669  0.       0.10119  0.0133 ]]
+>>> print(Dm[2])
+[[ 0.08729  0.03552  0.03436  0.0247 ]
+ [ 0.11078  0.02114  0.       0.02779]
+ [ 0.11427  0.06711  0.0964   0.12043]
+ [ 0.05964  0.1119   0.       0.06175]]
+>>> print(Dm[3])
+[[ 0.07868  0.04748  0.02386  0.09457]
+ [ 0.14246  0.       0.07483  0.12014]
+ [ 0.       0.05206  0.00753  0.02037]
+ [ 0.0462   0.04298  0.11128  0.     ]]
+>>> m = MarginalMomentsFromMMAP(Dm, 1)[0]
 >>> print(m)
 1.62
 === CheckMAPRepresentation ===
 >>> D0 = ml.matrix([[-1., 0, 1.],[0, -2., 0],[1., 0, -3.]])
 >>> D1 = ml.matrix([[-1., 0, 1., 0],[0, -2., 0, 1.],[1., 0, -3., 0],[1., 2., 2., 1.]])
->>> flag = CheckMAPRepresentation(D0,D1)
+>>> flag = CheckMAPRepresentation(D0, D1)
 CheckMAPRepresentation: D0 and D1 have different sizes!
 >>> print(flag)
 False
 >>> D0 = ml.matrix([[-1., 0, 1.],[0, -2., 0],[1., 0, -3.]])
 >>> D1 = ml.matrix([[1., 0, 1.],[0, 2., 0],[1., 0, 3.]])
->>> flag = CheckMAPRepresentation(D0,D1)
+>>> flag = CheckMAPRepresentation(D0, D1)
 CheckMAPRepresentation: The rowsum of D0+D1 is not 0!
 >>> print(flag)
 False
 >>> D0 = ml.matrix([[-3., 0, 1.],[0, -2., 0],[1., 0, -5.]])
 >>> D1 = ml.matrix([[1., 0, 1.],[0, 2., 0],[1., 0, 3.]])
->>> flag = CheckMAPRepresentation(D0,D1)
+>>> flag = CheckMAPRepresentation(D0, D1)
 >>> print(flag)
 True
 === CheckRAPRepresentation ===
 >>> H0 = ml.matrix([[-1., 0, 1.],[0, -2., 0],[1., 0, -3.],[1., 2., 2.]])
 >>> H1 = ml.matrix([[-1., 0, 1.],[0, -2., 0],[1., 0, -3.],[1., 2., 2.]])
->>> flag = CheckRAPRepresentation(H0,H1)
+>>> flag = CheckRAPRepresentation(H0, H1)
 CheckRAPRepresentation: D0 is not a quadratic matrix!
 >>> print(flag)
 False
 >>> H0 = ml.matrix([[-1., 0, 2.],[0, 2., 0],[1., 0, -3.]])
 >>> H1 = ml.matrix([[-1., 0, 1.],[0, -2., 0],[1., 0, -3.]])
->>> flag = CheckRAPRepresentation(H0,H1)
+>>> flag = CheckRAPRepresentation(H0, H1)
 CheckRAPRepresentation: A rowsum of D0+D1 is not 0!
 >>> print(flag)
 False
 >>> H0 = ml.matrix([[-1., 0, 0],[0, -2., 2.],[0, 3., -3.]])
 >>> H1 = ml.matrix([[0, 0, 1.],[0, -1., 1.],[1., 0, -1.]])
->>> flag = CheckRAPRepresentation(H0,H1)
+>>> flag = CheckRAPRepresentation(H0, H1)
 CheckRAPRepresentation: there is an eigenvalue of D0 with non-negative real part
 >>> print(flag)
 False
 >>> H0 = ml.matrix([[-2., 0, 0],[0, -1., 1.],[0, -1., -1.]])
 >>> H1 = ml.matrix([[1., 0, 1.],[0, 1., -1.],[1., 0, 1.]])
->>> flag = CheckRAPRepresentation(H0,H1)
+>>> flag = CheckRAPRepresentation(H0, H1)
 CheckRAPRepresentation: The dominant eigenvalue of D0 is not real!
 >>> print(flag)
 False
 >>> H0 = ml.matrix([[-1., 0, 0],[0, -2., 1.],[0, -1., -2.]])
 >>> H1 = ml.matrix([[1., 0, 0],[0, 1., 0],[1., 1., 1.]])
->>> flag = CheckRAPRepresentation(H0,H1)
+>>> flag = CheckRAPRepresentation(H0, H1)
 >>> print(flag)
 True
 === CheckMMAPRepresentation ===
@@ -261,7 +253,7 @@ True
 >>> D1 = ml.matrix([[0.16, 0.11, 0],[0.1, 0.16, 0],[0.27, 0, 0.19]])
 >>> D2 = ml.matrix([[0.01, 0.09, 0.13],[0.26, 0.21, 0.05],[0, 0.16, 0.07]])
 >>> D3 = ml.matrix([[0.19, 0.06, 0.2],[0.17, 0.16, 0.27],[0, 0, 0.14]])
->>> flag = CheckMMAPRepresentation([D0,D1,D2,D3])
+>>> flag = CheckMMAPRepresentation([D0, D1, D2, D3])
 >>> print(flag)
 True
 === CheckMRAPRepresentation ===
@@ -269,21 +261,21 @@ True
 >>> H0 = ml.matrix([[-5., 0.1+x, 0.9, 1.],[1., -8., 0.9, 0.1],[0.9, 0.1, -4., 1.],[1., 2., 3., -9.]])
 >>> H1 = ml.matrix([[0.1-x, 0.7, 0.1, 0.1],[0.1, 1., 1.8, 0.1],[0.1, 0.1, 0.1, 0.7],[0.7, 0.1, 0.1, 0.1]])
 >>> H2 = ml.matrix([[0.1, 0.1, 0.1, 1.7],[1.8, 0.1, 1., 0.1],[0.1, 0.1, 0.7, 0.1],[0.1, 1., 0.1, 0.8]])
->>> flag = CheckMRAPRepresentation([H0,H1,H2])
+>>> flag = CheckMRAPRepresentation([H0, H1, H2])
 >>> print(flag)
 True
 === RAPFromMoments ===
 >>> G0 = ml.matrix([[-6.2, 2., 0.],[2., -9., 1.],[1., 0, -3.]])
 >>> G1 = ml.matrix([[2.2, -2., 4.],[2., 2., 2.],[1., 0, 1.]])
->>> moms = MarginalMomentsFromRAP(G0,G1,5)
+>>> moms = MarginalMomentsFromRAP(G0, G1, 5)
 >>> print(moms)
 [0.36585365853658536, 0.25535027188603043, 0.26507255497329191, 0.36691170692675046, 0.635727559166956]
->>> Nm = LagkJointMomentsFromRAP(G0,G1,2,1)
+>>> Nm = LagkJointMomentsFromRAP(G0, G1, 2, 1)
 >>> print(Nm)
 [[ 1.       0.36585  0.25535]
  [ 0.36585  0.12866  0.08833]
  [ 0.25535  0.0888   0.06067]]
->>> H0,H1 = RAPFromMoments(moms,Nm)
+>>> H0, H1 = RAPFromMoments(moms, Nm)
 >>> print(H0)
 [[-12.94939  36.77983 -24.81743]
  [ -1.11017  -2.51134   0.91705]
@@ -292,26 +284,26 @@ True
 [[  9.26723 -99.95808  91.67785]
  [  1.16931  -2.17715   3.7123 ]
  [  0.65292   3.99937  -1.89008]]
->>> rmoms = MarginalMomentsFromRAP(H0,H1,5)
+>>> rmoms = MarginalMomentsFromRAP(H0, H1, 5)
 >>> print(rmoms)
 [0.36585365853658869, 0.25535027188603343, 0.26507255497329529, 0.36691170692675534, 0.635727559166965]
->>> rNm = LagkJointMomentsFromRAP(H0,H1,2,1)
+>>> rNm = LagkJointMomentsFromRAP(H0, H1, 2, 1)
 >>> print(rNm)
 [[ 1.       0.36585  0.25535]
  [ 0.36585  0.12866  0.08833]
  [ 0.25535  0.0888   0.06067]]
 >>> G0 = ml.matrix([[-5., 0, 1., 1.],[1., -8., 1., 0],[1., 0, -4., 1.],[1., 2., 3., -9.]])
 >>> G1 = ml.matrix([[0, 1., 0, 2.],[2., 1., 3., 0],[0, 0, 1., 1.],[1., 1., 0, 1.]])
->>> moms = MarginalMomentsFromRAP(G0,G1,7)
+>>> moms = MarginalMomentsFromRAP(G0, G1, 7)
 >>> print(moms)
 [0.34246575342465752, 0.25053639214391815, 0.28270969431684256, 0.42984404959582057, 0.81998555487921787, 1.8794706921737607, 5.0280196843561171]
->>> Nm = LagkJointMomentsFromRAP(G0,G1,3,1)
+>>> Nm = LagkJointMomentsFromRAP(G0, G1, 3, 1)
 >>> print(Nm)
 [[ 1.       0.34247  0.25054  0.28271]
  [ 0.34247  0.1173   0.08579  0.09681]
  [ 0.25054  0.0857   0.06263  0.07066]
  [ 0.28271  0.09663  0.07059  0.07962]]
->>> H0,H1 = RAPFromMoments(moms,Nm)
+>>> H0, H1 = RAPFromMoments(moms, Nm)
 >>> print(H0)
 [[  -6.7126    32.98913 -108.70525   77.98325]
  [  -0.8704    -8.34051   25.2677   -19.01258]
@@ -323,10 +315,10 @@ True
  [  7.86827e-01   6.56888e-01   7.16343e+02  -7.14884e+02]
  [  7.86826e-01   6.56788e-01   7.17318e+02  -7.15860e+02]]
 >>> butools.checkPrecision = 10.**-8
->>> rmoms = MarginalMomentsFromRAP(H0,H1,7)
+>>> rmoms = MarginalMomentsFromRAP(H0, H1, 7)
 >>> print(rmoms)
 [0.34246575341348912, 0.25053639213218126, 0.2827096943020489, 0.42984404957246941, 0.81998555483408853, 1.8794706920698447, 5.0280196840776616]
->>> rNm = LagkJointMomentsFromRAP(H0,H1,3,1)
+>>> rNm = LagkJointMomentsFromRAP(H0, H1, 3, 1)
 >>> print(rNm)
 [[ 1.       0.34247  0.25054  0.28271]
  [ 0.34247  0.1173   0.08579  0.09681]
@@ -337,11 +329,11 @@ True
 >>> G1 = ml.matrix([[0.16, 0.11, 0],[0.1, 0.16, 0],[0.27, 0, 0.19]])
 >>> G2 = ml.matrix([[0.01, 0.09, 0.13],[0.26, 0.21, 0.05],[0, 0.16, 0.07]])
 >>> G3 = ml.matrix([[0.19, 0.06, 0.2],[0.17, 0.16, 0.27],[0, 0, 0.14]])
->>> G = [G0,G1,G2,G3]
->>> moms = MarginalMomentsFromMRAP(G,5)
+>>> G = [G0, G1, G2, G3]
+>>> moms = MarginalMomentsFromMRAP(G, 5)
 >>> print(moms)
 [0.99804861334547901, 2.0262345014785748, 6.2347773609141584, 25.738432370871866, 133.30214790750446]
->>> Nm = LagkJointMomentsFromMRAP(G,2,1)
+>>> Nm = LagkJointMomentsFromMRAP(G, 2, 1)
 >>> Nm1, Nm2, Nm3 = Nm
 >>> print(Nm1)
 [[ 0.34     0.34055  0.69322]
@@ -355,7 +347,7 @@ True
 [[ 0.36447  0.38016  0.79224]
  [ 0.35811  0.37446  0.78148]
  [ 0.71836  0.75239  1.57165]]
->>> H = MRAPFromMoments(moms,Nm)
+>>> H = MRAPFromMoments(moms, Nm)
 >>> print(H[0])
 [[-1.94731  3.03441 -2.17036]
  [-0.33434 -0.88118  0.21355]
@@ -373,10 +365,10 @@ True
  [-0.19985 -5.1102   5.67609]
  [-0.19945 -5.17914  5.7429 ]]
 >>> butools.checkPrecision = 10.**-10
->>> rmoms = MarginalMomentsFromMRAP(H,5)
+>>> rmoms = MarginalMomentsFromMRAP(H, 5)
 >>> print(rmoms)
 [0.9980486133458466, 2.026234501479784, 6.2347773609187414, 25.738432370892887, 133.30214790761983]
->>> rNm = LagkJointMomentsFromMRAP(H,2,1)
+>>> rNm = LagkJointMomentsFromMRAP(H, 2, 1)
 >>> rNm1, rNm2, rNm3 = rNm
 >>> print(rNm1)
 [[ 0.34     0.34055  0.69322]
@@ -393,13 +385,13 @@ True
 === RAPFromMomentsAndCorrelations ===
 >>> H0 = ml.matrix([[-6.2, 2., 0],[2., -9., 1.],[1., 0, -3.]])
 >>> H1 = ml.matrix([[2.2, 0, 2.],[0, 4., 2.],[0, 1., 1.]])
->>> mom = MarginalMomentsFromRAP(H0,H1)
+>>> mom = MarginalMomentsFromRAP(H0, H1)
 >>> print(mom)
 [0.29774127310061604, 0.19283643304803644, 0.19448147792730755, 0.26597325539245531, 0.45833053059627116]
->>> corr = LagCorrelationsFromRAP(H0,H1,3)
+>>> corr = LagCorrelationsFromRAP(H0, H1, 3)
 >>> print(corr)
-[0.012393574884970124, 0.0027411959690404088, 0.00072383642135696988]
->>> G0,G1 = RAPFromMomentsAndCorrelations(mom,corr)
+[ 0.01239  0.00274  0.00072]
+>>> G0, G1 = RAPFromMomentsAndCorrelations(mom, corr)
 >>> print(G0)
 [[ -8.96289  22.25257 -18.5441 ]
  [ -0.99178  -4.66699   2.33103]
@@ -408,12 +400,12 @@ True
 [[ 2.20275 -1.31725  4.36893]
  [ 1.21793  1.82173  0.28809]
  [ 1.02115  0.41735  1.95099]]
->>> rmom = MarginalMomentsFromRAP(G0,G1)
+>>> rmom = MarginalMomentsFromRAP(G0, G1)
 >>> print(rmom)
 [0.29774127310061604, 0.19283643304803638, 0.19448147792730741, 0.26597325539245492, 0.45833053059627044]
->>> rcorr = LagCorrelationsFromRAP(G0,G1,3)
+>>> rcorr = LagCorrelationsFromRAP(G0, G1, 3)
 >>> print(rcorr)
-[0.012393574884970265, 0.0027411959690409431, 0.00072383642135750309]
+[ 0.01239  0.00274  0.00072]
 === MAP2FromMoments ===
 >>> D0 = ml.matrix([[-14., 1.],[1, -25.]])
 >>> D1 = ml.matrix([[6., 7.],[3., 21.]])
@@ -423,7 +415,7 @@ True
 >>> corr = LagCorrelationsFromMAP(D0, D1, 1)[0]
 >>> print(corr)
 0.022415711104
->>> D0,D1 = MAP2FromMoments(moms,corr)
+>>> D0, D1 = MAP2FromMoments(moms, corr)
 >>> print(D0)
 [[-13.90983   9.19903]
  [  0.      -25.09017]]
@@ -439,10 +431,10 @@ True
 === MAP2CorrelationBounds ===
 >>> D0 = ml.matrix([[-14., 1.],[1., -25.]])
 >>> D1 = ml.matrix([[6., 7.],[3., 21.]])
->>> moms = MarginalMomentsFromMAP(D0,D1,3)
+>>> moms = MarginalMomentsFromMAP(D0, D1, 3)
 >>> print(moms)
 [0.049180327868852472, 0.005260932876133214, 0.00091818676015607825]
->>> lb,ub = MAP2CorrelationBounds(moms)
+>>> lb, ub = MAP2CorrelationBounds(moms)
 >>> print(lb)
 -0.0305881459726
 >>> print(ub)
@@ -450,7 +442,7 @@ True
 === MAPFromFewMomentsAndCorrelations ===
 >>> moms = [1.1, 6.05]
 >>> corr1 = -0.17
->>> D0,D1 = MAPFromFewMomentsAndCorrelations(moms, corr1)
+>>> D0, D1 = MAPFromFewMomentsAndCorrelations(moms, corr1)
 >>> print(D0)
 [[ -0.28494   0.28494   0.        0.     ]
  [ -0.      -18.13384   0.        0.     ]
@@ -461,15 +453,15 @@ True
  [  0.0228    1.42791   4.9669   11.71623]
  [  0.        0.        0.        0.     ]
  [  0.01384   0.86667   0.0228    0.05377]]
->>> rmoms = MarginalMomentsFromMAP(D0,D1,2)
+>>> rmoms = MarginalMomentsFromMAP(D0, D1, 2)
 >>> print(rmoms)
 [1.0999999999999996, 6.0499999999999963]
->>> rcorr1 = LagCorrelationsFromMAP(D0,D1,1)[0]
+>>> rcorr1 = LagCorrelationsFromMAP(D0, D1, 1)[0]
 >>> print(rcorr1)
 -0.17
 >>> moms = [1.2, 4.32, 20.]
 >>> corr1 = -0.4
->>> D0,D1 = MAPFromFewMomentsAndCorrelations(moms, corr1)
+>>> D0, D1 = MAPFromFewMomentsAndCorrelations(moms, corr1)
 >>> print(D0)
 [[ -0.33604   0.33604   0.        0.        0.        0.     ]
  [  0.      -36.02667   0.        0.        0.        0.     ]
@@ -485,15 +477,15 @@ True
  [  0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]
  [  1.79373e-02   1.28805e+00   4.71448e-02   0.00000e+00   0.00000e+00   2.15912e-02]]
 >>> butools.checkPrecision = 10.**-12
->>> rmoms = MarginalMomentsFromMAP(D0,D1,3)
+>>> rmoms = MarginalMomentsFromMAP(D0, D1, 3)
 >>> print(rmoms)
 [1.2000000000000002, 4.3200000000000021, 19.999999999999915]
->>> rcorr1 = LagCorrelationsFromMAP(D0,D1,1)[0]
+>>> rcorr1 = LagCorrelationsFromMAP(D0, D1, 1)[0]
 >>> print(rcorr1)
 -0.4
 >>> moms = [1.2, 4.32, 20.]
 >>> corr1 = 0.4
->>> D0,D1 = MAPFromFewMomentsAndCorrelations(moms, corr1)
+>>> D0, D1 = MAPFromFewMomentsAndCorrelations(moms, corr1)
 >>> print(D0)
 [[  -0.54184    0.54184    0.         0.         0.         0.         0.         0.         0.     ]
  [   0.      -116.33647    0.         0.         0.         0.         0.         0.         0.     ]
@@ -514,50 +506,50 @@ True
  [  0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]
  [  0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]
  [  6.20477e-02   3.40758e-01   1.38184e-02   1.59740e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]]
->>> rmoms = MarginalMomentsFromMAP(D0,D1,3)
+>>> rmoms = MarginalMomentsFromMAP(D0, D1, 3)
 >>> print(rmoms)
 [1.2, 4.3199999999999985, 19.999999999999851]
->>> rcorr1 = LagCorrelationsFromMAP(D0,D1,1)[0]
+>>> rcorr1 = LagCorrelationsFromMAP(D0, D1, 1)[0]
 >>> print(rcorr1)
 0.4
 === CanonicalFromMAP2 ===
 >>> D0 = ml.matrix([[-14., 1.],[1., -25.]])
 >>> D1 = ml.matrix([[6., 7.],[3., 21.]])
->>> H0,H1 = CanonicalFromMAP2(D0,D1)
+>>> H0, H1 = CanonicalFromMAP2(D0, D1)
 >>> print(H0)
 [[-13.90983   9.19903]
  [  0.      -25.09017]]
 >>> print(H1)
 [[  4.7108    0.     ]
  [  2.80097  22.2892 ]]
->>> Cm = SimilarityMatrix(H0,D0)
+>>> Cm = SimilarityMatrix(H0, D0)
 >>> err1 = la.norm(H0*Cm-Cm*D0)
 >>> err2 = la.norm(H1*Cm-Cm*D1)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 2.21090873503e-13
 === MAPFromRAP ===
 >>> D0 = ml.matrix([[-2., 2.],[2., -9.]])
 >>> D1 = ml.matrix([[-2., 2.],[3., 4.]])
->>> H0,H1 = MAPFromRAP(D0,D1)
+>>> H0, H1 = MAPFromRAP(D0, D1)
 >>> print(H0)
 [[ -1.46887e+00  -3.05193e-02]
  [  4.20579e-15  -9.53113e+00]]
 >>> print(H1)
 [[-0.33715  1.83654]
  [ 7.19398  2.33715]]
->>> err = la.norm(LagkJointMomentsFromRAP(D0,D1,3,1)-LagkJointMomentsFromRAP(H0,H1,3,1))
+>>> err = la.norm(LagkJointMomentsFromRAP(D0, D1, 3, 1)-LagkJointMomentsFromRAP(H0, H1, 3, 1))
 >>> print(err)
 1.62866154301e-14
 >>> D0 = ml.matrix([[-2.4, 2.],[2., -9.]])
 >>> D1 = ml.matrix([[-1.6, 2.],[3., 4.]])
->>> H0,H1 = MAPFromRAP(D0,D1)
+>>> H0, H1 = MAPFromRAP(D0, D1)
 >>> print(H0)
 [[-1.84137  0.07947]
  [ 0.01251 -9.55863]]
 >>> print(H1)
 [[ 0.02451  1.7374 ]
  [ 7.17063  2.37549]]
->>> err = la.norm(LagkJointMomentsFromRAP(D0,D1,3,1)-LagkJointMomentsFromRAP(H0,H1,3,1))
+>>> err = la.norm(LagkJointMomentsFromRAP(D0, D1, 3, 1)-LagkJointMomentsFromRAP(H0, H1, 3, 1))
 >>> print(err)
 4.674749869e-16
 === MMAPFromMRAP ===
@@ -565,11 +557,11 @@ True
 >>> H0 = ml.matrix([[-5., 0.1+x, 0.9, 1.],[1., -8., 0.9, 0.1],[0.9, 0.1, -4., 1.],[1., 2., 3., -9.]])
 >>> H1 = ml.matrix([[0.1-x, 0.7, 0.1, 0.1],[0.1, 1., 1.8, 0.1],[0.1, 0.1, 0.1, 0.7],[0.7, 0.1, 0.1, 0.1]])
 >>> H2 = ml.matrix([[0.1, 0.1, 0.1, 1.7],[1.8, 0.1, 1., 0.1],[0.1, 0.1, 0.7, 0.1],[0.1, 1., 0.1, 0.8]])
->>> H = [H0,H1,H2]
+>>> H = [H0, H1, H2]
 >>> moms = MarginalMomentsFromMRAP(H)
 >>> print(moms)
 [0.33950747762450084, 0.24582557198236554, 0.27423742766051129, 0.41206018133500932, 0.7767718404933559, 1.7594286078546524, 4.6515347631617807]
->>> jmom = LagkJointMomentsFromMRAP(H,3,1)
+>>> jmom = LagkJointMomentsFromMRAP(H, 3, 1)
 >>> G = MMAPFromMRAP(H)
 >>> print(G[0])
 [[-4.64977  0.17674  0.87432  0.92969]
@@ -589,14 +581,14 @@ True
 >>> rmoms = MarginalMomentsFromMMAP(G)
 >>> print(rmoms)
 [0.3395074776245009, 0.24582557198236571, 0.27423742766051162, 0.41206018133500988, 0.77677184049335724, 1.7594286078546562, 4.6515347631617923]
->>> rjmom = LagkJointMomentsFromMMAP(G,3,1)
->>> err = la.norm(rjmom[0]-jmom[0]) + la.norm(rjmom[1]-jmom[1])
+>>> rjmom = LagkJointMomentsFromMMAP(G, 3, 1)
+>>> err = la.norm(rjmom[0]-jmom[0])+la.norm(rjmom[1]-jmom[1])
 >>> print(err)
 9.65812159364e-16
 === MinimalRepFromRAP ===
 >>> D0 = ml.matrix([[-5., 1., 0],[3., -3., 0],[1., 1., -5.]])
 >>> D1 = ml.matrix([[0, 0, 4.],[0, 0, 0],[1., 1., 1.]])
->>> H0,H1 = MinimalRepFromRAP(D0,D1,"cont")
+>>> H0, H1 = MinimalRepFromRAP(D0, D1, "cont")
 >>> print(H0)
 [[-5.  1.  0.]
  [ 3. -3.  0.]
@@ -605,41 +597,41 @@ True
 [[ 0.  0.  4.]
  [ 0.  0.  0.]
  [ 1.  1.  1.]]
->>> Cm = SimilarityMatrix(H0,D0)
+>>> Cm = SimilarityMatrix(H0, D0)
 >>> err1 = la.norm(H0*Cm-Cm*D0)
 >>> err2 = la.norm(H1*Cm-Cm*D1)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 1.82603380554e-15
->>> H0,H1 = MinimalRepFromRAP(D0,D1,"obs")
+>>> H0, H1 = MinimalRepFromRAP(D0, D1, "obs")
 >>> print(H0)
 [[-4.40741  1.69312]
  [ 0.84259 -2.59259]]
 >>> print(H1)
 [[ 2.03704  0.67725]
  [ 2.78704 -1.03704]]
->>> Cm = SimilarityMatrix(H0,D0)
+>>> Cm = SimilarityMatrix(H0, D0)
 >>> err1 = la.norm(H0*Cm-Cm*D0)
 >>> err2 = la.norm(H1*Cm-Cm*D1)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 7.63152157294e-16
->>> H0,H1 = MinimalRepFromRAP(D0,D1,"obscont")
+>>> H0, H1 = MinimalRepFromRAP(D0, D1, "obscont")
 >>> print(H0)
 [[-4.40741  1.69312]
  [ 0.84259 -2.59259]]
 >>> print(H1)
 [[ 2.03704  0.67725]
  [ 2.78704 -1.03704]]
->>> Cm = SimilarityMatrix(H0,D0)
+>>> Cm = SimilarityMatrix(H0, D0)
 >>> err1 = la.norm(H0*Cm-Cm*D0)
 >>> err2 = la.norm(H1*Cm-Cm*D1)
->>> print(np.max(err1,err2))
+>>> print(np.max(err1, err2))
 7.63152157294e-16
 === MinimalRepFromMRAP ===
 >>> D0 = ml.matrix([[-5., 1., 0],[3., -3., 0],[1., 1., -5.]])
 >>> D1 = ml.matrix([[0, 0, 0.8],[0, 0, 0],[0.2, 0.2, 0.2]])
 >>> D2 = ml.matrix([[0, 0, 3.2],[0, 0, 0],[0.8, 0.8, 0.8]])
->>> D = [D0,D1,D2]
->>> H = MinimalRepFromMRAP(D,"cont")
+>>> Dm = [D0, D1, D2]
+>>> H = MinimalRepFromMRAP(Dm, "cont")
 >>> print(H[0])
 [[-5.  1.  0.]
  [ 3. -3.  0.]
@@ -652,11 +644,11 @@ True
 [[ 0.   0.   3.2]
  [ 0.   0.   0. ]
  [ 0.8  0.8  0.8]]
->>> Cm = SimilarityMatrix(H[0],D[0])
->>> err = la.norm(H[0]*Cm-Cm*D[0]) + la.norm(H[1]*Cm-Cm*D[1]) + la.norm(H[2]*Cm-Cm*D[2])
+>>> Cm = SimilarityMatrix(H[0], Dm[0])
+>>> err = la.norm(H[0]*Cm-Cm*Dm[0])+la.norm(H[1]*Cm-Cm*Dm[1])+la.norm(H[2]*Cm-Cm*Dm[2])
 >>> print(err)
 3.65128686018e-15
->>> H = MinimalRepFromMRAP(D,"obs")
+>>> H = MinimalRepFromMRAP(Dm, "obs")
 >>> print(H[0])
 [[-4.40741  1.69312]
  [ 0.84259 -2.59259]]
@@ -666,11 +658,11 @@ True
 >>> print(H[2])
 [[ 1.62963  0.5418 ]
  [ 2.22963 -0.82963]]
->>> Cm = SimilarityMatrix(H[0],D[0])
->>> err = la.norm(H[0]*Cm-Cm*D[0]) + la.norm(H[1]*Cm-Cm*D[1]) + la.norm(H[2]*Cm-Cm*D[2])
+>>> Cm = SimilarityMatrix(H[0], Dm[0])
+>>> err = la.norm(H[0]*Cm-Cm*Dm[0])+la.norm(H[1]*Cm-Cm*Dm[1])+la.norm(H[2]*Cm-Cm*Dm[2])
 >>> print(err)
 4.72728076906e-15
->>> H = MinimalRepFromMRAP(D,"obscont")
+>>> H = MinimalRepFromMRAP(Dm, "obscont")
 >>> print(H[0])
 [[-4.40741  1.69312]
  [ 0.84259 -2.59259]]
@@ -680,15 +672,18 @@ True
 >>> print(H[2])
 [[ 1.62963  0.5418 ]
  [ 2.22963 -0.82963]]
->>> Cm = SimilarityMatrix(H[0],D[0])
->>> err = la.norm(H[0]*Cm-Cm*D[0]) + la.norm(H[1]*Cm-Cm*D[1]) + la.norm(H[2]*Cm-Cm*D[2])
+>>> Cm = SimilarityMatrix(H[0], Dm[0])
+>>> err = la.norm(H[0]*Cm-Cm*Dm[0])+la.norm(H[1]*Cm-Cm*Dm[1])+la.norm(H[2]*Cm-Cm*Dm[2])
 >>> print(err)
 4.72728076906e-15
 === SamplesFromMAP ===
 >>> D0 = ml.matrix([[-0.17, 0, 0, 0.07],[0.01, -0.78, 0.03, 0.08],[0.22, 0.17, -1.1, 0.02],[0.04, 0.12, 0, -0.42]])
 >>> D1 = ml.matrix([[0, 0.06, 0, 0.04],[0.04, 0.19, 0.21, 0.22],[0.22, 0.13, 0.15, 0.19],[0.05, 0, 0.17, 0.04]])
->>> x = SamplesFromMAP(D0,D1,10000)
->>> mm = MarginalMomentsFromMAP(D0,D1,3)
+>>> x = SamplesFromMAP(D0, D1, 10000)
+>>> mt = MarginalMomentsFromTrace(x, 3)
+>>> print(mt)
+[3.4013060257956038, 32.681082499256199, 546.94389771923909]
+>>> mm = MarginalMomentsFromMAP(D0, D1, 3)
 >>> print(mm)
 [3.4433473754205295, 34.030353434960716, 592.07698593172893]
 === SamplesFromMMAP ===
@@ -696,8 +691,11 @@ True
 >>> D1 = ml.matrix([[0.15, 0.49],[0.23, 0.36]])
 >>> D2 = ml.matrix([[0.11, 0.2],[0.01, 0]])
 >>> D3 = ml.matrix([[0.14, 0.4],[0.11, 0.14]])
->>> D = [D0,D1,D2,D3]
->>> x = SamplesFromMMAP(D,10000)
->>> mm = MarginalMomentsFromMMAP(D,3)
+>>> Dm = [D0, D1, D2, D3]
+>>> x = SamplesFromMMAP(Dm, 10000)
+>>> mt = MarginalMomentsFromTrace(x[:, 0], 3)
+>>> print(mt)
+[1.0128822115820439, 2.125093348326891, 6.8185499625793531]
+>>> mm = MarginalMomentsFromMMAP(Dm, 3)
 >>> print(mm)
 [1.0006671114076049, 2.1044966311760755, 6.8276881494346]

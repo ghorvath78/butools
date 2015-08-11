@@ -1,43 +1,43 @@
-=== CRPSolve ===
+"=== CRPSolve ==="
 >>> Q = {{-4.3, 3.5, 0.8},{-8.4, 6.5, 1.9},{17.3, -12.7, -4.6}};
 >>> ret = CRPSolve[Q];
 >>> Print[ret];
 {-3.5617283950617336, 3.66666666666667, 0.8950617283950623}
 >>> Print[ret.Q];
 {1.7763568394002505*^-15, 0., 0.}
-=== DRPSolve ===
+"=== DRPSolve ==="
 >>> Q = {{-0.9, 0.5, 1.4},{0.9, -0.9, 1},{0.3, 1.3, -0.6}};
 >>> ret = DRPSolve[Q];
 >>> Print[ret];
 {0.2313829787234043, 0.34840425531914887, 0.4202127659574468}
->>> Print[ret.Q - ret];
+>>> Print[ret.Q-ret];
 {-1.3877787807814457*^-16, 5.551115123125783*^-17, 5.551115123125783*^-17}
-=== CTMCSolve ===
+"=== CTMCSolve ==="
 >>> Q = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
 >>> ret = CTMCSolve[Q];
 >>> Print[ret];
 {0.4090909090909091, 0.3181818181818182, 0.2727272727272727}
 >>> Print[ret.Q];
 {-4.163336342344337*^-17, -1.3877787807814457*^-17, 5.551115123125783*^-17}
-=== DTMCSolve ===
+"=== DTMCSolve ==="
 >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
 >>> ret = DTMCSolve[Q];
 >>> Print[ret];
 {0.4090909090909091, 0.3181818181818182, 0.2727272727272727}
->>> Print[ret.Q - ret];
+>>> Print[ret.Q-ret];
 {-5.551115123125783*^-17, 0., 5.551115123125783*^-17}
-=== CheckGenerator ===
+"=== CheckGenerator ==="
 >>> Q = {{-0.9, 0.2, 0.4},{0, 0.9, 0.9},{0, 0.6, -0.6}};
->>> flag = CheckGenerator[Q,True];
+>>> flag = CheckGenerator[Q, True];
 "CheckGenerator: The diagonal of the generator is not negative (at precision "1.*^-12")!"
 >>> Print[flag];
 False
 >>> Q = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
->>> flag = CheckGenerator[Q,True];
+>>> flag = CheckGenerator[Q, True];
 >>> Print[flag];
 True
 >>> Q = {{-0.9, 0.2, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
->>> flag = CheckGenerator[Q,True];
+>>> flag = CheckGenerator[Q, True];
 >>> Print[flag];
 True
 >>> Q = {{-0.9, 0.5, 0.4},{0.9, -1.1, 0},{0.3, 0.3, -0.6}};
@@ -49,7 +49,7 @@ False
 >>> flag = CheckGenerator[Q];
 >>> Print[flag];
 True
-=== CheckProbMatrix ===
+"=== CheckProbMatrix ==="
 >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, -0.1, 0.4}};
 >>> flag = CheckProbMatrix[Q];
 "CheckProbMatrix: the matrix has negative element (at precision "1.*^-12")!"
@@ -65,39 +65,39 @@ False
 >>> Print[flag];
 True
 >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
->>> flag = CheckProbMatrix[Q,True];
+>>> flag = CheckProbMatrix[Q, True];
 "CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1!"
 >>> Print[flag];
 False
 >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}};
->>> flag = CheckProbMatrix[Q,True];
+>>> flag = CheckProbMatrix[Q, True];
 >>> Print[flag];
 True
-=== CheckProbVector ===
->>> Q = {1.1, -0.1};
+"=== CheckProbVector ==="
+>>> Q = {1.1,-0.1};
 >>> flag = CheckProbVector[Q];
 "CheckProbVector: The vector has negative element!"
 >>> Print[flag];
 False
->>> Q = {1.1, 0.1};
+>>> Q = {1.1,0.1};
 >>> flag = CheckProbVector[Q];
 "CheckProbVector: The sum of the vector is not 1 (precision:"1.*^-12")!"
 >>> Print[flag];
 False
->>> Q = {1, 0};
+>>> Q = {1,0};
 >>> flag = CheckProbVector[Q];
 >>> Print[flag];
 True
->>> Q = {0.9, -0.1};
->>> flag = CheckProbVector[Q,True];
+>>> Q = {0.9,-0.1};
+>>> flag = CheckProbVector[Q, True];
 "CheckProbVector: The vector has negative element!"
 >>> Print[flag];
 False
->>> Q = {0.9, 0.1};
->>> flag = CheckProbVector[Q,True];
+>>> Q = {0.9,0.1};
+>>> flag = CheckProbVector[Q, True];
 >>> Print[flag];
 True
->>> Q = {0.8, 0.1};
->>> flag = CheckProbVector[Q,True];
+>>> Q = {0.8,0.1};
+>>> flag = CheckProbVector[Q, True];
 >>> Print[flag];
 True

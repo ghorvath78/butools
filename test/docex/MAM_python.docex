@@ -1,0 +1,294 @@
+=== QBDFundamentalMatrices ===
+>>> B = ml.matrix([[0., 0.],[3., 4.]])
+>>> L = ml.matrix([[-6., 5.],[3., -12.]])
+>>> F = ml.matrix([[1., 0.],[2., 0.]])
+>>> L0 = ml.matrix([[-6., 5.],[6., -8.]])
+>>> R, G, U = QBDFundamentalMatrices(B, L, F, "RGU")
+Final Residual Error for G:  1.38777878078e-16
+Final Residual Error for R:  5.55111512313e-17
+Final Residual Error for U:  4.16333634234e-17
+>>> print(R)
+[[ 0.27839  0.14286]
+ [ 0.55678  0.28571]]
+>>> print(G)
+[[ 0.42857  0.57143]
+ [ 0.42857  0.57143]]
+>>> print(U)
+[[ -5.57143   5.57143]
+ [  3.85714 -10.85714]]
+=== QBDSolve ===
+>>> B = ml.matrix([[0., 0.],[3., 4.]])
+>>> L = ml.matrix([[-6., 5.],[3., -12.]])
+>>> F = ml.matrix([[1., 0.],[2., 0.]])
+>>> L0 = ml.matrix([[-6., 5.],[6., -8.]])
+>>> pi0, R = QBDSolve(B, L, F, L0)
+Final Residual Error for G:  1.38777878078e-16
+Final Residual Error for R:  5.55111512313e-17
+>>> print(pi0)
+[[ 0.22992  0.18681]]
+>>> print(R)
+[[ 0.27839  0.14286]
+ [ 0.55678  0.28571]]
+=== QBDStationaryDistr ===
+>>> B = ml.matrix([[0., 0.],[3., 4.]])
+>>> L = ml.matrix([[-6., 5.],[3., -12.]])
+>>> F = ml.matrix([[1., 0.],[2., 0.]])
+>>> L0 = ml.matrix([[-6., 5.],[6., -8.]])
+>>> pi = QBDStationaryDistr(pi0, R, 5)
+>>> print(pi)
+[[ 0.22992  0.18681  0.16802  0.08622  0.09478  0.04864  0.05347  0.02744  0.03016  0.01548  0.01701  0.00873]]
+=== MG1FundamentalMatrix ===
+>>> A0 = ml.matrix([[0.4, 0.2],[0.3, 0.4]])
+>>> A1 = ml.matrix([[0., 0.1],[0., 0.]])
+>>> A2 = ml.matrix([[0., 0.2],[0., 0.2]])
+>>> A3 = ml.matrix([[0.1, 0.],[0.1, 0.]])
+>>> A = [A0, A1, A2, A3]
+>>> G = MG1FundamentalMatrix(A)
+The Shifted PWCR evaluation of Iteration  1  required  64  roots
+The Shifted PWCR evaluation of Iteration  2  required  32  roots
+The Shifted PWCR evaluation of Iteration  3  required  16  roots
+The Shifted PWCR evaluation of Iteration  4  required  16  roots
+The Shifted PWCR evaluation of Iteration  5  required  8  roots
+Final Residual Error for G:  1.66533453694e-16
+>>> print(G)
+[[ 0.60503  0.39497]
+ [ 0.45912  0.54088]]
+=== MG1StationaryDistr ===
+>>> B0 = ml.matrix([[0.1, 0.5],[0.3, 0.4]])
+>>> B1 = ml.matrix([[0., 0.1],[0., 0.]])
+>>> B2 = ml.matrix([[0.2, 0.],[0., 0.2]])
+>>> B3 = ml.matrix([[0., 0.1],[0.1, 0.]])
+>>> A0 = ml.matrix([[0.4, 0.2],[0.3, 0.4]])
+>>> A1 = ml.matrix([[0., 0.1],[0., 0.]])
+>>> A2 = ml.matrix([[0., 0.2],[0., 0.2]])
+>>> A3 = ml.matrix([[0.1, 0.],[0.1, 0.]])
+>>> B = [B0, B1, B2, B3]
+>>> A = [A0, A1, A2, A3]
+>>> G = MG1FundamentalMatrix(A)
+The Shifted PWCR evaluation of Iteration  1  required  64  roots
+The Shifted PWCR evaluation of Iteration  2  required  32  roots
+The Shifted PWCR evaluation of Iteration  3  required  16  roots
+The Shifted PWCR evaluation of Iteration  4  required  16  roots
+The Shifted PWCR evaluation of Iteration  5  required  8  roots
+Final Residual Error for G:  1.66533453694e-16
+>>> print(G)
+[[ 0.60503  0.39497]
+ [ 0.45912  0.54088]]
+>>> pi = MG1StationaryDistr(A, B, G, 300)
+Accumulated mass of the first  1  (reblocked) components: 0.391648958812
+Accumulated mass of the first  2  (reblocked) components: 0.569330177726
+Accumulated mass of the first  3  (reblocked) components: 0.710035538448
+Accumulated mass of the first  4  (reblocked) components: 0.801388060572
+Accumulated mass of the first  5  (reblocked) components: 0.864766585178
+Accumulated mass of the first  6  (reblocked) components: 0.907731603845
+Accumulated mass of the first  7  (reblocked) components: 0.937090744425
+Accumulated mass of the first  8  (reblocked) components: 0.957097539458
+Accumulated mass of the first  9  (reblocked) components: 0.970744114982
+Accumulated mass of the first  10  (reblocked) components: 0.98004935607
+Accumulated mass of the first  11  (reblocked) components: 0.986395072461
+Accumulated mass of the first  12  (reblocked) components: 0.990722369885
+Accumulated mass of the first  13  (reblocked) components: 0.993673298345
+Accumulated mass of the first  14  (reblocked) components: 0.995685625547
+Accumulated mass of the first  15  (reblocked) components: 0.997057894415
+Accumulated mass of the first  16  (reblocked) components: 0.997993686966
+Accumulated mass of the first  17  (reblocked) components: 0.998631832949
+Accumulated mass of the first  18  (reblocked) components: 0.999067004471
+Accumulated mass of the first  19  (reblocked) components: 0.999363761425
+Accumulated mass of the first  20  (reblocked) components: 0.999566129191
+Accumulated mass of the first  21  (reblocked) components: 0.999704130045
+Accumulated mass of the first  22  (reblocked) components: 0.999798237105
+Accumulated mass of the first  23  (reblocked) components: 0.999862411627
+Accumulated mass of the first  24  (reblocked) components: 0.999906174223
+Accumulated mass of the first  25  (reblocked) components: 0.999936017294
+Accumulated mass of the first  26  (reblocked) components: 0.999956368209
+Accumulated mass of the first  27  (reblocked) components: 0.999970246129
+Accumulated mass of the first  28  (reblocked) components: 0.999979709913
+Accumulated mass of the first  29  (reblocked) components: 0.999986163561
+Accumulated mass of the first  30  (reblocked) components: 0.999990564503
+Accumulated mass of the first  31  (reblocked) components: 0.999993565642
+Accumulated mass of the first  32  (reblocked) components: 0.999995612212
+Accumulated mass of the first  33  (reblocked) components: 0.999997007831
+Accumulated mass of the first  34  (reblocked) components: 0.999997959547
+Accumulated mass of the first  35  (reblocked) components: 0.999998608552
+Accumulated mass of the first  36  (reblocked) components: 0.999999051129
+Accumulated mass of the first  37  (reblocked) components: 0.999999352935
+Accumulated mass of the first  38  (reblocked) components: 0.999999558746
+Accumulated mass of the first  39  (reblocked) components: 0.999999699095
+Accumulated mass of the first  40  (reblocked) components: 0.999999794804
+Accumulated mass of the first  41  (reblocked) components: 0.99999986007
+Accumulated mass of the first  42  (reblocked) components: 0.999999904578
+Accumulated mass of the first  43  (reblocked) components: 0.999999934929
+Accumulated mass of the first  44  (reblocked) components: 0.999999955626
+Accumulated mass of the first  45  (reblocked) components: 0.99999996974
+Accumulated mass of the first  46  (reblocked) components: 0.999999979365
+Accumulated mass of the first  47  (reblocked) components: 0.999999985928
+Accumulated mass of the first  48  (reblocked) components: 0.999999990404
+Accumulated mass of the first  49  (reblocked) components: 0.999999993456
+Accumulated mass of the first  50  (reblocked) components: 0.999999995538
+Accumulated mass of the first  51  (reblocked) components: 0.999999996957
+Accumulated mass of the first  52  (reblocked) components: 0.999999997925
+Accumulated mass of the first  53  (reblocked) components: 0.999999998585
+Accumulated mass of the first  54  (reblocked) components: 0.999999999035
+Accumulated mass of the first  55  (reblocked) components: 0.999999999342
+Accumulated mass of the first  56  (reblocked) components: 0.999999999551
+Accumulated mass of the first  57  (reblocked) components: 0.999999999694
+Accumulated mass of the first  58  (reblocked) components: 0.999999999791
+Accumulated mass of the first  59  (reblocked) components: 0.999999999858
+Accumulated mass of the first  60  (reblocked) components: 0.999999999903
+=== GM1FundamentalMatrix ===
+>>> A0 = ml.matrix([[0.1, 0.],[0., 0.1]])
+>>> A1 = ml.matrix([[0., 0.2],[0., 0.2]])
+>>> A2 = ml.matrix([[0., 0.1],[0., 0.]])
+>>> A3 = ml.matrix([[0.3, 0.2],[0.3, 0.2]])
+>>> A4 = ml.matrix([[0., 0.1],[0.2, 0.]])
+>>> A = [A0, A1, A2, A3, A4]
+>>> R = GM1FundamentalMatrix(A)
+The Shifted PWCR evaluation of Iteration  1  required  64  roots
+The Shifted PWCR evaluation of Iteration  2  required  32  roots
+The Shifted PWCR evaluation of Iteration  3  required  16  roots
+The Shifted PWCR evaluation of Iteration  4  required  8  roots
+The Shifted PWCR evaluation of Iteration  5  required  8  roots
+Final Residual Error for G:  5.20417042793e-17
+>>> print(R)
+[[ 0.10065  0.02696]
+ [ 0.00066  0.12569]]
+=== GM1StationaryDistr ===
+>>> B0 = ml.matrix([[0.7, 0.2],[0.3, 0.6]])
+>>> B1 = ml.matrix([[0.3, 0.4],[0.5, 0.2]])
+>>> B2 = ml.matrix([[0.2, 0.4],[0.1, 0.6]])
+>>> B3 = ml.matrix([[0., 0.1],[0.2, 0.]])
+>>> A0 = ml.matrix([[0.1, 0.],[0., 0.1]])
+>>> A1 = ml.matrix([[0., 0.2],[0., 0.2]])
+>>> A2 = ml.matrix([[0., 0.1],[0., 0.]])
+>>> A3 = ml.matrix([[0.3, 0.2],[0.3, 0.2]])
+>>> A4 = ml.matrix([[0., 0.1],[0.2, 0.]])
+>>> B = [B0, B1, B2, B3]
+>>> A = [A0, A1, A2, A3, A4]
+>>> R = GM1FundamentalMatrix(A)
+The Shifted PWCR evaluation of Iteration  1  required  64  roots
+The Shifted PWCR evaluation of Iteration  2  required  32  roots
+The Shifted PWCR evaluation of Iteration  3  required  16  roots
+The Shifted PWCR evaluation of Iteration  4  required  8  roots
+The Shifted PWCR evaluation of Iteration  5  required  8  roots
+Final Residual Error for G:  5.20417042793e-17
+>>> print(R)
+[[ 0.10065  0.02696]
+ [ 0.00066  0.12569]]
+>>> pi = GM1StationaryDistr(B, R, 300)
+Accumulated mass after  2  iterations:  0.983872004487
+Accumulated mass after  3  iterations:  0.997954882432
+Accumulated mass after  4  iterations:  0.999740854747
+Accumulated mass after  5  iterations:  0.999967181248
+Accumulated mass after  6  iterations:  0.999995845613
+Accumulated mass after  7  iterations:  0.999999474299
+Accumulated mass after  8  iterations:  0.999999933496
+Accumulated mass after  9  iterations:  0.999999991589
+Accumulated mass after  10  iterations:  0.999999998936
+Accumulated mass after  11  iterations:  0.999999999866
+Accumulated mass after  12  iterations:  0.999999999983
+=== FluidFundamentalMatrices ===
+>>> Fpp = ml.matrix([[-5., 1.],[2., -3.]])
+>>> Fpm = ml.matrix([[2., 1., 1.],[1., 0., 0.]])
+>>> Fmm = ml.matrix([[-8., 4., 1.],[2., -12., 3.],[2., 0., -2.]])
+>>> Fmp = ml.matrix([[3., 0.],[2., 5.],[0., 0.]])
+>>> Psi, K, U = FluidFundamentalMatrices(Fpp, Fpm, Fmp, Fmm, "PKU")
+Final Residual Error for G:  1.7208456881689926e-15
+>>> print(Psi)
+[[ 0.33722  0.16517  0.49761]
+ [ 0.3318   0.12995  0.53825]]
+>>> print(K)
+[[-3.658    1.82583]
+ [ 3.25529 -2.35024]]
+>>> print(U)
+[[ -6.98833   4.4955    2.49283]
+ [  4.33343 -11.01991   6.68648]
+ [  2.        0.       -2.     ]]
+=== FluidSolve ===
+>>> Fpp = ml.matrix([[-5., 1.],[2., -3.]])
+>>> Fpm = ml.matrix([[2., 1., 1.],[1., 0., 0.]])
+>>> Fmm = ml.matrix([[-8., 4., 1.],[2., -12., 3.],[2., 0., -2.]])
+>>> Fmp = ml.matrix([[3., 0.],[2., 5.],[0., 0.]])
+>>> x = 0.7
+>>> mass0, ini, K, clo = FluidSolve(Fpp, Fpm, Fmp, Fmm)
+Final Residual Error for G:  1.7208456881689926e-15
+>>> print(mass0)
+[[ 0.03751  0.0153   0.09792]]
+>>> print(ini)
+[[ 0.14315  0.07652]]
+>>> print(K)
+[[-3.658    1.82583]
+ [ 3.25529 -2.35024]]
+>>> print(clo)
+[[ 1.       0.       0.33722  0.16517  0.49761]
+ [ 0.       1.       0.3318   0.12995  0.53825]]
+>>> pdfAtX = ini*la.expm(K*x)*clo
+>>> print(pdfAtX)
+[[ 0.07401  0.07093  0.04849  0.02144  0.07501]]
+=== GeneralFluidSolve ===
+>>> Q = ml.matrix([[-6., 1., 3., 2., 0., 0.],[6., -10., 2., 0., 2., 0.],[3., 7., -12., 0., 0., 2.],[5., 0., 0., -9., 1., 3.],[0., 5., 0., 6., -13., 2.],[0., 0., 5., 3., 7., -15.]])
+>>> R = ml.matrix([[2., 0., 0., 0., 0., 0.],[0., -4., 0., 0., 0., 0.],[0., 0., -12., 0., 0., 0.],[0., 0., 0., 6., 0., 0.],[0., 0., 0., 0., 0., 0.],[0., 0., 0., 0., 0., -8.]])
+>>> x = 0.7
+>>> mass0, ini, K, clo = GeneralFluidSolve(Q, R)
+Final Residual Error for G:  6.661338147750939e-16
+>>> print(mass0)
+[[ 0.       0.08225  0.06949  0.       0.02381  0.02072]]
+>>> print(ini)
+[[ 0.70195  0.20505]]
+>>> print(K)
+[[-2.46975  1.13486]
+ [ 1.29502 -1.16863]]
+>>> print(clo)
+[[ 0.5      0.06109  0.05457  0.       0.01618  0.01259]
+ [ 0.       0.05539  0.04312  0.16667  0.03891  0.03263]]
+>>> pdfAtX = ini*la.expm(K*x)*clo
+>>> print(pdfAtX)
+[[ 0.12566  0.03185  0.02656  0.04964  0.01566  0.01288]]
+=== FluidStationaryDistr ===
+>>> Q = ml.matrix([[-6., 1., 3., 2., 0., 0.],[6., -10., 2., 0., 2., 0.],[3., 7., -12., 0., 0., 2.],[5., 0., 0., -9., 1., 3.],[0., 5., 0., 6., -13., 2.],[0., 0., 5., 3., 7., -15.]])
+>>> R = ml.matrix([[2., 0., 0., 0., 0., 0.],[0., -4., 0., 0., 0., 0.],[0., 0., -12., 0., 0., 0.],[0., 0., 0., 6., 0., 0.],[0., 0., 0., 0., 0., 0.],[0., 0., 0., 0., 0., -8.]])
+>>> x = np.arange(0.0,31.0,1.0)
+>>> mass0, ini, K, clo = GeneralFluidSolve(Q, R)
+Final Residual Error for G:  6.661338147750939e-16
+>>> print(mass0)
+[[ 0.       0.08225  0.06949  0.       0.02381  0.02072]]
+>>> print(ini)
+[[ 0.70195  0.20505]]
+>>> print(K)
+[[-2.46975  1.13486]
+ [ 1.29502 -1.16863]]
+>>> print(clo)
+[[ 0.5      0.06109  0.05457  0.       0.01618  0.01259]
+ [ 0.       0.05539  0.04312  0.16667  0.03891  0.03263]]
+>>> y = FluidStationaryDistr(mass0, ini, K, clo, x)
+>>> print(y)
+[[ 0.       0.08225  0.06949  0.       0.02381  0.02072]
+ [ 0.1768   0.11964  0.10108  0.04752  0.04063  0.03448]
+ [ 0.25236  0.14136  0.11905  0.08511  0.05185  0.04374]
+ [ 0.29931  0.15521  0.13049  0.10952  0.05907  0.04971]
+ [ 0.32938  0.1641   0.13783  0.1252   0.0637   0.05353]
+ [ 0.34868  0.1698   0.14254  0.13527  0.06668  0.05599]
+ [ 0.36107  0.17346  0.14557  0.14173  0.06859  0.05757]
+ [ 0.36902  0.17581  0.14751  0.14588  0.06981  0.05858]
+ [ 0.37413  0.17732  0.14875  0.14854  0.0706   0.05923]
+ [ 0.3774   0.17829  0.14955  0.15025  0.0711   0.05965]
+ [ 0.37951  0.17891  0.15007  0.15134  0.07143  0.05992]
+ [ 0.38086  0.17931  0.1504   0.15205  0.07164  0.06009]
+ [ 0.38172  0.17956  0.15061  0.1525   0.07177  0.0602 ]
+ [ 0.38228  0.17973  0.15074  0.15279  0.07186  0.06027]
+ [ 0.38264  0.17983  0.15083  0.15298  0.07191  0.06031]
+ [ 0.38286  0.1799   0.15089  0.1531   0.07195  0.06034]
+ [ 0.38301  0.17995  0.15092  0.15317  0.07197  0.06036]
+ [ 0.38311  0.17997  0.15095  0.15322  0.07198  0.06037]
+ [ 0.38317  0.17999  0.15096  0.15325  0.07199  0.06038]
+ [ 0.38321  0.18     0.15097  0.15327  0.072    0.06039]
+ [ 0.38323  0.18001  0.15098  0.15329  0.072    0.06039]
+ [ 0.38325  0.18001  0.15098  0.1533   0.072    0.06039]
+ [ 0.38326  0.18002  0.15098  0.1533   0.07201  0.06039]
+ [ 0.38326  0.18002  0.15098  0.1533   0.07201  0.06039]
+ [ 0.38327  0.18002  0.15099  0.15331  0.07201  0.06039]
+ [ 0.38327  0.18002  0.15099  0.15331  0.07201  0.06039]
+ [ 0.38327  0.18002  0.15099  0.15331  0.07201  0.06039]
+ [ 0.38327  0.18002  0.15099  0.15331  0.07201  0.06039]
+ [ 0.38327  0.18002  0.15099  0.15331  0.07201  0.06039]
+ [ 0.38327  0.18002  0.15099  0.15331  0.07201  0.06039]
+ [ 0.38327  0.18002  0.15099  0.15331  0.07201  0.06039]]

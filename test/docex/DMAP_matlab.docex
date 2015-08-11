@@ -1,7 +1,7 @@
 === MarginalDistributionFromDMAP ===
 >>> D0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
 >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> [a,A] = MarginalDistributionFromDMAP(D0,D1);
+>>> [a, A] = MarginalDistributionFromDMAP(D0, D1);
 >>> disp(a);
       0.24388      0.40412       0.1941       0.1579
 >>> disp(A);
@@ -12,13 +12,16 @@
 === MarginalMomentsFromDMAP ===
 >>> D0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
 >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> moms = MarginalMomentsFromDMAP(D0,D1);
+>>> moms = MarginalMomentsFromDMAP(D0, D1);
 >>> disp(moms);
-       1.4955       2.9542       7.8852       27.282       116.17       587.04         3437
+  Columns 1 through 6
+       1.4955       2.9542       7.8852       27.282       116.17       587.04
+  Column 7
+         3437
 === MarginalDistributionFromDRAP ===
 >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
 >>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> [a,A] = MarginalDistributionFromDRAP(H0,H1);
+>>> [a, A] = MarginalDistributionFromDRAP(H0, H1);
 >>> disp(a);
      0.021493      0.71253      0.26598
 >>> disp(A);
@@ -28,7 +31,7 @@
 === MarginalMomentsFromDRAP ===
 >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
 >>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> moms = MarginalMomentsFromDRAP(H0,H1);
+>>> moms = MarginalMomentsFromDRAP(H0, H1);
 >>> disp(moms);
         3.207       16.898       130.77       1347.1        17343
 === MarginalDistributionFromDMMAP ===
@@ -36,7 +39,7 @@
 >>> D1 = [0.3, 0, 0; 0.16, 0.18, 0.05; 0.15, 0.04, 0.09];
 >>> D2 = [0, 0.01, 0; 0.1, 0.07, 0.08; 0.13, 0.12, 0.13];
 >>> D3 = [0.35, 0, 0; 0, 0.18, 0.04; 0.06, 0.03, 0.01];
->>> [a,A] = MarginalDistributionFromDMMAP({D0,D1,D2,D3});
+>>> [a, A] = MarginalDistributionFromDMMAP({D0, D1, D2, D3});
 >>> disp(a);
       0.96166     0.030652    0.0076858
 >>> disp(A);
@@ -48,14 +51,14 @@
 >>> D1 = [0.3, 0, 0; 0.16, 0.18, 0.05; 0.15, 0.04, 0.09];
 >>> D2 = [0, 0.01, 0; 0.1, 0.07, 0.08; 0.13, 0.12, 0.13];
 >>> D3 = [0.35, 0, 0; 0, 0.18, 0.04; 0.06, 0.03, 0.01];
->>> moms = MarginalMomentsFromDMMAP({D0,D1,D2,D3});
+>>> moms = MarginalMomentsFromDMMAP({D0, D1, D2, D3});
 >>> disp(moms);
        1.5037       3.0278       8.4243       31.097       143.88
 === MarginalDistributionFromDMRAP ===
 >>> H0 = [0.15, 0.2, 0.18; -0.23, 0.17, 0.22; 0.19, 0.15, 0.16];
 >>> H1 = [0.01, 0.08, 0.16; 0.02, 0.2, 0.07; 0.02, 0.15, 0.17];
 >>> H2 = [0.14, 0.07, 0.01; 0.19, 0.02, 0.34; 0.06, 0.1, 0];
->>> [a,A] = MarginalDistributionFromDMRAP({H0,H1,H2});
+>>> [a, A] = MarginalDistributionFromDMRAP({H0, H1, H2});
 >>> disp(a);
       0.22615      0.35424      0.41962
 >>> disp(A);
@@ -66,93 +69,69 @@
 >>> H0 = [0.15, 0.2, 0.18; -0.23, 0.17, 0.22; 0.19, 0.15, 0.16];
 >>> H1 = [0.01, 0.08, 0.16; 0.02, 0.2, 0.07; 0.02, 0.15, 0.17];
 >>> H2 = [0.14, 0.07, 0.01; 0.19, 0.02, 0.34; 0.06, 0.1, 0];
->>> moms = MarginalMomentsFromDMRAP({H0,H1,H2});
+>>> moms = MarginalMomentsFromDMRAP({H0, H1, H2});
 >>> disp(moms);
        1.5948       3.4185       9.9595       37.742       177.13
 === LagCorrelationsFromDMAP ===
 >>> D0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
 >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> corr = LagCorrelationsFromDMAP(D0,D1,3);
+>>> corr = LagCorrelationsFromDMAP(D0, D1, 3);
 >>> disp(corr);
-    -0.045859
-     0.010753
-   -0.0047996
+    -0.045859     0.010753   -0.0047996
 === LagCorrelationsFromDRAP ===
 >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
 >>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> corr = LagCorrelationsFromDRAP(H0,H1,3);
+>>> corr = LagCorrelationsFromDRAP(H0, H1, 3);
 >>> disp(corr);
-     0.014303
-    0.0012424
-   7.5868e-06
+     0.014303    0.0012424   7.5868e-06
 === LagkJointMomentsFromDMAP ===
 >>> D0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
 >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> Nm = LagkJointMomentsFromDMAP(D0,D1,4,1);
+>>> Nm = LagkJointMomentsFromDMAP(D0, D1, 4, 1);
 >>> disp(Nm);
             1       1.4955       2.9542       7.8852       27.282
        1.4955       2.2037       4.2827       11.293       38.822
        2.9542       4.2875       8.1899       21.315       72.753
        7.8852       11.326       21.379       55.129       187.21
        27.282       38.993        73.17       187.82       636.23
->>> moms = MarginalMomentsFromDMAP(D0,D1,4);
+>>> moms = MarginalMomentsFromDMAP(D0, D1, 4);
 >>> disp(moms);
        1.4955       2.9542       7.8852       27.282
->>> cjm=zeros(3,1);
->>> for i=1:3
->>>     Nx=LagkJointMomentsFromDMAP(D0,D1,1,i);
->>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
->>> end
->>>     Nx=LagkJointMomentsFromDMAP(D0,D1,1,i);
->>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
->>> end
->>>     Nx=LagkJointMomentsFromDMAP(D0,D1,1,i);
->>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
+>>> cjm = zeros(1,3);
+>>> for i=1:1:3
+>>>     Nx = LagkJointMomentsFromDMAP(D0, D1, 1, i);
+>>>     cjm(i) = (Nx(2, 2)-moms(1)^2)/(moms(2)-moms(1)^2);
 >>> end
 >>> disp(cjm);
-    -0.045859
-     0.010753
-   -0.0047996
->>> corr = LagCorrelationsFromDMAP(D0,D1,3);
+    -0.045859     0.010753   -0.0047996
+>>> corr = LagCorrelationsFromDMAP(D0, D1, 3);
 >>> disp(corr);
-    -0.045859
-     0.010753
-   -0.0047996
+    -0.045859     0.010753   -0.0047996
 === LagkJointMomentsFromDRAP ===
 >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
 >>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> Nm = LagkJointMomentsFromDRAP(H0,H1,4,1);
+>>> Nm = LagkJointMomentsFromDRAP(H0, H1, 4, 1);
 >>> disp(length(Nm));
      5
->>> moms = MarginalMomentsFromDRAP(H0,H1,4);
+>>> moms = MarginalMomentsFromDRAP(H0, H1, 4);
 >>> disp(moms);
         3.207       16.898       130.77       1347.1
->>> cjm=zeros(3,1);
->>> for i=1:3
->>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i);
->>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
->>> end
->>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i);
->>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
->>> end
->>>     Nx=LagkJointMomentsFromDRAP(H0,H1,1,i);
->>>     cjm(i) = (Nx(2,2)-moms(1)^2) / (moms(2)-moms(1)^2);
+>>> cjm = zeros(1,3);
+>>> for i=1:1:3
+>>>     Nx = LagkJointMomentsFromDRAP(H0, H1, 1, i);
+>>>     cjm(i) = (Nx(2, 2)-moms(1)^2)/(moms(2)-moms(1)^2);
 >>> end
 >>> disp(cjm);
-     0.014303
-    0.0012424
-   7.5868e-06
->>> corr = LagCorrelationsFromDRAP(H0,H1,3);
+     0.014303    0.0012424   7.5868e-06
+>>> corr = LagCorrelationsFromDRAP(H0, H1, 3);
 >>> disp(corr);
-     0.014303
-    0.0012424
-   7.5868e-06
+     0.014303    0.0012424   7.5868e-06
 === LagkJointMomentsFromDMMAP ===
 >>> D0 = [0.34, 0, 0; 0.06, 0.05, 0.03; 0.11, 0.13, 0];
 >>> D1 = [0.3, 0, 0; 0.16, 0.18, 0.05; 0.15, 0.04, 0.09];
 >>> D2 = [0, 0.01, 0; 0.1, 0.07, 0.08; 0.13, 0.12, 0.13];
 >>> D3 = [0.35, 0, 0; 0, 0.18, 0.04; 0.06, 0.03, 0.01];
->>> Nm = LagkJointMomentsFromDMMAP({D0,D1,D2,D3},3,1);
+>>> Nm = LagkJointMomentsFromDMMAP({D0, D1, D2, D3}, 3, 1);
 >>> disp(Nm{1});
       0.45395      0.68525       1.3856       3.8671
       0.68283       1.0318       2.0887       5.8339
@@ -172,7 +151,7 @@
 >>> H0 = [0.15, 0.2, 0.18; -0.23, 0.17, 0.22; 0.19, 0.15, 0.16];
 >>> H1 = [0.01, 0.08, 0.16; 0.02, 0.2, 0.07; 0.02, 0.15, 0.17];
 >>> H2 = [0.14, 0.07, 0.01; 0.19, 0.02, 0.34; 0.06, 0.1, 0];
->>> Nm = LagkJointMomentsFromDMRAP({H0,H1,H2},3,2);
+>>> Nm = LagkJointMomentsFromDMRAP({H0, H1, H2}, 3, 2);
 >>> disp(Nm{1});
       0.48798      0.78047       1.6785       4.9029
       0.77458       1.2395       2.6673       7.7945
@@ -184,97 +163,103 @@
        1.7647       2.8029       5.9814       17.365
        5.1503        8.177       17.442       50.619
 === RandomDMAP ===
->>> [D0,D1] = RandomDMAP(4,5.62,10);
+>>> [D0, D1] = RandomDMAP(4, 5.62, 10);
+CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+CheckDMAPRepresentation: D0 isn't a transient probability matrix!
 >>> disp(D0);
-      0.73286     0.046357     0.034004     0.028796
-     0.084185      0.67698            0            0
-     0.027256     0.082261      0.74025            0
-            0            0      0.80713      0.19287
+      0.32242      0.12926            0       0.1379
+      0.11054      0.70995     0.060634     0.012054
+            0     0.038601      0.86412     0.021564
+            0            0      0.12058      0.42758
 >>> disp(D1);
-     0.045462     0.020243     0.042927     0.049352
-     0.019264      0.09044     0.095789     0.033342
-            0      0.10169     0.038362      0.01018
-            0            0            0            0
->>> m = MarginalMomentsFromDMAP(D0,D1,1);
+       0.1503      0.15115    0.0072573       0.1017
+     0.069721     0.037105            0            0
+     0.035809     0.018712     0.021192            0
+            0      0.45185            0            0
+>>> m = MarginalMomentsFromDMAP(D0, D1, 1);
 >>> disp(m);
          5.62
 === RandomDMMAP ===
->>> D = RandomDMMAP(4,3,5.62,10);
->>> disp(D{1});
-      0.56425            0    0.0025792     0.025159
-    0.0054367      0.85152    0.0013472     0.010131
-     0.013513    0.0018426      0.88354     0.013932
-            0            0     0.032424      0.61785
->>> disp(D{2});
-     0.028968     0.028484     0.042247     0.033735
-     0.013261     0.011258            0     0.011753
-    0.0054317   0.00037558    0.0073518    0.0066517
-     0.055321            0     0.027431     0.034022
->>> disp(D{3});
-     0.011736     0.039391     0.041982     0.030391
-      0.01497    0.0067164     0.017958     0.012237
-            0    0.0013491     0.015416    0.0043155
-     0.027236            0     0.063043     0.033505
->>> disp(D{4});
-            0     0.061636     0.028295     0.061148
-     0.018395            0    0.0081089     0.016913
-     0.013366            0     0.015417     0.017502
-     0.022411     0.014965     0.022161     0.049628
->>> m = MarginalMomentsFromDMMAP(D,1);
+>>> Dm = RandomDMMAP(4, 3, 5.62, 10);
+CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+CheckDMAPRepresentation: D0 isn't a transient probability matrix!
+CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
+CheckDMAPRepresentation: D0 isn't a transient probability matrix!
+>>> disp(Dm{1});
+      0.58008      0.05247     0.011422     0.034628
+     0.010303      0.78341     0.018769     0.014111
+     0.013438     0.016619      0.84305     0.011715
+     0.059279            0    0.0073858      0.73922
+>>> disp(Dm{2});
+    0.0036364    0.0064271     0.033468     0.029809
+     0.019378     0.008356            0     0.038026
+    0.0065461     0.015749     0.015421    0.0064125
+            0            0     0.045432     0.006937
+>>> disp(Dm{3});
+     0.048991     0.045334     0.018459     0.023063
+     0.042294      0.00432    0.0039673     0.002284
+    0.0010788   0.00023017     0.012396            0
+            0     0.040277            0            0
+>>> disp(Dm{4});
+     0.026583     0.021537     0.064096            0
+      0.01306     0.038122     0.003036   0.00056441
+     0.017399     0.014873    0.0088295     0.016249
+            0     0.050186      0.04298     0.008303
+>>> m = MarginalMomentsFromDMMAP(Dm, 1);
 >>> disp(m);
          5.62
 === CheckDMAPRepresentation ===
 >>> D0 = [0, 0.02, 0; 0, 0.17, 0.2; 0.16, 0.17, 0.02];
 >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> flag = CheckDMAPRepresentation(D0,D1);
+>>> flag = CheckDMAPRepresentation(D0, D1);
 CheckDMAPRepresentation: D0 and D1 have different sizes!
 >>> disp(flag);
      0
 >>> D0 = [0, 0.02, 0; 0, 0.17, 0.2; 0.16, 0.17, 0.02];
 >>> D1 = [0, 0.88, 0.1; 0.18, 0.07, 0.14; 0.13, 0.15, 0.15];
->>> flag = CheckDMAPRepresentation(D0,D1);
-CheckDMAPRepresentation: A rowsum of matrix0+matrix1 is not 1 (at precision 1e-10)!
+>>> flag = CheckDMAPRepresentation(D0, D1);
+CheckDMAPRepresentation: A rowsum of matrix0+matrix1 is not 1 (at precision 1e-12)!
 >>> disp(flag);
      0
 >>> D0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
 >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> flag = CheckDMAPRepresentation(D0,D1);
+>>> flag = CheckDMAPRepresentation(D0, D1);
 >>> disp(flag);
      1
 === CheckDRAPRepresentation ===
 >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02; 0.2, 0, 0];
->>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29; 0, 0.8, 0];
->>> flag = CheckDRAPRepresentation(H0,H1);
+>>> H1 = [0, 1., -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29; 0, 0.8, 0];
+>>> flag = CheckDRAPRepresentation(H0, H1);
 CheckDRAPRepresentation: D0 and D1 have different sizes!
 >>> disp(flag);
      0
 >>> H0 = [0.2, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
->>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> flag = CheckDRAPRepresentation(H0,H1);
-CheckDRAPRepresentation: A rowsum of D0+D1 is not 1 (at precision 1e-10)!
+>>> H1 = [0, 1., -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
+>>> flag = CheckDRAPRepresentation(H0, H1);
+CheckDRAPRepresentation: A rowsum of D0+D1 is not 1 (at precision 1e-12)!
 >>> disp(flag);
      0
 >>> H0 = [-1., 0, 0; 0, -2., 2.; 0, 3., -3.];
 >>> H1 = [0, 0, 1.; 0, -1., 1.; 1., 0, -1.];
->>> flag = CheckDRAPRepresentation(H0,H1);
-CheckDRAPRepresentation: A rowsum of D0+D1 is not 1 (at precision 1e-10)!
+>>> flag = CheckDRAPRepresentation(H0, H1);
+CheckDRAPRepresentation: A rowsum of D0+D1 is not 1 (at precision 1e-12)!
 >>> disp(flag);
      0
 >>> H0 = [0, 0, 15.; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
->>> H1 = [0, 1, -15.; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> flag = CheckDRAPRepresentation(H0,H1);
+>>> H1 = [0, 1., -15.; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
+>>> flag = CheckDRAPRepresentation(H0, H1);
 CheckDRAPRepresentation: The dominant eigenvalue of D0 is greater than 1!
 >>> disp(flag);
      0
 >>> H0 = [0, 0.5, 0.1; 0, -1.4, 3.1; 0.67, 0, 0.4];
 >>> H1 = [0, 0.4, 0; 0, -0.2, -0.5; 0.3, -0.7, 0.33];
->>> flag = CheckDRAPRepresentation(H0,H1);
+>>> flag = CheckDRAPRepresentation(H0, H1);
 CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
 >>> disp(flag);
      0
 >>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
->>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> flag = CheckDRAPRepresentation(H0,H1);
+>>> H1 = [0, 1., -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
+>>> flag = CheckDRAPRepresentation(H0, H1);
 >>> disp(flag);
      1
 === CheckDMMAPRepresentation ===
@@ -282,28 +267,28 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
 >>> D1 = [0.3, 0, 0; 0.16, 0.18, 0.05; 0.15, 0.04, 0.09];
 >>> D2 = [0, 0.01, 0; 0.1, 0.07, 0.08; 0.13, 0.12, 0.13];
 >>> D3 = [0.35, 0, 0; 0, 0.18, 0.04; 0.06, 0.03, 0.01];
->>> flag = CheckDMMAPRepresentation({D0,D1,D2,D3});
+>>> flag = CheckDMMAPRepresentation({D0, D1, D2, D3});
 >>> disp(flag);
      1
 === CheckDMRAPRepresentation ===
 >>> H0 = [0.15, 0.2, 0.18; -0.23, 0.17, 0.22; 0.19, 0.15, 0.16];
 >>> H1 = [0.01, 0.08, 0.16; 0.02, 0.2, 0.07; 0.02, 0.15, 0.17];
 >>> H2 = [0.14, 0.07, 0.01; 0.19, 0.02, 0.34; 0.06, 0.1, 0];
->>> flag = CheckDMRAPRepresentation({H0,H1,H2});
+>>> flag = CheckDMRAPRepresentation({H0, H1, H2});
 >>> disp(flag);
      1
 === DRAPFromMoments ===
 >>> G0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
 >>> G1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> moms = MarginalMomentsFromDRAP(G0,G1,5);
+>>> moms = MarginalMomentsFromDRAP(G0, G1, 5);
 >>> disp(moms);
        1.4955       2.9542       7.8852       27.282       116.17
->>> Nm = LagkJointMomentsFromDRAP(G0,G1,2,1);
+>>> Nm = LagkJointMomentsFromDRAP(G0, G1, 2, 1);
 >>> disp(Nm);
             1       1.4955       2.9542
        1.4955       2.2037       4.2827
        2.9542       4.2875       8.1899
->>> [H0,H1] = DRAPFromMoments(moms,Nm);
+>>> [H0, H1] = DRAPFromMoments(moms, Nm);
 >>> disp(H0);
       0.56447      0.47188     -0.69474
      -0.50857     -0.10551      0.95921
@@ -312,10 +297,10 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
        2.3994       1.1243      -2.8653
       -1.7535     -0.59009       2.9984
       0.95074      0.51879      -0.7812
->>> rmoms = MarginalMomentsFromDRAP(H0,H1,5);
+>>> rmoms = MarginalMomentsFromDRAP(H0, H1, 5);
 >>> disp(rmoms);
        1.4955       2.9542       7.8852       27.282       116.17
->>> rNm = LagkJointMomentsFromDRAP(H0,H1,2,1);
+>>> rNm = LagkJointMomentsFromDRAP(H0, H1, 2, 1);
 >>> disp(rNm);
             1       1.4955       2.9542
        1.4955       2.2037       4.2827
@@ -325,11 +310,11 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
 >>> G1 = [0.3, 0, 0; 0.16, 0.18, 0.05; 0.15, 0.04, 0.09];
 >>> G2 = [0, 0.01, 0; 0.1, 0.07, 0.08; 0.13, 0.12, 0.13];
 >>> G3 = [0.35, 0, 0; 0, 0.18, 0.04; 0.06, 0.03, 0.01];
->>> G = {G0,G1,G2,G3};
->>> moms = MarginalMomentsFromDMRAP(G,5);
+>>> G = {G0, G1, G2, G3};
+>>> moms = MarginalMomentsFromDMRAP(G, 5);
 >>> disp(moms);
        1.5037       3.0278       8.4243       31.097       143.88
->>> Nm = LagkJointMomentsFromDMRAP(G,2,1);
+>>> Nm = LagkJointMomentsFromDMRAP(G, 2, 1);
 >>> [Nm1, Nm2, Nm3] = Nm{:};
 >>> disp(Nm1);
       0.45395      0.68525       1.3856
@@ -343,7 +328,7 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
       0.51977      0.78522       1.5891
       0.78582       1.1881       2.4067
        1.5917       2.4087       4.8838
->>> H = DMRAPFromMoments(moms,Nm);
+>>> H = DMRAPFromMoments(moms, Nm);
 >>> disp(H{1});
      0.067795      0.67922     -0.42509
     -0.018716    0.0035507      0.35386
@@ -361,10 +346,10 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
     -0.014006    -0.013671      0.37636
     -0.012887      -0.0175      0.37926
 >>> BuToolsCheckPrecision = 10.^-10;
->>> rmoms = MarginalMomentsFromDMRAP(H,5);
+>>> rmoms = MarginalMomentsFromDMRAP(H, 5);
 >>> disp(rmoms);
        1.5037       3.0278       8.4243       31.097       143.88
->>> rNm = LagkJointMomentsFromDMRAP(H,2,1);
+>>> rNm = LagkJointMomentsFromDMRAP(H, 2, 1);
 >>> [rNm1, rNm2, rNm3] = rNm{:};
 >>> disp(rNm1);
       0.45395      0.68525       1.3856
@@ -378,30 +363,32 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
       0.51977      0.78522       1.5891
       0.78582       1.1881       2.4067
        1.5917       2.4087       4.8838
+>>> disp(norm(moms-rmoms));
+   3.0056e-11
 === DMAPFromDRAP ===
->>> D0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
->>> D1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
->>> [H0,H1] = DMAPFromDRAP(D0,D1);
->>> disp(H0);
+>>> H0 = [0, 0, 0.13; 0, 0.6, 0.18; 0.31, 0.26, 0.02];
+>>> H1 = [0, 1, -0.13; 0, 0.18, 0.04; 0.03, 0.09, 0.29];
+>>> [D0, D1] = DMAPFromDRAP(H0, H1);
+>>> disp(D0);
      0.051945     0.066321      0.12704
      0.011717      0.56745      0.29444
       0.41438      0.17501   0.00060547
->>> disp(H1);
+>>> disp(D1);
      0.085648      0.64664       0.0224
     0.0054434     0.089137     0.031816
       0.04656     0.068225      0.29521
->>> err = norm(LagkJointMomentsFromDRAP(D0,D1,3,1)-LagkJointMomentsFromDRAP(H0,H1,3,1));
+>>> err = norm(LagkJointMomentsFromDRAP(D0, D1, 3, 1)-LagkJointMomentsFromDRAP(H0, H1, 3, 1));
 >>> disp(err);
    8.8285e-11
 === DMMAPFromDMRAP ===
 >>> H0 = [0.15, 0.2, 0.18; -0.20, 0.17, 0.22; 0.19, 0.15, 0.16];
 >>> H1 = [0.01, 0.08, 0.16; 0.02, 0.2, 0.07; 0.02, 0.15, 0.17];
->>> H2 = [0.14, 0.07, 0.01; 0.19, 0.02, 0.31; 0.06, 0.1, 0];
->>> H = {H0,H1,H2};
+>>> H2 = [0.14, 0.07, 0.01; 0.19, 0.02, 0.31; 0.06, 0.1, 0.];
+>>> H = {H0, H1, H2};
 >>> moms = MarginalMomentsFromDMRAP(H);
 >>> disp(moms);
        1.6264       3.6055       10.991       43.903       218.08
->>> jmom = LagkJointMomentsFromDMRAP(H,3,1);
+>>> jmom = LagkJointMomentsFromDMRAP(H, 3, 1);
 >>> G = DMMAPFromDMRAP(H);
 >>> disp(G{1});
       0.12149      0.28833      0.11968
@@ -418,52 +405,52 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
 >>> rmoms = MarginalMomentsFromDMMAP(G);
 >>> disp(rmoms);
        1.6264       3.6055       10.991       43.903       218.08
->>> rjmom = LagkJointMomentsFromDMMAP(G,3,1);
->>> err = norm(rjmom{1}-jmom{1}) + norm(rjmom{2}-jmom{2});
+>>> rjmom = LagkJointMomentsFromDMMAP(G, 3, 1);
+>>> err = norm(rjmom{1}-jmom{1})+norm(rjmom{2}-jmom{2});
 >>> disp(err);
    7.8933e-13
-=== CanonicalFromMAP2 ===
+=== CanonicalFromDMAP2 ===
 >>> D0 = [0.46, 0.28; 0.35, 0.23];
 >>> D1 = [0.08, 0.18; 0.14, 0.28];
->>> [H0,H1] = CanonicalFromDMAP2(D0,D1);
+>>> [H0, H1] = CanonicalFromDMAP2(D0, D1);
 >>> disp(H0);
        0.6785      0.31704
             0     0.011496
 >>> disp(H1);
             0     0.004455
        0.6285         0.36
->>> Cm = SimilarityMatrix(H0,D0);
+>>> Cm = SimilarityMatrix(H0, D0);
 >>> err1 = norm(H0*Cm-Cm*D0);
 >>> err2 = norm(H1*Cm-Cm*D1);
->>> disp(max(err1,err2));
+>>> disp(max(err1, err2));
    8.9731e-14
 >>> D0 = [0.26, 0.28; 0.35, 0.23];
 >>> D1 = [0.28, 0.18; 0.14, 0.28];
->>> [H0,H1] = CanonicalFromDMAP2(D0,D1);
+>>> [H0, H1] = CanonicalFromDMAP2(D0, D1);
 >>> disp(H0);
          0.49      0.38875
      0.098265            0
 >>> disp(H1);
       0.12125            0
       0.46299      0.43875
->>> Cm = SimilarityMatrix(H0,D0);
+>>> Cm = SimilarityMatrix(H0, D0);
 >>> err1 = norm(H0*Cm-Cm*D0);
 >>> err2 = norm(H1*Cm-Cm*D1);
->>> disp(max(err1,err2));
+>>> disp(max(err1, err2));
    1.2787e-14
 >>> D0 = [0.14, 0.34; 0.35, 0.23];
 >>> D1 = [0.22, 0.3; 0.28, 0.14];
->>> [H0,H1] = CanonicalFromDMAP2(D0,D1);
+>>> [H0, H1] = CanonicalFromDMAP2(D0, D1);
 >>> disp(H0);
          0.37      0.51734
       0.16778            0
 >>> disp(H1);
             0      0.11266
       0.47222         0.36
->>> Cm = SimilarityMatrix(H0,D0);
+>>> Cm = SimilarityMatrix(H0, D0);
 >>> err1 = norm(H0*Cm-Cm*D0);
 >>> err2 = norm(H1*Cm-Cm*D1);
->>> disp(max(err1,err2));
+>>> disp(max(err1, err2));
    1.2567e-15
 === DMAP2FromMoments ===
 >>> D0 = [0.2, 0.7; 0.6, 0.1];
@@ -474,7 +461,7 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
 >>> corr = LagCorrelationsFromDMAP(D0, D1, 1);
 >>> disp(corr);
   -0.00080286
->>> [D0,D1] = DMAP2FromMoments(moms,corr);
+>>> [D0, D1] = DMAP2FromMoments(moms, corr);
 >>> disp(D0);
           0.3         0.65
       0.61538            0
@@ -490,8 +477,11 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
 === SamplesFromDMAP ===
 >>> D0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
 >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
->>> x = SamplesFromDMAP(D0,D1,10000);
->>> mm = MarginalMomentsFromDMAP(D0,D1,3);
+>>> x = SamplesFromDMAP(D0, D1, 10000);
+>>> mt = MarginalMomentsFromTrace(x, 3);
+>>> disp(mt);
+       1.5171       3.0613       8.3949
+>>> mm = MarginalMomentsFromDMAP(D0, D1, 3);
 >>> disp(mm);
        1.4955       2.9542       7.8852
 === SamplesFromDMMAP ===
@@ -499,8 +489,11 @@ CheckDRAPRepresentation: The dominant eigenvalue of the D0 is complex!
 >>> D1 = [0.3, 0, 0; 0.16, 0.18, 0.05; 0.15, 0.04, 0.09];
 >>> D2 = [0, 0.01, 0; 0.1, 0.07, 0.08; 0.13, 0.12, 0.13];
 >>> D3 = [0.35, 0, 0; 0, 0.18, 0.04; 0.06, 0.03, 0.01];
->>> D = {D0,D1,D2,D3};
->>> x = SamplesFromDMMAP(D,10000);
->>> mm = MarginalMomentsFromDMMAP(D,3);
+>>> Dm = {D0, D1, D2, D3};
+>>> x = SamplesFromDMMAP(Dm, 10000);
+>>> mt = MarginalMomentsFromTrace(x(1:end, 1), 3);
+>>> disp(mt);
+       1.4997       2.9869       8.1363
+>>> mm = MarginalMomentsFromDMMAP(Dm, 3);
 >>> disp(mm);
        1.5037       3.0278       8.4243
