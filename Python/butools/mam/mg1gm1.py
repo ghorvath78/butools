@@ -135,7 +135,7 @@ def MG1TypeShifts (A, shiftType):
             A[:,m:2*m] = A[:,m:2*m]-I
             uT = uT / np.sum(uT)
             rowhatA = ml.zeros((1,m*(maxd+1)))
-            rowhatA[0,maxd*i:] = uT*A[:,maxd*i:]
+            rowhatA[0,maxd*m:] = uT*A[:,maxd*m:]
             for i in range(maxd-1,-1,-1):
                 rowhatA[0,i*m:(i+1)*m] = tau*rowhatA[0,(i+1)*m:(i+2)*m] + uT*A[:,i*m:(i+1)*m]
             hatA = A - ml.ones((m,1)) * rowhatA
@@ -157,7 +157,7 @@ def MG1TypeShifts (A, shiftType):
         if shiftType=="one" or shiftType=="dbl": # shift one to infinity
             A[:,m:2*m] = A[:,m:2*m] - I
             rowhatA = ml.zeros((1,m*(maxd+1)))
-            rowhatA[0,maxd*i:] = theta*A[:,maxd*i:]
+            rowhatA[0,maxd*m:] = theta*A[:,maxd*m:]
             for i in range(maxd-1,-1,-1):
                 rowhatA[0,i*m:(i+1)*m] = rowhatA[0,(i+1)*m:(i+2)*m] + theta*A[:,i*m:(i+1)*m] # rowhatAi = theta(Amaxd+...+Ai)
             hatA = A - ml.ones((m,1)) * rowhatA
@@ -465,6 +465,10 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     pi : matrix, shape (1,(K+1)*N)
         The stationary probability vector up to level K
     """
+    # Compute g
+    if G is None:
+        G = MG1FundamentalMatrix (A, prec)   
+    g = DTMCSolve(G)
 
     A = np.hstack(A)
     m = A.shape[0]
@@ -498,13 +502,7 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     
     if drift >= 1:
         raise Exception("The Markov chain characterized by A is not positive recurrent")
-    
-    # Compute g
-    if G is None:
-        G = MG1FundamentalMatrix (A, prec)
-    
-    g = DTMCSolve(G)
-    
+       
     if B is None:
         # Compute pi_0
         pi0 = (1.0-drift) * g

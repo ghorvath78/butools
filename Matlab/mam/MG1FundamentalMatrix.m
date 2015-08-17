@@ -78,5 +78,5 @@ function G = MG1FundamentalMatrix (A, precision, maxNumIt, method)
         Am(:,(i-1)*N+1:i*N) = A{i};
     end
     
-    G = feval (fun, Am, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
+    G = feval (fun, Am, 'MaxNumIt', maxNumIt, 'Verbose', double(BuToolsVerbose), 'EpsilonValue', precision);
 end

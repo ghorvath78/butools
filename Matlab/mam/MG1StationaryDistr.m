@@ -38,5 +38,5 @@ function pi = MG1StationaryDistr (A, B, G, K)
         Bm(:,(i-1)*N+1:i*N) = B{i};
     end
 
-    pi = MG1_pi(Bm,Am,G,'MaxNumComp', K+1, 'Verbose', BuToolsVerbose);
+    pi = MG1_pi(Bm,Am,G,'MaxNumComp', K+1, 'Verbose', double(BuToolsVerbose));
 end
