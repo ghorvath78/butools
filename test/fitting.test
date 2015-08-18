@@ -81,7 +81,7 @@ test PHFromTrace
 inputmsg
 code! tr = LoadTrace["bctrace.iat"]   
 testmsg
-code!@ {alpha,A}=PHFromTrace[tr,5]
+code!@ {alpha,A,logli}=PHFromTrace[tr,5]
 code!@ logli = LikelihoodFromTrace[tr,alpha,A]
 code! intBounds = Linspace[0, MarginalMomentsFromTrace[tr,1][[1]]*4, 50]
 code! {pdfTrX, pdfTrY} = PdfFromTrace[tr,intBounds]
@@ -102,7 +102,7 @@ inputmsg
 code! tr = LoadTrace["bctrace.iat"]   
 code! tr = tr[[1;;10000]]
 testmsg
-code!@ {D0,D1}=MAPFromTrace[tr,5]
+code!@ {D0,D1,logli}=MAPFromTrace[tr,5]
 code!@ logli = LikelihoodFromTrace[tr,D0,D1]
 code!@ trAcf = LagCorrelationsFromTrace[tr, 10]
 code!@ mapAcf = LagCorrelationsFromMAP[D0, D1, 10]

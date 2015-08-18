@@ -53,7 +53,7 @@ function logli = LikelihoodFromTrace (trace, X, Y, prec)
         trace = log(trace);
         poi =  exp(lpoi);
         spoi = poi;
-        fx = poi*alpha*a;
+        fx = poi*(alpha*a);
         k = 1;
         first = 1;
         coeffv = alpha;
@@ -63,7 +63,7 @@ function logli = LikelihoodFromTrace (trace, X, Y, prec)
             lpoi(first:end) = lpoi(first:end) + log(lambda) + trace(first:end) - log(k);
             poi(first:end) = exp(lpoi(first:end));
             spoi(first:end) = spoi(first:end) + poi(first:end);
-            fx(first:end) = fx(first:end) + poi(first:end) * coeffv * a;
+            fx(first:end) = fx(first:end) + poi(first:end) * (coeffv * a);
             k = k + 1;
             first = first + find(spoi(first:end)<1-eps,1,'first') - 1;
         end
@@ -75,7 +75,7 @@ function logli = LikelihoodFromTrace (trace, X, Y, prec)
         L = length(trace);
         
         % first we calculate matrix e^(D0*x(i))*D1 for each sample
-        [trace,ix] = sort(trace);
+        [trace,ix] = sort(reshape(trace,[],1));
         lambda = max(abs(diag(D0)));
         P = D0/lambda + eye(size(D0));
         eps = max(prec, 10^(log10(prec) + log10(lambda)));

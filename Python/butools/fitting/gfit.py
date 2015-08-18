@@ -11,7 +11,7 @@ import butools
 import sys
 from IPython.display import clear_output
 
-def PHFromTrace (trace, orders, weights=[], maxIter=200, stopCond=1e-7, initial=None, result="vecmat", retlogli=False):
+def PHFromTrace (trace, orders, weights=[], maxIter=200, stopCond=1e-7, initial=None, result="vecmat", retlogli=True):
     """
     Performs PH distribution fitting using the EM algorithm
     (G-FIT, [1]_).

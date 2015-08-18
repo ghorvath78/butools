@@ -818,7 +818,7 @@ class MathematicaWriter(TestWriterBase):
             if ctx.arrstep==None:
                 self.evals[ctx] = tmpf + ';;' + tmpe
             else:
-                self.evals[ctx] = tmpf + ';' + self.evals[ctx.arrstep] + ';' + tmpe
+                self.evals[ctx] = tmpf + ';;' + tmpe + ';;' + self.evals[ctx.arrstep]
 
     def exitPrimary (self, ctx):
         pText = ctx.getChild(0).getText()

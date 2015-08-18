@@ -12,7 +12,7 @@ from butools.mc import DTMCSolve
 import sys
 from IPython.display import clear_output
 
-def MAPFromTrace (trace, orders, maxIter=200, stopCond=1e-7, initial=None, result="matmat", retlogli=False):
+def MAPFromTrace (trace, orders, maxIter=200, stopCond=1e-7, initial=None, result="matmat", retlogli=True):
     """
     Performs MAP fitting using the EM algorithm (ErCHMM, 
     [1]_, [2]_).
