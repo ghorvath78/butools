@@ -729,9 +729,9 @@ class MathematicaWriter(TestWriterBase):
             elif funName=="AllPositiveMatrix":
                 self.evals[ctx] = "AllTrue[Flatten[{0}],#>0 &]".format(self.evals[ctx.argumentList()])
             elif funName=="AllNonNegativeMatrix":
-                self.evals[ctx] = "AllTrue[Flatten[{0}],#>=0 &,2]".format(self.evals[ctx.argumentList()])
+                self.evals[ctx] = "AllTrue[Flatten[{0}],#>=0 &]".format(self.evals[ctx.argumentList()])
             elif funName=="AllNotGreaterThan1Matrix":
-                self.evals[ctx] = "AllTrue[Flatten[{0}],#<=0 &,2]".format(self.evals[ctx.argumentList()])
+                self.evals[ctx] = "AllTrue[Flatten[{0}],#<=1 &]".format(self.evals[ctx.argumentList()])
             elif funName=="Dim1":
                 self.evals[ctx] = "Dimensions[{0}][[1]]".format(self.evals[ctx.argumentList().expression(0)])
             elif funName=="RowSum":
@@ -751,7 +751,7 @@ class MathematicaWriter(TestWriterBase):
             elif funName=="ToArray":
                 self.evals[ctx] = self.evals[ctx.argumentList()]
             elif funName=="LoadTrace":
-                self.evals[ctx] = 'Flatten[Import["{0}","CSV"]];'.format(scriptDir+"/data/"+self.evals[ctx.argumentList()][1:-1])
+                self.evals[ctx] = 'Flatten[Import["{0}","CSV"]]'.format(scriptDir+"/data/"+self.evals[ctx.argumentList()][1:-1])
             elif funName=="Linspace":
                 rFrom = self.evals[ctx.argumentList().expression(0)]
                 rTo = self.evals[ctx.argumentList().expression(1)]

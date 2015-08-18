@@ -357,5 +357,5 @@ y = FluidStationaryDistr(mass0, ini, K, clo, x);
 disp('y = ');
 disp(y);
 pi = CTMCSolve(Q);
-assert(norm(y(end, 1:end)-pi)<1e-5, 'FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!');
+assert(norm(y(end, 1:end)-pi)<10^-5, 'FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!');
 

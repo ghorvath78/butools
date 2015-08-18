@@ -156,5 +156,5 @@ testmsg
 code!@ {mass0, ini, K, clo} = GeneralFluidSolve [Q, R]
 code!@ y = FluidStationaryDistr [mass0, ini, K, clo, x]
 code$ pi = CTMCSolve[Q]
-assert Norm[y[[-0,;;]]-pi]<1e-5 # "FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!"
+assert Norm[y[[-0,;;]]-pi]<10^-5 # "FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!"
 

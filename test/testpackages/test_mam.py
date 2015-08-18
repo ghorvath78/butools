@@ -374,5 +374,5 @@ y = FluidStationaryDistr(mass0, ini, K, clo, x)
 print('y = ')
 print(y)
 pi = CTMCSolve(Q)
-assert la.norm(y[-1, :]-pi)<1e-5, "FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!"
+assert la.norm(y[-1, :]-pi)<10**-5, "FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!"
 

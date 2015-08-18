@@ -652,7 +652,7 @@ def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", d
     else: # Bright dual
         return Diag(1.0/theta) * G.T * Diag(theta) * eta
 
-def GM1StationaryDistr (B, R, K, prec=1e-14):
+def GM1StationaryDistr (B, R, K):
     """
     Returns the stationary distribution of the G/M/1 type
     Markov chain up to a given level K.
@@ -685,7 +685,7 @@ def GM1StationaryDistr (B, R, K, prec=1e-14):
     I = ml.eye(m)   
 
     temp = (I-R).I
-    if np.max(temp<-100*prec):
+    if np.max(temp<-100*butools.checkPrecision):
         raise Exception("The spectral radius of R is not below 1: GM1 is not pos. recurrent")
     
     maxb = B.shape[0]//m

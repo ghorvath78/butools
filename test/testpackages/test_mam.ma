@@ -255,7 +255,7 @@ Print["U = "//OutputForm];
 Print[U];
 Assert[CheckGenerator[U], "FluidFundamentalMatrices: matrix U is not a generator!"];
 Assert[AllTrue[Eigenvalues[K],#<0 &], "FluidFundamentalMatrices: the eigenvalues of matrix K are not negative!"];
-Assert[AllTrue[Flatten[Psi],#>=0 &,2]&&AllTrue[Flatten[Psi],#<=0 &,2]&&Norm[Total[Psi,{2}]-1]<10^-14, "FluidFundamentalMatrices: matrix Psi is not a transition prob. matrix!"];
+Assert[AllTrue[Flatten[Psi],#>=0 &]&&AllTrue[Flatten[Psi],#<=1 &]&&Norm[Total[Psi,{2}]-1]<10^-14, "FluidFundamentalMatrices: matrix Psi is not a transition prob. matrix!"];
 Print["========================================"]
 Print["Testing BuTools function FluidSolve"]
 Print["Input:"//OutputForm];
@@ -354,4 +354,4 @@ y = FluidStationaryDistr[mass0, ini, K, clo, x];
 Print["y = "//OutputForm];
 Print[y];
 pi = CTMCSolve[Q];
-Assert[Norm[y[[-1, 1;;-1]]-pi]<1e-5, "FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!"];
+Assert[Norm[y[[-1, 1;;-1]]-pi]<10^-5, "FluidStationaryDistr: stationary distribution does not converge to the steady state distribution of the phases!"];

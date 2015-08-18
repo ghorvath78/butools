@@ -12,8 +12,10 @@ FluidFundamentalMatrices::usage = "";
 FluidSolve::usage = "";
 FluidStationaryDistr::usage = "";
 GeneralFluidSolve::usage = "";
-PdfFromTrace::usage = "";
-PdfFromWeightedTrace::usage = "";
+MG1FundamentalMatrix::usage = "";
+MG1StationaryDistr::usage = "";
+GM1FundamentalMatrix::usage = "";
+GM1StationaryDistr::usage = "";
 
 
 Begin["`Private`"];
@@ -27,7 +29,7 @@ If[Not[MemberQ[Names["BuTools`*"],"BuTools`Verbose"]],BuTools`Verbose=False];
 
 QBDFundamentalMatrices[B_, L_, F_, matrices_:"G", precision_:N[10^-14], maxNumIt_:50, method_:"CR", shift_:True]:=
 Module[{m, II,continuous,lamb,Bm,Lm,Fm,theta,drift,Lold,uT,Bold,Fold,
-BF,BB,G,PI,check,numit,Lstar,Bstar,Fstar,ret,U,R},
+BF,BB,G,PI,check,numit,Lstar,Bstar,Fstar,ret,U,R,resNorm},
     m = Length[L];
     II = IdentityMatrix[m];
     If[method!="CR" && BuTools`Verbose,Print["Warning: Currently only the 'CR' method is available in the Python implementation!"]];
@@ -90,8 +92,8 @@ BF,BB,G,PI,check,numit,Lstar,Bstar,Fstar,ret,U,R},
 		];
 	];
     If[BuTools`Verbose,
-        res_norm = Norm[G-Bm-(Lm+Fm.G).G, Infinity]
-        Print["Final Residual Error for G: ", res_norm]];
+        resNorm = Norm[G-Bm-(Lm+Fm.G).G, Infinity];
+        Print["Final Residual Error for G: ", resNorm]];
 
     ret = {};
     Do[
@@ -99,14 +101,14 @@ BF,BB,G,PI,check,numit,Lstar,Bstar,Fstar,ret,U,R},
         If[M=="R",
             R = Fm.Inverse[II-(Lm+Fm.G)];
             If[BuTools`Verbose,
-                res_norm = Norm[R-Fm-R.(Lm+R*Bm), Infinity];
-                Print["Final Residual Error for R: ", res_norm]];
+                resNorm = Norm[R-Fm-R.(Lm+R*Bm), Infinity];
+                Print["Final Residual Error for R: ", resNorm]];
             AppendTo[ret,R]];
         If[M=="U",
             U = Lm+Fm.G;
             If[BuTools`Verbose,
-                res_norm = Norm[U-Lm-Fm.Inverse[II-U].Bm,Infinity];
-                Print["Final Residual Error for U: ", res_norm]];
+                resNorm = Norm[U-Lm-Fm.Inverse[II-U].Bm,Infinity];
+                Print["Final Residual Error for U: ", resNorm]];
             If[continuous, U = lamb*(U-II)];
             AppendTo[ret,U]];
 	,{M,Characters[matrices]}];
@@ -153,7 +155,7 @@ Module[{m, pix,pi},
 
 FluidFundamentalMatrices[Fpp_,Fpm_,Fmp_,Fmm_,matrices_:"P",precision_:N[10^-14],maxNumIt_:50,method_:"ADDA"]:=
 Module[{F, sp,sm,II,Pf,A1,A1hat,R1,NN,Xmat,A,B,C,D,S1,U,Ghat,numit,Zm,Psi,
-gamma1,gamma2,sA,sD,IA,ID,Dginv,Vginv,Wginv,Eg,Fg,Gg,Hg,diff,neg,nfg,eta,ret},
+gamma1,gamma2,sA,sD,IA,ID,Dginv,Vginv,Wginv,Eg,Fg,Gg,Hg,diff,neg,nfg,eta,ret,resNorm},
 
 	If[method=="CR",
 		F = ArrayFlatten[{{Fpp, Fpm},{Fmp, Fmm}}];
@@ -232,8 +234,8 @@ gamma1,gamma2,sA,sD,IA,ID,Dginv,Vginv,Wginv,Eg,Fg,Gg,Hg,diff,neg,nfg,eta,ret},
     If[numit==maxNumIt && BuTools`Verbose, Print["Maximum Number of Iterations reached"]];
 
     If[BuTools`Verbose,
-        res_norm = Norm[Fpm+Fpp.Psi+Psi.Fmm+Psi.Fmp.Psi, Infinity];
-        Print["Final Residual Error for Psi: ", res_norm]];
+        resNorm = Norm[Fpm+Fpp.Psi+Psi.Fmm+Psi.Fmp.Psi, Infinity];
+        Print["Final Residual Error for Psi: ", resNorm]];
 
     ret = {};
     Do[
@@ -751,6 +753,86 @@ invbarA1,sumpi,numit,pi,pix},
 	PrependTo[pi,pi0];
 	If[numit == K && BuTools`Verbose, Print["Maximum Number of Components reached"]];
     Return[Flatten[pi]];
+];
+
+
+GM1FundamentalMatrix[A_, prec_:N[10^-14], maxNumIt_:50, method_:"ShiftPWCR", dual_:"R", maxNumRoot_:2048, shiftType_:"one"]:=
+Module[{m,dega,II,sumA,beta,theta,drift,Am,R,G,eta,v,sumAeta,ci},
+
+	Am = ArrayFlatten[{A}];
+	m = Dimensions[Am][[1]];
+	II = IdentityMatrix[m];
+	dega = Dimensions[Am][[2]]/m-1;
+
+	(* compute invariant vector of A and the drift *)
+	(* drift > 1: positive recurrent GIM1, drift < 1: transient GIM1 *)
+	sumA = Am[[All,dega*m+1;;]];
+	beta = Total[sumA,{2}];
+	(* beta = (A_maxd)e + (A_maxd + A_maxd-1)e + ... + (Amaxd+...+A1)e *)
+	Do[
+		sumA += Am[[All,i*m+1;;(i+1)*m]];
+		beta += Total[sumA,{2}];
+	,{i,dega-1,1,-1}];
+	sumA += Am[[All,1;;m]];
+	theta = DTMCSolve[sumA];
+	drift = theta.beta;
+	If[dual=="R" || (dual=="A" && drift<=1), (* RAM dual *)
+		(* compute the RAM Dual process *)
+		Do[Am[[All,i*m+1;;(i+1)*m]]=DiagonalMatrix[1/theta].Transpose[Am[[All,i*m+1;;(i+1)*m]]].DiagonalMatrix[theta],{i,0,dega}];
+	,
+		(* Bright dual *)
+		If[drift > 1, (* A -> positive recurrent GIM1 *)
+			(* compute the Caudal characteristic of A *)
+			{eta,v}=GM1TypeCaudal[Am];
+		,
+			(* A -> transient GIM1 (=recurrent MG1) *)
+			{eta,v}=MG1TypeDecay[Am];
+		];
+		(* compute invariant vector of A0+A1*eta+A2*eta^2+...+Amax*eta^max *)
+		sumAeta = eta^dega * Am[[All,dega*m+1;;]];
+		Do[sumAeta+=eta^i * Am[[All,i*m+1;;(i+1)*m]],{i,dega-1,0,-1}];
+		ci = BuTools`CheckInput;
+		BuTools`CheckInput = False;
+		theta = DRPSolve[sumAeta+(1-eta)*II];
+		BuTools`CheckInput = ci;
+		(* compute the Bright Dual process *)
+		Do[Am[[All,i*m+1;;(i+1)*m]]=eta^(i-1) * DiagonalMatrix[1/theta].Transpose[Am[[All,i*m+1;;(i+1)*m]]].DiagonalMatrix[theta],{i,0,dega}];
+	];
+    G = MG1FundamentalMatrix[Am, prec, maxNumIt, method, maxNumRoot, shiftType];
+
+	If[dual=="R" || (dual=="A" && drift<=1), (* RAM dual *)
+		R = DiagonalMatrix[1/theta].Transpose[G].DiagonalMatrix[theta];
+	, (* Bright dual *)
+		R = DiagonalMatrix[1/theta].Transpose[G].DiagonalMatrix[theta]*eta;
+	];   
+	Return[R];
+];
+
+
+GM1StationaryDistr[B_, R_, K_]:=
+Module[{m,II,temp,maxb,BR,pi,sumpi,numit,pix},
+
+    m = Dimensions[R][[1]];
+    II = IdentityMatrix[m];
+    temp = Inverse[II-R];
+	If[AnyTrue[temp,#<-100*BuTools`CheckPrecision &], Throw["GM1StationaryDistr: The spectral radius of R is not below 1: the Markov chain is not pos. recurrent"]];
+	maxb = Length[B];
+    BR=B[[maxb]];
+	Do[BR=R.BR+B[[i]],{i,maxb-1,1,-1}];
+    pix = DTMCSolve[BR]; (* compute pi_0 *)
+    pix /= Total[pix.temp]; (* normalize pi_0 *)
+    sumpi = Total[pix];
+    numit = 1;
+	pi = {pix};
+	While[sumpi<1-10^-10 && numit<1+K,
+		pix = pix.R; (* compute pi_(numit+1) *)
+        numit++;
+        sumpi += Total[pix];
+		AppendTo[pi,pix];
+        If[BuTools`Verbose, Print["Accumulated mass after ",numit," iterations: ",sumpi]];
+	];
+    If[BuTools`Verbose && numit == K+1, Print["Maximum Number of Components ", numit-1, " reached"]];
+	Return[Flatten[pi]];
 ];
 
 
