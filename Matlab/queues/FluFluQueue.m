@@ -139,7 +139,7 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
     if needST
         Rh = kron(Rin,Iout) - kron(Iin,Rout);
         Qh = kron(Qin, Rout) + kron(Rin, Qout);       
-        [massh, inih, Kh, cloh] = GeneralFluidSolve (Qh, Rh);
+        [massh, inih, Kh, cloh] = GeneralFluidSolve (Qh, Rh, [], prec);
 
         % sojourn time density in case of 
         % srv0stop = false: inih*expm(Kh*x)*cloh*kron(Rin,Iout)/lambda

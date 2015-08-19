@@ -330,7 +330,7 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
     if needST:
         Rh = np.kron(Rin,Iout) - np.kron(Iin,Rout)
         Qh = np.kron(Qin, Rout) + np.kron(Rin, Qout)
-        massh, inih, Kh, cloh = GeneralFluidSolve (Qh, Rh)
+        massh, inih, Kh, cloh = GeneralFluidSolve (Qh, Rh, prec=prec)
 
         # sojourn time density in case of 
         # srv0stop = false: inih*expm(Kh*x)*cloh*kron(Rin,Iout)/lambda

@@ -327,8 +327,8 @@ Ua,b,pm,mass0,Qm,Rm,ini,X,Q0v,M,Ma},
         Q0v = P.Q0.PI;
         M = Join[-clo.Rv, Q0v[[Nz+Np+1;;,All]], Q0v[[1;;Nz,All]]];
         Ma = Join[ Inverse[-K].clo.Table[1,{NN},{1}], Table[1,{Nz+Nn},{1}]];
-		X = Join[U,Ua,2];
-		b = ConstantArray[0,Nn];
+		X = Join[M,Ma,2];
+		b = ConstantArray[0,NN];
 		b = Append[b,1];
 		{Qm,Rm}=QRDecomposition[Transpose[X]];
 		pm=Flatten[Inverse[Rm].Qm.b];
