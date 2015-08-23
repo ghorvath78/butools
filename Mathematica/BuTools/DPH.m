@@ -185,8 +185,8 @@ M,m1,m2,m3,m33,res,i},
 CdfFromMG[alpha_, A_, x_]:=(
     If[BuTools`CheckInput && Not[CheckMGRepresentation[alpha, A]],Throw["CdfFromMG: Input is not a valid MG distribution!"]];
 	If[ListQ[x],
-		Return[Table[1 - Total[alpha.MatrixPower[A,xv]],{xv,x}]]
-	, Return[1 - Total[alpha.MatrixPower[A,x]]]]);
+		Return[Table[1 - Total[If[xv==0,alpha,alpha.MatrixPower[A,xv]]],{xv,x}]]
+	, Return[1 - Total[If[x==0,alpha,alpha.MatrixPower[A,x]]]]]);
 
 
 CdfFromDPH[alpha_, A_, x_]:=(
@@ -314,7 +314,7 @@ Module[{KK,fmoms,iA},
     If[BuTools`CheckInput && Not[CheckMGRepresentation[alpha, A]],Throw["MomentsFromMG: Input is not a valid MG representation!"]];
     If[K==0,KK=2 Length[alpha]-1,KK=K];
 	iA=Inverse[IdentityMatrix[Dimensions[A][[1]]]-A];
-	fmoms=Table[i! Total[alpha.MatrixPower[iA,i].MatrixPower[A,i-1]],{i,1,KK}];
+	fmoms=Table[i! Total[alpha.MatrixPower[iA,i].If[i==1,IdentityMatrix[Length[A]],MatrixPower[A,i-1]]],{i,1,KK}];
 	Return[MomsFromFactorialMoms[fmoms]];
 ]
 
@@ -324,8 +324,8 @@ Module[{a},
     If[BuTools`CheckInput && Not[CheckMGRepresentation[alpha, A]],Throw["PmfFromMG: Input is not a valid MG distribution!"]];
 	a=1-Total[A,{2}];
 	If[ListQ[x],
-		Return[Table[If[xv==0,1-Total[alpha],alpha.MatrixPower[A, xv-1].a],{xv,x}]]
-	, Return[If[x==0,1-Total[alpha],alpha.MatrixPower[A, x-1].a]];
+		Return[Table[If[xv==0,1-Total[alpha],If[xv==1,alpha,alpha.MatrixPower[A, xv-1]].a],{xv,x}]]
+	, Return[If[x==0,1-Total[alpha],If[x==1,alpha,alpha.MatrixPower[A, x-1]].a]];
 	];
 ];
 

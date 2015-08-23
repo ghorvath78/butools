@@ -323,6 +323,8 @@ import os
                     self.evals[ctx] = "np.zeros("+self.evals[ctx.argumentList()]+")"
             elif funName=="Flatten":
                 self.evals[ctx] = self.evals[ctx.argumentList()]+".A.flatten()"
+            elif funName=="DyadProd":
+                self.evals[ctx] = "{0}*{1}".format(self.evals[ctx.argumentList().expression(0)], self.evals[ctx.argumentList().expression(1)])
             elif funName=="LoadTrace":
                 self.evals[ctx] = "np.loadtxt('{0}')".format(scriptDir+"/data/"+self.evals[ctx.argumentList()][1:-1])
             elif funName=="For":
@@ -537,6 +539,8 @@ class MATLABWriter(TestWriterBase):
                 self.evals[ctx] = "reshape({0},1,numel({0}))".format(self.evals[ctx.argumentList()])
             elif funName=="ToArray":
                 self.evals[ctx] = self.evals[ctx.argumentList()]
+            elif funName=="DyadProd":
+                self.evals[ctx] = "{0}*{1}".format(self.evals[ctx.argumentList().expression(0)], self.evals[ctx.argumentList().expression(1)])
             elif funName=="MatrixMin":
                 self.evals[ctx] = "min(min({0}))".format(self.evals[ctx.argumentList()])
             elif funName=="MatrixMax":
@@ -623,7 +627,7 @@ class MathematicaWriter(TestWriterBase):
     funMap = {"Inv":"Inverse","ExpMat":"MatrixExponential","Sum":"Total","Ceil":"Ceiling",\
               "Eye":"IdentityMatrix","Kron":"KroneckerProduct",\
               "Diag":"DiagonalMatrix","Pinv":"PseudoInverse","MatrixMin":"Min",\
-              "MatrixMax":"Max","VCat":"Join","Diff":"Differences"}
+              "MatrixMax":"Max","Diff":"Differences"}
 
     indent = 0
     printCmd = "Print[{0}]"
@@ -736,6 +740,8 @@ class MathematicaWriter(TestWriterBase):
                 self.evals[ctx] = "Dimensions[{0}][[1]]".format(self.evals[ctx.argumentList().expression(0)])
             elif funName=="RowSum":
                 self.evals[ctx] = "Total[{0},{{2}}]".format(self.evals[ctx.argumentList().expression(0)])
+            elif funName=="VCat":
+                self.evals[ctx] = "Join[{" + "},{".join([self.evals[ex] for ex in ctx.argumentList().expression()]) + "}]"
             elif funName=="Range":
                 rFrom = self.evals[ctx.argumentList().expression(0)]
                 rTo = self.evals[ctx.argumentList().expression(1)]
@@ -750,6 +756,8 @@ class MathematicaWriter(TestWriterBase):
                 self.evals[ctx] = "Flatten[{0}]".format(self.evals[ctx.argumentList()])
             elif funName=="ToArray":
                 self.evals[ctx] = self.evals[ctx.argumentList()]
+            elif funName=="DyadProd":
+                self.evals[ctx] = "Transpose[{{{0}}}].{{{1}}}".format(self.evals[ctx.argumentList().expression(0)], self.evals[ctx.argumentList().expression(1)])
             elif funName=="LoadTrace":
                 self.evals[ctx] = 'Flatten[Import["{0}","CSV"]]'.format(scriptDir+"/data/"+self.evals[ctx.argumentList()][1:-1])
             elif funName=="Linspace":

@@ -105,13 +105,13 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "QBDQueue: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "QBDQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "QBDQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "QBDQueue: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**-12, "QBDQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('Input:')
 print('------')
 B = ml.matrix([[6., 1., 0.],[0., 4., 1.],[2., 0., 0.]])
@@ -188,13 +188,13 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "QBDQueue: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "QBDQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "QBDQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "QBDQueue: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "QBDQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('Input:')
 print('------')
 B = ml.matrix([[6., 1., 0.],[0., 5., 0.],[0., 0., 0.]])
@@ -271,13 +271,13 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "QBDQueue: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "QBDQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "QBDQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "QBDQueue: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "QBDQueue: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "QBDQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('Input:')
 print('------')
 B = ml.matrix([[0., 0.],[3., 4.]])
@@ -354,13 +354,13 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "QBDQueue: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "QBDQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "QBDQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "QBDQueue: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "QBDQueue: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "QBDQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('========================================')
 print('Testing BuTools function MAPMAP1')
 print('Input:')
@@ -436,13 +436,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -450,25 +450,25 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<1e-12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 delta = ml.matrix([[0.5,0.1,0.4]])
 print('delta = ')
 print(delta)
-D = ml.matrix([[-8., 1., 2.],[0., -6., 4.],[3., 0., -3.]])
-print('D = ')
-print(D)
+Dm = ml.matrix([[-8., 1., 2.],[0., -6., 4.],[3., 0., -3.]])
+print('Dm = ')
+print(Dm)
 sigma = ml.matrix([[0.2,0.7,0.1]])
 print('sigma = ')
 print(sigma)
 S = ml.matrix([[-10., 4., 0.],[5., -7., 2.],[1., 2., -8.]])
 print('S = ')
 print(S)
-print('D0 = D:')
-D0 = D
-print('D1 = np.sum(-D,1)*delta:')
-D1 = np.sum(-D,1)*delta
+print('D0 = Dm:')
+D0 = Dm
+print('D1 = np.sum(-Dm,1)*delta:')
+D1 = np.sum(-Dm,1)*delta
 print('S0 = S:')
 S0 = S
 print('S1 = np.sum(-S,1)*sigma:')
@@ -532,13 +532,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -546,7 +546,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<1e-12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-8., 2.],[1., -3.]])
@@ -620,13 +620,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -634,7 +634,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<1e-12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 S0 = ml.matrix([[-10., 4., 0.],[5., -7., 2.],[1., 2., -8.]])
@@ -708,13 +708,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -722,7 +722,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<1e-12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-8., 1., 2.],[0., -6., 4.],[3., 0., -3.]])
@@ -800,13 +800,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<1e-12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<1e-12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<1e-12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -814,7 +814,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<1e-12, "MAPMAP1: Large and small model do not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model do not give the same results!"
 print('========================================')
 print('Testing BuTools function MMAPPH1PRPR')
 print('Input:')
@@ -866,9 +866,9 @@ assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1PR
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<1e-12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<1e-12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<1e-12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
+assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
+assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
+assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
@@ -918,9 +918,9 @@ assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1PR
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<1e-12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<1e-12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<1e-12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
+assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
+assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
+assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
 print('========================================')
 print('Testing BuTools function MMAPPH1NPPR')
 print('Input:')
@@ -972,9 +972,9 @@ assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1NP
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<1e-12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<1e-12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<1e-12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
+assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
+assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
+assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
@@ -1024,9 +1024,9 @@ assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1NP
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<1e-12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<1e-12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<1e-12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
+assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
+assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
+assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
 print('========================================')
 print('Testing BuTools function FluidQueue')
 print('Input:')
@@ -1103,13 +1103,13 @@ assert CheckMERepresentation(alpha, A), "FluidQueue: invalid ME representation o
 assert CheckMERepresentation(beta, B), "FluidQueue: invalid ME representation of the sojourn time!"
 assert CheckPHRepresentation(alphap, Ap), "FluidQueue: invalid PH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "FluidQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "FluidQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<1e-12, "FluidQueue: the ME and PH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "FluidQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<1e-12, "FluidQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "FluidQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<1e-12, "FluidQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "FluidQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "FluidQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<10**12, "FluidQueue: the ME and PH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "FluidQueue: the ME and PH representations are not equal!"
+assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**12, "FluidQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "FluidQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<10**12, "FluidQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "FluidQueue: stMoms returns wrong sojourn time moments!"
 print('========================================')
 print('Testing BuTools function FluFluQueue')
 print('Input:')
@@ -1189,13 +1189,13 @@ assert CheckMERepresentation(alpha, A), "FluFluQueue: invalid ME representation 
 assert CheckMERepresentation(beta, B), "FluFluQueue: invalid ME representation of the sojourn time!"
 assert CheckPHRepresentation(alphap, Ap), "FluFluQueue: invalid PH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "FluFluQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "FluFluQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<1e-12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<1e-12, "FluFluQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<1e-12, "FluFluQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "FluFluQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<10**12, "FluFluQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
 Iin = ml.eye(Qin.shape[0])
 Iout = ml.eye(Qout.shape[0])
 butools.verbose = False
@@ -1203,7 +1203,7 @@ gamma, G = FluidQueue(ml.kron(Qin, Iout)+ml.kron(Iin, Qout), ml.kron(Rin, Iout),
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<1e-12, "FluFluQueue: Large and small model do not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "FluFluQueue: Large and small model do not give the same results!"
 print('Test:')
 print('-----')
 print('qld, qlm = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5):')
@@ -1262,13 +1262,13 @@ assert CheckMERepresentation(alpha, A), "FluFluQueue: invalid ME representation 
 assert CheckMERepresentation(beta, B), "FluFluQueue: invalid ME representation of the sojourn time!"
 assert CheckPHRepresentation(alphap, Ap), "FluFluQueue: invalid PH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "FluFluQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<1e-12, "FluFluQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<1e-12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<1e-12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<1e-12, "FluFluQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<1e-12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<1e-12, "FluFluQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<1e-12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "FluFluQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<10**12, "FluFluQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
 Iin = ml.eye(Qin.shape[0])
 Iout = ml.eye(Qout.shape[0])
 butools.verbose = False
@@ -1276,5 +1276,5 @@ gamma, G = FluidQueue(ml.kron(Qin, Iout)+ml.kron(Iin, Qout), ml.kron(Rin, Iout),
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<1e-12, "FluFluQueue: Large and small model do not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "FluFluQueue: Large and small model do not give the same results!"
 
