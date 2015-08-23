@@ -42,59 +42,42 @@ butools.dmap.CheckDMAPRepresentation
 
     >>> D0 = [0, 0.02, 0; 0, 0.17, 0.2; 0.16, 0.17, 0.02];
     >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
-    >>> flag = CheckDMAPRepresentation(D0,D1);
+    >>> flag = CheckDMAPRepresentation(D0, D1);
     CheckDMAPRepresentation: D0 and D1 have different sizes!
     >>> disp(flag);
          0
     >>> D0 = [0, 0.02, 0; 0, 0.17, 0.2; 0.16, 0.17, 0.02];
     >>> D1 = [0, 0.88, 0.1; 0.18, 0.07, 0.14; 0.13, 0.15, 0.15];
-    >>> flag = CheckDMAPRepresentation(D0,D1);
-    CheckDMAPRepresentation: A rowsum of matrix0+matrix1 is not 1 (at precision 1e-10)!
+    >>> flag = CheckDMAPRepresentation(D0, D1);
+    CheckDMAPRepresentation: A rowsum of matrix0+matrix1 is not 1 (at precision 1e-12)!
     >>> disp(flag);
          0
     >>> D0 = [0, 0.02, 0, 0; 0, 0.17, 0.2, 0.14; 0.16, 0.17, 0.02, 0.18; 0, 0, 0, 0.12];
     >>> D1 = [0, 0.88, 0.1, 0; 0.18, 0.07, 0.14, 0.1; 0.13, 0.15, 0.15, 0.04; 0.31, 0.18, 0.12, 0.27];
-    >>> flag = CheckDMAPRepresentation(D0,D1);
+    >>> flag = CheckDMAPRepresentation(D0, D1);
     >>> disp(flag);
          1
 
     For Mathematica:
 
-    >>> D0 = {{0, 0.02, 0},{0, 0.17, 0.2},{0.16, 0.17, 0.02}};
-    >>> D1 = {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}};
-    >>> flag = CheckDMAPRepresentation[D0,D1];
-    "CheckDMAPRepresentation: D0 and D1 have different sizes!"
-    >>> Print[flag];
-    False
-    >>> D0 = {{0, 0.02, 0},{0, 0.17, 0.2},{0.16, 0.17, 0.02}};
-    >>> D1 = {{0, 0.88, 0.1},{0.18, 0.07, 0.14},{0.13, 0.15, 0.15}};
-    >>> flag = CheckDMAPRepresentation[D0,D1];
-    "CheckMAPRepresentation: A rowsum of D0+D1 is not 1 (at precision "1.*^-12")!"
-    >>> Print[flag];
-    False
-    >>> D0 = {{0, 0.02, 0, 0},{0, 0.17, 0.2, 0.14},{0.16, 0.17, 0.02, 0.18},{0, 0, 0, 0.12}};
-    >>> D1 = {{0, 0.88, 0.1, 0},{0.18, 0.07, 0.14, 0.1},{0.13, 0.15, 0.15, 0.04},{0.31, 0.18, 0.12, 0.27}};
-    >>> flag = CheckDMAPRepresentation[D0,D1];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[0, 0.02, 0],[0, 0.17, 0.2],[0.16, 0.17, 0.02]])
     >>> D1 = ml.matrix([[0, 0.88, 0.1, 0],[0.18, 0.07, 0.14, 0.1],[0.13, 0.15, 0.15, 0.04],[0.31, 0.18, 0.12, 0.27]])
-    >>> flag = CheckDMAPRepresentation(D0,D1)
+    >>> flag = CheckDMAPRepresentation(D0, D1)
     CheckDMAPRepresentation: D0 and D1 have different sizes!
     >>> print(flag)
     False
     >>> D0 = ml.matrix([[0, 0.02, 0],[0, 0.17, 0.2],[0.16, 0.17, 0.02]])
     >>> D1 = ml.matrix([[0, 0.88, 0.1],[0.18, 0.07, 0.14],[0.13, 0.15, 0.15]])
-    >>> flag = CheckDMAPRepresentation(D0,D1)
+    >>> flag = CheckDMAPRepresentation(D0, D1)
     CheckDMAPRepresentation: The rowsum of D0+D1 is not 1!
     >>> print(flag)
     False
     >>> D0 = ml.matrix([[0, 0.02, 0, 0],[0, 0.17, 0.2, 0.14],[0.16, 0.17, 0.02, 0.18],[0, 0, 0, 0.12]])
     >>> D1 = ml.matrix([[0, 0.88, 0.1, 0],[0.18, 0.07, 0.14, 0.1],[0.13, 0.15, 0.15, 0.04],[0.31, 0.18, 0.12, 0.27]])
-    >>> flag = CheckDMAPRepresentation(D0,D1)
+    >>> flag = CheckDMAPRepresentation(D0, D1)
     >>> print(flag)
     True
 

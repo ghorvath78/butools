@@ -43,25 +43,20 @@ butools.dph.CdfFromDPH
     ========
     For Matlab:
 
-    >>> a = [0.76, 0, 0.24];
+    >>> a = [0.76,0,0.24];
     >>> A = [0.34, 0.66, 0; 0.79, 0.05, 0.07; 0.26, 0.73, 0.01];
-    >>> x = (0:1:1000);
-    >>> cdf = CdfFromDPH(a,A,x);
-    >>> plot(x,cdf);
+    >>> x = (0.0:1.0:1000.0);
+    >>> cdf = CdfFromDPH(a, A, x);
+    >>> plot(x, cdf)
 
     For Mathematica:
 
-    >>> a = {0.76, 0, 0.24};
-    >>> A = {{0.34, 0.66, 0},{0.79, 0.05, 0.07},{0.26, 0.73, 0.01}};
-    >>> x = Range[0,1000,1];
-    >>> cdf = CdfFromDPH[a,A,x];
-    >>> ListLinePlot[Transpose[{x, cdf}]]
-
+    
     For Python/Numpy:
 
-    >>> a = ml.matrix([[0.76, 0, 0.24]])
+    >>> a = ml.matrix([[0.76,0,0.24]])
     >>> A = ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
-    >>> x = np.arange(0,1001.0,1)
-    >>> cdf = CdfFromDPH(a,A,x)
-    >>> plt.plot(x,cdf)
+    >>> x = np.arange(0.0,1001.0,1.0)
+    >>> cdf = CdfFromDPH(a, A, x)
+    >>> plt.plot(x, cdf)
 

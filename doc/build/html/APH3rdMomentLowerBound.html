@@ -443,61 +443,41 @@ distributions,&#8221; Stochastic models, pp. 303-326, 2005.</td></tr>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span><span class="p">;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mom3lower</span><span class="p">);</span>
 <span class="go">       16.577</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mom3upper</span><span class="p">);</span>
 <span class="go">       17.081</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span><span class="p">;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mom3lower</span><span class="p">);</span>
 <span class="go">       16.079</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mom3upper</span><span class="p">);</span>
 <span class="go">   Inf</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">[</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mom3lower</span><span class="p">];</span>
-<span class="go">16.577458090899114</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">[</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mom3upper</span><span class="p">];</span>
-<span class="go">17.081405365964272</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">[</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mom3lower</span><span class="p">];</span>
-<span class="go">16.079377140256383</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">[</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mom3upper</span><span class="p">];</span>
-<span class="go">Infinity</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mom3lower</span><span class="p">)</span>
 <span class="go">16.577458090899107</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mom3upper</span><span class="p">)</span>
 <span class="go">17.081405365964276</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3lower</span> <span class="o">=</span> <span class="n">APH3rdMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mom3lower</span><span class="p">)</span>
 <span class="go">16.079377140256387</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">mom2</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom3upper</span> <span class="o">=</span> <span class="n">APH3rdMomentUpperBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">mom2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mom3upper</span><span class="p">)</span>
 <span class="go">inf</span>
 </pre></div>

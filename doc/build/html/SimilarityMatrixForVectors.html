@@ -427,11 +427,9 @@ even with zero entries.</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vecA</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecB</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecA</span> <span class="o">=</span> <span class="n">vecA</span><span class="s">&#39;;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecB</span> <span class="o">=</span> <span class="n">vecB</span><span class="s">&#39;;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">SimilarityMatrixForVectors</span> <span class="p">(</span><span class="n">vecA</span><span class="p">,</span> <span class="n">vecB</span><span class="p">);</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vecA</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">;</span> <span class="mf">0.3</span><span class="p">;</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vecB</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">;</span> <span class="mf">0.2</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">;</span> <span class="mf">1.0</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">SimilarityMatrixForVectors</span><span class="p">(</span><span class="n">vecA</span><span class="p">,</span> <span class="n">vecB</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
 <span class="go">            0       3.3333            0            0</span>
 <span class="go">      0.66667      0.66667            0            0</span>
@@ -443,25 +441,10 @@ even with zero entries.</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vecA</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecB</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">SimilarityMatrixForVectors</span> <span class="p">[</span><span class="n">vecA</span><span class="p">,</span> <span class="n">vecB</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
-<span class="go">{{0., 3.3333333333333335, 0., 0.},</span>
-<span class="go"> {0.6666666666666667, 0.6666666666666667, 0., 0.},</span>
-<span class="go"> {0., 0., 0., 0.},</span>
-<span class="go"> {-0.8333333333333334, -0.8333333333333334, -0.8333333333333334, -0.8333333333333334}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">B</span><span class="o">.</span><span class="n">vecA</span><span class="o">-</span><span class="n">vecB</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">err</span><span class="p">];</span>
-<span class="go">0.</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vecA</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecB</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecA</span> <span class="o">=</span> <span class="n">vecA</span><span class="o">.</span><span class="n">T</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vecB</span> <span class="o">=</span> <span class="n">vecB</span><span class="o">.</span><span class="n">T</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">SimilarityMatrixForVectors</span> <span class="p">(</span><span class="n">vecA</span><span class="p">,</span> <span class="n">vecB</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vecA</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">],[</span><span class="mf">0.3</span><span class="p">],[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">],[</span><span class="mf">0.0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vecB</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">SimilarityMatrixForVectors</span><span class="p">(</span><span class="n">vecA</span><span class="p">,</span> <span class="n">vecB</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 <span class="go">[[ 0.       3.33333  0.       0.     ]</span>
 <span class="go"> [ 0.66667  0.66667  0.       0.     ]</span>

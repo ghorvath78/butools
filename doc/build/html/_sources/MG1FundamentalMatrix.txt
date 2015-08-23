@@ -60,27 +60,37 @@ butools.mam.MG1FundamentalMatrix
            Markov chains (p. 14). ACM.
 
     Examples
-    --------
+    ========
     For Matlab:
-    
+
     >>> A0 = [0.4, 0.2; 0.3, 0.4];
-    >>> A1 = [0, 0.1; 0, 0];
-    >>> A2 = [0, 0.2; 0, 0.2];
-    >>> A3 = [0.1, 0; 0.1, 0];
-    >>> A = [A0,A1,A2,A3];
-    >>> G = MG1FundamentalMatrix(A)
+    >>> A1 = [0., 0.1; 0., 0.];
+    >>> A2 = [0., 0.2; 0., 0.2];
+    >>> A3 = [0.1, 0.; 0.1, 0.];
+    >>> A = {A0, A1, A2, A3};
+    >>> G = MG1FundamentalMatrix(A);
+    >>> disp(G);
           0.60503      0.39497
           0.45912      0.54088
 
+    For Mathematica:
+
+    
     For Python/Numpy:
 
     >>> A0 = ml.matrix([[0.4, 0.2],[0.3, 0.4]])
-    >>> A1 = ml.matrix([[0, 0.1],[0, 0]])
-    >>> A2 = ml.matrix([[0, 0.2],[0, 0.2]])
-    >>> A3 = ml.matrix([[0.1, 0],[0.1, 0]])
-    >>> A = (A0,A1,A2,A3)
+    >>> A1 = ml.matrix([[0., 0.1],[0., 0.]])
+    >>> A2 = ml.matrix([[0., 0.2],[0., 0.2]])
+    >>> A3 = ml.matrix([[0.1, 0.],[0.1, 0.]])
+    >>> A = [A0, A1, A2, A3]
     >>> G = MG1FundamentalMatrix(A)
+    The Shifted PWCR evaluation of Iteration  1  required  64  roots
+    The Shifted PWCR evaluation of Iteration  2  required  32  roots
+    The Shifted PWCR evaluation of Iteration  3  required  16  roots
+    The Shifted PWCR evaluation of Iteration  4  required  16  roots
+    The Shifted PWCR evaluation of Iteration  5  required  8  roots
+    Final Residual Error for G:  1.66533453694e-16
     >>> print(G)
-    [[ 0.60503453  0.39496547]
-     [ 0.4591223   0.5408777 ]]
+    [[ 0.60503  0.39497]
+     [ 0.45912  0.54088]]
 

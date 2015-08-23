@@ -59,40 +59,45 @@ butools.mam.FluidFundamentalMatrices
         requested in the 'matrices' parameter.
     
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> Fpp=[-5 1; 2 -3];
-    >>> Fpm=[2 1 1; 1 0 0];
-    >>> Fmm=[-8 4 1; 2 -12 3; 2 0 -2];
-    >>> Fmp=[3 0; 2 5; 0 0];
-    >>> [Psi, K, U] = FluidFundamentalMatrices(Fpp,Fpm,Fmp,Fmm,'PKU');
-    >>> Psi
+
+    >>> Fpp = [-5., 1.; 2., -3.];
+    >>> Fpm = [2., 1., 1.; 1., 0., 0.];
+    >>> Fmm = [-8., 4., 1.; 2., -12., 3.; 2., 0., -2.];
+    >>> Fmp = [3., 0.; 2., 5.; 0., 0.];
+    >>> [Psi, K, U] = FluidFundamentalMatrices(Fpp, Fpm, Fmp, Fmm, 'PKU');
+    Final Residual Error for Psi:    1.1657e-15
+    >>> disp(Psi);
           0.33722      0.16517      0.49761
            0.3318      0.12995      0.53825
-    >>> K
+    >>> disp(K);
            -3.658       1.8258
            3.2553      -2.3502
-    >>> U
+    >>> disp(U);
           -6.9883       4.4955       2.4928
            4.3334       -11.02       6.6865
                 2            0           -2
 
+    For Mathematica:
+
+    
     For Python/Numpy:
 
-    >>> Fpp=ml.matrix([[-5, 1],[2, -3]])
-    >>> Fpm=ml.matrix([[2, 1, 1],[1, 0, 0]])
-    >>> Fmm=ml.matrix([[-8, 4, 1],[2, -12, 3],[2, 0, -2]])
-    >>> Fmp=ml.matrix([[3, 0],[2, 5],[0, 0]])
-    >>> Psi, K, U = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, "PKU")
+    >>> Fpp = ml.matrix([[-5., 1.],[2., -3.]])
+    >>> Fpm = ml.matrix([[2., 1., 1.],[1., 0., 0.]])
+    >>> Fmm = ml.matrix([[-8., 4., 1.],[2., -12., 3.],[2., 0., -2.]])
+    >>> Fmp = ml.matrix([[3., 0.],[2., 5.],[0., 0.]])
+    >>> Psi, K, U = FluidFundamentalMatrices(Fpp, Fpm, Fmp, Fmm, "PKU")
+    Final Residual Error for G:  1.7208456881689926e-15
     >>> print(Psi)
-    [[ 0.33722394  0.16516588  0.49761017]
-     [ 0.33179629  0.12995245  0.53825126]]
+    [[ 0.33722  0.16517  0.49761]
+     [ 0.3318   0.12995  0.53825]]
     >>> print(K)
-    [[-3.6579964   1.82582941]
-     [ 3.25529376 -2.35023773]]    
+    [[-3.658    1.82583]
+     [ 3.25529 -2.35024]]
     >>> print(U)
-    [[ -6.98832817   4.49549765   2.49283052]
-     [  4.33342932 -11.01990597   6.68647665]
-     [  2.           0.          -2.        ]]
+    [[ -6.98833   4.4955    2.49283]
+     [  4.33343 -11.01991   6.68648]
+     [  2.        0.       -2.     ]]
 

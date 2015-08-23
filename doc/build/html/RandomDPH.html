@@ -452,40 +452,24 @@ distribution.</p>
 parameter, or increase the mean value.</p>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="go">CheckProbMatrix: the matrix has negative element (precision: 1e-07)!</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-<span class="go">      0.58888      0.41112            0</span>
+<span class="go">      0.39611      0.38982      0.21407</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="go">       0.9048      0.04125     0.031817</span>
-<span class="go">            0       0.6822       0.3178</span>
-<span class="go">            0            0      0.49751</span>
+<span class="go">       0.8489     0.031291            0</span>
+<span class="go">      0.59994      0.40006            0</span>
+<span class="go">      0.37646            0      0.62354</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
-<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
-<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
-<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
-<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
-<span class="go">&quot;CheckProbMatrix: the matrix has negative element (at precision &quot;1.*^-7&quot;)!&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
-<span class="go">{0, 1, 0}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
-<span class="go">{{0.9978146840537366, 0., 0.0018115430265152948},</span>
-<span class="go"> {0.0002596368902400116, 0.8783862382976336, 0.005417700244985481},</span>
-<span class="go"> {0., 0.07246410696945481, 0.9001849760112214}}</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">CheckProbMatrix: the matrix has negative element (precision: 1e-07)!</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">RandomDPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">[[ 1.  0.  0.]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">[[ 0.85043  0.00248  0.13613]</span>
-<span class="go"> [ 0.01293  0.87899  0.     ]</span>
-<span class="go"> [ 0.       0.       0.71197]]</span>
+<span class="go">[[ 0.67742  0.09221  0.07805]</span>
+<span class="go"> [ 0.08848  0.83115  0.     ]</span>
+<span class="go"> [ 0.1876   0.       0.8124 ]]</span>
 </pre></div>
 </div>
 </dd></dl>

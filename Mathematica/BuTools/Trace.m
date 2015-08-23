@@ -5,15 +5,15 @@
 *)
 
 BeginPackage["BuTools`Trace`"];
-CdfFromTrace::usage = "";
-CdfFromWeightedTrace::usage = "";
-IATimesFromCummulative::usage = "";
-LagCorrelationsFromTrace::usage = "";
-LagkJointMomentsFromTrace::usage = "";
-MarginalMomentsFromTrace::usage = "";
-MarginalMomentsFromWeightedTrace::usage = "";
-PdfFromTrace::usage = "";
-PdfFromWeightedTrace::usage = "";
+CdfFromTrace::usage = "{x, y} = CdfFromTrace[trace]: Returns the empirical distribution function of the trace";
+CdfFromWeightedTrace::usage = "{x, y} = CdfFromWeightedTrace[trace, weights]: Returns the empirical distribution function of a trace consisting of weighted data";
+IATimesFromCummulative::usage = "iat = IATimesFromCummulative[trace]: Returns inter-arrival times from cummulative a trace.";
+LagCorrelationsFromTrace::usage = "acf = LagCorrelationsFromTrace[trace, K]: Returns the lag-k autocorrelation of a trace";
+LagkJointMomentsFromTrace::usage = "Nm = LagkJointMomentsFromTrace[trace, K, L]: Returns the lag-k joint moments of a trace";
+MarginalMomentsFromTrace::usage = "moms = MarginalMomentsFromTrace[trace, K]: Returns the marginal moments of a trace";
+MarginalMomentsFromWeightedTrace::usage = "moms = MarginalMomentsFromWeightedTrace[trace, weights, K]: Returns the marginal moments of a trace consisting of weighted data";
+PdfFromTrace::usage = "{x, y} = PdfFromTrace[trace, intBounds]: Returns the empirical density function of a trace";
+PdfFromWeightedTrace::usage = "{x, y} = PdfFromWeightedTrace[trace, weights, intBounds]: Returns the empirical density function of a trace consisting of weighted data";
 
 
 Begin["`Private`"];

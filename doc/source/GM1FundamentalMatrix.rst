@@ -59,29 +59,39 @@ butools.mam.GM1FundamentalMatrix
            Markov chains (p. 14). ACM.
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> A0 = [0.1, 0; 0, 0.1];
-    >>> A1 = [0, 0.2; 0, 0.2];
-    >>> A2 = [0, 0.1; 0, 0];
+
+    >>> A0 = [0.1, 0.; 0., 0.1];
+    >>> A1 = [0., 0.2; 0., 0.2];
+    >>> A2 = [0., 0.1; 0., 0.];
     >>> A3 = [0.3, 0.2; 0.3, 0.2];
-    >>> A4 = [0, 0.1; 0.2, 0];
-    >>> A = [A0,A1,A2,A3,A4];
+    >>> A4 = [0., 0.1; 0.2, 0.];
+    >>> A = {A0, A1, A2, A3, A4};
     >>> R = GM1FundamentalMatrix(A);
+    >>> disp(R);
           0.10065     0.026961
        0.00065531      0.12569
 
+    For Mathematica:
+
+    
     For Python/Numpy:
-       
-    >>> A0 = ml.matrix([[0.1, 0],[0, 0.1]])
-    >>> A1 = ml.matrix([[0, 0.2],[0, 0.2]])
-    >>> A2 = ml.matrix([[0, 0.1],[0, 0]])
+
+    >>> A0 = ml.matrix([[0.1, 0.],[0., 0.1]])
+    >>> A1 = ml.matrix([[0., 0.2],[0., 0.2]])
+    >>> A2 = ml.matrix([[0., 0.1],[0., 0.]])
     >>> A3 = ml.matrix([[0.3, 0.2],[0.3, 0.2]])
-    >>> A4 = ml.matrix([[0, 0.1],[0.2, 0]])
-    >>> A = (A0,A1,A2,A3,A4)
-    >>> R = GM1FundamentalMatrix (A)
+    >>> A4 = ml.matrix([[0., 0.1],[0.2, 0.]])
+    >>> A = [A0, A1, A2, A3, A4]
+    >>> R = GM1FundamentalMatrix(A)
+    The Shifted PWCR evaluation of Iteration  1  required  64  roots
+    The Shifted PWCR evaluation of Iteration  2  required  32  roots
+    The Shifted PWCR evaluation of Iteration  3  required  16  roots
+    The Shifted PWCR evaluation of Iteration  4  required  8  roots
+    The Shifted PWCR evaluation of Iteration  5  required  8  roots
+    Final Residual Error for G:  5.20417042793e-17
     >>> print(R)
-    [[ 0.1006515   0.02696092]
-     [ 0.00065531  0.1256871 ]]
+    [[ 0.10065  0.02696]
+     [ 0.00066  0.12569]]
 

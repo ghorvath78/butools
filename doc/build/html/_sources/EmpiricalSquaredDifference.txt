@@ -41,25 +41,45 @@ butools.fitting.EmpiricalSquaredDifference
         The squared difference
 
     Examples
-    --------    
+    ========
     For Matlab:
-    
-    >>> tr = dlmread('trace.txt');
-    >>> intBounds = linspace(0, MarginalMomentsFromTrace(tr,1)*4, 50);
-    >>> [pdfTrX, pdfTrY] = PdfFromTrace(tr,intBounds);
-    >>> [alpha,A]=PHFromTrace(tr,5)   
+
+    >>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+    >>> intBounds = linspace(0, MarginalMomentsFromTrace(tr, 1)*4, 50);
+    >>> [pdfTrX, pdfTrY] = PdfFromTrace(tr, intBounds);
+    >>> [cdfTrX, cdfTrY] = CdfFromTrace(tr);
+    >>> step = ceil(length(tr)/2000);
+    >>> cdfTrX = cdfTrX(1:step:length(tr));
+    >>> cdfTrY = cdfTrY(1:step:length(tr));
+    >>> [alpha, A] = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3));
     >>> [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
-    >>> EmpiricalSquaredDifference (pdfTrY, pdfPHY, intBounds)
-        0.0079115
-    
-    For Python/Numpy:
-    
-    >>> tr = np.loadtxt('trace.txt')
-    >>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr,1)[0]*4, 50)
-    >>> pdfTrX, pdfTrY = PdfFromTrace(tr,intBounds)
-    >>> [alpha,A]=PHFromTrace(tr,5)
-    >>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
-    >>> print(EmpiricalSquaredDifference (pdfTrY, pdfPHY, intBounds))
-    0.00791151022468
+    >>> cdfPHY = CdfFromPH(alpha, A, cdfTrX);
+    >>> sqPdf = EmpiricalSquaredDifference(pdfTrY, pdfPHY, intBounds);
+    >>> disp(sqPdf);
+         0.011854
+    >>> sqCdf = EmpiricalSquaredDifference(cdfTrY(1:end-1), cdfPHY(1:end-1), cdfTrX);
+    >>> disp(sqCdf);
+       3.8247e-10
+
+    For Mathematica:
 
     
+    For Python/Numpy:
+
+    >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+    >>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr, 1)[0]*4, 50)
+    >>> pdfTrX, pdfTrY = PdfFromTrace(tr, intBounds)
+    >>> cdfTrX, cdfTrY = CdfFromTrace(tr)
+    >>> step = math.ceil(Length(tr)/2000)
+    >>> cdfTrX = cdfTrX[0:Length(tr):step]
+    >>> cdfTrY = cdfTrY[0:Length(tr):step]
+    >>> alpha, A = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3))
+    >>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
+    >>> cdfPHY = CdfFromPH(alpha, A, cdfTrX)
+    >>> sqPdf = EmpiricalSquaredDifference(pdfTrY, pdfPHY, intBounds)
+    >>> print(sqPdf)
+    0.0118541986064
+    >>> sqCdf = EmpiricalSquaredDifference(cdfTrY[0:-1], cdfPHY[0:-1], cdfTrX)
+    >>> print(sqCdf)
+    3.8246917213e-10
+

@@ -447,52 +447,39 @@ The default value is 1e-14.</p>
 or/and the &#8216;mean&#8217; parameter.</p>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomDMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">5.62</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomDMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">5.62</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="go">CheckProbMatrix: the matrix has negative element (precision: 1e-12)!</span>
+<span class="go">CheckDMAPRepresentation: D0 isn&#39;t a transient probability matrix!</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D0</span><span class="p">);</span>
-<span class="go">      0.73286     0.046357     0.034004     0.028796</span>
-<span class="go">     0.084185      0.67698            0            0</span>
-<span class="go">     0.027256     0.082261      0.74025            0</span>
-<span class="go">            0            0      0.80713      0.19287</span>
+<span class="go">      0.32242      0.12926            0       0.1379</span>
+<span class="go">      0.11054      0.70995     0.060634     0.012054</span>
+<span class="go">            0     0.038601      0.86412     0.021564</span>
+<span class="go">            0            0      0.12058      0.42758</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D1</span><span class="p">);</span>
-<span class="go">     0.045462     0.020243     0.042927     0.049352</span>
-<span class="go">     0.019264      0.09044     0.095789     0.033342</span>
-<span class="go">            0      0.10169     0.038362      0.01018</span>
-<span class="go">            0            0            0            0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="go">       0.1503      0.15115    0.0072573       0.1017</span>
+<span class="go">     0.069721     0.037105            0            0</span>
+<span class="go">     0.035809     0.018712     0.021192            0</span>
+<span class="go">            0      0.45185            0            0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 <span class="go">         5.62</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">}</span> <span class="o">=</span> <span class="n">RandomDMAP</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mf">5.62</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D0</span><span class="p">];</span>
-<span class="go">{{0.43792221764784234, 0.1315017116128684, 0.015584191529024663, 0.},</span>
-<span class="go"> {0., 0.90297335020982, 0., 0.},</span>
-<span class="go"> {0.04551398326730008, 0.04581614981871694, 0.3422245239933987, 0.13244936737504273},</span>
-<span class="go"> {0.010409491714044225, 0., 0., 0.7212471553509219}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D1</span><span class="p">];</span>
-<span class="go">{{0.16771196633111266, 0.15225054647359362, 0.0033488389139790338, 0.09168052749157933},</span>
-<span class="go"> {0., 0.023880459024570835, 0.07314619076560927, 0.},</span>
-<span class="go"> {0.12026766413018974, 0.12627847796574468, 0.09656436962438471, 0.09088546382522249},</span>
-<span class="go"> {0.06852868252098047, 0.09548585720018578, 0.08366967190544991, 0.020659141308417714}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromDMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">][[</span><span class="mi">1</span><span class="p">]];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
-<span class="go">5.6200000000000045</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">RandomDMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">5.62</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span> <span class="o">=</span> <span class="n">RandomDMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">5.62</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">CheckDMMAPRepresentation: Some of the matrices D1 ... DM have negative elements!</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
-<span class="go">[[ 0.63757  0.03854  0.05201  0.098  ]</span>
-<span class="go"> [ 0.       0.7208   0.05398  0.     ]</span>
-<span class="go"> [ 0.       0.02845  0.61792  0.     ]</span>
-<span class="go"> [ 0.05187  0.       0.       0.81905]]</span>
+<span class="go">[[ 0.91231  0.       0.       0.02106]</span>
+<span class="go"> [ 0.15283  0.16699  0.18905  0.     ]</span>
+<span class="go"> [ 0.02497  0.12509  0.52043  0.10254]</span>
+<span class="go"> [ 0.0759   0.       0.       0.29181]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
-<span class="go">[[ 0.02668  0.03954  0.10199  0.00567]</span>
-<span class="go"> [ 0.08081  0.04892  0.       0.09548]</span>
-<span class="go"> [ 0.       0.13362  0.13848  0.08154]</span>
-<span class="go"> [ 0.0162   0.       0.       0.11288]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">[[ 0.00719  0.02013  0.01658  0.02274]</span>
+<span class="go"> [ 0.15648  0.       0.18936  0.1453 ]</span>
+<span class="go"> [ 0.10408  0.       0.       0.12289]</span>
+<span class="go"> [ 0.21349  0.       0.       0.41879]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromDMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="go">5.62</span>
 </pre></div>

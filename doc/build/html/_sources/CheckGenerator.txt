@@ -46,21 +46,21 @@ butools.mc.CheckGenerator
     For Matlab:
 
     >>> Q = [-0.9, 0.2, 0.4; 0, 0.9, 0.9; 0, 0.6, -0.6];
-    >>> flag = CheckGenerator(Q,true);
-    CheckGenerator: The diagonal of the generator is not negative (precision: 1e-11)!
+    >>> flag = CheckGenerator(Q, true);
+    CheckGenerator: The diagonal of the generator is not negative (precision: 1e-12)!
     >>> disp(flag);
          0
     >>> Q = [-0.9, 0.5, 0.4; 0.9, -0.9, 0; 0.3, 0.3, -0.6];
-    >>> flag = CheckGenerator(Q,true);
+    >>> flag = CheckGenerator(Q, true);
     >>> disp(flag);
          1
     >>> Q = [-0.9, 0.2, 0.4; 0.9, -0.9, 0; 0.3, 0.3, -0.6];
-    >>> flag = CheckGenerator(Q,true);
+    >>> flag = CheckGenerator(Q, true);
     >>> disp(flag);
          1
     >>> Q = [-0.9, 0.5, 0.4; 0.9, -1.1, 0; 0.3, 0.3, -0.6];
     >>> flag = CheckGenerator(Q);
-    CheckGenerator: The rowsum of the generator is not 0 (precision: 1e-11)!
+    CheckGenerator: The rowsum of the generator is not 0 (precision: 1e-12)!
     >>> disp(flag);
          0
     >>> Q = [-0.9, 0.5, 0.4; 0.9, -0.9, 0; 0.3, 0.3, -0.6];
@@ -70,42 +70,20 @@ butools.mc.CheckGenerator
 
     For Mathematica:
 
-    >>> Q = {{-0.9, 0.2, 0.4},{0, 0.9, 0.9},{0, 0.6, -0.6}};
-    >>> flag = CheckGenerator[Q,True];
-    "CheckGenerator: The diagonal of the generator is not negative (at precision "1.*^-12")!"
-    >>> Print[flag];
-    False
-    >>> Q = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
-    >>> flag = CheckGenerator[Q,True];
-    >>> Print[flag];
-    True
-    >>> Q = {{-0.9, 0.2, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
-    >>> flag = CheckGenerator[Q,True];
-    >>> Print[flag];
-    True
-    >>> Q = {{-0.9, 0.5, 0.4},{0.9, -1.1, 0},{0.3, 0.3, -0.6}};
-    >>> flag = CheckGenerator[Q];
-    "CheckGenerator: A rowsum of the generator is not 0 (precision:"1.*^-12")!!"
-    >>> Print[flag];
-    False
-    >>> Q = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
-    >>> flag = CheckGenerator[Q];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
     >>> Q = ml.matrix([[-0.9, 0.2, 0.4],[0, 0.9, 0.9],[0, 0.6, -0.6]])
-    >>> flag = CheckGenerator(Q,True)
+    >>> flag = CheckGenerator(Q, True)
     CheckGenerator: The diagonal of the generator is not negative (precision: 1e-12)!
     >>> print(flag)
     False
     >>> Q = ml.matrix([[-0.9, 0.5, 0.4],[0.9, -0.9, 0],[0.3, 0.3, -0.6]])
-    >>> flag = CheckGenerator(Q,True)
+    >>> flag = CheckGenerator(Q, True)
     >>> print(flag)
     True
     >>> Q = ml.matrix([[-0.9, 0.2, 0.4],[0.9, -0.9, 0],[0.3, 0.3, -0.6]])
-    >>> flag = CheckGenerator(Q,True)
+    >>> flag = CheckGenerator(Q, True)
     >>> print(flag)
     True
     >>> Q = ml.matrix([[-0.9, 0.5, 0.4],[0.9, -1.1, 0],[0.3, 0.3, -0.6]])

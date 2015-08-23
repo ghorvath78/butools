@@ -53,17 +53,7 @@ butools.moments.MomsFromFactorialMoms
 
     For Mathematica:
 
-    >>> M = {1.3, 2.4, 6.03, 20.5, 89.5, 474.9};
-    >>> fmoms = FactorialMomsFromMoms[M];
-    >>> Print[fmoms];
-    {1.3, 1.0999999999999999, 1.4300000000000006, 2.919999999999998, 6.750000000000014, 19.75}
-    >>> moms = MomsFromFactorialMoms[fmoms];
-    >>> Print[moms];
-    {1.3, 2.4, 6.03, 20.5, 89.5, 474.9}
-    >>> err = Norm[moms-M];
-    >>> Print[err];
-    0.
-
+    
     For Python/Numpy:
 
     >>> M = [1.3, 2.4, 6.03, 20.5, 89.5, 474.9]

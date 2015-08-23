@@ -42,25 +42,20 @@ butools.ph.PdfFromPH
     ========
     For Matlab:
 
-    >>> a = [0.1, 0.9, 0];
+    >>> a = [0.1,0.9,0];
     >>> A = [-6.2, 2, 0; 2, -9, 1; 1, 0, -3];
-    >>> x = (0:0.002:3);
-    >>> pdf = PdfFromPH(a,A,x);
-    >>> plot(x,pdf);
+    >>> x = (0.0:0.002:3.0);
+    >>> pdf = PdfFromPH(a, A, x);
+    >>> plot(x, pdf)
 
     For Mathematica:
 
-    >>> a = {0.1, 0.9, 0};
-    >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
-    >>> x = Range[0,3,0.002];
-    >>> pdf = PdfFromPH[a,A,x];
-    >>> ListLinePlot[Transpose[{x, pdf}]]
-
+    
     For Python/Numpy:
 
-    >>> a = ml.matrix([[0.1, 0.9, 0]])
+    >>> a = ml.matrix([[0.1,0.9,0]])
     >>> A = ml.matrix([[-6.2, 2, 0],[2, -9, 1],[1, 0, -3]])
-    >>> x = np.arange(0,3.002,0.002)
-    >>> pdf = PdfFromPH(a,A,x)
-    >>> plt.plot(x,pdf)
+    >>> x = np.arange(0.0,3.002,0.002)
+    >>> pdf = PdfFromPH(a, A, x)
+    >>> plt.plot(x, pdf)
 

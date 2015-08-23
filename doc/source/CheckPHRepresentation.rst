@@ -40,41 +40,30 @@ butools.ph.CheckPHRepresentation
 
     >>> a = [0.2];
     >>> A = [-1, 1; 1, -2];
-    >>> flag = CheckPHRepresentation(a,A);
+    >>> flag = CheckPHRepresentation(a, A);
     CheckPHRepresentation:the vector and the matrix have different sizes!
     >>> disp(flag);
          0
-    >>> a = [0.2, 0.7];
+    >>> a = [0.2,0.7];
     >>> A = [-1, 1; 1, -2];
-    >>> flag = CheckPHRepresentation(a,A);
+    >>> flag = CheckPHRepresentation(a, A);
     >>> disp(flag);
          1
 
     For Mathematica:
 
-    >>> a = {0.2};
-    >>> A = {{-1, 1},{1, -2}};
-    >>> flag = CheckPHRepresentation[a,A];
-    "CheckPHRepresentation: the vector and the matrix have different sizes!"
-    >>> Print[flag];
-    False
-    >>> a = {0.2, 0.7};
-    >>> A = {{-1, 1},{1, -2}};
-    >>> flag = CheckPHRepresentation[a,A];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.2]])
     >>> A = ml.matrix([[-1, 1],[1, -2]])
-    >>> flag = CheckPHRepresentation(a,A)
+    >>> flag = CheckPHRepresentation(a, A)
     CheckPHRepresentation: The vector and the matrix have different sizes!
     >>> print(flag)
     False
-    >>> a = ml.matrix([[0.2, 0.7]])
+    >>> a = ml.matrix([[0.2,0.7]])
     >>> A = ml.matrix([[-1, 1],[1, -2]])
-    >>> flag = CheckPHRepresentation(a,A)
+    >>> flag = CheckPHRepresentation(a, A)
     >>> print(flag)
     True
 

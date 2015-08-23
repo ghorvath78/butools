@@ -431,35 +431,64 @@ The default value is 1.</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">18</span> <span class="mi">1</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">18</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">3</span> <span class="o">-</span><span class="mi">32</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">8</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">25</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1000000</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">LagkJointMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">            1      0.05418    0.0064348      0.00121</span>
-<span class="go">     0.054181     0.003017   0.00036459   6.9365e-05</span>
-<span class="go">    0.0064348   0.00036392   4.4382e-05   8.4913e-06</span>
-<span class="go">      0.00121   6.9079e-05   8.4828e-06   1.6295e-06</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm1</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm1</span><span class="p">);</span>
+<span class="go">            1     0.054231    0.0064413    0.0012077</span>
+<span class="go">     0.054231    0.0030911    0.0003777   7.1599e-05</span>
+<span class="go">    0.0064413   0.00037728   4.6603e-05   8.8002e-06</span>
+<span class="go">    0.0012077   7.1519e-05   8.8317e-06   1.6498e-06</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mNm1</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mNm1</span><span class="p">);</span>
+<span class="go">            1     0.054124     0.006423    0.0012051</span>
+<span class="go">     0.054124    0.0030736   0.00037516   7.1415e-05</span>
+<span class="go">     0.006423   0.00037515   4.6507e-05   8.9222e-06</span>
+<span class="go">    0.0012051    7.141e-05   8.9217e-06   1.7182e-06</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm2</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Nm2</span><span class="p">);</span>
+<span class="go">            1     0.054231    0.0064413    0.0012077</span>
+<span class="go">     0.054231    0.0030213   0.00036415   6.8624e-05</span>
+<span class="go">    0.0064414   0.00036417   4.4121e-05   8.2941e-06</span>
+<span class="go">    0.0012077   6.8666e-05   8.2925e-06   1.5427e-06</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mNm2</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mNm2</span><span class="p">);</span>
 <span class="go">            1     0.054124     0.006423    0.0012051</span>
 <span class="go">     0.054124    0.0030061   0.00036221   6.8492e-05</span>
 <span class="go">     0.006423    0.0003622   4.4024e-05    8.361e-06</span>
 <span class="go">    0.0012051   6.8486e-05   8.3605e-06   1.5913e-06</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="mi">7</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">32</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1000000</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagkJointMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="go">[[  1.00000000e+00   5.41123946e-02   6.41988295e-03   1.20353966e-03]</span>
-<span class="go"> [  5.41124533e-02   3.01077030e-03   3.63307127e-04   6.87763588e-05]</span>
-<span class="go"> [  6.41989123e-03   3.63113615e-04   4.41962106e-05   8.38796443e-06]</span>
-<span class="go"> [  1.20354094e-03   6.85773090e-05   8.35435654e-06   1.57742546e-06]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="go">[[  1.00000000e+00   5.41237113e-02   6.42296483e-03   1.20514648e-03]</span>
-<span class="go"> [  5.41237113e-02   3.00610342e-03   3.62213432e-04   6.84916891e-05]</span>
-<span class="go"> [  6.42296483e-03   3.62201355e-04   4.40235733e-05   8.36100066e-06]</span>
-<span class="go"> [  1.20514648e-03   6.84863446e-05   8.36049904e-06   1.59132033e-06]]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm1</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm1</span><span class="p">)</span>
+<span class="go">[[  1.00000e+00   5.41472e-02   6.42593e-03   1.20511e-03]</span>
+<span class="go"> [  5.41473e-02   3.07546e-03   3.75237e-04   7.12258e-05]</span>
+<span class="go"> [  6.42593e-03   3.75451e-04   4.64806e-05   8.87509e-06]</span>
+<span class="go"> [  1.20511e-03   7.14549e-05   8.89829e-06   1.70148e-06]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mNm1</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mNm1</span><span class="p">)</span>
+<span class="go">[[  1.00000e+00   5.41237e-02   6.42296e-03   1.20515e-03]</span>
+<span class="go"> [  5.41237e-02   3.07362e-03   3.75157e-04   7.14155e-05]</span>
+<span class="go"> [  6.42296e-03   3.75145e-04   4.65066e-05   8.92218e-06]</span>
+<span class="go"> [  1.20515e-03   7.14101e-05   8.92168e-06   1.71822e-06]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm2</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Nm2</span><span class="p">)</span>
+<span class="go">[[  1.00000e+00   5.41472e-02   6.42593e-03   1.20511e-03]</span>
+<span class="go"> [  5.41472e-02   3.00173e-03   3.61013e-04   6.79513e-05]</span>
+<span class="go"> [  6.42591e-03   3.60964e-04   4.37219e-05   8.21233e-06]</span>
+<span class="go"> [  1.20511e-03   6.82216e-05   8.30943e-06   1.55532e-06]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mNm2</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mNm2</span><span class="p">)</span>
+<span class="go">[[  1.00000e+00   5.41237e-02   6.42296e-03   1.20515e-03]</span>
+<span class="go"> [  5.41237e-02   3.00610e-03   3.62213e-04   6.84917e-05]</span>
+<span class="go"> [  6.42296e-03   3.62201e-04   4.40236e-05   8.36100e-06]</span>
+<span class="go"> [  1.20515e-03   6.84863e-05   8.36050e-06   1.59132e-06]]</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -52,8 +52,8 @@ butools.map.MinimalRepFromMRAP
     >>> D0 = [-5., 1., 0; 3., -3., 0; 1., 1., -5.];
     >>> D1 = [0, 0, 0.8; 0, 0, 0; 0.2, 0.2, 0.2];
     >>> D2 = [0, 0, 3.2; 0, 0, 0; 0.8, 0.8, 0.8];
-    >>> D = {D0,D1,D2};
-    >>> H = MinimalRepFromMRAP(D,'cont');
+    >>> Dm = {D0, D1, D2};
+    >>> H = MinimalRepFromMRAP(Dm, 'cont');
     >>> disp(H{1});
         -5     1     0
          3    -3     0
@@ -66,11 +66,11 @@ butools.map.MinimalRepFromMRAP
                 0            0          3.2
                 0            0            0
               0.8          0.8          0.8
-    >>> Cm = SimilarityMatrix(H{1},D{1});
-    >>> err = norm(H{1}*Cm-Cm*D{1}) + norm(H{2}*Cm-Cm*D{2}) + norm(H{3}*Cm-Cm*D{3});
+    >>> Cm = SimilarityMatrix(H{1}, Dm{1});
+    >>> err = norm(H{1}*Cm-Cm*Dm{1})+norm(H{2}*Cm-Cm*Dm{2})+norm(H{3}*Cm-Cm*Dm{3});
     >>> disp(err);
         4.656e-15
-    >>> H = MinimalRepFromMRAP(D,'obs');
+    >>> H = MinimalRepFromMRAP(Dm, 'obs');
     >>> disp(H{1});
           -4.4074       1.6931
           0.84259      -2.5926
@@ -80,11 +80,11 @@ butools.map.MinimalRepFromMRAP
     >>> disp(H{3});
            1.6296       0.5418
            2.2296     -0.82963
-    >>> Cm = SimilarityMatrix(H{1},D{1});
-    >>> err = norm(H{1}*Cm-Cm*D{1}) + norm(H{2}*Cm-Cm*D{2}) + norm(H{3}*Cm-Cm*D{3});
+    >>> Cm = SimilarityMatrix(H{1}, Dm{1});
+    >>> err = norm(H{1}*Cm-Cm*Dm{1})+norm(H{2}*Cm-Cm*Dm{2})+norm(H{3}*Cm-Cm*Dm{3});
     >>> disp(err);
        4.8469e-15
-    >>> H = MinimalRepFromMRAP(D,'obscont');
+    >>> H = MinimalRepFromMRAP(Dm, 'obscont');
     >>> disp(H{1});
           -4.4074       1.6931
           0.84259      -2.5926
@@ -94,70 +94,21 @@ butools.map.MinimalRepFromMRAP
     >>> disp(H{3});
            1.6296       0.5418
            2.2296     -0.82963
-    >>> Cm = SimilarityMatrix(H{1},D{1});
-    >>> err = norm(H{1}*Cm-Cm*D{1}) + norm(H{2}*Cm-Cm*D{2}) + norm(H{3}*Cm-Cm*D{3});
+    >>> Cm = SimilarityMatrix(H{1}, Dm{1});
+    >>> err = norm(H{1}*Cm-Cm*Dm{1})+norm(H{2}*Cm-Cm*Dm{2})+norm(H{3}*Cm-Cm*Dm{3});
     >>> disp(err);
        4.8469e-15
 
     For Mathematica:
 
-    >>> D0 = {{-5., 1., 0},{3., -3., 0},{1., 1., -5.}};
-    >>> D1 = {{0, 0, 0.8},{0, 0, 0},{0.2, 0.2, 0.2}};
-    >>> D2 = {{0, 0, 3.2},{0, 0, 0},{0.8, 0.8, 0.8}};
-    >>> D = {D0,D1,D2};
-    >>> H = MinimalRepFromMRAP[D,"cont"];
-    >>> Print[H[[1]]];
-    {{-5., 1., 0.},
-     {3., -3., 0.},
-     {1., 1., -5.}}
-    >>> Print[H[[2]]];
-    {{0., 0., 0.8},
-     {0., 0., 0.},
-     {0.2, 0.2, 0.2}}
-    >>> Print[H[[3]]];
-    {{0., 0., 3.2},
-     {0., 0., 0.},
-     {0.8, 0.8, 0.8}}
-    >>> Cm = SimilarityMatrix[H[[1]],D[[1]]];
-    >>> err = Norm[H[[1]].Cm-Cm.D[[1]]] + Norm[H[[2]].Cm-Cm.D[[2]]] + Norm[H[[3]].Cm-Cm.D[[3]]];
-    >>> Print[err];
-    5.717834399042951*^-15
-    >>> H = MinimalRepFromMRAP[D,"obs"];
-    >>> Print[H[[1]]];
-    {{-4.407407407407407, 1.6931216931216932},
-     {0.8425925925925922, -2.592592592592593}}
-    >>> Print[H[[2]]];
-    {{0.40740740740740733, 0.13544973544973554},
-     {0.5574074074074076, -0.20740740740740737}}
-    >>> Print[H[[3]]];
-    {{1.6296296296296293, 0.5417989417989422},
-     {2.2296296296296303, -0.8296296296296295}}
-    >>> Cm = SimilarityMatrix[H[[1]],D[[1]]];
-    >>> err = Norm[H[[1]].Cm-Cm.D[[1]]] + Norm[H[[2]].Cm-Cm.D[[2]]] + Norm[H[[3]].Cm-Cm.D[[3]]];
-    >>> Print[err];
-    8.2600373258031*^-15
-    >>> H = MinimalRepFromMRAP[D,"obscont"];
-    >>> Print[H[[1]]];
-    {{-4.407407407407407, 1.6931216931216932},
-     {0.8425925925925922, -2.592592592592593}}
-    >>> Print[H[[2]]];
-    {{0.40740740740740733, 0.13544973544973554},
-     {0.5574074074074076, -0.20740740740740737}}
-    >>> Print[H[[3]]];
-    {{1.6296296296296293, 0.5417989417989422},
-     {2.2296296296296303, -0.8296296296296295}}
-    >>> Cm = SimilarityMatrix[H[[1]],D[[1]]];
-    >>> err = Norm[H[[1]].Cm-Cm.D[[1]]] + Norm[H[[2]].Cm-Cm.D[[2]]] + Norm[H[[3]].Cm-Cm.D[[3]]];
-    >>> Print[err];
-    8.2600373258031*^-15
-
+    
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-5., 1., 0],[3., -3., 0],[1., 1., -5.]])
     >>> D1 = ml.matrix([[0, 0, 0.8],[0, 0, 0],[0.2, 0.2, 0.2]])
     >>> D2 = ml.matrix([[0, 0, 3.2],[0, 0, 0],[0.8, 0.8, 0.8]])
-    >>> D = [D0,D1,D2]
-    >>> H = MinimalRepFromMRAP(D,"cont")
+    >>> Dm = [D0, D1, D2]
+    >>> H = MinimalRepFromMRAP(Dm, "cont")
     >>> print(H[0])
     [[-5.  1.  0.]
      [ 3. -3.  0.]
@@ -170,11 +121,11 @@ butools.map.MinimalRepFromMRAP
     [[ 0.   0.   3.2]
      [ 0.   0.   0. ]
      [ 0.8  0.8  0.8]]
-    >>> Cm = SimilarityMatrix(H[0],D[0])
-    >>> err = la.norm(H[0]*Cm-Cm*D[0]) + la.norm(H[1]*Cm-Cm*D[1]) + la.norm(H[2]*Cm-Cm*D[2])
+    >>> Cm = SimilarityMatrix(H[0], Dm[0])
+    >>> err = la.norm(H[0]*Cm-Cm*Dm[0])+la.norm(H[1]*Cm-Cm*Dm[1])+la.norm(H[2]*Cm-Cm*Dm[2])
     >>> print(err)
     3.65128686018e-15
-    >>> H = MinimalRepFromMRAP(D,"obs")
+    >>> H = MinimalRepFromMRAP(Dm, "obs")
     >>> print(H[0])
     [[-4.40741  1.69312]
      [ 0.84259 -2.59259]]
@@ -184,11 +135,11 @@ butools.map.MinimalRepFromMRAP
     >>> print(H[2])
     [[ 1.62963  0.5418 ]
      [ 2.22963 -0.82963]]
-    >>> Cm = SimilarityMatrix(H[0],D[0])
-    >>> err = la.norm(H[0]*Cm-Cm*D[0]) + la.norm(H[1]*Cm-Cm*D[1]) + la.norm(H[2]*Cm-Cm*D[2])
+    >>> Cm = SimilarityMatrix(H[0], Dm[0])
+    >>> err = la.norm(H[0]*Cm-Cm*Dm[0])+la.norm(H[1]*Cm-Cm*Dm[1])+la.norm(H[2]*Cm-Cm*Dm[2])
     >>> print(err)
     4.72728076906e-15
-    >>> H = MinimalRepFromMRAP(D,"obscont")
+    >>> H = MinimalRepFromMRAP(Dm, "obscont")
     >>> print(H[0])
     [[-4.40741  1.69312]
      [ 0.84259 -2.59259]]
@@ -198,8 +149,8 @@ butools.map.MinimalRepFromMRAP
     >>> print(H[2])
     [[ 1.62963  0.5418 ]
      [ 2.22963 -0.82963]]
-    >>> Cm = SimilarityMatrix(H[0],D[0])
-    >>> err = la.norm(H[0]*Cm-Cm*D[0]) + la.norm(H[1]*Cm-Cm*D[1]) + la.norm(H[2]*Cm-Cm*D[2])
+    >>> Cm = SimilarityMatrix(H[0], Dm[0])
+    >>> err = la.norm(H[0]*Cm-Cm*Dm[0])+la.norm(H[1]*Cm-Cm*Dm[1])+la.norm(H[2]*Cm-Cm*Dm[2])
     >>> print(err)
     4.72728076906e-15
 

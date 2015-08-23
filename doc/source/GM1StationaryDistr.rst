@@ -39,48 +39,62 @@ butools.mam.GM1StationaryDistr
         The stationary probability vector up to level K
     
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> A0 = [0.1, 0; 0, 0.1];
-    >>> A1 = [0, 0.2; 0, 0.2];
-    >>> A2 = [0, 0.1; 0, 0];
-    >>> A3 = [0.3, 0.2; 0.3, 0.2];
-    >>> A4 = [0, 0.1; 0.2, 0];
+
     >>> B0 = [0.7, 0.2; 0.3, 0.6];
     >>> B1 = [0.3, 0.4; 0.5, 0.2];
     >>> B2 = [0.2, 0.4; 0.1, 0.6];
-    >>> B3 = [0, 0.1; 0.2, 0];
-    >>> A = [A0,A1,A2,A3,A4];
-    >>> B = [B0,B1,B2,B3];
+    >>> B3 = [0., 0.1; 0.2, 0.];
+    >>> A0 = [0.1, 0.; 0., 0.1];
+    >>> A1 = [0., 0.2; 0., 0.2];
+    >>> A2 = [0., 0.1; 0., 0.];
+    >>> A3 = [0.3, 0.2; 0.3, 0.2];
+    >>> A4 = [0., 0.1; 0.2, 0.];
+    >>> B = {B0, B1, B2, B3};
+    >>> A = {A0, A1, A2, A3, A4};
     >>> R = GM1FundamentalMatrix(A);
-    >>> pi = GM1StationaryDistr(B,R,3);
-    >>> pi(1:2)
-       0.5152      0.35773
-    >>> pi(3:4)
-      0.05209     0.058853
-    >>> pi(5:6)
-        0.0052815    0.0088014
+    >>> disp(R);
+          0.10065     0.026961
+       0.00065531      0.12569
+    >>> pi = GM1StationaryDistr(B, R, 300);
 
+    For Mathematica:
+
+    
     For Python/Numpy:
-       
+
     >>> B0 = ml.matrix([[0.7, 0.2],[0.3, 0.6]])
     >>> B1 = ml.matrix([[0.3, 0.4],[0.5, 0.2]])
     >>> B2 = ml.matrix([[0.2, 0.4],[0.1, 0.6]])
-    >>> B3 = ml.matrix([[0, 0.1],[0.2, 0]])
-    >>> A0 = ml.matrix([[0.1, 0],[0, 0.1]])
-    >>> A1 = ml.matrix([[0, 0.2],[0, 0.2]])
-    >>> A2 = ml.matrix([[0, 0.1],[0, 0]])
+    >>> B3 = ml.matrix([[0., 0.1],[0.2, 0.]])
+    >>> A0 = ml.matrix([[0.1, 0.],[0., 0.1]])
+    >>> A1 = ml.matrix([[0., 0.2],[0., 0.2]])
+    >>> A2 = ml.matrix([[0., 0.1],[0., 0.]])
     >>> A3 = ml.matrix([[0.3, 0.2],[0.3, 0.2]])
-    >>> A4 = ml.matrix([[0, 0.1],[0.2, 0]])
-    >>> B = (B0,B1,B2,B3)
-    >>> A = (A0,A1,A2,A3,A4)
-    >>> R = GM1FundamentalMatrix (A)
-    >>> pi = GM1StationaryDistr (B,R,3)
-    >>> print(pi[0,0:2])
-    [[ 0.51519712  0.35773254]]
-    >>> print(pi[0,2:4])
-    [[ 0.05208979  0.05885256]]
-    >>> print(pi[0,4:6])
-    [[ 0.00528148  0.0088014 ]]
+    >>> A4 = ml.matrix([[0., 0.1],[0.2, 0.]])
+    >>> B = [B0, B1, B2, B3]
+    >>> A = [A0, A1, A2, A3, A4]
+    >>> R = GM1FundamentalMatrix(A)
+    The Shifted PWCR evaluation of Iteration  1  required  64  roots
+    The Shifted PWCR evaluation of Iteration  2  required  32  roots
+    The Shifted PWCR evaluation of Iteration  3  required  16  roots
+    The Shifted PWCR evaluation of Iteration  4  required  8  roots
+    The Shifted PWCR evaluation of Iteration  5  required  8  roots
+    Final Residual Error for G:  5.20417042793e-17
+    >>> print(R)
+    [[ 0.10065  0.02696]
+     [ 0.00066  0.12569]]
+    >>> pi = GM1StationaryDistr(B, R, 300)
+    Accumulated mass after  2  iterations:  0.983872004487
+    Accumulated mass after  3  iterations:  0.997954882432
+    Accumulated mass after  4  iterations:  0.999740854747
+    Accumulated mass after  5  iterations:  0.999967181248
+    Accumulated mass after  6  iterations:  0.999995845613
+    Accumulated mass after  7  iterations:  0.999999474299
+    Accumulated mass after  8  iterations:  0.999999933496
+    Accumulated mass after  9  iterations:  0.999999991589
+    Accumulated mass after  10  iterations:  0.999999998936
+    Accumulated mass after  11  iterations:  0.999999999866
+    Accumulated mass after  12  iterations:  0.999999999983
 

@@ -54,38 +54,24 @@ butools.dph.RandomDPH
     ========
     For Matlab:
 
-    >>> [a,A] = RandomDPH(3,10,5);
-    CheckProbMatrix: the matrix has negative element (precision: 1e-07)!
+    >>> [a, A] = RandomDPH(3, 10, 5);
     >>> disp(a);
-          0.58888      0.41112            0
+          0.39611      0.38982      0.21407
     >>> disp(A);
-           0.9048      0.04125     0.031817
-                0       0.6822       0.3178
-                0            0      0.49751
+           0.8489     0.031291            0
+          0.59994      0.40006            0
+          0.37646            0      0.62354
 
     For Mathematica:
 
-    >>> {a,A} = RandomDPH[3,10,5];
-    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
-    >>> Print[a];
-    {0, 1, 0}
-    >>> Print[A];
-    {{0.9978146840537366, 0., 0.0018115430265152948},
-     {0.0002596368902400116, 0.8783862382976336, 0.005417700244985481},
-     {0., 0.07246410696945481, 0.9001849760112214}}
-
+    
     For Python/Numpy:
 
-    >>> a,A = RandomDPH(3,10,5)
-    CheckProbMatrix: the matrix has negative element (precision: 1e-07)!
+    >>> a, A = RandomDPH(3, 10, 5)
     >>> print(a)
     [[ 1.  0.  0.]]
     >>> print(A)
-    [[ 0.85043  0.00248  0.13613]
-     [ 0.01293  0.87899  0.     ]
-     [ 0.       0.       0.71197]]
+    [[ 0.67742  0.09221  0.07805]
+     [ 0.08848  0.83115  0.     ]
+     [ 0.1876   0.       0.8124 ]]
 

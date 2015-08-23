@@ -43,7 +43,7 @@ butools.map.MarginalDistributionFromMMAP
     >>> D1 = [0.15, 0.49; 0.23, 0.36];
     >>> D2 = [0.11, 0.2; 0.01, 0];
     >>> D3 = [0.14, 0.4; 0.11, 0.14];
-    >>> [a,A] = MarginalDistributionFromMMAP({D0,D1,D2,D3});
+    >>> [a, A] = MarginalDistributionFromMMAP({D0, D1, D2, D3});
     >>> disp(a);
           0.36191      0.63809
     >>> disp(A);
@@ -52,24 +52,14 @@ butools.map.MarginalDistributionFromMMAP
 
     For Mathematica:
 
-    >>> D0 = {{-1.78, 0.29},{0.07, -0.92}};
-    >>> D1 = {{0.15, 0.49},{0.23, 0.36}};
-    >>> D2 = {{0.11, 0.2},{0.01, 0}};
-    >>> D3 = {{0.14, 0.4},{0.11, 0.14}};
-    >>> {a,A} = MarginalDistributionFromMMAP[{D0,D1,D2,D3}];
-    >>> Print[a];
-    {0.36190793862575055, 0.6380920613742495}
-    >>> Print[A];
-    {{-1.78, 0.29},
-     {0.07, -0.92}}
-
+    
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-1.78, 0.29],[0.07, -0.92]])
     >>> D1 = ml.matrix([[0.15, 0.49],[0.23, 0.36]])
     >>> D2 = ml.matrix([[0.11, 0.2],[0.01, 0]])
     >>> D3 = ml.matrix([[0.14, 0.4],[0.11, 0.14]])
-    >>> a,A = MarginalDistributionFromMMAP([D0,D1,D2,D3])
+    >>> a, A = MarginalDistributionFromMMAP([D0, D1, D2, D3])
     >>> print(a)
     [[ 0.36191  0.63809]]
     >>> print(A)

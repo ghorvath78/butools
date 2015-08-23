@@ -33,18 +33,21 @@ butools.trace.CdfFromWeightedTrace
         The values of the empirical cdf at the given points
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> wtr=[0.12; 1.23; 0.546; 0.6765; 1.34; 2.34];
-    >>> wei=[12; 1; 34; 23; 8; 2];
-    >>> [x,y]=CdfFromWeightedTrace(wtr,wei);
-    >>> plot(x,y);
 
-    For Python/Numpy:
+    >>> wtrace = [0.12, 1.23, 0.546, 0.6765, 1.34, 2.34];
+    >>> weights = [12., 1., 34., 23., 8., 2.];
+    >>> [x, y] = CdfFromWeightedTrace(wtrace, weights);
+    >>> plot(x, y)
+
+    For Mathematica:
+
     
-    >>> wtr=np.array([0.12, 1.23, 0.546, 0.6765, 1.34, 2.34])
-    >>> wei=np.array([12, 1, 34, 23, 8, 2])
-    >>> [x,y]=CdfFromWeightedTrace(wtr,wei)
-    >>> plt.plot(x,y)
+    For Python/Numpy:
+
+    >>> wtrace = [0.12, 1.23, 0.546, 0.6765, 1.34, 2.34]
+    >>> weights = [12., 1., 34., 23., 8., 2.]
+    >>> x, y = CdfFromWeightedTrace(wtrace, weights)
+    >>> plt.plot(x, y)
 

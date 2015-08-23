@@ -32,22 +32,41 @@ butools.fitting.RelativeEntropy
         :math:`re=\sum_{i=1}^M p1_i |\log(p1_i/p2_i)|`
 
     Examples
-    --------    
+    ========
     For Matlab:
-    
-    >>> tr = dlmread('trace.txt');
-    >>> trAcf = LagCorrelationsFromTrace(tr(1:10000), 10);
-    >>> [D0,D1]=MAPFromTrace(tr(1:10000),5);
-    >>> mAcf = LagCorrelationsFromMAP(D0, D1, 10, 1e-13);
-    >>> RelativeEntropy (mAcf, trAcf)
-          0.32132
+
+    >>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+    >>> trAcf = LagCorrelationsFromTrace(tr, 10);
+    >>> disp(trAcf);
+      Columns 1 through 6
+          0.20005      0.18927      0.13895      0.14213      0.11713      0.12368
+      Columns 7 through 10
+          0.11212      0.10051      0.10019     0.098797
+    >>> [D0, D1] = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), trAcf(1));
+    >>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10);
+    >>> disp(mapAcf);
+      Columns 1 through 6
+          0.20005      0.12003     0.072023     0.043216     0.025931     0.015559
+      Columns 7 through 10
+        0.0093357    0.0056017    0.0033611    0.0020168
+    >>> reAcf = RelativeEntropy(mapAcf, trAcf);
+    >>> disp(reAcf);
+          0.28344
+
+    For Mathematica:
+
     
     For Python/Numpy:
-    
-    >>> tr = np.loadtxt('trace.txt')
-    >>> trAcf = LagCorrelationsFromTrace(tr[0:10000], 10)
-    >>> D0, D1 = MAPFromTrace(tr[0:10000],5)
-    >>> mAcf = LagCorrelationsFromMAP(D0, D1, 10, 1e-13)
-    >>> print(RelativeEntropy (mAcf, trAcf))
-    0.321362238531
+
+    >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+    >>> trAcf = LagCorrelationsFromTrace(tr, 10)
+    >>> print(trAcf)
+    [0.20004885484210852, 0.18927480124417365, 0.13895117398714094, 0.14213400151438738, 0.11712720506721902, 0.12367824446146115, 0.1121211150989561, 0.10051068930807179, 0.10019070967277495, 0.098797210298893726]
+    >>> D0, D1 = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), trAcf[0])
+    >>> mapAcf = LagCorrelationsFromMAP(D0, D1, 10)
+    >>> print(mapAcf)
+    [ 0.20005  0.12003  0.07202  0.04322  0.02593  0.01556  0.00934  0.0056   0.00336  0.00202]
+    >>> reAcf = RelativeEntropy(mapAcf, trAcf)
+    >>> print(reAcf)
+    0.283438051725
 

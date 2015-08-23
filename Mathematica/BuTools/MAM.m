@@ -5,17 +5,17 @@
 *)
 
 BeginPackage["BuTools`MAM`"];
-QBDFundamentalMatrices::usage = "";
-QBDSolve::usage = "";
-QBDStationaryDistr::usage = "";
-FluidFundamentalMatrices::usage = "";
-FluidSolve::usage = "";
-FluidStationaryDistr::usage = "";
-GeneralFluidSolve::usage = "";
-MG1FundamentalMatrix::usage = "";
-MG1StationaryDistr::usage = "";
-GM1FundamentalMatrix::usage = "";
-GM1StationaryDistr::usage = "";
+QBDFundamentalMatrices::usage = "M = QBDFundamentalMatrices[xxx]: Returns any combination of the R, G, and U matrices of a discrete or continuous time QBD";
+QBDSolve::usage = "{pi0, R} = QBDSolve [B, L, F, L0, prec]: Returns the parameters of the matrix-geometrically distributed stationary distribution of a QBD";
+QBDStationaryDistr::usage = "pi = QBDStationaryDistr [pi0, R, K]: Returns the stationary distribution of a QBD up to a given level";
+FluidFundamentalMatrices::usage = "M = FluidFundamentalMatrices[xxx]: Returns any combination of the Psi, K, and U matrices of a canonical Markovian fluid model";
+FluidSolve::usage = "{mass0, ini, K, clo} = FluidSolve [Fpp, Fpm, Fmp, Fmm, prec]: Returns the parameters of the matrix-exponentially distributed stationary distribution of a canonical Markovian fluid model";
+FluidStationaryDistr::usage = "pi = FluidStationaryDistr [mass0, ini, K, clo, x]: Returns the cummulative distribution of the stationary fluid level of a Markovian fluid model";
+GeneralFluidSolve::usage = "{mass0, ini, K, clo} = GeneralFluidSolve [Q, R, Q0, prec]: Returns the parameters of the matrix-exponentially distributed stationary distribution of a general Markovian fluid model";
+MG1FundamentalMatrix::usage = "G = MG1FundamentalMatrix[A, precision, maxNumIt, method]: Returns matrix G, the fundamental matrix of an M/G/1 type Markov chain";
+MG1StationaryDistr::usage = "pi = MG1StationaryDistr [A, B, G, K]: Returns the stationary distribution of an M/G/1 type Markov chain up to a given level";
+GM1FundamentalMatrix::usage = "R = GM1FundamentalMatrix[A, precision, maxNumIt, method]: Returns matrix R, the fundamental matrix of a G/M/1 type Markov chain";
+GM1StationaryDistr::usage = "pi = GM1StationaryDistr [B, R, K]: Returns the stationary distribution of a G/M/1 type Markov chain up to a given level";
 
 
 Begin["`Private`"];

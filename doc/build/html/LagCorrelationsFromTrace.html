@@ -426,31 +426,34 @@ lag K</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">18</span> <span class="mi">1</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">18</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">3</span> <span class="o">-</span><span class="mi">32</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">8</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">25</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1000000</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">     0.040416</span>
-<span class="go">     0.023269</span>
-<span class="go">     0.011575</span>
-<span class="go">    0.0062521</span>
-<span class="go">    0.0031942</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">     0.041288</span>
-<span class="go">     0.021962</span>
-<span class="go">     0.012085</span>
-<span class="go">    0.0068325</span>
-<span class="go">    0.0039434</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">acf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">acf</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">     0.043246     0.020421     0.012588    0.0071917    0.0033881    0.0013752</span>
+<span class="go">  Columns 7 through 10</span>
+<span class="go">    0.0015924  -0.00037795    0.0011809   -0.0002111</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">macf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">macf</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">     0.041288     0.021962     0.012085    0.0068325    0.0039434    0.0023103</span>
+<span class="go">  Columns 7 through 10</span>
+<span class="go">    0.0013679   0.00081587   0.00048904   0.00029412</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">18</span><span class="p">,</span> <span class="mi">7</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">32</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1000000</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="go">[0.041536192984685381, 0.023657988505708234, 0.012014712684831945, 0.007522779025904155, 0.0068498273549330788]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="go">[0.041288385511122606, 0.021962312595972942, 0.012084710346466083, 0.0068324950324934984, 0.0039433512061337658]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">acf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">acf</span><span class="p">)</span>
+<span class="go">[0.043090455671182491, 0.023571565460491006, 0.014064127972931892, 0.0085436481559293485, 0.0051488473491149676, 0.0033839569528235254, -0.00053777751233521638, 0.00055429070630664428, 0.00056428151275644746, -0.0018268950662940562]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">macf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">macf</span><span class="p">)</span>
+<span class="go">[ 0.04129  0.02196  0.01208  0.00683  0.00394  0.00231  0.00137  0.00082  0.00049  0.00029]</span>
 </pre></div>
 </div>
 </dd></dl>

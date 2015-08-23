@@ -452,33 +452,24 @@ distribution.</p>
 parameter.</p>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">RandomPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-<span class="go">     1     0     0</span>
+<span class="go">      0.50814            0      0.49186</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
-<span class="go">     -0.28487      0.11715    0.0062532</span>
-<span class="go">     0.031733     -0.16649     0.017921</span>
-<span class="go">     0.076758            0    -0.076758</span>
+<span class="go">     -0.38196      0.17775      0.17535</span>
+<span class="go">            0     -0.24494       0.1677</span>
+<span class="go">            0            0      -0.1555</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">RandomPH</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
-<span class="go">{0, 0, 1}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
-<span class="go">{{-0.6999227429898282, 0.3967535668149389, 0.028566129628349583},</span>
-<span class="go"> {0.446826923286755, -0.9416070080107307, 0.38815288975615425},</span>
-<span class="go"> {0.45083462621244397, 0., -0.45083462621244397}}</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">RandomPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">RandomPH</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="go">[[ 0.       0.47702  0.52298]]</span>
+<span class="go">[[ 0.50551  0.       0.49449]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">[[-4.64155  1.23652  2.35056]</span>
-<span class="go"> [ 2.35868 -3.01819  0.6595 ]</span>
-<span class="go"> [ 0.47849  0.      -0.47849]]</span>
+<span class="go">[[-2.40914  0.91736  0.74455]</span>
+<span class="go"> [ 1.33012 -2.52955  1.19943]</span>
+<span class="go"> [ 0.       0.85372 -0.85372]]</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -498,37 +498,198 @@ Heidelberg, 2013. 119-133.</td></tr>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;trace.txt&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10000</span><span class="p">),</span><span class="mi">5</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;/home/gabor/github/butools/test/data/bctrace.iat&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">tr</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10000</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="go">Trying orders 1,4...</span>
+<span class="go">Num of iterations: 8, logli: 4.99752</span>
+<span class="go">Num of iterations: 15, logli: 4.99807</span>
+<span class="go">Num of iterations: 22, logli: 4.9981</span>
+<span class="go">Num of iterations: 26, logli: 4.99811</span>
+<span class="go">EM algorithm terminated. (orders=1,4)</span>
+<span class="go">Trying orders 2,3...</span>
+<span class="go">Num of iterations: 8, logli: 4.93956</span>
+<span class="go">Num of iterations: 14, logli: 4.95626</span>
+<span class="go">Num of iterations: 21, logli: 4.95641</span>
+<span class="go">Num of iterations: 21, logli: 4.95641</span>
+<span class="go">EM algorithm terminated. (orders=2,3)</span>
+<span class="go">Trying orders 1,1,3...</span>
+<span class="go">Num of iterations: 8, logli: 5.04759</span>
+<span class="go">Num of iterations: 14, logli: 5.09151</span>
+<span class="go">Num of iterations: 21, logli: 5.09701</span>
+<span class="go">Num of iterations: 27, logli: 5.09814</span>
+<span class="go">Num of iterations: 34, logli: 5.09943</span>
+<span class="go">Num of iterations: 41, logli: 5.10101</span>
+<span class="go">Num of iterations: 48, logli: 5.10369</span>
+<span class="go">Num of iterations: 55, logli: 5.11054</span>
+<span class="go">Num of iterations: 62, logli: 5.12063</span>
+<span class="go">Num of iterations: 69, logli: 5.12327</span>
+<span class="go">Num of iterations: 76, logli: 5.12353</span>
+<span class="go">Num of iterations: 83, logli: 5.12366</span>
+<span class="go">Num of iterations: 90, logli: 5.12379</span>
+<span class="go">Num of iterations: 97, logli: 5.1239</span>
+<span class="go">Num of iterations: 104, logli: 5.12394</span>
+<span class="go">Num of iterations: 111, logli: 5.12396</span>
+<span class="go">Num of iterations: 115, logli: 5.12396</span>
+<span class="go">EM algorithm terminated. (orders=1,1,3)</span>
+<span class="go">Trying orders 1,2,2...</span>
+<span class="go">Num of iterations: 7, logli: 5.01977</span>
+<span class="go">Num of iterations: 13, logli: 5.04362</span>
+<span class="go">Num of iterations: 19, logli: 5.07693</span>
+<span class="go">Num of iterations: 26, logli: 5.11112</span>
+<span class="go">Num of iterations: 32, logli: 5.11443</span>
+<span class="go">Num of iterations: 39, logli: 5.11519</span>
+<span class="go">Num of iterations: 46, logli: 5.11543</span>
+<span class="go">Num of iterations: 53, logli: 5.11548</span>
+<span class="go">Num of iterations: 59, logli: 5.11549</span>
+<span class="go">Num of iterations: 60, logli: 5.11549</span>
+<span class="go">EM algorithm terminated. (orders=1,2,2)</span>
+<span class="go">Trying orders 1,1,1,2...</span>
+<span class="go">Num of iterations: 7, logli: 5.04003</span>
+<span class="go">Num of iterations: 13, logli: 5.07886</span>
+<span class="go">Num of iterations: 19, logli: 5.08357</span>
+<span class="go">Num of iterations: 25, logli: 5.08526</span>
+<span class="go">Num of iterations: 31, logli: 5.08631</span>
+<span class="go">Num of iterations: 37, logli: 5.08695</span>
+<span class="go">Num of iterations: 43, logli: 5.08738</span>
+<span class="go">Num of iterations: 49, logli: 5.08772</span>
+<span class="go">Num of iterations: 55, logli: 5.08807</span>
+<span class="go">Num of iterations: 61, logli: 5.08853</span>
+<span class="go">Num of iterations: 67, logli: 5.08926</span>
+<span class="go">Num of iterations: 73, logli: 5.09065</span>
+<span class="go">Num of iterations: 79, logli: 5.09386</span>
+<span class="go">Num of iterations: 85, logli: 5.10165</span>
+<span class="go">Num of iterations: 91, logli: 5.11062</span>
+<span class="go">Num of iterations: 97, logli: 5.11257</span>
+<span class="go">Num of iterations: 103, logli: 5.11268</span>
+<span class="go">Num of iterations: 107, logli: 5.11268</span>
+<span class="go">EM algorithm terminated. (orders=1,1,1,2)</span>
+<span class="go">Trying orders 1,1,1,1,1...</span>
+<span class="go">Num of iterations: 7, logli: 5.016</span>
+<span class="go">Num of iterations: 13, logli: 5.04173</span>
+<span class="go">Num of iterations: 19, logli: 5.04393</span>
+<span class="go">Num of iterations: 23, logli: 5.04394</span>
+<span class="go">EM algorithm terminated. (orders=1,1,1,1,1)</span>
+<span class="go">Best solution: logli=5.12396, orders=1,1,3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D0</span><span class="p">);</span>
 <span class="go">      -83.429            0            0            0            0</span>
 <span class="go">            0      -718.68            0            0            0</span>
 <span class="go">            0            0      -1026.2       1026.2            0</span>
 <span class="go">            0            0            0      -1026.2       1026.2</span>
 <span class="go">            0            0            0            0      -1026.2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D1</span><span class="p">);</span>
 <span class="go">       54.149       4.9019       24.379            0            0</span>
 <span class="go">       3.3915       665.85       49.439            0            0</span>
 <span class="go">            0            0            0            0            0</span>
 <span class="go">            0            0            0            0            0</span>
 <span class="go">       42.647       96.944       886.57            0            0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logli</span> <span class="o">=</span> <span class="n">LikelihoodFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">logli</span><span class="p">);</span>
+<span class="go">        5.124</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">trAcf</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">      0.18412      0.18159      0.17544      0.19965     0.083228      0.08634</span>
+<span class="go">  Columns 7 through 10</span>
+<span class="go">        0.095     0.062854      0.06232     0.065922</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">      0.24889      0.17665      0.12882     0.096383     0.073802      0.05765</span>
+<span class="go">  Columns 7 through 10</span>
+<span class="go">     0.045782      0.03684     0.029952     0.024544</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqAcf</span> <span class="o">=</span> <span class="n">SquaredDifference</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">sqAcf</span><span class="p">);</span>
+<span class="go">     0.023828</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reAcf</span> <span class="o">=</span> <span class="n">RelativeEntropy</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">reAcf</span><span class="p">);</span>
+<span class="go">      0.32132</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&#39;trace.txt&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10000</span><span class="p">],</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&quot;/home/gabor/github/butools/test/data/bctrace.iat&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10000</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">Trying orders  [1, 4]</span>
+<span class="go">iteration:  10 , logli:  4.99786255106</span>
+<span class="go">iteration:  20 , logli:  4.99810160119</span>
+<span class="go">Num of iterations:  26 , logli:  4.99810745011</span>
+<span class="go">EM algorithm terminated. [1, 4]</span>
+<span class="go">Trying orders  [2, 3]</span>
+<span class="go">iteration:  10 , logli:  4.95191957405</span>
+<span class="go">iteration:  20 , logli:  4.95640838807</span>
+<span class="go">Num of iterations:  21 , logli:  4.95640884081</span>
+<span class="go">EM algorithm terminated. [2, 3]</span>
+<span class="go">Trying orders  [1, 1, 3]</span>
+<span class="go">iteration:  10 , logli:  5.06511510986</span>
+<span class="go">iteration:  20 , logli:  5.09678944434</span>
+<span class="go">iteration:  30 , logli:  5.0986736619</span>
+<span class="go">iteration:  40 , logli:  5.1007468728</span>
+<span class="go">iteration:  50 , logli:  5.10501858379</span>
+<span class="go">iteration:  60 , logli:  5.11829491111</span>
+<span class="go">iteration:  70 , logli:  5.12333850702</span>
+<span class="go">iteration:  80 , logli:  5.12360318453</span>
+<span class="go">iteration:  90 , logli:  5.12379237877</span>
+<span class="go">iteration:  100 , logli:  5.12392240593</span>
+<span class="go">iteration:  110 , logli:  5.123954181</span>
+<span class="go">Num of iterations:  115 , logli:  5.12395778503</span>
+<span class="go">EM algorithm terminated. [1, 1, 3]</span>
+<span class="go">Trying orders  [1, 2, 2]</span>
+<span class="go">iteration:  10 , logli:  5.0297658746</span>
+<span class="go">iteration:  20 , logli:  5.0838748508</span>
+<span class="go">iteration:  30 , logli:  5.11393811996</span>
+<span class="go">iteration:  40 , logli:  5.11524759694</span>
+<span class="go">iteration:  50 , logli:  5.11547207462</span>
+<span class="go">iteration:  60 , logli:  5.11549258289</span>
+<span class="go">Num of iterations:  60 , logli:  5.11549258289</span>
+<span class="go">EM algorithm terminated. [1, 2, 2]</span>
+<span class="go">Trying orders  [1, 1, 1, 2]</span>
+<span class="go">iteration:  10 , logli:  5.06417186232</span>
+<span class="go">iteration:  20 , logli:  5.08390784667</span>
+<span class="go">iteration:  30 , logli:  5.08617133009</span>
+<span class="go">iteration:  40 , logli:  5.08718039702</span>
+<span class="go">iteration:  50 , logli:  5.08777167875</span>
+<span class="go">iteration:  60 , logli:  5.08843863999</span>
+<span class="go">iteration:  70 , logli:  5.0898301248</span>
+<span class="go">iteration:  80 , logli:  5.09475385589</span>
+<span class="go">iteration:  90 , logli:  5.10964563819</span>
+<span class="go">iteration:  100 , logli:  5.11265838512</span>
+<span class="go">Num of iterations:  107 , logli:  5.1126810697</span>
+<span class="go">EM algorithm terminated. [1, 1, 1, 2]</span>
+<span class="go">Trying orders  [1, 1, 1, 1, 1]</span>
+<span class="go">iteration:  10 , logli:  5.03154595258</span>
+<span class="go">iteration:  20 , logli:  5.04393763194</span>
+<span class="go">Num of iterations:  23 , logli:  5.04394031758</span>
+<span class="go">EM algorithm terminated. [1, 1, 1, 1, 1]</span>
+<span class="go">Best solution: logli = 5.12395778503 orders = [1, 1, 3]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
-<span class="go">[[  -83.42943389     0.             0.             0.             0.        ]</span>
-<span class="go"> [    0.          -718.67798921     0.             0.             0.        ]</span>
-<span class="go"> [    0.             0.         -1026.16062945  1026.16062945     0.        ]</span>
-<span class="go"> [    0.             0.             0.         -1026.16062945  1026.16062945]</span>
-<span class="go"> [    0.             0.             0.             0.         -1026.16062945]]</span>
+<span class="go">[[  -83.42943     0.          0.          0.          0.     ]</span>
+<span class="go"> [    0.       -718.67799     0.          0.          0.     ]</span>
+<span class="go"> [    0.          0.      -1026.16063  1026.16063     0.     ]</span>
+<span class="go"> [    0.          0.          0.      -1026.16063  1026.16063]</span>
+<span class="go"> [    0.          0.          0.          0.      -1026.16063]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
-<span class="go">[[  54.14857309    4.90186422   24.37899658    0.            0.        ]</span>
-<span class="go"> [   3.39151863  665.84734646   49.43912412    0.            0.        ]</span>
-<span class="go"> [   0.            0.            0.            0.            0.        ]</span>
-<span class="go"> [   0.            0.            0.            0.            0.        ]</span>
-<span class="go"> [  42.64730202   96.94396094  886.5693665     0.            0.        ]]</span>
+<span class="go">[[  54.14857    4.90186   24.379      0.         0.     ]</span>
+<span class="go"> [   3.39152  665.84735   49.43912    0.         0.     ]</span>
+<span class="go"> [   0.         0.         0.         0.         0.     ]</span>
+<span class="go"> [   0.         0.         0.         0.         0.     ]</span>
+<span class="go"> [  42.6473    96.94396  886.56937    0.         0.     ]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logli</span> <span class="o">=</span> <span class="n">LikelihoodFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">logli</span><span class="p">)</span>
+<span class="go">5.123958173279035</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">trAcf</span><span class="p">)</span>
+<span class="go">[0.18413533155701942, 0.18160338347883728, 0.17545482361568204, 0.19966682687727969, 0.083236073275010994, 0.086348372442235991, 0.095009981958434644, 0.062859937512461148, 0.062326277833923117, 0.065928707515509583]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">)</span>
+<span class="go">[ 0.24889  0.17665  0.12882  0.09638  0.0738   0.05765  0.04578  0.03684  0.02995  0.02454]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqAcf</span> <span class="o">=</span> <span class="n">SquaredDifference</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">sqAcf</span><span class="p">)</span>
+<span class="go">0.0238340444119</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reAcf</span> <span class="o">=</span> <span class="n">RelativeEntropy</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">reAcf</span><span class="p">)</span>
+<span class="go">0.321362238531</span>
 </pre></div>
 </div>
 </dd></dl>

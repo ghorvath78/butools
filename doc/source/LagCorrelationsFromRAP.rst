@@ -41,25 +41,18 @@ butools.map.LagCorrelationsFromRAP
 
     >>> H0 = [-2., 0, 0; 0, -3., 1.; 0, -1., -2.];
     >>> H1 = [1.8, 0.2, 0; 0.2, 1.8, 0; 0.2, 1.8, 1.];
-    >>> corr = LagCorrelationsFromRAP(H0,H1,3);
+    >>> corr = LagCorrelationsFromRAP(H0, H1, 3);
     >>> disp(corr);
-       -0.0038462
-        0.0045604
-        0.0058956
+       -0.0038462    0.0045604    0.0058956
 
     For Mathematica:
 
-    >>> H0 = {{-2., 0, 0},{0, -3., 1.},{0, -1., -2.}};
-    >>> H1 = {{1.8, 0.2, 0},{0.2, 1.8, 0},{0.2, 1.8, 1.}};
-    >>> corr = LagCorrelationsFromRAP[H0,H1,3];
-    >>> Print[corr];
-    {-0.0038461538461536634, 0.0045604395604397245, 0.005895604395604545}
-
+    
     For Python/Numpy:
 
     >>> H0 = ml.matrix([[-2., 0, 0],[0, -3., 1.],[0, -1., -2.]])
     >>> H1 = ml.matrix([[1.8, 0.2, 0],[0.2, 1.8, 0],[0.2, 1.8, 1.]])
-    >>> corr = LagCorrelationsFromRAP(H0,H1,3)
+    >>> corr = LagCorrelationsFromRAP(H0, H1, 3)
     >>> print(corr)
-    [-0.0038461538461539674, 0.0045604395604395744, 0.005895604395604547]
+    [-0.00385  0.00456  0.0059 ]
 

@@ -47,61 +47,44 @@ butools.ph.CheckMERepresentation
     ========
     For Matlab:
 
-    >>> a = [-0.2, 0.2];
+    >>> a = [-0.2,0.2];
     >>> A = [1, -1; 1, -2];
-    >>> flag = CheckMERepresentation(a,A);
+    >>> flag = CheckMERepresentation(a, A);
     CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part (at precision 1e-12)!
     >>> disp(flag);
          0
-    >>> a = [-0.2, 0.4, 0.8];
+    >>> a = [-0.2,0.4,0.8];
     >>> A = [-2, 0, 3; 0, -1, 1; 0, -1, -1];
-    >>> flag = CheckMERepresentation(a,A);
+    >>> flag = CheckMERepresentation(a, A);
     CheckMERepresentation: The dominant eigenvalue of the matrix is not real!
     >>> disp(flag);
          0
-    >>> a = [0.2, 0.3, 0.5];
+    >>> a = [0.2,0.3,0.5];
     >>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
-    >>> flag = CheckMERepresentation(a,A);
+    >>> flag = CheckMERepresentation(a, A);
     >>> disp(flag);
          1
 
     For Mathematica:
 
-    >>> a = {-0.2, 0.2};
-    >>> A = {{1, -1},{1, -2}};
-    >>> flag = CheckMERepresentation[a,A];
-    "CheckMERepresentation: There is an eigenvalue of the matrix with not negative real part at precision "1.*^-12")!"
-    >>> Print[flag];
-    False
-    >>> a = {-0.2, 0.4, 0.8};
-    >>> A = {{-2, 0, 3},{0, -1, 1},{0, -1, -1}};
-    >>> flag = CheckMERepresentation[a,A];
-    "CheckMERepresentation: The dominant eigenvalue of the matrix is not real at precision "1.*^-12")!"
-    >>> Print[flag];
-    False
-    >>> a = {0.2, 0.3, 0.5};
-    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
-    >>> flag = CheckMERepresentation[a,A];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
-    >>> a = ml.matrix([[-0.2, 0.2]])
+    >>> a = ml.matrix([[-0.2,0.2]])
     >>> A = ml.matrix([[1, -1],[1, -2]])
-    >>> flag = CheckMERepresentation(a,A)
+    >>> flag = CheckMERepresentation(a, A)
     CheckMERepresentation: There is an eigenvalue of the matrix with non-negative real part!
     >>> print(flag)
     False
-    >>> a = ml.matrix([[-0.2, 0.4, 0.8]])
+    >>> a = ml.matrix([[-0.2,0.4,0.8]])
     >>> A = ml.matrix([[-2, 0, 3],[0, -1, 1],[0, -1, -1]])
-    >>> flag = CheckMERepresentation(a,A)
+    >>> flag = CheckMERepresentation(a, A)
     CheckMERepresentation: The dominant eigenvalue of the matrix is not real!
     >>> print(flag)
     False
-    >>> a = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> a = ml.matrix([[0.2,0.3,0.5]])
     >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
-    >>> flag = CheckMERepresentation(a,A)
+    >>> flag = CheckMERepresentation(a, A)
     >>> print(flag)
     True
 

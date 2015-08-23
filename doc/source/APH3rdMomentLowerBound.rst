@@ -46,61 +46,43 @@ butools.ph.APH3rdMomentLowerBound
     >>> mean = 1.9;
     >>> mom2 = 5;
     >>> n = 3;
-    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+    >>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n);
     >>> disp(mom3lower);
            16.577
-    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+    >>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n);
     >>> disp(mom3upper);
            17.081
     >>> mean = 1.9;
     >>> mom2 = 5;
     >>> n = 4;
-    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n);
+    >>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n);
     >>> disp(mom3lower);
            16.079
-    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n);
+    >>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n);
     >>> disp(mom3upper);
        Inf
 
     For Mathematica:
 
-    >>> mean = 1.9;
-    >>> mom2 = 5;
-    >>> n = 3;
-    >>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
-    >>> Print[mom3lower];
-    16.577458090899114
-    >>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
-    >>> Print[mom3upper];
-    17.081405365964272
-    >>> mean = 1.9;
-    >>> mom2 = 5;
-    >>> n = 4;
-    >>> mom3lower = APH3rdMomentLowerBound[mean,mom2,n];
-    >>> Print[mom3lower];
-    16.079377140256383
-    >>> mom3upper = APH3rdMomentUpperBound[mean,mom2,n];
-    >>> Print[mom3upper];
-    Infinity
-
+    
     For Python/Numpy:
 
     >>> mean = 1.9
     >>> mom2 = 5
     >>> n = 3
-    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+    >>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n)
     >>> print(mom3lower)
     16.577458090899107
-    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+    >>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n)
     >>> print(mom3upper)
     17.081405365964276
     >>> mean = 1.9
     >>> mom2 = 5
     >>> n = 4
-    >>> mom3lower = APH3rdMomentLowerBound(mean,mom2,n)
+    >>> mom3lower = APH3rdMomentLowerBound(mean, mom2, n)
     >>> print(mom3lower)
     16.079377140256387
-    >>> mom3upper = APH3rdMomentUpperBound(mean,mom2,n)
+    >>> mom3upper = APH3rdMomentUpperBound(mean, mom2, n)
     >>> print(mom3upper)
     inf
 

@@ -38,25 +38,20 @@ butools.ph.CdfFromME
     ========
     For Matlab:
 
-    >>> a = [0.2, 0.3, 0.5];
+    >>> a = [0.2,0.3,0.5];
     >>> A = [-1, 0, 0; 0, -3, 2; 0, -2, -3];
-    >>> x = (0:0.01:5);
-    >>> cdf = CdfFromME(a,A,x);
-    >>> plot(x,cdf);
+    >>> x = (0.0:0.01:5.0);
+    >>> cdf = CdfFromME(a, A, x);
+    >>> plot(x, cdf)
 
     For Mathematica:
 
-    >>> a = {0.2, 0.3, 0.5};
-    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
-    >>> x = Range[0,5,0.01];
-    >>> cdf = CdfFromME[a,A,x];
-    >>> ListLinePlot[Transpose[{x, cdf}]]
-
+    
     For Python/Numpy:
 
-    >>> a = ml.matrix([[0.2, 0.3, 0.5]])
+    >>> a = ml.matrix([[0.2,0.3,0.5]])
     >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])
-    >>> x = np.arange(0,5.01,0.01)
-    >>> cdf = CdfFromME(a,A,x)
-    >>> plt.plot(x,cdf)
+    >>> x = np.arange(0.0,5.01,0.01)
+    >>> cdf = CdfFromME(a, A, x)
+    >>> plt.plot(x, cdf)
 

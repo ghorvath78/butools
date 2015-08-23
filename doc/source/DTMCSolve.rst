@@ -42,24 +42,18 @@ butools.mc.DTMCSolve
     >>> ret = DTMCSolve(Q);
     >>> disp(ret);
           0.40909      0.31818      0.27273
-    >>> disp(ret*Q - ret);
+    >>> disp(ret*Q-ret);
       -5.5511e-17   5.5511e-17   5.5511e-17
 
     For Mathematica:
 
-    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
-    >>> ret = DTMCSolve[Q];
-    >>> Print[ret];
-    {0.4090909090909091, 0.3181818181818182, 0.2727272727272727}
-    >>> Print[ret.Q - ret];
-    {-5.551115123125783*^-17, 0., 5.551115123125783*^-17}
-
+    
     For Python/Numpy:
 
     >>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.3, 0.4]])
     >>> ret = DTMCSolve(Q)
     >>> print(ret)
     [[ 0.40909  0.31818  0.27273]]
-    >>> print(ret*Q - ret)
+    >>> print(ret*Q-ret)
     [[ -5.55112e-17   0.00000e+00   5.55112e-17]]
 

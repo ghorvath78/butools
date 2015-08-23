@@ -458,79 +458,62 @@ of phase-type distributions,&#8221; Stoch. Models 15,
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">TransformToMonocyclic</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
 <span class="go">           -1            1            0            0</span>
 <span class="go">            0      -2.6536       2.6536            0</span>
 <span class="go">            0            0      -2.6536       2.6536</span>
 <span class="go">            0     0.047227            0      -2.6536</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">Cm</span><span class="p">;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">beta</span><span class="p">);</span>
 <span class="go">     0.045649  -0.00043836    -0.088811       1.0436</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">M</span><span class="p">]</span> <span class="o">=</span> <span class="n">ExtendToMarkovian</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">]</span> <span class="o">=</span> <span class="n">ExtendToMarkovian</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
-<span class="go">     0.015399     0.010192     0.017621     0.018114    0.0087991      0.10333      0.82655</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">     0.015399     0.010192     0.017621     0.018114    0.0087991      0.10333</span>
+<span class="go">  Column 7</span>
+<span class="go">      0.82655</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">M</span><span class="p">);</span>
-<span class="go">           -1            1            0            0            0            0            0</span>
-<span class="go">            0      -2.6536       2.6536            0            0            0            0</span>
-<span class="go">            0            0      -2.6536       2.6536            0            0            0</span>
-<span class="go">            0     0.047227            0      -2.6536       2.6064            0            0</span>
-<span class="go">            0            0            0            0      -3.2908       3.2908            0</span>
-<span class="go">            0            0            0            0            0      -3.2908       3.2908</span>
-<span class="go">            0            0            0            0            0            0      -3.2908</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">M</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">           -1            1            0            0            0            0</span>
+<span class="go">            0      -2.6536       2.6536            0            0            0</span>
+<span class="go">            0            0      -2.6536       2.6536            0            0</span>
+<span class="go">            0     0.047227            0      -2.6536       2.6064            0</span>
+<span class="go">            0            0            0            0      -3.2908       3.2908</span>
+<span class="go">            0            0            0            0            0      -3.2908</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">  Column 7</span>
+<span class="go">            0</span>
+<span class="go">            0</span>
+<span class="go">            0</span>
+<span class="go">            0</span>
+<span class="go">            0</span>
+<span class="go">       3.2908</span>
+<span class="go">      -3.2908</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">M</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
 <span class="go">   5.7254e-15</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">}};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">TransformToMonocyclic</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
-<span class="go">{{-1., 1., 0, 0},</span>
-<span class="go"> {0, -2.6535898384862247, 2.6535898384862247, 0},</span>
-<span class="go"> {0, 0, -2.6535898384862247, 2.6535898384862247},</span>
-<span class="go"> {0, 0.047227424799192015, 0, -2.6535898384862247}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">.</span><span class="n">Cm</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">beta</span><span class="p">];</span>
-<span class="go">{0.0456492140620947, -0.0004383562608946817, -0.08881092881059305, 1.0436000710093931}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">m</span><span class="p">,</span><span class="n">M</span><span class="p">}</span> <span class="o">=</span> <span class="n">ExtendToMarkovian</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span><span class="n">B</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
-<span class="go">{0.015398906730148602, 0.010192332530307258, 0.017620759235113224, 0.018114065982724338, 0.008799081502100216, 0.10332742932145772, 0.8265474246981488}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
-<span class="go">{{-1., 1., 0., 0., 0., 0., 0.},</span>
-<span class="go"> {0., -2.6535898384862247, 2.6535898384862247, 0., 0., 0., 0.},</span>
-<span class="go"> {0., 0., -2.6535898384862247, 2.6535898384862247, 0., 0., 0.},</span>
-<span class="go"> {0., 0.047227424799192015, 0., -2.6535898384862247, 2.6063624136870325, 0., 0.},</span>
-<span class="go"> {0., 0., 0., 0., -3.290797259447432, 3.290797259447432, 0.},</span>
-<span class="go"> {0., 0., 0., 0., 0., -3.290797259447432, 3.290797259447432},</span>
-<span class="go"> {0., 0., 0., 0., 0., 0., -3.290797259447432}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">[</span><span class="n">B</span><span class="p">,</span><span class="n">M</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">Norm</span><span class="p">[</span><span class="n">B</span><span class="o">.</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">.</span><span class="n">M</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">err</span><span class="p">];</span>
-<span class="go">2.7864548696465478*^-15</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">TransformToMonocyclic</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 <span class="go">[[-1.       1.       0.       0.     ]</span>
 <span class="go"> [ 0.      -2.65359  2.65359  0.     ]</span>
 <span class="go"> [ 0.       0.      -2.65359  2.65359]</span>
 <span class="go"> [ 0.       0.04723  0.      -2.65359]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">beta</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">Cm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
 <span class="go">[[  4.56492e-02  -4.38356e-04  -8.88109e-02   1.04360e+00]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="n">ExtendToMarkovian</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">ExtendToMarkovian</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="go">[[ 0.0154   0.01019  0.01762  0.01811  0.0088   0.10333  0.82655]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
@@ -541,7 +524,7 @@ of phase-type distributions,&#8221; Stoch. Models 15,
 <span class="go"> [ 0.       0.       0.       0.      -3.2908   3.2908   0.     ]</span>
 <span class="go"> [ 0.       0.       0.       0.       0.      -3.2908   3.2908 ]</span>
 <span class="go"> [ 0.       0.       0.       0.       0.       0.      -3.2908 ]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Cm</span> <span class="o">=</span> <span class="n">SimilarityMatrix</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">err</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">Cm</span><span class="o">-</span><span class="n">Cm</span><span class="o">*</span><span class="n">M</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 <span class="go">4.28823049948e-15</span>

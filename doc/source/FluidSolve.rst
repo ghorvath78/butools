@@ -64,50 +64,53 @@ butools.mam.FluidSolve
         The closing matrix of the stationary density
     
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> Fpp=[-5 1; 2 -3];
-    >>> Fpm=[2 1 1; 1 0 0];
-    >>> Fmm=[-8 4 1; 2 -12 3; 2 0 -2];
-    >>> Fmp=[3 0; 2 5; 0 0];
-    >>> [mass0,ini,K,clo]=FluidSolve(Fpp,Fpm,Fmp,Fmm);
-    >>> mass0
+
+    >>> Fpp = [-5., 1.; 2., -3.];
+    >>> Fpm = [2., 1., 1.; 1., 0., 0.];
+    >>> Fmm = [-8., 4., 1.; 2., -12., 3.; 2., 0., -2.];
+    >>> Fmp = [3., 0.; 2., 5.; 0., 0.];
+    >>> x = 0.7;
+    >>> [mass0, ini, K, clo] = FluidSolve(Fpp, Fpm, Fmp, Fmm);
+    Final Residual Error for Psi:    1.1657e-15
+    >>> disp(mass0);
          0.037514     0.015303     0.097921
-    >>> ini
+    >>> disp(ini);
           0.14315     0.076517
-    >>> K
+    >>> disp(K);
            -3.658       1.8258
            3.2553      -2.3502
-    >>> clo
+    >>> disp(clo);
                 1            0      0.33722      0.16517      0.49761
                 0            1       0.3318      0.12995      0.53825
-    >>> emptyprob = sum(mass0)
-          0.15074    
-    >>> densityat1 = ini*expm(K*1)*clo
-         0.063509      0.06175     0.041905     0.018514      0.06484
+    >>> pdfAtX = ini*expm(K*x)*clo;
+    >>> disp(pdfAtX);
+         0.074009     0.070933     0.048493     0.021442     0.075007
 
+    For Mathematica:
+
+    
     For Python/Numpy:
 
-    >>> Fpp=ml.matrix([[-5, 1],[2, -3]])
-    >>> Fpm=ml.matrix([[2, 1, 1],[1, 0, 0]])
-    >>> Fmm=ml.matrix([[-8, 4, 1],[2, -12, 3],[2, 0, -2]])
-    >>> Fmp=ml.matrix([[3, 0],[2, 5],[0, 0]])
-    >>> mass0,ini,K,clo = FluidSolve(Fpp,Fpm,Fmp,Fmm)
+    >>> Fpp = ml.matrix([[-5., 1.],[2., -3.]])
+    >>> Fpm = ml.matrix([[2., 1., 1.],[1., 0., 0.]])
+    >>> Fmm = ml.matrix([[-8., 4., 1.],[2., -12., 3.],[2., 0., -2.]])
+    >>> Fmp = ml.matrix([[3., 0.],[2., 5.],[0., 0.]])
+    >>> x = 0.7
+    >>> mass0, ini, K, clo = FluidSolve(Fpp, Fpm, Fmp, Fmm)
+    Final Residual Error for G:  1.7208456881689926e-15
     >>> print(mass0)
-    [[ 0.03751363  0.01530344  0.09792059]]
+    [[ 0.03751  0.0153   0.09792]]
     >>> print(ini)
-    [[ 0.14314775  0.07651718]]
+    [[ 0.14315  0.07652]]
     >>> print(K)
-    [[-3.6579964   1.82582941]
-     [ 3.25529376 -2.35023773]]
+    [[-3.658    1.82583]
+     [ 3.25529 -2.35024]]
     >>> print(clo)
-    [[ 1.          0.          0.33722394  0.16516588  0.49761017]
-     [ 0.          1.          0.33179629  0.12995245  0.53825126]]
-    >>> emptyprob = np.sum(mass0)
-    >>> print(emptyprob)
-    0.150737652341
-    >>> densityat1 = ini*la.expm(K*1)*clo
-    >>> print(densityat1)
-    [[ 0.06350914  0.0617499   0.04190519  0.01851409  0.06483976]]
+    [[ 1.       0.       0.33722  0.16517  0.49761]
+     [ 0.       1.       0.3318   0.12995  0.53825]]
+    >>> pdfAtX = ini*la.expm(K*x)*clo
+    >>> print(pdfAtX)
+    [[ 0.07401  0.07093  0.04849  0.02144  0.07501]]
 

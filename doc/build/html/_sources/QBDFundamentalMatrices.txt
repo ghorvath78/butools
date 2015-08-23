@@ -69,36 +69,44 @@ butools.mam.QBDFundamentalMatrices
            Markov chains (p. 14). ACM.
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> B = [0,0;3,4];
-    >>> L = [-6,5;3,-12];
-    >>> F = [1,0;2,0];
-    >>> [R, G, U] = QBDFundamentalMatrices (B,L,F,'RGU');
-    >>> R
+
+    >>> B = [0., 0.; 3., 4.];
+    >>> L = [-6., 5.; 3., -12.];
+    >>> F = [1., 0.; 2., 0.];
+    >>> L0 = [-6., 5.; 6., -8.];
+    >>> [R, G, U] = QBDFundamentalMatrices(B, L, F, 'RGU');
+    >>> disp(R);
           0.27839      0.14286
           0.55678      0.28571
-    >>> G
+    >>> disp(G);
           0.42857      0.57143
           0.42857      0.57143
-    >>> U
+    >>> disp(U);
           -5.5714       5.5714
            3.8571      -10.857
 
-    For Python/Numpy:
+    For Mathematica:
+
     
-    >>> B = ml.matrix([[0,0],[3,4]])
-    >>> L = ml.matrix([[-6,5],[3,-12]])
-    >>> F = ml.matrix([[1,0],[2,0]])
-    >>> R, G, U = QBDFundamentalMatrices (B,L,F,"RGU")
+    For Python/Numpy:
+
+    >>> B = ml.matrix([[0., 0.],[3., 4.]])
+    >>> L = ml.matrix([[-6., 5.],[3., -12.]])
+    >>> F = ml.matrix([[1., 0.],[2., 0.]])
+    >>> L0 = ml.matrix([[-6., 5.],[6., -8.]])
+    >>> R, G, U = QBDFundamentalMatrices(B, L, F, "RGU")
+    Final Residual Error for G:  1.38777878078e-16
+    Final Residual Error for R:  5.55111512313e-17
+    Final Residual Error for U:  4.16333634234e-17
     >>> print(R)
-    [[ 0.27838828  0.14285714]
-     [ 0.55677656  0.28571429]]
+    [[ 0.27839  0.14286]
+     [ 0.55678  0.28571]]
     >>> print(G)
-    [[ 0.42857143  0.57142857]
-     [ 0.42857143  0.57142857]]
+    [[ 0.42857  0.57143]
+     [ 0.42857  0.57143]]
     >>> print(U)
-    [[ -5.57142857   5.57142857]
-     [  3.85714286 -10.85714286]]
+    [[ -5.57143   5.57143]
+     [  3.85714 -10.85714]]
 

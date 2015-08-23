@@ -426,21 +426,38 @@
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;trace.txt&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">trAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10000</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span><span class="o">=</span><span class="n">MAPFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10000</span><span class="p">),</span><span class="mi">5</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1e-13</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">SquaredDifference</span> <span class="p">(</span><span class="n">mAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">)</span>
-<span class="go">     0.023828</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;/home/gabor/github/butools/test/data/bctrace.iat&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">trAcf</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">      0.20005      0.18927      0.13895      0.14213      0.11713      0.12368</span>
+<span class="go">  Columns 7 through 10</span>
+<span class="go">      0.11212      0.10051      0.10019     0.098797</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">MarginalMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">trAcf</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">      0.20005      0.12003     0.072023     0.043216     0.025931     0.015559</span>
+<span class="go">  Columns 7 through 10</span>
+<span class="go">    0.0093357    0.0056017    0.0033611    0.0020168</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqAcf</span> <span class="o">=</span> <span class="n">SquaredDifference</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">sqAcf</span><span class="p">);</span>
+<span class="go">      0.07738</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&#39;trace.txt&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">trAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10000</span><span class="p">],</span> <span class="mi">10</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10000</span><span class="p">],</span><span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1e-13</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">SquaredDifference</span> <span class="p">(</span><span class="n">mAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">))</span>
-<span class="go">0.0238340444119</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&quot;/home/gabor/github/butools/test/data/bctrace.iat&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">trAcf</span><span class="p">)</span>
+<span class="go">[0.20004885484210852, 0.18927480124417365, 0.13895117398714094, 0.14213400151438738, 0.11712720506721902, 0.12367824446146115, 0.1121211150989561, 0.10051068930807179, 0.10019070967277495, 0.098797210298893726]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">MarginalMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">trAcf</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">)</span>
+<span class="go">[ 0.20005  0.12003  0.07202  0.04322  0.02593  0.01556  0.00934  0.0056   0.00336  0.00202]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqAcf</span> <span class="o">=</span> <span class="n">SquaredDifference</span><span class="p">(</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">sqAcf</span><span class="p">)</span>
+<span class="go">0.0773799594638</span>
 </pre></div>
 </div>
 </dd></dl>

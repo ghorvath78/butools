@@ -437,14 +437,6 @@ still have to be zeros).</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">},{</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">},{</span><span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">}};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ret</span> <span class="o">=</span> <span class="n">CRPSolve</span><span class="p">[</span><span class="n">Q</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ret</span><span class="p">];</span>
-<span class="go">{-3.5617283950617336, 3.66666666666667, 0.8950617283950623}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ret</span><span class="o">.</span><span class="n">Q</span><span class="p">];</span>
-<span class="go">{1.7763568394002505*^-15, 0., 0.}</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],[</span><span class="o">-</span><span class="mf">8.4</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],[</span><span class="mf">17.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.6</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ret</span> <span class="o">=</span> <span class="n">CRPSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>

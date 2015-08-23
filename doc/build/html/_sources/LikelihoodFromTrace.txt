@@ -48,30 +48,31 @@ butools.fitting.LikelihoodFromTrace
     The procedure is much faster with PH distributions.
 
     Examples
-    --------    
+    ========
     For Matlab:
-    
-    >>> tr = dlmread('trace.txt');
-    >>> moms = MarginalMomentsFromTrace(tr,3);
-    >>> [alpha,A] = APHFrom3Moments(moms);
-    >>> LikelihoodFromTrace(tr,alpha,A)
+
+    >>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+    >>> [alpha, A] = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3));
+    >>> [D0, D1] = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), LagCorrelationsFromTrace(tr, 1));
+    >>> logliPH = LikelihoodFromTrace(tr, alpha, A);
+    >>> disp(logliPH);
            4.8496
-    >>> corr1 = LagCorrelationsFromTrace(tr,1);
-    >>> [D0,D1]=MAPFromFewMomentsAndCorrelations(moms,corr1)
-    >>> LikelihoodFromTrace(tr,D0,D1)
-           4.6523    
+    >>> logliMAP = LikelihoodFromTrace(tr, D0, D1);
+    >>> disp(logliMAP);
+           4.6523
+
+    For Mathematica:
+
     
     For Python/Numpy:
-    
-    >>> tr = np.loadtxt('trace.txt')
-    >>> moms = MarginalMomentsFromTrace(tr,3)
-    >>> alpha,A = APHFrom3Moments(moms)
-    >>> print(LikelihoodFromTrace(tr,alpha,A))
-    4.8496353019637972
-    >>> corr1 = LagCorrelationsFromTrace(tr,1)[0]
-    >>> D0,D1=MAPFromFewMomentsAndCorrelations(moms,corr1)
-    >>> LikelihoodFromTrace(tr,D0,D1)
+
+    >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+    >>> alpha, A = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3))
+    >>> D0, D1 = MAPFromFewMomentsAndCorrelations(MarginalMomentsFromTrace(tr, 3), LagCorrelationsFromTrace(tr, 1)[0])
+    >>> logliPH = LikelihoodFromTrace(tr, alpha, A)
+    >>> print(logliPH)
+    4.84963530196
+    >>> logliMAP = LikelihoodFromTrace(tr, D0, D1)
+    >>> print(logliMAP)
     4.652346100436191
 
-           
-    

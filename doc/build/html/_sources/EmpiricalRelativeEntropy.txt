@@ -41,24 +41,45 @@ butools.fitting.EmpiricalRelativeEntropy
         The relative entropy
 
     Examples
-    --------    
+    ========
     For Matlab:
-    
-    >>> tr = dlmread('trace.txt');
-    >>> intBounds = linspace(0, MarginalMomentsFromTrace(tr,1)*4, 50);
-    >>> [pdfTrX, pdfTrY] = PdfFromTrace(tr,intBounds);
-    >>> [alpha,A]=PHFromTrace(tr,5)   
+
+    >>> tr = dlmread('/home/gabor/github/butools/test/data/bctrace.iat');
+    >>> intBounds = linspace(0, MarginalMomentsFromTrace(tr, 1)*4, 50);
+    >>> [pdfTrX, pdfTrY] = PdfFromTrace(tr, intBounds);
+    >>> [cdfTrX, cdfTrY] = CdfFromTrace(tr);
+    >>> step = ceil(length(tr)/2000);
+    >>> cdfTrX = cdfTrX(1:step:length(tr));
+    >>> cdfTrY = cdfTrY(1:step:length(tr));
+    >>> [alpha, A] = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3));
     >>> [pdfPHX, pdfPHY] = IntervalPdfFromPH(alpha, A, intBounds);
-    >>> EmpiricalRelativeEntropy (pdfTrY, pdfPHY, intBounds)
-          0.35834
+    >>> cdfPHY = CdfFromPH(alpha, A, cdfTrX);
+    >>> rePdf = EmpiricalRelativeEntropy(pdfTrY, pdfPHY, intBounds);
+    >>> disp(rePdf);
+          0.43241
+    >>> reCdf = EmpiricalRelativeEntropy(cdfTrY(1:end-1), cdfPHY(1:end-1), cdfTrX);
+    >>> disp(reCdf);
+       0.00040609
+
+    For Mathematica:
+
     
     For Python/Numpy:
-    
-    >>> tr = np.loadtxt('trace.txt')
-    >>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr,1)[0]*4, 50)
-    >>> pdfTrX, pdfTrY = PdfFromTrace(tr,intBounds)
-    >>> [alpha,A]=PHFromTrace(tr,5)
+
+    >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")
+    >>> intBounds = np.linspace(0, MarginalMomentsFromTrace(tr, 1)[0]*4, 50)
+    >>> pdfTrX, pdfTrY = PdfFromTrace(tr, intBounds)
+    >>> cdfTrX, cdfTrY = CdfFromTrace(tr)
+    >>> step = math.ceil(Length(tr)/2000)
+    >>> cdfTrX = cdfTrX[0:Length(tr):step]
+    >>> cdfTrY = cdfTrY[0:Length(tr):step]
+    >>> alpha, A = APHFrom3Moments(MarginalMomentsFromTrace(tr, 3))
     >>> pdfPHX, pdfPHY = IntervalPdfFromPH(alpha, A, intBounds)
-    >>> print(EmpiricalRelativeEntropy (pdfTrY, pdfPHY, intBounds))
-    0.358335256398
+    >>> cdfPHY = CdfFromPH(alpha, A, cdfTrX)
+    >>> rePdf = EmpiricalRelativeEntropy(pdfTrY, pdfPHY, intBounds)
+    >>> print(rePdf)
+    0.432414379777
+    >>> reCdf = EmpiricalRelativeEntropy(cdfTrY[0:-1], cdfPHY[0:-1], cdfTrX)
+    >>> print(reCdf)
+    0.000406094874315
 

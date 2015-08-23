@@ -41,28 +41,28 @@ butools.dph.SamplesFromDPH
     ========
     For Matlab:
 
-    >>> a = [0.76, 0, 0.24];
+    >>> a = [0.76,0,0.24];
     >>> A = [0.34, 0.66, 0; 0.79, 0.05, 0.07; 0.26, 0.73, 0.01];
-    >>> x = SamplesFromDPH(a,A,1000);
-    >>> mp = MomentsFromDPH(a,A,3);
+    >>> x = SamplesFromDPH(a, A, 1000);
+    >>> mt = MarginalMomentsFromTrace(x, 3);
+    >>> disp(mt);
+           26.886       1425.6   1.1352e+05
+    >>> mp = MomentsFromDPH(a, A, 3);
     >>> disp(mp);
            26.995         1398   1.0853e+05
 
     For Mathematica:
 
-    >>> a = {0.76, 0, 0.24};
-    >>> A = {{0.34, 0.66, 0},{0.79, 0.05, 0.07},{0.26, 0.73, 0.01}};
-    >>> x = SamplesFromDPH[a,A,1000];
-    >>> mp = MomentsFromDPH[a,A,3];
-    >>> Print[mp];
-    {26.995340611502304, 1397.9993695881547, 108525.47866809377}
-
+    
     For Python/Numpy:
 
-    >>> a = ml.matrix([[0.76, 0, 0.24]])
+    >>> a = ml.matrix([[0.76,0,0.24]])
     >>> A = ml.matrix([[0.34, 0.66, 0],[0.79, 0.05, 0.07],[0.26, 0.73, 0.01]])
-    >>> x = SamplesFromDPH(a,A,1000)
-    >>> mp = MomentsFromDPH(a,A,3)
+    >>> x = SamplesFromDPH(a, A, 1000)
+    >>> mt = MarginalMomentsFromTrace(x, 3)
+    >>> print(mt)
+    [26.765999999999998, 1331.058, 93128.106]
+    >>> mp = MomentsFromDPH(a, A, 3)
     >>> print(mp)
     [26.995340611502307, 1397.9993695881547, 108525.47866809377]
 

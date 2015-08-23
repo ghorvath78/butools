@@ -40,27 +40,20 @@ butools.dmap.CheckDMMAPRepresentation
     >>> D1 = [0.3, 0, 0; 0.16, 0.18, 0.05; 0.15, 0.04, 0.09];
     >>> D2 = [0, 0.01, 0; 0.1, 0.07, 0.08; 0.13, 0.12, 0.13];
     >>> D3 = [0.35, 0, 0; 0, 0.18, 0.04; 0.06, 0.03, 0.01];
-    >>> flag = CheckDMMAPRepresentation({D0,D1,D2,D3});
+    >>> flag = CheckDMMAPRepresentation({D0, D1, D2, D3});
     >>> disp(flag);
          1
 
     For Mathematica:
 
-    >>> D0 = {{0.34, 0, 0},{0.06, 0.05, 0.03},{0.11, 0.13, 0}};
-    >>> D1 = {{0.3, 0, 0},{0.16, 0.18, 0.05},{0.15, 0.04, 0.09}};
-    >>> D2 = {{0, 0.01, 0},{0.1, 0.07, 0.08},{0.13, 0.12, 0.13}};
-    >>> D3 = {{0.35, 0, 0},{0, 0.18, 0.04},{0.06, 0.03, 0.01}};
-    >>> flag = CheckDMMAPRepresentation[{D0,D1,D2,D3}];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[0.34, 0, 0],[0.06, 0.05, 0.03],[0.11, 0.13, 0]])
     >>> D1 = ml.matrix([[0.3, 0, 0],[0.16, 0.18, 0.05],[0.15, 0.04, 0.09]])
     >>> D2 = ml.matrix([[0, 0.01, 0],[0.1, 0.07, 0.08],[0.13, 0.12, 0.13]])
     >>> D3 = ml.matrix([[0.35, 0, 0],[0, 0.18, 0.04],[0.06, 0.03, 0.01]])
-    >>> flag = CheckDMMAPRepresentation([D0,D1,D2,D3])
+    >>> flag = CheckDMMAPRepresentation([D0, D1, D2, D3])
     >>> print(flag)
     True
 

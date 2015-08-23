@@ -35,26 +35,29 @@ butools.trace.PdfFromTrace
         The values of the empirical pdf at the given points
 
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> D0 = [-18 1 4; 2 -18 7; 1 3 -32];
-    >>> D1 = [12 1 0; 1 8 0; 2 1 25]; 
-    >>> tr = SamplesFromMAP(D0,D1,1000000);
-    >>> [x,y]=PdfFromTrace(tr, 0:0.01:0.5);
-    >>> [a,A]=MarginalDistributionFromMAP(D0,D1);
-    >>> [xm,ym]=IntervalPdfFromPH(a,A,0:0.01:0.5);
-    >>> plot(x,y,xm,ym);
+
+    >>> D0 = [-18., 1., 4.; 2., -18., 7.; 1., 3., -32.];
+    >>> D1 = [12., 1., 0.; 1., 8., 0.; 2., 1., 25.];
+    >>> x = (0.0:0.01:0.5);
+    >>> tr = SamplesFromMAP(D0, D1, 1000000);
+    >>> [x, y] = PdfFromTrace(tr, x);
+    >>> [a, A] = MarginalDistributionFromMAP(D0, D1);
+    >>> [xm, ym] = IntervalPdfFromPH(a, A, x);
+    >>> plot(x, y, xm, ym)
+
+    For Mathematica:
+
     
     For Python/Numpy:
-    
-    >>> D0 = ml.matrix([[-18, 1, 4],[2, -18, 7],[1, 3, -32]])
-    >>> D1 = ml.matrix([[12, 1, 0],[1, 8, 0],[2, 1, 25]])
-    >>> tr = SamplesFromMAP(D0,D1,1000000)
-    >>> bounds = np.arange(0,0.51,0.01)
-    >>> [a,A]=MarginalDistributionFromMAP(D0,D1)
-    >>> [x,y]=PdfFromTrace(tr, bounds)
-    >>> [xm,ym]=IntervalPdfFromPH(a, A, bounds)
-    >>> plt.plot(x,y,xm,ym)
- 
+
+    >>> D0 = ml.matrix([[-18., 1., 4.],[2., -18., 7.],[1., 3., -32.]])
+    >>> D1 = ml.matrix([[12., 1., 0.],[1., 8., 0.],[2., 1., 25.]])
+    >>> x = np.arange(0.0,0.51,0.01)
+    >>> tr = SamplesFromMAP(D0, D1, 1000000)
+    >>> x, y = PdfFromTrace(tr, x)
+    >>> a, A = MarginalDistributionFromMAP(D0, D1)
+    >>> xm, ym = IntervalPdfFromPH(a, A, x)
+    >>> plt.plot(x, y, xm, ym)
 

@@ -44,7 +44,7 @@ butools.ph.APH2ndMomentLowerBound
 
     >>> mean = 1.9;
     >>> n = 4;
-    >>> mom2 = APH2ndMomentLowerBound(mean,n);
+    >>> mom2 = APH2ndMomentLowerBound(mean, n);
     >>> disp(mom2);
            4.5125
     >>> cv2 = mom2/mean^2-1;
@@ -53,20 +53,12 @@ butools.ph.APH2ndMomentLowerBound
 
     For Mathematica:
 
-    >>> mean = 1.9;
-    >>> n = 4;
-    >>> mom2 = APH2ndMomentLowerBound[mean,n];
-    >>> Print[mom2];
-    4.5125
-    >>> cv2 = mom2/mean^2-1;
-    >>> Print[1/cv2];
-    3.9999999999999964
-
+    
     For Python/Numpy:
 
     >>> mean = 1.9
     >>> n = 4
-    >>> mom2 = APH2ndMomentLowerBound(mean,n)
+    >>> mom2 = APH2ndMomentLowerBound(mean, n)
     >>> print(mom2)
     4.5125
     >>> cv2 = mom2/mean**2-1

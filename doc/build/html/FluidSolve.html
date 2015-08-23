@@ -467,49 +467,50 @@ matrix and for checking. The default value is 1e-14</p>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Fpp</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Fpm</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmm</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">8</span> <span class="mi">4</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">12</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">2</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmp</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">mass0</span><span class="p">,</span><span class="n">ini</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">clo</span><span class="p">]</span><span class="o">=</span><span class="n">FluidSolve</span><span class="p">(</span><span class="n">Fpp</span><span class="p">,</span><span class="n">Fpm</span><span class="p">,</span><span class="n">Fmp</span><span class="p">,</span><span class="n">Fmm</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mass0</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Fpp</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fpm</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmm</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmp</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">mass0</span><span class="p">,</span> <span class="n">ini</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">clo</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluidSolve</span><span class="p">(</span><span class="n">Fpp</span><span class="p">,</span> <span class="n">Fpm</span><span class="p">,</span> <span class="n">Fmp</span><span class="p">,</span> <span class="n">Fmm</span><span class="p">);</span>
+<span class="go">Final Residual Error for Psi:    1.1657e-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mass0</span><span class="p">);</span>
 <span class="go">     0.037514     0.015303     0.097921</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ini</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ini</span><span class="p">);</span>
 <span class="go">      0.14315     0.076517</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">K</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">K</span><span class="p">);</span>
 <span class="go">       -3.658       1.8258</span>
 <span class="go">       3.2553      -2.3502</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">clo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">clo</span><span class="p">);</span>
 <span class="go">            1            0      0.33722      0.16517      0.49761</span>
 <span class="go">            0            1       0.3318      0.12995      0.53825</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">emptyprob</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mass0</span><span class="p">)</span>
-<span class="go">      0.15074</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">densityat1</span> <span class="o">=</span> <span class="n">ini</span><span class="o">*</span><span class="n">expm</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">clo</span>
-<span class="go">     0.063509      0.06175     0.041905     0.018514      0.06484</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdfAtX</span> <span class="o">=</span> <span class="n">ini</span><span class="o">*</span><span class="n">expm</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">clo</span><span class="p">;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">pdfAtX</span><span class="p">);</span>
+<span class="go">     0.074009     0.070933     0.048493     0.021442     0.075007</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Fpp</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Fpm</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmm</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmp</span><span class="o">=</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mass0</span><span class="p">,</span><span class="n">ini</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">clo</span> <span class="o">=</span> <span class="n">FluidSolve</span><span class="p">(</span><span class="n">Fpp</span><span class="p">,</span><span class="n">Fpm</span><span class="p">,</span><span class="n">Fmp</span><span class="p">,</span><span class="n">Fmm</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Fpp</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fpm</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmm</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmp</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mass0</span><span class="p">,</span> <span class="n">ini</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">clo</span> <span class="o">=</span> <span class="n">FluidSolve</span><span class="p">(</span><span class="n">Fpp</span><span class="p">,</span> <span class="n">Fpm</span><span class="p">,</span> <span class="n">Fmp</span><span class="p">,</span> <span class="n">Fmm</span><span class="p">)</span>
+<span class="go">Final Residual Error for G:  1.7208456881689926e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mass0</span><span class="p">)</span>
-<span class="go">[[ 0.03751363  0.01530344  0.09792059]]</span>
+<span class="go">[[ 0.03751  0.0153   0.09792]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ini</span><span class="p">)</span>
-<span class="go">[[ 0.14314775  0.07651718]]</span>
+<span class="go">[[ 0.14315  0.07652]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
-<span class="go">[[-3.6579964   1.82582941]</span>
-<span class="go"> [ 3.25529376 -2.35023773]]</span>
+<span class="go">[[-3.658    1.82583]</span>
+<span class="go"> [ 3.25529 -2.35024]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">clo</span><span class="p">)</span>
-<span class="go">[[ 1.          0.          0.33722394  0.16516588  0.49761017]</span>
-<span class="go"> [ 0.          1.          0.33179629  0.12995245  0.53825126]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">emptyprob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mass0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">emptyprob</span><span class="p">)</span>
-<span class="go">0.150737652341</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">densityat1</span> <span class="o">=</span> <span class="n">ini</span><span class="o">*</span><span class="n">la</span><span class="o">.</span><span class="n">expm</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">clo</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">densityat1</span><span class="p">)</span>
-<span class="go">[[ 0.06350914  0.0617499   0.04190519  0.01851409  0.06483976]]</span>
+<span class="go">[[ 1.       0.       0.33722  0.16517  0.49761]</span>
+<span class="go"> [ 0.       1.       0.3318   0.12995  0.53825]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdfAtX</span> <span class="o">=</span> <span class="n">ini</span><span class="o">*</span><span class="n">la</span><span class="o">.</span><span class="n">expm</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">clo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">pdfAtX</span><span class="p">)</span>
+<span class="go">[[ 0.07401  0.07093  0.04849  0.02144  0.07501]]</span>
 </pre></div>
 </div>
 </dd></dl>

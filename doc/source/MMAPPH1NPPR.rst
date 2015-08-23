@@ -86,65 +86,99 @@ butools.queues.MMAPPH1NPPR
            doi:10.1016/j.ejor.2015.03.004
 
     Examples
-    ========    
-    For MATLAB:
+    ========
+    For Matlab:
 
-    >>> D0=[-5.49, 0, 1.15, 0; 0, -2.29, 0, 0; 0, 0.08, -1.32, 0; 0.72, 1.17, 0.7, -7.07];
-    >>> D1=[0.25, 0.38, 0.64, 0; 0, 0, 0, 1.09; 0, 1.24, 0, 0; 0.37, 0, 0, 0];
-    >>> D2=[0.3, 1.0, 0, 0.48; 0, 0.2, 0, 0; 0, 0, 0, 0; 0.61, 0, 0, 0.2];
-    >>> D3=[0, 0.98, 0, 0.31; 0, 0, 1.0, 0; 0, 0, 0, 0; 1.1, 0.84, 0.33, 1.03];
-    >>> sigma1 = [1/4, 1-1/4];
-    >>> S1 = [-2.5, 2.5; 0, -10];
-    >>> sigma2 = [1/1.7, 1-1/1.7];
-    >>> S2 = [-2/0.85, 2/0.85; 0, -4];
-    >>> sigma3 = [1/6, 5/6];
-    >>> S3 = [-0.5, 0.5; 0, -3];
-    >>> [stm, std] = MMAPPH1NPPR({D0,D1,D2,D3}, {sigma1,sigma2,sigma3},{S1,S2,S3}, 'stMoms', 3, 'stDistr', [1,5,10]);
-    >>> std
-          0.24813       0.3202      0.45966
-          0.44751      0.70733      0.87042
-          0.58038      0.84018      0.97233
-    >>> stm
-           15.831       5.3482       2.2458
-           781.09       101.93       13.054
-            63091       3617.3       124.21
-    >>> meanQlFromLittlesLaw = [stm(1,1)/MarginalMomentsFromMAP(D0+D2+D3,D1,1), stm(1,2)/MarginalMomentsFromMAP(D0+D1+D3,D2,1), stm(1,3)/MarginalMomentsFromMAP(D0+D1+D2,D3,1)]
-           17.492       1.2717       1.7072
-    >>> [qlm, qld] = MMAPPH1NPPR({D0,D1,D2,D3}, {sigma1,sigma2,sigma3},{S1,S2,S3}, 'qlMoms', 3, 'qlDistr', 50);
-    >>> qlm
-           17.931       1.3035       1.4978
-             1022       7.9555       8.1379
-            95668       82.606       68.996
-    >>> plot(qld)
+    >>> D0 = [-5.49, 0., 1.15, 0.; 0., -2.29, 0., 0.; 0., 0.08, -1.32, 0.; 0.72, 1.17, 0.7, -7.07];
+    >>> D1 = [0.25, 0.38, 0.64, 0.; 0., 0., 0., 1.09; 0., 1.24, 0., 0.; 0.37, 0., 0., 0.];
+    >>> D2 = [0.3, 1.0, 0., 0.48; 0., 0.2, 0., 0.; 0., 0., 0., 0.; 0.61, 0., 0., 0.2];
+    >>> D3 = [0., 0.98, 0., 0.31; 0., 0., 1.0, 0.; 0., 0., 0., 0.; 1.1, 0.84, 0.33, 1.03];
+    >>> sigma3 = [0.83333,0.11404,0.05263];
+    >>> S3 = [-3., 0., 0.; 0.73077, -0.73077, 0.; 0., 0.5, -0.5];
+    >>> sigma2 = [1.];
+    >>> S2 = [-2.];
+    >>> sigma1 = [0.25,0.75];
+    >>> S1 = [-2.5, 2.5; 0., -10.];
+    >>> [qlm, qld] = MMAPPH1NPPR({D0, D1, D2, D3}, {sigma1, sigma2, sigma3}, {S1, S2, S3}, 'qlMoms', 3, 'qlDistr', 500);
+    Final Residual Error for Psi:     4.774e-15
+    Final Residual Error for Psi:     4.774e-15
+    Final Residual Error for Psi:    3.0531e-15
+    Final Residual Error for Psi:    3.5458e-15
+    Final Residual Error for Psi:    7.7049e-14
+    Final Residual Error for Psi:    2.5396e-15
+    Final Residual Error for Psi:    7.1887e-15
+    Final Residual Error for Psi:    4.5866e-15
+    >>> distrPoints = [1., 5., 10.];
+    >>> [stm, std] = MMAPPH1NPPR({D0, D1, D2, D3}, {sigma1, sigma2, sigma3}, {S1, S2, S3}, 'stMoms', 3, 'stDistr', distrPoints);
+    Final Residual Error for Psi:     4.774e-15
+    Final Residual Error for Psi:     4.774e-15
+    Final Residual Error for Psi:    3.0531e-15
+    Final Residual Error for Psi:    3.5458e-15
+    Final Residual Error for Psi:    7.7049e-14
+    Final Residual Error for Psi:     9.243e-16
+    Final Residual Error for Psi:    1.1933e-15
+    Final Residual Error for Psi:    1.3175e-15
+    Final Residual Error for Psi:    7.1887e-15
+    Final Residual Error for Psi:    3.7603e-15
+    Final Residual Error for Psi:     2.319e-15
+    Final Residual Error for Psi:    2.0864e-15
+    >>> disp(stm);
+           15.909       5.3735       2.2552
+           788.48       102.75       13.114
+            63966         3651       124.73
+    >>> disp(std);
+          0.24787      0.32134      0.45672
+          0.44649      0.70548      0.86989
+          0.57919      0.83911      0.97222
 
+    For Mathematica:
+
+    
     For Python/Numpy:
 
-    >>> D0=ml.matrix([[-5.49, 0, 1.15, 0], [ 0, -2.29, 0, 0], [ 0, 0.08, -1.32, 0], [ 0.72, 1.17, 0.7, -7.07]])
-    >>> D1=ml.matrix([[0.25, 0.38, 0.64, 0], [ 0, 0, 0, 1.09], [ 0, 1.24, 0, 0], [ 0.37, 0, 0, 0]])
-    >>> D2=ml.matrix([[0.3, 1.0, 0, 0.48], [ 0, 0.2, 0, 0], [ 0, 0, 0, 0], [ 0.61, 0, 0, 0.2]])
-    >>> D3=ml.matrix([[0, 0.98, 0, 0.31], [ 0, 0, 1.0, 0], [ 0, 0, 0, 0], [ 1.1, 0.84, 0.33, 1.03]])
-    >>> sigma3 = ml.matrix([[1/6, 5/6]])
-    >>> S3 = ml.matrix([[-0.5, 0.5], [ 0, -3]])
-    >>> sigma2 = ml.matrix([[1/1.7, 1-1/1.7]])
-    >>> S2 = ml.matrix([[-2/0.85, 2/0.85], [ 0, -4]])
-    >>> sigma1 = ml.matrix([[1/4, 1-1/4]])
-    >>> S1 = ml.matrix([[-2.5, 2.5], [ 0, -10]])
-    >>> stm, std = MMAPPH1NPPR((D0,D1,D2,D3), (sigma1,sigma2,sigma3),(S1,S2,S3), 'stMoms', 3, 'stDistr', [1,5,10]) 
-    >>> print(std)
-    [[ 0.24813421  0.32020161  0.459657  ]
-     [ 0.44751045  0.70733126  0.87041572]
-     [ 0.58037807  0.84018473  0.97232579]]
+    >>> D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
+    >>> D1 = ml.matrix([[0.25, 0.38, 0.64, 0.],[0., 0., 0., 1.09],[0., 1.24, 0., 0.],[0.37, 0., 0., 0.]])
+    >>> D2 = ml.matrix([[0.3, 1.0, 0., 0.48],[0., 0.2, 0., 0.],[0., 0., 0., 0.],[0.61, 0., 0., 0.2]])
+    >>> D3 = ml.matrix([[0., 0.98, 0., 0.31],[0., 0., 1.0, 0.],[0., 0., 0., 0.],[1.1, 0.84, 0.33, 1.03]])
+    >>> sigma3 = ml.matrix([[0.83333,0.11404,0.05263]])
+    >>> S3 = ml.matrix([[-3., 0., 0.],[0.73077, -0.73077, 0.],[0., 0.5, -0.5]])
+    >>> sigma2 = ml.matrix([[1.]])
+    >>> S2 = ml.matrix([[-2.]])
+    >>> sigma1 = ml.matrix([[0.25,0.75]])
+    >>> S1 = ml.matrix([[-2.5, 2.5],[0., -10.]])
+    >>> qlm, qld = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500)
+    Final Residual Error for G:  2.3314683517128287e-15
+    Final Residual Error for G:  2.3314683517128287e-15
+    Final Residual Error for G:  1.790234627208065e-15
+    Final Residual Error for G:  3.6914915568786455e-15
+    Final Residual Error for G:  1.4521717162097048e-13
+    Final Residual Error for G:  5.974387651264124e-15
+    Final Residual Error for G:  1.0630385460785874e-14
+    Final Residual Error for G:  2.7131075164277263e-15
+    Final Residual Error for G:  3.20949754572e-16
+    Final Residual Error for R:  3.63464120372e-16
+    Final Residual Error for G:  3.20949754572e-16
+    Final Residual Error for R:  3.63464120372e-16
+    >>> distrPoints = [1., 5., 10.]
+    >>> stm, std = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+    Final Residual Error for G:  2.3314683517128287e-15
+    Final Residual Error for G:  2.3314683517128287e-15
+    Final Residual Error for G:  1.790234627208065e-15
+    Final Residual Error for G:  3.6914915568786455e-15
+    Final Residual Error for G:  1.4521717162097048e-13
+    Final Residual Error for G:  9.319276714258098e-16
+    Final Residual Error for G:  7.064661355915547e-16
+    Final Residual Error for G:  9.459663954936026e-16
+    Final Residual Error for G:  1.0630385460785874e-14
+    Final Residual Error for G:  3.387294073432367e-15
+    Final Residual Error for G:  2.328351270466933e-15
+    Final Residual Error for G:  1.0900568642169262e-15
     >>> print(stm)
-    [[  1.58305010e+01   5.34816990e+00   2.24576568e+00]
-     [  7.81090522e+02   1.01931494e+02   1.30540555e+01]
-     [  6.30907058e+04   3.61733345e+03   1.24208816e+02]]
-    >>> meanQlFromLittlesLaw = np.array([stm[0,0]/MarginalMomentsFromMAP(D0+D2+D3,D1,1)[0], stm[0,1]/MarginalMomentsFromMAP(D0+D1+D3,D2,1)[0], stm[0,2]/MarginalMomentsFromMAP(D0+D1+D2,D3,1)[0]])
-    [ 17.49185168   1.2716964    1.70720665]
-    >>> print(meanQlFromLittlesLaw)
-    >>> qlm, qld = MMAPPH1NPPR((D0,D1,D2,D3), (sigma1,sigma2,sigma3),(S1,S2,S3), 'qlMoms', 3, 'qlDistr', 50)
-    >>> print(qlm)
-    [[  1.74918517e+01   1.27169640e+00   1.70720665e+00]
-     [  9.98469939e+02   7.60714872e+00   9.08782742e+00]
-     [  9.35269403e+04   7.84157193e+01   7.62178217e+01]]
-    >>> plt.plot(qld)
+    [[  1.59086e+01   5.37350e+00   2.25517e+00]
+     [  7.88484e+02   1.02747e+02   1.31139e+01]
+     [  6.39661e+04   3.65099e+03   1.24730e+02]]
+    >>> print(std)
+    [[ 0.24787  0.32134  0.45672]
+     [ 0.44649  0.70548  0.86989]
+     [ 0.57919  0.83911  0.97222]]
 

@@ -439,7 +439,7 @@ Evaluation Workshop, UKPEW, 2002&#8221;</td></tr>
 <p>For Matlab:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span><span class="p">;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="n">APH2ndMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="n">APH2ndMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mom2</span><span class="p">);</span>
 <span class="go">       4.5125</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cv2</span> <span class="o">=</span> <span class="n">mom2</span><span class="o">/</span><span class="n">mean</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -448,20 +448,10 @@ Evaluation Workshop, UKPEW, 2002&#8221;</td></tr>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="n">APH2ndMomentLowerBound</span><span class="p">[</span><span class="n">mean</span><span class="p">,</span><span class="n">n</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mom2</span><span class="p">];</span>
-<span class="go">4.5125</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cv2</span> <span class="o">=</span> <span class="n">mom2</span><span class="o">/</span><span class="n">mean</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">cv2</span><span class="p">];</span>
-<span class="go">3.9999999999999964</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mean</span> <span class="o">=</span> <span class="mf">1.9</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="n">APH2ndMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom2</span> <span class="o">=</span> <span class="n">APH2ndMomentLowerBound</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mom2</span><span class="p">)</span>
 <span class="go">4.5125</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cv2</span> <span class="o">=</span> <span class="n">mom2</span><span class="o">/</span><span class="n">mean</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>

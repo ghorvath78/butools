@@ -453,7 +453,7 @@ Torino, Italy (2013).</td></tr>
 <p>For Matlab:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">6.05</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.17</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D0</span><span class="p">);</span>
 <span class="go">     -0.28494      0.28494            0            0</span>
 <span class="go">            0      -18.134            0            0</span>
@@ -464,15 +464,15 @@ Torino, Italy (2013).</td></tr>
 <span class="go">     0.022795       1.4279       4.9669       11.716</span>
 <span class="go">            0            0            0            0</span>
 <span class="go">     0.013835      0.86667     0.022795     0.053771</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rmoms</span><span class="p">);</span>
 <span class="go">          1.1         6.05</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rcorr1</span><span class="p">);</span>
 <span class="go">        -0.17</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">4.32</span><span class="p">,</span> <span class="mf">20.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D0</span><span class="p">);</span>
 <span class="go">     -0.33604      0.33604            0            0            0            0</span>
 <span class="go">            0      -36.027            0            0            0            0</span>
@@ -488,122 +488,70 @@ Torino, Italy (2013).</td></tr>
 <span class="go">            0            0            0            0            0            0</span>
 <span class="go">     0.017937        1.288     0.047145            0            0     0.021591</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BuToolsCheckPrecision</span> <span class="o">=</span> <span class="mf">10.</span><span class="o">^-</span><span class="mi">12</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rmoms</span><span class="p">);</span>
 <span class="go">          1.2         4.32           20</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rcorr1</span><span class="p">);</span>
 <span class="go">         -0.4</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">4.32</span><span class="p">,</span> <span class="mf">20.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr1</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">]</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D0</span><span class="p">);</span>
-<span class="go">     -0.54184      0.54184            0            0            0            0            0            0            0</span>
-<span class="go">            0      -116.34            0            0            0            0            0            0            0</span>
-<span class="go">            0            0     -0.24417      0.24417            0            0            0            0            0</span>
-<span class="go">            0            0            0       -2.014        2.014            0            0            0            0</span>
-<span class="go">            0            0            0            0       -2.014        2.014            0            0            0</span>
-<span class="go">            0            0            0            0            0       -2.014        2.014            0            0</span>
-<span class="go">            0            0            0            0            0            0       -2.014        2.014            0</span>
-<span class="go">            0            0            0            0            0            0            0       -2.014        2.014</span>
-<span class="go">            0            0            0            0            0            0            0            0       -2.014</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">     -0.54184      0.54184            0            0            0            0</span>
+<span class="go">            0      -116.34            0            0            0            0</span>
+<span class="go">            0            0     -0.24417      0.24417            0            0</span>
+<span class="go">            0            0            0       -2.014        2.014            0</span>
+<span class="go">            0            0            0            0       -2.014        2.014</span>
+<span class="go">            0            0            0            0            0       -2.014</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">  Columns 7 through 9</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">        2.014            0            0</span>
+<span class="go">       -2.014        2.014            0</span>
+<span class="go">            0       -2.014        2.014</span>
+<span class="go">            0            0       -2.014</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">D1</span><span class="p">);</span>
-<span class="go">            0            0            0            0            0            0            0            0            0</span>
-<span class="go">       16.128       88.575     0.099774       11.534            0            0            0            0            0</span>
-<span class="go">            0            0            0            0            0            0            0            0            0</span>
-<span class="go">            0            0            0            0            0            0            0            0            0</span>
-<span class="go">            0            0            0            0            0            0            0            0            0</span>
-<span class="go">            0            0            0            0            0            0            0            0            0</span>
-<span class="go">            0            0            0            0            0            0            0            0            0</span>
-<span class="go">            0            0            0            0            0            0            0            0            0</span>
-<span class="go">     0.062048      0.34076     0.013818       1.5974            0            0            0            0            0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="go">  Columns 1 through 6</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">       16.128       88.575     0.099774       11.534            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">            0            0            0            0            0            0</span>
+<span class="go">     0.062048      0.34076     0.013818       1.5974            0            0</span>
+<span class="go">  Columns 7 through 9</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="go">            0            0            0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rmoms</span><span class="p">);</span>
 <span class="go">          1.2         4.32           20</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rcorr1</span><span class="p">);</span>
 <span class="go">          0.4</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; moms = {1.1, 6.05};
-&gt;&gt;&gt; corr1 = -0.17;
-&gt;&gt;&gt; {D0,D1} = MAPFromFewMomentsAndCorrelations[moms, corr1];
-&gt;&gt;&gt; Print[D0];
-{{-0.28493894165535966, 0.28493894165535966, 0, 0},
- {0., -18.13383801258688, 0, 0},
- {0, 0, -0.2849389416553596, 0.2849389416553596},
- {0, 0, 0., -0.9570710783221891}}
-&gt;&gt;&gt; Print[D1];
-{{0., 0., 0., 0.},
- {0.022795115332428794, 1.4279119256745232, 4.966897224470778, 11.71623374710915},
- {0., 0., 0., 0.},
- {0.013835475664900425, 0.8666699163915135, 0.022795115332428787, 0.053770570933346404}}
-&gt;&gt;&gt; rmoms = MarginalMomentsFromMAP[D0,D1,2];
-&gt;&gt;&gt; Print[rmoms];
-{1.0999999999999996, 6.049999999999997}
-&gt;&gt;&gt; rcorr1 = LagCorrelationsFromMAP[D0,D1,1][[1]];
-&gt;&gt;&gt; Print[rcorr1];
--0.16999999999999998
-&gt;&gt;&gt; moms = {1.2, 4.32, 20.};
-&gt;&gt;&gt; corr1 = -0.4;
-&gt;&gt;&gt; {D0,D1} = MAPFromFewMomentsAndCorrelations[moms, corr1];
-&gt;&gt;&gt; Print[D0];
-{{-0.3360418695910829, 0.3360418695910829, 0, 0, 0, 0},
- {0, -36.0266728289002, 0, 0, 0, 0},
- {0, 0, -1.2828628105692446, 1.2828628105692446, 0, 0},
- {0, 0, 0, -1.2828628105692446, 1.2828628105692446, 0},
- {0, 0, 0, 0, -1.2828628105692446, 1.2828628105692446},
- {0, 0, 0, 0, 0, -1.3747185152915538}}
-&gt;&gt;&gt; Print[D1];
-{{0., 0., 0., 0., 0., 0.},
- {0.024740745552158373, 1.7765928958928536, 23.47455308878542, 0., 0., 10.750786098669774},
- {0., 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0.},
- {0.017937256152678223, 1.2880453333742978, 0.04714475230266865, 0., 0., 0.021591173461909096}}
-&gt;&gt;&gt; BuTools`CheckPrecision = 10.^-12;
-&gt;&gt;&gt; rmoms = MarginalMomentsFromMAP[D0,D1,3];
-&gt;&gt;&gt; Print[rmoms];
-{1.2, 4.319999999999999, 20.00000000000002}
-&gt;&gt;&gt; rcorr1 = LagCorrelationsFromMAP[D0,D1,1][[1]];
-&gt;&gt;&gt; Print[rcorr1];
--0.4
-&gt;&gt;&gt; moms = {1.2, 4.32, 20.};
-&gt;&gt;&gt; corr1 = 0.4;
-&gt;&gt;&gt; {D0,D1} = MAPFromFewMomentsAndCorrelations[moms, corr1];
-&gt;&gt;&gt; Print[D0];
-{{-0.5418383137500514, 0.5418383137500514, 0, 0, 0, 0, 0, 0, 0},
- {0, -116.33647358652203, 0, 0, 0, 0, 0, 0, 0},
- {0, 0, -0.24417076816625743, 0.24417076816625743, 0, 0, 0, 0, 0},
- {0, 0, 0, -2.0140275715489198, 2.0140275715489198, 0, 0, 0, 0},
- {0, 0, 0, 0, -2.0140275715489198, 2.0140275715489198, 0, 0, 0},
- {0, 0, 0, 0, 0, -2.0140275715489198, 2.0140275715489198, 0, 0},
- {0, 0, 0, 0, 0, 0, -2.0140275715489198, 2.0140275715489198, 0},
- {0, 0, 0, 0, 0, 0, 0, -2.0140275715489198, 2.0140275715489198},
- {0, 0, 0, 0, 0, 0, 0, 0, -2.0140275715489198}}
-&gt;&gt;&gt; Print[D1];
-{{0., 0., 0., 0., 0., 0., 0., 0., 0.},
- {16.128313181474883, 88.57451304639496, 0.0997738996285687, 11.533873459023635, 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0., 0., 0., 0.},
- {0., 0., 0., 0., 0., 0., 0., 0., 0.},
- {0.062047737583266864, 0.3407577767265171, 0.013818358324120445, 1.5974036989150155, 0., 0., 0., 0., 0.}}
-&gt;&gt;&gt; rmoms = MarginalMomentsFromMAP[D0,D1,3];
-&gt;&gt;&gt; Print[rmoms];
-{1.2000000000000002, 4.320000000000002, 19.999999999999577}
-&gt;&gt;&gt; rcorr1 = LagCorrelationsFromMAP[D0,D1,1][[1]];
-&gt;&gt;&gt; Print[rcorr1];
-0.40000000000000063
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">6.05</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.17</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
 <span class="go">[[ -0.28494   0.28494   0.        0.     ]</span>
 <span class="go"> [ -0.      -18.13384   0.        0.     ]</span>
@@ -614,15 +562,15 @@ Torino, Italy (2013).</td></tr>
 <span class="go"> [  0.0228    1.42791   4.9669   11.71623]</span>
 <span class="go"> [  0.        0.        0.        0.     ]</span>
 <span class="go"> [  0.01384   0.86667   0.0228    0.05377]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rmoms</span><span class="p">)</span>
 <span class="go">[1.0999999999999996, 6.0499999999999963]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rcorr1</span><span class="p">)</span>
 <span class="go">-0.17</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">4.32</span><span class="p">,</span> <span class="mf">20.</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
 <span class="go">[[ -0.33604   0.33604   0.        0.        0.        0.     ]</span>
 <span class="go"> [  0.      -36.02667   0.        0.        0.        0.     ]</span>
@@ -638,15 +586,15 @@ Torino, Italy (2013).</td></tr>
 <span class="go"> [  0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]</span>
 <span class="go"> [  1.79373e-02   1.28805e+00   4.71448e-02   0.00000e+00   0.00000e+00   2.15912e-02]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">butools</span><span class="o">.</span><span class="n">checkPrecision</span> <span class="o">=</span> <span class="mf">10.</span><span class="o">**-</span><span class="mi">12</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rmoms</span><span class="p">)</span>
 <span class="go">[1.2000000000000002, 4.3200000000000021, 19.999999999999915]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rcorr1</span><span class="p">)</span>
 <span class="go">-0.4</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">moms</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">4.32</span><span class="p">,</span> <span class="mf">20.</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corr1</span> <span class="o">=</span> <span class="mf">0.4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span> <span class="o">=</span> <span class="n">MAPFromFewMomentsAndCorrelations</span><span class="p">(</span><span class="n">moms</span><span class="p">,</span> <span class="n">corr1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">D0</span><span class="p">)</span>
 <span class="go">[[  -0.54184    0.54184    0.         0.         0.         0.         0.         0.         0.     ]</span>
 <span class="go"> [   0.      -116.33647    0.         0.         0.         0.         0.         0.         0.     ]</span>
@@ -667,10 +615,10 @@ Torino, Italy (2013).</td></tr>
 <span class="go"> [  0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]</span>
 <span class="go"> [  0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]</span>
 <span class="go"> [  6.20477e-02   3.40758e-01   1.38184e-02   1.59740e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00   0.00000e+00]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmoms</span> <span class="o">=</span> <span class="n">MarginalMomentsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rmoms</span><span class="p">)</span>
 <span class="go">[1.2, 4.3199999999999985, 19.999999999999851]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr1</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">(</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rcorr1</span><span class="p">)</span>
 <span class="go">0.4</span>
 </pre></div>

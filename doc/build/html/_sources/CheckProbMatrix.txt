@@ -49,12 +49,12 @@ butools.mc.CheckProbMatrix
 
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, -0.1, 0.4];
     >>> flag = CheckProbMatrix(Q);
-    CheckProbMatrix: the matrix has negative element (precision: 1e-11)!
+    CheckProbMatrix: the matrix has negative element (precision: 1e-12)!
     >>> disp(flag);
          0
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.1, 0.4];
     >>> flag = CheckProbMatrix(Q);
-    CheckProbMatrix: The rowsum of the matrix is not 1 (precision: 1e-11)!
+    CheckProbMatrix: The rowsum of the matrix is not 1 (precision: 1e-12)!
     >>> disp(flag);
          0
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.3, 0.4];
@@ -62,41 +62,18 @@ butools.mc.CheckProbMatrix
     >>> disp(flag);
          1
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.3, 0.4];
-    >>> flag = CheckProbMatrix(Q,true);
-    CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: 1e-11)!
+    >>> flag = CheckProbMatrix(Q, true);
+    CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: 1e-12)!
     >>> disp(flag);
          0
     >>> Q = [0.1, 0.5, 0.4; 0.9, 0.1, 0; 0.3, 0.1, 0.4];
-    >>> flag = CheckProbMatrix(Q,true);
+    >>> flag = CheckProbMatrix(Q, true);
     >>> disp(flag);
          1
 
     For Mathematica:
 
-    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, -0.1, 0.4}};
-    >>> flag = CheckProbMatrix[Q];
-    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-12")!"
-    >>> Print[flag];
-    False
-    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}};
-    >>> flag = CheckProbMatrix[Q];
-    "CheckProbMatrix: A rowsum of the matrix is not 1 (precision:"1.*^-12")!!"
-    >>> Print[flag];
-    False
-    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
-    >>> flag = CheckProbMatrix[Q];
-    >>> Print[flag];
-    True
-    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
-    >>> flag = CheckProbMatrix[Q,True];
-    "CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1!"
-    >>> Print[flag];
-    False
-    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}};
-    >>> flag = CheckProbMatrix[Q,True];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
     >>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, -0.1, 0.4]])
@@ -114,12 +91,12 @@ butools.mc.CheckProbMatrix
     >>> print(flag)
     True
     >>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.3, 0.4]])
-    >>> flag = CheckProbMatrix(Q,True)
+    >>> flag = CheckProbMatrix(Q, True)
     CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1 (precision: 1e-12)!
     >>> print(flag)
     False
     >>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.1, 0.4]])
-    >>> flag = CheckProbMatrix(Q,True)
+    >>> flag = CheckProbMatrix(Q, True)
     >>> print(flag)
     True
 

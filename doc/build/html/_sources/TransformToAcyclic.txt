@@ -55,39 +55,29 @@ butools.reptrans.TransformToAcyclic
     ========
     For Matlab:
 
-    >>> A = [-0.8, 0.8, 0; 0.1, -0.3, 0.1; 0.2, 0, -0.5];
+    >>> A = [-0.8, 0.8, 0.; 0.1, -0.3, 0.1; 0.2, 0., -0.5];
     >>> B = TransformToAcyclic(A);
     >>> disp(B);
           -0.1203       0.1203            0
                 0      -0.6158       0.6158
                 0            0      -0.8639
-    >>> Cm = SimilarityMatrix(A,B);
+    >>> Cm = SimilarityMatrix(A, B);
     >>> err = norm(A*Cm-Cm*B);
     >>> disp(err);
        7.0942e-09
 
     For Mathematica:
 
-    >>> A = {{-0.8, 0.8, 0},{0.1, -0.3, 0.1},{0.2, 0, -0.5}};
-    >>> B = TransformToAcyclic[A];
-    >>> Print[B];
-    {{-0.12030366824989391, 0.12030366824989391, 0},
-     {0, -0.6157989613063427, 0.6157989613063427},
-     {0, 0, -0.8638973704437634}}
-    >>> Cm = SimilarityMatrix[A,B];
-    >>> err = Norm[A.Cm-Cm.B];
-    >>> Print[err];
-    3.2936898311300537*^-16
-
+    
     For Python/Numpy:
 
-    >>> A = ml.matrix([[-0.8, 0.8, 0],[0.1, -0.3, 0.1],[0.2, 0, -0.5]])
+    >>> A = ml.matrix([[-0.8, 0.8, 0.],[0.1, -0.3, 0.1],[0.2, 0., -0.5]])
     >>> B = TransformToAcyclic(A)
     >>> print(B)
     [[-0.1203  0.1203  0.    ]
      [ 0.     -0.6158  0.6158]
      [ 0.      0.     -0.8639]]
-    >>> Cm = SimilarityMatrix(A,B)
+    >>> Cm = SimilarityMatrix(A, B)
     >>> err = la.norm(A*Cm-Cm*B)
     >>> print(err)
     8.75449540243e-09

@@ -38,31 +38,24 @@ butools.reptrans.SimilarityMatrix
     ========
     For Matlab:
 
-    >>> A1m = [0.2, 0.8, 0; 1.2, -0.4, 0.1; -0.2, 0.7, 0.5];
-    >>> T = [1, 2, -4, 6; 0, 8, -9, 7; -3, 7, 8, -2];
+    >>> A1m = [0.2, 0.8, 0.; 1.2, -0.4, 0.1; -0.2, 0.7, 0.5];
+    >>> T = [1., 2., -4., 6.; 0., 8., -9., 7.; -3., 7., 8., -2.];
     >>> A2m = pinv(T)*A1m*T;
-    >>> B = SimilarityMatrix(A1m,A2m);
+    >>> B = SimilarityMatrix(A1m, A2m);
     >>> err = norm(A1m*B-B*A2m);
     >>> disp(err);
        1.5605e-15
 
     For Mathematica:
 
-    >>> A1m = {{0.2, 0.8, 0},{1.2, -0.4, 0.1},{-0.2, 0.7, 0.5}};
-    >>> T = {{1, 2, -4, 6},{0, 8, -9, 7},{-3, 7, 8, -2}};
-    >>> A2m = PseudoInverse[T].A1m.T;
-    >>> B = SimilarityMatrix[A1m,A2m];
-    >>> err = Norm[A1m.B-B.A2m];
-    >>> Print[err];
-    1.509899224241724*^-15
-
+    
     For Python/Numpy:
 
-    >>> A1m = ml.matrix([[0.2, 0.8, 0],[1.2, -0.4, 0.1],[-0.2, 0.7, 0.5]])
-    >>> T = ml.matrix([[1, 2, -4, 6],[0, 8, -9, 7],[-3, 7, 8, -2]])
+    >>> A1m = ml.matrix([[0.2, 0.8, 0.],[1.2, -0.4, 0.1],[-0.2, 0.7, 0.5]])
+    >>> T = ml.matrix([[1., 2., -4., 6.],[0., 8., -9., 7.],[-3., 7., 8., -2.]])
     >>> A2m = la.pinv(T)*A1m*T
-    >>> B = SimilarityMatrix(A1m,A2m)
+    >>> B = SimilarityMatrix(A1m, A2m)
     >>> err = la.norm(A1m*B-B*A2m)
     >>> print(err)
-    1.794800943e-15
+    9.4758466024e-16
 

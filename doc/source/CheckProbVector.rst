@@ -46,91 +46,64 @@ butools.mc.CheckProbVector
     ========
     For Matlab:
 
-    >>> Q = [1.1, -0.1];
+    >>> Q = [1.1,-0.1];
     >>> flag = CheckProbVector(Q);
-    CheckProbVector: The vector has negative element (precision: 1e-11)!
+    CheckProbVector: The vector has negative element (precision: 1e-12)!
     >>> disp(flag);
          0
-    >>> Q = [1.1, 0.1];
+    >>> Q = [1.1,0.1];
     >>> flag = CheckProbVector(Q);
-    CheckProbVector: The sum of the vector is not 1 (precision: 1e-11)!
+    CheckProbVector: The sum of the vector is not 1 (precision: 1e-12)!
     >>> disp(flag);
          0
-    >>> Q = [1, 0];
+    >>> Q = [1,0];
     >>> flag = CheckProbVector(Q);
     >>> disp(flag);
          1
-    >>> Q = [0.9, -0.1];
-    >>> flag = CheckProbVector(Q,true);
-    CheckProbVector: The vector has negative element (precision: 1e-11)!
+    >>> Q = [0.9,-0.1];
+    >>> flag = CheckProbVector(Q, true);
+    CheckProbVector: The vector has negative element (precision: 1e-12)!
     >>> disp(flag);
          0
-    >>> Q = [0.9, 0.1];
-    >>> flag = CheckProbVector(Q,true);
+    >>> Q = [0.9,0.1];
+    >>> flag = CheckProbVector(Q, true);
     >>> disp(flag);
          1
-    >>> Q = [0.8, 0.1];
-    >>> flag = CheckProbVector(Q,true);
+    >>> Q = [0.8,0.1];
+    >>> flag = CheckProbVector(Q, true);
     >>> disp(flag);
          1
 
     For Mathematica:
 
-    >>> Q = {1.1, -0.1};
-    >>> flag = CheckProbVector[Q];
-    "CheckProbVector: The vector has negative element!"
-    >>> Print[flag];
-    False
-    >>> Q = {1.1, 0.1};
-    >>> flag = CheckProbVector[Q];
-    "CheckProbVector: The sum of the vector is not 1 (precision:"1.*^-12")!"
-    >>> Print[flag];
-    False
-    >>> Q = {1, 0};
-    >>> flag = CheckProbVector[Q];
-    >>> Print[flag];
-    True
-    >>> Q = {0.9, -0.1};
-    >>> flag = CheckProbVector[Q,True];
-    "CheckProbVector: The vector has negative element!"
-    >>> Print[flag];
-    False
-    >>> Q = {0.9, 0.1};
-    >>> flag = CheckProbVector[Q,True];
-    >>> Print[flag];
-    True
-    >>> Q = {0.8, 0.1};
-    >>> flag = CheckProbVector[Q,True];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
-    >>> Q = ml.matrix([[1.1, -0.1]])
+    >>> Q = ml.matrix([[1.1,-0.1]])
     >>> flag = CheckProbVector(Q)
     CheckProbVector: The vector has negative element (precision: 1e-12)!
     >>> print(flag)
     False
-    >>> Q = ml.matrix([[1.1, 0.1]])
+    >>> Q = ml.matrix([[1.1,0.1]])
     >>> flag = CheckProbVector(Q)
     CheckProbVector: The sum of the vector is not 1 (precision: 1e-12)!
     >>> print(flag)
     False
-    >>> Q = ml.matrix([[1, 0]])
+    >>> Q = ml.matrix([[1,0]])
     >>> flag = CheckProbVector(Q)
     >>> print(flag)
     True
-    >>> Q = ml.matrix([[0.9, -0.1]])
-    >>> flag = CheckProbVector(Q,True)
+    >>> Q = ml.matrix([[0.9,-0.1]])
+    >>> flag = CheckProbVector(Q, True)
     CheckProbVector: The vector has negative element (precision: 1e-12)!
     >>> print(flag)
     False
-    >>> Q = ml.matrix([[0.9, 0.1]])
-    >>> flag = CheckProbVector(Q,True)
+    >>> Q = ml.matrix([[0.9,0.1]])
+    >>> flag = CheckProbVector(Q, True)
     >>> print(flag)
     True
-    >>> Q = ml.matrix([[0.8, 0.1]])
-    >>> flag = CheckProbVector(Q,True)
+    >>> Q = ml.matrix([[0.8,0.1]])
+    >>> flag = CheckProbVector(Q, True)
     >>> print(flag)
     True
 

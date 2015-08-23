@@ -38,25 +38,19 @@ butools.dmap.CheckDMRAPRepresentation
     >>> H0 = [0.15, 0.2, 0.18; -0.23, 0.17, 0.22; 0.19, 0.15, 0.16];
     >>> H1 = [0.01, 0.08, 0.16; 0.02, 0.2, 0.07; 0.02, 0.15, 0.17];
     >>> H2 = [0.14, 0.07, 0.01; 0.19, 0.02, 0.34; 0.06, 0.1, 0];
-    >>> flag = CheckDMRAPRepresentation({H0,H1,H2});
+    >>> flag = CheckDMRAPRepresentation({H0, H1, H2});
     >>> disp(flag);
          1
 
     For Mathematica:
 
-    >>> H0 = {{0.15, 0.2, 0.18},{-0.23, 0.17, 0.22},{0.19, 0.15, 0.16}};
-    >>> H1 = {{0.01, 0.08, 0.16},{0.02, 0.2, 0.07},{0.02, 0.15, 0.17}};
-    >>> H2 = {{0.14, 0.07, 0.01},{0.19, 0.02, 0.34},{0.06, 0.1, 0}};
-    >>> flag = CheckDMRAPRepresentation[{H0,H1,H2}];
-    >>> Print[flag];
-    True
-
+    
     For Python/Numpy:
 
     >>> H0 = ml.matrix([[0.15, 0.2, 0.18],[-0.23, 0.17, 0.22],[0.19, 0.15, 0.16]])
     >>> H1 = ml.matrix([[0.01, 0.08, 0.16],[0.02, 0.2, 0.07],[0.02, 0.15, 0.17]])
     >>> H2 = ml.matrix([[0.14, 0.07, 0.01],[0.19, 0.02, 0.34],[0.06, 0.1, 0]])
-    >>> flag = CheckDMRAPRepresentation([H0,H1,H2])
+    >>> flag = CheckDMRAPRepresentation([H0, H1, H2])
     >>> print(flag)
     True
 

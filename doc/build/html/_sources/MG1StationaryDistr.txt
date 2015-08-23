@@ -39,46 +39,109 @@ butools.mam.MG1StationaryDistr
         The stationary probability vector up to level K
     
     Examples
-    --------
+    ========
     For Matlab:
-    
-    >>> B0 = [0.1, 0.5; 0.3, 0.4];
-    >>> B1 = [0, 0.1; 0, 0];
-    >>> B2 = [0.2, 0; 0, 0.2];
-    >>> B3 = [0, 0.1; 0.1, 0];
-    >>> A0 = [0.4, 0.2; 0.3, 0.4];
-    >>> A1 = [0, 0.1; 0, 0];
-    >>> A2 = [0, 0.2; 0, 0.2];
-    >>> A3 = [0.1, 0; 0.1, 0];
-    >>> B = [B0,B1,B2,B3];
-    >>> A = [A0,A1,A2,A3];
-    >>> G = MG1FundamentalMatrix (A);
-    >>> pi = MG1StationaryDistr (A,B,G,3);
-    >>> pi(1:2)
-          0.10293      0.15492
-    >>> pi(3:4)
-         0.060187      0.07362
-    >>> pi(5:6)
-         0.068822      0.10886
 
+    >>> B0 = [0.1, 0.5; 0.3, 0.4];
+    >>> B1 = [0., 0.1; 0., 0.];
+    >>> B2 = [0.2, 0.; 0., 0.2];
+    >>> B3 = [0., 0.1; 0.1, 0.];
+    >>> A0 = [0.4, 0.2; 0.3, 0.4];
+    >>> A1 = [0., 0.1; 0., 0.];
+    >>> A2 = [0., 0.2; 0., 0.2];
+    >>> A3 = [0.1, 0.; 0.1, 0.];
+    >>> B = {B0, B1, B2, B3};
+    >>> A = {A0, A1, A2, A3};
+    >>> G = MG1FundamentalMatrix(A);
+    >>> disp(G);
+          0.60503      0.39497
+          0.45912      0.54088
+    >>> pi = MG1StationaryDistr(A, B, G, 300);
+
+    For Mathematica:
+
+    
     For Python/Numpy:
 
     >>> B0 = ml.matrix([[0.1, 0.5],[0.3, 0.4]])
-    >>> B1 = ml.matrix([[0, 0.1],[0, 0]])
-    >>> B2 = ml.matrix([[0.2, 0],[0, 0.2]])
-    >>> B3 = ml.matrix([[0, 0.1],[0.1, 0]])
+    >>> B1 = ml.matrix([[0., 0.1],[0., 0.]])
+    >>> B2 = ml.matrix([[0.2, 0.],[0., 0.2]])
+    >>> B3 = ml.matrix([[0., 0.1],[0.1, 0.]])
     >>> A0 = ml.matrix([[0.4, 0.2],[0.3, 0.4]])
-    >>> A1 = ml.matrix([[0, 0.1],[0, 0]])
-    >>> A2 = ml.matrix([[0, 0.2],[0, 0.2]])
-    >>> A3 = ml.matrix([[0.1, 0],[0.1, 0]])
-    >>> B = (B0,B1,B2,B3)
-    >>> A = (A0,A1,A2,A3)
+    >>> A1 = ml.matrix([[0., 0.1],[0., 0.]])
+    >>> A2 = ml.matrix([[0., 0.2],[0., 0.2]])
+    >>> A3 = ml.matrix([[0.1, 0.],[0.1, 0.]])
+    >>> B = [B0, B1, B2, B3]
+    >>> A = [A0, A1, A2, A3]
     >>> G = MG1FundamentalMatrix(A)
-    >>> pi = MG1StationaryDistr (A,B,G,3)
-    >>> print(pi[0,0:2])
-    [[ 0.10292778  0.15491506]]
-    >>> print(pi[0,2:4])
-    [[ 0.06018653  0.07361959]]
-    >>> print(pi[0,4:6])
-    [[ 0.06882166  0.10885956]]
+    The Shifted PWCR evaluation of Iteration  1  required  64  roots
+    The Shifted PWCR evaluation of Iteration  2  required  32  roots
+    The Shifted PWCR evaluation of Iteration  3  required  16  roots
+    The Shifted PWCR evaluation of Iteration  4  required  16  roots
+    The Shifted PWCR evaluation of Iteration  5  required  8  roots
+    Final Residual Error for G:  1.66533453694e-16
+    >>> print(G)
+    [[ 0.60503  0.39497]
+     [ 0.45912  0.54088]]
+    >>> pi = MG1StationaryDistr(A, B, G, 300)
+    Accumulated mass of the first  1  (reblocked) components: 0.391648958812
+    Accumulated mass of the first  2  (reblocked) components: 0.569330177726
+    Accumulated mass of the first  3  (reblocked) components: 0.710035538448
+    Accumulated mass of the first  4  (reblocked) components: 0.801388060572
+    Accumulated mass of the first  5  (reblocked) components: 0.864766585178
+    Accumulated mass of the first  6  (reblocked) components: 0.907731603845
+    Accumulated mass of the first  7  (reblocked) components: 0.937090744425
+    Accumulated mass of the first  8  (reblocked) components: 0.957097539458
+    Accumulated mass of the first  9  (reblocked) components: 0.970744114982
+    Accumulated mass of the first  10  (reblocked) components: 0.98004935607
+    Accumulated mass of the first  11  (reblocked) components: 0.986395072461
+    Accumulated mass of the first  12  (reblocked) components: 0.990722369885
+    Accumulated mass of the first  13  (reblocked) components: 0.993673298345
+    Accumulated mass of the first  14  (reblocked) components: 0.995685625547
+    Accumulated mass of the first  15  (reblocked) components: 0.997057894415
+    Accumulated mass of the first  16  (reblocked) components: 0.997993686966
+    Accumulated mass of the first  17  (reblocked) components: 0.998631832949
+    Accumulated mass of the first  18  (reblocked) components: 0.999067004471
+    Accumulated mass of the first  19  (reblocked) components: 0.999363761425
+    Accumulated mass of the first  20  (reblocked) components: 0.999566129191
+    Accumulated mass of the first  21  (reblocked) components: 0.999704130045
+    Accumulated mass of the first  22  (reblocked) components: 0.999798237105
+    Accumulated mass of the first  23  (reblocked) components: 0.999862411627
+    Accumulated mass of the first  24  (reblocked) components: 0.999906174223
+    Accumulated mass of the first  25  (reblocked) components: 0.999936017294
+    Accumulated mass of the first  26  (reblocked) components: 0.999956368209
+    Accumulated mass of the first  27  (reblocked) components: 0.999970246129
+    Accumulated mass of the first  28  (reblocked) components: 0.999979709913
+    Accumulated mass of the first  29  (reblocked) components: 0.999986163561
+    Accumulated mass of the first  30  (reblocked) components: 0.999990564503
+    Accumulated mass of the first  31  (reblocked) components: 0.999993565642
+    Accumulated mass of the first  32  (reblocked) components: 0.999995612212
+    Accumulated mass of the first  33  (reblocked) components: 0.999997007831
+    Accumulated mass of the first  34  (reblocked) components: 0.999997959547
+    Accumulated mass of the first  35  (reblocked) components: 0.999998608552
+    Accumulated mass of the first  36  (reblocked) components: 0.999999051129
+    Accumulated mass of the first  37  (reblocked) components: 0.999999352935
+    Accumulated mass of the first  38  (reblocked) components: 0.999999558746
+    Accumulated mass of the first  39  (reblocked) components: 0.999999699095
+    Accumulated mass of the first  40  (reblocked) components: 0.999999794804
+    Accumulated mass of the first  41  (reblocked) components: 0.99999986007
+    Accumulated mass of the first  42  (reblocked) components: 0.999999904578
+    Accumulated mass of the first  43  (reblocked) components: 0.999999934929
+    Accumulated mass of the first  44  (reblocked) components: 0.999999955626
+    Accumulated mass of the first  45  (reblocked) components: 0.99999996974
+    Accumulated mass of the first  46  (reblocked) components: 0.999999979365
+    Accumulated mass of the first  47  (reblocked) components: 0.999999985928
+    Accumulated mass of the first  48  (reblocked) components: 0.999999990404
+    Accumulated mass of the first  49  (reblocked) components: 0.999999993456
+    Accumulated mass of the first  50  (reblocked) components: 0.999999995538
+    Accumulated mass of the first  51  (reblocked) components: 0.999999996957
+    Accumulated mass of the first  52  (reblocked) components: 0.999999997925
+    Accumulated mass of the first  53  (reblocked) components: 0.999999998585
+    Accumulated mass of the first  54  (reblocked) components: 0.999999999035
+    Accumulated mass of the first  55  (reblocked) components: 0.999999999342
+    Accumulated mass of the first  56  (reblocked) components: 0.999999999551
+    Accumulated mass of the first  57  (reblocked) components: 0.999999999694
+    Accumulated mass of the first  58  (reblocked) components: 0.999999999791
+    Accumulated mass of the first  59  (reblocked) components: 0.999999999858
+    Accumulated mass of the first  60  (reblocked) components: 0.999999999903
 

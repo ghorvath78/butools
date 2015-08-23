@@ -488,29 +488,183 @@ algorithm. Dependable Systems and Networks, 2005.</td></tr>
 </table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;trace.txt&#39;</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">PHFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;/home/gabor/github/butools/test/data/bctrace.iat&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">PHFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="go">Num of iterations: 26, logli: 4.80924</span>
+<span class="go">Num of iterations: 26, logli: 4.80924</span>
+<span class="go">EM algorithm terminated. (orders=1,4)</span>
+<span class="go">Num of iterations: 38, logli: 4.70421</span>
+<span class="go">EM algorithm terminated. (orders=2,3)</span>
+<span class="go">Num of iterations: 30, logli: 4.89844</span>
+<span class="go">Num of iterations: 60, logli: 4.8989</span>
+<span class="go">Num of iterations: 91, logli: 4.89925</span>
+<span class="go">Num of iterations: 121, logli: 4.8996</span>
+<span class="go">Num of iterations: 150, logli: 4.9</span>
+<span class="go">Num of iterations: 179, logli: 4.90046</span>
+<span class="go">Num of iterations: 201, logli: 4.90074</span>
+<span class="go">EM algorithm terminated. (orders=1,1,3)</span>
+<span class="go">Num of iterations: 30, logli: 4.85155</span>
+<span class="go">Num of iterations: 58, logli: 4.85184</span>
+<span class="go">Num of iterations: 87, logli: 4.85214</span>
+<span class="go">Num of iterations: 119, logli: 4.85259</span>
+<span class="go">Num of iterations: 150, logli: 4.85461</span>
+<span class="go">Num of iterations: 179, logli: 4.88627</span>
+<span class="go">Num of iterations: 192, logli: 4.91508</span>
+<span class="go">EM algorithm terminated. (orders=1,2,2)</span>
+<span class="go">Num of iterations: 22, logli: 4.88641</span>
+<span class="go">Num of iterations: 43, logli: 4.88777</span>
+<span class="go">Num of iterations: 64, logli: 4.88814</span>
+<span class="go">Num of iterations: 84, logli: 4.88827</span>
+<span class="go">Num of iterations: 104, logli: 4.88833</span>
+<span class="go">Num of iterations: 124, logli: 4.88836</span>
+<span class="go">Num of iterations: 145, logli: 4.88837</span>
+<span class="go">Num of iterations: 153, logli: 4.88838</span>
+<span class="go">EM algorithm terminated. (orders=1,1,1,2)</span>
+<span class="go">Num of iterations: 17, logli: 4.85091</span>
+<span class="go">Num of iterations: 27, logli: 4.85108</span>
+<span class="go">EM algorithm terminated. (orders=1,1,1,1,1)</span>
+<span class="go">Best solution: logli=4.91508, orders=1,2,2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
 <span class="go">     0.065027      0.85788            0     0.077088            0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <span class="go">      -63.308            0            0            0            0</span>
 <span class="go">            0      -815.72       815.72            0            0</span>
 <span class="go">            0            0      -815.72            0            0</span>
 <span class="go">            0            0            0       -12563        12563</span>
 <span class="go">            0            0            0            0       -12563</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logli</span> <span class="o">=</span> <span class="n">LikelihoodFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">logli</span><span class="p">);</span>
+<span class="go">       4.9151</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intBounds</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">MarginalMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">pdfTrX</span><span class="p">,</span> <span class="n">pdfTrY</span><span class="p">]</span> <span class="o">=</span> <span class="n">PdfFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">pdfPHX</span><span class="p">,</span> <span class="n">pdfPHY</span><span class="p">]</span> <span class="o">=</span> <span class="n">IntervalPdfFromPH</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqPdf</span> <span class="o">=</span> <span class="n">EmpiricalSquaredDifference</span><span class="p">(</span><span class="n">pdfTrY</span><span class="p">,</span> <span class="n">pdfPHY</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">sqPdf</span><span class="p">);</span>
+<span class="go">    0.0079115</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rePdf</span> <span class="o">=</span> <span class="n">EmpiricalRelativeEntropy</span><span class="p">(</span><span class="n">pdfTrY</span><span class="p">,</span> <span class="n">pdfPHY</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rePdf</span><span class="p">);</span>
+<span class="go">      0.35834</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">cdfTrX</span><span class="p">,</span> <span class="n">cdfTrY</span><span class="p">]</span> <span class="o">=</span> <span class="n">CdfFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">step</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span><span class="o">/</span><span class="mi">2000</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdfTrX</span> <span class="o">=</span> <span class="n">cdfTrX</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">tr</span><span class="p">));</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdfTrY</span> <span class="o">=</span> <span class="n">cdfTrY</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">step</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">tr</span><span class="p">));</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdfPHY</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">cdfTrX</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqCdf</span> <span class="o">=</span> <span class="n">EmpiricalSquaredDifference</span><span class="p">(</span><span class="n">cdfTrY</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">cdfPHY</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">cdfTrX</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">sqCdf</span><span class="p">);</span>
+<span class="go">   9.9902e-11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reCdf</span> <span class="o">=</span> <span class="n">EmpiricalRelativeEntropy</span><span class="p">(</span><span class="n">cdfTrY</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">cdfPHY</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">cdfTrX</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">reCdf</span><span class="p">);</span>
+<span class="go">   0.00018583</span>
 </pre></div>
 </div>
+<p>For Mathematica:</p>
 <p>For Python/Numpy:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&#39;trace.txt&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span> <span class="o">=</span> <span class="n">PHFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&quot;/home/gabor/github/butools/test/data/bctrace.iat&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">PHFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">iteration:  10 , logli:  4.8091271432</span>
+<span class="go">iteration:  20 , logli:  4.80923172357</span>
+<span class="go">EM algorithm terminated. [1, 4]</span>
+<span class="go">Num of iterations:  26 , logli:  4.80923543503</span>
+<span class="go">iteration:  10 , logli:  4.65521504335</span>
+<span class="go">iteration:  20 , logli:  4.68768389352</span>
+<span class="go">iteration:  30 , logli:  4.70415249872</span>
+<span class="go">EM algorithm terminated. [2, 3]</span>
+<span class="go">Num of iterations:  38 , logli:  4.70421427167</span>
+<span class="go">iteration:  10 , logli:  4.88937597779</span>
+<span class="go">iteration:  20 , logli:  4.89819514171</span>
+<span class="go">iteration:  30 , logli:  4.89845514506</span>
+<span class="go">iteration:  40 , logli:  4.89863272893</span>
+<span class="go">iteration:  50 , logli:  4.89878133343</span>
+<span class="go">iteration:  60 , logli:  4.89891146874</span>
+<span class="go">iteration:  70 , logli:  4.89903002265</span>
+<span class="go">iteration:  80 , logli:  4.89914197577</span>
+<span class="go">iteration:  90 , logli:  4.89925126394</span>
+<span class="go">iteration:  100 , logli:  4.89936125929</span>
+<span class="go">iteration:  110 , logli:  4.89947502785</span>
+<span class="go">iteration:  120 , logli:  4.89959540205</span>
+<span class="go">iteration:  130 , logli:  4.89972483134</span>
+<span class="go">iteration:  140 , logli:  4.89986492887</span>
+<span class="go">iteration:  150 , logli:  4.90001566233</span>
+<span class="go">iteration:  160 , logli:  4.90017434189</span>
+<span class="go">iteration:  170 , logli:  4.90033497306</span>
+<span class="go">iteration:  180 , logli:  4.90048885472</span>
+<span class="go">iteration:  190 , logli:  4.9006268209</span>
+<span class="go">iteration:  200 , logli:  4.90074215709</span>
+<span class="go">EM algorithm terminated. [1, 1, 3]</span>
+<span class="go">Num of iterations:  201 , logli:  4.90074215709</span>
+<span class="go">iteration:  10 , logli:  4.8428939533</span>
+<span class="go">iteration:  20 , logli:  4.85044993659</span>
+<span class="go">iteration:  30 , logli:  4.85156877825</span>
+<span class="go">iteration:  40 , logli:  4.85167161239</span>
+<span class="go">iteration:  50 , logli:  4.85176192227</span>
+<span class="go">iteration:  60 , logli:  4.8518686018</span>
+<span class="go">iteration:  70 , logli:  4.85197855253</span>
+<span class="go">iteration:  80 , logli:  4.85208231474</span>
+<span class="go">iteration:  90 , logli:  4.8521831464</span>
+<span class="go">iteration:  100 , logli:  4.85229494225</span>
+<span class="go">iteration:  110 , logli:  4.85243806034</span>
+<span class="go">iteration:  120 , logli:  4.85264283694</span>
+<span class="go">iteration:  130 , logli:  4.85296689978</span>
+<span class="go">iteration:  140 , logli:  4.85354745937</span>
+<span class="go">iteration:  150 , logli:  4.85478414915</span>
+<span class="go">iteration:  160 , logli:  4.85802067972</span>
+<span class="go">iteration:  170 , logli:  4.86675737206</span>
+<span class="go">iteration:  180 , logli:  4.89912069533</span>
+<span class="go">iteration:  190 , logli:  4.91508202604</span>
+<span class="go">EM algorithm terminated. [1, 2, 2]</span>
+<span class="go">Num of iterations:  192 , logli:  4.9150822899</span>
+<span class="go">iteration:  10 , logli:  4.87985526515</span>
+<span class="go">iteration:  20 , logli:  4.88627091507</span>
+<span class="go">iteration:  30 , logli:  4.88723479659</span>
+<span class="go">iteration:  40 , logli:  4.88770291202</span>
+<span class="go">iteration:  50 , logli:  4.88795746078</span>
+<span class="go">iteration:  60 , logli:  4.88810565844</span>
+<span class="go">iteration:  70 , logli:  4.88819663412</span>
+<span class="go">iteration:  80 , logli:  4.8882549448</span>
+<span class="go">iteration:  90 , logli:  4.88829369783</span>
+<span class="go">iteration:  100 , logli:  4.88832026537</span>
+<span class="go">iteration:  110 , logli:  4.88833897739</span>
+<span class="go">iteration:  120 , logli:  4.88835247272</span>
+<span class="go">iteration:  130 , logli:  4.8883624119</span>
+<span class="go">iteration:  140 , logli:  4.88836986989</span>
+<span class="go">iteration:  150 , logli:  4.88837556031</span>
+<span class="go">EM algorithm terminated. [1, 1, 1, 2]</span>
+<span class="go">Num of iterations:  153 , logli:  4.88837653192</span>
+<span class="go">iteration:  10 , logli:  4.84789680934</span>
+<span class="go">iteration:  20 , logli:  4.85106678625</span>
+<span class="go">EM algorithm terminated. [1, 1, 1, 1, 1]</span>
+<span class="go">Num of iterations:  27 , logli:  4.85108360418</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
-<span class="go">[[ 0.06502731  0.85788487  0.          0.07708782  0.        ]]</span>
+<span class="go">[[ 0.06503  0.85788  0.       0.07709  0.     ]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="go">[[   -63.30763115      0.              0.              0.              0.        ]</span>
-<span class="go"> [     0.           -815.71806894    815.71806894      0.              0.        ]</span>
-<span class="go"> [     0.              0.           -815.71806894      0.              0.        ]</span>
-<span class="go"> [     0.              0.              0.         -12563.08792279  12563.08792279]</span>
-<span class="go"> [     0.              0.              0.              0.         -12563.08792279]]</span>
+<span class="go">[[   -63.30763      0.           0.           0.           0.     ]</span>
+<span class="go"> [     0.        -815.71807    815.71807      0.           0.     ]</span>
+<span class="go"> [     0.           0.        -815.71807      0.           0.     ]</span>
+<span class="go"> [     0.           0.           0.      -12563.08792  12563.08792]</span>
+<span class="go"> [     0.           0.           0.           0.      -12563.08792]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logli</span> <span class="o">=</span> <span class="n">LikelihoodFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">logli</span><span class="p">)</span>
+<span class="go">4.91508239686</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intBounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">MarginalMomentsFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdfTrX</span><span class="p">,</span> <span class="n">pdfTrY</span> <span class="o">=</span> <span class="n">PdfFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdfPHX</span><span class="p">,</span> <span class="n">pdfPHY</span> <span class="o">=</span> <span class="n">IntervalPdfFromPH</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqPdf</span> <span class="o">=</span> <span class="n">EmpiricalSquaredDifference</span><span class="p">(</span><span class="n">pdfTrY</span><span class="p">,</span> <span class="n">pdfPHY</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">sqPdf</span><span class="p">)</span>
+<span class="go">0.00791151022468</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rePdf</span> <span class="o">=</span> <span class="n">EmpiricalRelativeEntropy</span><span class="p">(</span><span class="n">pdfTrY</span><span class="p">,</span> <span class="n">pdfPHY</span><span class="p">,</span> <span class="n">intBounds</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rePdf</span><span class="p">)</span>
+<span class="go">0.358335256398</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdfTrX</span><span class="p">,</span> <span class="n">cdfTrY</span> <span class="o">=</span> <span class="n">CdfFromTrace</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">step</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">Length</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span><span class="o">/</span><span class="mi">2000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdfTrX</span> <span class="o">=</span> <span class="n">cdfTrX</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">Length</span><span class="p">(</span><span class="n">tr</span><span class="p">):</span><span class="n">step</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdfTrY</span> <span class="o">=</span> <span class="n">cdfTrY</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">Length</span><span class="p">(</span><span class="n">tr</span><span class="p">):</span><span class="n">step</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdfPHY</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">cdfTrX</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqCdf</span> <span class="o">=</span> <span class="n">EmpiricalSquaredDifference</span><span class="p">(</span><span class="n">cdfTrY</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">cdfPHY</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">cdfTrX</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">sqCdf</span><span class="p">)</span>
+<span class="go">9.99019928404e-11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reCdf</span> <span class="o">=</span> <span class="n">EmpiricalRelativeEntropy</span><span class="p">(</span><span class="n">cdfTrY</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">cdfPHY</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">cdfTrX</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">reCdf</span><span class="p">)</span>
+<span class="go">0.000185826390424</span>
 </pre></div>
 </div>
 </dd></dl>

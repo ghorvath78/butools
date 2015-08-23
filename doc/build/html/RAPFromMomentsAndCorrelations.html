@@ -448,15 +448,13 @@ Performance Evaluation 51.2 (2003): 137-152.</td></tr>
 <p>For Matlab:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">H1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">mom</span><span class="p">);</span>
 <span class="go">      0.29774      0.19284      0.19448      0.26597      0.45833</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">corr</span><span class="p">);</span>
-<span class="go">     0.012394</span>
-<span class="go">    0.0027412</span>
-<span class="go">   0.00072384</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">]</span> <span class="o">=</span> <span class="n">RAPFromMomentsAndCorrelations</span><span class="p">(</span><span class="n">mom</span><span class="p">,</span><span class="n">corr</span><span class="p">);</span>
+<span class="go">     0.012394    0.0027412   0.00072384</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">G0</span><span class="p">,</span> <span class="n">G1</span><span class="p">]</span> <span class="o">=</span> <span class="n">RAPFromMomentsAndCorrelations</span><span class="p">(</span><span class="n">mom</span><span class="p">,</span> <span class="n">corr</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">G0</span><span class="p">);</span>
 <span class="go">      -8.9629       22.253      -18.544</span>
 <span class="go">     -0.99178       -4.667        2.331</span>
@@ -465,52 +463,25 @@ Performance Evaluation 51.2 (2003): 137-152.</td></tr>
 <span class="go">       2.2027      -1.3173       4.3689</span>
 <span class="go">       1.2179       1.8217      0.28809</span>
 <span class="go">       1.0212      0.41735        1.951</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">G1</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rmom</span><span class="p">);</span>
 <span class="go">      0.29774      0.19284      0.19448      0.26597      0.45833</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">G1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">rcorr</span><span class="p">);</span>
-<span class="go">     0.012394</span>
-<span class="go">    0.0027412</span>
-<span class="go">   0.00072384</span>
+<span class="go">     0.012394    0.0027412   0.00072384</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">}};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">}};</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mom</span><span class="p">];</span>
-<span class="go">{0.29774127310061604, 0.19283643304803644, 0.19448147792730758, 0.2659732553924553, 0.45833053059627116}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">[</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">corr</span><span class="p">];</span>
-<span class="go">{0.012393574884970258, 0.0027411959690404088, 0.0007238364213571031}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">}</span> <span class="o">=</span> <span class="n">RAPFromMomentsAndCorrelations</span><span class="p">[</span><span class="n">mom</span><span class="p">,</span><span class="n">corr</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">G0</span><span class="p">];</span>
-<span class="go">{{-8.96289388087693, 22.252570107207173, -18.544098091372838},</span>
-<span class="go"> {-0.9917815607047362, -4.666992249154709, 2.33103341018933},</span>
-<span class="go"> {-1.247298899065379, 2.4279117893845945, -4.570113869959446}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">G1</span><span class="p">];</span>
-<span class="go">{{2.2027474563394773, -1.3172514038167056, 4.368925812519816},</span>
-<span class="go"> {1.2179262967043782, 1.8217266419760083, 0.2880874609897277},</span>
-<span class="go"> {1.0211541630657368, 0.4173538177941065, 1.9509929987803876}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">[</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">rmom</span><span class="p">];</span>
-<span class="go">{0.297741273100616, 0.19283643304803638, 0.19448147792730755, 0.2659732553924553, 0.45833053059627116}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">[</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">rcorr</span><span class="p">];</span>
-<span class="go">{0.012393574884970393, 0.0027411959690408086, 0.0007238364213573696}</span>
-</pre></div>
-</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">2.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">H1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">mom</span><span class="p">)</span>
 <span class="go">[0.29774127310061604, 0.19283643304803644, 0.19448147792730755, 0.26597325539245531, 0.45833053059627116]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span><span class="n">H1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">H0</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span>
-<span class="go">[0.012393574884970124, 0.0027411959690404088, 0.00072383642135696988]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span> <span class="o">=</span> <span class="n">RAPFromMomentsAndCorrelations</span><span class="p">(</span><span class="n">mom</span><span class="p">,</span><span class="n">corr</span><span class="p">)</span>
+<span class="go">[ 0.01239  0.00274  0.00072]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G0</span><span class="p">,</span> <span class="n">G1</span> <span class="o">=</span> <span class="n">RAPFromMomentsAndCorrelations</span><span class="p">(</span><span class="n">mom</span><span class="p">,</span> <span class="n">corr</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">G0</span><span class="p">)</span>
 <span class="go">[[ -8.96289  22.25257 -18.5441 ]</span>
 <span class="go"> [ -0.99178  -4.66699   2.33103]</span>
@@ -519,12 +490,12 @@ Performance Evaluation 51.2 (2003): 137-152.</td></tr>
 <span class="go">[[ 2.20275 -1.31725  4.36893]</span>
 <span class="go"> [ 1.21793  1.82173  0.28809]</span>
 <span class="go"> [ 1.02115  0.41735  1.95099]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rmom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmom</span> <span class="o">=</span> <span class="n">MarginalMomentsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">G1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rmom</span><span class="p">)</span>
 <span class="go">[0.29774127310061604, 0.19283643304803638, 0.19448147792730741, 0.26597325539245492, 0.45833053059627044]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">G1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rcorr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromRAP</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span> <span class="n">G1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">rcorr</span><span class="p">)</span>
-<span class="go">[0.012393574884970265, 0.0027411959690409431, 0.00072383642135750309]</span>
+<span class="go">[ 0.01239  0.00274  0.00072]</span>
 </pre></div>
 </div>
 </dd></dl>

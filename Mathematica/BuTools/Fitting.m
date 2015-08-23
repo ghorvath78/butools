@@ -5,13 +5,13 @@
 *)
 
 BeginPackage["BuTools`Fitting`"];
-SquaredDifference::usage = "";
-RelativeEntropy::usage = "";
-EmpiricalSquaredDifference::usage = "";
-EmpiricalRelativeEntropy::usage = "";
-LikelihoodFromTrace::usage = "";
-PHFromTrace::usage = "";
-MAPFromTrace::usage = "";
+SquaredDifference::usage = "sd = SquaredDifference[p1, p2]: Returns the squared difference between two vectors";
+RelativeEntropy::usage = "re = RelativeEntropy[p1, p2]: Returns the relative entropy (aka Kullback–Leibler divergence) of two vectors";
+EmpiricalSquaredDifference::usage = "sd = EmpiricalSquaredDifference[f1, f2, intBounds]: Returns the squared difference of two continuous functions given by samples and the bounds of the corresponding intervalls";
+EmpiricalRelativeEntropy::usage = "re = EmpiricalRelativeEntropy[f1, f2, intBounds]: Returns the relative entropy (aka Kullback–Leibler divergence) of two continuous functions given by samples and the bounds of the corresponding intervalls";
+LikelihoodFromTrace::usage = "logli = LikelihoodFromTrace[trace, X, Y, prec]: Evaluates the log-likelihood of a trace with the given PH distribution or MAP";
+PHFromTrace::usage = "{alpha, A, logli} = PHFromTrace[trace, orders, maxIter, stopCond, initial, result]: Performs PH distribution fitting using the EM algorithm";
+MAPFromTrace::usage = "{D0, D1, logli} = MAPFromTrace[trace, orders, maxIter, stopCond, initial, result]: Performs MAP fitting using the EM algorithm";
 
 
 Begin["`Private`"];
