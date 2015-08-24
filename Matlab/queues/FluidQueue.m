@@ -124,28 +124,27 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
     end
     
     Ret = {};
-    retIx = 1;
     argIx = 1;
     while argIx<=length(varargin)
         if any(ismember(eaten, argIx))
             argIx = argIx + 1;
             continue;
-        elseif strcmp(varargin{argIx},'qlDistrPH')
+        elseif strcmp(varargin{argIx},'flDistrPH')
             % transform it to PH
             Delta = diag(linsolve(K',-ini')); % Delta = diag (ini*inv(-K));
             A = inv(Delta)*K'*Delta;
             alpha = sum(clo,2)'*Delta;
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlDistrME')
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
+        elseif strcmp(varargin{argIx},'flDistrME')
             % transform it to ME
             B = SimilarityMatrixForVectors(inv(-K)*sum(clo,2), ones(size(K,1),1));
             Bi = inv(B);
             alpha = ini*Bi;
             A = B*K*Bi;
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlMoms')
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
+        elseif strcmp(varargin{argIx},'flMoms')
             numOfMoms = varargin{argIx+1};
             argIx = argIx + 1;
             moms = zeros(1,numOfMoms);
@@ -153,9 +152,8 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
             for m=1:numOfMoms
                 moms(m) = factorial(m)*sum(ini*iK^(m+1)*clo);
             end
-            Ret{retIx} = moms;
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlDistr')
+            Ret{end+1} = moms;
+        elseif strcmp(varargin{argIx},'flDistr')
             points = varargin{argIx+1};
             argIx = argIx + 1;
             values = zeros(size(points));
@@ -163,22 +161,21 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
             for p=1:length(points)
                 values(p) = sum(mass0) + sum(ini*(eye(size(K,1))-expm(K*points(p)))*iK*clo);
             end
-            Ret{retIx} = values;
-            retIx = retIx + 1;
+            Ret{end+1} = values;
         elseif strcmp(varargin{argIx},'stDistrPH')
             % transform it to PH
             Delta = diag(iniKi/lambda);
             alpha = reshape(clo*Rin,1,N*length(ini))*kron(eye(N),Delta);
             A = kron(Rout, inv(Delta)*K'*Delta) + kron(Q, eye(size(K)));
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
         elseif strcmp(varargin{argIx},'stDistrME')
             B = SimilarityMatrixForVectors(reshape(inv(-K)*clo*Rin,N*length(ini),1),ones(N*length(ini),1));
             Bi = inv(B);
             alpha = kron(ones(1,N), ini/lambda)*Bi;
             A = B*(kron(sparse(Q'),speye(size(K))) + kron(sparse(Rout),sparse(K)))*Bi;        
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
         elseif strcmp(varargin{argIx},'stMoms')
             numOfMoms = varargin{argIx+1};
             argIx = argIx + 1;
@@ -190,8 +187,7 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
             for m=1:numOfMoms
                 moms(m) = factorial(m)*sum(kini*iZ^(m+1)*(-Z)*kclo);
             end
-            Ret{retIx} = moms;
-            retIx = retIx + 1;
+            Ret{end+1} = moms;
         elseif strcmp(varargin{argIx},'stDistr')
             points = varargin{argIx+1};
             argIx = argIx + 1;
@@ -202,17 +198,12 @@ function varargout = FluidQueue(Q, Rin, Rout, varargin)
             for p=1:length(points)
                 values(p) = 1-sum(kini*expm(Z*points(p))*kclo);
             end
-            Ret{retIx} = values;
-            retIx = retIx + 1;
+            Ret{end+1} = values;
         else
             error (['FluidQueue: Unknown parameter ' varargin{argIx}])
         end
         argIx = argIx + 1;
     end
-    if length(Ret)==1 && iscell(Ret{1})
-        varargout = Ret{1};
-    else
-        varargout = Ret;
-    end
+    varargout = Ret;
 end
 

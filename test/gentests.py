@@ -321,6 +321,8 @@ import os
                     self.evals[ctx] = "ml.zeros(("+self.evals[ctx.argumentList()]+"))"
                 else:
                     self.evals[ctx] = "np.zeros("+self.evals[ctx.argumentList()]+")"
+            elif funName=="Transpose":
+                self.evals[ctx] = self.evals[ctx.argumentList()]+".T"
             elif funName=="Flatten":
                 self.evals[ctx] = self.evals[ctx.argumentList()]+".A.flatten()"
             elif funName=="DyadProd":
@@ -539,6 +541,8 @@ class MATLABWriter(TestWriterBase):
                 self.evals[ctx] = "reshape({0},1,numel({0}))".format(self.evals[ctx.argumentList()])
             elif funName=="ToArray":
                 self.evals[ctx] = self.evals[ctx.argumentList()]
+            elif funName=="Transpose":
+                self.evals[ctx] = self.evals[ctx.argumentList()] + "'"
             elif funName=="DyadProd":
                 self.evals[ctx] = "{0}*{1}".format(self.evals[ctx.argumentList().expression(0)], self.evals[ctx.argumentList().expression(1)])
             elif funName=="MatrixMin":

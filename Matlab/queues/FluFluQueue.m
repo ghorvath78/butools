@@ -102,7 +102,7 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             eaten = [eaten, i, i+1];
         elseif length(varargin{i})>2 && strcmp(varargin{i}(1:2),'st')
             needST = 1;
-        elseif length(varargin{i})>2 && strcmp(varargin{i}(1:2),'ql')
+        elseif length(varargin{i})>2 && strcmp(varargin{i}(1:2),'fl')
             needQL = 1;
         end
     end
@@ -150,28 +150,27 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
     end
     
     Ret = {};
-    retIx = 1;
     argIx = 1;
     while argIx<=length(varargin)
         if any(ismember(eaten, argIx))
             argIx = argIx + 1;
             continue;
-        elseif strcmp(varargin{argIx},'qlDistrPH')
+        elseif strcmp(varargin{argIx},'flDistrPH')
             % transform it to PH
             Delta = diag(linsolve(K',-ini')); % Delta = diag (ini*inv(-K));
             A = inv(Delta)*K'*Delta;
             alpha = sum(clo,2)'*Delta;
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlDistrME')
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
+        elseif strcmp(varargin{argIx},'flDistrME')
             % transform it to ME
             B = SimilarityMatrixForVectors(inv(-K)*sum(clo,2), ones(size(K,1),2));
             Bi = inv(B);
             alpha = ini*Bi;
             A = B*K*Bi;
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlMoms')
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
+        elseif strcmp(varargin{argIx},'flMoms')
             numOfMoms = varargin{argIx+1};
             argIx = argIx + 1;
             moms = zeros(1,numOfMoms);
@@ -179,9 +178,8 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             for m=1:numOfMoms
                 moms(m) = factorial(m)*sum(ini*iK^(m+1)*clo);
             end
-            Ret{retIx} = moms;
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlDistr')
+            Ret{end+1} = moms;
+        elseif strcmp(varargin{argIx},'flDistr')
             points = varargin{argIx+1};
             argIx = argIx + 1;
             values = zeros(size(points));
@@ -189,8 +187,7 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             for p=1:length(points)
                 values(p) = sum(mass0) + sum(ini*(eye(size(K,1))-expm(K*points(p)))*iK*clo);
             end
-            Ret{retIx} = values;
-            retIx = retIx + 1;
+            Ret{end+1} = values;
         elseif strcmp(varargin{argIx},'stDistrPH')
             % convert result to PH representation
             Delta = diag(linsolve(Kh',-inih')); % Delta = diag (inih*inv(-Kh));
@@ -200,8 +197,8 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             else
                 alpha = sum(Delta*cloh*kron(Rin,Rout)/lambda/mu,2)';
             end        
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
         elseif strcmp(varargin{argIx},'stDistrME')
             % convert result to ME representation
             if ~srv0stop
@@ -212,8 +209,8 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             iB = inv(B);
             A = B*Kh*iB;
             alpha = inih*inv(-Kh)*iB;
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
         elseif strcmp(varargin{argIx},'stMoms')
             numOfMoms = varargin{argIx+1};
             argIx = argIx + 1;
@@ -227,8 +224,7 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             for m=1:numOfMoms
                 moms(m) = factorial(m)*sum(inih*iKh^(m+1)*kclo);
             end
-            Ret{retIx} = moms;
-            retIx = retIx + 1;
+            Ret{end+1} = moms;
         elseif strcmp(varargin{argIx},'stDistr')
             points = varargin{argIx+1};
             argIx = argIx + 1;
@@ -242,17 +238,12 @@ function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
             for p=1:length(points)
                 values(p) = 1-sum(inih*expm(Kh*points(p))*iKh*kclo);
             end
-            Ret{retIx} = values;
-            retIx = retIx + 1;
+            Ret{end+1} = values;
         else
             error (['FluFluQueue: Unknown parameter ' varargin{argIx}])
         end
         argIx = argIx + 1;
     end
-    if length(Ret)==1 && iscell(Ret{1})
-        varargout = Ret{1};
-    else
-        varargout = Ret;
-    end
+    varargout = Ret;
 end
 

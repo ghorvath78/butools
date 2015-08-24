@@ -314,10 +314,8 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
             
             % step 4.3. calculate the performance measures
             % ==========================================   
-            retIx = 1;
             argIx = 1;
             while argIx<=length(varargin)
-                res = [];
                 if any(ismember(eaten, argIx))
                     argIx = argIx + 1;
                     continue;
@@ -327,7 +325,7 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                     numOfSTMoms = varargin{argIx+1};
                     % calculate waiting time moments
                     Pn = {Psis};
-                    wtMoms = zeros(numOfSTMoms,1);
+                    wtMoms = zeros(1,numOfSTMoms);
                     for n=1:numOfSTMoms
                         A = Qspp + Psis*Qsmp;
                         B = Qsmm + Qsmp*Psis;
@@ -343,18 +341,19 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                     end
                     % calculate RESPONSE time moments
                     Pnr = {sum(inis*Pn{1})*sigma{k}}; %{sigmaL}; 
-                    rtMoms = zeros(numOfSTMoms,1);
+                    rtMoms = zeros(1,numOfSTMoms);
                     for n=1:numOfSTMoms
                         P =  n*Pnr{n}*inv(-S{k}) + (-1)^n*sum(inis*Pn{n+1})*sigma{k} / 2^n;
                         Pnr{n+1} = P;
                         rtMoms(n) = sum(P)+sum(pwu)*factorial(n)*sum(sigma{k}*inv(-S{k})^n);
                     end
-                    res = rtMoms;
+                    Ret{end+1} = rtMoms;
                     argIx = argIx + 1;
                 elseif strcmp(varargin{argIx},'stDistr') 
                     % DISTRIBUTION OF THE SOJOURN TIME
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     stCdfPoints = varargin{argIx+1};
+                    res = [];
                     for t=stCdfPoints
                         L = erlMaxOrder;
                         lambdae = L/t/2;
@@ -372,15 +371,16 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                             Pn{n+1} = P;
                             pr = pr + sum(inis*P) * (1-sum(sigma{k}*inv(eye(size(S{k}))-S{k}/2/lambdae)^(L-n)));
                         end
-                        res = [res; pr];
+                        res = [res, pr];
                     end
+                    Ret{end+1} = res;
                     argIx = argIx + 1;
-                elseif strcmp(varargin{argIx},'qlMoms') || strcmp(varargin{argIx},'qlDistr')
+                elseif strcmp(varargin{argIx},'ncMoms') || strcmp(varargin{argIx},'ncDistr')
                     W = inv(-kron(sD-D{k+1},eye(M(k)))-kron(I,S{k}))*kron(D{k+1},eye(M(k)));
                     iW = inv(eye(size(W))-W);
                     w = kron(eye(N),sigma{k});
                     omega = inv(-kron(sD-D{k+1},eye(M(k)))-kron(I,S{k}))*kron(I,s{k});
-                    if strcmp(varargin{argIx},'qlMoms')
+                    if strcmp(varargin{argIx},'ncMoms')
                         % MOMENTS OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLMoms = varargin{argIx+1};
@@ -405,7 +405,7 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                         end                    
                         % now calculate it at random time instance
                         QLPn = {pi};
-                        qlMoms = zeros(numOfQLMoms,1);
+                        qlMoms = zeros(1,numOfQLMoms);
                         iTerm = inv(ones(N,1)*pi - sD);
                         for n=1:numOfQLMoms
                             sumP = sum(QLDPn{n+1}) + n*(QLDPn{n} - QLPn{n}*D{k+1}/lambda(k))*iTerm*sum(D{k+1},2);
@@ -414,9 +414,9 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                             qlMoms(n) = sum(P);
                         end
                         qlMoms = MomsFromFactorialMoms(qlMoms);
-                        res = qlMoms;
+                        Ret{end+1} = qlMoms;
                         argIx = argIx + 1;
-                    elseif strcmp(varargin{argIx},'qlDistr')
+                    elseif strcmp(varargin{argIx},'ncDistr')
                         % DISTRIBUTION OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLProbs = varargin{argIx+1};
@@ -442,19 +442,12 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                             P = (qlProbs(n,:)*D{k+1}+lambda(k)*(dqlProbs(n+1,:)-dqlProbs(n,:)))*iTerm;
                             qlProbs = [qlProbs; P];
                         end
-                        qlProbs = sum(qlProbs,2);
-                        res = qlProbs;
+                        Ret{end+1} = sum(qlProbs,2)';
                         argIx = argIx + 1;
                     end
                 else
                     error (['MMAPPH1NPPR: Unknown parameter ' varargin{argIx}])
                 end
-                if retIx>length(Ret)
-                    Ret{retIx} = res;
-                else
-                    Ret{retIx} = [Ret{retIx}, res];
-                end
-                retIx = retIx+1;
                 argIx = argIx + 1;
             end
         elseif k==K
@@ -463,7 +456,6 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
             retIx = 1;
             argIx = 1;
             while argIx<=length(varargin)
-                res = [];
                 if any(ismember(eaten, argIx))
                     argIx = argIx + 1;
                     continue;
@@ -484,23 +476,23 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                         % MOMENTS OF THE SOJOURN TIME
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfSTMoms = varargin{argIx+1};
-                        rtMomsH = zeros(numOfSTMoms,1);
+                        rtMomsH = zeros(1,numOfSTMoms);
                         for i=1:numOfSTMoms
                             rtMomsH(i) = factorial(i)*zeta*inv(-Z)^(i+1)*z;
                         end
-                        res = rtMomsH;
+                        Ret{end+1} = rtMomsH;
                     elseif strcmp(varargin{argIx},'stDistr') 
                         % DISTRIBUTION OF THE SOJOURN TIME
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         stCdfPoints = varargin{argIx+1};
                         rtDistr = [];
                         for t=stCdfPoints
-                            rtDistr = [rtDistr; zeta*inv(-Z)*(eye(size(Z))-expm(Z*t))*z];
+                            rtDistr = [rtDistr, zeta*inv(-Z)*(eye(size(Z))-expm(Z*t))*z];
                         end
-                        res = rtDistr;
+                        Ret{end+1} = rtDistr;
                     end
                     argIx = argIx + 1;
-                elseif strcmp(varargin{argIx},'qlMoms') || strcmp(varargin{argIx},'qlDistr')
+                elseif strcmp(varargin{argIx},'ncMoms') || strcmp(varargin{argIx},'ncDistr')
                     L = zeros(N*sum(M));
                     B = zeros(N*sum(M));
                     F = zeros(N*sum(M));
@@ -519,16 +511,16 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                     R = QBDFundamentalMatrices (B, L, F, 'R', precision);
                     p0 = [qL{k}, q0{k}*kron(I,sigma{k})];
                     p0 = p0/sum(p0*inv(eye(size(R))-R));
-                    if strcmp(varargin{argIx},'qlMoms')
+                    if strcmp(varargin{argIx},'ncMoms')
                         % MOMENTS OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLMoms = varargin{argIx+1};
-                        qlMoms = zeros(numOfQLMoms,1);
+                        qlMoms = zeros(1,numOfQLMoms);
                         for i=1:numOfQLMoms
                             qlMoms(i) = sum(factorial(i)*p0*R^i*inv(eye(size(R))-R)^(i+1));
                         end
-                        res = MomsFromFactorialMoms(qlMoms);
-                    elseif strcmp(varargin{argIx},'qlDistr')        
+                        Ret{end+1} = MomsFromFactorialMoms(qlMoms);
+                    elseif strcmp(varargin{argIx},'ncDistr')        
                         % DISTRIBUTION OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLProbs = varargin{argIx+1};
@@ -536,18 +528,12 @@ function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
                         for i=1:numOfQLProbs-1
                             qlProbs = [qlProbs; p0*R^i];
                         end
-                        res = sum(qlProbs,2);                       
+                        Ret{end+1} = sum(qlProbs,2)';                       
                     end
                     argIx = argIx + 1;
                 else
                     error (['MMAPPH1NPPR: Unknown parameter ' varargin{argIx}])
                 end
-                if retIx>length(Ret)
-                    Ret{retIx} = res;
-                else
-                    Ret{retIx} = [Ret{retIx}, res];
-                end
-                retIx = retIx+1;
                 argIx = argIx + 1;
             end           
         end

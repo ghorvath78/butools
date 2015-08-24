@@ -184,10 +184,8 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
             
             % step 3. calculate the performance measures
             % ==========================================   
-            retIx = 1;
             argIx = 1;
             while argIx<=length(varargin)
-                res = [];
                 if any(ismember(eaten, argIx))
                     argIx = argIx + 1;
                     continue;
@@ -196,7 +194,7 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     numOfSTMoms = varargin{argIx+1};
                     Pn = {Psis};
-                    rtMoms = zeros(numOfSTMoms,1);
+                    rtMoms = zeros(1,numOfSTMoms);
                     for n=1:numOfSTMoms
                         A = Qspp + Psis*Qsmp;
                         B = Qsmm + Qsmp*Psis;
@@ -210,12 +208,13 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                         Pn{n+1} = P;
                         rtMoms(n) = sum(inis*P*(-1)^n) / 2^n;
                     end
-                    res = rtMoms;
+                    Ret{end+1} = rtMoms;
                     argIx = argIx + 1;
                 elseif strcmp(varargin{argIx},'stDistr') 
                     % DISTRIBUTION OF THE SOJOURN TIME
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     stCdfPoints = varargin{argIx+1};
+                    res = [];
                     for t=stCdfPoints
                         L = erlMaxOrder;
                         lambda = L/t/2;
@@ -233,16 +232,17 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                             Pn{n+1} = P;
                             pr = pr + sum(inis*P);
                         end
-                        res = [res; pr];
+                        res = [res, pr];
                     end
+                    Ret{end+1} = res;
                     argIx = argIx + 1;
-                elseif strcmp(varargin{argIx},'qlMoms')
+                elseif strcmp(varargin{argIx},'ncMoms')
                     % MOMENTS OF THE NUMBER OF JOBS
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     numOfQLMoms = varargin{argIx+1};
                     % first calculate it at departure instants
                     QLDPn = {Psis};
-                    dqlMoms = zeros(numOfQLMoms,1);
+                    dqlMoms = zeros(1,numOfQLMoms);
                     for n=1:numOfQLMoms
                         A = Qspp + Psis*Qsmp;
                         B = Qsmm + Qsmp*Psis;
@@ -261,7 +261,7 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                     pi = CTMCSolve (sD);
                     lambdak = sum(pi*D{k+1});
                     QLPn = {pi};
-                    qlMoms = zeros(numOfQLMoms,1);
+                    qlMoms = zeros(1,numOfQLMoms);
                     iTerm = inv(ones(N,1)*pi - sD);
                     for n=1:numOfQLMoms
                         sumP = sum(inis*QLDPn{n+1}) + n*(inis*QLDPn{n} - QLPn{n}*D{k+1}/lambdak)*iTerm*sum(D{k+1},2);
@@ -270,9 +270,9 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                         qlMoms(n) = sum(P);
                     end
                     qlMoms = MomsFromFactorialMoms(qlMoms);
-                    res = qlMoms;
+                    Ret{end+1} = qlMoms;
                     argIx = argIx + 1;
-                elseif strcmp(varargin{argIx},'qlDistr')
+                elseif strcmp(varargin{argIx},'ncDistr')
                     % DISTRIBUTION OF THE NUMBER OF JOBS
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     numOfQLProbs = varargin{argIx+1};
@@ -304,27 +304,18 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                         P = (qlProbs(n,:)*D{k+1}+lambdak*(dqlProbs(n+1,:)-dqlProbs(n,:)))*iTerm;
                         qlProbs = [qlProbs; P];
                     end
-                    qlProbs = sum(qlProbs,2);
-                    res = qlProbs;
+                    Ret{end+1} = sum(qlProbs,2)';
                     argIx = argIx + 1;
                 else
                     error (['MMAPPH1PRPR: Unknown parameter ' varargin{argIx}])
                 end
-                if retIx>length(Ret)
-                    Ret{retIx} = res;
-                else
-                    Ret{retIx} = [Ret{retIx}, res];
-                end
-                retIx = retIx+1;
                 argIx = argIx + 1;
             end
         elseif k==K
             % step 3. calculate the performance measures
             % ==========================================   
-            retIx = 1;
             argIx = 1;
             while argIx<=length(varargin)
-                res = [];
                 if any(ismember(eaten, argIx))
                     argIx = argIx + 1;
                     continue;
@@ -332,11 +323,11 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                     % MOMENTS OF THE SOJOURN TIME
                     % ~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     numOfSTMoms = varargin{argIx+1};
-                    rtMoms = zeros(numOfSTMoms,1);
+                    rtMoms = zeros(1,numOfSTMoms);
                     for i=1:numOfSTMoms
                         rtMoms(i) = factorial(i)*kappa*inv(-Kw)^(i+1)*sum(Bw,2);
                     end
-                    res = rtMoms;
+                    Ret{end+1} = rtMoms;
                     argIx = argIx + 1;
                 elseif strcmp(varargin{argIx},'stDistr') 
                     % DISTRIBUTION OF THE SOJOURN TIME
@@ -344,11 +335,11 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                     stCdfPoints = varargin{argIx+1};
                     rtDistr = [];
                     for t=stCdfPoints
-                        rtDistr = [rtDistr; kappa*inv(-Kw)*(eye(size(Kw))-expm(Kw*t))*sum(Bw,2)];
+                        rtDistr = [rtDistr, kappa*inv(-Kw)*(eye(size(Kw))-expm(Kw*t))*sum(Bw,2)];
                     end
-                    res = rtDistr;
+                    Ret{end+1} = rtDistr;
                     argIx = argIx + 1;
-                elseif strcmp(varargin{argIx},'qlMoms') || strcmp(varargin{argIx},'qlDistr')
+                elseif strcmp(varargin{argIx},'ncMoms') || strcmp(varargin{argIx},'ncDistr')
                     L = kron(sD-D{k+1},eye(M(k)))+kron(eye(N),S{k});
                     B = kron(eye(N),s{k}*sigma{k});
                     F = kron(D{k+1},eye(M(k)));
@@ -356,16 +347,16 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                     R = QBDFundamentalMatrices (B, L, F, 'R', precision);
                     p0 = CTMCSolve(L0+R*B);
                     p0 = p0/sum(p0*inv(eye(size(R))-R));                    
-                    if strcmp(varargin{argIx},'qlMoms')
+                    if strcmp(varargin{argIx},'ncMoms')
                         % MOMENTS OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLMoms = varargin{argIx+1};
-                        qlMoms = zeros(numOfQLMoms,1);
+                        qlMoms = zeros(1,numOfQLMoms);
                         for i=1:numOfQLMoms
                             qlMoms(i) = sum(factorial(i)*p0*R^i*inv(eye(size(R))-R)^(i+1));
                         end
-                        res = MomsFromFactorialMoms(qlMoms);
-                    elseif strcmp(varargin{argIx},'qlDistr')        
+                        Ret{end+1} = MomsFromFactorialMoms(qlMoms);
+                    elseif strcmp(varargin{argIx},'ncDistr')        
                         % DISTRIBUTION OF THE NUMBER OF JOBS
                         % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLProbs = varargin{argIx+1};
@@ -373,18 +364,12 @@ function varargout = MMAPPH1PRPR(D, sigma, S, varargin)
                         for i=1:numOfQLProbs-1
                             qlProbs = [qlProbs; p0*R^i];
                         end
-                        res = sum(qlProbs,2);                       
+                        Ret{end+1} = sum(qlProbs,2)';                       
                     end
                     argIx = argIx + 1;
                 else
                     error (['MMAPPH1PRPR: Unknown parameter ' varargin{argIx}])
                 end                                        
-                if retIx>length(Ret)
-                    Ret{retIx} = res;
-                else
-                    Ret{retIx} = [Ret{retIx}, res];
-                end
-                retIx = retIx+1;
                 argIx = argIx + 1;
             end
         end

@@ -101,7 +101,7 @@ BF,BB,G,PI,check,numit,Lstar,Bstar,Fstar,ret,U,R,resNorm},
         If[M=="R",
             R = Fm.Inverse[II-(Lm+Fm.G)];
             If[BuTools`Verbose,
-                resNorm = Norm[R-Fm-R.(Lm+R*Bm), Infinity];
+                resNorm = Norm[R-Fm-R.(Lm+R.Bm), Infinity];
                 Print["Final Residual Error for R: ", resNorm]];
             AppendTo[ret,R]];
         If[M=="U",

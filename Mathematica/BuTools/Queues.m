@@ -11,6 +11,7 @@ FluidQueue::usage = "Ret = FluidQueue[Q, Rin, Rout, ...]: Returns various perfor
 FluFluQueue::usage = "Ret = FluFluQueue[Qin, Rin, Qout, Rout, srv0stop, ...]: Returns various performance measures of a fluid queue, where the input and output processes are independent.";
 MMAPPH1PRPR::usage = "Ret = MMAPPH1PRPR[D, sigma, S, ...]: Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.";
 MMAPPH1NPPR::usage = "Ret = MMAPPH1NPPR[D, sigma, S, ...]: Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.";
+MMAPPH1FCFS::usage = ""
 
 
 Begin["`Private`"];
@@ -30,7 +31,7 @@ If[Not[MemberQ[Names["BuTools`*"],"BuTools`Verbose"]],BuTools`Verbose=False];
 QBDQueue[B_,L_,F_,L0_,argv__]:=
 Module[{varargin,prec,needST,eaten,
 pi0,R,U,Rh,NN,II,eta,z,Ret,retIx,argIx,alpha,A,Bi,numOfMoms,moms,
-Z,iZ,points,Bm,Bmi,iR,Delta,ix,nz},
+Z,iZ,points,Bm,Bmi,iR,Delta,ix,nz,RPow,numOfQLProbs,values},
 	varargin = List[argv];
     (* parse options *)
     prec = N[10^-14];
@@ -66,35 +67,45 @@ Z,iZ,points,Bm,Bmi,iR,Delta,ix,nz},
         If[MemberQ[eaten, argIx],
             argIx++;
             Continue[];
-		,If[varargin[[argIx]]=="qlDistrDPH",
+		,If[varargin[[argIx]]=="ncDistrDPH",
             (* transform it to DPH *)
             alpha = pi0.R.Inverse[II-R];
             A = Inverse[DiagonalMatrix[alpha]].Transpose[R].DiagonalMatrix[alpha];
-            AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlDistrMG",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="ncDistrMG",
             (* transform it to MG *)
             Bm = SimilarityMatrixForVectors[Total[Inverse[II-R].R,{2}], Table[1,{NN},{1}]];
             Bi = Inverse[Bm];
             A = Bm.R.Bi;
             alpha = pi0.Bi;       
-            AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlMoms",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="ncMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
             iR = Inverse[II-R];
 			moms = Table[m! Total[pi0.MatrixPower[iR,m+1].MatrixPower[R,m]],{m,numOfMoms}];
             AppendTo[Ret,MomsFromFactorialMoms[moms]];
-        ,If[varargin[[argIx]]=="qlDistr",
-            points = varargin[[argIx+1]];
+        ,If[varargin[[argIx]]=="ncDistr",
+            numOfQLProbs = varargin[[argIx+1]];
             argIx++;
-			AppendTo[Ret,Table[Total[pi0.If[po==0,IdentityMatrix[NN],MatrixPower[R,po]]],{po,points}]];
+			values = {};
+			AppendTo[values,Total[pi0]];
+			RPow = II;
+			Do[
+				RPow = RPow.R;
+				AppendTo[values,Total[pi0.RPow]];
+			,{numOfQLProbs-1}];
+			AppendTo[Ret,values];
         ,If[varargin[[argIx]]=="stDistrPH",
             (* transform to ph distribution *)
             nz = Flatten[Position[eta,_?(#>prec&)]];
             Delta = DiagonalMatrix[eta];
             A = KroneckerProduct[L+F,II[[nz,nz]]] + KroneckerProduct[B,Inverse[Delta[[nz,nz]]].Transpose[Rh[[nz,nz]]].Delta[[nz,nz]]];
             alpha = Flatten[z].KroneckerProduct[II,Delta[[All,nz]]];
-            AppendTo[Ret,{alpha, A}];
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
         ,If[varargin[[argIx]]=="stDistrME",
             (* transform it such that the closing vector is a vector of ones *)
             (* this is the way butools accepts ME distributions *)
@@ -102,7 +113,8 @@ Z,iZ,points,Bm,Bmi,iR,Delta,ix,nz},
             Bmi = Inverse[Bm];
             A = Bm.(KroneckerProduct[Transpose[L+F],II] + KroneckerProduct[Transpose[B],Rh]).Bmi;
             alpha = (KroneckerProduct[Table[1,{1},{NN}], eta].Bmi)[[1]];
-            AppendTo[Ret,{alpha, A}];
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
         ,If[varargin[[argIx]]=="stMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
@@ -126,7 +138,7 @@ Z,iZ,points,Bm,Bmi,iR,Delta,ix,nz},
 MAPMAP1[D0_,D1_,S0_,S1_,argv__]:=
 Module[{varargin,prec,eaten,needST,IA,IS,B,L,F,L0,pi0,R,NN,II,
 U,T,eta,Rh,argIx,Ret,Bm,Bi,numOfMoms,moms,iR,points,theta,nz,vv,
-Delta,iT,alpha,A,beta},
+Delta,iT,alpha,A,beta,RPow,numOfQLProbs,values},
 	varargin = List[argv];
     (* parse options *)
     prec = N[10^-14];
@@ -172,28 +184,37 @@ Delta,iT,alpha,A,beta},
 		If[MemberQ[eaten, argIx],
             argIx++;
             Continue[];
-		,If[varargin[[argIx]]=="qlDistrDPH",
+		,If[varargin[[argIx]]=="ncDistrDPH",
             (* transform it to DPH *)
             alpha = pi0.R.Inverse[II-R];
             A = Inverse[DiagonalMatrix[alpha]].Transpose[R].DiagonalMatrix[alpha];
-            AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlDistrMG",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="ncDistrMG",
             (* transform it to MG *)
             Bm = SimilarityMatrixForVectors[Total[Inverse[II-R].R,{2}], Table[1,{NN},{1}]];
             Bi = Inverse[Bm];
             A = Bm.R.Bi;
             alpha = pi0.Bi;       
-            AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlMoms",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="ncMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
             iR = Inverse[II-R];
 			moms = Table[m! Total[pi0.MatrixPower[iR,m+1].MatrixPower[R,m]],{m,numOfMoms}];
             AppendTo[Ret,MomsFromFactorialMoms[moms]];
-        ,If[varargin[[argIx]]=="qlDistr",
-            points = varargin[[argIx+1]];
+        ,If[varargin[[argIx]]=="ncDistr",
+            numOfQLProbs = varargin[[argIx+1]];
             argIx++;
-			AppendTo[Ret,Table[Total[pi0.If[po==0,IdentityMatrix[NN],MatrixPower[R,po]]],{po,points}]];
+			values = {};
+			RPow = II;
+			AppendTo[values,Total[pi0]];
+			Do[
+				RPow = RPow.R;
+				AppendTo[values,Total[pi0.RPow]];
+			,{numOfQLProbs-1}];
+			AppendTo[Ret,values];
         ,If[varargin[[argIx]]=="stDistrPH",
             (* transform it to PH representation *)
             beta = CTMCSolve[S0+S1];
@@ -203,9 +224,11 @@ Delta,iT,alpha,A,beta},
             Delta = DiagonalMatrix[vv[[nz]]];
             alpha = Table[1,{NN}].Transpose[B[[nz,All]]].Delta / Total[beta.S1];
             A = Inverse[Delta].Transpose[T[[nz,nz]]].Delta;
-            AppendTo[Ret,{alpha, A}];        
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
         ,If[varargin[[argIx]]=="stDistrME",
-            AppendTo[Ret,{eta, T}];
+            AppendTo[Ret,eta];
+			AppendTo[Ret,T];
         ,If[varargin[[argIx]]=="stMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
@@ -265,27 +288,29 @@ Z,iZ,kini,kclo},
         If[MemberQ[eaten, argIx],
             argIx++;
             Continue[];
-		,If[varargin[[argIx]]=="qlDistrPH",
+		,If[varargin[[argIx]]=="flDistrPH",
             (* transform it to PH *)
 			{Qm,Rm}=QRDecomposition[Transpose[K]];
 			iniKi=Flatten[Inverse[Rm].Qm.(-ini)];
             Delta = DiagonalMatrix[iniKi]; (* Delta = diag (ini*inv(-K)); *)
             A = Inverse[Delta].Transpose[K].Delta;
             alpha = Total[clo,{2}].Delta;
-            AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlDistrME",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="flDistrME",
             (* transform it to ME *)
             Bm = SimilarityMatrixForVectors[Inverse[-K].Total[clo,{2}], Table[1,{Length[K]},{1}]];
             Bi = Inverse[Bm];
             alpha = ini.Bi;
             A = Bm.K.Bi;
-			AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlMoms",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="flMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
             iK = Inverse[-K];
 			AppendTo[Ret,Table[m! Total[ini.MatrixPower[iK,m+1].clo],{m,numOfMoms}]];
-        ,If[varargin[[argIx]]=="qlDistr",
+        ,If[varargin[[argIx]]=="flDistr",
             points = varargin[[argIx+1]];
             argIx++;
             iK = Inverse[-K];
@@ -295,7 +320,8 @@ Z,iZ,kini,kclo},
             Delta = DiagonalMatrix[iniKi/lambda];
             alpha = Flatten[Transpose[clo.Rin]].KroneckerProduct[IdentityMatrix[NN],Delta];
             A = KroneckerProduct[Rout, Inverse[Delta].Transpose[K].Delta] + KroneckerProduct[Q, IdentityMatrix[Length[K]]];
-            AppendTo[Ret,{alpha, A}];
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
         ,If[varargin[[argIx]]=="stDistrME",
             (* transform it such that the closing vector is a vector of ones *)
             (* this is the way butools accepts ME distributions *)
@@ -303,7 +329,8 @@ Z,iZ,kini,kclo},
             Bi = Inverse[Bm];
             alpha = KroneckerProduct[Table[1,{1},{NN}], {ini/lambda}][[1]].Bi;
             A = Bm.(KroneckerProduct[Transpose[Q],IdentityMatrix[Length[K]]] + KroneckerProduct[Rout,K]).Bi;        
-            AppendTo[Ret,{alpha, A}];
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
         ,If[varargin[[argIx]]=="stMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
@@ -346,7 +373,7 @@ kclo,Rh,Qh,massh,inih,Kh,iKh,cloh},
 			AppendTo[eaten,i+1];
 		, If[StringQ[varargin[[i]]] && StringLength[varargin[[i]]]>2 && StringTake[varargin[[i]],2]=="st",
 			needST = True;
-		, If[StringQ[varargin[[i]]] && StringLength[varargin[[i]]]>2 && StringTake[varargin[[i]],2]=="ql",
+		, If[StringQ[varargin[[i]]] && StringLength[varargin[[i]]]>2 && StringTake[varargin[[i]],2]=="fl",
 			needQL = True;
 		]]]
 	,{i,Length[varargin]}];
@@ -387,27 +414,29 @@ kclo,Rh,Qh,massh,inih,Kh,iKh,cloh},
         If[MemberQ[eaten, argIx],
             argIx++;
             Continue[];
-		,If[varargin[[argIx]]=="qlDistrPH",
+		,If[varargin[[argIx]]=="flDistrPH",
             (* transform it to PH *)
 			{Qm,Rm}=QRDecomposition[Transpose[K]];
 			iniKi=Flatten[Inverse[Rm].Qm.(-ini)];
             Delta = DiagonalMatrix[iniKi]; (* Delta = diag (ini*inv(-K)); *)
             A = Inverse[Delta].Transpose[K].Delta;
             alpha = Total[clo,{2}].Delta;
-            AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlDistrME",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="flDistrME",
             (* transform it to ME *)
             Bm = SimilarityMatrixForVectors[Inverse[-K].Total[clo,{2}], Table[1,{Length[K]},{1}]];
             Bi = Inverse[Bm];
             alpha = ini.Bi;
             A = Bm.K.Bi;
-			AppendTo[Ret,{alpha, A}];
-        ,If[varargin[[argIx]]=="qlMoms",
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
+        ,If[varargin[[argIx]]=="flMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
             iK = Inverse[-K];
 			AppendTo[Ret,Table[m! Total[ini.MatrixPower[iK,m+1].clo],{m,numOfMoms}]];
-        ,If[varargin[[argIx]]=="qlDistr",
+        ,If[varargin[[argIx]]=="flDistr",
             points = varargin[[argIx+1]];
             argIx++;
             iK = Inverse[-K];
@@ -419,7 +448,8 @@ kclo,Rh,Qh,massh,inih,Kh,iKh,cloh},
             Delta = DiagonalMatrix[iniKi];
 			alpha = Total[Delta.kclo,{2}];
 			A = Inverse[Delta].Transpose[Kh].Delta;
-            AppendTo[Ret,{alpha, A}];
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
         ,If[varargin[[argIx]]=="stDistrME",
             (* transform it such that the closing vector is a vector of ones *)
             (* this is the way butools accepts ME distributions *)
@@ -427,7 +457,8 @@ kclo,Rh,Qh,massh,inih,Kh,iKh,cloh},
 			Bi = Inverse[Bm];
             alpha = inih.Inverse[-Kh].Bi;
             A = Bm.Kh.Bi;        
-            AppendTo[Ret,{alpha, A}];
+            AppendTo[Ret,alpha];
+			AppendTo[Ret,A];
         ,If[varargin[[argIx]]=="stMoms",
             numOfMoms = varargin[[argIx+1]];
             argIx++;
@@ -454,7 +485,7 @@ Psiw,Kw,Uw,Ua,b,X,pm,Qm,Rm,Bw,kappa,argIx,
 numOfSTMoms,res,A,B,C,bino,Qsmm,Qsmp,Qspm,Qspp,Np,
 inis,Psis,P,Pn,rtMoms,stCdfPoints,pr,lambda,L,Psie,
 numOfQLMoms,QLDPn,dqlMoms,lambdak,pi,QLPn,iTerm,sumP,
-qlMoms,numOfQLProbs,sDk,Psid,dqlProbs,qlProbs,retIx,
+qlMoms,numOfQLProbs,sDk,Psid,dqlProbs,qlProbs,
 F,L0,p0,R,Rpow},
 	varargin = List[argv];
 	K = Length[Dm]-1;
@@ -541,9 +572,7 @@ F,L0,p0,R,Rpow},
 			(* step 3. calculate the performance measures *)
             (* ========================================== *)
 			argIx = 1;
-			retIx = 1;
 			While[argIx<=Length[varargin],
-				res = {};
 				If[MemberQ[eaten, argIx],
 					argIx++;
 					Continue[];
@@ -566,12 +595,13 @@ F,L0,p0,R,Rpow},
                         AppendTo[Pn, P];
                         AppendTo[rtMoms,Total[inis.P*(-1)^n] / 2^n];
 					,{n,numOfSTMoms}];
-                    res = rtMoms;
+                    AppendTo[Ret,rtMoms];
                     argIx ++;
 				,If[varargin[[argIx]]=="stDistr",
                     (* DISTRIBUTION OF THE SOJOURN TIME *)
                     (* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
                     stCdfPoints = varargin[[argIx+1]];
+					res = {};
 					Do[
 					    L = erlMaxOrder;
                         lambda = L/t/2;
@@ -589,8 +619,9 @@ F,L0,p0,R,Rpow},
 						,{n,L-1}];
                         AppendTo[res, pr];
                     ,{t,stCdfPoints}];
+					AppendTo[Ret,res];
                     argIx++;
-				,If[varargin[[argIx]]=="qlMoms",
+				,If[varargin[[argIx]]=="ncMoms",
                     (* MOMENTS OF THE NUMBER OF JOBS *)
                     (* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 					numOfQLMoms = varargin[[argIx+1]];
@@ -624,9 +655,9 @@ F,L0,p0,R,Rpow},
                         AppendTo[qlMoms, Total[P]];
                     ,{n,numOfQLMoms}];
                     qlMoms = MomsFromFactorialMoms[qlMoms];
-                    res = qlMoms;
+                    AppendTo[Ret,qlMoms];
                     argIx++;
-				,If[varargin[[argIx]]=="qlDistr",
+				,If[varargin[[argIx]]=="ncDistr",
                     (* DISTRIBUTION OF THE NUMBER OF JOBS *)
                     (* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
                     numOfQLProbs = varargin[[argIx+1]];
@@ -654,22 +685,18 @@ F,L0,p0,R,Rpow},
                         AppendTo[qlProbs, P];
                     ,{n,numOfQLProbs-1}];
                     qlProbs = Total[qlProbs,{2}];
-                    res = qlProbs;		
+                    AppendTo[Ret,qlProbs];		
                     argIx++;
 		        ,
 					Throw[StringJoin["MMAPPH1PRPR: Unknown parameter ", ToString[varargin[[argIx]]]]];
 				]]]]];
-				If[retIx>Length[Ret],AppendTo[Ret,Transpose[{res}]],Ret[[retIx]]=Join[Ret[[retIx]],Transpose[{res}],2]];
-				retIx++;
 				argIx++;
 			];
 		,
             (* step 3. calculate the performance measures *)
             (* ========================================== *)
-            retIx = 1;
             argIx = 1;
 			While[argIx<=Length[varargin],
-				res = {};
 				If[MemberQ[eaten, argIx],
 					argIx++;
 					Continue[];
@@ -677,15 +704,15 @@ F,L0,p0,R,Rpow},
                     (* MOMENTS OF THE SOJOURN TIME *)
                     (* ~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
                     numOfSTMoms = varargin[[argIx+1]];
-                    res = Table[i!*kappa.MatrixPower[Inverse[-Kw],i+1].Total[Bw,{2}],{i,numOfSTMoms}];
+                    AppendTo[Ret,Table[i!*kappa.MatrixPower[Inverse[-Kw],i+1].Total[Bw,{2}],{i,numOfSTMoms}]];
                     argIx++;
 				,If[varargin[[argIx]]=="stDistr",
                     (* DISTRIBUTION OF THE SOJOURN TIME *)
                     (* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 					stCdfPoints = varargin[[argIx+1]];
-                    res=Table[kappa.Inverse[-Kw].(IdentityMatrix[Length[Kw]]-MatrixExp[Kw*t]).Total[Bw,{2}],{t,stCdfPoints}];
+                    AppendTo[Ret,Table[kappa.Inverse[-Kw].(IdentityMatrix[Length[Kw]]-MatrixExp[Kw*t]).Total[Bw,{2}],{t,stCdfPoints}]];
                     argIx++;
-				,If[varargin[[argIx]]=="qlMoms" || varargin[[argIx]]=="qlDistr",
+				,If[varargin[[argIx]]=="ncMoms" || varargin[[argIx]]=="ncDistr",
 			        L = KroneckerProduct[sD-Dm[[k+1]],IdentityMatrix[M[[k]]]]+KroneckerProduct[IdentityMatrix[NN],S[[k]]];
                     B = KroneckerProduct[IdentityMatrix[NN],s[[k]].{sigma[[k]]}];
                     F = KroneckerProduct[Dm[[k+1]],IdentityMatrix[M[[k]]]];
@@ -693,28 +720,26 @@ F,L0,p0,R,Rpow},
                     R = QBDFundamentalMatrices[B, L, F, "R", prec];
                     p0 = CTMCSolve[L0+R.B];
                     p0 = p0/Total[p0.Inverse[IdentityMatrix[Length[R]]-R]];
-					If[varargin[[argIx]]=="qlMoms",
+					If[varargin[[argIx]]=="ncMoms",
                         (* MOMENTS OF THE NUMBER OF JOBS *)
                         (* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
                         numOfQLMoms = varargin[[argIx+1]];
-                        res = MomsFromFactorialMoms[Table[Total[i!*p0.MatrixPower[R,i].MatrixPower[Inverse[IdentityMatrix[Length[R]]-R],i+1]],{i,numOfQLMoms}]];
-					, If[varargin[[argIx]]=="qlDistr",
+                        AppendTo[Ret,MomsFromFactorialMoms[Table[Total[i!*p0.MatrixPower[R,i].MatrixPower[Inverse[IdentityMatrix[Length[R]]-R],i+1]],{i,numOfQLMoms}]]];
+					, If[varargin[[argIx]]=="ncDistr",
                         qlProbs = {p0};
 						Rpow = R;
                         Do[AppendTo[qlProbs,p0.Rpow]; Rpow=Rpow.R,{i,numOfQLProbs-1}];
-                        res = Total[qlProbs,{2}];
+                        AppendTo[Ret,Total[qlProbs,{2}]];
 					]];
 					argIx++;
 		        ,
 					Throw[StringJoin["MMAPPH1PRPR: Unknown parameter ", ToString[varargin[[argIx]]]]];
 				]]]];
-				If[retIx>Length[Ret],AppendTo[Ret,Transpose[{res}]],Ret[[retIx]]=Join[Ret[[retIx]],Transpose[{res}],2]];
-				retIx++;
 				argIx++;
 			];
 		];
 	,{k,classes}];
-	Return[Ret];
+	If[Length[Ret]==1, Return[Ret[[1]]],Return[Ret]];
 ];
 
 
@@ -727,7 +752,7 @@ Psiw,Kw,Uw,Ua,b,X,pm,Qm,Rm,Bw,kappa,argIx,
 numOfSTMoms,res,A,B,C,bino,Qsmm,Qsmp,Qspm,Qspp,Np,
 inis,Psis,P,Pn,rtMoms,stCdfPoints,pr,lambda,L,Psie,
 numOfQLMoms,QLDPn,dqlMoms,lambdak,pi,QLPn,iTerm,sumP,
-qlMoms,numOfQLProbs,sDk,Psid,dqlProbs,qlProbs,retIx,
+qlMoms,numOfQLProbs,sDk,Psid,dqlProbs,qlProbs,
 F,L0,p0,R,Rpow,lambdaS,phi,q0,qL,pk,Qwzpk,vix,Bk,ztag,
 Mx,qLkp1,qLii,Ak,V1,Qwmpk,sD0k,BM,CM,DM,Kwu,Bwu,iniw,pwu,norm,
 AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
@@ -941,9 +966,7 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
 			(* step 4.3. calculate the performance measures *)
             (* ========================================== *)
 			argIx = 1;
-			retIx = 1;
 			While[argIx<=Length[varargin],
-				res = {};
 				If[MemberQ[eaten, argIx],
 					argIx++;
 					Continue[];
@@ -974,12 +997,13 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
                         AppendTo[Pnr,P];
                         AppendTo[rtMoms, Total[P]+Total[pwu]*n!*Total[sigma[[k]].MatrixPower[Inverse[-S[[k]]],n]]];
                     ,{n,numOfSTMoms}];
-                    res = rtMoms;
+                    AppendTo[Ret,rtMoms];
                     argIx ++;
 				,If[varargin[[argIx]]=="stDistr",
                     (* DISTRIBUTION OF THE SOJOURN TIME *)
                     (* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
                     stCdfPoints = varargin[[argIx+1]];
+					res = {};
 					Do[
 					    L = erlMaxOrder;
                         lambdae = L/t/2;
@@ -997,13 +1021,14 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
 						,{n,L-1}];
                         AppendTo[res, pr];
                     ,{t,stCdfPoints}];
+					AppendTo[Ret,res];
                     argIx++;
-				,If[varargin[[argIx]]=="qlMoms" || varargin[[argIx]]=="qlDistr",
+				,If[varargin[[argIx]]=="ncMoms" || varargin[[argIx]]=="ncDistr",
                     W = Inverse[-KroneckerProduct[sD-Dm[[k+1]],IdentityMatrix[M[[k]]]]-KroneckerProduct[II,S[[k]]]].KroneckerProduct[Dm[[k+1]],IdentityMatrix[M[[k]]]];
                     iW = Inverse[IdentityMatrix[Length[W]]-W];
                     w = KroneckerProduct[II,{sigma[[k]]}];
                     omega = Inverse[-KroneckerProduct[sD-Dm[[k+1]],IdentityMatrix[M[[k]]]]-KroneckerProduct[II,S[[k]]]].KroneckerProduct[II,s[[k]]];
-					If[varargin[[argIx]]=="qlMoms",
+					If[varargin[[argIx]]=="ncMoms",
 						(* MOMENTS OF THE NUMBER OF JOBS *)
 						(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 						numOfQLMoms = varargin[[argIx+1]];
@@ -1037,9 +1062,9 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
 							AppendTo[qlMoms, Total[P]];
 						,{n,numOfQLMoms}];
 						qlMoms = MomsFromFactorialMoms[qlMoms];
-						res = qlMoms;
+						AppendTo[Ret,qlMoms];
 						argIx++;
-					,If[varargin[[argIx]]=="qlDistr",
+					,If[varargin[[argIx]]=="ncDistr",
 						(* DISTRIBUTION OF THE NUMBER OF JOBS *)
 						(* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *)
 						numOfQLProbs = varargin[[argIx+1]];
@@ -1066,23 +1091,19 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
 							AppendTo[qlProbs, P];
 						,{n,numOfQLProbs-1}];
 						qlProbs = Total[qlProbs,{2}];
-						res = qlProbs;		
+						AppendTo[Ret,qlProbs];		
 						argIx++;
 					]];
 		        ,
 					Throw[StringJoin["MMAPPH1NPPR: Unknown parameter ", ToString[varargin[[argIx]]]]];
 				]]]];
-				If[retIx>Length[Ret],AppendTo[Ret,Transpose[{res}]],Ret[[retIx]]=Join[Ret[[retIx]],Transpose[{res}],2]];
-				retIx++;
 				argIx++;
 			];
 		,
             (* step 3. calculate the performance measures *)
             (* ========================================== *)
-            retIx = 1;
             argIx = 1;
 			While[argIx<=Length[varargin],
-				res = {};
 				If[MemberQ[eaten, argIx],
 					argIx++;
 					Continue[];
@@ -1108,8 +1129,9 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
 						stCdfPoints = varargin[[argIx+1]];
 						res = Table[(zeta.Inverse[-Z].(IdentityMatrix[Length[Z]]-MatrixExp[Z*t]).z)[[1]],{t,stCdfPoints}];
                     ];
+					AppendTo[Ret,res];
 					argIx++;
-				, If[varargin[[argIx]]=="qlMoms" || varargin[[argIx]]=="qlDistr",
+				, If[varargin[[argIx]]=="ncMoms" || varargin[[argIx]]=="ncDistr",
                     L = Table[0,{NN*Total[M]},{NN*Total[M]}];
                     B = Table[0,{NN*Total[M]},{NN*Total[M]}];
                     F = Table[0,{NN*Total[M]},{NN*Total[M]}];
@@ -1128,7 +1150,7 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
 			        R = QBDFundamentalMatrices[B, L, F, "R", prec];
                     p0 = Join[qL[[k]], q0[[k]].KroneckerProduct[II,{sigma[[k]]}]];
                     p0 = p0/Total[p0.Inverse[IdentityMatrix[Length[R]]-R]];
-					If[varargin[[argIx]]=="qlMoms",
+					If[varargin[[argIx]]=="ncMoms",
 						numOfQLMoms = varargin[[argIx+1]];
 						res = MomsFromFactorialMoms[Table[Total[i!*p0.MatrixPower[R,i].MatrixPower[Inverse[IdentityMatrix[Length[R]]-R],i+1]],{i,numOfQLMoms}]];
 					,
@@ -1136,17 +1158,174 @@ AM,KN,wtMoms,Pnr,lambdae,W,iW,w,omega,Psii,XDn,z,Z,zeta,Tmp},
                         qlProbs = Table[p0.If[i==0,IdentityMatrix[Length[R]],MatrixPower[R,i]],{i,0,numOfQLProbs-1}];
                         res = Total[qlProbs,{2}];  
 					];
+					AppendTo[Ret,res];
 					argIx++;
 		        ,
 					Throw[StringJoin["MMAPPH1NPPR: Unknown parameter ", ToString[varargin[[argIx]]]]];
 				]]];
-				If[retIx>Length[Ret],AppendTo[Ret,Transpose[{res}]],Ret[[retIx]]=Join[Ret[[retIx]],Transpose[{res}],2]];
-				retIx++;
 				argIx++;
 			];
 		];
 	,{k,classes}];
-	Return[Ret];
+	If[Length[Ret]==1, Return[Ret[[1]]],Return[Ret]];
+];
+
+
+MMAPPH1FCFS[Dm_,sigma_,S_,argv__]:=
+Module[{varargin,prec,eaten,classes,K,
+D0,NN,Ia,Da,theta,beta,lambda,mu,Nsk,ro,
+alpha,D0i,Sa,sa,ba,sv,Pk,P,iVec,Ns,Is,Y0,T,
+pi0,iT,oa,Ret,argIx,clo,numOfSTMoms,rtMoms,
+stCdfPoints,cdf,Bm,Bmi,A,vv,nz,Delta,
+cl,values,jm,jmc,Lm,numOfQLMoms,ELn,qlMoms,
+numOfQLProbs,LmCurr,LmPrev,Btag,bino},
+	varargin = List[argv];
+	K = Length[Dm]-1;
+    (* parse options *)
+    prec = N[10^-14];
+    classes = Range[K];
+    eaten = {};
+	Do[
+		If[varargin[[i]]=="prec",
+			prec = varargin[[i+1]];
+			AppendTo[eaten,i]; 
+			AppendTo[eaten,i+1];
+		, If[varargin[[i]]=="classes",
+			classes = varargin[[i+1]];
+			AppendTo[eaten,i]; 
+			AppendTo[eaten,i+1];
+		]];
+	,{i,Length[varargin]}];
+
+    If[BuTools`CheckInput && Not[CheckMMAPRepresentation[Dm]], Throw["MMAPPH1FCFS: The arrival process is not a valid MMAP representation!"]]; 
+    Do[If[BuTools`CheckInput && Not[CheckPHRepresentation[sigma[[k]],S[[k]]]], Throw["MMAPPH1FCFS: the vector and matrix describing the service times is not a valid PH representation!"]],{k,K}];
+
+    (* some preparation *)
+    D0 = Dm[[1]];
+    NN = Dimensions[D0][[1]];
+    Ia = IdentityMatrix[NN];
+    Da = Sum[Dm[[i]],{i,2,K+1}];
+    theta = CTMCSolve[D0+Da];
+    beta = Table[CTMCSolve[S[[k]] + Transpose[{Total[-S[[k]],{2}]}].{sigma[[k]]}],{k,K}];
+    lambda = Table[Total[theta.Dm[[k+1]]],{k,K}];
+    mu = Table[Total[beta[[k]].(-S[[k]])],{k,K}];
+    Nsk = Table[Length[S[[k]]],{k,K}];
+    ro = Total[lambda/mu];
+    alpha = theta.Da/Total[lambda];
+    D0i = Inverse[-D0];
+
+	Sa = S[[1]];
+	sa = Prepend[Table[Table[0,{Nsk[[1]]}],{q,2,K}],sigma[[1]]];
+	ba = Prepend[Table[Table[0,{Nsk[[1]]}],{q,2,K}],beta[[1]]];
+	sv = Prepend[Table[Table[0,{Nsk[[1]]}],{q,2,K}],Total[-S[[1]],{2}]];
+	Pk = Table[D0i.Dm[[q+1]],{q,K}];
+	Do[
+		Sa = ArrayFlatten[{{Sa,0},{0,S[[k]]}}];
+		Do[
+			If[q==k,
+				sa[[q]]=Join[sa[[q]],sigma[[k]]];
+				ba[[q]]=Join[ba[[q]],beta[[k]]];
+				sv[[q]]=Join[sv[[q]],Total[-S[[k]],{2}]];
+			,
+				sa[[q]]=Join[sa[[q]],Table[0,{Nsk[[k]]}]];
+				ba[[q]]=Join[ba[[q]],Table[0,{Nsk[[k]]}]];
+				sv[[q]]=Join[sv[[q]],Table[0,{Nsk[[k]]}]];
+			];
+		,{q,K}];
+	,{k,2,K}];
+	P = D0i.Da;
+	iVec = Sum[KroneckerProduct[Dm[[k+1]],{sa[[k]]}],{k,K}];
+	Ns = Length[Sa];
+	Is = IdentityMatrix[Ns];
+
+    (* step 1. solve the age process of the queue *)
+    (* ========================================== *)
+
+    (* solve Y0 and calculate T *)
+    Y0 = FluidFundamentalMatrices[KroneckerProduct[Ia,Sa], KroneckerProduct[Ia,Transpose[{Total[-Sa,{2}]}]], iVec, D0, "P", prec];
+    T = KroneckerProduct[Ia,Sa]+Y0.iVec;
+    (* calculate pi0 and v0 *)
+    pi0 = Sum[KroneckerProduct[{theta.Dm[[k+1]]},{ba[[k]]}/mu[[k]]],{k,K}];
+    pi0 = (-pi0.T)[[1]];
+    iT = Inverse[-T];
+    oa = Table[1,{NN},{1}];
+
+    Ret = {};
+	Off[LyapunovSolve::meig];
+    Do[
+		argIx = 1;
+        clo = iT.KroneckerProduct[oa,Transpose[{sv[[k]]}]];
+		While[argIx<=Length[varargin],
+			If[MemberQ[eaten, argIx],
+				argIx++;
+				Continue[];
+			,If[varargin[[argIx]]=="stMoms",
+				numOfSTMoms = varargin[[argIx+1]];
+				argIx++;
+				AppendTo[Ret,Table[m!*(pi0.MatrixPower[iT,m].clo)[[1]]/(pi0.clo)[[1]],{m,numOfSTMoms}]];
+			,If[varargin[[argIx]]=="stDistr",
+				stCdfPoints = varargin[[argIx+1]];
+				argIx++;
+				AppendTo[Ret,Table[1-(pi0.MatrixExp[T*t].clo)[[1]]/(pi0.clo)[[1]],{t,stCdfPoints}]];
+			,If[varargin[[argIx]]=="stDistrME",
+				Bm = SimilarityMatrixForVectors[clo/Total[pi0.clo],Table[1,{NN*Ns},{1}]];
+				Bmi = Inverse[Bm];
+				A = Bm.T.Bmi;
+				alpha = pi0.Bmi;
+				AppendTo[Ret,alpha];
+				AppendTo[Ret,A];
+			,If[varargin[[argIx]]=="stDistrPH",
+				vv = pi0.iT;
+				nz = Flatten[Position[vv,_?(#>prec&)]];
+				Delta = DiagonalMatrix[vv[[nz]]];
+				cl = Flatten[-T.clo/Total[pi0.clo]];
+				A = Inverse[Delta].Transpose[T[[nz,nz]]].Delta;
+				alpha = cl[[nz]].Delta;
+				AppendTo[Ret,alpha];
+				AppendTo[Ret,A];
+			,If[varargin[[argIx]]=="ncMoms",
+				numOfQLMoms = varargin[[argIx+1]];
+				argIx++;
+				jm = Table[0,{Ns},{1}];
+				jm[[Total[Nsk[[1;;k-1]]]+1;;Total[Nsk[[1;;k]]],All]] = 1;
+				ELn = {};
+				qlMoms = {};
+				AppendTo[ELn,LyapunovSolve[T, KroneckerProduct[D0+Da,Is], -IdentityMatrix[NN*Ns]]];
+				Do[
+					bino = 1;
+					Btag = Table[0,{NN*Ns},{NN*Ns}];
+					Do[
+						Btag += bino*ELn[[i+1]];
+						bino *= (n-i)/(i+1);
+					,{i,0,n-1}];
+						AppendTo[ELn, LyapunovSolve[T, KroneckerProduct[D0+Da,Is], -Btag.KroneckerProduct[Dm[[k+1]],Is]]];
+				AppendTo[qlMoms, Total[pi0.ELn[[n+1]]] + (pi0.Btag.KroneckerProduct[oa,jm])[[1]]];
+				,{n,numOfQLMoms}];
+				AppendTo[Ret,qlMoms];
+			,If[varargin[[argIx]]=="ncDistr",
+				numOfQLProbs = varargin[[argIx+1]];
+				argIx++;
+				jm = Table[0,{Ns},{1}];
+				jm[[Total[Nsk[[1;;k-1]]]+1;;Total[Nsk[[1;;k]]],All]] = 1;
+				jmc = Table[1,{Ns},{1}];
+				jmc[[Total[Nsk[[1;;k-1]]]+1;;Total[Nsk[[1;;k]]],All]] = 0;
+				LmCurr = LyapunovSolve[T, KroneckerProduct[D0+Da-Dm[[k+1]],Is], -IdentityMatrix[NN*Ns]];
+				values = {};
+				AppendTo[values,1-ro+(pi0.LmCurr.KroneckerProduct[oa,jmc])[[1]]];
+				Do[
+					LmPrev = LmCurr;
+					LmCurr = LyapunovSolve[T, KroneckerProduct[D0+Da-Dm[[k+1]],Is], -LmPrev.KroneckerProduct[Dm[[k+1]],Is]];
+					AppendTo[values, (pi0.LmCurr.KroneckerProduct[oa,jmc] + pi0.LmPrev.KroneckerProduct[oa,jm])[[1]]];
+				,{i,numOfQLProbs-1}];
+				AppendTo[Ret,values];
+			,
+				Throw[StringJoin["QBDQueue: Unknown parameter ", ToString[varargin[[argIx]]]]];
+			]]]]]]];
+			argIx++;
+		];
+	,{k,classes}];
+    On[LyapunovSolve::meig];
+    If[Length[Ret]==1, Return[Ret[[1]]],Return[Ret]];
 ];
 
 

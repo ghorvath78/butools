@@ -1,5 +1,5 @@
 import sys
-sys.path.append("/home/gabor/github/butools/Python")
+sys.path.append("/home/gabor/project/butools/Python")
 import math
 import numpy as np
 import numpy.matlib as ml
@@ -49,32 +49,32 @@ lambd = np.sum(pi0*la.inv(ml.eye(R.shape[0])-R)*F)
 butools.verbose = True
 print('Test:')
 print('-----')
-print('qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH"):')
-alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH")
+print('ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH"):')
+alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG"):')
-alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG")
+print('alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG"):')
+alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -105,12 +105,12 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
 assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "QBDQueue: qlDistr returns wrong queue length distribution!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "QBDQueue: ncdistr returns wrong queue length distribution!"
 assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**-12, "QBDQueue: qlMoms returns wrong queue length moments!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "QBDQueue: ncmoms returns wrong queue length moments!"
 assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('Input:')
 print('------')
@@ -132,32 +132,32 @@ lambd = np.sum(pi0*la.inv(ml.eye(R.shape[0])-R)*F)
 butools.verbose = True
 print('Test:')
 print('-----')
-print('qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH"):')
-alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH")
+print('ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH"):')
+alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG"):')
-alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG")
+print('alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG"):')
+alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -188,13 +188,13 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
 assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "QBDQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "QBDQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "QBDQueue: stMoms returns wrong sojourn time moments!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "QBDQueue: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "QBDQueue: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('Input:')
 print('------')
 B = ml.matrix([[6., 1., 0.],[0., 5., 0.],[0., 0., 0.]])
@@ -215,32 +215,32 @@ lambd = np.sum(pi0*la.inv(ml.eye(R.shape[0])-R)*F)
 butools.verbose = True
 print('Test:')
 print('-----')
-print('qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH"):')
-alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH")
+print('ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH"):')
+alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG"):')
-alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG")
+print('alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG"):')
+alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -271,13 +271,13 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "QBDQueue: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "QBDQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "QBDQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "QBDQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "QBDQueue: the ME and PH representations are not equal!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "QBDQueue: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "QBDQueue: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('Input:')
 print('------')
 B = ml.matrix([[0., 0.],[3., 4.]])
@@ -298,32 +298,32 @@ lambd = np.sum(pi0*la.inv(ml.eye(R.shape[0])-R)*F)
 butools.verbose = True
 print('Test:')
 print('-----')
-print('qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH"):')
-alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH")
+print('ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH"):')
+alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG"):')
-alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG")
+print('alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG"):')
+alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -354,13 +354,13 @@ assert CheckMGRepresentation(alpha, A), "QBDQueue: invalid MG representation of 
 assert CheckMERepresentation(beta, B), "QBDQueue: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "QBDQueue: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "QBDQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "QBDQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "QBDQueue: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "QBDQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "QBDQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "QBDQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "QBDQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "QBDQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "QBDQueue: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "QBDQueue: the ME and PH representations are not equal!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "QBDQueue: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "QBDQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "QBDQueue: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "QBDQueue: stMoms returns wrong sojourn time moments!"
 print('========================================')
 print('Testing BuTools function MAPMAP1')
 print('Input:')
@@ -380,32 +380,32 @@ print(S1)
 lambd = 1./MarginalMomentsFromMAP(D0, D1, 1)[0]
 print('Test:')
 print('-----')
-print('qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH"):')
-alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH")
+print('ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH"):')
+alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG"):')
-alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG")
+print('alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG"):')
+alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -436,13 +436,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "MAPMAP1: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "MAPMAP1: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -450,7 +450,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**-12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 delta = ml.matrix([[0.5,0.1,0.4]])
@@ -476,32 +476,32 @@ S1 = np.sum(-S,1)*sigma
 lambd = 1./MarginalMomentsFromMAP(D0, D1, 1)[0]
 print('Test:')
 print('-----')
-print('qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH"):')
-alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH")
+print('ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH"):')
+alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG"):')
-alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG")
+print('alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG"):')
+alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -532,13 +532,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "MAPMAP1: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "MAPMAP1: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -546,7 +546,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**-12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-8., 2.],[1., -3.]])
@@ -564,32 +564,32 @@ print(S1)
 lambd = 1./MarginalMomentsFromMAP(D0, D1, 1)[0]
 print('Test:')
 print('-----')
-print('qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH"):')
-alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH")
+print('ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH"):')
+alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG"):')
-alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG")
+print('alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG"):')
+alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -620,13 +620,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "MAPMAP1: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "MAPMAP1: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -634,7 +634,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**-12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 S0 = ml.matrix([[-10., 4., 0.],[5., -7., 2.],[1., 2., -8.]])
@@ -652,32 +652,32 @@ print(D1)
 lambd = 1./MarginalMomentsFromMAP(D0, D1, 1)[0]
 print('Test:')
 print('-----')
-print('qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH"):')
-alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH")
+print('ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH"):')
+alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG"):')
-alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG")
+print('alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG"):')
+alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -708,13 +708,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "MAPMAP1: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "MAPMAP1: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -722,7 +722,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model does not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**-12, "MAPMAP1: Large and small model does not give the same results!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-8., 1., 2.],[0., -6., 4.],[3., 0., -3.]])
@@ -744,32 +744,32 @@ S1 = np.sum(-S,1)*sigma
 lambd = 1./MarginalMomentsFromMAP(D0, D1, 1)[0]
 print('Test:')
 print('-----')
-print('qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5):')
-qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH"):')
-alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH")
+print('ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5):')
+ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5)
+print('ncd = ')
+print(ncd)
+print('ncm = ')
+print(ncm)
+print('alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH"):')
+alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG"):')
-alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG")
+print('alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG"):')
+alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
-qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
-print('qldFromDPH = ')
-print(qldFromDPH)
-print('qlmFromMG = MomentsFromMG(alpha, A, 5):')
-qlmFromMG = MomentsFromMG(alpha, A, 5)
-print('qlmFromMG = ')
-print(qlmFromMG)
+print('ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1)):')
+ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+print('ncdFromDPH = ')
+print(ncdFromDPH)
+print('ncmFromMG = MomentsFromMG(alpha, A, 5):')
+ncmFromMG = MomentsFromMG(alpha, A, 5)
+print('ncmFromMG = ')
+print(ncmFromMG)
 print('std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -800,13 +800,13 @@ assert CheckMGRepresentation(alpha, A), "MAPMAP1: invalid MG representation of t
 assert CheckMERepresentation(beta, B), "MAPMAP1: invalid ME representation of the sojourn time!"
 assert CheckDPHRepresentation(alphap, Ap), "MAPMAP1: invalid DPH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "MAPMAP1: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "MAPMAP1: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(qlmFromMG))/np.array(qlmFromMG))<10**12, "MAPMAP1: the MG and DPH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "MAPMAP1: the ME and PH representations are not equal!"
-assert la.norm(qld-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**12, "MAPMAP1: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromMG))/np.array(qlm))<10**12, "MAPMAP1: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
+assert np.abs(ncm[0]-stm[0]*lambd)<10**-12, "MAPMAP1: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromDPH(alphap, Ap, 5))-np.array(ncmFromMG))/np.array(ncmFromMG))<10**-12, "MAPMAP1: the MG and DPH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "MAPMAP1: the ME and PH representations are not equal!"
+assert la.norm(ncd-PmfFromMG(alpha, A, np.arange(0,11.0,1)))<10**-12, "MAPMAP1: ncdistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "MAPMAP1: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(ncm)-np.array(ncmFromMG))/np.array(ncm))<10**-12, "MAPMAP1: ncmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "MAPMAP1: stMoms returns wrong sojourn time moments!"
 IA = ml.eye(D0.shape[0])
 IS = ml.eye(S0.shape[0])
 butools.verbose = False
@@ -814,7 +814,7 @@ gamma, G = QBDQueue(ml.kron(IA, S1), ml.kron(D0, IS)+ml.kron(IA, S0), ml.kron(D1
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "MAPMAP1: Large and small model do not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**-12, "MAPMAP1: Large and small model do not give the same results!"
 print('========================================')
 print('Testing BuTools function MMAPPH1PRPR')
 print('Input:')
@@ -851,24 +851,34 @@ print('S1 = ')
 print(S1)
 print('Test:')
 print('-----')
-print('qlm, qld = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500):')
-qlm, qld = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500)
-momFromDistr = ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3)))*qld
-assert la.norm((momFromDistr-qlm)/qlm)<0.001, "MMAPPH1PRPR: queue length moments and queue length distribution are not consistent!"
+print('ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500):')
+ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
+momFromDistr1 = ncd1*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr2 = ncd2*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr3 = ncd3*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+assert la.norm((momFromDistr1-ncm1)/ncm1)<0.001 and la.norm((momFromDistr2-ncm2)/ncm2)<0.001 and la.norm((momFromDistr3-ncm3)/ncm3)<0.001, "MMAPPH1PRPR: queue length moments and queue length distribution are not consistent!"
 distrPoints = [1., 5., 10.]
-print('stm, std = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
-stm, std = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
-print('stm = ')
-print(stm)
-print('std = ')
-print(std)
-assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1PRPR: invalid sojourn time distribution!"
+print('stm1, std1, stm2, std2, stm3, std3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
+stm1, std1, stm2, std2, stm3, std3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+print('stm1 = ')
+print(stm1)
+print('std1 = ')
+print(std1)
+print('stm2 = ')
+print(stm2)
+print('std2 = ')
+print(std2)
+print('stm3 = ')
+print(stm3)
+print('std3 = ')
+print(std3)
+assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1PRPR: invalid sojourn time distribution!"
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
+assert np.abs(ncm1[0]-stm1[0]*lambda1)<10**-12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
+assert np.abs(ncm2[0]-stm2[0]*lambda2)<10**-12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
+assert np.abs(ncm3[0]-stm3[0]*lambda3)<10**-12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
@@ -903,24 +913,34 @@ print('S1 = ')
 print(S1)
 print('Test:')
 print('-----')
-print('qlm, qld = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500):')
-qlm, qld = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500)
-momFromDistr = ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3)))*qld
-assert la.norm((momFromDistr-qlm)/qlm)<0.001, "MMAPPH1PRPR: queue length moments and queue length distribution are not consistent!"
+print('ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500):')
+ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
+momFromDistr1 = ncd1*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr2 = ncd2*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr3 = ncd3*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+assert la.norm((momFromDistr1-ncm1)/ncm1)<0.001 and la.norm((momFromDistr2-ncm2)/ncm2)<0.001 and la.norm((momFromDistr3-ncm3)/ncm3)<0.001, "MMAPPH1PRPR: queue length moments and queue length distribution are not consistent!"
 distrPoints = [1., 5., 10.]
-print('stm, std = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
-stm, std = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
-print('stm = ')
-print(stm)
-print('std = ')
-print(std)
-assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1PRPR: invalid sojourn time distribution!"
+print('stm1, std1, stm2, std2, stm3, std3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
+stm1, std1, stm2, std2, stm3, std3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+print('stm1 = ')
+print(stm1)
+print('std1 = ')
+print(std1)
+print('stm2 = ')
+print(stm2)
+print('std2 = ')
+print(std2)
+print('stm3 = ')
+print(stm3)
+print('std3 = ')
+print(std3)
+assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1PRPR: invalid sojourn time distribution!"
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
+assert np.abs(ncm1[0]-stm1[0]*lambda1)<10**-12, "MMAPPH1PRPR: Little formula does not hold for class 1!"
+assert np.abs(ncm2[0]-stm2[0]*lambda2)<10**-12, "MMAPPH1PRPR: Little formula does not hold for class 2!"
+assert np.abs(ncm3[0]-stm3[0]*lambda3)<10**-12, "MMAPPH1PRPR: Little formula does not hold for class 3!"
 print('========================================')
 print('Testing BuTools function MMAPPH1NPPR')
 print('Input:')
@@ -957,24 +977,34 @@ print('S1 = ')
 print(S1)
 print('Test:')
 print('-----')
-print('qlm, qld = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500):')
-qlm, qld = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500)
-momFromDistr = ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3)))*qld
-assert la.norm((momFromDistr-qlm)/qlm)<0.001, "MMAPPH1NPPR: queue length moments and queue length distribution are not consistent!"
+print('ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500):')
+ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
+momFromDistr1 = ncd1*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr2 = ncd2*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr3 = ncd3*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+assert la.norm((momFromDistr1-ncm1)/ncm1)<0.001 and la.norm((momFromDistr2-ncm2)/ncm2)<0.001 and la.norm((momFromDistr3-ncm3)/ncm3)<0.001, "MMAPPH1NPPR: queue length moments and queue length distribution are not consistent!"
 distrPoints = [1., 5., 10.]
-print('stm, std = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
-stm, std = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
-print('stm = ')
-print(stm)
-print('std = ')
-print(std)
-assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1NPPR: invalid sojourn time distribution!"
+print('stm1, std1, stm2, std2, stm3, std3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
+stm1, std1, stm2, std2, stm3, std3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+print('stm1 = ')
+print(stm1)
+print('std1 = ')
+print(std1)
+print('stm2 = ')
+print(stm2)
+print('std2 = ')
+print(std2)
+print('stm3 = ')
+print(stm3)
+print('std3 = ')
+print(std3)
+assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1NPPR: invalid sojourn time distribution!"
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
+assert np.abs(ncm1[0]-stm1[0]*lambda1)<10**-12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
+assert np.abs(ncm2[0]-stm2[0]*lambda2)<10**-12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
+assert np.abs(ncm3[0]-stm3[0]*lambda3)<10**-12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
 print('Input:')
 print('------')
 D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
@@ -1009,24 +1039,234 @@ print('S1 = ')
 print(S1)
 print('Test:')
 print('-----')
-print('qlm, qld = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500):')
-qlm, qld = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500)
-momFromDistr = ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3)))*qld
-assert la.norm((momFromDistr-qlm)/qlm)<0.001, "MMAPPH1NPPR: queue length moments and queue length distribution are not consistent!"
+print('ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500):')
+ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
+momFromDistr1 = ncd1*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr2 = ncd2*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr3 = ncd3*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+assert la.norm((momFromDistr1-ncm1)/ncm1)<0.001 and la.norm((momFromDistr2-ncm2)/ncm2)<0.001 and la.norm((momFromDistr3-ncm3)/ncm3)<0.001, "MMAPPH1NPPR: queue length moments and queue length distribution are not consistent!"
 distrPoints = [1., 5., 10.]
-print('stm, std = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
-stm, std = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
-print('stm = ')
-print(stm)
-print('std = ')
-print(std)
-assert np.min(std)>=0 and np.max(std)<=1 and np.all(np.diff(std)>=0), "MMAPPH1NPPR: invalid sojourn time distribution!"
+print('stm1, std1, stm2, std2, stm3, std3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
+stm1, std1, stm2, std2, stm3, std3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+print('stm1 = ')
+print(stm1)
+print('std1 = ')
+print(std1)
+print('stm2 = ')
+print(stm2)
+print('std2 = ')
+print(std2)
+print('stm3 = ')
+print(stm3)
+print('std3 = ')
+print(std3)
+assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1NPPR: invalid sojourn time distribution!"
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
-assert np.abs(qlm[0, 0]-stm[0, 0]*lambda1)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
-assert np.abs(qlm[0, 1]-stm[0, 1]*lambda2)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
-assert np.abs(qlm[0, 2]-stm[0, 2]*lambda3)<10**12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
+assert np.abs(ncm1[0]-stm1[0]*lambda1)<10**-12, "MMAPPH1NPPR: Little formula does not hold for class 1!"
+assert np.abs(ncm2[0]-stm2[0]*lambda2)<10**-12, "MMAPPH1NPPR: Little formula does not hold for class 2!"
+assert np.abs(ncm3[0]-stm3[0]*lambda3)<10**-12, "MMAPPH1NPPR: Little formula does not hold for class 3!"
+print('========================================')
+print('Testing BuTools function MMAPPH1FCFS')
+print('Input:')
+print('------')
+D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
+print('D0 = ')
+print(D0)
+D1 = ml.matrix([[0.25, 0.38, 0.64, 0.],[0., 0., 0., 1.09],[0., 1.24, 0., 0.],[0.37, 0., 0., 0.]])
+print('D1 = ')
+print(D1)
+D2 = ml.matrix([[0.3, 1.0, 0., 0.48],[0., 0.2, 0., 0.],[0., 0., 0., 0.],[0.61, 0., 0., 0.2]])
+print('D2 = ')
+print(D2)
+D3 = ml.matrix([[0., 0.98, 0., 0.31],[0., 0., 1.0, 0.],[0., 0., 0., 0.],[1.1, 0.84, 0.33, 1.03]])
+print('D3 = ')
+print(D3)
+sigma3 = ml.matrix([[0.83333,0.11404,0.05263]])
+print('sigma3 = ')
+print(sigma3)
+S3 = ml.matrix([[-3., 0., 0.],[0.73077, -0.73077, 0.],[0., 0.5, -0.5]])
+print('S3 = ')
+print(S3)
+sigma2 = ml.matrix([[1.]])
+print('sigma2 = ')
+print(sigma2)
+S2 = ml.matrix([[-2.]])
+print('S2 = ')
+print(S2)
+sigma1 = ml.matrix([[0.25,0.75]])
+print('sigma1 = ')
+print(sigma1)
+S1 = ml.matrix([[-2.5, 2.5],[0., -10.]])
+print('S1 = ')
+print(S1)
+print('Test:')
+print('-----')
+print('ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500):')
+ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
+momFromDistr1 = ncd1*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr2 = ncd2*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr3 = ncd3*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+assert la.norm((momFromDistr1-ncm1)/ncm1)<0.001 and la.norm((momFromDistr2-ncm2)/ncm2)<0.001 and la.norm((momFromDistr3-ncm3)/ncm3)<0.001, "MMAPPH1FCFS: queue length moments and queue length distribution are not consistent!"
+distrPoints = [1., 5., 10.]
+print('stm1, std1, stm2, std2, stm3, std3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
+stm1, std1, stm2, std2, stm3, std3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+print('stm1 = ')
+print(stm1)
+print('std1 = ')
+print(std1)
+print('stm2 = ')
+print(stm2)
+print('std2 = ')
+print(std2)
+print('stm3 = ')
+print(stm3)
+print('std3 = ')
+print(std3)
+print('betap1, Bp1, betap2, Bp2, betap3, Bp3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrPH"):')
+betap1, Bp1, betap2, Bp2, betap3, Bp3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrPH")
+print('beta1, B1, beta2, B2, beta3, B3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrME"):')
+beta1, B1, beta2, B2, beta3, B3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrME")
+print('stdFromPH1 = CdfFromPH(betap1, Bp1, distrPoints):')
+stdFromPH1 = CdfFromPH(betap1, Bp1, distrPoints)
+print('stdFromPH1 = ')
+print(stdFromPH1)
+print('stmFromME1 = MomentsFromME(beta1, B1, 3):')
+stmFromME1 = MomentsFromME(beta1, B1, 3)
+print('stmFromME1 = ')
+print(stmFromME1)
+print('stdFromPH2 = CdfFromPH(betap2, Bp2, distrPoints):')
+stdFromPH2 = CdfFromPH(betap2, Bp2, distrPoints)
+print('stdFromPH2 = ')
+print(stdFromPH2)
+print('stmFromME2 = MomentsFromME(beta2, B2, 3):')
+stmFromME2 = MomentsFromME(beta2, B2, 3)
+print('stmFromME2 = ')
+print(stmFromME2)
+print('stdFromPH3 = CdfFromPH(betap3, Bp3, distrPoints):')
+stdFromPH3 = CdfFromPH(betap3, Bp3, distrPoints)
+print('stdFromPH3 = ')
+print(stdFromPH3)
+print('stmFromME3 = MomentsFromME(beta3, B3, 3):')
+stmFromME3 = MomentsFromME(beta3, B3, 3)
+print('stmFromME3 = ')
+print(stmFromME3)
+assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1FCFS: invalid sojourn time distribution!"
+assert la.norm((np.array(MomentsFromPH(betap1, Bp1, 3))-np.array(stmFromME1))/np.array(stmFromME1))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap2, Bp2, 3))-np.array(stmFromME2))/np.array(stmFromME2))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap3, Bp3, 3))-np.array(stmFromME3))/np.array(stmFromME3))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
+assert la.norm(std1-CdfFromME(beta1, B1, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 1!"
+assert la.norm(std2-CdfFromME(beta2, B2, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 2!"
+assert la.norm(std3-CdfFromME(beta3, B3, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 3!"
+assert la.norm((np.array(stm1)-np.array(stmFromME1))/np.array(stm1))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
+assert la.norm((np.array(stm2)-np.array(stmFromME2))/np.array(stm2))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
+assert la.norm((np.array(stm3)-np.array(stmFromME3))/np.array(stm3))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
+lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
+lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
+lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
+assert np.abs(ncm1[0]-stm1[0]*lambda1)<10**-12, "MMAPPH1FCFS: Little formula does not hold for class 1!"
+assert np.abs(ncm2[0]-stm2[0]*lambda2)<10**-12, "MMAPPH1FCFS: Little formula does not hold for class 2!"
+assert np.abs(ncm3[0]-stm3[0]*lambda3)<10**-12, "MMAPPH1FCFS: Little formula does not hold for class 3!"
+print('Input:')
+print('------')
+D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
+print('D0 = ')
+print(D0)
+D1 = ml.matrix([[0.25, 0.38, 0.64, 0.],[0., 0., 0., 1.09],[0., 1.24, 0., 0.],[0.37, 0., 0., 0.]])
+print('D1 = ')
+print(D1)
+D2 = ml.matrix([[0.3, 1.0, 0., 0.48],[0., 0.2, 0., 0.],[0., 0., 0., 0.],[0.61, 0., 0., 0.2]])
+print('D2 = ')
+print(D2)
+D3 = ml.matrix([[0., 0.98, 0., 0.31],[0., 0., 1.0, 0.],[0., 0., 0., 0.],[1.1, 0.84, 0.33, 1.03]])
+print('D3 = ')
+print(D3)
+sigma3 = ml.matrix([[0.16667,0.83333]])
+print('sigma3 = ')
+print(sigma3)
+S3 = ml.matrix([[-0.5, 0.5],[0., -3.]])
+print('S3 = ')
+print(S3)
+sigma2 = ml.matrix([[0.58824,0.41176]])
+print('sigma2 = ')
+print(sigma2)
+S2 = ml.matrix([[-2.3529, 2.3529],[0., -4.]])
+print('S2 = ')
+print(S2)
+sigma1 = ml.matrix([[0.25,0.75]])
+print('sigma1 = ')
+print(sigma1)
+S1 = ml.matrix([[-2.5, 2.5],[0., -10.]])
+print('S1 = ')
+print(S1)
+print('Test:')
+print('-----')
+print('ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500):')
+ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
+momFromDistr1 = ncd1*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr2 = ncd2*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+momFromDistr3 = ncd3*ml.vstack((ml.matrix(np.arange(0,500.0,1)),ml.matrix(np.arange(0,500.0,1)**2),ml.matrix(np.arange(0,500.0,1)**3))).T
+assert la.norm((momFromDistr1-ncm1)/ncm1)<0.001 and la.norm((momFromDistr2-ncm2)/ncm2)<0.001 and la.norm((momFromDistr3-ncm3)/ncm3)<0.001, "MMAPPH1FCFS: queue length moments and queue length distribution are not consistent!"
+distrPoints = [1., 5., 10.]
+print('stm1, std1, stm2, std2, stm3, std3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints):')
+stm1, std1, stm2, std2, stm3, std3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+print('stm1 = ')
+print(stm1)
+print('std1 = ')
+print(std1)
+print('stm2 = ')
+print(stm2)
+print('std2 = ')
+print(std2)
+print('stm3 = ')
+print(stm3)
+print('std3 = ')
+print(std3)
+print('betap1, Bp1, betap2, Bp2, betap3, Bp3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrPH"):')
+betap1, Bp1, betap2, Bp2, betap3, Bp3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrPH")
+print('beta1, B1, beta2, B2, beta3, B3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrME"):')
+beta1, B1, beta2, B2, beta3, B3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrME")
+print('stdFromPH1 = CdfFromPH(betap1, Bp1, distrPoints):')
+stdFromPH1 = CdfFromPH(betap1, Bp1, distrPoints)
+print('stdFromPH1 = ')
+print(stdFromPH1)
+print('stmFromME1 = MomentsFromME(beta1, B1, 3):')
+stmFromME1 = MomentsFromME(beta1, B1, 3)
+print('stmFromME1 = ')
+print(stmFromME1)
+print('stdFromPH2 = CdfFromPH(betap2, Bp2, distrPoints):')
+stdFromPH2 = CdfFromPH(betap2, Bp2, distrPoints)
+print('stdFromPH2 = ')
+print(stdFromPH2)
+print('stmFromME2 = MomentsFromME(beta2, B2, 3):')
+stmFromME2 = MomentsFromME(beta2, B2, 3)
+print('stmFromME2 = ')
+print(stmFromME2)
+print('stdFromPH3 = CdfFromPH(betap3, Bp3, distrPoints):')
+stdFromPH3 = CdfFromPH(betap3, Bp3, distrPoints)
+print('stdFromPH3 = ')
+print(stdFromPH3)
+print('stmFromME3 = MomentsFromME(beta3, B3, 3):')
+stmFromME3 = MomentsFromME(beta3, B3, 3)
+print('stmFromME3 = ')
+print(stmFromME3)
+assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1FCFS: invalid sojourn time distribution!"
+assert la.norm((np.array(MomentsFromPH(betap1, Bp1, 3))-np.array(stmFromME1))/np.array(stmFromME1))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap2, Bp2, 3))-np.array(stmFromME2))/np.array(stmFromME2))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap3, Bp3, 3))-np.array(stmFromME3))/np.array(stmFromME3))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
+assert la.norm(std1-CdfFromME(beta1, B1, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 1!"
+assert la.norm(std2-CdfFromME(beta2, B2, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 2!"
+assert la.norm(std3-CdfFromME(beta3, B3, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 3!"
+assert la.norm((np.array(stm1)-np.array(stmFromME1))/np.array(stm1))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
+assert la.norm((np.array(stm2)-np.array(stmFromME2))/np.array(stm2))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
+assert la.norm((np.array(stm3)-np.array(stmFromME3))/np.array(stm3))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
+lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
+lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
+lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
+assert np.abs(ncm1[0]-stm1[0]*lambda1)<10**-12, "MMAPPH1FCFS: Little formula does not hold for class 1!"
+assert np.abs(ncm2[0]-stm2[0]*lambda2)<10**-12, "MMAPPH1FCFS: Little formula does not hold for class 2!"
+assert np.abs(ncm3[0]-stm3[0]*lambda3)<10**-12, "MMAPPH1FCFS: Little formula does not hold for class 3!"
 print('========================================')
 print('Testing BuTools function FluidQueue')
 print('Input:')
@@ -1047,32 +1287,32 @@ Rout = Diag(vRout)
 lambd = np.sum(CTMCSolve(Q)*Rin)
 print('Test:')
 print('-----')
-print('qld, qlm = FluidQueue(Q, Rin, Rout, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5):')
-qld, qlm = FluidQueue(Q, Rin, Rout, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = FluidQueue(Q, Rin, Rout, "qlDistrPH"):')
-alphap, Ap = FluidQueue(Q, Rin, Rout, "qlDistrPH")
+print('fld, flm = FluidQueue(Q, Rin, Rout, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5):')
+fld, flm = FluidQueue(Q, Rin, Rout, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5)
+print('fld = ')
+print(fld)
+print('flm = ')
+print(flm)
+print('alphap, Ap = FluidQueue(Q, Rin, Rout, "flDistrPH"):')
+alphap, Ap = FluidQueue(Q, Rin, Rout, "flDistrPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = FluidQueue(Q, Rin, Rout, "qlDistrME"):')
-alpha, A = FluidQueue(Q, Rin, Rout, "qlDistrME")
+print('alpha, A = FluidQueue(Q, Rin, Rout, "flDistrME"):')
+alpha, A = FluidQueue(Q, Rin, Rout, "flDistrME")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1)):')
-qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
-print('qldFromPH = ')
-print(qldFromPH)
-print('qlmFromME = MomentsFromME(alpha, A, 5):')
-qlmFromME = MomentsFromME(alpha, A, 5)
-print('qlmFromME = ')
-print(qlmFromME)
+print('fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1)):')
+fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
+print('fldFromPH = ')
+print(fldFromPH)
+print('flmFromME = MomentsFromME(alpha, A, 5):')
+flmFromME = MomentsFromME(alpha, A, 5)
+print('flmFromME = ')
+print(flmFromME)
 print('std, stm = FluidQueue(Q, Rin, Rout, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = FluidQueue(Q, Rin, Rout, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -1103,13 +1343,13 @@ assert CheckMERepresentation(alpha, A), "FluidQueue: invalid ME representation o
 assert CheckMERepresentation(beta, B), "FluidQueue: invalid ME representation of the sojourn time!"
 assert CheckPHRepresentation(alphap, Ap), "FluidQueue: invalid PH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "FluidQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "FluidQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<10**12, "FluidQueue: the ME and PH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "FluidQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**12, "FluidQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "FluidQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<10**12, "FluidQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "FluidQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(flm[0]-stm[0]*lambd)<10**-12, "FluidQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(flmFromME))/np.array(flmFromME))<10**-12, "FluidQueue: the ME and PH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "FluidQueue: the ME and PH representations are not equal!"
+assert la.norm(fld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**-12, "FluidQueue: flDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "FluidQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(flm)-np.array(flmFromME))/np.array(flm))<10**-12, "FluidQueue: flmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "FluidQueue: stMoms returns wrong sojourn time moments!"
 print('========================================')
 print('Testing BuTools function FluFluQueue')
 print('Input:')
@@ -1133,32 +1373,32 @@ Rout = Diag(vRout)
 lambd = np.sum(CTMCSolve(Qin)*Rin)
 print('Test:')
 print('-----')
-print('qld, qlm = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5):')
-qld, qlm = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistrPH"):')
-alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistrPH")
+print('fld, flm = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5):')
+fld, flm = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5)
+print('fld = ')
+print(fld)
+print('flm = ')
+print(flm)
+print('alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistrPH"):')
+alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistrPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistrME"):')
-alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistrME")
+print('alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistrME"):')
+alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistrME")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1)):')
-qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
-print('qldFromPH = ')
-print(qldFromPH)
-print('qlmFromME = MomentsFromME(alpha, A, 5):')
-qlmFromME = MomentsFromME(alpha, A, 5)
-print('qlmFromME = ')
-print(qlmFromME)
+print('fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1)):')
+fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
+print('fldFromPH = ')
+print(fldFromPH)
+print('flmFromME = MomentsFromME(alpha, A, 5):')
+flmFromME = MomentsFromME(alpha, A, 5)
+print('flmFromME = ')
+print(flmFromME)
 print('std, stm = FluFluQueue(Qin, Rin, Qout, Rout, False, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = FluFluQueue(Qin, Rin, Qout, Rout, False, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -1189,13 +1429,13 @@ assert CheckMERepresentation(alpha, A), "FluFluQueue: invalid ME representation 
 assert CheckMERepresentation(beta, B), "FluFluQueue: invalid ME representation of the sojourn time!"
 assert CheckPHRepresentation(alphap, Ap), "FluFluQueue: invalid PH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "FluFluQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "FluFluQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<10**12, "FluFluQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(flm[0]-stm[0]*lambd)<10**-12, "FluFluQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(flmFromME))/np.array(flmFromME))<10**-12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm(fld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**-12, "FluFluQueue: flDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(flm)-np.array(flmFromME))/np.array(flm))<10**-12, "FluFluQueue: flmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
 Iin = ml.eye(Qin.shape[0])
 Iout = ml.eye(Qout.shape[0])
 butools.verbose = False
@@ -1203,35 +1443,35 @@ gamma, G = FluidQueue(ml.kron(Qin, Iout)+ml.kron(Iin, Qout), ml.kron(Rin, Iout),
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "FluFluQueue: Large and small model do not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**-12, "FluFluQueue: Large and small model do not give the same results!"
 print('Test:')
 print('-----')
-print('qld, qlm = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5):')
-qld, qlm = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5)
-print('qld = ')
-print(qld)
-print('qlm = ')
-print(qlm)
-print('alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistrPH"):')
-alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistrPH")
+print('fld, flm = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5):')
+fld, flm = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5)
+print('fld = ')
+print(fld)
+print('flm = ')
+print(flm)
+print('alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistrPH"):')
+alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistrPH")
 print('alphap = ')
 print(alphap)
 print('Ap = ')
 print(Ap)
-print('alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistrME"):')
-alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistrME")
+print('alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistrME"):')
+alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistrME")
 print('alpha = ')
 print(alpha)
 print('A = ')
 print(A)
-print('qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1)):')
-qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
-print('qldFromPH = ')
-print(qldFromPH)
-print('qlmFromME = MomentsFromME(alpha, A, 5):')
-qlmFromME = MomentsFromME(alpha, A, 5)
-print('qlmFromME = ')
-print(qlmFromME)
+print('fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1)):')
+fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
+print('fldFromPH = ')
+print(fldFromPH)
+print('flmFromME = MomentsFromME(alpha, A, 5):')
+flmFromME = MomentsFromME(alpha, A, 5)
+print('flmFromME = ')
+print(flmFromME)
 print('std, stm = FluFluQueue(Qin, Rin, Qout, Rout, True, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5):')
 std, stm = FluFluQueue(Qin, Rin, Qout, Rout, True, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 print('std = ')
@@ -1262,13 +1502,13 @@ assert CheckMERepresentation(alpha, A), "FluFluQueue: invalid ME representation 
 assert CheckMERepresentation(beta, B), "FluFluQueue: invalid ME representation of the sojourn time!"
 assert CheckPHRepresentation(alphap, Ap), "FluFluQueue: invalid PH representation of the queue length!"
 assert CheckPHRepresentation(betap, Bp), "FluFluQueue: invalid PH representation of the sojourn time!"
-assert np.abs(qlm[0]-stm[0]*lambd)<10**12, "FluFluQueue: Little formula does not hold!"
-assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(qlmFromME))/np.array(qlmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**12, "FluFluQueue: the ME and PH representations are not equal!"
-assert la.norm(qld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: qlDistr returns wrong queue length distribution!"
-assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
-assert la.norm((np.array(qlm)-np.array(qlmFromME))/np.array(qlm))<10**12, "FluFluQueue: qlMoms returns wrong queue length moments!"
-assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
+assert np.abs(flm[0]-stm[0]*lambd)<10**-12, "FluFluQueue: Little formula does not hold!"
+assert la.norm((np.array(MomentsFromPH(alphap, Ap, 5))-np.array(flmFromME))/np.array(flmFromME))<10**-12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap, Bp, 5))-np.array(stmFromME))/np.array(stmFromME))<10**-12, "FluFluQueue: the ME and PH representations are not equal!"
+assert la.norm(fld-CdfFromME(alpha, A, np.arange(0.,1.1,0.1)))<10**-12, "FluFluQueue: flDistr returns wrong queue length distribution!"
+assert la.norm(std-CdfFromME(beta, B, np.arange(0.,1.1,0.1)))<10**-12, "FluFluQueue: stDistr returns wrong sojourn time distribution!"
+assert la.norm((np.array(flm)-np.array(flmFromME))/np.array(flm))<10**-12, "FluFluQueue: flmoms returns wrong queue length moments!"
+assert la.norm((np.array(stm)-np.array(stmFromME))/np.array(stm))<10**-12, "FluFluQueue: stMoms returns wrong sojourn time moments!"
 Iin = ml.eye(Qin.shape[0])
 Iout = ml.eye(Qout.shape[0])
 butools.verbose = False
@@ -1276,5 +1516,5 @@ gamma, G = FluidQueue(ml.kron(Qin, Iout)+ml.kron(Iin, Qout), ml.kron(Rin, Iout),
 butools.verbose = True
 msmall = MomentsFromME(beta, B, 5)
 mlarge = MomentsFromME(gamma, G, 5)
-assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**12, "FluFluQueue: Large and small model do not give the same results!"
+assert la.norm((np.array(msmall)-np.array(mlarge))/np.array(msmall))<10**-12, "FluFluQueue: Large and small model do not give the same results!"
 

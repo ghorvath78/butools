@@ -126,27 +126,26 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
     end
     
     Ret = {};
-    retIx = 1;
     argIx = 1;
     while argIx<=length(varargin)
         if any(ismember(eaten, argIx))
             argIx = argIx + 1;
             continue;
-        elseif strcmp(varargin{argIx},'qlDistrDPH')
+        elseif strcmp(varargin{argIx},'ncDistrDPH')
             % transform it to DPH
             alpha = pi0*R*inv(eye(N)-R);
             A = inv(diag(alpha))*R'*diag(alpha);           
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlDistrMG')
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
+        elseif strcmp(varargin{argIx},'ncDistrMG')
             % transform it to MG
             B = SimilarityMatrixForVectors(sum(inv(I-R)*R,2), ones(N,1));
             Bi = inv(B);
             A = B*R*Bi;
             alpha = pi0*Bi;       
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlMoms')
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
+        elseif strcmp(varargin{argIx},'ncMoms')
             numOfMoms = varargin{argIx+1};
             argIx = argIx + 1;
             moms = zeros(1,numOfMoms);
@@ -154,17 +153,18 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
             for m=1:numOfMoms
                 moms(m) = factorial(m)*sum(pi0*iR^(m+1)*R^m);
             end
-            Ret{retIx} = MomsFromFactorialMoms(moms);
-            retIx = retIx + 1;
-        elseif strcmp(varargin{argIx},'qlDistr')
-            points = varargin{argIx+1};
+            Ret{end+1} = MomsFromFactorialMoms(moms);
+        elseif strcmp(varargin{argIx},'ncDistr')
+            numOfQLProbs = varargin{argIx+1};
             argIx = argIx + 1;
-            values = zeros(size(points));
-            for p=1:length(points)
-                values(p) = sum(pi0*R^points(p));
+            values = zeros(1,numOfQLProbs);
+            values(1) = sum(pi0);
+            RPow = I;
+            for p=1:numOfQLProbs-1
+                RPow = RPow * R;
+                values(p+1) = sum(pi0*RPow);
             end
-            Ret{retIx} = values;
-            retIx = retIx + 1;
+            Ret{end+1} = values;
         elseif strcmp(varargin{argIx},'stDistrPH')
             % transform to ph distribution
             ix = (1:N);
@@ -172,8 +172,8 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
             Delta = diag(eta);
             A = kron(L+F,I(nz,nz)) + kron(B,inv(Delta(nz,nz))*Rh(nz,nz)'*Delta(nz,nz));
             alpha = z'*kron(I,Delta(:,nz));
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
         elseif strcmp(varargin{argIx},'stDistrME')
             % transform it such that the closing vector is a vector of ones
             % this is the way butools accepts ME distributions
@@ -181,8 +181,8 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
             Bmi = inv(Bm);
             A = Bm * (kron(L'+F',I) + kron(B',Rh)) * Bmi;
             alpha = kron(ones(1,N), eta) * Bmi;
-            Ret{retIx} = {alpha, A};
-            retIx = retIx + 1;
+            Ret{end+1} = alpha;
+            Ret{end+1} = A;
         elseif strcmp(varargin{argIx},'stMoms')
             numOfMoms = varargin{argIx+1};
             argIx = argIx + 1;
@@ -192,8 +192,7 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
             for m=1:numOfMoms
                 moms(m) = factorial(m)*sum(kron(ones(1,N), eta)*iZ^(m+1)*(-Z)*z);
             end
-            Ret{retIx} = moms;
-            retIx = retIx + 1;
+            Ret{end+1} = moms;
         elseif strcmp(varargin{argIx},'stDistr')
             points = varargin{argIx+1};
             argIx = argIx + 1;
@@ -202,17 +201,12 @@ function varargout = QBDQueue(B, L, F, L0, varargin)
             for p=1:length(points)
                 values(p) = 1-sum(kron(ones(1,N), eta)*expm(Z*points(p))*z);
             end
-            Ret{retIx} = values;
-            retIx = retIx + 1;
+            Ret{end+1} = values;
         else
             error (['QBDQueue: Unknown parameter ' varargin{argIx}])
         end
         argIx = argIx + 1;
     end
-    if length(Ret)==1 && iscell(Ret{1})
-        varargout = Ret{1};
-    else
-        varargout = Ret;
-    end
+    varargout = Ret;
 end
 
