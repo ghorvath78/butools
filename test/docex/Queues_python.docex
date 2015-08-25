@@ -7,14 +7,14 @@
 [[ -8.   4.   2.]
  [  0. -10.   5.]
  [  5.   1. -10.]]
->>> qld, qlm = QBDQueue(B, L, F, L0, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
+>>> ncd, ncm = QBDQueue(B, L, F, L0, "ncDistr", 11, "ncMoms", 5)
 Final Residual Error for G:  9.71445146547e-17
 Final Residual Error for R:  1.11022302463e-16
->>> print(qld)
+>>> print(ncd)
 [ 0.29094  0.20433  0.14547  0.10358  0.07371  0.05246  0.03734  0.02657  0.01891  0.01346  0.00958]
->>> print(qlm)
+>>> print(ncm)
 [2.4600295202120317, 14.607919051794482, 128.87860443055746, 1515.8884540468425, 22287.969412532377]
->>> alphap, Ap = QBDQueue(B, L, F, L0, "qlDistrDPH")
+>>> alphap, Ap = QBDQueue(B, L, F, L0, "ncDistrDPH")
 Final Residual Error for G:  9.71445146547e-17
 Final Residual Error for R:  1.11022302463e-16
 >>> print(alphap)
@@ -23,7 +23,7 @@ Final Residual Error for R:  1.11022302463e-16
 [[ 0.11832  0.4103   0.18373]
  [ 0.196    0.19477  0.32261]
  [ 0.27566  0.22146  0.21229]]
->>> alpha, A = QBDQueue(B, L, F, L0, "qlDistrMG")
+>>> alpha, A = QBDQueue(B, L, F, L0, "ncDistrMG")
 Final Residual Error for G:  9.71445146547e-17
 Final Residual Error for R:  1.11022302463e-16
 >>> print(alpha)
@@ -32,11 +32,11 @@ Final Residual Error for R:  1.11022302463e-16
 [[-0.00569 -0.63242  1.33129]
  [ 0.06947 -0.36133  0.99875]
  [ 0.03735 -0.21854  0.8924 ]]
->>> qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
->>> print(qldFromDPH)
+>>> ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+>>> print(ncdFromDPH)
 [ 0.29094  0.20433  0.14547  0.10358  0.07371  0.05246  0.03734  0.02657  0.01891  0.01346  0.00958]
->>> qlmFromMG = MomentsFromMG(alpha, A, 5)
->>> print(qlmFromMG)
+>>> ncmFromMG = MomentsFromMG(alpha, A, 5)
+>>> print(ncmFromMG)
 [2.4600295202120313, 14.607919051794475, 128.87860443055737, 1515.8884540468407, 22287.969412532337]
 >>> std, stm = QBDQueue(B, L, F, L0, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 Final Residual Error for G:  9.71445146547e-17
@@ -86,14 +86,14 @@ Final Residual Error for R:  1.11022302463e-16
 >>> D1 = ml.matrix([[4., 1., 0.],[0., 2., 0.],[0., 0., 0.]])
 >>> S0 = ml.matrix([[-10., 4.],[0., -7.]])
 >>> S1 = ml.matrix([[5., 1.],[4., 3.]])
->>> qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
+>>> ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5)
 Final Residual Error for G:  2.35922392733e-16
 Final Residual Error for R:  1.31838984174e-16
->>> print(qld)
+>>> print(ncd)
 [  6.76969e-01   1.88906e-01   7.95099e-02   3.25628e-02   1.31820e-02   5.30870e-03   2.13277e-03   8.55834e-04   3.43223e-04   1.37603e-04   5.51578e-05]
->>> print(qlm)
+>>> print(ncm)
 [0.54863953186413617, 1.3060488095463447, 4.3570044249027839, 19.192953582041419, 105.38633755592997]
->>> alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH")
+>>> alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH")
 Final Residual Error for G:  2.35922392733e-16
 Final Residual Error for R:  1.31838984174e-16
 >>> print(alphap)
@@ -105,7 +105,7 @@ Final Residual Error for R:  1.31838984174e-16
  [ 0.07984  0.20353  0.04227  0.16552  0.       0.     ]
  [ 0.20818  0.09183  0.05939  0.01352  0.       0.     ]
  [ 0.1325   0.20874  0.03479  0.06576  0.       0.     ]]
->>> alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG")
+>>> alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG")
 Final Residual Error for G:  2.35922392733e-16
 Final Residual Error for R:  1.31838984174e-16
 >>> print(alpha)
@@ -117,11 +117,11 @@ Final Residual Error for R:  1.31838984174e-16
  [-0.05942  0.16196 -0.10712  0.18069 -0.1826   0.39939]
  [-0.05942  0.16196 -0.10712  0.18069 -0.1826   0.39939]
  [-0.05942  0.16196 -0.10712  0.18069 -0.1826   0.39939]]
->>> qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
->>> print(qldFromDPH)
+>>> ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+>>> print(ncdFromDPH)
 [  6.76969e-01   1.88906e-01   7.95099e-02   3.25628e-02   1.31820e-02   5.30870e-03   2.13277e-03   8.55834e-04   3.43223e-04   1.37603e-04   5.51578e-05]
->>> qlmFromMG = MomentsFromMG(alpha, A, 5)
->>> print(qlmFromMG)
+>>> ncmFromMG = MomentsFromMG(alpha, A, 5)
+>>> print(ncmFromMG)
 [0.54863953186413594, 1.3060488095463438, 4.3570044249027813, 19.192953582041405, 105.38633755592987]
 >>> std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 Final Residual Error for G:  2.35922392733e-16
@@ -166,14 +166,14 @@ Final Residual Error for R:  1.31838984174e-16
 >>> D1 = np.sum(-Dm,1)*delta
 >>> S0 = S
 >>> S1 = np.sum(-S,1)*sigma
->>> qld, qlm = MAPMAP1(D0, D1, S0, S1, "qlDistr", np.arange(0,11.0,1), "qlMoms", 5)
+>>> ncd, ncm = MAPMAP1(D0, D1, S0, S1, "ncDistr", 11, "ncMoms", 5)
 Final Residual Error for G:  1.80411241502e-16
 Final Residual Error for R:  4.02455846427e-16
->>> print(qld)
+>>> print(ncd)
 [ 0.33826  0.21299  0.1455   0.09849  0.06653  0.04492  0.03032  0.02047  0.01382  0.00933  0.0063 ]
->>> print(qlm)
+>>> print(ncm)
 [2.0439201904271491, 10.553791196138791, 80.619285377234021, 820.68947862198797, 10442.5288789529]
->>> alphap, Ap = MAPMAP1(D0, D1, S0, S1, "qlDistrDPH")
+>>> alphap, Ap = MAPMAP1(D0, D1, S0, S1, "ncDistrDPH")
 Final Residual Error for G:  1.80411241502e-16
 Final Residual Error for R:  4.02455846427e-16
 >>> print(alphap)
@@ -188,7 +188,7 @@ Final Residual Error for R:  4.02455846427e-16
  [ 0.22985  0.33605  0.05686  0.02423  0.03522  0.00599  0.       0.       0.     ]
  [ 0.13243  0.412    0.05857  0.01396  0.04318  0.00617  0.       0.       0.     ]
  [ 0.10836  0.32375  0.19362  0.01142  0.03393  0.02041  0.       0.       0.     ]]
->>> alpha, A = MAPMAP1(D0, D1, S0, S1, "qlDistrMG")
+>>> alpha, A = MAPMAP1(D0, D1, S0, S1, "ncDistrMG")
 Final Residual Error for G:  1.80411241502e-16
 Final Residual Error for R:  4.02455846427e-16
 >>> print(alpha)
@@ -203,11 +203,11 @@ Final Residual Error for R:  4.02455846427e-16
  [ 0.09367  0.13219  0.17527  0.06844  0.0638  -1.13474 -0.53458  1.00888  0.79874]
  [ 0.09367  0.13219  0.17527  0.06844  0.0638  -1.13474 -0.53458  1.00888  0.79874]
  [ 0.09367  0.13219  0.17527  0.06844  0.0638  -1.13474 -0.53458  1.00888  0.79874]]
->>> qldFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
->>> print(qldFromDPH)
+>>> ncdFromDPH = PmfFromDPH(alphap, Ap, np.arange(0,11.0,1))
+>>> print(ncdFromDPH)
 [ 0.33826  0.21299  0.1455   0.09849  0.06653  0.04492  0.03032  0.02047  0.01382  0.00933  0.0063 ]
->>> qlmFromMG = MomentsFromMG(alpha, A, 5)
->>> print(qlmFromMG)
+>>> ncmFromMG = MomentsFromMG(alpha, A, 5)
+>>> print(ncmFromMG)
 [2.0439201904271451, 10.553791196138775, 80.61928537723395, 820.6894786219882, 10442.528878952886]
 >>> std, stm = MAPMAP1(D0, D1, S0, S1, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 Final Residual Error for G:  1.80411241502e-16
@@ -263,7 +263,7 @@ Final Residual Error for R:  4.02455846427e-16
 >>> S2 = ml.matrix([[-2.]])
 >>> sigma1 = ml.matrix([[0.25,0.75]])
 >>> S1 = ml.matrix([[-2.5, 2.5],[0., -10.]])
->>> qlm, qld = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500)
+>>> ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
 Final Residual Error for G:  2.3314683517128287e-15
 Final Residual Error for G:  1.4521717162097048e-13
 Final Residual Error for G:  9.647230930776018e-15
@@ -276,7 +276,7 @@ Final Residual Error for R:  3.26128013484e-16
 Final Residual Error for G:  2.69315819645e-16
 Final Residual Error for R:  3.26128013484e-16
 >>> distrPoints = [1., 5., 10.]
->>> stm, std = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+>>> stm1, std1, stm2, std2, stm3, std3 = MMAPPH1PRPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
 Final Residual Error for G:  2.3314683517128287e-15
 Final Residual Error for G:  1.4521717162097048e-13
 Final Residual Error for G:  7.88934883286745e-15
@@ -288,14 +288,18 @@ Final Residual Error for G:  7.642364031024785e-16
 Final Residual Error for G:  7.629124111965813e-16
 Final Residual Error for G:  4.657732532997727e-16
 Final Residual Error for G:  1.339206523454095e-15
->>> print(stm)
-[[  1.63060e+01   5.50526e+00   1.97033e+00]
- [  8.06630e+02   1.07777e+02   1.17412e+01]
- [  6.53972e+04   3.84804e+03   1.12849e+02]]
->>> print(std)
-[[ 0.22164  0.34346  0.55657]
- [ 0.43134  0.69324  0.88197]
- [ 0.56865  0.83131  0.97479]]
+>>> print(stm1)
+[16.306011640793987, 806.62985258583274, 65397.232945356853]
+>>> print(std1)
+[ 0.22164  0.43134  0.56865]
+>>> print(stm2)
+[5.505255217664927, 107.77744442363372, 3848.0354975571686]
+>>> print(std2)
+[ 0.34346  0.69324  0.83131]
+>>> print(stm3)
+[1.9703276379879364, 11.741190396361684, 112.84868513581137]
+>>> print(std3)
+[ 0.55657  0.88197  0.97479]
 === MMAPPH1NPPR ===
 >>> D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
 >>> D1 = ml.matrix([[0.25, 0.38, 0.64, 0.],[0., 0., 0., 1.09],[0., 1.24, 0., 0.],[0.37, 0., 0., 0.]])
@@ -307,7 +311,7 @@ Final Residual Error for G:  1.339206523454095e-15
 >>> S2 = ml.matrix([[-2.]])
 >>> sigma1 = ml.matrix([[0.25,0.75]])
 >>> S1 = ml.matrix([[-2.5, 2.5],[0., -10.]])
->>> qlm, qld = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "qlMoms", 3, "qlDistr", 500)
+>>> ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
 Final Residual Error for G:  2.3314683517128287e-15
 Final Residual Error for G:  2.3314683517128287e-15
 Final Residual Error for G:  1.790234627208065e-15
@@ -321,7 +325,7 @@ Final Residual Error for R:  3.63464120372e-16
 Final Residual Error for G:  3.20949754572e-16
 Final Residual Error for R:  3.63464120372e-16
 >>> distrPoints = [1., 5., 10.]
->>> stm, std = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+>>> stm1, std1, stm2, std2, stm3, std3 = MMAPPH1NPPR([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
 Final Residual Error for G:  2.3314683517128287e-15
 Final Residual Error for G:  2.3314683517128287e-15
 Final Residual Error for G:  1.790234627208065e-15
@@ -334,45 +338,99 @@ Final Residual Error for G:  1.0630385460785874e-14
 Final Residual Error for G:  3.387294073432367e-15
 Final Residual Error for G:  2.328351270466933e-15
 Final Residual Error for G:  1.0900568642169262e-15
->>> print(stm)
-[[  1.59086e+01   5.37350e+00   2.25517e+00]
- [  7.88484e+02   1.02747e+02   1.31139e+01]
- [  6.39661e+04   3.65099e+03   1.24730e+02]]
->>> print(std)
-[[ 0.24787  0.32134  0.45672]
- [ 0.44649  0.70548  0.86989]
- [ 0.57919  0.83911  0.97222]]
+>>> print(stm1)
+[15.908635587617834, 788.48368436722012, 63966.115387749385]
+>>> print(std1)
+[ 0.24787  0.44649  0.57919]
+>>> print(stm2)
+[5.3734954269680575, 102.74716094296781, 3650.9895132704323]
+>>> print(std2)
+[ 0.32134  0.70548  0.83911]
+>>> print(stm3)
+[2.2551683685147075, 13.113935102388783, 124.72993277593639]
+>>> print(std3)
+[ 0.45672  0.86989  0.97222]
+=== MMAPPH1FCFS ===
+>>> D0 = ml.matrix([[-5.49, 0., 1.15, 0.],[0., -2.29, 0., 0.],[0., 0.08, -1.32, 0.],[0.72, 1.17, 0.7, -7.07]])
+>>> D1 = ml.matrix([[0.25, 0.38, 0.64, 0.],[0., 0., 0., 1.09],[0., 1.24, 0., 0.],[0.37, 0., 0., 0.]])
+>>> D2 = ml.matrix([[0.3, 1.0, 0., 0.48],[0., 0.2, 0., 0.],[0., 0., 0., 0.],[0.61, 0., 0., 0.2]])
+>>> D3 = ml.matrix([[0., 0.98, 0., 0.31],[0., 0., 1.0, 0.],[0., 0., 0., 0.],[1.1, 0.84, 0.33, 1.03]])
+>>> sigma3 = ml.matrix([[0.83333,0.11404,0.05263]])
+>>> S3 = ml.matrix([[-3., 0., 0.],[0.73077, -0.73077, 0.],[0., 0.5, -0.5]])
+>>> sigma2 = ml.matrix([[1.]])
+>>> S2 = ml.matrix([[-2.]])
+>>> sigma1 = ml.matrix([[0.25,0.75]])
+>>> S1 = ml.matrix([[-2.5, 2.5],[0., -10.]])
+>>> ncm1, ncd1, ncm2, ncd2, ncm3, ncd3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "ncMoms", 3, "ncDistr", 500)
+Final Residual Error for G:  4.121702978920894e-15
+>>> distrPoints = [1., 5., 10.]
+>>> stm1, std1, stm2, std2, stm3, std3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stMoms", 3, "stDistr", distrPoints)
+Final Residual Error for G:  4.121702978920894e-15
+>>> print(stm1)
+[5.8470062160235257, 84.706198368623802, 1866.7093911946247]
+>>> print(std1)
+[ 0.28789  0.60379  0.79933]
+>>> print(stm2)
+[6.3613219350708565, 91.529372824197793, 2014.4076848734521]
+>>> print(std2)
+[ 0.20213  0.57229  0.7835 ]
+>>> print(stm3)
+[6.4108407611137332, 92.984442871673338, 2049.1524939592864]
+>>> print(std3)
+[ 0.21755  0.5651   0.77972]
+>>> betap1, Bp1, betap2, Bp2, betap3, Bp3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrPH")
+Final Residual Error for G:  4.121702978920894e-15
+>>> beta1, B1, beta2, B2, beta3, B3 = MMAPPH1FCFS([D0, D1, D2, D3], [sigma1, sigma2, sigma3], [S1, S2, S3], "stDistrME")
+Final Residual Error for G:  4.121702978920894e-15
+>>> stdFromPH1 = CdfFromPH(betap1, Bp1, distrPoints)
+>>> print(stdFromPH1)
+[ 0.28789  0.60379  0.79933]
+>>> stmFromME1 = MomentsFromME(beta1, B1, 3)
+>>> print(stmFromME1)
+[5.847006216026557, 84.7061983687164, 1866.7093911974439]
+>>> stdFromPH2 = CdfFromPH(betap2, Bp2, distrPoints)
+>>> print(stdFromPH2)
+[ 0.20213  0.57229  0.7835 ]
+>>> stmFromME2 = MomentsFromME(beta2, B2, 3)
+>>> print(stmFromME2)
+[6.3613219350690784, 91.52937282416201, 2014.4076848721443]
+>>> stdFromPH3 = CdfFromPH(betap3, Bp3, distrPoints)
+>>> print(stdFromPH3)
+[ 0.21755  0.5651   0.77972]
+>>> stmFromME3 = MomentsFromME(beta3, B3, 3)
+>>> print(stmFromME3)
+[6.4108407611132225, 92.984442871662935, 2049.1524939590845]
 === FluidQueue ===
 >>> Q = ml.matrix([[-9., 2., 4., 0., 1., 2.],[6., -25., 5., 3., 7., 4.],[1., 3., -4., 0., 0., 0.],[0., 0., 0., -8., 3., 5.],[7., 3., 0., 2., -13., 1.],[7., 8., 0., 3., 8., -26.]])
 >>> vRin = ml.matrix([[4.,2.,1.,0.,0.,3.]])
 >>> vRout = ml.matrix([[6.,2.,0.,0.,3.,2.]])
 >>> Rin = Diag(vRin)
 >>> Rout = Diag(vRout)
->>> qld, qlm = FluidQueue(Q, Rin, Rout, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5)
+>>> fld, flm = FluidQueue(Q, Rin, Rout, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5)
 Final Residual Error for G:  6.661338147750939e-15
->>> print(qld)
+>>> print(fld)
 [ 0.23662  0.39265  0.49537  0.57807  0.6469   0.70447  0.75265  0.79297  0.82672  0.85497  0.87861]
->>> print(qlm)
+>>> print(flm)
 [0.406361527249128, 0.45459875335830258, 0.76609389063916067, 1.7219814531396287, 4.8383553122056897]
->>> alphap, Ap = FluidQueue(Q, Rin, Rout, "qlDistrPH")
+>>> alphap, Ap = FluidQueue(Q, Rin, Rout, "flDistrPH")
 Final Residual Error for G:  6.661338147750939e-15
 >>> print(alphap)
 [[ 0.63124  0.13213]]
 >>> print(Ap)
 [[ -2.03873   0.41483]
  [ 12.10002 -21.1431 ]]
->>> alpha, A = FluidQueue(Q, Rin, Rout, "qlDistrME")
+>>> alpha, A = FluidQueue(Q, Rin, Rout, "flDistrME")
 Final Residual Error for G:  6.661338147750939e-15
 >>> print(alpha)
 [[ 0.09903  0.66434]]
 >>> print(A)
 [[ -3.87389   2.26527]
  [ 16.20615 -19.30794]]
->>> qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
->>> print(qldFromPH)
+>>> fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
+>>> print(fldFromPH)
 [ 0.23662  0.39265  0.49537  0.57807  0.6469   0.70447  0.75265  0.79297  0.82672  0.85497  0.87861]
->>> qlmFromME = MomentsFromME(alpha, A, 5)
->>> print(qlmFromME)
+>>> flmFromME = MomentsFromME(alpha, A, 5)
+>>> print(flmFromME)
 [0.40636152724912805, 0.45459875335830258, 0.76609389063916078, 1.7219814531396285, 4.8383553122056906]
 >>> std, stm = FluidQueue(Q, Rin, Rout, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 Final Residual Error for G:  6.661338147750939e-15
@@ -427,31 +485,31 @@ Final Residual Error for G:  6.661338147750939e-15
 >>> Qout = ml.matrix([[-4., 1., 3.],[6., -8., 2.],[3., 7., -10.]])
 >>> vRout = ml.matrix([[1.,7.,15.]])
 >>> Rout = Diag(vRout)
->>> qld, qlm = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5)
+>>> fld, flm = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5)
 Final Residual Error for G:  1.2975731600306517e-15
->>> print(qld)
+>>> print(fld)
 [ 0.3918   0.47163  0.53819  0.59413  0.6415   0.68193  0.71667  0.74673  0.77292  0.79585  0.81605]
->>> print(qlm)
+>>> print(flm)
 [0.53570356276760078, 1.0765385576008903, 3.4298090557057193, 14.869885651621992, 81.162335691323889]
->>> alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistrPH")
+>>> alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistrPH")
 Final Residual Error for G:  1.2975731600306517e-15
 >>> print(alphap)
 [[ 0.45573  0.15247]]
 >>> print(Ap)
 [[-2.34046  0.53197]
  [ 0.92131 -1.25592]]
->>> alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, False, "qlDistrME")
+>>> alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, False, "flDistrME")
 Final Residual Error for G:  1.2975731600306517e-15
 >>> print(alpha)
 [[-0.65561  1.2638 ]]
 >>> print(A)
 [[-2.14253  1.51938]
  [ 0.43807 -1.45385]]
->>> qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
->>> print(qldFromPH)
+>>> fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
+>>> print(fldFromPH)
 [ 0.3918   0.47163  0.53819  0.59413  0.6415   0.68193  0.71667  0.74673  0.77292  0.79585  0.81605]
->>> qlmFromME = MomentsFromME(alpha, A, 5)
->>> print(qlmFromME)
+>>> flmFromME = MomentsFromME(alpha, A, 5)
+>>> print(flmFromME)
 [0.53570356276760067, 1.0765385576008901, 3.4298090557057166, 14.869885651621992, 81.162335691323918]
 >>> std, stm = FluFluQueue(Qin, Rin, Qout, Rout, False, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 Final Residual Error for G:  1.8457457784393227e-15
@@ -479,31 +537,31 @@ Final Residual Error for G:  1.8457457784393227e-15
 >>> stmFromME = MomentsFromME(beta, B, 5)
 >>> print(stmFromME)
 [0.19480129555185474, 0.11287108072563844, 0.10068642773107304, 0.12157602438536946, 0.18505841424939901]
->>> qld, qlm = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistr", np.arange(0.,1.1,0.1), "qlMoms", 5)
+>>> fld, flm = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistr", np.arange(0.,1.1,0.1), "flMoms", 5)
 Final Residual Error for G:  1.2975731600306517e-15
->>> print(qld)
+>>> print(fld)
 [ 0.64736  0.68913  0.72467  0.75512  0.7814   0.80423  0.82418  0.84172  0.85721  0.87095  0.88319]
->>> print(qlm)
+>>> print(flm)
 [0.33264746858870425, 0.68891737022488087, 2.2197747580073659, 9.6621085259501385, 52.809563478451246]
->>> alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistrPH")
+>>> alphap, Ap = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistrPH")
 Final Residual Error for G:  1.2975731600306517e-15
 >>> print(alphap)
 [[ 0.24142  0.11122]]
 >>> print(Ap)
 [[-2.34046  0.73252]
  [ 0.66907 -1.25592]]
->>> alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, True, "qlDistrME")
+>>> alpha, A = FluFluQueue(Qin, Rin, Qout, Rout, True, "flDistrME")
 Final Residual Error for G:  1.2975731600306517e-15
 >>> print(alpha)
 [[-0.24261  0.59524]]
 >>> print(A)
 [[-2.14253  1.51938]
  [ 0.43807 -1.45385]]
->>> qldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
->>> print(qldFromPH)
+>>> fldFromPH = CdfFromPH(alphap, Ap, np.arange(0.,1.1,0.1))
+>>> print(fldFromPH)
 [ 0.64736  0.68913  0.72467  0.75512  0.7814   0.80423  0.82418  0.84172  0.85721  0.87095  0.88319]
->>> qlmFromME = MomentsFromME(alpha, A, 5)
->>> print(qlmFromME)
+>>> flmFromME = MomentsFromME(alpha, A, 5)
+>>> print(flmFromME)
 [0.3326474685887042, 0.68891737022488064, 2.219774758007365, 9.6621085259501367, 52.809563478451238]
 >>> std, stm = FluFluQueue(Qin, Rin, Qout, Rout, True, "stDistr", np.arange(0.,1.1,0.1), "stMoms", 5)
 Final Residual Error for G:  1.8457457784393227e-15

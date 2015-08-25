@@ -516,16 +516,16 @@ code!@ stmFromME2 = MomentsFromME[beta2,B2,3]
 code!@ stdFromPH3 = CdfFromPH[betap3,Bp3,distrPoints]
 code!@ stmFromME3 = MomentsFromME[beta3,B3,3]
 assert Min[std1]>=0 && Max[std1]<=1 && AllNonNegative[Diff[std1]] && Min[std2]>=0 && Max[std2]<=1 && AllNonNegative[Diff[std2]] && Min[std3]>=0 && Max[std3]<=1 && AllNonNegative[Diff[std3]]# "MMAPPH1FCFS: invalid sojourn time distribution!"
-assert Norm[(ToArray[MomentsFromPH[betap1,Bp1,3]]-ToArray[stmFromME1])./ToArray[stmFromME1]]<10^-12 # "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
-assert Norm[(ToArray[MomentsFromPH[betap2,Bp2,3]]-ToArray[stmFromME2])./ToArray[stmFromME2]]<10^-12 # "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
-assert Norm[(ToArray[MomentsFromPH[betap3,Bp3,3]]-ToArray[stmFromME3])./ToArray[stmFromME3]]<10^-12 # "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap1,Bp1,3]]-ToArray[stmFromME1])./ToArray[stmFromME1]]<10^-10 # "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap2,Bp2,3]]-ToArray[stmFromME2])./ToArray[stmFromME2]]<10^-10 # "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap3,Bp3,3]]-ToArray[stmFromME3])./ToArray[stmFromME3]]<10^-10 # "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
 // check moment and distribution calculation
 assert Norm[std1-CdfFromME[beta1,B1,distrPoints]]<10^-12 # "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 1!"
 assert Norm[std2-CdfFromME[beta2,B2,distrPoints]]<10^-12 # "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 2!"
 assert Norm[std3-CdfFromME[beta3,B3,distrPoints]]<10^-12 # "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 3!"
-assert Norm[(ToArray[stm1]-ToArray[stmFromME1])./ToArray[stm1]]<10^-12 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
-assert Norm[(ToArray[stm2]-ToArray[stmFromME2])./ToArray[stm2]]<10^-12 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
-assert Norm[(ToArray[stm3]-ToArray[stmFromME3])./ToArray[stm3]]<10^-12 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
+assert Norm[(ToArray[stm1]-ToArray[stmFromME1])./ToArray[stm1]]<10^-10 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
+assert Norm[(ToArray[stm2]-ToArray[stmFromME2])./ToArray[stm2]]<10^-10 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
+assert Norm[(ToArray[stm3]-ToArray[stmFromME3])./ToArray[stm3]]<10^-10 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
 // check Little formula for every traffic class
 code$ lambda1 = 1./MarginalMomentsFromMAP[D0+D2+D3,D1,1][[1]]
 code$ lambda2 = 1./MarginalMomentsFromMAP[D0+D1+D3,D2,1][[1]]
@@ -564,16 +564,16 @@ code!@ stmFromME2 = MomentsFromME[beta2,B2,3]
 code!@ stdFromPH3 = CdfFromPH[betap3,Bp3,distrPoints]
 code!@ stmFromME3 = MomentsFromME[beta3,B3,3]
 assert Min[std1]>=0 && Max[std1]<=1 && AllNonNegative[Diff[std1]] && Min[std2]>=0 && Max[std2]<=1 && AllNonNegative[Diff[std2]] && Min[std3]>=0 && Max[std3]<=1 && AllNonNegative[Diff[std3]]# "MMAPPH1FCFS: invalid sojourn time distribution!"
-assert Norm[(ToArray[MomentsFromPH[betap1,Bp1,3]]-ToArray[stmFromME1])./ToArray[stmFromME1]]<10^-12 # "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
-assert Norm[(ToArray[MomentsFromPH[betap2,Bp2,3]]-ToArray[stmFromME2])./ToArray[stmFromME2]]<10^-12 # "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
-assert Norm[(ToArray[MomentsFromPH[betap3,Bp3,3]]-ToArray[stmFromME3])./ToArray[stmFromME3]]<10^-12 # "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap1,Bp1,3]]-ToArray[stmFromME1])./ToArray[stmFromME1]]<10^-10 # "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap2,Bp2,3]]-ToArray[stmFromME2])./ToArray[stmFromME2]]<10^-10 # "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
+assert Norm[(ToArray[MomentsFromPH[betap3,Bp3,3]]-ToArray[stmFromME3])./ToArray[stmFromME3]]<10^-10 # "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
 // check moment and distribution calculation
 assert Norm[std1-CdfFromME[beta1,B1,distrPoints]]<10^-12 # "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 1!"
 assert Norm[std2-CdfFromME[beta2,B2,distrPoints]]<10^-12 # "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 2!"
 assert Norm[std3-CdfFromME[beta3,B3,distrPoints]]<10^-12 # "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 3!"
-assert Norm[(ToArray[stm1]-ToArray[stmFromME1])./ToArray[stm1]]<10^-12 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
-assert Norm[(ToArray[stm2]-ToArray[stmFromME2])./ToArray[stm2]]<10^-12 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
-assert Norm[(ToArray[stm3]-ToArray[stmFromME3])./ToArray[stm3]]<10^-12 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
+assert Norm[(ToArray[stm1]-ToArray[stmFromME1])./ToArray[stm1]]<10^-10 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
+assert Norm[(ToArray[stm2]-ToArray[stmFromME2])./ToArray[stm2]]<10^-10 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
+assert Norm[(ToArray[stm3]-ToArray[stmFromME3])./ToArray[stm3]]<10^-10 # "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
 // check Little formula for every traffic class
 code$ lambda1 = 1./MarginalMomentsFromMAP[D0+D2+D3,D1,1][[1]]
 code$ lambda2 = 1./MarginalMomentsFromMAP[D0+D1+D3,D2,1][[1]]

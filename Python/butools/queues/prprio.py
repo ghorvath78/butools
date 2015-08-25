@@ -190,7 +190,6 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
             # step 3. calculate the performance measures
             # ==========================================   
             argIx = 0
-            retIx = 0
             while argIx<len(argv):
                 if argIx in eaten:
                     argIx += 1
@@ -212,7 +211,7 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                         P = la.solve_sylvester(A, B, -C)
                         Pn.append(P)
                         rtMoms.append(np.sum(inis*P*(-1)**n) / 2**n)
-                    res = ml.matrix(rtMoms)
+                    Ret.append(rtMoms)
                     argIx += 1
                 elif type(argv[argIx]) is str and argv[argIx]=="stDistr":
                     # DISTRIBUTION OF THE SOJOURN TIME
@@ -235,9 +234,9 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                             Pn.append(P)
                             pr += np.sum(inis*P)
                         res.append(pr)
-                    res = ml.matrix(res)
+                    Ret.append(np.array(res))
                     argIx += 1
-                elif type(argv[argIx]) is str and argv[argIx]=="qlMoms":
+                elif type(argv[argIx]) is str and argv[argIx]=="ncMoms":
                     # MOMENTS OF THE NUMBER OF JOBS
                     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     numOfQLMoms = argv[argIx+1]
@@ -268,9 +267,9 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                         QLPn.append(P)
                         qlMoms.append(np.sum(P))
                     qlMoms = MomsFromFactorialMoms(qlMoms)
-                    res = ml.matrix(qlMoms)
+                    Ret.append(qlMoms)
                     argIx += 1
-                elif type(argv[argIx]) is str and argv[argIx]=="qlDistr":
+                elif type(argv[argIx]) is str and argv[argIx]=="ncDistr":
                     # DISTRIBUTION OF THE NUMBER OF JOBS
                     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     numOfQLProbs = argv[argIx+1]
@@ -299,22 +298,15 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                         P = (qlProbs[n-1,:]*D[k+1]+lambdak*(dqlProbs[n,:]-dqlProbs[n-1,:]))*iTerm
                         qlProbs = ml.vstack((qlProbs, P))
                     qlProbs = np.sum(qlProbs,1).flatten()
-                    res = ml.matrix(qlProbs)
+                    Ret.append(qlProbs)
                     argIx += 1
                 else:
                     raise Exception("MMAPPH1PRPR: Unknown parameter "+str(argv[argIx]))
-
-                if retIx>=len(Ret):
-                    Ret.append(res.T)
-                else:
-                    Ret[retIx] = np.hstack((Ret[retIx], res.T))
-                retIx += 1
                 argIx += 1
         elif k==K-1:
             # step 3. calculate the performance measures
             # ==========================================   
             argIx = 0
-            retIx = 0
             while argIx<len(argv):
                 if argIx in eaten:
                     argIx += 1
@@ -326,7 +318,7 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                     rtMoms = []
                     for i in range(1,numOfSTMoms+1):
                         rtMoms.append(np.sum(math.factorial(i)*kappa*(-Kw).I**(i+1)*Bw))
-                    res = ml.matrix(rtMoms)
+                    Ret.append(rtMoms)
                     argIx += 1
                 elif type(argv[argIx]) is str and argv[argIx]=="stDistr":
                     # DISTRIBUTION OF THE SOJOURN TIME
@@ -335,9 +327,9 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                     rtDistr = []
                     for t in stCdfPoints:
                         rtDistr.append (np.sum(kappa*(-Kw).I*(ml.eye(Kw.shape[0])-la.expm(Kw*t))*Bw))
-                    res = ml.matrix(rtDistr)
+                    Ret.append(np.array(rtDistr))
                     argIx += 1
-                elif type(argv[argIx]) is str and (argv[argIx]=="qlMoms" or argv[argIx]=="qlDistr"):
+                elif type(argv[argIx]) is str and (argv[argIx]=="ncMoms" or argv[argIx]=="ncDistr"):
                     L = np.kron(sD-D[k+1],ml.eye(M[k]))+np.kron(ml.eye(N),S[k])
                     B = np.kron(ml.eye(N),s[k]*sigma[k])
                     F = np.kron(D[k+1],ml.eye(M[k]))
@@ -345,30 +337,29 @@ def MMAPPH1PRPR(D, sigma, S, *argv):
                     R = QBDFundamentalMatrices (B, L, F, 'R', precision)
                     p0 = CTMCSolve(L0+R*B)
                     p0 = p0/np.sum(p0*(ml.eye(R.shape[0])-R).I)
-                    if argv[argIx]=="qlMoms":
+                    if argv[argIx]=="ncMoms":
                         # MOMENTS OF THE NUMBER OF JOBS
                         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLMoms = argv[argIx+1]
                         qlMoms = []
                         for i in range(1,numOfQLMoms+1):
                             qlMoms.append(np.sum(math.factorial(i)*p0*R**i*(ml.eye(R.shape[0])-R).I**(i+1)))
-                        res = ml.matrix(MomsFromFactorialMoms(qlMoms))
-                    elif argv[argIx]=="qlDistr":
+                        Ret.append(MomsFromFactorialMoms(qlMoms))
+                    elif argv[argIx]=="ncDistr":
                         # DISTRIBUTION OF THE NUMBER OF JOBS
                         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                         numOfQLProbs = argv[argIx+1]
                         qlProbs = [np.sum(p0)]
                         for i in range(1,numOfQLProbs):
                             qlProbs.append(np.sum(p0*R**i))
-                        res = ml.matrix(qlProbs)
+                        Ret.append(np.array(qlProbs))
                     argIx += 1
                 else:
                     raise Exception("MMAPPH1PRPR: Unknown parameter "+str(argv[argIx]))
-
-                if retIx>=len(Ret):
-                    Ret.append(res.T)
-                else:
-                    Ret[retIx] = np.hstack((Ret[retIx], res.T))
-                retIx += 1
                 argIx += 1
-    return Ret
+
+    if len(Ret)==1:
+        return Ret[0]
+    else:
+        return Ret
+

@@ -1153,15 +1153,15 @@ stmFromME3 = MomentsFromME(beta3, B3, 3)
 print('stmFromME3 = ')
 print(stmFromME3)
 assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1FCFS: invalid sojourn time distribution!"
-assert la.norm((np.array(MomentsFromPH(betap1, Bp1, 3))-np.array(stmFromME1))/np.array(stmFromME1))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap2, Bp2, 3))-np.array(stmFromME2))/np.array(stmFromME2))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap3, Bp3, 3))-np.array(stmFromME3))/np.array(stmFromME3))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap1, Bp1, 3))-np.array(stmFromME1))/np.array(stmFromME1))<10**-10, "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap2, Bp2, 3))-np.array(stmFromME2))/np.array(stmFromME2))<10**-10, "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap3, Bp3, 3))-np.array(stmFromME3))/np.array(stmFromME3))<10**-10, "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
 assert la.norm(std1-CdfFromME(beta1, B1, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 1!"
 assert la.norm(std2-CdfFromME(beta2, B2, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 2!"
 assert la.norm(std3-CdfFromME(beta3, B3, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 3!"
-assert la.norm((np.array(stm1)-np.array(stmFromME1))/np.array(stm1))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
-assert la.norm((np.array(stm2)-np.array(stmFromME2))/np.array(stm2))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
-assert la.norm((np.array(stm3)-np.array(stmFromME3))/np.array(stm3))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
+assert la.norm((np.array(stm1)-np.array(stmFromME1))/np.array(stm1))<10**-10, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
+assert la.norm((np.array(stm2)-np.array(stmFromME2))/np.array(stm2))<10**-10, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
+assert la.norm((np.array(stm3)-np.array(stmFromME3))/np.array(stm3))<10**-10, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]
@@ -1252,15 +1252,15 @@ stmFromME3 = MomentsFromME(beta3, B3, 3)
 print('stmFromME3 = ')
 print(stmFromME3)
 assert np.min(std1)>=0 and np.max(std1)<=1 and np.all(np.diff(std1)>=0) and np.min(std2)>=0 and np.max(std2)<=1 and np.all(np.diff(std2)>=0) and np.min(std3)>=0 and np.max(std3)<=1 and np.all(np.diff(std3)>=0), "MMAPPH1FCFS: invalid sojourn time distribution!"
-assert la.norm((np.array(MomentsFromPH(betap1, Bp1, 3))-np.array(stmFromME1))/np.array(stmFromME1))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap2, Bp2, 3))-np.array(stmFromME2))/np.array(stmFromME2))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
-assert la.norm((np.array(MomentsFromPH(betap3, Bp3, 3))-np.array(stmFromME3))/np.array(stmFromME3))<10**-12, "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap1, Bp1, 3))-np.array(stmFromME1))/np.array(stmFromME1))<10**-10, "MMAPPH1FCFS: the ME and PH representations for class 1 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap2, Bp2, 3))-np.array(stmFromME2))/np.array(stmFromME2))<10**-10, "MMAPPH1FCFS: the ME and PH representations for class 2 are not equal!"
+assert la.norm((np.array(MomentsFromPH(betap3, Bp3, 3))-np.array(stmFromME3))/np.array(stmFromME3))<10**-10, "MMAPPH1FCFS: the ME and PH representations for class 3 are not equal!"
 assert la.norm(std1-CdfFromME(beta1, B1, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 1!"
 assert la.norm(std2-CdfFromME(beta2, B2, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 2!"
 assert la.norm(std3-CdfFromME(beta3, B3, distrPoints))<10**-12, "MMAPPH1FCFS: stDistr returns wrong sojourn time distribution for class 3!"
-assert la.norm((np.array(stm1)-np.array(stmFromME1))/np.array(stm1))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
-assert la.norm((np.array(stm2)-np.array(stmFromME2))/np.array(stm2))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
-assert la.norm((np.array(stm3)-np.array(stmFromME3))/np.array(stm3))<10**-12, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
+assert la.norm((np.array(stm1)-np.array(stmFromME1))/np.array(stm1))<10**-10, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 1!"
+assert la.norm((np.array(stm2)-np.array(stmFromME2))/np.array(stm2))<10**-10, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 2!"
+assert la.norm((np.array(stm3)-np.array(stmFromME3))/np.array(stm3))<10**-10, "MMAPPH1FCFS: stMoms returns wrong sojourn time moments for class 3!"
 lambda1 = 1./MarginalMomentsFromMAP(D0+D2+D3, D1, 1)[0]
 lambda2 = 1./MarginalMomentsFromMAP(D0+D1+D3, D2, 1)[0]
 lambda3 = 1./MarginalMomentsFromMAP(D0+D1+D2, D3, 1)[0]

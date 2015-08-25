@@ -132,19 +132,21 @@ def QBDQueue(B, L, F, L0, *argv):
         if argIx in eaten:
             argIx += 1
             continue
-        elif type(argv[argIx]) is str and argv[argIx]=="qlDistrDPH":
+        elif type(argv[argIx]) is str and argv[argIx]=="ncDistrDPH":
             # transform it to DPH
             alpha = pi0*R*(I-R).I
             A = Diag(alpha).I*R.T*Diag(alpha)
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=="qlDistrMG":
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=="ncDistrMG":
             # transform it to MG
             B = SimilarityMatrixForVectors(np.sum((I-R).I*R,1), np.ones((N,1)))
             Bi = B.I
             A = B*R*Bi
             alpha = pi0*Bi
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=="qlMoms":
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=="ncMoms":
             numOfMoms = argv[argIx+1]
             argIx += 1
             moms = []
@@ -152,12 +154,15 @@ def QBDQueue(B, L, F, L0, *argv):
             for m in range(1,numOfMoms+1):
                 moms.append(math.factorial(m)*np.sum(pi0*iR**(m+1)*R**m))
             Ret.append(MomsFromFactorialMoms(moms))
-        elif type(argv[argIx]) is str and argv[argIx]=="qlDistr":
-            points = argv[argIx+1]
+        elif type(argv[argIx]) is str and argv[argIx]=="ncDistr":
+            numOfQLProbs = argv[argIx+1]
             argIx += 1
-            values = np.empty(points.shape)
-            for p in range(len(points.flat)):
-                values.flat[p] = np.sum(pi0*R**int(points.flat[p]))
+            values = np.empty(numOfQLProbs)
+            values[0] = np.sum(pi0)
+            RPow = I
+            for p in range(numOfQLProbs-1):
+                RPow = RPow * R
+                values[p+1] = np.sum(pi0*RPow)
             Ret.append(values)
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrPH":
             # transform to ph distribution
@@ -166,7 +171,8 @@ def QBDQueue(B, L, F, L0, *argv):
             Delta = Diag(eta)
             A = np.kron(L+F,I[nz,:][:,nz]) + np.kron(B,Delta[nz,:][:,nz].I*Rh[nz,:][:,nz].T*Delta[nz,:][:,nz])
             alpha = z.T*np.kron(I,Delta[:,nz])
-            Ret.append((alpha, A))
+            Ret.append(alpha)
+            Ret.append(A)
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrME":
             # transform it such that the closing vector is a vector of ones
             # this is the way butools accepts ME distributions
@@ -174,7 +180,8 @@ def QBDQueue(B, L, F, L0, *argv):
             Bmi = Bm.I
             A = Bm * (np.kron(L.T+F.T,I) + np.kron(B.T,Rh)) * Bmi
             alpha = np.kron(ml.ones((1,N)), eta) * Bmi
-            Ret.append((alpha, A))
+            Ret.append(alpha)
+            Ret.append(A)
         elif type(argv[argIx]) is str and argv[argIx]=="stMoms":
             numOfMoms = argv[argIx+1]
             argIx += 1;
@@ -326,19 +333,21 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
         if argIx in eaten:
             argIx += 1
             continue
-        elif type(argv[argIx]) is str and argv[argIx]=="qlDistrDPH":
+        elif type(argv[argIx]) is str and argv[argIx]=="ncDistrDPH":
             # transform it to DPH
             alpha = pi0*R*(I-R).I
             A = Diag(alpha).I*R.T*Diag(alpha)
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=="qlDistrMG":
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=="ncDistrMG":
             # transform it to MG
             B = SimilarityMatrixForVectors(np.sum((I-R).I*R,1), np.ones((N,1)))
             Bi = B.I
             A = B*R*Bi
             alpha = pi0*Bi
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=="qlMoms":
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=="ncMoms":
             numOfMoms = argv[argIx+1]
             argIx += 1
             moms = []
@@ -346,12 +355,15 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
             for m in range(1,numOfMoms+1):
                 moms.append(math.factorial(m)*np.sum(pi0*iR**(m+1)*R**m))
             Ret.append(MomsFromFactorialMoms(moms))
-        elif type(argv[argIx]) is str and argv[argIx]=="qlDistr":
-            points = argv[argIx+1]
+        elif type(argv[argIx]) is str and argv[argIx]=="ncDistr":
+            numOfQLProbs = argv[argIx+1]
             argIx += 1
-            values = np.empty(points.shape)
-            for p in range(len(points.flat)):
-                values.flat[p] = np.sum(pi0*R**int(points.flat[p]))
+            values = np.empty(numOfQLProbs)
+            values[0] = np.sum(pi0)
+            RPow = I
+            for p in range(numOfQLProbs-1):
+                RPow = RPow * R
+                values[p+1] = np.sum(pi0*RPow)
             Ret.append(values)
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrPH":
             # transform it to PH representation
@@ -363,9 +375,11 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
             delta = Diag(vv[:,nz])
             alpha = ml.ones((1,N))*B[nz,:].T*delta / np.sum(beta*S1)
             A = delta.I*T[nz,:][:,nz].T*delta
-            Ret.append((alpha, A))
+            Ret.append(alpha)
+            Ret.append(A)
         elif type(argv[argIx]) is str and argv[argIx]=="stDistrME":
-            Ret.append((eta, T))
+            Ret.append(eta)
+            Ret.append(T)
         elif type(argv[argIx]) is str and argv[argIx]=="stMoms":
             numOfMoms = argv[argIx+1]
             argIx += 1

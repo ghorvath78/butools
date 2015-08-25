@@ -128,20 +128,22 @@ def FluidQueue (Q, Rin, Rout, *argv):
         if argIx in eaten:
             argIx += 1
             continue
-        elif type(argv[argIx]) is str and argv[argIx]=='qlDistrPH':
+        elif type(argv[argIx]) is str and argv[argIx]=='flDistrPH':
             # transform it to PH
             Delta = Diag(Linsolve(K.T,-ini.T)) # Delta = diag (ini*inv(-K));
             A = Delta.I*K.T*Delta
             alpha = np.sum(clo,1).T*Delta
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=='qlDistrME':
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=='flDistrME':
             # transform it to ME
             B = SimilarityMatrixForVectors((-K).I*np.sum(clo,1), np.ones((K.shape[0],1)))
             Bi = B.I
             alpha = ini*Bi
             A = B*K*Bi
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=='qlMoms':
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=='flMoms':
             numOfMoms = argv[argIx+1]
             argIx += 1
             moms = []
@@ -149,7 +151,7 @@ def FluidQueue (Q, Rin, Rout, *argv):
             for m in range(1,numOfMoms+1):
                 moms.append(math.factorial(m)*np.sum(ini*iK**(m+1)*clo))
             Ret.append(moms)
-        elif type(argv[argIx]) is str and argv[argIx]=='qlDistr':
+        elif type(argv[argIx]) is str and argv[argIx]=='flDistr':
             points = argv[argIx+1]
             argIx += 1
             values = np.empty(points.shape)
@@ -162,13 +164,15 @@ def FluidQueue (Q, Rin, Rout, *argv):
             Delta = Diag(iniKi/lambd)
             alpha = np.reshape(clo*Rin,(1,N*len(ini.flat)),'F')*np.kron(ml.eye(N),Delta)
             A = np.kron(Rout, Delta.I*K.T*Delta) + np.kron(Q, ml.eye(K.shape[0]))
-            Ret.append((alpha, A))
+            Ret.append(alpha)
+            Ret.append(A)
         elif type(argv[argIx]) is str and argv[argIx]=='stDistrME':
             B = SimilarityMatrixForVectors(np.reshape(-K.I*clo*Rin,(N*ini.size,1),'F'), np.ones((N*ini.size,1)))
             Bi = B.I
             alpha = np.kron(ml.ones((1,N)), ini/lambd)*Bi
             A = B*(np.kron(Q.T,ml.eye(K.shape[0])) + np.kron(Rout,K))*Bi        
-            Ret.append((alpha, A))
+            Ret.append(alpha)
+            Ret.append(A)
         elif type(argv[argIx]) is str and argv[argIx]=='stMoms':
             numOfMoms = argv[argIx+1]
             argIx += 1
@@ -304,7 +308,7 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
             eaten.append(i+1)
         elif type(argv[i]) is str and len(argv[i])>2 and argv[i][0:2]=="st":
             needST = True
-        elif type(argv[i]) is str and len(argv[i])>2 and argv[i][0:2]=="ql":
+        elif type(argv[i]) is str and len(argv[i])>2 and argv[i][0:2]=="fl":
             needQL = True
 
     if butools.checkInput and not CheckGenerator(Qin,False):
@@ -344,20 +348,22 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
         if argIx in eaten:
             argIx += 1
             continue
-        elif type(argv[argIx]) is str and argv[argIx]=='qlDistrPH':
+        elif type(argv[argIx]) is str and argv[argIx]=='flDistrPH':
             # transform it to PH
             Delta = Diag(Linsolve(K.T,-ini.T)) # Delta = diag (ini*inv(-K));
             A = Delta.I*K.T*Delta
             alpha = np.sum(clo,1).T*Delta
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=='qlDistrME':
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=='flDistrME':
             # transform it to ME
             B = SimilarityMatrixForVectors((-K).I*np.sum(clo,1), np.ones((K.shape[0],1)))
             Bi = B.I
             alpha = ini*Bi
             A = B*K*Bi
-            Ret.append((alpha, A))
-        elif type(argv[argIx]) is str and argv[argIx]=='qlMoms':
+            Ret.append(alpha)
+            Ret.append(A)
+        elif type(argv[argIx]) is str and argv[argIx]=='flMoms':
             numOfMoms = argv[argIx+1]
             argIx += 1
             moms = []
@@ -365,7 +371,7 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
             for m in range(1,numOfMoms+1):
                 moms.append(math.factorial(m)*np.sum(ini*iK**(m+1)*clo))
             Ret.append(moms)
-        elif type(argv[argIx]) is str and argv[argIx]=='qlDistr':
+        elif type(argv[argIx]) is str and argv[argIx]=='flDistr':
             points = argv[argIx+1]
             argIx += 1
             values = np.empty(points.shape)
@@ -381,7 +387,8 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
                 alpha = np.sum(Delta*cloh*np.kron(Rin,Iout)/lambd,1).T
             else:
                 alpha = np.sum(Delta*cloh*np.kron(Rin,Rout)/lambd/mu,1).T
-            Ret.append((alpha, A))
+            Ret.append(alpha)
+            Ret.append(A)
         elif type(argv[argIx]) is str and argv[argIx]=='stDistrME':
             # convert result to ME representation
             if not srv0stop:
@@ -391,7 +398,8 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
             iB = B.I
             A = B*Kh*iB
             alpha = inih*(-Kh).I*iB
-            Ret.append((alpha, A))
+            Ret.append(alpha)
+            Ret.append(A)
         elif type(argv[argIx]) is str and argv[argIx]=='stMoms':
             numOfMoms = argv[argIx+1]
             argIx += 1
