@@ -1,6 +1,6 @@
 import os, sys
 
-def BuToolsInit (verbose=False, checkInput=True):
+def BuToolsInit (verbose=False, checkInput=True, checkPrecision=1e-12):
 #    btDir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     btDir = os.path.dirname(os.path.realpath(__file__))
     sys.path.append(btDir)
@@ -31,7 +31,8 @@ def BuToolsInit (verbose=False, checkInput=True):
         get_ipython().ex("butools.checkInput = {0}".format(False))
     elif checkInput==1 or checkInput==True or checkInput=="1" or checkInput=="True":
         get_ipython().ex("butools.checkInput = {0}".format(True))        
-    get_ipython().ex('print("Global variables: butools.verbose =", butools.verbose, ", butools.checkInput =", butools.checkInput)')
+    get_ipython().ex("butools.checkPrecision = {0}".format(checkPrecision))        
+    get_ipython().ex('print("Global variables: \\nbutools.verbose =", butools.verbose, ", butools.checkInput =", butools.checkInput, ", butools.checkPrecision =", butools.checkPrecision)')
     
 if __name__=="__main__":
     if len(sys.argv)<2:

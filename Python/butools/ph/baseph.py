@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import linalg as la
-from scipy.linalg import expm
+from scipy.linalg import expm, expm2
 import numpy.matlib as ml
 import math
 import butools
@@ -178,7 +178,7 @@ def IntervalPdfFromPH (alpha, A, intBounds):
 
     steps = len(intBounds)
     x = [(intBounds[i+1]+intBounds[i])/2.0 for i in range(steps-1)]
-    y = [(np.sum(alpha*expm((A*intBounds[i]).A)) - np.sum(alpha*expm((A*intBounds[i+1]).A)))/(intBounds[i+1]-intBounds[i]) for i in range(steps-1)]
+    y = [(np.sum(alpha*expm2((A*intBounds[i]).A)) - np.sum(alpha*expm2((A*intBounds[i+1]).A)))/(intBounds[i+1]-intBounds[i]) for i in range(steps-1)]
     return (np.array(x), np.array(y))
 
 def CdfFromME (alpha, A, x):
