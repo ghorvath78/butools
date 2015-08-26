@@ -203,7 +203,7 @@ def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
     mass0 = CTMCSolve(U)
     nr = np.sum(mass0) + 2.0*np.sum(mass0*Fmp*-K.I)
     
-    return mass0/nr, mass0*Fmp/nr, K, ml.hstack((ml.eye(Fpp.shape[0]), Psi))
+    return ml.hstack((ml.zeros((1,Fpp.shape[0])),mass0/nr)), mass0*Fmp/nr, K, ml.hstack((ml.eye(Fpp.shape[0]), Psi))
 
 def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
     """

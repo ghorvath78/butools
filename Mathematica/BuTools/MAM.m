@@ -255,6 +255,7 @@ Module[{Psi,K,U,mass0,nr,ini,clo},
     mass0 = mass0/nr;       
     ini = mass0.Fmp;
     clo = Join[IdentityMatrix[Dimensions[Fpp][[1]]], Psi,2];
+	mass0 = Join[Table[0,{Length[Fpp]}],mass0];
 	Return[{mass0,ini,K,clo}];
 ];
 

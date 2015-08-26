@@ -447,7 +447,7 @@ def MMAPPH1NPPR(D, sigma, S, *argv):
                         for n in range(1,numOfQLProbs):
                             P = (qlProbs[n-1,:]*D[k+1]+lambd[k]*(dqlProbs[n,:]-dqlProbs[n-1,:]))*iTerm
                             qlProbs = ml.vstack((qlProbs, P))
-                        qlProbs = np.sum(qlProbs,1).flatten()
+                        qlProbs = np.sum(qlProbs,1).A.flatten()
                         Ret.append(qlProbs)
                         argIx += 1
                 else:

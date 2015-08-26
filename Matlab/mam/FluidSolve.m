@@ -57,8 +57,9 @@ function [mass0, ini, K, clo] = FluidSolve (Fpp, Fpm, Fmp, Fmm, prec)
     [Psi, K, U] = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, 'PKU', prec);
     mass0 = CTMCSolve(U);
     nr = sum(mass0) + 2*sum(mass0*Fmp*inv(-K));
-    mass0 = mass0 / nr;       
+    mass0 = mass0 / nr;
     ini = mass0 * Fmp;
     clo = [eye(size(Fpp,1)), Psi];
+    mass0 = [zeros(1,size(Fpp,1)), mass0];       
 end
 
