@@ -2845,7 +2845,7 @@ lambda3*E(T3) - E(X3) =  4.88498130835e-15
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">stm1fcfs</span><span class="p">,</span> <span class="n">std1fcfs</span><span class="p">,</span> <span class="n">stm2fcfs</span><span class="p">,</span> <span class="n">std2fcfs</span><span class="p">,</span> <span class="n">stm3fcfs</span><span class="p">,</span> <span class="n">std3fcfs</span> <span class="o">=</span> <span class="n">MMAPPH1FCFS</span><span class="p">([</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">],</span> <span class="p">[</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">],</span> <span class="p">[</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">],</span> <span class="s">&quot;ncMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;ncDistr&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -2870,7 +2870,7 @@ lambda3*E(T3) - E(X3) =  4.88498130835e-15
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -2889,7 +2889,7 @@ lambda3*E(T3) - E(X3) =  4.88498130835e-15
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;Distr. of num. of cust, class 3&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">std3fcfs</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">std3prpr</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">std3nppr</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">std3nppr</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -2899,15 +2899,6 @@ lambda3*E(T3) - E(X3) =  4.88498130835e-15
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7ffa0d9c2f60&gt;]</pre>
-</div>
-
-</div>
 
 <div class="output_area"><div class="prompt"></div>
 
@@ -3337,7 +3328,7 @@ giAIgiBMw/8Ht5ic81J2d7sAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span class="n">moms</span><span class="o">=</span><span class="p">[[</span><span class="n">stm1fcfs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">stm1prpr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">stm1nppr</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">stm2fcfs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">stm2prpr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">stm2nppr</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">stm3fcfs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">stm3prpr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">stm3nppr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
@@ -3352,7 +3343,7 @@ giAIgiBMw/8Ht5ic81J2d7sAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -3386,18 +3377,1280 @@ giAIgiBMw/8Ht5ic81J2d7sAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In case of continuous queues there is a fluid storage that plays the role of the queue. The input (arrival) and output (service) rates of the fluid are Markov-modulated.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fluid-Queues">Fluid Queues<a class="anchor-link" href="#Fluid-Queues">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In a fluid queue the input and the output fluid rates are modulated by the same (continuous time) Markov chain. The generator of the Markov chain is $Q$. The diagonal matrices holding the input and output fluid rates in various states of the background process are denoted by $R_{in}$ and $R_{out}$, respectively. Obviously, both $R_{in}$ and $R_{out}$ are non-negative matrices.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre> 
+<div class=" highlight hl-ipython3"><pre><span class="n">Q</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mf">6.</span><span class="p">,</span> <span class="o">-</span><span class="mf">25.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">],[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">13.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="o">-</span><span class="mf">26.</span><span class="p">]])</span>
+<span class="n">Rin</span> <span class="o">=</span> <span class="n">Diag</span><span class="p">(</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">4.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">3.</span><span class="p">]]))</span>
+<span class="n">Rout</span> <span class="o">=</span> <span class="n">Diag</span><span class="p">(</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">6.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">3.</span><span class="p">,</span><span class="mf">2.</span><span class="p">]]))</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The performance measures are calculated by the <strong>FluidQueue</strong> function. The supported performance measures related to the stationary fluid level are:</p>
+<ul>
+<li>"flDistr": the (cummulative) distribution function of the stationary fluid level at the given points,</li>
+<li>"flMoms": a given number of moments of the stationary fluid level,</li>
+<li>"flDistrME": the matrix-exponential representation of the distribution of the fluid level (initial vector and matrix),</li>
+<li>"flDistrPH": the phase-type representation of the distribution of the fluid level. Again, obtaining the PH representation introduces a step that does not always behave nice numerically.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The example below obtains the moments and the distribtution of a fluid queue.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span> <span class="o">=</span> <span class="n">FluidQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="s">&quot;flDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;flMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;fluid level moments=&quot;</span><span class="p">,</span><span class="n">flm</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>fluid level moments= [0.406361527249128, 0.45459875335830258, 0.76609389063916067]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Plotting the distribution:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span><span class="n">fld</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+GSDSQV7AAQAAAABJRU5ErkJggg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">FluidQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="s">&quot;flDistrPH&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;PH representation of the fluid level distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alphap</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Ap</span><span class="p">)</span>
+<span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">FluidQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="s">&quot;flDistrME&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;ME representation of the fluid level distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>PH representation of the fluid level distr:
+[[ 0.63124379  0.13213332]]
+[[ -2.03872923   0.414833  ]
+ [ 12.10001665 -21.14310274]]
+ME representation of the fluid level distr:
+[[ 0.09903292  0.66434419]]
+[[ -3.87388807   2.2652663 ]
+ [ 16.20614683 -19.3079439 ]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The stationary sojourn time distribution of the fluid drops can also be calculated. The corresponding performance measures are:</p>
+<ul>
+<li>"stDistr": the (cummulative) distribution function of the stationary sojourn time of the fluid drops at the given points,</li>
+<li>"stMoms": a given number of moments of the sojourn time,</li>
+<li>"stDistrME": the matrix-exponential representation of the sojourn time distribution,</li>
+<li>"stDistrPH": the phase-type representation of the sojourn time distribution.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">std</span><span class="p">,</span> <span class="n">stm</span> <span class="o">=</span> <span class="n">FluidQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;sojourn time moments=&quot;</span><span class="p">,</span><span class="n">stm</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sojourn time moments= [0.23252260678168307, 0.20068950224745297, 0.26683979953080317]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span><span class="n">std</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span> <span class="o">=</span> <span class="n">FluidQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="s">&quot;stDistrPH&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;PH representation of the sojourn time distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">betap</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Bp</span><span class="p">)</span>
+<span class="n">beta</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">FluidQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="s">&quot;stDistrME&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;ME representation of the sojourn time distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>PH representation of the sojourn time distr:
+[[ 0.24892566  0.03040312  0.068594    0.02340757  0.21435626  0.          0.
+   0.          0.          0.          0.          0.09753155]]
+[[ -21.23237537    2.488998      2.            0.            4.            0.
+     0.            0.            1.            0.            2.            0.        ]
+ [  72.60009991 -135.85861646    0.            2.            0.            4.
+     0.            0.            0.            1.            0.            2.        ]
+ [   6.            0.          -29.07745846    0.829666      5.            0.
+     3.            0.            7.            0.            4.            0.        ]
+ [   0.            6.           24.2000333   -67.28620549    0.            5.
+     0.            3.            0.            7.            0.            4.        ]
+ [   1.            0.            3.            0.           -4.            0.
+     0.            0.            0.            0.            0.            0.        ]
+ [   0.            1.            0.            3.            0.           -4.
+     0.            0.            0.            0.            0.            0.        ]
+ [   0.            0.            0.            0.            0.            0.
+    -8.            0.            3.            0.            5.            0.        ]
+ [   0.            0.            0.            0.            0.            0.
+     0.           -8.            0.            3.            0.            5.        ]
+ [   7.            0.            3.            0.            0.            0.
+     2.            0.          -19.11618768    1.244499      1.            0.        ]
+ [   0.            7.            0.            3.            0.            0.
+     0.            2.           36.30004995  -76.42930823    0.            1.        ]
+ [   7.            0.            8.            0.            0.            0.
+     3.            0.            8.            0.          -30.07745846
+     0.829666  ]
+ [   0.            7.            0.            8.            0.            0.
+     0.            3.            0.            8.           24.2000333
+   -68.28620549]]
+ME representation of the sojourn time distr:
+[[ 0.          0.          0.07883143 -0.08751889  0.09533889  0.          0.
+  -0.10977188  0.10977188 -0.10977188  0.10977188  0.59656673]]
+[[ -22.23237537   -9.02433446   12.67634128  -16.41886435  -10.24851559
+    30.26497385    0.            0.            0.          -20.59360623
+    20.59360623    0.        ]
+ [  -7.88555401  -14.           12.8762731    -9.09699459   -5.67826671
+    16.76853511    0.            0.            0.          -11.41004155
+    11.41004155    0.        ]
+ [  -7.20982894   15.44329182  -18.07745846  -16.65304522    4.82436165
+    14.32509894   -4.95591772    5.11087606    0.          -13.92488739
+    13.92488739    0.        ]
+ [  -6.49415363   13.91033137   45.224834    -88.75656159    8.125917
+    15.2468254    -9.32892025    9.62061071   -6.2713248    -6.2713248
+    11.28838464    1.25426496]
+ [  -5.17874382    9.94388398   41.78794639  -50.4967871   -22.61805543
+    13.99623151   -8.56373206    3.07456666    0.           -6.90831657
+    11.51386095    1.15138609]
+ [   1.15646685    9.24387453   33.46570969  -40.96853204  105.2688808
+  -123.84766338  -13.15028655    9.28012838    0.           -6.42199885
+     3.21099943    8.56266514]
+ [   1.11425727    8.90648478   32.24425354  -39.47323234   97.84400096
+  -111.61936992  -21.67031769   14.09775208    0.           -6.187604
+     3.093802      8.25013867]
+ [   1.08047373    5.28041166   29.44999431  -31.89819275   93.14039968
+  -109.16943403   47.14188668  -53.61588779    0.           -6.            0.
+    11.        ]
+ [   1.08047373    3.43992757   31.6044103   -34.29003187   95.74595486
+  -109.16943403   47.14188668  -45.61588779   -8.           -8.            2.
+    11.        ]
+ [   1.08047373    3.43992757   29.44999431  -31.89819275   95.74595486
+  -109.16943403   44.23284467  -42.61588779    0.          -16.            0.
+    13.        ]
+ [   1.42038506   -0.85453532   34.47696494  -38.27643041  102.694102
+  -109.16943403   44.23284467  -45.61588779    3.            3.11618768
+   -24.62166422   18.50547654]
+ [   1.42038506   -0.85453532   28.73185565  -31.89819275  101.82558361
+  -108.23514548   37.44507997  -38.61588779    0.           -2.08934647
+    60.01317816  -57.92383169]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we see, the PH and ME representations of the sojourn time are huge, which should be kept in mind when using it for large models.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Little formula is valid for continuous queues as well:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">lambd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">CTMCSolve</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span><span class="o">*</span><span class="n">Rin</span><span class="p">)</span>
+<span class="n">stm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">lambd</span> <span class="o">-</span> <span class="n">flm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-5.55112e-17</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fluid-queues-with-independent-input-and-arrival-processes">Fluid queues with independent input and arrival processes<a class="anchor-link" href="#Fluid-queues-with-independent-input-and-arrival-processes">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If the background process modulating the input and output fluid rates are independent, the size of the PH and ME representations for the sojourn time distribution of fluid drops is much smaller (just like in case of the QBD queue vs. MAP/MAP/1 queue).</p>
+<p>This is an important case, since the fluid output rate is constant in many applications, implying independent input and output processes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The input process is given by $Q_{in},R_{in}$, and the output process by $Q_{out},R_{out}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">Qin</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">]])</span>
+<span class="n">Rin</span> <span class="o">=</span> <span class="n">Diag</span><span class="p">(</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]]))</span>
+<span class="n">Qout</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],[</span><span class="mf">6.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">]])</span>
+<span class="n">Rout</span> <span class="o">=</span> <span class="n">Diag</span><span class="p">(</span><span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">15.</span><span class="p">]]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The performance measures are provided by function <strong>FluFluQueue</strong>. Apart from $Q_{in},R_{in},Q_{out},R_{out}$ it has an additional (mandatory) parameter, <em>srv0stop</em>.</p>
+<ul>
+<li>If <em>srv0stop=False</em>, then the background Markov chain of the fluid output process continues to evolve even if the queue is empty, and there is no fluid to serve.</li>
+<li>If <em>srv0stop=True</em>, the Markov chain of the output process stops if no fluid is available to serve (and slows down if there is less avaliable than it can serve with the current rate).</li>
+</ul>
+<p>The <em>srv0stop=True</em> is the continuous counterpart of the MAP/MAP/1 queue, where the MAP of the service process is frozen if the queue is empty. Setting <em>srv0stop=Flase</em> the output process can be interpreted as a random environment for the fluid output rate, that does not depend on the current fluid level.</p>
+<p>If the fluid output process is deterministic (constant output rate), these options do not make a difference.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>FluFluQueue</em> calculates the same performance measures as <em>FluidQueue</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="k">False</span><span class="p">,</span> <span class="s">&quot;flDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;flMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;fluid level moments=&quot;</span><span class="p">,</span><span class="n">flm</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>fluid level moments= [0.53570356276760078, 1.0765385576008903, 3.4298090557057193]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span><span class="n">fld</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The ME and PH representations for the fluid level distribution are calculated as in the dependent case (<em>FluidQueue</em>), the underlying computational procedure is the same, too.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="k">False</span><span class="p">,</span> <span class="s">&quot;flDistrPH&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;PH representation of the fluid level distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alphap</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Ap</span><span class="p">)</span>
+<span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="k">False</span><span class="p">,</span> <span class="s">&quot;flDistrME&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;ME representation of the fluid level distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>PH representation of the fluid level distr:
+[[ 0.45573246  0.15246666]]
+[[-2.34045752  0.53196665]
+ [ 0.92130945 -1.25591807]]
+ME representation of the fluid level distr:
+[[-0.65560575  1.26380488]]
+[[-2.14252917  1.51937881]
+ [ 0.4380681  -1.45384643]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the calculation of the stationary sojourn time distribution of the fluid drops, however, there is a signifficant difference. The representations are much smaller, making this function capable of solving large models (up to several hundreds of states).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">std</span><span class="p">,</span> <span class="n">stm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="k">False</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;sojourn time moments=&quot;</span><span class="p">,</span><span class="n">stm</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sojourn time moments= [0.19480129555185471, 0.1128710807256384, 0.10068642773107296]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span><span class="n">std</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
++v8GdjemmLrlmQAAAABJRU5ErkJggg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="k">False</span><span class="p">,</span> <span class="s">&quot;stDistrPH&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;PH representation of the sojourn time distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">betap</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Bp</span><span class="p">)</span>
+<span class="n">beta</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="k">False</span><span class="p">,</span> <span class="s">&quot;stDistrME&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;ME representation of the sojourn time distr:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>PH representation of the sojourn time distr:
+[[ 0.45285051  0.24877407]]
+[[-5.49734397  0.8367526 ]
+ [ 1.44916617 -3.79142652]]
+ME representation of the sojourn time distr:
+[[ 0.18114021  0.52048438]]
+[[-6.36684367  1.6656012 ]
+ [-0.6164326  -2.92192682]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The compact representation is clearly visible, much smaller than the one we got in the <em>FluidQueue</em> case.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us check Little formula for this system as well.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">lambd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">CTMCSolve</span><span class="p">(</span><span class="n">Qin</span><span class="p">)</span><span class="o">*</span><span class="n">Rin</span><span class="p">)</span>
+<span class="n">stm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">lambd</span> <span class="o">-</span> <span class="n">flm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[49]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>-3.33067e-16</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Up to this point the <em>srv0stop</em> parameter was set to <em>False</em>. Everything can be done similarly if it is set to <em>True</em> as well.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>

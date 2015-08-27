@@ -93,7 +93,7 @@ def FluidQueue (Q, Rin, Rout, *argv):
     # parse options
     prec = 1e-14
     needST = False
-    Q0 = None
+    Q0 = []
     eaten = []
     for i in range(len(argv)):
         if type(argv[i]) is str and argv[i]=="prec":
@@ -110,7 +110,7 @@ def FluidQueue (Q, Rin, Rout, *argv):
     if butools.checkInput and not CheckGenerator(Q,False):
         raise Exception('FluidQueue: Generator matrix Q is not Markovian!')
 
-    if butools.checkInput and Q0!=None and not CheckGenerator(Q0,False):
+    if butools.checkInput and len(Q0)>0 and not CheckGenerator(Q0,False):
         raise Exception('FluidQueue: Generator matrix Q0 is not Markovian!')
 
     if butools.checkInput and (np.any(np.diag(Rin)<-butools.checkPrecision) or np.any(np.diag(Rout)<-butools.checkPrecision)):
@@ -299,7 +299,7 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
     prec = 1e-14
     needST = False
     needQL = False
-    Q0 = None
+    Q0 = []
     eaten = []
     for i in range(len(argv)):
         if type(argv[i]) is str and argv[i]=="prec":
@@ -415,7 +415,7 @@ def FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, *argv):
         elif type(argv[argIx]) is str and argv[argIx]=='stDistr':
             points = argv[argIx+1]
             argIx += 1
-            values = ml.empty(points.shape)
+            values = np.empty(points.shape)
             if srv0stop:
                 kclo = cloh*np.kron(Rin,Rout)/lambd/mu
             else:

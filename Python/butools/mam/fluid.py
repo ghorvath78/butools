@@ -205,7 +205,7 @@ def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
     
     return ml.hstack((ml.zeros((1,Fpp.shape[0])),mass0/nr)), mass0*Fmp/nr, K, ml.hstack((ml.eye(Fpp.shape[0]), Psi))
 
-def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
+def GeneralFluidSolve (Q, R, Q0=[], prec=1e-14):
     """
     Returns the parameters of the matrix-exponentially 
     distributed stationary distribution of a general 
@@ -288,7 +288,7 @@ def GeneralFluidSolve (Q, R, Q0=None, prec=1e-14):
     iCp = absRi[:Np,:Np]
     clo = np.hstack(((iCp*Qv[Nz:Nz+Np,:Nz]+Psi*iCn*Qv[Nz+Np:,:Nz])*iQv00, Pm))
     
-    if Q0==None: # regular boundary behavior
+    if len(Q0)==0: # regular boundary behavior
         clo = clo * P # go back the the original state ordering
 
         # calculate boundary vector   
