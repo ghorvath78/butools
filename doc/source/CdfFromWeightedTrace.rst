@@ -43,7 +43,11 @@ butools.trace.CdfFromWeightedTrace
 
     For Mathematica:
 
-    
+    >>> wtrace = {0.12, 1.23, 0.546, 0.6765, 1.34, 2.34};
+    >>> weights = {12., 1., 34., 23., 8., 2.};
+    >>> {x, y} = CdfFromWeightedTrace[wtrace, weights];
+    >>> ListLinePlot[{Transpose[{x, y}]}]
+
     For Python/Numpy:
 
     >>> wtrace = [0.12, 1.23, 0.546, 0.6765, 1.34, 2.34]

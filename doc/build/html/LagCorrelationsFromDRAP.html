@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -443,6 +448,13 @@ The default value is 1e-14</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">},{</span><span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">},{</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corr</span> <span class="o">=</span> <span class="n">LagCorrelationsFromDRAP</span><span class="p">[</span><span class="n">H0</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">corr</span><span class="p">];</span>
+<span class="go">{0.01430295723332723, 0.0012424024982963658, 7.586755398724169*^-6}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">H0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">],[</span><span class="mf">0.31</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">],[</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">]])</span>

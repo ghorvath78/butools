@@ -182,7 +182,7 @@ def MG1TypeShifts (A, shiftType):
 def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", maxNumRoot=2048, shiftType="one"):
     """
     Returns matrix G corresponding to the M/G/1 type Markov
-    chain given by matrices A.
+    chain defined by matrices A.
     
     Matrix G is the minimal non-negative solution of the 
     following matrix equation:
@@ -195,9 +195,9 @@ def MG1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", m
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
+    A : length(M) list of matrices of shape (N,N)
         Matrix blocks of the M/G/1 type generator from
-        0 to M-1, concatenated horizontally.
+        0 to M-1.
     precision : double, optional
         Matrix G is computed iteratively up to this
         precision. The default value is 1e-14
@@ -447,13 +447,12 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
-        Matrix blocks of the M/G/1 type generator in the
-        regular part, from 0 to M-1, concatenated 
-        horizontally.
-    B : matrix, shape (N,M*N)
+    A : length(M) list of matrices of shape (N,N)
+        Matrix blocks of the M/G/1 type generator in the 
+        regular part, from 0 to M-1.
+    B : length(M) list of matrices of shape (N,N)
         Matrix blocks of the M/G/1 type generator at the
-        boundary, from 0 to M-1, concatenated horizontally.
+        boundary, from 0 to M-1.
     G : matrix, shape (N,N)
         Matrix G of the M/G/1 type Markov chain
     K : integer
@@ -462,7 +461,7 @@ def MG1StationaryDistr (A, B=None, G=None, K=500, prec=1e-14):
     
     Returns
     -------
-    pi : matrix, shape (1,(K+1)*N)
+    pi : array, shape (1,(K+1)*N)
         The stationary probability vector up to level K
     """
     # Compute g
@@ -578,9 +577,9 @@ def GM1FundamentalMatrix (A, precision=1e-14, maxNumIt=50, method="ShiftPWCR", d
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
-        Matrix blocks of the G/M/1 type generator from
-        0 to M-1, concatenated horizontally.
+    A : length(M) list of matrices of shape (N,N)
+        Matrix blocks of the G/M/1 type generator in the 
+        regular part, from 0 to M-1.
     precision : double, optional
         Matrix R is computed iteratively up to this
         precision. The default value is 1e-14
@@ -659,13 +658,11 @@ def GM1StationaryDistr (B, R, K):
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
-        Matrix blocks of the G/M/1 type generator in the
-        regular part, from 0 to M-1, concatenated 
-        horizontally.
-    B : matrix, shape (N,M*N)
+    A : length(M) list of matrices of shape (N,N)
+        Matrix blocks of the G/M/1 type generator in the 
+        regular part, from 0 to M-1.
+    B : length(M) list of matrices of shape (N,N)
         Matrix blocks of the G/M/1 type generator at the
-        boundary, from 0 to M-1, concatenated horizontally.
     R : matrix, shape (N,N)
         Matrix R of the G/M/1 type Markov chain
     K : integer
@@ -674,7 +671,7 @@ def GM1StationaryDistr (B, R, K):
     
     Returns
     -------
-    pi : matrix, shape (1,(K+1)*N)
+    pi : array, shape (1,(K+1)*N)
         The stationary probability vector up to level K
     """
 

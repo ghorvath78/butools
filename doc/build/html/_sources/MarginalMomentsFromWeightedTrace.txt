@@ -44,7 +44,12 @@ butools.trace.MarginalMomentsFromWeightedTrace
 
     For Mathematica:
 
-    
+    >>> wtrace = {0.12, 1.23, 0.546, 0.6765, 1.34, 2.34};
+    >>> weights = {12., 1., 34., 23., 8., 2.};
+    >>> moms = MarginalMomentsFromWeightedTrace[wtrace, weights, 3];
+    >>> Print[moms];
+    {0.65241875, 0.595795571875, 0.7426413575984375}
+
     For Python/Numpy:
 
     >>> wtrace = [0.12, 1.23, 0.546, 0.6765, 1.34, 2.34]

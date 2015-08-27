@@ -68,7 +68,17 @@ butools.reptrans.TransformToAcyclic
 
     For Mathematica:
 
-    
+    >>> A = {{-0.8, 0.8, 0.},{0.1, -0.3, 0.1},{0.2, 0., -0.5}};
+    >>> B = TransformToAcyclic[A];
+    >>> Print[B];
+    {{-0.12030366824989391, 0.12030366824989391, 0},
+     {0, -0.6157989613063427, 0.6157989613063427},
+     {0, 0, -0.8638973704437634}}
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err = Norm[A.Cm-Cm.B];
+    >>> Print[err];
+    3.2936898311300537*^-16
+
     For Python/Numpy:
 
     >>> A = ml.matrix([[-0.8, 0.8, 0.],[0.1, -0.3, 0.1],[0.2, 0., -0.5]])

@@ -77,7 +77,30 @@ butools.dph.AcyclicDPHFromMG
 
     For Mathematica:
 
-    
+    >>> a = {0,0,1.0};
+    >>> A = {{0.22, 0, 0},{0.3, 0.1, 0.55},{0.26, 0, 0.73}};
+    >>> {b, B} = AcyclicDPHFromMG[a, A];
+    >>> Print[b];
+    {0.691025641025641, 0.2978632478632479, 0.011111111111111127}
+    >>> Print[B];
+    {{0.73, 0.27, 0.},
+     {0., 0.22, 0.78},
+     {0., 0., 0.1}}
+    >>> ma = MomentsFromMG[a, A, 5];
+    >>> Print[ma];
+    {4.93827160493827, 34.80707678238542, 339.49243437478106, 4335.792870444855, 68954.07073262692}
+    >>> mb = MomentsFromMG[b, B, 5];
+    >>> Print[mb];
+    {4.93827160493827, 34.807076782385415, 339.492434374781, 4335.792870444855, 68954.07073262692}
+    >>> flag = CheckDPHRepresentation[b, B];
+    >>> Print[flag];
+    True
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1, err2]];
+    3.723687702222371*^-16
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0,0,1.0]])

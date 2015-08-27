@@ -108,6 +108,29 @@ def APH3rdMomentUpperBound (m1, m2, n):
         return np.inf
 
 def APHFrom2Moments (moms):
+    """
+    Returns an acyclic PH which has the same 2 moments as
+    given. If detects the order and the structure 
+    automatically to match the given moments.
+    
+    Parameters
+    ----------
+    moms : vector of doubles, length(2)
+      The moments to match
+    maxSize : int, optional
+      The maximal size of the resulting APH. The default value
+      is 100.
+    
+    Returns
+    -------
+    alpha : vector, shape (1,M)
+      The initial probability vector of the APH
+    A : matrix, shape (M,M)
+      Transient generator matrix of the APH
+    
+    Raises an error if the moments are not feasible with an
+    APH of size "maxSize".
+    """
     
     m1, m2 = moms
     cv2 = m2/m1/m1 - 1.0

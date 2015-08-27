@@ -31,7 +31,7 @@ butools.mam.QBDStationaryDistr
     
     Returns
     -------
-    pi : matrix, shape (K+1,N)
+    pi : array, length (K+1)*N
         The stationary probability vector up to level K
     
     Examples
@@ -51,7 +51,14 @@ butools.mam.QBDStationaryDistr
 
     For Mathematica:
 
-    
+    >>> B = {{0., 0.},{3., 4.}};
+    >>> L = {{-6., 5.},{3., -12.}};
+    >>> F = {{1., 0.},{2., 0.}};
+    >>> L0 = {{-6., 5.},{6., -8.}};
+    >>> pi = QBDStationaryDistr[pi0, R, 5];
+    >>> Print[pi];
+    {0.22992392223161465, 0.18681318681318687, 0.1680213277846414, 0.08622147083685547, 0.09478126182723359, 0.048637752779764606, 0.05346635282561894, 0.02743668105525182, 0.03016050672214401, 0.015477102133731794, 0.017013619176594053, 0.00873067299851537}
+
     For Python/Numpy:
 
     >>> B = ml.matrix([[0., 0.],[3., 4.]])

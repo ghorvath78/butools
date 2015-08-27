@@ -45,7 +45,16 @@ butools.trace.MarginalMomentsFromTrace
 
     For Mathematica:
 
-    
+    >>> D0 = {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}};
+    >>> D1 = {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}};
+    >>> tr = SamplesFromMAP[D0, D1, 1000000];
+    >>> moms = MarginalMomentsFromTrace[tr, 3];
+    >>> Print[moms];
+    {0.05410813625612867, 0.0064113109522091274, 0.0011971692511570822}
+    >>> mmoms = MarginalMomentsFromMAP[D0, D1, 3];
+    >>> Print[mmoms];
+    {0.05412371134020619, 0.0064229648279705434, 0.0012051464807476154}
+
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-18., 1., 4.],[2., -18., 7.],[1., 3., -32.]])

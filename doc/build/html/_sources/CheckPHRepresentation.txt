@@ -52,7 +52,18 @@ butools.ph.CheckPHRepresentation
 
     For Mathematica:
 
-    
+    >>> a = {0.2};
+    >>> A = {{-1, 1},{1, -2}};
+    >>> flag = CheckPHRepresentation[a, A];
+    "CheckPHRepresentation: the vector and the matrix have different sizes!"
+    >>> Print[flag];
+    False
+    >>> a = {0.2,0.7};
+    >>> A = {{-1, 1},{1, -2}};
+    >>> flag = CheckPHRepresentation[a, A];
+    >>> Print[flag];
+    True
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.2]])

@@ -81,7 +81,43 @@ butools.dph.CanonicalFromDPH2
 
     For Mathematica:
 
-    
+    >>> a = {0,1.0};
+    >>> A = {{0.23, 0.22},{0.41, 0.48}};
+    >>> {b, B} = CanonicalFromDPH2[a, A];
+    >>> Print[b];
+    {0.8866338818412278, 0.1133661181587723}
+    >>> Print[B];
+    {{0.6803075467922624, 0.31969245320773765},
+     {0, 0.029692453207737557}}
+    >>> ev = Eigenvalues[A];
+    >>> Print[ev];
+    {0.6803075467922624, 0.029692453207737557}
+    >>> flag = CheckDPHRepresentation[b, B];
+    >>> Print[flag];
+    True
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> a = {1.0,0};
+    >>> A = {{0, 0.61},{0.56, 0.44}};
+    >>> {b, B} = CanonicalFromDPH2[a, A];
+    >>> Print[b];
+    {-5.083438757441196*^-16, 1.0000000000000002}
+    >>> Print[B];
+    {{0.4400000000000001, 0.5599999999999998},
+     {0.6100000000000002, 0}}
+    >>> ev = Eigenvalues[A];
+    >>> Print[ev];
+    {0.8444997998398399, -0.4044997998398398}
+    >>> flag = CheckDPHRepresentation[b, B];
+    >>> Print[flag];
+    True
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1, err2]];
+    1.059520934796808*^-15
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0,1.0]])

@@ -63,7 +63,23 @@ butools.fitting.EmpiricalRelativeEntropy
 
     For Mathematica:
 
-    
+    >>> tr = Flatten[Import["/home/gabor/github/butools/test/data/bctrace.iat","CSV"]];
+    >>> intBounds = Array[# &, 50, {0, MarginalMomentsFromTrace[tr, 1][[1]]*4}];
+    >>> {pdfTrX, pdfTrY} = PdfFromTrace[tr, intBounds];
+    >>> {cdfTrX, cdfTrY} = CdfFromTrace[tr];
+    >>> step = Ceiling[Length[tr]/2000];
+    >>> cdfTrX = cdfTrX[[1;;Length[tr];;step]];
+    >>> cdfTrY = cdfTrY[[1;;Length[tr];;step]];
+    >>> {alpha, A} = APHFrom3Moments[MarginalMomentsFromTrace[tr, 3]];
+    >>> {pdfPHX, pdfPHY} = IntervalPdfFromPH[alpha, A, intBounds];
+    >>> cdfPHY = CdfFromPH[alpha, A, cdfTrX];
+    >>> rePdf = EmpiricalRelativeEntropy[pdfTrY, pdfPHY, intBounds];
+    >>> Print[rePdf];
+    0.4324143797771531
+    >>> reCdf = EmpiricalRelativeEntropy[cdfTrY[[1;;-2]], cdfPHY[[1;;-2]], cdfTrX];
+    >>> Print[reCdf];
+    0.00040609487431599847
+
     For Python/Numpy:
 
     >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")

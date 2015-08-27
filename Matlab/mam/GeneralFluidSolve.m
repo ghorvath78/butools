@@ -32,7 +32,7 @@
 %      assumed. The default value is empty.
 %  precision : double, optional
 %      Numerical precision for computing the fundamental
-%      matrix and for checking. The default value is 1e-14
+%      matrix. The default value is 1e-14
 %  
 %  Returns
 %  -------

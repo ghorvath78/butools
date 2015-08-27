@@ -63,7 +63,16 @@ butools.fitting.LikelihoodFromTrace
 
     For Mathematica:
 
-    
+    >>> tr = Flatten[Import["/home/gabor/github/butools/test/data/bctrace.iat","CSV"]];
+    >>> {alpha, A} = APHFrom3Moments[MarginalMomentsFromTrace[tr, 3]];
+    >>> {D0, D1} = MAPFromFewMomentsAndCorrelations[MarginalMomentsFromTrace[tr, 3], LagCorrelationsFromTrace[tr, 1][[1]]];
+    >>> logliPH = LikelihoodFromTrace[tr, alpha, A];
+    >>> Print[logliPH];
+    4.849635301970579
+    >>> logliMAP = LikelihoodFromTrace[tr, D0, D1];
+    >>> Print[logliMAP];
+    4.65234643278208
+
     For Python/Numpy:
 
     >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")

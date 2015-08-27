@@ -9,7 +9,7 @@ AcyclicPHFromME::usage = "{beta, B} = AcyclicPHFromME[alpha, A, maxSize, precisi
 APH2ndMomentLowerBound::usage = "m2 = APH2ndMomentLowerBound[m1, n]: Returns the lower bound of the second moment of acyclic phase-type (APH) distributions of order n.";
 APH3rdMomentLowerBound::usage = "m3 = APH3rdMomentLowerBound[m1, m2, n]: Returns the lower bound of the third moment of acyclic phase-type (APH) distributions of order n.";
 APH3rdMomentUpperBound::usage = "m3 = APH3rdMomentUpperBound[m1, m2, n]: Returns the upper bound of the third moment of acyclic phase-type (APH) distributions of order n.";
-APHFrom2Moments::usage = ": Returns an acyclic PH which has the same 2 moments as given.";
+APHFrom2Moments::usage = "{alpha, A} = APHFrom2Moments[moms, maxSize]: Returns an acyclic PH which has the same 2 moments as given.";
 APHFrom3Moments::usage = "{alpha, A} = APHFrom3Moments[moms, maxSize]: Returns an acyclic PH which has the same 3 moments as given.";
 CanonicalFromPH2::usage = "{beta, B} = CanonicalFromPH2[alpha, A, prec]: Returns the canonical form of an order-2 phase-type distribution.";
 CanonicalFromPH3::usage = "{beta, B} = CanonicalFromPH3[alpha, A, prec]: Returns the canonical form of an order-3 phase-type distribution.";

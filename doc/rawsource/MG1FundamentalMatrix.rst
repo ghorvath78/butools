@@ -16,7 +16,7 @@ butools.mam.MG1FundamentalMatrix
           - :code:`G = MG1FundamentalMatrix(A, precision, maxNumIt, method)`
 
     Returns matrix G corresponding to the M/G/1 type Markov
-    chain given by matrices A.
+    chain defined by matrices A.
     
     Matrix G is the minimal non-negative solution of the 
     following matrix equation:
@@ -29,9 +29,9 @@ butools.mam.MG1FundamentalMatrix
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
+    A : length(M) list of matrices of shape (N,N)
         Matrix blocks of the M/G/1 type generator from
-        0 to M-1, concatenated horizontally.
+        0 to M-1.
     precision : double, optional
         Matrix G is computed iteratively up to this
         precision. The default value is 1e-14

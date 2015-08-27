@@ -55,7 +55,15 @@ butools.moments.CheckMoments
 
     For Mathematica:
 
-    
+    >>> M = {1.2, 5., 8., 29., 3412.};
+    >>> flag = CheckMoments[M];
+    >>> Print[flag];
+    False
+    >>> M = {1.3, 2.4, 6.03, 20.5, 89.5};
+    >>> flag = CheckMoments[M];
+    >>> Print[flag];
+    True
+
     For Python/Numpy:
 
     >>> M = [1.2, 5., 8., 29., 3412.]

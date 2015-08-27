@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -444,10 +449,10 @@ monocyclic representation</p>
 <p>Raises an error if no Markovian monocyclic representation
 has been found.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r36" rules="none">
+<table class="docutils citation" frame="void" id="r38" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R36]</a></td><td>Mocanu, S., Commault, C.: &#8220;Sparse representations of
+<tr><td class="label"><a class="fn-backref" href="#id1">[R38]</a></td><td>Mocanu, S., Commault, C.: &#8220;Sparse representations of
 phase-type distributions,&#8221; Stoch. Models 15, 759-778
 (1999)</td></tr>
 </tbody>
@@ -618,6 +623,47 @@ phase-type distributions,&#8221; Stoch. Models 15, 759-778
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">b</span><span class="p">,</span> <span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">MonocyclicPHFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+<span class="go">{-2.5397600778722706*^-17, 0.010076564579360592, 0.019799026572787613, 0.007754395700638792, 0.0010921892175280797, 0.00004085157730567139, 0.000013537575173626456, 0.00011267376891308164, 0.0003948571244651649, 0.0009303831689188193, 0.001804898763447438, 0.003120837336642398, 0.004998456760755956, 0.007576247022797484, 0.01101041315944734, 0.01547306860911693, 0.02114869573602008, 0.028228345073631006, 0.036900955049397284, 0.04734108305260393, 0.059692251707772884, 0.07404503804493777, 0.09040897715773615, 0.10867732789998653, 0.1285837713807389, 0.1496502023195005, 0.1711249516403759}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., -3., 3., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., -3., 3., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., -3., 3., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0.5925925925925928, 0., 0., -3., 2.4074074074074074, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363, 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363, 17.531049512315363},</span>
+<span class="go"> {0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., -17.531049512315363}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ma</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ma</span><span class="p">];</span>
+<span class="go">{0.3538461538461538, 0.41893491124260357, 1.1552116522530724, 4.699835439935577, 23.837756165615836}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mb</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mb</span><span class="p">];</span>
+<span class="go">{0.3538461538461526, 0.4189349112425999, 1.1552116522530596, 4.69983543993552, 23.83775616561553}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>

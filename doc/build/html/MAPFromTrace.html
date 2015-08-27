@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -401,7 +406,7 @@
 </tbody>
 </table>
 <p>Performs MAP fitting using the EM algorithm (ErCHMM,
-<a class="reference internal" href="#r20" id="id1">[R20]</a>, <a class="reference internal" href="#r21" id="id2">[R21]</a>).</p>
+<a class="reference internal" href="#r21" id="id1">[R21]</a>, <a class="reference internal" href="#r22" id="id2">[R22]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -476,20 +481,20 @@ mathematical frameworks. If the maximum speed is
 needed, please use the multi-core optimized c++
 implementation called <a class="reference external" href="https://bitbucket.org/ghorvath78/spemfit">SPEM-FIT</a>.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r20" rules="none">
+<table class="docutils citation" frame="void" id="r21" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R20]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> Okamura, Hiroyuki, and Tadashi Dohi. Faster
+<tr><td class="label">[R21]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> Okamura, Hiroyuki, and Tadashi Dohi. Faster
 maximum likelihood estimation algorithms for
 Markovian arrival processes. Quantitative
 Evaluation of Systems, 2009. QEST&#8216;09. Sixth
 International Conference on the. IEEE, 2009.</td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r21" rules="none">
+<table class="docutils citation" frame="void" id="r22" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R21]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> Horváth, Gábor, and Hiroyuki Okamura. A Fast EM
+<tr><td class="label">[R22]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> Horváth, Gábor, and Hiroyuki Okamura. A Fast EM
 Algorithm for Fitting Marked Markovian Arrival
 Processes with a New Special Structure. Computer
 Performance Engineering. Springer Berlin
@@ -607,6 +612,172 @@ Heidelberg, 2013. 119-133.</td></tr>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">[</span><span class="n">Import</span><span class="p">[</span><span class="s">&quot;/home/gabor/github/butools/test/data/bctrace.iat&quot;</span><span class="p">,</span><span class="s">&quot;CSV&quot;</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[[</span><span class="mi">1</span><span class="p">;;</span><span class="mi">10000</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">logli</span><span class="p">}</span> <span class="o">=</span> <span class="n">MAPFromTrace</span><span class="p">[</span><span class="n">tr</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="go">&quot;Trying orders &quot;{1, 4}&quot;...&quot;</span>
+<span class="go">&quot;Num of iterations: &quot;4&quot;, logli: &quot;4.993259505655185</span>
+<span class="go">&quot;Num of iterations: &quot;7&quot;, logli: &quot;4.997168671547701</span>
+<span class="go">&quot;Num of iterations: &quot;10&quot;, logli: &quot;4.997862551063841</span>
+<span class="go">&quot;Num of iterations: &quot;13&quot;, logli: &quot;4.998033171679149</span>
+<span class="go">&quot;Num of iterations: &quot;16&quot;, logli: &quot;4.998082939289365</span>
+<span class="go">&quot;Num of iterations: &quot;19&quot;, logli: &quot;4.99809905455834</span>
+<span class="go">&quot;Num of iterations: &quot;22&quot;, logli: &quot;4.998104743972023</span>
+<span class="go">&quot;Num of iterations: &quot;25&quot;, logli: &quot;4.998107006878427</span>
+<span class="go">&quot;Num of iterations: &quot;26&quot;, logli: &quot;4.99810745011236</span>
+<span class="go">&quot;EM algorithm terminated. (orders=&quot;{1, 4}&quot;)&quot;</span>
+<span class="go">&quot;Trying orders &quot;{2, 3}&quot;...&quot;</span>
+<span class="go">&quot;Num of iterations: &quot;4&quot;, logli: &quot;4.8663721991321305</span>
+<span class="go">&quot;Num of iterations: &quot;7&quot;, logli: &quot;4.927252921982753</span>
+<span class="go">&quot;Num of iterations: &quot;10&quot;, logli: &quot;4.951919574051944</span>
+<span class="go">&quot;Num of iterations: &quot;13&quot;, logli: &quot;4.956040780340811</span>
+<span class="go">&quot;Num of iterations: &quot;16&quot;, logli: &quot;4.9563853575360515</span>
+<span class="go">&quot;Num of iterations: &quot;19&quot;, logli: &quot;4.956407398543356</span>
+<span class="go">&quot;Num of iterations: &quot;21&quot;, logli: &quot;4.956408840810655</span>
+<span class="go">&quot;EM algorithm terminated. (orders=&quot;{2, 3}&quot;)&quot;</span>
+<span class="go">&quot;Trying orders &quot;{1, 1, 3}&quot;...&quot;</span>
+<span class="go">&quot;Num of iterations: &quot;4&quot;, logli: &quot;5.015729326700379</span>
+<span class="go">&quot;Num of iterations: &quot;7&quot;, logli: &quot;5.039376105933879</span>
+<span class="go">&quot;Num of iterations: &quot;10&quot;, logli: &quot;5.065115109858913</span>
+<span class="go">&quot;Num of iterations: &quot;13&quot;, logli: &quot;5.087433305519177</span>
+<span class="go">&quot;Num of iterations: &quot;16&quot;, logli: &quot;5.095165218779676</span>
+<span class="go">&quot;Num of iterations: &quot;19&quot;, logli: &quot;5.096542942667858</span>
+<span class="go">&quot;Num of iterations: &quot;22&quot;, logli: &quot;5.097217245266611</span>
+<span class="go">&quot;Num of iterations: &quot;25&quot;, logli: &quot;5.097783794710717</span>
+<span class="go">&quot;Num of iterations: &quot;28&quot;, logli: &quot;5.098316830378618</span>
+<span class="go">&quot;Num of iterations: &quot;31&quot;, logli: &quot;5.098855792506172</span>
+<span class="go">&quot;Num of iterations: &quot;34&quot;, logli: &quot;5.099426493035749</span>
+<span class="go">&quot;Num of iterations: &quot;37&quot;, logli: &quot;5.100047995275797</span>
+<span class="go">&quot;Num of iterations: &quot;40&quot;, logli: &quot;5.100746872797194</span>
+<span class="go">&quot;Num of iterations: &quot;43&quot;, logli: &quot;5.101583155259961</span>
+<span class="go">&quot;Num of iterations: &quot;46&quot;, logli: &quot;5.1026877401922155</span>
+<span class="go">&quot;Num of iterations: &quot;49&quot;, logli: &quot;5.104304334981796</span>
+<span class="go">&quot;Num of iterations: &quot;52&quot;, logli: &quot;5.106804300310496</span>
+<span class="go">&quot;Num of iterations: &quot;55&quot;, logli: &quot;5.110538394539443</span>
+<span class="go">&quot;Num of iterations: &quot;58&quot;, logli: &quot;5.115263627401993</span>
+<span class="go">&quot;Num of iterations: &quot;61&quot;, logli: &quot;5.119570638369141</span>
+<span class="go">&quot;Num of iterations: &quot;64&quot;, logli: &quot;5.122077926685482</span>
+<span class="go">&quot;Num of iterations: &quot;67&quot;, logli: &quot;5.1230372177203165</span>
+<span class="go">&quot;Num of iterations: &quot;70&quot;, logli: &quot;5.123338507017323</span>
+<span class="go">&quot;Num of iterations: &quot;73&quot;, logli: &quot;5.123456224814315</span>
+<span class="go">&quot;Num of iterations: &quot;76&quot;, logli: &quot;5.123528798414036</span>
+<span class="go">&quot;Num of iterations: &quot;79&quot;, logli: &quot;5.123585724468395</span>
+<span class="go">&quot;Num of iterations: &quot;82&quot;, logli: &quot;5.123637966952736</span>
+<span class="go">&quot;Num of iterations: &quot;85&quot;, logli: &quot;5.12369334181503</span>
+<span class="go">&quot;Num of iterations: &quot;88&quot;, logli: &quot;5.123752973774425</span>
+<span class="go">&quot;Num of iterations: &quot;91&quot;, logli: &quot;5.123811099333816</span>
+<span class="go">&quot;Num of iterations: &quot;94&quot;, logli: &quot;5.1238604907978615</span>
+<span class="go">&quot;Num of iterations: &quot;97&quot;, logli: &quot;5.12389743186796</span>
+<span class="go">&quot;Num of iterations: &quot;100&quot;, logli: &quot;5.123922405926877</span>
+<span class="go">&quot;Num of iterations: &quot;103&quot;, logli: &quot;5.123938104622403</span>
+<span class="go">&quot;Num of iterations: &quot;106&quot;, logli: &quot;5.123947499602905</span>
+<span class="go">&quot;Num of iterations: &quot;109&quot;, logli: &quot;5.123952946957953</span>
+<span class="go">&quot;Num of iterations: &quot;112&quot;, logli: &quot;5.12395604420125</span>
+<span class="go">&quot;Num of iterations: &quot;115&quot;, logli: &quot;5.123957785028128</span>
+<span class="go">&quot;Num of iterations: &quot;115&quot;, logli: &quot;5.123957785028128</span>
+<span class="go">&quot;EM algorithm terminated. (orders=&quot;{1, 1, 3}&quot;)&quot;</span>
+<span class="go">&quot;Trying orders &quot;{1, 2, 2}&quot;...&quot;</span>
+<span class="go">&quot;Num of iterations: &quot;4&quot;, logli: &quot;5.0122947542928555</span>
+<span class="go">&quot;Num of iterations: &quot;7&quot;, logli: &quot;5.019767395602894</span>
+<span class="go">&quot;Num of iterations: &quot;10&quot;, logli: &quot;5.02976587459673</span>
+<span class="go">&quot;Num of iterations: &quot;13&quot;, logli: &quot;5.043619440764079</span>
+<span class="go">&quot;Num of iterations: &quot;16&quot;, logli: &quot;5.059183637783567</span>
+<span class="go">&quot;Num of iterations: &quot;19&quot;, logli: &quot;5.07692712660751</span>
+<span class="go">&quot;Num of iterations: &quot;22&quot;, logli: &quot;5.0973408269250005</span>
+<span class="go">&quot;Num of iterations: &quot;25&quot;, logli: &quot;5.10934742598377</span>
+<span class="go">&quot;Num of iterations: &quot;28&quot;, logli: &quot;5.113031789500797</span>
+<span class="go">&quot;Num of iterations: &quot;31&quot;, logli: &quot;5.114217422911263</span>
+<span class="go">&quot;Num of iterations: &quot;34&quot;, logli: &quot;5.1147363762308915</span>
+<span class="go">&quot;Num of iterations: &quot;37&quot;, logli: &quot;5.115045193666414</span>
+<span class="go">&quot;Num of iterations: &quot;40&quot;, logli: &quot;5.115247596938485</span>
+<span class="go">&quot;Num of iterations: &quot;43&quot;, logli: &quot;5.115368318400923</span>
+<span class="go">&quot;Num of iterations: &quot;46&quot;, logli: &quot;5.115433152969141</span>
+<span class="go">&quot;Num of iterations: &quot;49&quot;, logli: &quot;5.115465572463486</span>
+<span class="go">&quot;Num of iterations: &quot;52&quot;, logli: &quot;5.1154810563434925</span>
+<span class="go">&quot;Num of iterations: &quot;55&quot;, logli: &quot;5.115488231281802</span>
+<span class="go">&quot;Num of iterations: &quot;58&quot;, logli: &quot;5.11549148795029</span>
+<span class="go">&quot;Num of iterations: &quot;60&quot;, logli: &quot;5.115492582889059</span>
+<span class="go">&quot;EM algorithm terminated. (orders=&quot;{1, 2, 2}&quot;)&quot;</span>
+<span class="go">&quot;Trying orders &quot;{1, 1, 1, 2}&quot;...&quot;</span>
+<span class="go">&quot;Num of iterations: &quot;4&quot;, logli: &quot;5.014829338214883</span>
+<span class="go">&quot;Num of iterations: &quot;7&quot;, logli: &quot;5.040028946911346</span>
+<span class="go">&quot;Num of iterations: &quot;10&quot;, logli: &quot;5.064171862323919</span>
+<span class="go">&quot;Num of iterations: &quot;13&quot;, logli: &quot;5.078863209647303</span>
+<span class="go">&quot;Num of iterations: &quot;16&quot;, logli: &quot;5.082324376375294</span>
+<span class="go">&quot;Num of iterations: &quot;19&quot;, logli: &quot;5.083569979450504</span>
+<span class="go">&quot;Num of iterations: &quot;22&quot;, logli: &quot;5.084513264289563</span>
+<span class="go">&quot;Num of iterations: &quot;25&quot;, logli: &quot;5.08526460887892</span>
+<span class="go">&quot;Num of iterations: &quot;28&quot;, logli: &quot;5.0858535498804205</span>
+<span class="go">&quot;Num of iterations: &quot;31&quot;, logli: &quot;5.086311241542606</span>
+<span class="go">&quot;Num of iterations: &quot;34&quot;, logli: &quot;5.086668013733888</span>
+<span class="go">&quot;Num of iterations: &quot;37&quot;, logli: &quot;5.08695043549303</span>
+<span class="go">&quot;Num of iterations: &quot;40&quot;, logli: &quot;5.087180397015339</span>
+<span class="go">&quot;Num of iterations: &quot;43&quot;, logli: &quot;5.08737551075806</span>
+<span class="go">&quot;Num of iterations: &quot;46&quot;, logli: &quot;5.0875500846222375</span>
+<span class="go">&quot;Num of iterations: &quot;49&quot;, logli: &quot;5.087716242054033</span>
+<span class="go">&quot;Num of iterations: &quot;52&quot;, logli: &quot;5.0878850486431135</span>
+<span class="go">&quot;Num of iterations: &quot;55&quot;, logli: &quot;5.088067682179787</span>
+<span class="go">&quot;Num of iterations: &quot;58&quot;, logli: &quot;5.088276806171391</span>
+<span class="go">&quot;Num of iterations: &quot;61&quot;, logli: &quot;5.088528454903264</span>
+<span class="go">&quot;Num of iterations: &quot;64&quot;, logli: &quot;5.088845013008133</span>
+<span class="go">&quot;Num of iterations: &quot;67&quot;, logli: &quot;5.089260445776136</span>
+<span class="go">&quot;Num of iterations: &quot;70&quot;, logli: &quot;5.089830124804416</span>
+<span class="go">&quot;Num of iterations: &quot;73&quot;, logli: &quot;5.090649849553919</span>
+<span class="go">&quot;Num of iterations: &quot;76&quot;, logli: &quot;5.091891633656121</span>
+<span class="go">&quot;Num of iterations: &quot;79&quot;, logli: &quot;5.093859592976077</span>
+<span class="go">&quot;Num of iterations: &quot;82&quot;, logli: &quot;5.097011166206567</span>
+<span class="go">&quot;Num of iterations: &quot;85&quot;, logli: &quot;5.1016492083255836</span>
+<span class="go">&quot;Num of iterations: &quot;88&quot;, logli: &quot;5.106896654028055</span>
+<span class="go">&quot;Num of iterations: &quot;91&quot;, logli: &quot;5.110618528293328</span>
+<span class="go">&quot;Num of iterations: &quot;94&quot;, logli: &quot;5.112150973773346</span>
+<span class="go">&quot;Num of iterations: &quot;97&quot;, logli: &quot;5.112567107521197</span>
+<span class="go">&quot;Num of iterations: &quot;100&quot;, logli: &quot;5.11265838511872</span>
+<span class="go">&quot;Num of iterations: &quot;103&quot;, logli: &quot;5.11267690302395</span>
+<span class="go">&quot;Num of iterations: &quot;106&quot;, logli: &quot;5.1126806540406635</span>
+<span class="go">&quot;Num of iterations: &quot;107&quot;, logli: &quot;5.112681069700427</span>
+<span class="go">&quot;EM algorithm terminated. (orders=&quot;{1, 1, 1, 2}&quot;)&quot;</span>
+<span class="go">&quot;Trying orders &quot;{1, 1, 1, 1, 1}&quot;...&quot;</span>
+<span class="go">&quot;Num of iterations: &quot;4&quot;, logli: &quot;5.001018278123578</span>
+<span class="go">&quot;Num of iterations: &quot;7&quot;, logli: &quot;5.016002770232654</span>
+<span class="go">&quot;Num of iterations: &quot;10&quot;, logli: &quot;5.031545952575503</span>
+<span class="go">&quot;Num of iterations: &quot;13&quot;, logli: &quot;5.041731506932355</span>
+<span class="go">&quot;Num of iterations: &quot;16&quot;, logli: &quot;5.043786339264612</span>
+<span class="go">&quot;Num of iterations: &quot;19&quot;, logli: &quot;5.04393273379092</span>
+<span class="go">&quot;Num of iterations: &quot;22&quot;, logli: &quot;5.043940070674873</span>
+<span class="go">&quot;Num of iterations: &quot;23&quot;, logli: &quot;5.043940317578035</span>
+<span class="go">&quot;EM algorithm terminated. (orders=&quot;{1, 1, 1, 1, 1}&quot;)&quot;</span>
+<span class="go">&quot;Best solution: logli=&quot;5.123957785028128&quot;, orders=&quot;{1, 1, 3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D0</span><span class="p">];</span>
+<span class="go">{{-83.42943388846042, 0, 0, 0, 0},</span>
+<span class="go"> {0, -718.6779892150017, 0, 0, 0},</span>
+<span class="go"> {0, 0, -1026.160629451268, 1026.160629451268, 0.},</span>
+<span class="go"> {0, 0, 0., -1026.160629451268, 1026.160629451268},</span>
+<span class="go"> {0, 0, 0., 0., -1026.160629451268}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">D1</span><span class="p">];</span>
+<span class="go">{{54.14857308767231, 4.901864224679702, 24.378996576108406, 0., 0.},</span>
+<span class="go"> {3.391518630791651, 665.8473464602738, 49.439124123936224, 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0.},</span>
+<span class="go"> {0., 0., 0., 0., 0.},</span>
+<span class="go"> {42.64730201560431, 96.94396093846602, 886.5693664971978, 0., 0.}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">logli</span><span class="p">];</span>
+<span class="go">5.123957785028128</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logli</span> <span class="o">=</span> <span class="n">LikelihoodFromTrace</span><span class="p">[</span><span class="n">tr</span><span class="p">,</span> <span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">logli</span><span class="p">];</span>
+<span class="go">5.123958173279034</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromTrace</span><span class="p">[</span><span class="n">tr</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">trAcf</span><span class="p">];</span>
+<span class="go">{0.18411691802386188, 0.18158522314048947, 0.17543727813332094, 0.19964686019458905, 0.08322774966768201, 0.08633973760499067, 0.0950004809602402, 0.0628536515187086, 0.06232004520613776, 0.06592211464475752}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapAcf</span> <span class="o">=</span> <span class="n">LagCorrelationsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mapAcf</span><span class="p">];</span>
+<span class="go">{0.248892052255008, 0.17665283034500237, 0.12882046679167725, 0.0963829330310287, 0.07380230626995823, 0.057649876260931265, 0.045781783730242616, 0.03684041958390035, 0.029952264846717966, 0.024544285061666418}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqAcf</span> <span class="o">=</span> <span class="n">SquaredDifference</span><span class="p">[</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">sqAcf</span><span class="p">];</span>
+<span class="go">0.023827625772555785</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reAcf</span> <span class="o">=</span> <span class="n">RelativeEntropy</span><span class="p">[</span><span class="n">mapAcf</span><span class="p">,</span> <span class="n">trAcf</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">reAcf</span><span class="p">];</span>
+<span class="go">0.3213200829124291</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&quot;/home/gabor/github/butools/test/data/bctrace.iat&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10000</span><span class="p">]</span>

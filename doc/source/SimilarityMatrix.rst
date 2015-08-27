@@ -48,7 +48,14 @@ butools.reptrans.SimilarityMatrix
 
     For Mathematica:
 
-    
+    >>> A1m = {{0.2, 0.8, 0.},{1.2, -0.4, 0.1},{-0.2, 0.7, 0.5}};
+    >>> T = {{1., 2., -4., 6.},{0., 8., -9., 7.},{-3., 7., 8., -2.}};
+    >>> A2m = PseudoInverse[T].A1m.T;
+    >>> B = SimilarityMatrix[A1m, A2m];
+    >>> err = Norm[A1m.B-B.A2m];
+    >>> Print[err];
+    1.0553656492422553*^-15
+
     For Python/Numpy:
 
     >>> A1m = ml.matrix([[0.2, 0.8, 0.],[1.2, -0.4, 0.1],[-0.2, 0.7, 0.5]])

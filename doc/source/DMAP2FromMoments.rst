@@ -66,7 +66,28 @@ butools.dmap.DMAP2FromMoments
 
     For Mathematica:
 
-    
+    >>> D0 = {{0.2, 0.7},{0.6, 0.1}};
+    >>> D1 = {{0.09, 0.01},{0.2, 0.1}};
+    >>> moms = MarginalMomentsFromDMAP[D0, D1, 3];
+    >>> Print[moms];
+    {5.15358361774744, 46.58703071672353, 626.4505119453922}
+    >>> corr = LagCorrelationsFromDMAP[D0, D1, 1][[1]];
+    >>> Print[corr];
+    -0.0008028615465149905
+    >>> {D0, D1} = DMAP2FromMoments[moms, corr];
+    >>> Print[D0];
+    {{0.29999999999984595, 0.6500000000001445},
+     {0.6153846153846679, 0}}
+    >>> Print[D1];
+    {{0.050000000000009585, 0},
+     {0.24461538461532123, 0.14000000000001087}}
+    >>> rmoms = MarginalMomentsFromDMAP[D0, D1, 3];
+    >>> Print[rmoms];
+    {5.153583617747385, 46.58703071672293, 626.4505119453836}
+    >>> rcorr = LagCorrelationsFromDMAP[D0, D1, 1][[1]];
+    >>> Print[rcorr];
+    -0.0008028615465146371
+
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[0.2, 0.7],[0.6, 0.1]])

@@ -61,7 +61,21 @@ butools.map.CanonicalFromMAP2
 
     For Mathematica:
 
-    
+    >>> D0 = {{-14., 1.},{1., -25.}};
+    >>> D1 = {{6., 7.},{3., 21.}};
+    >>> {H0, H1} = CanonicalFromMAP2[D0, D1];
+    >>> Print[H0];
+    {{-13.909830056250456, 9.199027971874015},
+     {0, -25.090169943749302}}
+    >>> Print[H1];
+    {{4.710802084376442, 0},
+     {2.8009720281259014, 22.2891979156234}}
+    >>> Cm = SimilarityMatrix[H0, D0];
+    >>> err1 = Norm[H0.Cm-Cm.D0];
+    >>> err2 = Norm[H1.Cm-Cm.D1];
+    >>> Print[Max[err1, err2]];
+    2.39754619495158*^-13
+
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-14., 1.],[1., -25.]])

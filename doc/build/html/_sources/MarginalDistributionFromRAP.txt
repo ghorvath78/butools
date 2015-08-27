@@ -53,7 +53,16 @@ butools.map.MarginalDistributionFromRAP
 
     For Mathematica:
 
-    
+    >>> H0 = {{-2, 0, 0},{0, -3, 1},{0, -1, -2}};
+    >>> H1 = {{1.8, 0.2, 0},{0.2, 1.8, 0},{0.2, 1.8, 1}};
+    >>> {a, A} = MarginalDistributionFromRAP[H0, H1];
+    >>> Print[a];
+    {0.44444444444444464, 0.4444444444444443, 0.11111111111111106}
+    >>> Print[A];
+    {{-2, 0, 0},
+     {0, -3, 1},
+     {0, -1, -2}}
+
     For Python/Numpy:
 
     >>> H0 = ml.matrix([[-2, 0, 0],[0, -3, 1],[0, -1, -2]])

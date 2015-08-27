@@ -70,7 +70,29 @@ butools.mc.CheckGenerator
 
     For Mathematica:
 
-    
+    >>> Q = {{-0.9, 0.2, 0.4},{0, 0.9, 0.9},{0, 0.6, -0.6}};
+    >>> flag = CheckGenerator[Q, True];
+    "CheckGenerator: The diagonal of the generator is not negative (at precision "1.*^-12")!"
+    >>> Print[flag];
+    False
+    >>> Q = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+    >>> flag = CheckGenerator[Q, True];
+    >>> Print[flag];
+    True
+    >>> Q = {{-0.9, 0.2, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+    >>> flag = CheckGenerator[Q, True];
+    >>> Print[flag];
+    True
+    >>> Q = {{-0.9, 0.5, 0.4},{0.9, -1.1, 0},{0.3, 0.3, -0.6}};
+    >>> flag = CheckGenerator[Q];
+    "CheckGenerator: A rowsum of the generator is not 0 (precision:"1.*^-12")!!"
+    >>> Print[flag];
+    False
+    >>> Q = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+    >>> flag = CheckGenerator[Q];
+    >>> Print[flag];
+    True
+
     For Python/Numpy:
 
     >>> Q = ml.matrix([[-0.9, 0.2, 0.4],[0, 0.9, 0.9],[0, 0.6, -0.6]])

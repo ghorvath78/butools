@@ -11,7 +11,7 @@ script, or execute
 
     * - :code:`addpath('butools/map')` 
       - in Matlab,
-    * - :code:`<<"BuTools`MAP"` 
+    * - :code:`<<BuTools`MAP`` 
       - in Mathematica,
     * - :code:`from butools.map import *` 
       - in Python/Numpy.

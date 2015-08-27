@@ -76,6 +76,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -89,6 +90,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -137,6 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -268,6 +271,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -327,6 +331,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -394,6 +399,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -411,14 +417,18 @@
   <dt><a href="APH2ndMomentLowerBound.html#butools.ph.APH2ndMomentLowerBound">APH2ndMomentLowerBound() (in module butools.ph)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="APH3rdMomentLowerBound.html#butools.ph.APH3rdMomentLowerBound">APH3rdMomentLowerBound() (in module butools.ph)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="APH3rdMomentUpperBound.html#butools.ph.APH3rdMomentUpperBound">APH3rdMomentUpperBound() (in module butools.ph)</a>
+  </dt>
+
+      
+  <dt><a href="APHFrom2Moments.html#butools.ph.APHFrom2Moments">APHFrom2Moments() (in module butools.ph)</a>
   </dt>
 
       
@@ -555,14 +565,18 @@
   <dt><a href="CheckDPHRepresentation.html#butools.dph.CheckDPHRepresentation">CheckDPHRepresentation() (in module butools.dph)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="CheckDRAPRepresentation.html#butools.dmap.CheckDRAPRepresentation">CheckDRAPRepresentation() (in module butools.dmap)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="CheckGenerator.html#butools.mc.CheckGenerator">CheckGenerator() (in module butools.mc)</a>
+  </dt>
+
+      
+  <dt><a href="index.html#butools.checkInput">checkInput (in module butools)</a>
   </dt>
 
       
@@ -595,6 +609,10 @@
 
       
   <dt><a href="CheckPHRepresentation.html#butools.ph.CheckPHRepresentation">CheckPHRepresentation() (in module butools.ph)</a>
+  </dt>
+
+      
+  <dt><a href="index.html#butools.checkPrecision">checkPrecision (in module butools)</a>
   </dt>
 
       
@@ -1020,6 +1038,10 @@
   </dt>
 
       
+  <dt><a href="MMAPPH1FCFS.html#butools.queues.MMAPPH1FCFS">MMAPPH1FCFS() (in module butools.queues)</a>
+  </dt>
+
+      
   <dt><a href="MMAPPH1NPPR.html#butools.queues.MMAPPH1NPPR">MMAPPH1NPPR() (in module butools.queues)</a>
   </dt>
 
@@ -1259,6 +1281,16 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="TransformToMonocyclic.html#butools.reptrans.TransformToMonocyclic">TransformToMonocyclic() (in module butools.reptrans)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="index.html#butools.verbose">verbose (in module butools)</a>
   </dt>
 
   </dl></td>

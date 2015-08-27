@@ -17,6 +17,10 @@ def FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision=1e-14, max
     Returns the fundamental matrices corresponding to the
     given canonical Markov fluid model. Matrices Psi, K and
     U are returned depending on the "matrices" parameter.
+    The canonical Markov fluid model is defined by the 
+    matrix blocks of the generator of the background Markov
+    chain partitioned according to the sign of the 
+    associated fluid rates (i.e., there are "+" and "-" states).
     
     Parameters
     ----------
@@ -56,6 +60,11 @@ def FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision=1e-14, max
     M : list of matrices
         The list of calculated matrices in the order as
         requested in the 'matrices' parameter.
+    
+    Notes
+    -----
+    Thanks to Benny Van Houdt for the implementation of the
+    Riccati solvers.
     """
 
     if method=="CR":
@@ -151,7 +160,12 @@ def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
     """
     Returns the parameters of the matrix-exponentially 
     distributed stationary distribution of a canonical 
-    Markovian fluid model
+    Markovian fluid model.
+    
+    The canonical Markov fluid model is defined by the 
+    matrix blocks of the generator of the background Markov
+    chain partitioned according to the sign of the 
+    associated fluid rates (i.e., there are "+" and "-" states).   
     
     Using the returned 4 parameters the stationary
     solution can be obtained as follows.
@@ -184,7 +198,7 @@ def FluidSolve (Fpp, Fpm, Fmp, Fmm, prec=1e-14):
         having negative fluid rates
     precision : double, optional
         Numerical precision for computing the fundamental
-        matrix and for checking. The default value is 1e-14
+        matrix. The default value is 1e-14
     
     Returns
     -------
@@ -239,7 +253,7 @@ def GeneralFluidSolve (Q, R, Q0=[], prec=1e-14):
         assumed. The default value is empty.
     precision : double, optional
         Numerical precision for computing the fundamental
-        matrix and for checking. The default value is 1e-14
+        matrix. The default value is 1e-14
     
     Returns
     -------

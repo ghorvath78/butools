@@ -48,7 +48,14 @@ butools.map.MarginalMomentsFromMMAP
 
     For Mathematica:
 
-    
+    >>> D0 = {{-1.78, 0.29},{0.07, -0.92}};
+    >>> D1 = {{0.15, 0.49},{0.23, 0.36}};
+    >>> D2 = {{0.11, 0.2},{0.01, 0}};
+    >>> D3 = {{0.14, 0.4},{0.11, 0.14}};
+    >>> moms = MarginalMomentsFromMMAP[{D0, D1, D2, D3}];
+    >>> Print[moms];
+    {1.000667111407605, 2.1044966311760755, 6.827688149434602}
+
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-1.78, 0.29],[0.07, -0.92]])

@@ -44,7 +44,8 @@ def QBDFundamentalMatrices (B, L, F, matrices="G", precision=1e-14, maxNumIt=50,
         equation (CR: cyclic reduction, LR: logarithmic
         reduction, NI: Newton iteration, FI: functional
         iteration, IS: invariant subspace method). The 
-        default is "CR".
+        default is "CR". "CR" is the only supported 
+        method in the Mathematica and Python implementation.
     
     Returns
     -------
@@ -227,7 +228,7 @@ def QBDStationaryDistr (pi0, R, K):
     
     Returns
     -------
-    pi : matrix, shape (K+1,N)
+    pi : array, length (K+1)*N
         The stationary probability vector up to level K
     """
 

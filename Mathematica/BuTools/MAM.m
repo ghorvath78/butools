@@ -5,10 +5,10 @@
 *)
 
 BeginPackage["BuTools`MAM`"];
-QBDFundamentalMatrices::usage = "M = QBDFundamentalMatrices[xxx]: Returns any combination of the R, G, and U matrices of a discrete or continuous time QBD";
+QBDFundamentalMatrices::usage = "M = QBDFundamentalMatrices[B, L, F, matrices, precision, maxNumIt, method]: Returns any combination of the R, G, and U matrices of a discrete or continuous time QBD";
 QBDSolve::usage = "{pi0, R} = QBDSolve [B, L, F, L0, prec]: Returns the parameters of the matrix-geometrically distributed stationary distribution of a QBD";
 QBDStationaryDistr::usage = "pi = QBDStationaryDistr [pi0, R, K]: Returns the stationary distribution of a QBD up to a given level";
-FluidFundamentalMatrices::usage = "M = FluidFundamentalMatrices[xxx]: Returns any combination of the Psi, K, and U matrices of a canonical Markovian fluid model";
+FluidFundamentalMatrices::usage = "M = FluidFundamentalMatrices[Fpp, Fpm, Fmp, Fmm, matrices, precision, maxNumIt, method]: Returns any combination of the Psi, K, and U matrices of a canonical Markovian fluid model";
 FluidSolve::usage = "{mass0, ini, K, clo} = FluidSolve [Fpp, Fpm, Fmp, Fmm, prec]: Returns the parameters of the matrix-exponentially distributed stationary distribution of a canonical Markovian fluid model";
 FluidStationaryDistr::usage = "pi = FluidStationaryDistr [mass0, ini, K, clo, x]: Returns the cummulative distribution of the stationary fluid level of a Markovian fluid model";
 GeneralFluidSolve::usage = "{mass0, ini, K, clo} = GeneralFluidSolve [Q, R, Q0, prec]: Returns the parameters of the matrix-exponentially distributed stationary distribution of a general Markovian fluid model";

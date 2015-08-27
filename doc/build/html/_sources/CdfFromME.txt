@@ -46,7 +46,12 @@ butools.ph.CdfFromME
 
     For Mathematica:
 
-    
+    >>> a = {0.2,0.3,0.5};
+    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
+    >>> x = Range[0.0,5.0,0.01];
+    >>> cdf = CdfFromME[a, A, x];
+    >>> ListLinePlot[{Transpose[{x, cdf}]}]
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.2,0.3,0.5]])

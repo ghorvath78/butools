@@ -62,8 +62,8 @@ def CTMCSolve (Q):
     
     Notes
     -----
-    The procedure raises an exception if :code:`butools.checkInput` 
-    is set to :code:`true` and :func:`CheckGenerator(Q)` fails.
+    The procedure raises an exception if :code:`checkInput` 
+    is set to :code:`true` and :func:`CheckGenerator` (Q) fails.
     """
 
     if butools.checkInput and not CheckGenerator(Q, False):
@@ -122,7 +122,7 @@ def DTMCSolve (P):
     Notes
     -----
     The procedure raises an exception if :code:`butools.checkInput` 
-    is set to :code:`true` and :func:`CheckProbMatrix(P)` fails.
+    is set to :code:`true` and :func:`CheckProbMatrix` (P) fails.
     """
 
     if butools.checkInput and not CheckProbMatrix(P, False):

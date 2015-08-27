@@ -77,7 +77,31 @@ butools.dph.DPHFromMG
 
     For Mathematica:
 
-    
+    >>> a = {-0.6,0.3,1.3};
+    >>> A = {{0.1, 0.2, 0},{0.3, 0.1, 0.25},{-0.3, 0.2, 0.77}};
+    >>> flag = CheckMGRepresentation[a, A];
+    >>> Print[flag];
+    True
+    >>> flag = CheckDPHRepresentation[a, A];
+    "CheckProbVector: The vector has negative element!"
+    >>> Print[flag];
+    False
+    >>> {b, B} = DPHFromMG[a, A];
+    >>> Print[b];
+    {0.050000000000000044, 0.13749999999999998, 0.8125}
+    >>> Print[B];
+    {{0.1, 0.2, 0.},
+     {0.425, 0.06875, 0.15625},
+     {0.14100000000000007, 0.019750000000000018, 0.8012500000000001}}
+    >>> flag = CheckDPHRepresentation[b, B];
+    >>> Print[flag];
+    True
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1, err2]];
+    4.783309287441108*^-16
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[-0.6,0.3,1.3]])

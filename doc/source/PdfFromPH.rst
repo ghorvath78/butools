@@ -50,7 +50,12 @@ butools.ph.PdfFromPH
 
     For Mathematica:
 
-    
+    >>> a = {0.1,0.9,0};
+    >>> A = {{-6.2, 2, 0},{2, -9, 1},{1, 0, -3}};
+    >>> x = Range[0.0,3.0,0.002];
+    >>> pdf = PdfFromPH[a, A, x];
+    >>> ListLinePlot[{Transpose[{x, pdf}]}]
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.1,0.9,0]])

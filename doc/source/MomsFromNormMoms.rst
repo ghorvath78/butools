@@ -49,7 +49,17 @@ butools.moments.MomsFromNormMoms
 
     For Mathematica:
 
-    
+    >>> M = {1.2, 5., 38., 495., 9215.};
+    >>> nmoms = NormMomsFromMoms[M];
+    >>> Print[nmoms];
+    {1.2, 3.4722222222222223, 6.333333333333333, 10.855263157894736, 15.513468013468012}
+    >>> moms = MomsFromNormMoms[nmoms];
+    >>> Print[moms];
+    {1.2, 5., 37.99999999999999, 494.99999999999983, 9214.999999999996}
+    >>> err = Norm[moms-M];
+    >>> Print[err];
+    3.641980348156267*^-12
+
     For Python/Numpy:
 
     >>> M = [1.2, 5., 38., 495., 9215.]

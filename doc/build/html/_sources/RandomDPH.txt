@@ -64,7 +64,15 @@ butools.dph.RandomDPH
 
     For Mathematica:
 
-    
+    >>> {a, A} = RandomDPH[3, 10, 5];
+    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-7")!"
+    >>> Print[a];
+    {0, 0, 1}
+    >>> Print[A];
+    {{0.8271227985086882, 0.06664258193377719, 0.},
+     {0., 0.9130962745792692, 0.},
+     {0.05885243293901752, 0.02706649617956366, 0.8087057205828357}}
+
     For Python/Numpy:
 
     >>> a, A = RandomDPH(3, 10, 5)

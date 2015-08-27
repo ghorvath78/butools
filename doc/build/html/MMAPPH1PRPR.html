@@ -33,7 +33,7 @@
     <link rel="top" title="butools 2.0 documentation" href="index.html"/>
         <link rel="up" title="Tools for the Analysis of Queues (butools.queues)" href="queues.html"/>
         <link rel="next" title="butools.queues.MMAPPH1NPPR" href="MMAPPH1NPPR.html"/>
-        <link rel="prev" title="butools.queues.MAPMAP1" href="MAPMAP1.html"/> 
+        <link rel="prev" title="butools.queues.MMAPPH1FCFS" href="MMAPPH1FCFS.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -401,7 +406,7 @@
 </tbody>
 </table>
 <p>Returns various performane measures of a MMAP[K]/PH[K]/1
-preemptive resume priority queue, see <a class="reference internal" href="#r29" id="id1">[R29]</a>.</p>
+preemptive resume priority queue, see <a class="reference internal" href="#r31" id="id1">[R31]</a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -432,9 +437,9 @@ and the performance measures to be computed.</p>
 function are:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="22%" />
-<col width="27%" />
-<col width="51%" />
+<col width="21%" />
+<col width="26%" />
+<col width="53%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Parameter name</th>
@@ -443,14 +448,14 @@ function are:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>&#8220;qlMoms&#8221;</td>
+<tr class="row-even"><td>&#8220;ncMoms&#8221;</td>
 <td>Number of moments</td>
-<td>The queue length moments</td>
+<td>The moments of the number of customers</td>
 </tr>
-<tr class="row-odd"><td>&#8220;qlDistr&#8221;</td>
-<td>Upper bound (int)</td>
-<td>The queue length distribution is
-returned up to this bound.</td>
+<tr class="row-odd"><td>&#8220;ncDistr&#8221;</td>
+<td>Upper limit K</td>
+<td>The distribution of the number of
+customers from level 0 to level K-1</td>
 </tr>
 <tr class="row-even"><td>&#8220;stMoms&#8221;</td>
 <td>Number of moments</td>
@@ -463,10 +468,9 @@ requested points (cummulative, cdf)</td>
 </tr>
 <tr class="row-even"><td>&#8220;prec&#8221;</td>
 <td>The precision</td>
-<td>Numerical precision to check if the
-input is valid and it is also used
-as a stopping condition when solving
-the matrix-quadratic equation</td>
+<td>Numerical precision used as a stopping
+condition when solving the Riccati and
+the matrix-quadratic equations</td>
 </tr>
 <tr class="row-odd"><td>&#8220;erlMaxOrder&#8221;</td>
 <td>Integer number</td>
@@ -483,9 +487,10 @@ are analyzed.</td>
 </tr>
 </tbody>
 </table>
-<p>(The queue length related quantities include the customer
-in the server, and the sojourn time related quantities
-include the service times as well)</p>
+<p>(The quantities related to the number of customers in
+the system include the customer in the server, and the
+sojourn time related quantities include the service
+times as well)</p>
 </div></blockquote>
 </td>
 </tr>
@@ -502,13 +507,12 @@ then it is not put into a list.</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r29" rules="none">
+<table class="docutils citation" frame="void" id="r31" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R29]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> G. Horvath, &#8220;Efficient analysis of the MMAP[K]/PH[K]/1
+<tr><td class="label">[R31]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> G. Horvath, &#8220;Efficient analysis of the MMAP[K]/PH[K]/1
 priority queue&#8221;, European Journal of Operational
-Research, 2015, to appear.
-doi:10.1016/j.ejor.2015.03.004</td></tr>
+Research, 246(1), 128-139, 2015.</td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -523,38 +527,91 @@ doi:10.1016/j.ejor.2015.03.004</td></tr>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S2</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sigma1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.75</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">qlm</span><span class="p">,</span> <span class="n">qld</span><span class="p">]</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">},</span> <span class="p">{</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">},</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">ncm1</span><span class="p">,</span> <span class="n">ncd1</span><span class="p">,</span> <span class="n">ncm2</span><span class="p">,</span> <span class="n">ncd2</span><span class="p">,</span> <span class="n">ncm3</span><span class="p">,</span> <span class="n">ncd3</span><span class="p">]</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">},</span> <span class="p">{</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">},</span> <span class="s">&#39;ncMoms&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;ncDistr&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:     4.774e-15</span>
-<span class="go">Final Residual Error for Psi:    6.7946e-14</span>
+<span class="go">Final Residual Error for Psi:    6.8168e-14</span>
 <span class="go">Final Residual Error for Psi:    5.9258e-15</span>
 <span class="go">Final Residual Error for Psi:    3.8719e-15</span>
-<span class="go">Final Residual Error for Psi:    7.1054e-15</span>
-<span class="go">Final Residual Error for Psi:     2.498e-15</span>
+<span class="go">Final Residual Error for Psi:    6.5781e-15</span>
+<span class="go">Final Residual Error for Psi:    2.5535e-15</span>
 <span class="go">Final Residual Error for Psi:    2.7478e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distrPoints</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">];</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">stm</span><span class="p">,</span> <span class="n">std</span><span class="p">]</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">},</span> <span class="p">{</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">},</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="n">distrPoints</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">stm1</span><span class="p">,</span> <span class="n">std1</span><span class="p">,</span> <span class="n">stm2</span><span class="p">,</span> <span class="n">std2</span><span class="p">,</span> <span class="n">stm3</span><span class="p">,</span> <span class="n">std3</span><span class="p">]</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">({</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">},</span> <span class="p">{</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">},</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="n">distrPoints</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:     4.774e-15</span>
-<span class="go">Final Residual Error for Psi:    6.7946e-14</span>
+<span class="go">Final Residual Error for Psi:    6.8168e-14</span>
 <span class="go">Final Residual Error for Psi:     3.804e-15</span>
-<span class="go">Final Residual Error for Psi:    3.6332e-15</span>
+<span class="go">Final Residual Error for Psi:    3.6351e-15</span>
 <span class="go">Final Residual Error for Psi:    3.2784e-15</span>
 <span class="go">Final Residual Error for Psi:    3.8719e-15</span>
-<span class="go">Final Residual Error for Psi:    7.1054e-15</span>
+<span class="go">Final Residual Error for Psi:    6.5781e-15</span>
 <span class="go">Final Residual Error for Psi:    5.3424e-16</span>
 <span class="go">Final Residual Error for Psi:    8.5008e-16</span>
 <span class="go">Final Residual Error for Psi:    9.6955e-16</span>
 <span class="go">Final Residual Error for Psi:    2.7478e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stm</span><span class="p">);</span>
-<span class="go">       16.306       5.5053       1.9703</span>
-<span class="go">       806.63       107.78       11.741</span>
-<span class="go">        65397         3848       112.85</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">std</span><span class="p">);</span>
-<span class="go">      0.22164      0.34346      0.55657</span>
-<span class="go">      0.43134      0.69324      0.88197</span>
-<span class="go">      0.56865      0.83131      0.97479</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stm1</span><span class="p">);</span>
+<span class="go">       16.306       806.63        65397</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">std1</span><span class="p">);</span>
+<span class="go">      0.22164      0.43134      0.56865</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stm2</span><span class="p">);</span>
+<span class="go">       5.5053       107.78         3848</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">std2</span><span class="p">);</span>
+<span class="go">      0.34346      0.69324      0.83131</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stm3</span><span class="p">);</span>
+<span class="go">       1.9703       11.741       112.85</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">std3</span><span class="p">);</span>
+<span class="go">      0.55657      0.88197      0.97479</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">5.49</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.29</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.32</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.72</span><span class="p">,</span> <span class="mf">1.17</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.07</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.09</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.24</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.37</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D2</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D3</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.31</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sigma3</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.83333</span><span class="p">,</span><span class="mf">0.11404</span><span class="p">,</span><span class="mf">0.05263</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S3</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.73077</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.73077</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sigma2</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S2</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">2.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sigma1</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.75</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S1</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">ncm1</span><span class="p">,</span> <span class="n">ncd1</span><span class="p">,</span> <span class="n">ncm2</span><span class="p">,</span> <span class="n">ncd2</span><span class="p">,</span> <span class="n">ncm3</span><span class="p">,</span> <span class="n">ncd3</span><span class="p">}</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">[{</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">},</span> <span class="p">{</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">},</span> <span class="s">&quot;ncMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;ncDistr&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;6.217248937900877*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;6.864647739135421*^-14</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;6.013418929473602*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;3.8441472227646045*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.022160630754115*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;2.7200464103316335*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;3.0600522116230877*^-15</span>
+<span class="go">&quot;Final Residual Error for G: &quot;2.6259376617598917*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;3.885780586188048*^-16</span>
+<span class="go">&quot;Final Residual Error for G: &quot;2.6259376617598917*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;3.885780586188048*^-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distrPoints</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">stm1</span><span class="p">,</span> <span class="n">std1</span><span class="p">,</span> <span class="n">stm2</span><span class="p">,</span> <span class="n">std2</span><span class="p">,</span> <span class="n">stm3</span><span class="p">,</span> <span class="n">std3</span><span class="p">}</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">[{</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">},</span> <span class="p">{</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">},</span> <span class="p">{</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">},</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">distrPoints</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;6.217248937900877*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;6.864647739135421*^-14</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;4.468647674116255*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;4.649058915617843*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;3.58046925441613*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;3.8441472227646045*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.022160630754115*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;8.94618421124267*^-16</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.818423883692688*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.7907292944492614*^-15</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;3.0600522116230877*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stm1</span><span class="p">];</span>
+<span class="go">{16.30601164079545, 806.6298525859536, 65397.23294536998}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">std1</span><span class="p">];</span>
+<span class="go">{0.2216364120343151, 0.4313440180099754, 0.5686546905139109}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stm2</span><span class="p">];</span>
+<span class="go">{5.505255217665003, 107.77744442363706, 3848.0354975573623}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">std2</span><span class="p">];</span>
+<span class="go">{0.3434570011135701, 0.6932381350541303, 0.8313127970800466}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stm3</span><span class="p">];</span>
+<span class="go">{1.970327637987947, 11.741190396361796, 112.84868513581279}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">std3</span><span class="p">];</span>
+<span class="go">{0.5565694682318661, 0.8819702634824608, 0.9747921567789963}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">5.49</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.29</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.32</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.72</span><span class="p">,</span> <span class="mf">1.17</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.07</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.09</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.24</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.37</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
@@ -566,7 +623,7 @@ doi:10.1016/j.ejor.2015.03.004</td></tr>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S2</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">2.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sigma1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.75</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qlm</span><span class="p">,</span> <span class="n">qld</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">([</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">],</span> <span class="p">[</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">],</span> <span class="p">[</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">],</span> <span class="s">&quot;qlMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;qlDistr&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncm1</span><span class="p">,</span> <span class="n">ncd1</span><span class="p">,</span> <span class="n">ncm2</span><span class="p">,</span> <span class="n">ncd2</span><span class="p">,</span> <span class="n">ncm3</span><span class="p">,</span> <span class="n">ncd3</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">([</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">],</span> <span class="p">[</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">],</span> <span class="p">[</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">],</span> <span class="s">&quot;ncMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;ncDistr&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  2.3314683517128287e-15</span>
 <span class="go">Final Residual Error for G:  1.4521717162097048e-13</span>
 <span class="go">Final Residual Error for G:  9.647230930776018e-15</span>
@@ -579,7 +636,7 @@ doi:10.1016/j.ejor.2015.03.004</td></tr>
 <span class="go">Final Residual Error for G:  2.69315819645e-16</span>
 <span class="go">Final Residual Error for R:  3.26128013484e-16</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">distrPoints</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">stm</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">([</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">],</span> <span class="p">[</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">],</span> <span class="p">[</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">],</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">distrPoints</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stm1</span><span class="p">,</span> <span class="n">std1</span><span class="p">,</span> <span class="n">stm2</span><span class="p">,</span> <span class="n">std2</span><span class="p">,</span> <span class="n">stm3</span><span class="p">,</span> <span class="n">std3</span> <span class="o">=</span> <span class="n">MMAPPH1PRPR</span><span class="p">([</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">D3</span><span class="p">],</span> <span class="p">[</span><span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">sigma3</span><span class="p">],</span> <span class="p">[</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">],</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">distrPoints</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  2.3314683517128287e-15</span>
 <span class="go">Final Residual Error for G:  1.4521717162097048e-13</span>
 <span class="go">Final Residual Error for G:  7.88934883286745e-15</span>
@@ -591,14 +648,18 @@ doi:10.1016/j.ejor.2015.03.004</td></tr>
 <span class="go">Final Residual Error for G:  7.629124111965813e-16</span>
 <span class="go">Final Residual Error for G:  4.657732532997727e-16</span>
 <span class="go">Final Residual Error for G:  1.339206523454095e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stm</span><span class="p">)</span>
-<span class="go">[[  1.63060e+01   5.50526e+00   1.97033e+00]</span>
-<span class="go"> [  8.06630e+02   1.07777e+02   1.17412e+01]</span>
-<span class="go"> [  6.53972e+04   3.84804e+03   1.12849e+02]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
-<span class="go">[[ 0.22164  0.34346  0.55657]</span>
-<span class="go"> [ 0.43134  0.69324  0.88197]</span>
-<span class="go"> [ 0.56865  0.83131  0.97479]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stm1</span><span class="p">)</span>
+<span class="go">[16.306011640793987, 806.62985258583274, 65397.232945356853]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">std1</span><span class="p">)</span>
+<span class="go">[ 0.22164  0.43134  0.56865]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stm2</span><span class="p">)</span>
+<span class="go">[5.505255217664927, 107.77744442363372, 3848.0354975571686]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">std2</span><span class="p">)</span>
+<span class="go">[ 0.34346  0.69324  0.83131]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stm3</span><span class="p">)</span>
+<span class="go">[1.9703276379879364, 11.741190396361684, 112.84868513581137]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">std3</span><span class="p">)</span>
+<span class="go">[ 0.55657  0.88197  0.97479]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -614,7 +675,7 @@ doi:10.1016/j.ejor.2015.03.004</td></tr>
         <a href="MMAPPH1NPPR.html" class="btn btn-neutral float-right" title="butools.queues.MMAPPH1NPPR" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="MAPMAP1.html" class="btn btn-neutral" title="butools.queues.MAPMAP1" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="MMAPPH1FCFS.html" class="btn btn-neutral" title="butools.queues.MMAPPH1FCFS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

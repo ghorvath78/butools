@@ -31,7 +31,7 @@ butools.mam.QBDStationaryDistr
     
     Returns
     -------
-    pi : matrix, shape (K+1,N)
+    pi : array, length (K+1)*N
         The stationary probability vector up to level K
     
     Examples

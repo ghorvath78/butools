@@ -59,7 +59,20 @@ butools.ph.CanonicalFromPH2
 
     For Mathematica:
 
-    
+    >>> a = {0.12,0.88};
+    >>> A = {{-1.28, 0},{3.94, -3.94}};
+    >>> {b, B} = CanonicalFromPH2[a, A];
+    >>> Print[b];
+    {0.9610152284263966, 0.03898477157360336}
+    >>> Print[B];
+    {{-1.2800000000000014, 1.2800000000000014},
+     {0, -3.9399999999999946}}
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1, err2]];
+    1.881192080999035*^-15
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.12,0.88]])

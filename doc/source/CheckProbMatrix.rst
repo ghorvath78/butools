@@ -73,7 +73,30 @@ butools.mc.CheckProbMatrix
 
     For Mathematica:
 
-    
+    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, -0.1, 0.4}};
+    >>> flag = CheckProbMatrix[Q];
+    "CheckProbMatrix: the matrix has negative element (at precision "1.*^-12")!"
+    >>> Print[flag];
+    False
+    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}};
+    >>> flag = CheckProbMatrix[Q];
+    "CheckProbMatrix: A rowsum of the matrix is not 1 (precision:"1.*^-12")!!"
+    >>> Print[flag];
+    False
+    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
+    >>> flag = CheckProbMatrix[Q];
+    >>> Print[flag];
+    True
+    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
+    >>> flag = CheckProbMatrix[Q, True];
+    "CheckProbMatrix: The real part of the largest eigenvalue of the transient matrix is not less than 1!"
+    >>> Print[flag];
+    False
+    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.1, 0.4}};
+    >>> flag = CheckProbMatrix[Q, True];
+    >>> Print[flag];
+    True
+
     For Python/Numpy:
 
     >>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, -0.1, 0.4]])

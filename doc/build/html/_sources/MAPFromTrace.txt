@@ -200,7 +200,171 @@ butools.fitting.MAPFromTrace
 
     For Mathematica:
 
-    
+    >>> tr = Flatten[Import["/home/gabor/github/butools/test/data/bctrace.iat","CSV"]];
+    >>> tr = tr[[1;;10000]];
+    >>> {D0, D1, logli} = MAPFromTrace[tr, 5];
+    "Trying orders "{1, 4}"..."
+    "Num of iterations: "4", logli: "4.993259505655185
+    "Num of iterations: "7", logli: "4.997168671547701
+    "Num of iterations: "10", logli: "4.997862551063841
+    "Num of iterations: "13", logli: "4.998033171679149
+    "Num of iterations: "16", logli: "4.998082939289365
+    "Num of iterations: "19", logli: "4.99809905455834
+    "Num of iterations: "22", logli: "4.998104743972023
+    "Num of iterations: "25", logli: "4.998107006878427
+    "Num of iterations: "26", logli: "4.99810745011236
+    "EM algorithm terminated. (orders="{1, 4}")"
+    "Trying orders "{2, 3}"..."
+    "Num of iterations: "4", logli: "4.8663721991321305
+    "Num of iterations: "7", logli: "4.927252921982753
+    "Num of iterations: "10", logli: "4.951919574051944
+    "Num of iterations: "13", logli: "4.956040780340811
+    "Num of iterations: "16", logli: "4.9563853575360515
+    "Num of iterations: "19", logli: "4.956407398543356
+    "Num of iterations: "21", logli: "4.956408840810655
+    "EM algorithm terminated. (orders="{2, 3}")"
+    "Trying orders "{1, 1, 3}"..."
+    "Num of iterations: "4", logli: "5.015729326700379
+    "Num of iterations: "7", logli: "5.039376105933879
+    "Num of iterations: "10", logli: "5.065115109858913
+    "Num of iterations: "13", logli: "5.087433305519177
+    "Num of iterations: "16", logli: "5.095165218779676
+    "Num of iterations: "19", logli: "5.096542942667858
+    "Num of iterations: "22", logli: "5.097217245266611
+    "Num of iterations: "25", logli: "5.097783794710717
+    "Num of iterations: "28", logli: "5.098316830378618
+    "Num of iterations: "31", logli: "5.098855792506172
+    "Num of iterations: "34", logli: "5.099426493035749
+    "Num of iterations: "37", logli: "5.100047995275797
+    "Num of iterations: "40", logli: "5.100746872797194
+    "Num of iterations: "43", logli: "5.101583155259961
+    "Num of iterations: "46", logli: "5.1026877401922155
+    "Num of iterations: "49", logli: "5.104304334981796
+    "Num of iterations: "52", logli: "5.106804300310496
+    "Num of iterations: "55", logli: "5.110538394539443
+    "Num of iterations: "58", logli: "5.115263627401993
+    "Num of iterations: "61", logli: "5.119570638369141
+    "Num of iterations: "64", logli: "5.122077926685482
+    "Num of iterations: "67", logli: "5.1230372177203165
+    "Num of iterations: "70", logli: "5.123338507017323
+    "Num of iterations: "73", logli: "5.123456224814315
+    "Num of iterations: "76", logli: "5.123528798414036
+    "Num of iterations: "79", logli: "5.123585724468395
+    "Num of iterations: "82", logli: "5.123637966952736
+    "Num of iterations: "85", logli: "5.12369334181503
+    "Num of iterations: "88", logli: "5.123752973774425
+    "Num of iterations: "91", logli: "5.123811099333816
+    "Num of iterations: "94", logli: "5.1238604907978615
+    "Num of iterations: "97", logli: "5.12389743186796
+    "Num of iterations: "100", logli: "5.123922405926877
+    "Num of iterations: "103", logli: "5.123938104622403
+    "Num of iterations: "106", logli: "5.123947499602905
+    "Num of iterations: "109", logli: "5.123952946957953
+    "Num of iterations: "112", logli: "5.12395604420125
+    "Num of iterations: "115", logli: "5.123957785028128
+    "Num of iterations: "115", logli: "5.123957785028128
+    "EM algorithm terminated. (orders="{1, 1, 3}")"
+    "Trying orders "{1, 2, 2}"..."
+    "Num of iterations: "4", logli: "5.0122947542928555
+    "Num of iterations: "7", logli: "5.019767395602894
+    "Num of iterations: "10", logli: "5.02976587459673
+    "Num of iterations: "13", logli: "5.043619440764079
+    "Num of iterations: "16", logli: "5.059183637783567
+    "Num of iterations: "19", logli: "5.07692712660751
+    "Num of iterations: "22", logli: "5.0973408269250005
+    "Num of iterations: "25", logli: "5.10934742598377
+    "Num of iterations: "28", logli: "5.113031789500797
+    "Num of iterations: "31", logli: "5.114217422911263
+    "Num of iterations: "34", logli: "5.1147363762308915
+    "Num of iterations: "37", logli: "5.115045193666414
+    "Num of iterations: "40", logli: "5.115247596938485
+    "Num of iterations: "43", logli: "5.115368318400923
+    "Num of iterations: "46", logli: "5.115433152969141
+    "Num of iterations: "49", logli: "5.115465572463486
+    "Num of iterations: "52", logli: "5.1154810563434925
+    "Num of iterations: "55", logli: "5.115488231281802
+    "Num of iterations: "58", logli: "5.11549148795029
+    "Num of iterations: "60", logli: "5.115492582889059
+    "EM algorithm terminated. (orders="{1, 2, 2}")"
+    "Trying orders "{1, 1, 1, 2}"..."
+    "Num of iterations: "4", logli: "5.014829338214883
+    "Num of iterations: "7", logli: "5.040028946911346
+    "Num of iterations: "10", logli: "5.064171862323919
+    "Num of iterations: "13", logli: "5.078863209647303
+    "Num of iterations: "16", logli: "5.082324376375294
+    "Num of iterations: "19", logli: "5.083569979450504
+    "Num of iterations: "22", logli: "5.084513264289563
+    "Num of iterations: "25", logli: "5.08526460887892
+    "Num of iterations: "28", logli: "5.0858535498804205
+    "Num of iterations: "31", logli: "5.086311241542606
+    "Num of iterations: "34", logli: "5.086668013733888
+    "Num of iterations: "37", logli: "5.08695043549303
+    "Num of iterations: "40", logli: "5.087180397015339
+    "Num of iterations: "43", logli: "5.08737551075806
+    "Num of iterations: "46", logli: "5.0875500846222375
+    "Num of iterations: "49", logli: "5.087716242054033
+    "Num of iterations: "52", logli: "5.0878850486431135
+    "Num of iterations: "55", logli: "5.088067682179787
+    "Num of iterations: "58", logli: "5.088276806171391
+    "Num of iterations: "61", logli: "5.088528454903264
+    "Num of iterations: "64", logli: "5.088845013008133
+    "Num of iterations: "67", logli: "5.089260445776136
+    "Num of iterations: "70", logli: "5.089830124804416
+    "Num of iterations: "73", logli: "5.090649849553919
+    "Num of iterations: "76", logli: "5.091891633656121
+    "Num of iterations: "79", logli: "5.093859592976077
+    "Num of iterations: "82", logli: "5.097011166206567
+    "Num of iterations: "85", logli: "5.1016492083255836
+    "Num of iterations: "88", logli: "5.106896654028055
+    "Num of iterations: "91", logli: "5.110618528293328
+    "Num of iterations: "94", logli: "5.112150973773346
+    "Num of iterations: "97", logli: "5.112567107521197
+    "Num of iterations: "100", logli: "5.11265838511872
+    "Num of iterations: "103", logli: "5.11267690302395
+    "Num of iterations: "106", logli: "5.1126806540406635
+    "Num of iterations: "107", logli: "5.112681069700427
+    "EM algorithm terminated. (orders="{1, 1, 1, 2}")"
+    "Trying orders "{1, 1, 1, 1, 1}"..."
+    "Num of iterations: "4", logli: "5.001018278123578
+    "Num of iterations: "7", logli: "5.016002770232654
+    "Num of iterations: "10", logli: "5.031545952575503
+    "Num of iterations: "13", logli: "5.041731506932355
+    "Num of iterations: "16", logli: "5.043786339264612
+    "Num of iterations: "19", logli: "5.04393273379092
+    "Num of iterations: "22", logli: "5.043940070674873
+    "Num of iterations: "23", logli: "5.043940317578035
+    "EM algorithm terminated. (orders="{1, 1, 1, 1, 1}")"
+    "Best solution: logli="5.123957785028128", orders="{1, 1, 3}
+    >>> Print[D0];
+    {{-83.42943388846042, 0, 0, 0, 0},
+     {0, -718.6779892150017, 0, 0, 0},
+     {0, 0, -1026.160629451268, 1026.160629451268, 0.},
+     {0, 0, 0., -1026.160629451268, 1026.160629451268},
+     {0, 0, 0., 0., -1026.160629451268}}
+    >>> Print[D1];
+    {{54.14857308767231, 4.901864224679702, 24.378996576108406, 0., 0.},
+     {3.391518630791651, 665.8473464602738, 49.439124123936224, 0., 0.},
+     {0., 0., 0., 0., 0.},
+     {0., 0., 0., 0., 0.},
+     {42.64730201560431, 96.94396093846602, 886.5693664971978, 0., 0.}}
+    >>> Print[logli];
+    5.123957785028128
+    >>> logli = LikelihoodFromTrace[tr, D0, D1];
+    >>> Print[logli];
+    5.123958173279034
+    >>> trAcf = LagCorrelationsFromTrace[tr, 10];
+    >>> Print[trAcf];
+    {0.18411691802386188, 0.18158522314048947, 0.17543727813332094, 0.19964686019458905, 0.08322774966768201, 0.08633973760499067, 0.0950004809602402, 0.0628536515187086, 0.06232004520613776, 0.06592211464475752}
+    >>> mapAcf = LagCorrelationsFromMAP[D0, D1, 10];
+    >>> Print[mapAcf];
+    {0.248892052255008, 0.17665283034500237, 0.12882046679167725, 0.0963829330310287, 0.07380230626995823, 0.057649876260931265, 0.045781783730242616, 0.03684041958390035, 0.029952264846717966, 0.024544285061666418}
+    >>> sqAcf = SquaredDifference[mapAcf, trAcf];
+    >>> Print[sqAcf];
+    0.023827625772555785
+    >>> reAcf = RelativeEntropy[mapAcf, trAcf];
+    >>> Print[reAcf];
+    0.3213200829124291
+
     For Python/Numpy:
 
     >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")

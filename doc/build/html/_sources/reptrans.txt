@@ -11,7 +11,7 @@ script, or execute
 
     * - :code:`addpath('butools/reptrans')` 
       - in Matlab,
-    * - :code:`<<"BuTools`RepTrans"` 
+    * - :code:`<<BuTools`RepTrans``
       - in Mathematica,
     * - :code:`from butools.reptrans import *` 
       - in Python/Numpy.

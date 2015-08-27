@@ -49,7 +49,17 @@ butools.moments.MomsFromReducedMoms
 
     For Mathematica:
 
-    
+    >>> M = {1.2, 5., 38., 495., 9215.};
+    >>> rmoms = ReducedMomsFromMoms[M];
+    >>> Print[rmoms];
+    {1.2, 2.5, 6.333333333333333, 20.625, 76.79166666666667}
+    >>> moms = MomsFromReducedMoms[rmoms];
+    >>> Print[moms];
+    {1.2, 5., 38., 495., 9215.}
+    >>> err = Norm[moms-M];
+    >>> Print[err];
+    0.
+
     For Python/Numpy:
 
     >>> M = [1.2, 5., 38., 495., 9215.]

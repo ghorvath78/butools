@@ -12,7 +12,8 @@ from butools.mc import CTMCSolve, DTMCSolve, CheckGenerator
 
 def QBDQueue(B, L, F, L0, *argv):
     """
-    Returns various performane measures of a QBD queue.
+    Returns various performane measures of a continuous time
+    QBD queue.
     
     QBD queues have a background continuous time Markov chain
     with generator Q whose the transitions can be partitioned
@@ -20,7 +21,8 @@ def QBDQueue(B, L, F, L0, *argv):
     of a new job (F, forward), transitions accompanied by 
     the service of the current job in the server (B, 
     backward) and internal transitions (L, local). 
-    Thus we have Q=B+L+F.
+    Thus we have Q=B+L+F. L0 is the matrix of local 
+    transition rates if the queue is empty.
     
     Parameters
     ----------
@@ -43,46 +45,47 @@ def QBDQueue(B, L, F, L0, *argv):
         The supported performance measures and options in this 
         function are:
         
-        +----------------+--------------------+--------------------------------------+
-        | Parameter name | Input parameters   | Output                               |
-        +================+====================+======================================+
-        | "qlMoms"       | Number of moments  | The queue length moments             |
-        +----------------+--------------------+--------------------------------------+
-        | "qlDistr"      | A vector of points | The queue length distribution at     |
-        |                |                    | the requested points                 |
-        +----------------+--------------------+--------------------------------------+
-        | "qlDistrMG"    | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-geometrically distributed     |
-        |                |                    | queue length distribution            |
-        +----------------+--------------------+--------------------------------------+
-        | "qlDistrDPH"   | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-geometrically distributed     |
-        |                |                    | queue length distribution, converted |
-        |                |                    | to a discrete PH representation      |
-        +----------------+--------------------+--------------------------------------+
-        | "stMoms"       | Number of moments  | The sojourn time moments             |
-        +----------------+--------------------+--------------------------------------+
-        | "stDistr"      | A vector of points | The sojourn time distribution at the |
-        |                |                    | requested points (cummulative, cdf)  |
-        +----------------+--------------------+--------------------------------------+
-        | "stDistrME"    | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-exponentially distributed     |
-        |                |                    | sojourn time distribution            |
-        +----------------+--------------------+--------------------------------------+
-        | "stDistrPH"    | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-exponentially distributed     |
-        |                |                    | sojourn time distribution, converted |
-        |                |                    | to a continuous PH representation    |
-        +----------------+--------------------+--------------------------------------+
-        | "prec"         | The precision      | Numerical precision to check if the  |
-        |                |                    | input is valid and it is also used   |
-        |                |                    | as a stopping condition when solving |
-        |                |                    | the matrix-quadratic equation        |
-        +----------------+--------------------+--------------------------------------+
+        +----------------+--------------------+----------------------------------------+
+        | Parameter name | Input parameters   | Output                                 |
+        +================+====================+========================================+
+        | "ncMoms"       | Number of moments  | The moments of the number of customers |
+        +----------------+--------------------+----------------------------------------+
+        | "ncDistr"      | Upper limit K      | The distribution of the number of      |
+        |                |                    | customers from level 0 to level K-1    |
+        +----------------+--------------------+----------------------------------------+
+        | "ncDistrMG"    | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-geometric distribution of the   |
+        |                |                    | number of customers in the system      |
+        +----------------+--------------------+----------------------------------------+
+        | "ncDistrDPH"   | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-geometric distribution of the   |
+        |                |                    | number of customers in the system,     |
+        |                |                    | converted to a discrete PH             |
+        |                |                    | representation                         |
+        +----------------+--------------------+----------------------------------------+
+        | "stMoms"       | Number of moments  | The sojourn time moments               |
+        +----------------+--------------------+----------------------------------------+
+        | "stDistr"      | A vector of points | The sojourn time distribution at the   |
+        |                |                    | requested points (cummulative, cdf)    |
+        +----------------+--------------------+----------------------------------------+
+        | "stDistrME"    | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-exponentially distributed       |
+        |                |                    | sojourn time distribution              |
+        +----------------+--------------------+----------------------------------------+
+        | "stDistrPH"    | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-exponentially distributed       |
+        |                |                    | sojourn time distribution, converted   |
+        |                |                    | to a continuous PH representation      |
+        +----------------+--------------------+----------------------------------------+
+        | "prec"         | The precision      | Numerical precision used as a stopping |
+        |                |                    | condition when solving the             |
+        |                |                    | matrix-quadratic equation              |
+        +----------------+--------------------+----------------------------------------+
         
-        (The queue length related quantities include the customer 
-        in the server, and the sojourn time related quantities 
-        include the service times as well)
+        (The quantities related to the number of customers in 
+        the system include the customer in the server, and the 
+        sojourn time related quantities include the service 
+        times as well)
         
     Returns
     -------
@@ -93,8 +96,8 @@ def QBDQueue(B, L, F, L0, *argv):
     
     Notes
     -----
-    "qlDistrMG" and "stDistrMG" behave much better numerically than 
-    "qlDistrDPH" and "stDistrPH".
+    "ncDistrMG" and "stDistrMG" behave much better numerically than 
+    "ncDistrDPH" and "stDistrPH".
     """
 
     # parse options
@@ -209,7 +212,8 @@ def QBDQueue(B, L, F, L0, *argv):
 
 def MAPMAP1(D0, D1, S0, S1, *argv):
     """
-    Returns various performane measures of a MAP/MAP/1 queue.
+    Returns various performane measures of a continuous time
+    MAP/MAP/1 queue.
     
     In a MAP/MAP/1 queue both the arrival and the service
     processes are characterized by Markovian arrival 
@@ -236,46 +240,47 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
         The supported performance measures and options in this 
         function are:
     
-        +----------------+--------------------+--------------------------------------+
-        | Parameter name | Input parameters   | Output                               |
-        +================+====================+======================================+
-        | "qlMoms"       | Number of moments  | The queue length moments             |
-        +----------------+--------------------+--------------------------------------+
-        | "qlDistr"      | A vector of points | The queue length distribution at     |
-        |                |                    | the requested points                 |
-        +----------------+--------------------+--------------------------------------+
-        | "qlDistrMG"    | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-geometrically distributed     |
-        |                |                    | queue length distribution            |
-        +----------------+--------------------+--------------------------------------+
-        | "qlDistrDPH"   | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-geometrically distributed     |
-        |                |                    | queue length distribution, converted |
-        |                |                    | to a discrete PH representation      |
-        +----------------+--------------------+--------------------------------------+
-        | "stMoms"       | Number of moments  | The sojourn time moments             |
-        +----------------+--------------------+--------------------------------------+
-        | "stDistr"      | A vector of points | The sojourn time distribution at the |
-        |                |                    | requested points (cummulative, cdf)  |
-        +----------------+--------------------+--------------------------------------+
-        | "stDistrME"    | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-exponentially distributed     |
-        |                |                    | sojourn time distribution            |
-        +----------------+--------------------+--------------------------------------+
-        | "stDistrPH"    | None               | The vector-matrix parameters of the  |
-        |                |                    | matrix-exponentially distributed     |
-        |                |                    | sojourn time distribution, converted |
-        |                |                    | to a continuous PH representation    |
-        +----------------+--------------------+--------------------------------------+
-        | "prec"         | The precision      | Numerical precision to check if the  |
-        |                |                    | input is valid and it is also used   |
-        |                |                    | as a stopping condition when solving |
-        |                |                    | the matrix-quadratic equation        |
-        +----------------+--------------------+--------------------------------------+
-    
-        (The queue length related quantities include the customer 
-        in the server, and the sojourn time related quantities 
-        include the service times as well)
+        +----------------+--------------------+----------------------------------------+
+        | Parameter name | Input parameters   | Output                                 |
+        +================+====================+========================================+
+        | "ncMoms"       | Number of moments  | The moments of the number of customers |
+        +----------------+--------------------+----------------------------------------+
+        | "ncDistr"      | Upper limit K      | The distribution of the number of      |
+        |                |                    | customers from level 0 to level K-1    |
+        +----------------+--------------------+----------------------------------------+
+        | "ncDistrMG"    | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-geometric distribution of the   |
+        |                |                    | number of customers in the system      |
+        +----------------+--------------------+----------------------------------------+
+        | "ncDistrDPH"   | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-geometric distribution of the   |
+        |                |                    | number of customers in the system,     |
+        |                |                    | converted to a discrete PH             |
+        |                |                    | representation                         |
+        +----------------+--------------------+----------------------------------------+
+        | "stMoms"       | Number of moments  | The sojourn time moments               |
+        +----------------+--------------------+----------------------------------------+
+        | "stDistr"      | A vector of points | The sojourn time distribution at the   |
+        |                |                    | requested points (cummulative, cdf)    |
+        +----------------+--------------------+----------------------------------------+
+        | "stDistrME"    | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-exponentially distributed       |
+        |                |                    | sojourn time distribution              |
+        +----------------+--------------------+----------------------------------------+
+        | "stDistrPH"    | None               | The vector-matrix parameters of the    |
+        |                |                    | matrix-exponentially distributed       |
+        |                |                    | sojourn time distribution, converted   |
+        |                |                    | to a continuous PH representation      |
+        +----------------+--------------------+----------------------------------------+
+        | "prec"         | The precision      | Numerical precision used as a stopping |
+        |                |                    | condition when solving the             |
+        |                |                    | matrix-quadratic equation              |
+        +----------------+--------------------+----------------------------------------+
+        
+        (The quantities related to the number of customers in 
+        the system include the customer in the server, and the 
+        sojourn time related quantities include the service 
+        times as well)
     
     Returns
     -------
@@ -285,8 +290,8 @@ def MAPMAP1(D0, D1, S0, S1, *argv):
         then it is not put into a list.
         Notes
     -----
-    "qlDistrMG" and "stDistrME" behave much better numerically than 
-    "qlDistrDPH" and "stDistrPH".
+    "ncDistrMG" and "stDistrME" behave much better numerically than 
+    "ncDistrDPH" and "stDistrPH".
     """
 
     # parse options

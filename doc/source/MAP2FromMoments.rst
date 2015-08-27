@@ -80,7 +80,28 @@ butools.map.MAP2FromMoments
 
     For Mathematica:
 
-    
+    >>> D0 = {{-14., 1.},{1, -25.}};
+    >>> D1 = {{6., 7.},{3., 21.}};
+    >>> moms = MarginalMomentsFromMAP[D0, D1, 3];
+    >>> Print[moms];
+    {0.04918032786885247, 0.005260932876133214, 0.0009181867601560783}
+    >>> corr = LagCorrelationsFromMAP[D0, D1, 1][[1]];
+    >>> Print[corr];
+    0.02241571110398602
+    >>> {D0, D1} = MAP2FromMoments[moms, corr];
+    >>> Print[D0];
+    {{-13.909830056250456, 9.199027971874015},
+     {0, -25.090169943749302}}
+    >>> Print[D1];
+    {{4.710802084376442, 0},
+     {2.8009720281259014, 22.2891979156234}}
+    >>> rmoms = MarginalMomentsFromMAP[D0, D1, 3];
+    >>> Print[rmoms];
+    {0.04918032786885251, 0.005260932876133218, 0.0009181867601560789}
+    >>> rcorr = LagCorrelationsFromMAP[D0, D1, 1][[1]];
+    >>> Print[rcorr];
+    0.022415711103985703
+
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-14., 1.],[1, -25.]])

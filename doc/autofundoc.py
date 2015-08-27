@@ -84,7 +84,7 @@ def processPythonDoc(fun, btModule, doc):
 
 def processMathematicaDoc(fun, btModule, mathematicaSignature):
     
-    # opern package file
+    # open package file
     oneLineDescr = None
     with open("source/"+btModule+".rst", "rt") as f:
         lines = f.readlines()
@@ -131,11 +131,11 @@ def exampleForFunction(funName, output):
             lines = f.readlines()
             capture = False
             for l in lines:
-                if capture and l.startswith("=== "):
+                if capture and (l.startswith("=== ") or l.startswith('"=== ')):
                     capture = False
                 elif capture:
                     strex.append(l)
-                if l.startswith("=== {0} ===".format(funName)):
+                if l.startswith("=== {0} ===".format(funName)) or l.startswith('"=== {0} ==="'.format(funName)):
                     capture = True
     return "".join(strex)     
 

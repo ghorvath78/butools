@@ -32,7 +32,7 @@ butools.mc.DTMCSolve
     Notes
     -----
     The procedure raises an exception if :code:`butools.checkInput` 
-    is set to :code:`true` and :func:`CheckProbMatrix(P)` fails.
+    is set to :code:`true` and :func:`CheckProbMatrix` (P) fails.
 
     Examples
     ========
@@ -47,7 +47,13 @@ butools.mc.DTMCSolve
 
     For Mathematica:
 
-    
+    >>> Q = {{0.1, 0.5, 0.4},{0.9, 0.1, 0},{0.3, 0.3, 0.4}};
+    >>> ret = DTMCSolve[Q];
+    >>> Print[ret];
+    {0.4090909090909091, 0.3181818181818182, 0.2727272727272727}
+    >>> Print[ret.Q-ret];
+    {-5.551115123125783*^-17, 0., 5.551115123125783*^-17}
+
     For Python/Numpy:
 
     >>> Q = ml.matrix([[0.1, 0.5, 0.4],[0.9, 0.1, 0],[0.3, 0.3, 0.4]])

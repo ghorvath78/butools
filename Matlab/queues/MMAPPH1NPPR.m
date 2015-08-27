@@ -1,7 +1,7 @@
 %  Ret = MMAPPH1NPPR(D, sigma, S, ...)
 %  
-%  Returns various performane measures of a MMAP[K]/PH[K]/1 
-%  non-preemptive priority queue, see [1]_.
+%  Returns various performane measures of a continuous time 
+%  MMAP[K]/PH[K]/1 non-preemptive priority queue, see [1]_.
 %  
 %  Parameters
 %  ----------
@@ -22,37 +22,37 @@
 %      The supported performance measures and options in this 
 %      function are:
 %  
-%      +----------------+--------------------+--------------------------------------+
-%      | Parameter name | Input parameters   | Output                               |
-%      +================+====================+======================================+
-%      | "qlMoms"       | Number of moments  | The queue length moments             |
-%      +----------------+--------------------+--------------------------------------+
-%      | "qlDistr"      | Upper bound (int)  | The queue length distribution is     |
-%      |                |                    | returned up to this bound.           |
-%      +----------------+--------------------+--------------------------------------+
-%      | "stMoms"       | Number of moments  | The sojourn time moments             |
-%      +----------------+--------------------+--------------------------------------+
-%      | "stDistr"      | A vector of points | The sojourn time distribution at the |
-%      |                |                    | requested points (cummulative, cdf)  |
-%      +----------------+--------------------+--------------------------------------+
-%      | "prec"         | The precision      | Numerical precision to check if the  |
-%      |                |                    | input is valid and it is also used   |
-%      |                |                    | as a stopping condition when solving |
-%      |                |                    | the matrix-quadratic equation        |
-%      +----------------+--------------------+--------------------------------------+
-%      | "erlMaxOrder"  | Integer number     | The maximal Erlang order used in the |
-%      |                |                    | erlangization procedure. The default |
-%      |                |                    | value is 200.                        |
-%      +----------------+--------------------+--------------------------------------+
-%      | "classes"      | Vector of integers | Only the performance measures        |
-%      |                |                    | belonging to these classes are       |
-%      |                |                    | returned. If not given, all classes  |
-%      |                |                    | are analyzed.                        |
-%      +----------------+--------------------+--------------------------------------+
-%  
-%      (The queue length related quantities include the customer 
-%      in the server, and the sojourn time related quantities 
-%      include the service times as well)
+%      +----------------+--------------------+----------------------------------------+
+%      | Parameter name | Input parameters   | Output                                 |
+%      +================+====================+========================================+
+%      | "ncMoms"       | Number of moments  | The moments of the number of customers |
+%      +----------------+--------------------+----------------------------------------+
+%      | "ncDistr"      | Upper limit K      | The distribution of the number of      |
+%      |                |                    | customers from level 0 to level K-1    |
+%      +----------------+--------------------+----------------------------------------+
+%      | "stMoms"       | Number of moments  | The sojourn time moments               |
+%      +----------------+--------------------+----------------------------------------+
+%      | "stDistr"      | A vector of points | The sojourn time distribution at the   |
+%      |                |                    | requested points (cummulative, cdf)    |
+%      +----------------+--------------------+----------------------------------------+
+%      | "prec"         | The precision      | Numerical precision used as a stopping |
+%      |                |                    | condition when solving the Riccati and |
+%      |                |                    | the matrix-quadratic equations         |
+%      +----------------+--------------------+----------------------------------------+
+%      | "erlMaxOrder"  | Integer number     | The maximal Erlang order used in the   |
+%      |                |                    | erlangization procedure. The default   |
+%      |                |                    | value is 200.                          |
+%      +----------------+--------------------+----------------------------------------+
+%      | "classes"      | Vector of integers | Only the performance measures          |
+%      |                |                    | belonging to these classes are         |
+%      |                |                    | returned. If not given, all classes    |
+%      |                |                    | are analyzed.                          |
+%      +----------------+--------------------+----------------------------------------+
+%      
+%      (The quantities related to the number of customers in 
+%      the system include the customer in the server, and the 
+%      sojourn time related quantities include the service 
+%      times as well)
 %  
 %  Returns
 %  -------
@@ -67,8 +67,7 @@
 %  ----------
 %  .. [1] G. Horvath, "Efficient analysis of the MMAP[K]/PH[K]/1
 %         priority queue", European Journal of Operational 
-%         Research, 2015, to appear.
-%         doi:10.1016/j.ejor.2015.03.004
+%         Research, 246(1), 128-139, 2015.
 
 function varargout = MMAPPH1NPPR(D, sigma, S, varargin)
     

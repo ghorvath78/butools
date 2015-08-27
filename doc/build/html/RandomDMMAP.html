@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -478,6 +483,32 @@ or/and the &#8216;mean&#8217; parameter.</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Dm</span> <span class="o">=</span> <span class="n">RandomDMMAP</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">5.62</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Dm</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]];</span>
+<span class="go">{{0.5936500195002852, 0.0071711070249426, 0.017673758024475288, 0.05144659384552179},</span>
+<span class="go"> {0.020154515280230965, 0.8411554095030485, 0.005249104682873274, 0.},</span>
+<span class="go"> {0.015617402627286933, 0.012537161360729446, 0.8352935249678363, 0.006411658273261797},</span>
+<span class="go"> {0.013153759039417926, 0.02868436681898334, 0.028903946905958065, 0.6538234601251783}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Dm</span><span class="p">[[</span><span class="mi">2</span><span class="p">]]];</span>
+<span class="go">{{0.08519495111289338, 0., 0.018628042747125154, 0.},</span>
+<span class="go"> {0.002711391271515091, 0.010446336642803812, 0.01459469095042103, 0.01866365592332515},</span>
+<span class="go"> {0., 0.011750889045204358, 0.022017512911504132, 0.012160658337042149},</span>
+<span class="go"> {0.03341099177641968, 0.01984209195647928, 0.009966627127729678, 0.04171857977172423}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Dm</span><span class="p">[[</span><span class="mi">3</span><span class="p">]]];</span>
+<span class="go">{{0.041825271032060074, 0.07761370787172987, 0.08109386986023437, 0.},</span>
+<span class="go"> {0.01770089213830925, 0.011074775342567164, 0.017685427551298035, 0.0036482985602606767},</span>
+<span class="go"> {0.014365191362523854, 0.015410717929132125, 0.015650791704003995, 0.0195262187884841},</span>
+<span class="go"> {0.010576404991469165, 0.03762430513140506, 0.02843564618548617, 0.002495652549692818}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Dm</span><span class="p">[[</span><span class="mi">4</span><span class="p">]]];</span>
+<span class="go">{{0., 0., 0.025702678980732353, 0.},</span>
+<span class="go"> {0., 0.013169854463771804, 0.004281152201241524, 0.019464495488333844},</span>
+<span class="go"> {0.001199989751644204, 0.007852396960251728, 0.0014020400199298716, 0.00880384596116504},</span>
+<span class="go"> {0.03646020660551431, 0.044521395687431596, 0.010382565327110316, 0.}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">MarginalMomentsFromDMMAP</span><span class="p">[</span><span class="n">Dm</span><span class="p">,</span> <span class="mi">1</span><span class="p">][[</span><span class="mi">1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
+<span class="go">5.62</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Dm</span> <span class="o">=</span> <span class="n">RandomDMMAP</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">5.62</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Dm</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>

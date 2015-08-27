@@ -30,8 +30,8 @@ butools.mc.CTMCSolve
 
     Notes
     -----
-    The procedure raises an exception if :code:`butools.checkInput` 
-    is set to :code:`true` and :func:`CheckGenerator(Q)` fails.
+    The procedure raises an exception if :code:`checkInput` 
+    is set to :code:`true` and :func:`CheckGenerator` (Q) fails.
 
     Examples
     --------

@@ -77,6 +77,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -90,6 +91,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -138,6 +140,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -269,6 +272,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -328,6 +332,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -388,7 +393,7 @@ script, or execute</p>
 <tr class="row-odd"><td><code class="code docutils literal"><span class="pre">addpath('butools/queues')</span></code></td>
 <td>in Matlab,</td>
 </tr>
-<tr class="row-even"><td><code class="code docutils literal"><span class="pre">&lt;&lt;&quot;BuTools`Queues&quot;</span></code></td>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">&lt;&lt;BuTools`Queues`</span></code></td>
 <td>in Mathematica,</td>
 </tr>
 <tr class="row-odd"><td><code class="code docutils literal"><span class="pre">from</span> <span class="pre">butools.queues</span> <span class="pre">import</span> <span class="pre">*</span></code></td>
@@ -405,9 +410,9 @@ queueing models that are driven by some Markovian structures.</p>
 <li>Discrete queues, where the jobs waiting in the queue are discrete.
 In most of the supported queueing models the inter-arrival and the service times are either given by
 Markovian arrival processes or PH distributions.
-BuTools has a relatively large set of tools to obtain, transform and analyze MAPs and PH distributions,
-furthermore, several performance measures of these queues are also PH distributed. This kind of
-elegant closeness property is the main motivation to restrict the focus of BuTools on these queues.</li>
+BuTools has a relatively large set of tools to obtain, transform and analyze MAPs and PH distributions.
+Several performance measures of these queues are also PH distributed, which is the main motivation to
+restrict the focus of BuTools on these queues.</li>
 <li>In continuous queues the jobs are intinifesimally small, they are considered to be fluid drops.
 The rate at which fluid drops arrive and are being served are modulated by Markov chains. Again,
 several performance measures are PH distributed, thus these queues have their well deserved places in
@@ -418,8 +423,8 @@ BuTools as well.</li>
 <h2>Performance measures<a class="headerlink" href="#performance-measures" title="Permalink to this headline">¶</a></h2>
 <p>Currently, the functions in the queues package calculate two performance measures:</p>
 <ul class="simple">
-<li>Queue length distribution. By our definition, the jobs in the server and in the waiting room
-are all included in the queue length.</li>
+<li>Number of customers in the system. By our definition, the jobs in the server and in the waiting room
+are all included.</li>
 <li>Sojourn time distribution. The sojourn time of the jobs, including the waiting time in the waiting room
 and the service time. This quantity is also called &#8220;system time&#8221; or &#8220;response time&#8221;.</li>
 </ul>
@@ -433,16 +438,19 @@ and the service time. This quantity is also called &#8220;system time&#8221; or 
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="QBDQueue.html#butools.queues.QBDQueue" title="butools.queues.QBDQueue"><code class="xref py py-func docutils literal"><span class="pre">QBDQueue</span></code></a></td>
-<td>Returns various performance measures of a QBD queue.</td>
+<td>Returns various performance measures of a continuous time QBD queue.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="MAPMAP1.html#butools.queues.MAPMAP1" title="butools.queues.MAPMAP1"><code class="xref py py-func docutils literal"><span class="pre">MAPMAP1</span></code></a></td>
-<td>Returns various performance measures of a MAP/MAP/1 queue.</td>
+<td>Returns various performance measures of a continuous time MAP/MAP/1 queue.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="MMAPPH1PRPR.html#butools.queues.MMAPPH1PRPR" title="butools.queues.MMAPPH1PRPR"><code class="xref py py-func docutils literal"><span class="pre">MMAPPH1PRPR</span></code></a></td>
-<td>Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.</td>
+<tr class="row-odd"><td><a class="reference internal" href="MMAPPH1FCFS.html#butools.queues.MMAPPH1FCFS" title="butools.queues.MMAPPH1FCFS"><code class="xref py py-func docutils literal"><span class="pre">MMAPPH1FCFS</span></code></a></td>
+<td>Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 first-come-first-served queue.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="MMAPPH1NPPR.html#butools.queues.MMAPPH1NPPR" title="butools.queues.MMAPPH1NPPR"><code class="xref py py-func docutils literal"><span class="pre">MMAPPH1NPPR</span></code></a></td>
-<td>Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.</td>
+<tr class="row-even"><td><a class="reference internal" href="MMAPPH1PRPR.html#butools.queues.MMAPPH1PRPR" title="butools.queues.MMAPPH1PRPR"><code class="xref py py-func docutils literal"><span class="pre">MMAPPH1PRPR</span></code></a></td>
+<td>Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="MMAPPH1NPPR.html#butools.queues.MMAPPH1NPPR" title="butools.queues.MMAPPH1NPPR"><code class="xref py py-func docutils literal"><span class="pre">MMAPPH1NPPR</span></code></a></td>
+<td>Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.</td>
 </tr>
 </tbody>
 </table>

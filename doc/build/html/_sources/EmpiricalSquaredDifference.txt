@@ -63,7 +63,23 @@ butools.fitting.EmpiricalSquaredDifference
 
     For Mathematica:
 
-    
+    >>> tr = Flatten[Import["/home/gabor/github/butools/test/data/bctrace.iat","CSV"]];
+    >>> intBounds = Array[# &, 50, {0, MarginalMomentsFromTrace[tr, 1][[1]]*4}];
+    >>> {pdfTrX, pdfTrY} = PdfFromTrace[tr, intBounds];
+    >>> {cdfTrX, cdfTrY} = CdfFromTrace[tr];
+    >>> step = Ceiling[Length[tr]/2000];
+    >>> cdfTrX = cdfTrX[[1;;Length[tr];;step]];
+    >>> cdfTrY = cdfTrY[[1;;Length[tr];;step]];
+    >>> {alpha, A} = APHFrom3Moments[MarginalMomentsFromTrace[tr, 3]];
+    >>> {pdfPHX, pdfPHY} = IntervalPdfFromPH[alpha, A, intBounds];
+    >>> cdfPHY = CdfFromPH[alpha, A, cdfTrX];
+    >>> sqPdf = EmpiricalSquaredDifference[pdfTrY, pdfPHY, intBounds];
+    >>> Print[sqPdf];
+    0.011854198606408763
+    >>> sqCdf = EmpiricalSquaredDifference[cdfTrY[[1;;-2]], cdfPHY[[1;;-2]], cdfTrX];
+    >>> Print[sqCdf];
+    3.8246917213169133*^-10
+
     For Python/Numpy:
 
     >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")

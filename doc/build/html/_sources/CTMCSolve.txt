@@ -30,8 +30,8 @@ butools.mc.CTMCSolve
 
     Notes
     -----
-    The procedure raises an exception if :code:`butools.checkInput` 
-    is set to :code:`true` and :func:`CheckGenerator(Q)` fails.
+    The procedure raises an exception if :code:`checkInput` 
+    is set to :code:`true` and :func:`CheckGenerator` (Q) fails.
 
     Examples
     ========
@@ -46,7 +46,13 @@ butools.mc.CTMCSolve
 
     For Mathematica:
 
-    
+    >>> Q = {{-0.9, 0.5, 0.4},{0.9, -0.9, 0},{0.3, 0.3, -0.6}};
+    >>> ret = CTMCSolve[Q];
+    >>> Print[ret];
+    {0.4090909090909091, 0.3181818181818182, 0.2727272727272727}
+    >>> Print[ret.Q];
+    {-4.163336342344337*^-17, -1.3877787807814457*^-17, 5.551115123125783*^-17}
+
     For Python/Numpy:
 
     >>> Q = ml.matrix([[-0.9, 0.5, 0.4],[0.9, -0.9, 0],[0.3, 0.3, -0.6]])

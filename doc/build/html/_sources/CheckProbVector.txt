@@ -76,7 +76,34 @@ butools.mc.CheckProbVector
 
     For Mathematica:
 
-    
+    >>> Q = {1.1,-0.1};
+    >>> flag = CheckProbVector[Q];
+    "CheckProbVector: The vector has negative element!"
+    >>> Print[flag];
+    False
+    >>> Q = {1.1,0.1};
+    >>> flag = CheckProbVector[Q];
+    "CheckProbVector: The sum of the vector is not 1 (precision:"1.*^-12")!"
+    >>> Print[flag];
+    False
+    >>> Q = {1,0};
+    >>> flag = CheckProbVector[Q];
+    >>> Print[flag];
+    True
+    >>> Q = {0.9,-0.1};
+    >>> flag = CheckProbVector[Q, True];
+    "CheckProbVector: The vector has negative element!"
+    >>> Print[flag];
+    False
+    >>> Q = {0.9,0.1};
+    >>> flag = CheckProbVector[Q, True];
+    >>> Print[flag];
+    True
+    >>> Q = {0.8,0.1};
+    >>> flag = CheckProbVector[Q, True];
+    >>> Print[flag];
+    True
+
     For Python/Numpy:
 
     >>> Q = ml.matrix([[1.1,-0.1]])

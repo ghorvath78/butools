@@ -66,7 +66,25 @@ butools.dmap.LagkJointMomentsFromDRAP
 
     For Mathematica:
 
-    
+    >>> H0 = {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}};
+    >>> H1 = {{0, 1, -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}};
+    >>> Nm = LagkJointMomentsFromDRAP[H0, H1, 4, 1];
+    >>> Print[Length[Nm]];
+    5
+    >>> moms = MarginalMomentsFromDRAP[H0, H1, 4];
+    >>> Print[moms];
+    {3.20702366840782, 16.897636691953394, 130.7705457435602, 1347.0743893905096}
+    >>> cjm = Table[0,{3}];
+    >>> Do[
+    >>>     Nx = LagkJointMomentsFromDRAP[H0, H1, 1, i];
+    >>>     cjm[[i]] = (Nx[[2, 2]]-moms[[1]]^2)/(moms[[2]]-moms[[1]]^2);
+    >>> , {i,1,3,1}];
+    >>> Print[cjm];
+    {0.01430295723332723, 0.0012424024982963658, 7.5867553989928*^-6}
+    >>> corr = LagCorrelationsFromDRAP[H0, H1, 3];
+    >>> Print[corr];
+    {0.01430295723332723, 0.0012424024982963658, 7.586755398724169*^-6}
+
     For Python/Numpy:
 
     >>> H0 = ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02]])

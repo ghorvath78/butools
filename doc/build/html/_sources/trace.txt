@@ -11,10 +11,17 @@ script, or execute
 
     * - :code:`addpath('butools/trace')` 
       - in Matlab,
-    * - :code:`<<"BuTools`Trace"` 
+    * - :code:`<<BuTools`Trace`` 
       - in Mathematica,
     * - :code:`from butools.trace import *` 
       - in Python/Numpy.
+
+Analysis of measurement traces
+------------------------------
+
+This package contains tools for calculating various statistical parameters of measurement data.
+Among other use-cases, it allows to evaluate the quality of the results of the procedures located in the 
+:mod:`fitting` package.
 
 
 Tools for the analysis of measurement traces

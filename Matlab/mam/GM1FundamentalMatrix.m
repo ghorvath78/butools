@@ -14,9 +14,9 @@
 %  
 %  Parameters
 %  ----------
-%  A : matrix, shape (N,M*N)
-%      Matrix blocks of the G/M/1 type generator from
-%      0 to M-1, concatenated horizontally.
+%  A : length(M) list of matrices of shape (N,N)
+%      Matrix blocks of the G/M/1 type generator in the 
+%      regular part, from 0 to M-1.
 %  precision : double, optional
 %      Matrix R is computed iteratively up to this
 %      precision. The default value is 1e-14

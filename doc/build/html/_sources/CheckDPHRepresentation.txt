@@ -52,7 +52,18 @@ butools.dph.CheckDPHRepresentation
 
     For Mathematica:
 
-    
+    >>> a = {0.48,0.08,0.26,0.18};
+    >>> A = {{0, 0.08, 0.08, 0.8},{0.55, 0, 0.24, 0.19},{0.06, 0.03, 0, 0.001},{0.23, 0.005, 0.2, 0.53}};
+    >>> flag = CheckDPHRepresentation[a, A];
+    >>> Print[flag];
+    True
+    >>> a = {0.48,0.08};
+    >>> A = {{0, 0.08},{0.55, 0.5}};
+    >>> flag = CheckDPHRepresentation[a, A];
+    "CheckProbMatrix: A rowsum of the transient matrix is not less or equal than 1!"
+    >>> Print[flag];
+    False
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.48,0.08,0.26,0.18]])

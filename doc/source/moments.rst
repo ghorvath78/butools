@@ -11,11 +11,20 @@ script, or execute
 
     * - :code:`addpath('butools/moments')` 
       - in Matlab,
-    * - :code:`<<"BuTools`Moments"` 
+    * - :code:`<<BuTools`Moments`` 
       - in Mathematica,
     * - :code:`from butools.moments import *` 
       - in Python/Numpy.
 
+
+Moment expressions
+------------------
+
+Several researchers working of fitting/matching procedures for phase-type distributions
+and Markovian arrival processes have introduced moment expressions to make the 
+arising expressions simpler. Instead of the classical (raw) moments, factorial, reduced, 
+normalized, and Hankel moments have been defined in various research papers. BuTools has 
+tools available to convert among them.
 
 Conversion routines between various moment expressions
 ------------------------------------------------------

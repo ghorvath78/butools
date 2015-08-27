@@ -49,7 +49,15 @@ butools.trace.PdfFromTrace
 
     For Mathematica:
 
-    
+    >>> D0 = {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}};
+    >>> D1 = {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}};
+    >>> x = Range[0.0,0.5,0.01];
+    >>> tr = SamplesFromMAP[D0, D1, 1000000];
+    >>> {x, y} = PdfFromTrace[tr, x];
+    >>> {a, A} = MarginalDistributionFromMAP[D0, D1];
+    >>> {xm, ym} = IntervalPdfFromPH[a, A, x];
+    >>> ListLinePlot[{Transpose[{x, y}],Transpose[{xm, ym}]}]
+
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-18., 1., 4.],[2., -18., 7.],[1., 3., -32.]])

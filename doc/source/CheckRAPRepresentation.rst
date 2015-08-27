@@ -71,7 +71,36 @@ butools.map.CheckRAPRepresentation
 
     For Mathematica:
 
-    
+    >>> H0 = {{-1., 0, 1.},{0, -2., 0},{1., 0, -3.},{1., 2., 2.}};
+    >>> H1 = {{-1., 0, 1.},{0, -2., 0},{1., 0, -3.},{1., 2., 2.}};
+    >>> flag = CheckRAPRepresentation[H0, H1];
+    "CheckRAPRepresentation: D0 is not a quadratic matrix!"
+    >>> Print[flag];
+    False
+    >>> H0 = {{-1., 0, 2.},{0, 2., 0},{1., 0, -3.}};
+    >>> H1 = {{-1., 0, 1.},{0, -2., 0},{1., 0, -3.}};
+    >>> flag = CheckRAPRepresentation[H0, H1];
+    "CheckRAPRepresentation: A rowsum of D0+D1 is not 0! (precision:"1.*^-12")"
+    >>> Print[flag];
+    False
+    >>> H0 = {{-1., 0, 0},{0, -2., 2.},{0, 3., -3.}};
+    >>> H1 = {{0, 0, 1.},{0, -1., 1.},{1., 0, -1.}};
+    >>> flag = CheckRAPRepresentation[H0, H1];
+    "CheckRAPRepresentation: there is an eigenvalue of D0 with non-negative real part (at precision "1.*^-12")!"
+    >>> Print[flag];
+    False
+    >>> H0 = {{-2., 0, 0},{0, -1., 1.},{0, -1., -1.}};
+    >>> H1 = {{1., 0, 1.},{0, 1., -1.},{1., 0, 1.}};
+    >>> flag = CheckRAPRepresentation[H0, H1];
+    "CheckRAPRepresentation: The dominant eigenvalue of D0 is not real!"
+    >>> Print[flag];
+    False
+    >>> H0 = {{-1., 0, 0},{0, -2., 1.},{0, -1., -2.}};
+    >>> H1 = {{1., 0, 0},{0, 1., 0},{1., 1., 1.}};
+    >>> flag = CheckRAPRepresentation[H0, H1];
+    >>> Print[flag];
+    True
+
     For Python/Numpy:
 
     >>> H0 = ml.matrix([[-1., 0, 1.],[0, -2., 0],[1., 0, -3.],[1., 2., 2.]])

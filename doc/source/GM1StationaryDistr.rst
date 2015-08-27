@@ -20,13 +20,11 @@ butools.mam.GM1StationaryDistr
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
-        Matrix blocks of the G/M/1 type generator in the
-        regular part, from 0 to M-1, concatenated 
-        horizontally.
-    B : matrix, shape (N,M*N)
+    A : length(M) list of matrices of shape (N,N)
+        Matrix blocks of the G/M/1 type generator in the 
+        regular part, from 0 to M-1.
+    B : length(M) list of matrices of shape (N,N)
         Matrix blocks of the G/M/1 type generator at the
-        boundary, from 0 to M-1, concatenated horizontally.
     R : matrix, shape (N,N)
         Matrix R of the G/M/1 type Markov chain
     K : integer
@@ -35,7 +33,7 @@ butools.mam.GM1StationaryDistr
     
     Returns
     -------
-    pi : matrix, shape (1,(K+1)*N)
+    pi : array, shape (1,(K+1)*N)
         The stationary probability vector up to level K
     
     Examples
@@ -61,7 +59,40 @@ butools.mam.GM1StationaryDistr
 
     For Mathematica:
 
-    
+    >>> B0 = {{0.7, 0.2},{0.3, 0.6}};
+    >>> B1 = {{0.3, 0.4},{0.5, 0.2}};
+    >>> B2 = {{0.2, 0.4},{0.1, 0.6}};
+    >>> B3 = {{0., 0.1},{0.2, 0.}};
+    >>> A0 = {{0.1, 0.},{0., 0.1}};
+    >>> A1 = {{0., 0.2},{0., 0.2}};
+    >>> A2 = {{0., 0.1},{0., 0.}};
+    >>> A3 = {{0.3, 0.2},{0.3, 0.2}};
+    >>> A4 = {{0., 0.1},{0.2, 0.}};
+    >>> B = {B0, B1, B2, B3};
+    >>> A = {A0, A1, A2, A3, A4};
+    >>> R = GM1FundamentalMatrix[A];
+    "The evaluation of the iteration required "64" roots\n"
+    "The evaluation of the iteration required "32" roots\n"
+    "The evaluation of the iteration required "16" roots\n"
+    "The evaluation of the iteration required "8" roots\n"
+    "The evaluation of the iteration required "8" roots\n"
+    "Final Residual Error for G: "5.551115123125783*^-17
+    >>> Print[R];
+    {{0.10065149910973312, 0.026960920607274754},
+     {0.0006553100576153258, 0.12568710472819553}}
+    >>> pi = GM1StationaryDistr[B, R, 300];
+    "Accumulated mass after "2" iterations: "0.9838720044873233
+    "Accumulated mass after "3" iterations: "0.9979548824322513
+    "Accumulated mass after "4" iterations: "0.9997408547470504
+    "Accumulated mass after "5" iterations: "0.9999671812477241
+    "Accumulated mass after "6" iterations: "0.9999958456126867
+    "Accumulated mass after "7" iterations: "0.999999474298702
+    "Accumulated mass after "8" iterations: "0.9999999334955769
+    "Accumulated mass after "9" iterations: "0.9999999915886283
+    "Accumulated mass after "10" iterations: "0.9999999989363275
+    "Accumulated mass after "11" iterations: "0.9999999998655101
+    "Accumulated mass after "12" iterations: "0.999999999982997
+
     For Python/Numpy:
 
     >>> B0 = ml.matrix([[0.7, 0.2],[0.3, 0.6]])

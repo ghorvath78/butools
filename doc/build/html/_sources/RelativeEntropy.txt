@@ -55,7 +55,18 @@ butools.fitting.RelativeEntropy
 
     For Mathematica:
 
-    
+    >>> tr = Flatten[Import["/home/gabor/github/butools/test/data/bctrace.iat","CSV"]];
+    >>> trAcf = LagCorrelationsFromTrace[tr, 10];
+    >>> Print[trAcf];
+    {0.2000486547928462, 0.18927461196895048, 0.1389510350355339, 0.14213385937998096, 0.11712708793961699, 0.12367812078281121, 0.11212100297743381, 0.10051058879698098, 0.10019060948165948, 0.0987971115012499}
+    >>> {D0, D1} = MAPFromFewMomentsAndCorrelations[MarginalMomentsFromTrace[tr, 3], trAcf[[1]]];
+    >>> mapAcf = LagCorrelationsFromMAP[D0, D1, 10];
+    >>> Print[mapAcf];
+    {0.20004865479284564, 0.12003405953863643, 0.07202335583933256, 0.04321576564432875, 0.025930510713659746, 0.015558937250009402, 0.009335740858440003, 0.005601671629332731, 0.0033611392516858904, 0.0020167653187785875}
+    >>> reAcf = RelativeEntropy[mapAcf, trAcf];
+    >>> Print[reAcf];
+    0.2834377149084656
+
     For Python/Numpy:
 
     >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")

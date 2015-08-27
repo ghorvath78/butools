@@ -41,7 +41,12 @@ butools.trace.CdfFromTrace
 
     For Mathematica:
 
-    
+    >>> D0 = {{-18., 1., 4.},{2., -18., 7.},{1., 3., -32.}};
+    >>> D1 = {{12., 1., 0.},{1., 8., 0.},{2., 1., 25.}};
+    >>> tr = SamplesFromMAP[D0, D1, 1000000];
+    >>> {x, y} = CdfFromTrace[tr];
+    >>> ListLinePlot[{Transpose[{x, y}]}]
+
     For Python/Numpy:
 
     >>> D0 = ml.matrix([[-18., 1., 4.],[2., -18., 7.],[1., 3., -32.]])

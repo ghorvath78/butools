@@ -77,7 +77,42 @@ butools.dmap.CheckDRAPRepresentation
 
     For Mathematica:
 
-    
+    >>> H0 = {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02},{0.2, 0, 0}};
+    >>> H1 = {{0, 1., -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29},{0, 0.8, 0}};
+    >>> flag = CheckDRAPRepresentation[H0, H1];
+    "CheckDRAPRepresentation: D0 is not a quadratic matrix!"
+    >>> Print[flag];
+    False
+    >>> H0 = {{0.2, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}};
+    >>> H1 = {{0, 1., -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}};
+    >>> flag = CheckDRAPRepresentation[H0, H1];
+    "CheckDRAPRepresentation: A rowsum of D0+D1 is not 1! (precision:"1.*^-12")"
+    >>> Print[flag];
+    False
+    >>> H0 = {{-1., 0, 0},{0, -2., 2.},{0, 3., -3.}};
+    >>> H1 = {{0, 0, 1.},{0, -1., 1.},{1., 0, -1.}};
+    >>> flag = CheckDRAPRepresentation[H0, H1];
+    "CheckDRAPRepresentation: A rowsum of D0+D1 is not 1! (precision:"1.*^-12")"
+    >>> Print[flag];
+    False
+    >>> H0 = {{0, 0, 15.},{0, 0.6, 0.18},{0.31, 0.26, 0.02}};
+    >>> H1 = {{0, 1., -15.},{0, 0.18, 0.04},{0.03, 0.09, 0.29}};
+    >>> flag = CheckDRAPRepresentation[H0, H1];
+    "CheckDRAPRepresentation: The dominant eigenvalue of D0 is greater than 1!"
+    >>> Print[flag];
+    False
+    >>> H0 = {{0, 0.5, 0.1},{0, -1.4, 3.1},{0.67, 0, 0.4}};
+    >>> H1 = {{0, 0.4, 0},{0, -0.2, -0.5},{0.3, -0.7, 0.33}};
+    >>> flag = CheckDRAPRepresentation[H0, H1];
+    "CheckDRAPRepresentation: The dominant eigenvalue of D0 is complex!"
+    >>> Print[flag];
+    False
+    >>> H0 = {{0, 0, 0.13},{0, 0.6, 0.18},{0.31, 0.26, 0.02}};
+    >>> H1 = {{0, 1., -0.13},{0, 0.18, 0.04},{0.03, 0.09, 0.29}};
+    >>> flag = CheckDRAPRepresentation[H0, H1];
+    >>> Print[flag];
+    True
+
     For Python/Numpy:
 
     >>> H0 = ml.matrix([[0, 0, 0.13],[0, 0.6, 0.18],[0.31, 0.26, 0.02],[0.2, 0, 0]])

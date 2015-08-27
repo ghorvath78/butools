@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -401,7 +406,7 @@
 </tbody>
 </table>
 <p>Creates a marked rational arrival process that has the same
-marginal and lag-1 joint moments as given (see <a class="reference internal" href="#r30" id="id1">[R30]</a>).</p>
+marginal and lag-1 joint moments as given (see <a class="reference internal" href="#r32" id="id1">[R32]</a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -434,10 +439,10 @@ process</p>
 a valid stochastic process. The joint densities may be
 negative.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r30" rules="none">
+<table class="docutils citation" frame="void" id="r32" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R30]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Andras Horvath, Gabor Horvath, Miklos Telek, &#8220;A
+<tr><td class="label">[R32]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Andras Horvath, Gabor Horvath, Miklos Telek, &#8220;A
 traffic based decomposition of two-class queueing
 networks with priority service,&#8221; Computer Networks
 53:(8) pp. 1235-1248. (2009)</td></tr>
@@ -505,6 +510,65 @@ networks with priority service,&#8221; Computer Networks
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; G0 = {{-1.05, 0.03, 0.07},{0.19, -1.63, 0.06},{0, 0.2, -1.03}};
+&gt;&gt;&gt; G1 = {{0.16, 0.11, 0},{0.1, 0.16, 0},{0.27, 0, 0.19}};
+&gt;&gt;&gt; G2 = {{0.01, 0.09, 0.13},{0.26, 0.21, 0.05},{0, 0.16, 0.07}};
+&gt;&gt;&gt; G3 = {{0.19, 0.06, 0.2},{0.17, 0.16, 0.27},{0, 0, 0.14}};
+&gt;&gt;&gt; G = {G0, G1, G2, G3};
+&gt;&gt;&gt; moms = MarginalMomentsFromMRAP[G, 5];
+&gt;&gt;&gt; Print[moms];
+{0.998048613345479, 2.0262345014785748, 6.2347773609141575, 25.738432370871866, 133.30214790750443}
+&gt;&gt;&gt; Nm = LagkJointMomentsFromMRAP[G, 2, 1];
+&gt;&gt;&gt; {Nm1, Nm2, Nm3} = Nm;
+&gt;&gt;&gt; Print[Nm1];
+{{0.3400009192827923, 0.3405452798817129, 0.6932173701035182},
+ {0.3496600253904083, 0.3518559816976867, 0.7182912226288702},
+ {0.7239624620818725, 0.7307864272366612, 1.494690822742042}}
+&gt;&gt;&gt; Print[Nm2];
+{{0.29553270348533534, 0.27734235602329654, 0.5407773515893262},
+ {0.29028125712379704, 0.27210886385024, 0.5301325803470373},
+ {0.5839079003431904, 0.5468180031775005, 1.064574978879992}}
+&gt;&gt;&gt; Print[Nm3];
+{{0.36446637723187236, 0.3801609774404695, 0.7922397797857303},
+ {0.35810733083127366, 0.37445996131218023, 0.7814764837751109},
+ {0.7183641390535117, 0.752387606929777, 1.5716457698900985}}
+&gt;&gt;&gt; H = MRAPFromMoments[moms, Nm];
+&gt;&gt;&gt; Print[H[[1]]];
+{{-1.9473051937398436, 3.0344139261695524, -2.1703554254825432},
+ {-0.3343442044701893, -0.8811768825595621, 0.2135477889258592},
+ {-0.33362593020289716, 0.2132067478864758, -0.8815179235989457}}
+&gt;&gt;&gt; Print[H[[2]]];
+{{0.22303732415660393, 7.496153934451286, -7.397276128273006},
+ {0.09280493616992504, 7.913084312262072, -7.665823186685884},
+ {0.0869846290873446, 7.880402325125033, -7.626121636429161}}
+&gt;&gt;&gt; Print[H[[3]]];
+{{0.4939487332101481, 0.9295081378932082, -1.079810419889327},
+ {0.4418009261624444, -2.4454040931686905, 2.2994668648207153},
+ {0.44567916840142563, -2.3907771669346403, 2.241455359959218}}
+&gt;&gt;&gt; Print[H[[4]]];
+{{-0.1427050168593569, -5.435557714889001, 5.995947843257454},
+ {-0.19984735284082544, -5.110198412374302, 5.6760893037571805},
+ {-0.19945217229000395, -5.17913683023653, 5.742903429225407}}
+&gt;&gt;&gt; BuTools`CheckPrecision = 10.^-10;
+&gt;&gt;&gt; rmoms = MarginalMomentsFromMRAP[H, 5];
+&gt;&gt;&gt; Print[rmoms];
+{0.9980486133447148, 2.026234501476063, 6.23477736090465, 25.738432370828296, 133.30214790726575}
+&gt;&gt;&gt; rNm = LagkJointMomentsFromMRAP[H, 2, 1];
+&gt;&gt;&gt; {rNm1, rNm2, rNm3} = rNm;
+&gt;&gt;&gt; Print[rNm1];
+{{0.3400009192835025, 0.3405452798822086, 0.6932173701042554},
+ {0.3496600253876201, 0.3518559816946487, 0.7182912226223763},
+ {0.7239624620661935, 0.7307864272203464, 1.4946908227080655}}
+&gt;&gt;&gt; Print[rNm2];
+{{0.29553270348466576, 0.27734235602249724, 0.5407773515875407},
+ {0.2902812571227895, 0.2721088638491218, 0.5301325803446262},
+ {0.5839079003408321, 0.5468180031749403, 1.0645749788745391}}
+&gt;&gt;&gt; Print[rNm3];
+{{0.3644663772275738, 0.3801609774359047, 0.7922397797761231},
+ {0.35810733082500956, 0.374459961305627, 0.7814764837614341},
+ {0.7183641390383446, 0.752387606913997, 1.5716457698572626}}
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">G0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">],[</span><span class="mf">0.19</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.63</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.03</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mi">0</span><span class="p">],[</span><span class="mf">0.27</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">]])</span>

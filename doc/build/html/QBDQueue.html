@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -400,14 +405,16 @@
 </tr>
 </tbody>
 </table>
-<p>Returns various performane measures of a QBD queue.</p>
+<p>Returns various performane measures of a continuous time
+QBD queue.</p>
 <p>QBD queues have a background continuous time Markov chain
 with generator Q whose the transitions can be partitioned
 into three sets: transitions accompanied by an arrival
 of a new job (F, forward), transitions accompanied by
 the service of the current job in the server (B,
 backward) and internal transitions (L, local).
-Thus we have Q=B+L+F.</p>
+Thus we have Q=B+L+F. L0 is the matrix of local
+transition rates if the queue is empty.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -440,9 +447,9 @@ and the performance measures to be computed.</p>
 function are:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="22%" />
-<col width="27%" />
-<col width="51%" />
+<col width="21%" />
+<col width="26%" />
+<col width="53%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Parameter name</th>
@@ -451,27 +458,28 @@ function are:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>&#8220;qlMoms&#8221;</td>
+<tr class="row-even"><td>&#8220;ncMoms&#8221;</td>
 <td>Number of moments</td>
-<td>The queue length moments</td>
+<td>The moments of the number of customers</td>
 </tr>
-<tr class="row-odd"><td>&#8220;qlDistr&#8221;</td>
-<td>A vector of points</td>
-<td>The queue length distribution at
-the requested points</td>
+<tr class="row-odd"><td>&#8220;ncDistr&#8221;</td>
+<td>Upper limit K</td>
+<td>The distribution of the number of
+customers from level 0 to level K-1</td>
 </tr>
-<tr class="row-even"><td>&#8220;qlDistrMG&#8221;</td>
+<tr class="row-even"><td>&#8220;ncDistrMG&#8221;</td>
 <td>None</td>
 <td>The vector-matrix parameters of the
-matrix-geometrically distributed
-queue length distribution</td>
+matrix-geometric distribution of the
+number of customers in the system</td>
 </tr>
-<tr class="row-odd"><td>&#8220;qlDistrDPH&#8221;</td>
+<tr class="row-odd"><td>&#8220;ncDistrDPH&#8221;</td>
 <td>None</td>
 <td>The vector-matrix parameters of the
-matrix-geometrically distributed
-queue length distribution, converted
-to a discrete PH representation</td>
+matrix-geometric distribution of the
+number of customers in the system,
+converted to a discrete PH
+representation</td>
 </tr>
 <tr class="row-even"><td>&#8220;stMoms&#8221;</td>
 <td>Number of moments</td>
@@ -497,16 +505,16 @@ to a continuous PH representation</td>
 </tr>
 <tr class="row-even"><td>&#8220;prec&#8221;</td>
 <td>The precision</td>
-<td>Numerical precision to check if the
-input is valid and it is also used
-as a stopping condition when solving
-the matrix-quadratic equation</td>
+<td>Numerical precision used as a stopping
+condition when solving the
+matrix-quadratic equation</td>
 </tr>
 </tbody>
 </table>
-<p>(The queue length related quantities include the customer
-in the server, and the sojourn time related quantities
-include the service times as well)</p>
+<p>(The quantities related to the number of customers in
+the system include the customer in the server, and the
+sojourn time related quantities include the service
+times as well)</p>
 </div></blockquote>
 </td>
 </tr>
@@ -521,8 +529,8 @@ then it is not put into a list.</p>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>&#8220;qlDistrMG&#8221; and &#8220;stDistrMG&#8221; behave much better numerically than
-&#8220;qlDistrDPH&#8221; and &#8220;stDistrPH&#8221;.</p>
+<p>&#8220;ncDistrMG&#8221; and &#8220;stDistrMG&#8221; behave much better numerically than
+&#8220;ncDistrDPH&#8221; and &#8220;stDistrPH&#8221;.</p>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">;</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">];</span>
@@ -533,111 +541,195 @@ then it is not put into a list.</p>
 <span class="go">    -8     4     2</span>
 <span class="go">     0   -10     5</span>
 <span class="go">     5     1   -10</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">),</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qld</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.29094      0.20433      0.14547      0.10358     0.073709     0.052461</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">     0.037338     0.026574     0.018913     0.013461    0.0095805</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qlm</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">ncd</span><span class="p">,</span> <span class="n">ncm</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;ncDistr&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&#39;ncMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ncd</span><span class="p">);</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.29094      0.20433      0.14547      0.10358     0.073709     0.052461     0.037338     0.026574</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">     0.018913     0.013461    0.0095805</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ncm</span><span class="p">);</span>
 <span class="go">         2.46       14.608       128.88       1515.9        22288</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;qlDistrDPH&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;ncDistrDPH&#39;</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">alphap</span><span class="p">);</span>
 <span class="go">      0.28256      0.22386      0.20264</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Ap</span><span class="p">);</span>
 <span class="go">      0.11832       0.4103      0.18373</span>
 <span class="go">        0.196      0.19477      0.32261</span>
 <span class="go">      0.27566      0.22146      0.21229</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;qlDistrMG&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;ncDistrMG&#39;</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
 <span class="go">     0.042581     -0.27854      0.94503</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <span class="go">   -0.0056928     -0.63242       1.3313</span>
 <span class="go">     0.069475     -0.36133      0.99875</span>
 <span class="go">     0.037353     -0.21854       0.8924</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qldFromDPH</span> <span class="o">=</span> <span class="n">PmfFromDPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">));</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qldFromDPH</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.29094      0.20433      0.14547      0.10358     0.073709     0.052461</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">     0.037338     0.026574     0.018913     0.013461    0.0095805</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qlmFromMG</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qlmFromMG</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncdFromDPH</span> <span class="o">=</span> <span class="n">PmfFromDPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">));</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ncdFromDPH</span><span class="p">);</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.29094      0.20433      0.14547      0.10358     0.073709     0.052461     0.037338     0.026574</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">     0.018913     0.013461    0.0095805</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncmFromMG</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">ncmFromMG</span><span class="p">);</span>
 <span class="go">         2.46       14.608       128.88       1515.9        22288</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">),</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">std</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">   1.1102e-16      0.14225      0.25715      0.35489      0.43933      0.51262</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">       0.5763      0.63165      0.67977      0.72161      0.75797</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">   1.1102e-16      0.14225      0.25715      0.35489      0.43933      0.51262       0.5763      0.63165</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.67977      0.72161      0.75797</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stm</span><span class="p">);</span>
 <span class="go">      0.70236       1.0017       2.1463       6.1325       21.903</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;stDistrPH&#39;</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">betap</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.52899            0            0            0      0.35507            0</span>
-<span class="go">  Columns 7 through 9</span>
-<span class="go">            0            0      0.11594</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.52899            0            0            0      0.35507            0            0            0</span>
+<span class="go">  Column 9</span>
+<span class="go">      0.11594</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Bp</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      -12.591        2.362      0.50976       4.2349      0.39366     0.084961</span>
-<span class="go">        2.001      -12.662      0.95667       0.3335       4.2231      0.15944</span>
-<span class="go">       2.8354      0.93483      -13.595      0.47257      0.15581       4.0674</span>
-<span class="go">            5            0            0      -13.061       1.5746      0.33984</span>
-<span class="go">            0            5            0        1.334      -13.108      0.63778</span>
-<span class="go">            0            0            5       1.8903      0.62322       -13.73</span>
-<span class="go">       4.4697      0.78732      0.16992            4            0            0</span>
-<span class="go">        0.667       4.4461      0.31889            0            4            0</span>
-<span class="go">      0.94514      0.31161       4.1349            0            0            4</span>
-<span class="go">  Columns 7 through 9</span>
-<span class="go">            3            0            0</span>
-<span class="go">            0            3            0</span>
-<span class="go">            0            0            3</span>
-<span class="go">       4.2349      0.39366     0.084961</span>
-<span class="go">       0.3335       4.2231      0.15944</span>
-<span class="go">      0.47257      0.15581       4.0674</span>
-<span class="go">          -10            0            0</span>
-<span class="go">            0          -10            0</span>
-<span class="go">            0            0          -10</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      -12.591        2.362      0.50976       4.2349      0.39366     0.084961            3            0</span>
+<span class="go">        2.001      -12.662      0.95667       0.3335       4.2231      0.15944            0            3</span>
+<span class="go">       2.8354      0.93483      -13.595      0.47257      0.15581       4.0674            0            0</span>
+<span class="go">            5            0            0      -13.061       1.5746      0.33984       4.2349      0.39366</span>
+<span class="go">            0            5            0        1.334      -13.108      0.63778       0.3335       4.2231</span>
+<span class="go">            0            0            5       1.8903      0.62322       -13.73      0.47257      0.15581</span>
+<span class="go">       4.4697      0.78732      0.16992            4            0            0          -10            0</span>
+<span class="go">        0.667       4.4461      0.31889            0            4            0            0          -10</span>
+<span class="go">      0.94514      0.31161       4.1349            0            0            4            0            0</span>
+<span class="go">  Column 9</span>
+<span class="go">            0</span>
+<span class="go">            0</span>
+<span class="go">            3</span>
+<span class="go">     0.084961</span>
+<span class="go">      0.15944</span>
+<span class="go">       4.0674</span>
+<span class="go">            0</span>
+<span class="go">            0</span>
+<span class="go">          -10</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&#39;stDistrME&#39;</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">beta</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.17391      0.47826     -0.71739      0.71739      -1.2391       1.2391</span>
-<span class="go">  Columns 7 through 9</span>
-<span class="go">      -1.2391      0.52174       1.0652</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.17391      0.47826     -0.71739      0.71739      -1.2391       1.2391      -1.2391      0.52174</span>
+<span class="go">  Column 9</span>
+<span class="go">       1.0652</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      -12.591     -0.41431       -3.408        2.165      -13.136           15</span>
-<span class="go">       0.5517      -13.315      -8.0386       7.3408       -10.01       10.714</span>
-<span class="go">      0.20504      -1.8844      -15.359       1.8939      -4.0612       3.4626</span>
-<span class="go">     -0.28868       1.3811      -2.5957      -11.073      -3.7559       3.4626</span>
-<span class="go">      0.48659      -1.3755      -1.3906       5.4522      -17.351      -1.5374</span>
-<span class="go">       1.5997     -0.77852      -1.6145       5.5725      -4.1872      -15.012</span>
-<span class="go">       1.0779      -2.1431       1.8972       1.9933      -1.6703      0.26853</span>
-<span class="go">       2.0033      -1.9938       1.8972       1.9933      -5.9052       4.3998</span>
-<span class="go">      0.59557      0.82156      -1.1028       4.9933      -6.4916       4.9354</span>
-<span class="go">  Columns 7 through 9</span>
-<span class="go">      -13.409       12.066       1.3431</span>
-<span class="go">      -6.3994     0.033031       6.6716</span>
-<span class="go">     -0.19879     0.022021       4.4477</span>
-<span class="go">      -1.3717      -3.2512       8.8939</span>
-<span class="go">        2.853      -3.4525       9.8705</span>
-<span class="go">      -0.7327       0.5475       9.8705</span>
-<span class="go">      -14.463       0.5475       9.8705</span>
-<span class="go">      -4.3594      -9.4525       9.8705</span>
-<span class="go">      -4.3085       0.5475     -0.12955</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      -12.591     -0.41431       -3.408        2.165      -13.136           15      -13.409       12.066</span>
+<span class="go">       0.5517      -13.315      -8.0386       7.3408       -10.01       10.714      -6.3994     0.033031</span>
+<span class="go">      0.20504      -1.8844      -15.359       1.8939      -4.0612       3.4626     -0.19879     0.022021</span>
+<span class="go">     -0.28868       1.3811      -2.5957      -11.073      -3.7559       3.4626      -1.3717      -3.2512</span>
+<span class="go">      0.48659      -1.3755      -1.3906       5.4522      -17.351      -1.5374        2.853      -3.4525</span>
+<span class="go">       1.5997     -0.77852      -1.6145       5.5725      -4.1872      -15.012      -0.7327       0.5475</span>
+<span class="go">       1.0779      -2.1431       1.8972       1.9933      -1.6703      0.26853      -14.463       0.5475</span>
+<span class="go">       2.0033      -1.9938       1.8972       1.9933      -5.9052       4.3998      -4.3594      -9.4525</span>
+<span class="go">      0.59557      0.82156      -1.1028       4.9933      -6.4916       4.9354      -4.3085       0.5475</span>
+<span class="go">  Column 9</span>
+<span class="go">       1.3431</span>
+<span class="go">       6.6716</span>
+<span class="go">       4.4477</span>
+<span class="go">       8.8939</span>
+<span class="go">       9.8705</span>
+<span class="go">       9.8705</span>
+<span class="go">       9.8705</span>
+<span class="go">       9.8705</span>
+<span class="go">     -0.12955</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stdFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">));</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stdFromPH</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">   1.1102e-16      0.14225      0.25715      0.35489      0.43933      0.51262</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">       0.5763      0.63165      0.67977      0.72161      0.75797</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">   1.1102e-16      0.14225      0.25715      0.35489      0.43933      0.51262       0.5763      0.63165</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.67977      0.72161      0.75797</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stmFromME</span><span class="p">);</span>
 <span class="go">      0.70236       1.0017       2.1463       6.1325       21.903</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">},{</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L0</span> <span class="o">=</span> <span class="n">L</span><span class="o">+</span><span class="n">B</span><span class="p">;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">L0</span><span class="p">];</span>
+<span class="go">{{-8., 4., 2.},</span>
+<span class="go"> {0., -10., 5.},</span>
+<span class="go"> {5., 1., -10.}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">ncd</span><span class="p">,</span> <span class="n">ncm</span><span class="p">}</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;ncDistr&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&quot;ncMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for G: &quot;1.249000902703301*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;8.326672684688674*^-17</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ncd</span><span class="p">];</span>
+<span class="go">{0.29093602691449844, 0.2043276077989581, 0.14546751846779368, 0.10357801953919166, 0.07370933599101509, 0.0524613602236208, 0.037337898930337544, 0.02657416066003302, 0.018913402582327217, 0.013461073324799929, 0.009580534061633792}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ncm</span><span class="p">];</span>
+<span class="go">{2.460029520212033, 14.60791905179449, 128.87860443055757, 1515.888454046844, 22287.969412532402}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">}</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;ncDistrDPH&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for G: &quot;1.249000902703301*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;8.326672684688674*^-17</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">alphap</span><span class="p">];</span>
+<span class="go">{0.28256467199124746, 0.22386225497958323, 0.2026370461146711}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Ap</span><span class="p">];</span>
+<span class="go">{{0.11831531605275415, 0.41029505226571794, 0.18373196776426398},</span>
+<span class="go"> {0.19600449960093794, 0.19477428983994485, 0.32260956940537433},</span>
+<span class="go"> {0.2756583766062947, 0.2214649539635013, 0.2122872279368174}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;ncDistrMG&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for G: &quot;1.249000902703301*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;8.326672684688674*^-17</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">alpha</span><span class="p">];</span>
+<span class="go">{0.042581006723761944, -0.27854425286936896, 0.9450272192311088}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="go">{{-0.005692752239919885, -0.6324216674588319, 1.3312918216215348},</span>
+<span class="go"> {0.06947485017082566, -0.3613333778272245, 0.9987453751370272},</span>
+<span class="go"> {0.037353395792620064, -0.21853933991282004, 0.8924029638966606}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncdFromDPH</span> <span class="o">=</span> <span class="n">PmfFromDPH</span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ncdFromDPH</span><span class="p">];</span>
+<span class="go">{0.29093602691449827, 0.2043276077989581, 0.14546751846779366, 0.10357801953919163, 0.07370933599101509, 0.0524613602236208, 0.03733789893033755, 0.026574160660033017, 0.018913402582327217, 0.013461073324799929, 0.009580534061633792}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncmFromMG</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ncmFromMG</span><span class="p">];</span>
+<span class="go">{2.4600295202120344, 14.607919051794505, 128.87860443055771, 1515.8884540468462, 22287.969412532442}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span><span class="p">}</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for G: &quot;1.249000902703301*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;8.326672684688674*^-17</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">std</span><span class="p">];</span>
+<span class="go">{-2.220446049250313*^-16, 0.1422502687156617, 0.257145752951746, 0.35488604834530724, 0.4393330753410507, 0.5126194621799739, 0.5763000198215283, 0.6316534259881905, 0.6797734673117404, 0.7216066395715914, 0.7579746780193366}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stm</span><span class="p">];</span>
+<span class="go">{0.702356254321406, 1.0017175985977291, 2.1462963079180923, 6.1325315761778585, 21.90316181223906}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">}</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;stDistrPH&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for G: &quot;1.249000902703301*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;8.326672684688674*^-17</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">betap</span><span class="p">];</span>
+<span class="go">{0.5289855072463769, 0., 0., 0., 0.35507246376811596, 0., 0., 0., 0.11594202898550725}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Bp</span><span class="p">];</span>
+<span class="go">{{-12.590793810464493, 2.361969158122816, 0.5097641466892873, 4.2348676982559175, 0.39366152635380264, 0.08496069111488122, 3., 0., 0.},</span>
+<span class="go"> {2.0010093466117524, -12.661585604321022, 0.956667718183873, 0.3335015577686254, 4.223069065946496, 0.15944461969731216, 0., 3., 0.},</span>
+<span class="go"> {2.8354199578367134, 0.9348326530713538, -13.595359582237387, 0.47256999297278557, 0.15580544217855896, 4.067440069627102, 0., 0., 3.},</span>
+<span class="go"> {5., 0., 0., -13.060529206976328, 1.5746461054152106, 0.3398427644595249, 4.2348676982559175, 0.39366152635380264, 0.08496069111488122},</span>
+<span class="go"> {0., 5., 0., 1.3340062310745016, -13.107723736214014, 0.6377784787892486, 0.3335015577686254, 4.223069065946496, 0.15944461969731216},</span>
+<span class="go"> {0., 0., 5., 1.8902799718911423, 0.6232217687142358, -13.730239721491591, 0.47256999297278557, 0.15580544217855896, 4.067440069627102},</span>
+<span class="go"> {4.469735396511836, 0.7873230527076053, 0.16992138222976244, 4., 0., 0., -10., 0., 0.},</span>
+<span class="go"> {0.6670031155372508, 4.446138131892993, 0.3188892393946243, 0., 4., 0., 0., -10., 0.},</span>
+<span class="go"> {0.9451399859455711, 0.3116108843571179, 4.1348801392542045, 0., 0., 4., 0., 0., -10.}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;stDistrME&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for G: &quot;1.249000902703301*^-16</span>
+<span class="go">&quot;Final Residual Error for R: &quot;8.326672684688674*^-17</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">beta</span><span class="p">];</span>
+<span class="go">{0.17391304347826098, 0.4782608695652174, -0.7173913043478262, 0.7173913043478262, -1.239130434782609, 1.239130434782609, -1.239130434782609, 0.5217391304347829, 1.065217391304348}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-12.590793810464493, -0.4143079390446338, -3.4079678715964405, 2.165044054462539, -13.135614274299147, 15., -13.409206189535507, 12.066062929481042, 1.3431432600544637},</span>
+<span class="go"> {0.5517026304648383, -13.31487770573633, -8.038587534717966, 7.340812756512537, -10.010346278592026, 10.71360053252702, -6.399351616213842, 0.03303146474052099, 6.671571630027232},</span>
+<span class="go"> {0.20503537103555214, -1.884385705275542, -15.359058356478641, 1.8938751710083572, -4.061197338939663, 3.462593438602556, -0.19879434118212647, 0.022020976493681843, 4.447714420018154},</span>
+<span class="go"> {-0.28868062527080385, 1.3811139661569207, -2.5957222593063154, -11.072961911866576, -3.7559458603857516, 3.462593438602556, -1.371745011542437, -3.2511664850390023, 8.893852551911149},</span>
+<span class="go"> {0.48658568115248757, -1.3754727933458817, -1.3906370069902225, 5.452192557308922, -17.35130544262314, -1.537406561397444, 2.8529886820342716, -3.4524984742617457, 9.870450847557183},</span>
+<span class="go"> {1.5997319672256904, -0.7785202333216761, -1.6144942169993, 5.572472782556839, -4.187199250885652, -15.012243707418406, -0.7327033789210926, 0.5475015257382534, 9.870450847557183},</span>
+<span class="go"> {1.0778774878655475, -2.143055839126959, 1.8972066351776808, 1.9933318607527575, -1.6702917941051352, 0.2685286269197684, -14.462943100412684, 0.5475015257382534, 9.870450847557183},</span>
+<span class="go"> {2.0032584178625217, -1.9938176991209073, 1.8972066351776808, 1.9933318607527575, -5.905159492361053, 4.399819340414528, -4.359366115651527, -9.452498474261745, 9.870450847557183},</span>
+<span class="go"> {0.5955687292136896, 0.8215616781767565, -1.1027933648223192, 4.9933318607527575, -6.4916348275412075, 4.935419429169031, -4.308490869225876, 0.5475015257382534, -0.12954915244281562}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stdFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">[</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stdFromPH</span><span class="p">];</span>
+<span class="go">{-2.220446049250313*^-16, 0.14225026871566182, 0.25714575295174624, 0.354886048345307, 0.4393330753410508, 0.5126194621799739, 0.576300019821528, 0.6316534259881904, 0.6797734673117404, 0.7216066395715919, 0.7579746780193367}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stmFromME</span><span class="p">];</span>
+<span class="go">{0.7023562543214075, 1.0017175985977365, 2.1462963079181128, 6.132531576177928, 21.903161812239368}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
@@ -647,14 +739,14 @@ then it is not put into a list.</p>
 <span class="go">[[ -8.   4.   2.]</span>
 <span class="go"> [  0. -10.   5.]</span>
 <span class="go"> [  5.   1. -10.]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;qlDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">11.0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="s">&quot;qlMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncd</span><span class="p">,</span> <span class="n">ncm</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;ncDistr&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&quot;ncMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  9.71445146547e-17</span>
 <span class="go">Final Residual Error for R:  1.11022302463e-16</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qld</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ncd</span><span class="p">)</span>
 <span class="go">[ 0.29094  0.20433  0.14547  0.10358  0.07371  0.05246  0.03734  0.02657  0.01891  0.01346  0.00958]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qlm</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ncm</span><span class="p">)</span>
 <span class="go">[2.4600295202120317, 14.607919051794482, 128.87860443055746, 1515.8884540468425, 22287.969412532377]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;qlDistrDPH&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;ncDistrDPH&quot;</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  9.71445146547e-17</span>
 <span class="go">Final Residual Error for R:  1.11022302463e-16</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alphap</span><span class="p">)</span>
@@ -663,7 +755,7 @@ then it is not put into a list.</p>
 <span class="go">[[ 0.11832  0.4103   0.18373]</span>
 <span class="go"> [ 0.196    0.19477  0.32261]</span>
 <span class="go"> [ 0.27566  0.22146  0.21229]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;qlDistrMG&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;ncDistrMG&quot;</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  9.71445146547e-17</span>
 <span class="go">Final Residual Error for R:  1.11022302463e-16</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
@@ -672,11 +764,11 @@ then it is not put into a list.</p>
 <span class="go">[[-0.00569 -0.63242  1.33129]</span>
 <span class="go"> [ 0.06947 -0.36133  0.99875]</span>
 <span class="go"> [ 0.03735 -0.21854  0.8924 ]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qldFromDPH</span> <span class="o">=</span> <span class="n">PmfFromDPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">11.0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qldFromDPH</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncdFromDPH</span> <span class="o">=</span> <span class="n">PmfFromDPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">11.0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ncdFromDPH</span><span class="p">)</span>
 <span class="go">[ 0.29094  0.20433  0.14547  0.10358  0.07371  0.05246  0.03734  0.02657  0.01891  0.01346  0.00958]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qlmFromMG</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qlmFromMG</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncmFromMG</span> <span class="o">=</span> <span class="n">MomentsFromMG</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ncmFromMG</span><span class="p">)</span>
 <span class="go">[2.4600295202120313, 14.607919051794475, 128.87860443055737, 1515.8884540468407, 22287.969412532337]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span> <span class="o">=</span> <span class="n">QBDQueue</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  9.71445146547e-17</span>

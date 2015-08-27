@@ -3,6 +3,10 @@
 %  Returns the fundamental matrices corresponding to the
 %  given canonical Markov fluid model. Matrices Psi, K and
 %  U are returned depending on the "matrices" parameter.
+%  The canonical Markov fluid model is defined by the 
+%  matrix blocks of the generator of the background Markov
+%  chain partitioned according to the sign of the 
+%  associated fluid rates (i.e., there are "+" and "-" states).
 %  
 %  Parameters
 %  ----------
@@ -42,6 +46,11 @@
 %  M : list of matrices
 %      The list of calculated matrices in the order as
 %      requested in the 'matrices' parameter.
+%  
+%  Notes
+%  -----
+%  Thanks to Benny Van Houdt for the implementation of the
+%  Riccati solvers.
 
 function varargout = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, precision, maxNumIt, method)
 

@@ -77,6 +77,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -90,6 +91,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -138,6 +140,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -269,6 +272,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -328,6 +332,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -460,22 +465,22 @@ function are:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>&#8220;qlMoms&#8221;</td>
+<tr class="row-even"><td>&#8220;flMoms&#8221;</td>
 <td>Number of moments</td>
 <td>The moments of the fluid level</td>
 </tr>
-<tr class="row-odd"><td>&#8220;qlDistr&#8221;</td>
+<tr class="row-odd"><td>&#8220;flDistr&#8221;</td>
 <td>A vector of points</td>
 <td>The fluid level distribution at
 the requested points (cdf)</td>
 </tr>
-<tr class="row-even"><td>&#8220;qlDistrME&#8221;</td>
+<tr class="row-even"><td>&#8220;flDistrME&#8221;</td>
 <td>None</td>
 <td>The vector-matrix parameters of the
 matrix-exponentially distributed
 fluid level distribution</td>
 </tr>
-<tr class="row-odd"><td>&#8220;qlDistrPH&#8221;</td>
+<tr class="row-odd"><td>&#8220;flDistrPH&#8221;</td>
 <td>None</td>
 <td>The vector-matrix parameters of the
 matrix-exponentially distributed
@@ -528,8 +533,17 @@ then it is not put into a list.</p>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>&#8220;qlDistrME&#8221; and &#8220;stDistrME&#8221; behave much better numerically than
-&#8220;qlDistrPH&#8221; and &#8220;stDistrPH&#8221;.</p>
+<p>&#8220;flDistrME&#8221; and &#8220;stDistrME&#8221; behave much better numerically than
+&#8220;flDistrPH&#8221; and &#8220;stDistrPH&#8221;.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R14]</a></td><td>Horvath G, Telek M, &#8220;Sojourn times in fluid queues
+with independent and dependent input and output
+processes PERFORMANCE EVALUATION 79: pp. 160-181, 2014.</td></tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <p>For Matlab:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Qin</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">;</span> <span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">;</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">];</span>
@@ -538,45 +552,45 @@ then it is not put into a list.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Qout</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">;</span> <span class="mf">6.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">;</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vRout</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">15.</span><span class="p">];</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Rout</span> <span class="o">=</span> <span class="n">diag</span><span class="p">(</span><span class="n">vRout</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">),</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;flDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">),</span> <span class="s">&#39;flMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    1.0339e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qld</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">       0.3918      0.47163      0.53819      0.59413       0.6415      0.68193</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.71667      0.74673      0.77292      0.79585      0.81605</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qlm</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">fld</span><span class="p">);</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">       0.3918      0.47163      0.53819      0.59413       0.6415      0.68193      0.71667      0.74673</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.77292      0.79585      0.81605</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flm</span><span class="p">);</span>
 <span class="go">       0.5357       1.0765       3.4298        14.87       81.162</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;qlDistrPH&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;flDistrPH&#39;</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    1.0339e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">alphap</span><span class="p">);</span>
 <span class="go">      0.45573      0.15247</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Ap</span><span class="p">);</span>
 <span class="go">      -2.3405      0.53197</span>
 <span class="go">      0.92131      -1.2559</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;qlDistrME&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;flDistrME&#39;</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    1.0339e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
 <span class="go">     -0.65561       1.2638</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <span class="go">      -2.1425       1.5194</span>
 <span class="go">      0.43807      -1.4538</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">));</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qldFromPH</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">       0.3918      0.47163      0.53819      0.59413       0.6415      0.68193</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.71667      0.74673      0.77292      0.79585      0.81605</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qlmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qlmFromME</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">));</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">fldFromPH</span><span class="p">);</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">       0.3918      0.47163      0.53819      0.59413       0.6415      0.68193      0.71667      0.74673</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.77292      0.79585      0.81605</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flmFromME</span><span class="p">);</span>
 <span class="go">       0.5357       1.0765       3.4298        14.87       81.162</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">),</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    2.0955e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">std</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.29838      0.51911      0.66679      0.76705      0.83596      0.88381</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.91733      0.94097      0.95774      0.96968      0.97821</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.29838      0.51911      0.66679      0.76705      0.83596      0.88381      0.91733      0.94097</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.95774      0.96968      0.97821</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stm</span><span class="p">);</span>
 <span class="go">       0.1948      0.11287      0.10069      0.12158      0.18506</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s">&#39;stDistrPH&#39;</span><span class="p">);</span>
@@ -595,52 +609,52 @@ then it is not put into a list.</p>
 <span class="go">     -0.61643      -2.9219</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stdFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">));</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stdFromPH</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.29838      0.51911      0.66679      0.76705      0.83596      0.88381</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.91733      0.94097      0.95774      0.96968      0.97821</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.29838      0.51911      0.66679      0.76705      0.83596      0.88381      0.91733      0.94097</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.95774      0.96968      0.97821</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stmFromME</span><span class="p">);</span>
 <span class="go">       0.1948      0.11287      0.10069      0.12158      0.18506</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;qlDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">),</span> <span class="s">&#39;qlMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;flDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">),</span> <span class="s">&#39;flMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    1.0339e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qld</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.64736      0.68913      0.72467      0.75512       0.7814      0.80423</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.82418      0.84172      0.85721      0.87095      0.88319</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qlm</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">fld</span><span class="p">);</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.64736      0.68913      0.72467      0.75512       0.7814      0.80423      0.82418      0.84172</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.85721      0.87095      0.88319</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flm</span><span class="p">);</span>
 <span class="go">      0.33265      0.68892       2.2198       9.6621        52.81</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;qlDistrPH&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;flDistrPH&#39;</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    1.0339e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">alphap</span><span class="p">);</span>
 <span class="go">      0.24142      0.11122</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">Ap</span><span class="p">);</span>
 <span class="go">      -2.3405      0.73252</span>
 <span class="go">      0.66907      -1.2559</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;qlDistrME&#39;</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;flDistrME&#39;</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    1.0339e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">alpha</span><span class="p">);</span>
 <span class="go">     -0.24261      0.59524</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <span class="go">      -2.1425       1.5194</span>
 <span class="go">      0.43807      -1.4538</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">));</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qldFromPH</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.64736      0.68913      0.72467      0.75512       0.7814      0.80423</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.82418      0.84172      0.85721      0.87095      0.88319</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qlmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">qlmFromME</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">));</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">fldFromPH</span><span class="p">);</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.64736      0.68913      0.72467      0.75512       0.7814      0.80423      0.82418      0.84172</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.85721      0.87095      0.88319</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">flmFromME</span><span class="p">);</span>
 <span class="go">      0.33265      0.68892       2.2198       9.6621        52.81</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;stDistr&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">),</span> <span class="s">&#39;stMoms&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="go">Final Residual Error for Psi:    2.0955e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">std</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.57864      0.70628      0.79365      0.85412      0.89636      0.92608</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.94712      0.96209      0.97277      0.98041      0.98589</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.57864      0.70628      0.79365      0.85412      0.89636      0.92608      0.94712      0.96209</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.97277      0.98041      0.98589</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stm</span><span class="p">);</span>
 <span class="go">      0.12096     0.071546     0.064592      0.07852      0.11997</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">]</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="s">&#39;stDistrPH&#39;</span><span class="p">);</span>
@@ -659,16 +673,128 @@ then it is not put into a list.</p>
 <span class="go">      0.66298      -4.1028</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stdFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">1.</span><span class="p">));</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stdFromPH</span><span class="p">);</span>
-<span class="go">  Columns 1 through 6</span>
-<span class="go">      0.57864      0.70628      0.79365      0.85412      0.89636      0.92608</span>
-<span class="go">  Columns 7 through 11</span>
-<span class="go">      0.94712      0.96209      0.97277      0.98041      0.98589</span>
+<span class="go">  Columns 1 through 8</span>
+<span class="go">      0.57864      0.70628      0.79365      0.85412      0.89636      0.92608      0.94712      0.96209</span>
+<span class="go">  Columns 9 through 11</span>
+<span class="go">      0.97277      0.98041      0.98589</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">disp</span><span class="p">(</span><span class="n">stmFromME</span><span class="p">);</span>
 <span class="go">      0.12096     0.071546     0.064592      0.07852      0.11997</span>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Qin</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">},{</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vRin</span> <span class="o">=</span> <span class="p">{</span><span class="mf">3.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">0.</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Rin</span> <span class="o">=</span> <span class="n">DiagonalMatrix</span><span class="p">[</span><span class="n">vRin</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Qout</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">},{</span><span class="mf">6.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">},{</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vRout</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">15.</span><span class="p">};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Rout</span> <span class="o">=</span> <span class="n">DiagonalMatrix</span><span class="p">[</span><span class="n">vRout</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;flDistr&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span> <span class="s">&quot;flMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.008282842946301*^-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">fld</span><span class="p">];</span>
+<span class="go">{0.391800873246579, 0.4716300609142923, 0.5381929941518719, 0.59413043637473, 0.641503602438246, 0.6819269051118623, 0.716669775887913, 0.7467348114111322, 0.7729177924650865, 0.7958538190537734, 0.8160528083141847}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flm</span><span class="p">];</span>
+<span class="go">{0.5357035627676002, 1.0765385576008892, 3.4298090557057153, 14.869885651621978, 81.16233569132378}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;flDistrPH&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.008282842946301*^-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">alphap</span><span class="p">];</span>
+<span class="go">{0.4557324623147923, 0.15246666443862872}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Ap</span><span class="p">];</span>
+<span class="go">{{-2.3404575203667424, 0.5319666549172487},</span>
+<span class="go"> {0.9213094524423505, -1.2559180746181111}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;flDistrME&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.008282842946301*^-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">alpha</span><span class="p">];</span>
+<span class="go">{-0.6556057500800456, 1.2638048768334667}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="go">{{-2.142529166146859, 1.5193788109637358},</span>
+<span class="go"> {0.43806809528730795, -1.4538464288379942}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">fldFromPH</span><span class="p">];</span>
+<span class="go">{0.391800873246579, 0.4716300609142924, 0.538192994151872, 0.5941304363747301, 0.641503602438246, 0.6819269051118624, 0.716669775887913, 0.7467348114111322, 0.7729177924650866, 0.7958538190537734, 0.8160528083141847}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flmFromME</span><span class="p">];</span>
+<span class="go">{0.5357035627676006, 1.07653855760089, 3.429809055705716, 14.869885651621974, 81.16233569132378}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.4988010832439613*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">std</span><span class="p">];</span>
+<span class="go">{0.29837541247887833, 0.5191050664654031, 0.6667930660737641, 0.7670494936141816, 0.8359575279199422, 0.8838138562939544, 0.9173341131830883, 0.9409745470882221, 0.9577383239502405, 0.9696768240390095, 0.9782073950108067}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stm</span><span class="p">];</span>
+<span class="go">{0.19480129555185477, 0.11287108072563842, 0.100686427731073, 0.12157602438536942, 0.18505841424939884}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;stDistrPH&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.4988010832439613*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">betap</span><span class="p">];</span>
+<span class="go">{0.45285051259891584, 0.24877407492220602}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Bp</span><span class="p">];</span>
+<span class="go">{{-5.4973439722064095, 0.8367525984737355},</span>
+<span class="go"> {1.4491661670964533, -3.7914265223267773}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;stDistrME&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.4988010832439613*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">beta</span><span class="p">];</span>
+<span class="go">{0.18114020503956624, 0.5204843824815555}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-6.366843672464282, 1.6656012008589829},</span>
+<span class="go"> {-0.6164326032040903, -2.9219268220689054}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stdFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">[</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stdFromPH</span><span class="p">];</span>
+<span class="go">{0.2983754124788781, 0.519105066465403, 0.666793066073764, 0.7670494936141815, 0.8359575279199422, 0.8838138562939544, 0.9173341131830883, 0.9409745470882221, 0.9577383239502405, 0.9696768240390093, 0.9782073950108067}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stmFromME</span><span class="p">];</span>
+<span class="go">{0.19480129555185485, 0.11287108072563846, 0.10068642773107304, 0.12157602438536946, 0.18505841424939895}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;flDistr&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span> <span class="s">&quot;flMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.008282842946301*^-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">fld</span><span class="p">];</span>
+<span class="go">{0.6473632738053204, 0.6891320433434904, 0.7246660281915851, 0.7551190366324814, 0.7814006612465998, 0.8042313747552501, 0.8241848657852636, 0.8417205998183797, 0.8572088895119173, 0.8709502223792169, 0.8831901837025878}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flm</span><span class="p">];</span>
+<span class="go">{0.33264746858870425, 0.6889173702248804, 2.219774758007364, 9.662108525950131, 52.80956347845118}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;flDistrPH&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.008282842946301*^-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">alphap</span><span class="p">];</span>
+<span class="go">{0.24141936087976823, 0.11121736531491135}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Ap</span><span class="p">];</span>
+<span class="go">{{-2.3404575203667424, 0.7325208369425898},</span>
+<span class="go"> {0.6690675306998952, -1.2559180746181111}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;flDistrME&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;7.008282842946301*^-16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">alpha</span><span class="p">];</span>
+<span class="go">{-0.24260693822391072, 0.5952436644185902}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="go">{{-2.142529166146859, 1.5193788109637358},</span>
+<span class="go"> {0.43806809528730795, -1.4538464288379942}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">[</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">fldFromPH</span><span class="p">];</span>
+<span class="go">{0.6473632738053204, 0.6891320433434904, 0.7246660281915852, 0.7551190366324814, 0.7814006612465998, 0.8042313747552501, 0.8241848657852637, 0.8417205998183797, 0.8572088895119174, 0.8709502223792169, 0.883190183702588}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">flmFromME</span><span class="p">];</span>
+<span class="go">{0.3326474685887042, 0.6889173702248805, 2.219774758007364, 9.662108525950126, 52.80956347845115}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.4988010832439613*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">std</span><span class="p">];</span>
+<span class="go">{0.5786381632358244, 0.7062784286059924, 0.7936484851974519, 0.8541200746555163, 0.8963590382366593, 0.9260821681510065, 0.9471221726585012, 0.9620853669984744, 0.9727657494367457, 0.9804107560683182, 0.9858949950823395}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stm</span><span class="p">];</span>
+<span class="go">{0.12096271585043802, 0.07154626102115877, 0.0645920699157504, 0.07852033701278222, 0.11996554734440769}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;stDistrPH&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.4988010832439613*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">betap</span><span class="p">];</span>
+<span class="go">{0.2383068326039564, 0.18305500416021936}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Bp</span><span class="p">];</span>
+<span class="go">{{-5.4973439722064095, 0.8367525984737355},</span>
+<span class="go"> {1.4491661670964533, -3.7914265223267773}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">[</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;stDistrME&quot;</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.4988010832439613*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">beta</span><span class="p">];</span>
+<span class="go">{-0.12203666944014618, 0.5433985062043218}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">B</span><span class="p">];</span>
+<span class="go">{{-5.18601418644967, 2.4838988377244475},</span>
+<span class="go"> {0.6629779802695965, -4.102756308083516}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stdFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">[</span><span class="n">betap</span><span class="p">,</span> <span class="n">Bp</span><span class="p">,</span> <span class="n">Range</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stdFromPH</span><span class="p">];</span>
+<span class="go">{0.5786381632358242, 0.7062784286059923, 0.7936484851974519, 0.8541200746555163, 0.8963590382366593, 0.9260821681510065, 0.9471221726585012, 0.9620853669984744, 0.9727657494367457, 0.9804107560683182, 0.9858949950823395}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">[</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">stmFromME</span><span class="p">];</span>
+<span class="go">{0.12096271585043804, 0.07154626102115878, 0.06459206991575042, 0.07852033701278228, 0.11996554734440777}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Qin</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vRin</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]])</span>
@@ -676,31 +802,31 @@ then it is not put into a list.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Qout</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],[</span><span class="mf">6.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vRout</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">15.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Rout</span> <span class="o">=</span> <span class="n">Diag</span><span class="p">(</span><span class="n">vRout</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;qlDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;qlMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;flDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;flMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.2975731600306517e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qld</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">fld</span><span class="p">)</span>
 <span class="go">[ 0.3918   0.47163  0.53819  0.59413  0.6415   0.68193  0.71667  0.74673  0.77292  0.79585  0.81605]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qlm</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flm</span><span class="p">)</span>
 <span class="go">[0.53570356276760078, 1.0765385576008903, 3.4298090557057193, 14.869885651621992, 81.162335691323889]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;qlDistrPH&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;flDistrPH&quot;</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.2975731600306517e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alphap</span><span class="p">)</span>
 <span class="go">[[ 0.45573  0.15247]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Ap</span><span class="p">)</span>
 <span class="go">[[-2.34046  0.53197]</span>
 <span class="go"> [ 0.92131 -1.25592]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;qlDistrME&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;flDistrME&quot;</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.2975731600306517e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 <span class="go">[[-0.65561  1.2638 ]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="go">[[-2.14253  1.51938]</span>
 <span class="go"> [ 0.43807 -1.45385]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qldFromPH</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">fldFromPH</span><span class="p">)</span>
 <span class="go">[ 0.3918   0.47163  0.53819  0.59413  0.6415   0.68193  0.71667  0.74673  0.77292  0.79585  0.81605]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qlmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qlmFromME</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flmFromME</span><span class="p">)</span>
 <span class="go">[0.53570356276760067, 1.0765385576008901, 3.4298090557057166, 14.869885651621992, 81.162335691323918]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.8457457784393227e-15</span>
@@ -728,31 +854,31 @@ then it is not put into a list.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stmFromME</span><span class="p">)</span>
 <span class="go">[0.19480129555185474, 0.11287108072563844, 0.10068642773107304, 0.12157602438536946, 0.18505841424939901]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qld</span><span class="p">,</span> <span class="n">qlm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;qlDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;qlMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fld</span><span class="p">,</span> <span class="n">flm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;flDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;flMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.2975731600306517e-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qld</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">fld</span><span class="p">)</span>
 <span class="go">[ 0.64736  0.68913  0.72467  0.75512  0.7814   0.80423  0.82418  0.84172  0.85721  0.87095  0.88319]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qlm</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flm</span><span class="p">)</span>
 <span class="go">[0.33264746858870425, 0.68891737022488087, 2.2197747580073659, 9.6621085259501385, 52.809563478451246]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;qlDistrPH&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;flDistrPH&quot;</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.2975731600306517e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alphap</span><span class="p">)</span>
 <span class="go">[[ 0.24142  0.11122]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">Ap</span><span class="p">)</span>
 <span class="go">[[-2.34046  0.73252]</span>
 <span class="go"> [ 0.66907 -1.25592]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;qlDistrME&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;flDistrME&quot;</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.2975731600306517e-15</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 <span class="go">[[-0.24261  0.59524]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="go">[[-2.14253  1.51938]</span>
 <span class="go"> [ 0.43807 -1.45385]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qldFromPH</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fldFromPH</span> <span class="o">=</span> <span class="n">CdfFromPH</span><span class="p">(</span><span class="n">alphap</span><span class="p">,</span> <span class="n">Ap</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">fldFromPH</span><span class="p">)</span>
 <span class="go">[ 0.64736  0.68913  0.72467  0.75512  0.7814   0.80423  0.82418  0.84172  0.85721  0.87095  0.88319]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qlmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">qlmFromME</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flmFromME</span> <span class="o">=</span> <span class="n">MomentsFromME</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">flmFromME</span><span class="p">)</span>
 <span class="go">[0.3326474685887042, 0.68891737022488064, 2.219774758007365, 9.6621085259501367, 52.809563478451238]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">std</span><span class="p">,</span> <span class="n">stm</span> <span class="o">=</span> <span class="n">FluFluQueue</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span> <span class="n">Rin</span><span class="p">,</span> <span class="n">Qout</span><span class="p">,</span> <span class="n">Rout</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="s">&quot;stDistr&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="s">&quot;stMoms&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="go">Final Residual Error for G:  1.8457457784393227e-15</span>

@@ -76,6 +76,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -89,6 +90,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -137,6 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -268,6 +271,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -327,6 +331,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -401,7 +406,8 @@ difficult implementation.</p>
 </div>
 <div class="section" id="loading-butools">
 <h3>Loading BuTools<a class="headerlink" href="#loading-butools" title="Permalink to this headline">¶</a></h3>
-<p>The packages of BuTools can be loaded individually, but there are convenience functions available to load everything as well.
+<p>BuTools is portable, no installation is needed.
+The packages of BuTools can be loaded individually, but there are convenience functions available to load everything as well.
 If BuTools is located in directory &lt;BTDir&gt;, all BuTools packages can be loaded by</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -420,9 +426,64 @@ If BuTools is located in directory &lt;BTDir&gt;, all BuTools packages can be lo
 </tr>
 </tbody>
 </table>
-<p>In case of Matlab and IPython no other preparations and installation steps are required, BuToolsInit adjusts the Path variable, too.</p>
-<p>The <code class="xref py py-func docutils literal"><span class="pre">BuToolsInit</span></code> function has two optional arguments as well, by which it is possible to initialize the BuToolsVerbose,
-BuToolsCheckInput and BuToolsCheckPrecision global variables.</p>
+</div>
+<div class="section" id="global-variables">
+<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h3>
+<p>There are three global variables used by BuTools:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="29%" />
+<col width="29%" />
+<col width="14%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name in MATLAB</th>
+<th class="head">Name in Mathematica</th>
+<th class="head">Name in Python</th>
+<th class="head">Default value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">BuToolsVerbose</span></code></td>
+<td><code class="code docutils literal"><span class="pre">BuTools`Verbose</span></code></td>
+<td><a class="reference internal" href="#butools.verbose" title="butools.verbose"><code class="xref py py-data docutils literal"><span class="pre">butools.verbose</span></code></a></td>
+<td><code class="code docutils literal"><span class="pre">False</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="code docutils literal"><span class="pre">BuToolsCheckInput</span></code></td>
+<td><code class="code docutils literal"><span class="pre">BuTools`CheckInput</span></code></td>
+<td><a class="reference internal" href="#butools.checkInput" title="butools.checkInput"><code class="xref py py-data docutils literal"><span class="pre">butools.checkInput</span></code></a></td>
+<td><code class="code docutils literal"><span class="pre">True</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="code docutils literal"><span class="pre">BuToolsCheckPrecision</span></code></td>
+<td><code class="code docutils literal"><span class="pre">BuTools`CheckPrecision</span></code></td>
+<td><a class="reference internal" href="#butools.checkPrecision" title="butools.checkPrecision"><code class="xref py py-data docutils literal"><span class="pre">butools.checkPrecision</span></code></a></td>
+<td><code class="code docutils literal"><span class="pre">1e-12</span></code></td>
+</tr>
+</tbody>
+</table>
+<dl class="data">
+<dt id="butools.verbose">
+<code class="descclassname">butools.</code><code class="descname">verbose</code><a class="headerlink" href="#butools.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting <a class="reference internal" href="#butools.verbose" title="butools.verbose"><code class="xref py py-data docutils literal"><span class="pre">verbose</span></code></a> to <code class="code docutils literal"><span class="pre">True</span></code> allows the functions to print as many useful messages to the output
+console as possible. Turning it off avoids bloating the console. The default value is <code class="code docutils literal"><span class="pre">False</span></code>, but for
+the examples of the reference documentation we have set it to <code class="code docutils literal"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="butools.checkInput">
+<code class="descclassname">butools.</code><code class="descname">checkInput</code><a class="headerlink" href="#butools.checkInput" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <a class="reference internal" href="#butools.checkInput" title="butools.checkInput"><code class="xref py py-data docutils literal"><span class="pre">checkInput</span></code></a> is set to <code class="code docutils literal"><span class="pre">True</span></code>, the functions of BuTools perform as many checks on the input
+parameters as possible. This can be very useful to recognize typos as soon as possible, but can be a waste
+of computational effort in case of a computationally demanding application.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="butools.checkPrecision">
+<code class="descclassname">butools.</code><code class="descname">checkPrecision</code><a class="headerlink" href="#butools.checkPrecision" title="Permalink to this definition">¶</a></dt>
+<dd><p>This numeric value serves as the tolerance when the validity of the input parameters are checked.</p>
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="packages">

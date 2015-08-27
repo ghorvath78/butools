@@ -50,7 +50,12 @@ butools.ph.PdfFromME
 
     For Mathematica:
 
-    
+    >>> a = {0.2,0.3,0.5};
+    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
+    >>> x = Range[0.0,5.0,0.01];
+    >>> pdf = PdfFromME[a, A, x];
+    >>> ListLinePlot[{Transpose[{x, pdf}]}]
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.2,0.3,0.5]])

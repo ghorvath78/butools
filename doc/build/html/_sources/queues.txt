@@ -11,7 +11,7 @@ script, or execute
 
     * - :code:`addpath('butools/queues')` 
       - in Matlab,
-    * - :code:`<<"BuTools`Queues"` 
+    * - :code:`<<BuTools`Queues`` 
       - in Mathematica,
     * - :code:`from butools.queues import *` 
       - in Python/Numpy.
@@ -26,9 +26,9 @@ The supported queues can be classified to two groups:
 * Discrete queues, where the jobs waiting in the queue are discrete.
   In most of the supported queueing models the inter-arrival and the service times are either given by 
   Markovian arrival processes or PH distributions. 
-  BuTools has a relatively large set of tools to obtain, transform and analyze MAPs and PH distributions,
-  furthermore, several performance measures of these queues are also PH distributed. This kind of 
-  elegant closeness property is the main motivation to restrict the focus of BuTools on these queues.
+  BuTools has a relatively large set of tools to obtain, transform and analyze MAPs and PH distributions.
+  Several performance measures of these queues are also PH distributed, which is the main motivation to 
+  restrict the focus of BuTools on these queues.
 * In continuous queues the jobs are intinifesimally small, they are considered to be fluid drops.
   The rate at which fluid drops arrive and are being served are modulated by Markov chains. Again, 
   several performance measures are PH distributed, thus these queues have their well deserved places in 
@@ -38,8 +38,8 @@ Performance measures
 --------------------
 Currently, the functions in the queues package calculate two performance measures:
 
-* Queue length distribution. By our definition, the jobs in the server and in the waiting room
-  are all included in the queue length.
+* Number of customers in the system. By our definition, the jobs in the server and in the waiting room
+  are all included.
 * Sojourn time distribution. The sojourn time of the jobs, including the waiting time in the waiting room
   and the service time. This quantity is also called "system time" or "response time".
 
@@ -50,13 +50,15 @@ Functions for discrete queues
     :widths: 25 150
 
     * - :py:func:`QBDQueue <butools.queues.QBDQueue>`
-      - Returns various performance measures of a QBD queue.
+      - Returns various performance measures of a continuous time QBD queue.
     * - :py:func:`MAPMAP1 <butools.queues.MAPMAP1>`
-      - Returns various performance measures of a MAP/MAP/1 queue.
+      - Returns various performance measures of a continuous time MAP/MAP/1 queue.
+    * - :py:func:`MMAPPH1FCFS <butools.queues.MMAPPH1FCFS>`
+      - Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 first-come-first-served queue.
     * - :py:func:`MMAPPH1PRPR <butools.queues.MMAPPH1PRPR>`
-      - Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.
+      - Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.
     * - :py:func:`MMAPPH1NPPR <butools.queues.MMAPPH1NPPR>`
-      - Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.
+      - Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.
 
 Functions for continuous queues
 -------------------------------
@@ -74,6 +76,7 @@ Functions for continuous queues
 
     QBDQueue
     MAPMAP1
+    MMAPPH1FCFS
     MMAPPH1PRPR
     MMAPPH1NPPR
     FluidQueue

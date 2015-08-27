@@ -61,7 +61,17 @@ butools.ph.CheckMEPositiveDensity
 
     For Mathematica:
 
-    
+    >>> a = {0.2,0.3,0.5};
+    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
+    >>> flag = CheckMEPositiveDensity[a, A];
+    >>> Print[flag];
+    True
+    >>> a = {0.2,0.3,0.5};
+    >>> A = {{-1, 0, 0},{0, -3, 2.9},{0, -2.9, -3}};
+    >>> flag = CheckMEPositiveDensity[a, A];
+    >>> Print[flag];
+    False
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[0.2,0.3,0.5]])

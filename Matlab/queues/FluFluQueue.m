@@ -42,16 +42,16 @@
 %      +----------------+--------------------+--------------------------------------+
 %      | Parameter name | Input parameters   | Output                               |
 %      +================+====================+======================================+
-%      | "qlMoms"       | Number of moments  | The moments of the fluid level       |
+%      | "flMoms"       | Number of moments  | The moments of the fluid level       |
 %      +----------------+--------------------+--------------------------------------+
-%      | "qlDistr"      | A vector of points | The fluid level distribution at      |
+%      | "flDistr"      | A vector of points | The fluid level distribution at      |
 %      |                |                    | the requested points (cdf)           |
 %      +----------------+--------------------+--------------------------------------+
-%      | "qlDistrME"    | None               | The vector-matrix parameters of the  |
+%      | "flDistrME"    | None               | The vector-matrix parameters of the  |
 %      |                |                    | matrix-exponentially distributed     |
 %      |                |                    | fluid level distribution             |
 %      +----------------+--------------------+--------------------------------------+
-%      | "qlDistrPH"    | None               | The vector-matrix parameters of the  |
+%      | "flDistrPH"    | None               | The vector-matrix parameters of the  |
 %      |                |                    | matrix-exponentially distributed     |
 %      |                |                    | fluid level distribution, converted  |
 %      |                |                    | to a PH representation               |
@@ -86,8 +86,14 @@
 %  
 %  Notes
 %  -----
-%  "qlDistrME" and "stDistrME" behave much better numerically than 
-%  "qlDistrPH" and "stDistrPH".
+%  "flDistrME" and "stDistrME" behave much better numerically than 
+%  "flDistrPH" and "stDistrPH".
+%  
+%  References
+%  ----------
+%  .. [1] Horvath G, Telek M, "Sojourn times in fluid queues 
+%         with independent and dependent input and output 
+%         processes PERFORMANCE EVALUATION 79: pp. 160-181, 2014.
 
 function varargout = FluFluQueue(Qin, Rin, Qout, Rout, srv0stop, varargin)
 

@@ -20,13 +20,12 @@ butools.mam.MG1StationaryDistr
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
-        Matrix blocks of the M/G/1 type generator in the
-        regular part, from 0 to M-1, concatenated 
-        horizontally.
-    B : matrix, shape (N,M*N)
+    A : length(M) list of matrices of shape (N,N)
+        Matrix blocks of the M/G/1 type generator in the 
+        regular part, from 0 to M-1.
+    B : length(M) list of matrices of shape (N,N)
         Matrix blocks of the M/G/1 type generator at the
-        boundary, from 0 to M-1, concatenated horizontally.
+        boundary, from 0 to M-1.
     G : matrix, shape (N,N)
         Matrix G of the M/G/1 type Markov chain
     K : integer
@@ -35,7 +34,7 @@ butools.mam.MG1StationaryDistr
     
     Returns
     -------
-    pi : matrix, shape (1,(K+1)*N)
+    pi : array, shape (1,(K+1)*N)
         The stationary probability vector up to level K
     
     Examples

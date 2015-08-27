@@ -11,10 +11,26 @@ script, or execute
 
     * - :code:`addpath('butools/mc')` 
       - in Matlab,
-    * - :code:`<<"BuTools`MC"` 
+    * - :code:`<<BuTools`MC` 
       - in Mathematica,
     * - :code:`from butools.mc import *` 
       - in Python/Numpy.
+
+Markov chains and rational processes
+------------------------------------
+
+The difference between Markov chains and rational processes is that
+the entries of the generator of a rational process can be negative 
+as well. There are still restrictions: the rowsum must be 0 or 1 
+(in the continuous time and discrete time cases, respectively), the eigenvalues
+must fall into the left half-plane in the continuous case, and in the unit cycle
+in the discrete case. The dominant eigenvalue must be real.
+
+The invariant (stationary) vector of Markov chains and rational processes
+are obtained the same way. The only reason to treat them separately is 
+checking the input parameters. If the global variable :code:`butools.checkInput` 
+is set to :code:`true`, CTMCSolve and DTMCSolve enforce a proper Markovian generator,
+while CRPSolve and DRPSolve just check the eigenvalues and the rowsums.
 
 
 Properties of Markov chains and rational processes

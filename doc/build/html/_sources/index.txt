@@ -38,6 +38,7 @@ At the moment BuTools supports the following three frameworks:
 Loading BuTools
 ---------------
 
+BuTools is portable, no installation is needed.
 The packages of BuTools can be loaded individually, but there are convenience functions available to load everything as well.
 If BuTools is located in directory <BTDir>, all BuTools packages can be loaded by
 
@@ -51,10 +52,36 @@ If BuTools is located in directory <BTDir>, all BuTools packages can be loaded b
     * - :code:`AppendTo[$Path,"<BTDir>/Mathematica"]; <<BuTools`` 
       - in Mathematica.
 
-In case of Matlab and IPython no other preparations and installation steps are required, BuToolsInit adjusts the Path variable, too.
+Global variables
+----------------
 
-The :func:`BuToolsInit()` function has two optional arguments as well, by which it is possible to initialize the BuToolsVerbose,
-BuToolsCheckInput and BuToolsCheckPrecision global variables.
+There are three global variables used by BuTools:
+
++-------------------------------+--------------------------------+--------------------------------+---------------+
+| Name in MATLAB                | Name in Mathematica            | Name in Python                 | Default value |
++===============================+================================+================================+===============+
+| :code:`BuToolsVerbose`        | :code:`BuTools`Verbose`        | :data:`butools.verbose`        | :code:`False` |
++-------------------------------+--------------------------------+--------------------------------+---------------+
+| :code:`BuToolsCheckInput`     | :code:`BuTools`CheckInput`     | :data:`butools.checkInput`     | :code:`True`  |
++-------------------------------+--------------------------------+--------------------------------+---------------+
+| :code:`BuToolsCheckPrecision` | :code:`BuTools`CheckPrecision` | :data:`butools.checkPrecision` | :code:`1e-12` |
++-------------------------------+--------------------------------+--------------------------------+---------------+
+
+.. py:data:: verbose
+
+    Setting :data:`verbose` to :code:`True` allows the functions to print as many useful messages to the output
+    console as possible. Turning it off avoids bloating the console. The default value is :code:`False`, but for 
+    the examples of the reference documentation we have set it to :code:`True`.
+
+.. py:data:: checkInput
+
+    If :data:`checkInput` is set to :code:`True`, the functions of BuTools perform as many checks on the input 
+    parameters as possible. This can be very useful to recognize typos as soon as possible, but can be a waste
+    of computational effort in case of a computationally demanding application.
+
+.. py:data:: checkPrecision
+
+    This numeric value serves as the tolerance when the validity of the input parameters are checked.
 
 
 Packages

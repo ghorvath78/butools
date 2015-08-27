@@ -11,7 +11,7 @@ script, or execute
 
     * - :code:`addpath('butools/fitting')` 
       - in Matlab,
-    * - :code:`<<"BuTools`Fitting"` 
+    * - :code:`<<BuTools`Fitting``
       - in Mathematica,
     * - :code:`from butools.fitting import *` 
       - in Python/Numpy.

@@ -11,7 +11,7 @@ butools.mam.QBDFundamentalMatrices
         * - Matlab:
           - :code:`M = QBDFundamentalMatrices(B, L, F, matrices, precision, maxNumIt, method)`
         * - Mathematica:
-          - :code:`M = QBDFundamentalMatrices[xxx]`
+          - :code:`M = QBDFundamentalMatrices[B, L, F, matrices, precision, maxNumIt, method]`
         * - Python/Numpy:
           - :code:`M = QBDFundamentalMatrices(B, L, F, matrices, precision, maxNumIt, method)`
 
@@ -46,7 +46,8 @@ butools.mam.QBDFundamentalMatrices
         equation (CR: cyclic reduction, LR: logarithmic
         reduction, NI: Newton iteration, FI: functional
         iteration, IS: invariant subspace method). The 
-        default is "CR".
+        default is "CR". "CR" is the only supported 
+        method in the Mathematica and Python implementation.
     
     Returns
     -------

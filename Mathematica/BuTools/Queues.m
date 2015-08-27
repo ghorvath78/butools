@@ -5,13 +5,13 @@
 *)
 
 BeginPackage["BuTools`Queues`"];
-QBDQueue::usage = "Ret = QBDQueue[B, L, F, L0, ...]: Returns various performance measures of a QBD queue.";
-MAPMAP1::usage = "Ret = MAPMAP1[D0, D1, S0, S1, ...]: Returns various performance measures of a MAP/MAP/1 queue.";
+QBDQueue::usage = "Ret = QBDQueue[B, L, F, L0, ...]: Returns various performance measures of a continuous time QBD queue.";
+MAPMAP1::usage = "Ret = MAPMAP1[D0, D1, S0, S1, ...]: Returns various performance measures of a continuous time MAP/MAP/1 queue.";
 FluidQueue::usage = "Ret = FluidQueue[Q, Rin, Rout, ...]: Returns various performance measures of a fluid queue.";
 FluFluQueue::usage = "Ret = FluFluQueue[Qin, Rin, Qout, Rout, srv0stop, ...]: Returns various performance measures of a fluid queue, where the input and output processes are independent.";
-MMAPPH1PRPR::usage = "Ret = MMAPPH1PRPR[D, sigma, S, ...]: Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.";
-MMAPPH1NPPR::usage = "Ret = MMAPPH1NPPR[D, sigma, S, ...]: Returns various performance measures of a multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.";
-MMAPPH1FCFS::usage = ""
+MMAPPH1PRPR::usage = "Ret = MMAPPH1PRPR[D, sigma, S, ...]: Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 preemptive resume priority queue.";
+MMAPPH1NPPR::usage = "Ret = MMAPPH1NPPR[D, sigma, S, ...]: Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 non-preemptive priority queue.";
+MMAPPH1FCFS::usage = "Ret = MMAPPH1FCFS[D, sigma, S, ...]: Returns various performance measures of a continuous time multi-class MMAP[K]/PH[K]/1 first-come-first-served queue.";
 
 
 Begin["`Private`"];

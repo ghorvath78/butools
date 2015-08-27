@@ -11,7 +11,7 @@ script, or execute
 
     * - :code:`addpath('butools/mam')` 
       - in Matlab,
-    * - :code:`<<"BuTools`MAM"` 
+    * - :code:`<<BuTools`MAM`` 
       - in Mathematica,
     * - :code:`from butools.mam import *` 
       - in Python/Numpy.
@@ -78,7 +78,13 @@ storage remains the same).
 
 There is a class of Markovian fluid models, called *canonical* fluid models, which are 
 much easier to hande technically. In canonical fluid models the fluid rates can be either
-1 or -1, zero rates or rates other than these two are not allowed.
+1 or -1, zero rates or rates other than these two are not allowed. Canonical fluid models are
+characterized by the blocks of the generator of the background Markov chain partitioned 
+according to the sign of the associated fluid rate as
+
+.. math::
+    Q=\begin{bmatrix} Q_{++} & Q_{+-}  \\ Q_{-+} & Q_{--} \end{bmatrix}
+
 
 The steady state solution of Markovian fluid models (both canonical and general ones) is 
 matrix-exponential. The probability that the fluid level is exactly 0 while being in various

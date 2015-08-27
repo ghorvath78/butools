@@ -155,7 +155,129 @@ butools.fitting.PHFromTrace
 
     For Mathematica:
 
-    
+    >>> tr = Flatten[Import["/home/gabor/github/butools/test/data/bctrace.iat","CSV"]];
+    >>> {alpha, A, logli} = PHFromTrace[tr, 5];
+    "Num of iterations: "20", logli: "4.8092300067059535
+    "Num of iterations: "26", logli: "4.809235435027485
+    "EM algorithm terminated. (orders="{1, 4}")"
+    "Num of iterations: "20", logli: "4.683317781477141
+    "Num of iterations: "38", logli: "4.704214271672482
+    "Num of iterations: "38", logli: "4.704214271672482
+    "EM algorithm terminated. (orders="{2, 3}")"
+    "Num of iterations: "13", logli: "4.894318246490096
+    "Num of iterations: "26", logli: "4.898349065288064
+    "Num of iterations: "39", logli: "4.8985999642994065
+    "Num of iterations: "51", logli: "4.89878133343547
+    "Num of iterations: "64", logli: "4.8989479972108
+    "Num of iterations: "77", logli: "4.8990977181707995
+    "Num of iterations: "90", logli: "4.89924035598373
+    "Num of iterations: "102", logli: "4.899372417693129
+    "Num of iterations: "114", logli: "4.899510325011154
+    "Num of iterations: "127", logli: "4.899671843230089
+    "Num of iterations: "139", logli: "4.899836025597829
+    "Num of iterations: "152", logli: "4.900031245080798
+    "Num of iterations: "165", logli: "4.900238803829762
+    "Num of iterations: "178", logli: "4.900443966924616
+    "Num of iterations: "190", logli: "4.9006139623651945
+    "Num of iterations: "201", logli: "4.900742157090518
+    "EM algorithm terminated. (orders="{1, 1, 3}")"
+    "Num of iterations: "14", logli: "4.846111351537217
+    "Num of iterations: "27", logli: "4.851422822109602
+    "Num of iterations: "40", logli: "4.851663586226162
+    "Num of iterations: "52", logli: "4.85177202585639
+    "Num of iterations: "65", logli: "4.851912954098613
+    "Num of iterations: "78", logli: "4.8520519001971145
+    "Num of iterations: "91", logli: "4.852183146393526
+    "Num of iterations: "104", logli: "4.852333485343567
+    "Num of iterations: "117", logli: "4.852550797457522
+    "Num of iterations: "130", logli: "4.852926291581028
+    "Num of iterations: "143", logli: "4.853720321486975
+    "Num of iterations: "158", logli: "4.85667738204316
+    "Num of iterations: "167", logli: "4.8623051325434705
+    "Num of iterations: "168", logli: "4.863279856542737
+    "Num of iterations: "169", logli: "4.864341586890624
+    "Num of iterations: "170", logli: "4.865497327898647
+    "Num of iterations: "171", logli: "4.866757372059696
+    "Num of iterations: "172", logli: "4.868137493672351
+    "Num of iterations: "173", logli: "4.8696621585039255
+    "Num of iterations: "174", logli: "4.871369345657646
+    "Num of iterations: "175", logli: "4.8733180347788565
+    "Num of iterations: "176", logli: "4.875600054271152
+    "Num of iterations: "177", logli: "4.878358389000584
+    "Num of iterations: "178", logli: "4.881811700896143
+    "Num of iterations: "179", logli: "4.886268931740982
+    "Num of iterations: "180", logli: "4.892054411447398
+    "Num of iterations: "181", logli: "4.899120695311693
+    "Num of iterations: "182", logli: "4.9062691521540565
+    "Num of iterations: "183", logli: "4.911394072570149
+    "Num of iterations: "184", logli: "4.913841789490561
+    "Num of iterations: "185", logli: "4.914707340661588
+    "Num of iterations: "186", logli: "4.914972473547811
+    "Num of iterations: "187", logli: "4.915049918282578
+    "Num of iterations: "188", logli: "4.915072471899828
+    "Num of iterations: "189", logli: "4.915079202008659
+    "Num of iterations: "190", logli: "4.915081312881225
+    "Num of iterations: "191", logli: "4.915082026039371
+    "Num of iterations: "192", logli: "4.91508228990118
+    "Num of iterations: "192", logli: "4.91508228990118
+    "EM algorithm terminated. (orders="{1, 2, 2}")"
+    "Num of iterations: "11", logli: "4.879855265152097
+    "Num of iterations: "21", logli: "4.886270915069811
+    "Num of iterations: "30", logli: "4.887168456960867
+    "Num of iterations: "40", logli: "4.887668315460644
+    "Num of iterations: "49", logli: "4.887917322768672
+    "Num of iterations: "59", logli: "4.888081691124073
+    "Num of iterations: "69", logli: "4.888181621001137
+    "Num of iterations: "78", logli: "4.888239956657024
+    "Num of iterations: "88", logli: "4.888283611362753
+    "Num of iterations: "98", logli: "4.888313275634503
+    "Num of iterations: "108", logli: "4.888334008025995
+    "Num of iterations: "118", logli: "4.888348859128792
+    "Num of iterations: "128", logli: "4.888359731068756
+    "Num of iterations: "138", logli: "4.888367845219129
+    "Num of iterations: "149", logli: "4.888374537830832
+    "Num of iterations: "153", logli: "4.8883765319279915
+    "EM algorithm terminated. (orders="{1, 1, 1, 2}")"
+    "Num of iterations: "9", logli: "4.844577387233243
+    "Num of iterations: "17", logli: "4.850912188288292
+    "Num of iterations: "26", logli: "4.8510832077549315
+    "Num of iterations: "27", logli: "4.851083604173109
+    "EM algorithm terminated. (orders="{1, 1, 1, 1, 1}")"
+    "Best solution: logli="4.91508228990118", orders="{1, 2, 2}
+    >>> Print[alpha];
+    {0.06502731323053666, 0.8578848706972437, 0, 0.07708781607263537, 0}
+    >>> Print[A];
+    {{-63.307631149011584, 0, 0, 0, 0},
+     {0, -815.7180689395599, 815.7180689395599, 0, 0},
+     {0, 0., -815.7180689395599, 0, 0},
+     {0, 0, 0, -12563.087922793351, 12563.087922793351},
+     {0, 0, 0, 0., -12563.087922793351}}
+    >>> Print[logli];
+    4.91508228990118
+    >>> logli = LikelihoodFromTrace[tr, alpha, A];
+    >>> Print[logli];
+    4.915082396859105
+    >>> intBounds = Array[# &, 50, {0, MarginalMomentsFromTrace[tr, 1][[1]]*4}];
+    >>> {pdfTrX, pdfTrY} = PdfFromTrace[tr, intBounds];
+    >>> {pdfPHX, pdfPHY} = IntervalPdfFromPH[alpha, A, intBounds];
+    >>> sqPdf = EmpiricalSquaredDifference[pdfTrY, pdfPHY, intBounds];
+    >>> Print[sqPdf];
+    0.007911510224685201
+    >>> rePdf = EmpiricalRelativeEntropy[pdfTrY, pdfPHY, intBounds];
+    >>> Print[rePdf];
+    0.3583352563975375
+    >>> {cdfTrX, cdfTrY} = CdfFromTrace[tr];
+    >>> step = Ceiling[Length[tr]/2000];
+    >>> cdfTrX = cdfTrX[[1;;Length[tr];;step]];
+    >>> cdfTrY = cdfTrY[[1;;Length[tr];;step]];
+    >>> cdfPHY = CdfFromPH[alpha, A, cdfTrX];
+    >>> sqCdf = EmpiricalSquaredDifference[cdfTrY[[1;;-2]], cdfPHY[[1;;-2]], cdfTrX];
+    >>> Print[sqCdf];
+    9.990199283948094*^-11
+    >>> reCdf = EmpiricalRelativeEntropy[cdfTrY[[1;;-2]], cdfPHY[[1;;-2]], cdfTrX];
+    >>> Print[reCdf];
+    0.000185826390423264
+
     For Python/Numpy:
 
     >>> tr = np.loadtxt("/home/gabor/github/butools/test/data/bctrace.iat")

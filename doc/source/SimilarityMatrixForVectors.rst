@@ -49,7 +49,18 @@ butools.reptrans.SimilarityMatrixForVectors
 
     For Mathematica:
 
-    
+    >>> vecA = {{0.0},{0.3},{-1.5},{0.0}};
+    >>> vecB = {{1.0},{0.2},{0.0},{1.0}};
+    >>> B = SimilarityMatrixForVectors[vecA, vecB];
+    >>> Print[B];
+    {{0., 3.3333333333333335, 0., 0.},
+     {0.6666666666666667, 0.6666666666666667, 0., 0.},
+     {0., 0., 0., 0.},
+     {-0.8333333333333334, -0.8333333333333334, -0.8333333333333334, -0.8333333333333334}}
+    >>> err = Norm[B.vecA-vecB];
+    >>> Print[err];
+    0.
+
     For Python/Numpy:
 
     >>> vecA = ml.matrix([[0.0],[0.3],[-1.5],[0.0]])

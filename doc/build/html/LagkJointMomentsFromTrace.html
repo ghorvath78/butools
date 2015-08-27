@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -461,6 +466,35 @@ The default value is 1.</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tr</span> <span class="o">=</span> <span class="n">SamplesFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm1</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromTrace</span><span class="p">[</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Nm1</span><span class="p">];</span>
+<span class="go">{{0.9999999999999999, 0.054181763414703425, 0.006436126028096859, 0.001209503367099609},</span>
+<span class="go"> {0.05418178769739075, 0.0030824084601095082, 0.0003777159956804523, 0.00007229664686244973},</span>
+<span class="go"> {0.006436128687289603, 0.0003761680485188565, 0.000046934053172478785, 9.117977895566016*^-6},</span>
+<span class="go"> {0.0012095035890849577, 0.00007146509506006994, 8.980157356707658*^-6, 1.757755508889203*^-6}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mNm1</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mNm1</span><span class="p">];</span>
+<span class="go">{{0.9999999999999999, 0.05412371134020618, 0.006422964827970543, 0.0012051464807476151},</span>
+<span class="go"> {0.05412371134020619, 0.003073620766248536, 0.00037515737277240353, 0.00007141546318369872},</span>
+<span class="go"> {0.006422964827970543, 0.00037514535310362654, 0.00004650658040311765, 8.922181605812488*^-6},</span>
+<span class="go"> {0.0012051464807476154, 0.00007141014408564581, 8.921682366795789*^-6, 1.7182218615497802*^-6}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Nm2</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromTrace</span><span class="p">[</span><span class="n">tr</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">Nm2</span><span class="p">];</span>
+<span class="go">{{0.9999999999999999, 0.054181814264514565, 0.006436132453133154, 0.0012095045765684006},</span>
+<span class="go"> {0.054181837668556554, 0.003016453025594649, 0.00036342958169036224, 0.00006866299525753246},</span>
+<span class="go"> {0.00643613510570095, 0.000364222008238514, 0.00004423570251759418, 8.37523546900498*^-6},</span>
+<span class="go"> {0.001209504798516309, 0.00006885089738680504, 8.362939150665785*^-6, 1.5781869218607331*^-6}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mNm2</span> <span class="o">=</span> <span class="n">LagkJointMomentsFromMAP</span><span class="p">[</span><span class="n">D0</span><span class="p">,</span> <span class="n">D1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mNm2</span><span class="p">];</span>
+<span class="go">{{1., 0.05412371134020619, 0.006422964827970542, 0.0012051464807476151},</span>
+<span class="go"> {0.05412371134020619, 0.003006103416321288, 0.0003622134317753621, 0.00006849168910817987},</span>
+<span class="go"> {0.006422964827970543, 0.00036220135459620823, 0.00004402357332096537, 8.361000663626873*^-6},</span>
+<span class="go"> {0.0012051464807476154, 0.00006848634455989706, 8.36049903590675*^-6, 1.5913203311752349*^-6}}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D0</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">18.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">32.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D1</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">25.</span><span class="p">]])</span>

@@ -66,7 +66,19 @@ butools.reptrans.TransformToMonocyclic
 
     For Mathematica:
 
-    
+    >>> A = {{-1, 0, 0},{0, -3, 2},{0, -2, -3}};
+    >>> B = TransformToMonocyclic[A];
+    >>> Print[B];
+    {{-1, 1, 0, 0, 0},
+     {0, -3, 3, 0, 0},
+     {0, 0, -3, 3, 0},
+     {0, 0, 0, -3, 3},
+     {0, 16/27, 0, 0, -3}}
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err = Norm[A.Cm-Cm.B];
+    >>> Print[err];
+    0
+
     For Python/Numpy:
 
     >>> A = ml.matrix([[-1, 0, 0],[0, -3, 2],[0, -2, -3]])

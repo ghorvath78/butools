@@ -60,7 +60,18 @@ butools.dph.CheckMGRepresentation
 
     For Mathematica:
 
-    
+    >>> a = {-0.6,0.3,1.3};
+    >>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
+    >>> flag = CheckMGRepresentation[a, A];
+    >>> Print[flag];
+    True
+    >>> a = {-0.6,0.3,1.3};
+    >>> A = {{0.35, 0.2, -0.25},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
+    >>> flag = CheckMGRepresentation[a, A];
+    "CheckMGRepresentation: The largest eigenvalue of the matrix is complex!"
+    >>> Print[flag];
+    False
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[-0.6,0.3,1.3]])

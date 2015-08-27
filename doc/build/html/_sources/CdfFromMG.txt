@@ -50,7 +50,12 @@ butools.dph.CdfFromMG
 
     For Mathematica:
 
-    
+    >>> a = {-0.6,0.3,1.3};
+    >>> A = {{0.25, 0.2, -0.15},{0.3, 0.1, 0.25},{0, 0.2, 0.47}};
+    >>> x = Range[0.0,100.0,1.0];
+    >>> cdf = CdfFromMG[a, A, x];
+    >>> ListLinePlot[{Transpose[{x, cdf}]}]
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[-0.6,0.3,1.3]])

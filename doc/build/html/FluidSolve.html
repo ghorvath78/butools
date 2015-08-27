@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mc.html">Markov Chains (<code class="docutils literal"><span class="pre">butools.mc</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mc.html#markov-chains-and-rational-processes">Markov chains and rational processes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mc.html#properties-of-markov-chains-and-rational-processes">Properties of Markov chains and rational processes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTMCSolve.html">butools.mc.CTMCSolve</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DTMCSolve.html">butools.mc.DTMCSolve</a></li>
@@ -91,6 +92,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="moments.html">Moment expressions (<code class="docutils literal"><span class="pre">butools.moments</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="moments.html#moment-expressions">Moment expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="moments.html#conversion-routines-between-various-moment-expressions">Conversion routines between various moment expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="NormMomsFromMoms.html">butools.moments.NormMomsFromMoms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MomsFromNormMoms.html">butools.moments.MomsFromNormMoms</a></li>
@@ -139,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="CheckMEPositiveDensity.html">butools.ph.CheckMEPositiveDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="SamplesFromPH.html">butools.ph.SamplesFromPH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ImageFromPH.html">butools.ph.ImageFromPH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="APHFrom2Moments.html">butools.ph.APHFrom2Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="APHFrom3Moments.html">butools.ph.APHFrom3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH2From3Moments.html">butools.ph.PH2From3Moments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="PH3From5Moments.html">butools.ph.PH3From5Moments</a></li>
@@ -270,6 +273,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trace.html">Tools for the Analysis of Measurement Traces (<code class="docutils literal"><span class="pre">butools.trace</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trace.html#analysis-of-measurement-traces">Analysis of measurement traces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trace.html#tools-for-the-analysis-of-measurement-traces">Tools for the analysis of measurement traces</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromTrace.html">butools.trace.CdfFromTrace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="CdfFromWeightedTrace.html">butools.trace.CdfFromWeightedTrace</a></li>
@@ -329,6 +333,7 @@
 <li class="toctree-l2"><a class="reference internal" href="queues.html#functions-for-continuous-queues">Functions for continuous queues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QBDQueue.html">butools.queues.QBDQueue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MAPMAP1.html">butools.queues.MAPMAP1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MMAPPH1FCFS.html">butools.queues.MMAPPH1FCFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1PRPR.html">butools.queues.MMAPPH1PRPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="MMAPPH1NPPR.html">butools.queues.MMAPPH1NPPR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FluidQueue.html">butools.queues.FluidQueue</a></li>
@@ -402,7 +407,11 @@
 </table>
 <p>Returns the parameters of the matrix-exponentially
 distributed stationary distribution of a canonical
-Markovian fluid model</p>
+Markovian fluid model.</p>
+<p>The canonical Markov fluid model is defined by the
+matrix blocks of the generator of the background Markov
+chain partitioned according to the sign of the
+associated fluid rates (i.e., there are &#8220;+&#8221; and &#8220;-&#8221; states).</p>
 <p>Using the returned 4 parameters the stationary
 solution can be obtained as follows.</p>
 <p>The probability that the fluid level is zero while
@@ -441,7 +450,7 @@ having negative fluid rates</p>
 <p><strong>precision</strong> : double, optional</p>
 <blockquote>
 <div><p>Numerical precision for computing the fundamental
-matrix and for checking. The default value is 1e-14</p>
+matrix. The default value is 1e-14</p>
 </div></blockquote>
 </td>
 </tr>
@@ -490,6 +499,28 @@ matrix and for checking. The default value is 1e-14</p>
 </pre></div>
 </div>
 <p>For Mathematica:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Fpp</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fpm</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmm</span> <span class="o">=</span> <span class="p">{{</span><span class="o">-</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fmp</span> <span class="o">=</span> <span class="p">{{</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},{</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">}};</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">mass0</span><span class="p">,</span> <span class="n">ini</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">clo</span><span class="p">}</span> <span class="o">=</span> <span class="n">FluidSolve</span><span class="p">[</span><span class="n">Fpp</span><span class="p">,</span> <span class="n">Fpm</span><span class="p">,</span> <span class="n">Fmp</span><span class="p">,</span> <span class="n">Fmm</span><span class="p">];</span>
+<span class="go">&quot;Final Residual Error for Psi: &quot;1.1657341758564144*^-15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">mass0</span><span class="p">];</span>
+<span class="go">{0.03751362697958451, 0.0153034356482914, 0.09792058971336806}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">ini</span><span class="p">];</span>
+<span class="go">{0.14314775223533632, 0.076517178241457}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">K</span><span class="p">];</span>
+<span class="go">{{-3.65799640319986, 1.8258294108775632},</span>
+<span class="go"> {3.255293764043593, -2.350237730252557}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">clo</span><span class="p">];</span>
+<span class="go">{{1, 0, 0.33722394414970486, 0.16516588217551262, 0.4976101736747833},</span>
+<span class="go"> {0, 1, 0.3317962853815385, 0.12995245394948857, 0.5382512606689742}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdfAtX</span> <span class="o">=</span> <span class="n">ini</span><span class="o">.</span><span class="n">MatrixExponential</span><span class="p">[</span><span class="n">K</span><span class="o">*</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">clo</span><span class="p">;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Print</span><span class="p">[</span><span class="n">pdfAtX</span><span class="p">];</span>
+<span class="go">{0.14314775223533632, 0.076517178241457} . MatrixExponential[{{-2.560597482239902, 1.2780805876142942}, {2.278705634830515, -1.6451664111767899}}] . {{1, 0, 0.33722394414970486, 0.16516588217551262, 0.4976101736747833}, {0, 1, 0.3317962853815385, 0.12995245394948857, 0.5382512606689742}}</span>
+</pre></div>
+</div>
 <p>For Python/Numpy:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Fpp</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Fpm</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>

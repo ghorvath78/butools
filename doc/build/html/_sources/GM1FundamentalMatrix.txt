@@ -29,9 +29,9 @@ butools.mam.GM1FundamentalMatrix
     
     Parameters
     ----------
-    A : matrix, shape (N,M*N)
-        Matrix blocks of the G/M/1 type generator from
-        0 to M-1, concatenated horizontally.
+    A : length(M) list of matrices of shape (N,N)
+        Matrix blocks of the G/M/1 type generator in the 
+        regular part, from 0 to M-1.
     precision : double, optional
         Matrix R is computed iteratively up to this
         precision. The default value is 1e-14
@@ -75,7 +75,23 @@ butools.mam.GM1FundamentalMatrix
 
     For Mathematica:
 
-    
+    >>> A0 = {{0.1, 0.},{0., 0.1}};
+    >>> A1 = {{0., 0.2},{0., 0.2}};
+    >>> A2 = {{0., 0.1},{0., 0.}};
+    >>> A3 = {{0.3, 0.2},{0.3, 0.2}};
+    >>> A4 = {{0., 0.1},{0.2, 0.}};
+    >>> A = {A0, A1, A2, A3, A4};
+    >>> R = GM1FundamentalMatrix[A];
+    "The evaluation of the iteration required "64" roots\n"
+    "The evaluation of the iteration required "32" roots\n"
+    "The evaluation of the iteration required "16" roots\n"
+    "The evaluation of the iteration required "8" roots\n"
+    "The evaluation of the iteration required "8" roots\n"
+    "Final Residual Error for G: "5.551115123125783*^-17
+    >>> Print[R];
+    {{0.10065149910973312, 0.026960920607274754},
+     {0.0006553100576153258, 0.12568710472819553}}
+
     For Python/Numpy:
 
     >>> A0 = ml.matrix([[0.1, 0.],[0., 0.1]])

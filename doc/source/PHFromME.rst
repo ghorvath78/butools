@@ -100,7 +100,53 @@ butools.ph.PHFromME
 
     For Mathematica:
 
-    
+    >>> a = {-0.4,1.4};
+    >>> A = {{-3.8, 2},{2, -9}};
+    >>> flag = CheckMERepresentation[a, A];
+    >>> Print[flag];
+    True
+    >>> flag = CheckPHRepresentation[a, A];
+    "CheckProbVector: The vector has negative element!"
+    >>> Print[flag];
+    False
+    >>> {b, B} = PHFromME[a, A];
+    >>> Print[b];
+    {0.013037109374999953, 0.9869628906249999}
+    >>> Print[B];
+    {{-3.2604571906887756, 2.5924299798044217},
+     {0.3484263627325931, -9.539542809311223}}
+    >>> flag = CheckPHRepresentation[b, B];
+    >>> Print[flag];
+    True
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1, err2]];
+    1.1393205654608455*^-15
+    >>> a = {-0.5,1.5};
+    >>> A = {{-3.8, 2},{2, -9}};
+    >>> flag = CheckMERepresentation[a, A];
+    >>> Print[flag];
+    True
+    >>> flag = CheckPHRepresentation[a, A];
+    "CheckProbVector: The vector has negative element!"
+    >>> Print[flag];
+    False
+    >>> {b, B} = PHFromME[a, A];
+    >>> Print[b];
+    {0.0057037812657654285, 0.9942962187342346}
+    >>> Print[B];
+    {{-3.1278937744575632, 3.0635853844348873},
+     {0.017404720964309853, -9.672106225542432}}
+    >>> flag = CheckPHRepresentation[b, B];
+    >>> Print[flag];
+    True
+    >>> Cm = SimilarityMatrix[A, B];
+    >>> err1 = Norm[A.Cm-Cm.B];
+    >>> err2 = Norm[a.Cm-b];
+    >>> Print[Max[err1, err2]];
+    2.30940485129664*^-15
+
     For Python/Numpy:
 
     >>> a = ml.matrix([[-0.4,1.4]])

@@ -11,7 +11,7 @@ script, or execute
 
     * - :code:`addpath('butools/ph')` 
       - in Matlab,
-    * - :code:`<<"BuTools`PH"` 
+    * - :code:`<<"BuTools`PH`` 
       - in Mathematica,
     * - :code:`from butools.ph import *` 
       - in Python/Numpy.

@@ -11,7 +11,7 @@ butools.mam.QBDFundamentalMatrices
         * - Matlab:
           - :code:`M = QBDFundamentalMatrices(B, L, F, matrices, precision, maxNumIt, method)`
         * - Mathematica:
-          - :code:`M = QBDFundamentalMatrices[xxx]`
+          - :code:`M = QBDFundamentalMatrices[B, L, F, matrices, precision, maxNumIt, method]`
         * - Python/Numpy:
           - :code:`M = QBDFundamentalMatrices(B, L, F, matrices, precision, maxNumIt, method)`
 
@@ -46,7 +46,8 @@ butools.mam.QBDFundamentalMatrices
         equation (CR: cyclic reduction, LR: logarithmic
         reduction, NI: Newton iteration, FI: functional
         iteration, IS: invariant subspace method). The 
-        default is "CR".
+        default is "CR". "CR" is the only supported 
+        method in the Mathematica and Python implementation.
     
     Returns
     -------
@@ -89,7 +90,24 @@ butools.mam.QBDFundamentalMatrices
 
     For Mathematica:
 
-    
+    >>> B = {{0., 0.},{3., 4.}};
+    >>> L = {{-6., 5.},{3., -12.}};
+    >>> F = {{1., 0.},{2., 0.}};
+    >>> L0 = {{-6., 5.},{6., -8.}};
+    >>> {R, G, U} = QBDFundamentalMatrices[B, L, F, "RGU"];
+    "Final Residual Error for G: "5.551115123125783*^-17
+    "Final Residual Error for R: "0.027036455607884147
+    "Final Residual Error for U: "8.326672684688674*^-17
+    >>> Print[R];
+    {{0.27838827838827834, 0.14285714285714282},
+     {0.5567765567765567, 0.28571428571428564}}
+    >>> Print[G];
+    {{0.42857142857142866, 0.5714285714285714},
+     {0.42857142857142866, 0.5714285714285714}}
+    >>> Print[U];
+    {{-5.571428571428571, 5.571428571428571},
+     {3.8571428571428577, -10.857142857142858}}
+
     For Python/Numpy:
 
     >>> B = ml.matrix([[0., 0.],[3., 4.]])

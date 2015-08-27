@@ -28,16 +28,16 @@
 %      +----------------+--------------------+--------------------------------------+
 %      | Parameter name | Input parameters   | Output                               |
 %      +================+====================+======================================+
-%      | "qlMoms"       | Number of moments  | The moments of the fluid level       |
+%      | "flMoms"       | Number of moments  | The moments of the fluid level       |
 %      +----------------+--------------------+--------------------------------------+
-%      | "qlDistr"      | A vector of points | The fluid level distribution at      |
+%      | "flDistr"      | A vector of points | The fluid level distribution at      |
 %      |                |                    | the requested points (cdf)           |
 %      +----------------+--------------------+--------------------------------------+
-%      | "qlDistrME"    | None               | The vector-matrix parameters of the  |
+%      | "flDistrME"    | None               | The vector-matrix parameters of the  |
 %      |                |                    | matrix-exponentially distributed     |
 %      |                |                    | fluid level distribution             |
 %      +----------------+--------------------+--------------------------------------+
-%      | "qlDistrPH"    | None               | The vector-matrix parameters of the  |
+%      | "flDistrPH"    | None               | The vector-matrix parameters of the  |
 %      |                |                    | matrix-exponentially distributed     |
 %      |                |                    | fluid level distribution, converted  |
 %      |                |                    | to a PH representation               |
@@ -76,8 +76,8 @@
 %  
 %  Notes
 %  -----
-%  "qlDistrME" and "stDistrME" behave much better numerically than 
-%  "qlDistrPH" and "stDistrPH".
+%  "flDistrME" and "stDistrME" behave much better numerically than 
+%  "flDistrPH" and "stDistrPH".
 
 function varargout = FluidQueue(Q, Rin, Rout, varargin)
 

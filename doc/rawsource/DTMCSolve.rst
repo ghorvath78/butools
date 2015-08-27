@@ -32,7 +32,7 @@ butools.mc.DTMCSolve
     Notes
     -----
     The procedure raises an exception if :code:`butools.checkInput` 
-    is set to :code:`true` and :func:`CheckProbMatrix(P)` fails.
+    is set to :code:`true` and :func:`CheckProbMatrix` (P) fails.
 
     Examples
     --------
