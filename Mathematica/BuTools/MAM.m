@@ -48,7 +48,7 @@ BF,BB,G,PI,check,numit,Lstar,Bstar,Fstar,ret,U,R,resNorm},
         drift = Total[theta.Bm] - Total[theta.Fm];
         Lold = Lm;
         If[drift < 0, (* MC is transient -> use the dual MC*)
-            Fold = Fm
+            Fold = Fm;
             Fm = Fm - ConstantArray[1,{m,1}].{theta.Fm};
             Lm = Lm + ConstantArray[1,{m,1}].{theta.Bm};
         ,
