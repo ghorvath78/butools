@@ -44,7 +44,7 @@ MomsFromReducedMoms[ rmoms_] := Table[rmoms[[i]] i!,{i,Length[rmoms]}];
 
 
 FactorialMomsFromMoms[moms_]:=
-Table[Table[Coefficient[Product[(x-k),{k,0,i-1}],x,j],{j,i}].moms[[1;;i]],{i,Length[moms]}];
+Table[CoefficientList[Product[(x-k),{k,0,i-1}],x][[2;;]].moms[[1;;i]],{i,Length[moms]}];
 (*Module[{fmoms,eh,i},
 fmoms={};
 Do[
