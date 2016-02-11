@@ -64,7 +64,10 @@ function varargout = FluidFundamentalMatrices (Fpp, Fpm, Fmp, Fmm, matrices, pre
         method = 'ADDA';
     end
 
-    if strcmp(method,'CR')
+    if size(Fpp,1)==0
+        numit = 0;
+        Psi = zeros(0,size(Fmm,1));
+    elseif strcmp(method,'CR')
         F = [Fpp,Fpm;Fmp,Fmm];
         sp = size(Fpp,1);
         sm = size(Fmm,1);
