@@ -20,7 +20,7 @@ Phase-type and matrix-exponential distributions
 -----------------------------------------------
 
 Continuous time phase-type (PH) distributions are characterized by two parameters, the initial probability vector :math:`\alpha`
-and the transient generator matrix of a continuous time (transient) Markov chain :math:`\alpha`. The PH distribution represents
+and the transient generator matrix of a continuous time (transient) Markov chain :math:`A`. The PH distribution represents
 the absorption time of this transient Markov chain starting from :math:`\alpha`.
 The cummulative distribution function (cdf) of PH distributions is 
 

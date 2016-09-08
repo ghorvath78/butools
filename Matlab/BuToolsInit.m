@@ -7,10 +7,14 @@ function BuToolsInit (verbose, checkInput, checkPrecision)
     
     packages = {'utils', 'mc', 'moments', 'reptrans', 'trace', 'ph', 'dph', 'map', 'dmap', 'mam', 'queues', 'fitting'};
     
-    path(pathstr, path);
+    pkgpath = {pathstr};
+    for p=1:length(packages)
+        pkgpath{p+1} = fullfile(pathstr,packages{p});
+    end    
+    addpath(strjoin(pkgpath,':'));
+    
     fprintf('Packages loaded: ');
     for p=1:length(packages)
-        path(fullfile(pathstr,packages{p}), path);
         fprintf(packages{p});
         if p<length(packages)
             fprintf(', ');

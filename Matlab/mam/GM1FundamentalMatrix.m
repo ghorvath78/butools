@@ -65,5 +65,5 @@ function R = GM1FundamentalMatrix (A, precision, maxNumIt, method)
         Am(:,(i-1)*N+1:i*N) = A{i};
     end
 
-    R = GIM1_R (Am, 'R', method, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
+    R = GIM1_R (Am, 'A', method, 'MaxNumIt', maxNumIt, 'Verbose', BuToolsVerbose, 'EpsilonValue', precision);
 end
