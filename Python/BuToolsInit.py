@@ -1,7 +1,6 @@
 import os, sys
 
-def BuToolsInit (verbose=False, checkInput=True, checkPrecision=1e-12):
-#    btDir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+def BuToolsInit(verbose=False, checkInput=True, checkPrecision=1e-12):
     btDir = os.path.dirname(os.path.realpath(__file__))
     sys.path.append(btDir)
     print("Butools V2.0")
